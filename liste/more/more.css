@@ -1,0 +1,64 @@
+body {
+    height: 96%;
+}
+
+header {
+    height: 6%;
+}
+
+main {
+    height: 82%;
+}
+
+footer {
+    height: 3%;
+}
+
+p {
+    text-align: left;
+    font-size: large;
+}
+
+a {
+    color: black;
+}
+
+#markY {
+    background-color: yellow;
+}
+
+#markB {
+    background-color: rgba(37, 37, 255, 0.444);
+}
+
+#markW {
+    background-color: white;
+    color: blackw;
+}
+
+#markO {
+    background-color: rgb(255, 98, 41);
+}
+
+#markG {
+    background-color: green;
+}
+
+#markR {
+    background-color: red;
+}
+
+h1 {
+    background-color: red;
+    text-align: center;
+}
+
+#right {
+    margin-left: 95%;
+    position: fixed;
+}
+
+html {
+    background-color: rgba(72, 72, 72, 0.842);
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Spicker.css">
+    <script src="spicker.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icons/S logo.ico">
+    <title>liste Tags</title>    
+</head>
+<body>
+    <header>
+        <input type="text" id="myInput" onchange="myFunction()" placeholder="Search for tags.." title="Suche nach tags">
+            <table id="dynamicTable"> 
+    </header>
+    <main>
+        <thead> 
+            <tr> 
+                <th>Tag</th> 
+                <th>Beschreibung</th>
+                <th>Sprache</th> 
+                <th>Link</th> 
+            </tr>
+        </thead> 
+        <tbody>
+
+        </tbody> 
+    </table>
+    <div id="noResultsOverlay">
+        <div class="overlay-content">
+          🔎 Keine Ergebnisse gefunden!
+        </div>
+    </div>
+    </main>
+    <footer>
+        <div class="ersteller">
+            <p>Erstellt von:</p><a href="">Julian Stiller</a>
+        </div>
+    </footer>
+</body>
+</html>
