@@ -65,6 +65,13 @@ let oTableEntries = { "List": [
       "class": ["media","html"]
     },
     {
+      "Tag": "Allgemeine Geschwisterselek-toren",
+      "Beschreibung": "Wählt Elemente aus, die einem anderen Element folgen",
+      "Sprache": "CSS",
+      "Link": "",
+      "class": ["CSS","Selektoren"]
+    },
+    {
       "Tag": "Angrenzende Geschwisterselek-toren",
       "Beschreibung": "Wählt Elemente aus, die einem anderen Element unmittelbar folgen",
       "Sprache": "CSS",
@@ -228,7 +235,14 @@ let oTableEntries = { "List": [
     },
     //J
     //K
-        {
+    {
+      "Tag": "Kindselektoren",
+      "Beschreibung": "Wählt Elemente aus, die direkte Kinder eines bestimmten Elements sind",
+      "Sprache": "CSS",
+      "Link": "",
+      "class": ["CSS","Selektoren"]
+    },
+    {
       "Tag": "Klassenselektor",
       "Beschreibung": "Wählt die Elemente anhand von CSS-Klassen aus",
       "Sprache": "CSS",
@@ -266,6 +280,13 @@ let oTableEntries = { "List": [
       "class": ["html"]
     },
     //N
+    {
+      "Tag": "Nachfahrensselektoren",
+      "Beschreibung": "Wählt Elemente aus, die Nachfahren eines bestimmten Elements sind",
+      "Sprache": "CSS",
+      "Link": "",
+      "class": ["CSS","Selektoren"]
+    },
     {
       "Tag": "<noscript>",
       "Sprache": "html",
