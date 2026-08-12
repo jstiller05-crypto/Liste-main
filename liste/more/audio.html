@@ -6,31 +6,26 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>Klassen (class)</title>
+  <title>audio</title>
 </head>
 <body>
   <header>
-    <h1>CSS-Klassen</h1>
+    <h1>&lt;audio&gt;</h1>
   </header>
-
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Mit CSS-Klassen kannst du gezielt Elemente formatieren und mehrfach wiederverwenden.</p>
+      <p>Einbettung von Audiodateien mit Steuerung (Play/Pause) im Browser.</p>
     </section>
-
     <section>
-      <h2>Syntax</h2>
-      <pre><code>&lt;div class="example"&gt;Inhalt&lt;/div&gt;
-.example { color: red; }</code></pre>
-    </section>
-
-    <section>
-      <h2>Hinweis</h2>
-      <p>CSS-Dateien müssen im &lt;head&gt; über ein &lt;link&gt; eingebunden werden.</p>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;audio controls&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  Ihr Browser unterstützt das Audio-Element nicht.
+&lt;/audio&gt;</code></pre>
     </section>
   </main>
-
   <footer>
     <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
   </footer>

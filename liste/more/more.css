@@ -1,64 +1,114 @@
 body {
-    height: 96%;
+  background-color: #333333; /* dunkler Hintergrund für bessere Lesbarkeit */
+  color: white;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
-    height: 6%;
+  padding: 1rem 1rem 0.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: white;
 }
 
 main {
-    height: 82%;
+  padding: 0 1rem 4rem;
 }
 
-footer {
-    height: 3%;
+section {
+  background-color: transparent; /* keine Füllfarbe, nur Rand wie Spicker */
+  border: 1px solid #000000; /* Spicker nutzt dunkle Ränder */
+  border-radius: 3px;
+  margin: 12px 0;
+  padding: 12px;
 }
 
-p {
-    text-align: left;
-    font-size: large;
+section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  color: #f5f5f5;
+}
+
+section p,
+section ul,
+section li {
+  margin: 0;
+  line-height: 1.7;
+  color: #d9d9d9;
+}
+
+section ul {
+  padding-left: 1.2rem;
+}
+
+pre {
+  background-color: transparent;
+  border: 1px solid #323232;
+  border-radius: 3px;
+  padding: 0.75rem;
+  overflow-x: auto;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.95rem;
+}
+
+.copy-button{
+  background:#222;
+  color:#fff;
+  border:1px solid #444;
+  padding:6px 8px;
+  border-radius:4px;
+  cursor:pointer;
+  margin-bottom:8px;
+  font-size:0.85rem;
+}
+
+/* Variante: Button absolut oben rechts innerhalb des pre (pre muss position:relative) */
+pre{ position:relative; }
+.copy-button{
+  position:none;
+  top:8px;
+  right:8px;
+  margin:0;
+  padding:6px 8px;
 }
 
 a {
-    color: black;
+  color: #ffffff;
+  text-decoration: underline;
 }
 
-#markY {
-    background-color: yellow;
+a:hover {
+  color: #ddd;
 }
 
-#markB {
-    background-color: rgba(37, 37, 255, 0.444);
+footer {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
 }
 
-#markW {
-    background-color: white;
-    color: blackw;
+.back-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
 }
 
-#markO {
-    background-color: rgb(255, 98, 41);
+.back-icon img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-#markG {
-    background-color: green;
-}
-
-#markR {
-    background-color: red;
-}
-
-h1 {
-    background-color: red;
-    text-align: center;
-}
-
-#right {
-    margin-left: 95%;
-    position: fixed;
-}
-
-html {
-    background-color: rgba(72, 72, 72, 0.842);
+ul li {
+  margin-bottom: 0.4rem;
 }
 
