@@ -47,14 +47,14 @@ let oTableEntries = { "List": [
       "Tag": "<abbr>",
       "Beschreibung": "Abkürzung mit erklärtem Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/abbr.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<address>",
       "Beschreibung": "Adressblock für Kontaktinformationen",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/address.html",
       "class": ["html","container","semantik"]
     },
     {
@@ -97,42 +97,42 @@ let oTableEntries = { "List": [
       "Tag": "<base>",
       "Beschreibung": "Basis-URL für relative Links",
       "Sprache": "html",
-      "Link": "",
+      "Link": "/more/base.html",
       "class": ["html","metadata"]
     },
     {
       "Tag": "<bdi>",
       "Beschreibung": "Steuert die Schreibrichtung für Textblöcke",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/bdi.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<bdo>",
       "Beschreibung": "Überschreibt die Schreibrichtung des Textes",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/bdo.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<blockquote>",
       "Beschreibung": "Blockzitat für längere Zitate",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/blockquote.html",
       "class": ["html","container","text"]
     },
     {
       "Tag": "<body>",
       "Beschreibung": "Hauptkörper des Dokuments",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/body.html",
       "class": ["basis","html","container"]
     },
     {
       "Tag": "<br>",
       "Beschreibung": "Zeilenumbruch im Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/br.html",
       "class": ["html","text"]
     },
     {
@@ -147,91 +147,91 @@ let oTableEntries = { "List": [
       "Tag": "<canvas>",
       "Beschreibung": "Grafikfläche für dynamische Zeichnungen",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/canvas.html",
       "class": ["html","media"]
     },
     {
       "Tag": "<caption>",
       "Beschreibung": "Beschriftung einer Tabelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/caption.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<cite>",
       "Beschreibung": "Quellenangabe für ein Werk oder Zitat",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/cite.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<code>",
       "Beschreibung": "Code oder Programmtext",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/code.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<col>",
       "Beschreibung": "Definiert eine Tabelle-Spalte",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/col.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<colgroup>",
       "Beschreibung": "Gruppierung von Tabellenspalten",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/colgroup.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<data>",
       "Beschreibung": "Maschinenlesbarer Wert mit sichtbarem Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/data.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<datalist>",
       "Beschreibung": "Liste von Vorschlägen für ein Eingabefeld",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/datalist.html",
       "class": ["html","form"]
     },
     {
       "Tag": "<dd>",
       "Beschreibung": "Beschreibung in einer Definitionsliste",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/dd.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<del>",
       "Beschreibung": "Durchgestrichener Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/del.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<details>",
       "Beschreibung": "Ein- und ausklappbarer Bereich",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/details.html",
       "class": ["html","interactive","container"]
     },
     {
       "Tag": "<dfn>",
       "Beschreibung": "Definition eines Begriffs",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/dfn.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<dialog>",
       "Beschreibung": "Dialogfenster für Nachrichten oder Aktionen",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/dialog.html",
       "class": ["html","interactive","container"]
     },
     {
@@ -245,28 +245,28 @@ let oTableEntries = { "List": [
       "Tag": "<dl>",
       "Beschreibung": "Definitionsliste mit Begriffen und Beschreibungen",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/dl.html",
       "class": ["html","liste"]
     },
     {
       "Tag": "<dt>",
       "Beschreibung": "Begriff in einer Definitionsliste",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/dt.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<em>",
       "Beschreibung": "Hervorgehobener Text mit Betonung",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/em.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<embed>",
       "Beschreibung": "Eingebetteter externer Inhalt",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/embed.html",
       "class": ["html","embed"]
     },
     // F
@@ -274,21 +274,21 @@ let oTableEntries = { "List": [
       "Tag": "<fieldset>",
       "Beschreibung": "Gruppiert Formularfelder",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/fieldset.html",
       "class": ["html","form","container"]
     },
     {
       "Tag": "<figcaption>",
       "Beschreibung": "Beschriftung für ein Figure-Element",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/figcaption.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<figure>",
       "Beschreibung": "Medieninhalt mit Beschreibung",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/figure.html",
       "class": ["html","container","media"]
     },
     {
@@ -302,7 +302,7 @@ let oTableEntries = { "List": [
       "Tag": "<form>",
       "Beschreibung": "Formular zur Eingabe von Daten",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/form.html",
       "class": ["html","form","container"]
     },
     // G
@@ -360,28 +360,28 @@ let oTableEntries = { "List": [
       "Tag": "<head>",
       "Beschreibung": "Metadaten und Verweise des Dokuments",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/head.html",
       "class": ["basis","html","metadata","einbinden"]
     },
     {
       "Tag": "<header>",
       "Beschreibung": "Kopfbereich einer Seite oder Sektion",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/header.html",
       "class": ["html","container"]
     },
     {
       "Tag": "<hr>",
       "Beschreibung": "Horizontale Trennlinie",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/hr.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<html>",
       "Beschreibung": "Wurzelelement des HTML-Dokuments",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/html.html",
       "class": ["basis","html"]
     },
     // I
@@ -389,14 +389,14 @@ let oTableEntries = { "List": [
       "Tag": "<i>",
       "Beschreibung": "Kursiver Text ohne zusätzliche Semantik",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/i.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<iframe>",
       "Beschreibung": "Eingebettete externe Webseite",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/iframe.html",
       "class": ["html","embed","media"]
     },
     {
@@ -417,14 +417,14 @@ let oTableEntries = { "List": [
       "Tag": "<ins>",
       "Beschreibung": "Eingefügter Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/ins.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<kbd>",
       "Beschreibung": "Tastatureingabe darstellen",
-      "Link": "more/form.html",
-      "Link": "",
+      "Sprache": "html",
+      "Link":"more/kbd.html",
       "class": ["html","text"]
     },
     // K
@@ -432,14 +432,14 @@ let oTableEntries = { "List": [
       "Tag": "<label>",
       "Beschreibung": "Beschriftung für ein Formularfeld",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/label.html",
       "class": ["html","form","text"]
     },
     {
       "Tag": "<legend>",
       "Beschreibung": "Beschriftung für ein Fieldset",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/legend.html",
       "class": ["html","form","text"]
     },
     {
@@ -460,7 +460,7 @@ let oTableEntries = { "List": [
       "Tag": "<main>",
       "Beschreibung": "Hauptinhalt der Seite",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/main.html",
       "class": ["html","container"]
     },
     {
@@ -474,49 +474,49 @@ let oTableEntries = { "List": [
       "Tag": "<mark>",
       "Beschreibung": "Hervorhebung von Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/mark.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<menu>",
       "Beschreibung": "Menü für Befehle oder Navigation",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/menu.html",
       "class": ["html","container"]
     },
     {
       "Tag": "<meta>",
       "Beschreibung": "Metadaten wie Zeichensatz oder Beschreibung",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/meta.html",
       "class": ["html","metadata"]
     },
     {
       "Tag": "<meter>",
       "Beschreibung": "Anzeige eines Messwerts innerhalb eines Bereichs",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/meter.html",
       "class": ["html","form"]
     },
     {
       "Tag": "<nav>",
       "Beschreibung": "Navigationsbereich mit Links",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/nav.html",
       "class": ["html","container","semantik"]
     },
     {
       "Tag": "<noscript>",
       "Beschreibung": "Inhalt, wenn JavaScript deaktiviert ist",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/noscript.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<object>",
       "Beschreibung": "Eingebetteter Inhalt oder Multimedia",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/object.html",
       "class": ["html","embed"]
     },
     {
@@ -530,14 +530,14 @@ let oTableEntries = { "List": [
       "Tag": "<optgroup>",
       "Beschreibung": "Gruppierung von Optionen in einem Select",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/optgroup.html",
       "class": ["html","form"]
     },
     {
       "Tag": "<option>",
       "Beschreibung": "Auswahloption in einem Select-Feld",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/option.html",
       "class": ["html","form","text"]
     },
     {
@@ -615,7 +615,7 @@ let oTableEntries = { "List": [
       "Tag": "<script>",
       "Beschreibung": "JavaScript oder andere Skripte einbinden",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/script.html",
       "class": ["html","einbinden"]
     },
     {
@@ -664,7 +664,7 @@ let oTableEntries = { "List": [
       "Tag": "<style>",
       "Beschreibung": "CSS direkt im Dokument",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/style.html",
       "class": ["html","css","einbinden"]
     },
     {
@@ -712,15 +712,15 @@ let oTableEntries = { "List": [
     {
       "Tag": "<td>",
       "Beschreibung": "Zelle in einer Tabellenzeile",
-      "Link": "more/script.html",
-      "Link": "",
+      "Sprache": "html",
+      "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<template>",
       "Beschreibung": "Vorlage für wiederverwendbaren HTML-Code",
+      "Sprache": "html",
       "Link": "more/style.html",
-      "Link": "",
       "class": ["html","container"]
     },
     {
