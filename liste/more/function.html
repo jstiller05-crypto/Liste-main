@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Funktionen – Wiederverwendbarer Code</title>
+</head>
+<body>
+  <header>
+    <h1>Funktionen</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Funktion ist ein wiederverwendbarer Codeblock, der eine spezifische Aufgabe erfüllt. Sie kann Parameter annehmen und einen Wert zurückgeben.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>Rückgabewert funktionName (Paramter1, Parameter2) {
+    // Funktionscode
+    return rückgabewert;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Funktions-Deklaration (Prototyp)
+int addieren(int a, int b);
+
+// Funktions-Definition
+int addieren(int a, int b) {
+    int ergebnis = a + b;
+    return ergebnis;
+}
+
+// Funktion ohne Rückgabewert
+void grueßen(string name) {
+    cout &lt;&lt; "Hallo " &lt;&lt; name &lt;&lt; "!" &lt;&lt; endl;
+}
+
+int main() {
+    int sum = addieren(5, 3);
+    cout &lt;&lt; "5 + 3 = " &lt;&lt; sum &lt;&lt; endl;
+    
+    grueßen("Anna");
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Wichtige Konzepte</h2>
+      <ul>
+        <li><strong>Rückgabewert:</strong> `void` wenn nichts zurückgegeben wird, sonst Datentyp angeben</li>
+        <li><strong>Parameter:</strong> Eingabewerte (können mehrere sein oder keine)</li>
+        <li><strong>Prototyp:</strong> Funktionssignatur vor der main() - gute Praxis</li>
+        <li><strong>Gültigkeitsbereich:</strong> Parameter sind nur innerhalb der Funktion bekannt</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man Funktionen?</h2>
+      <ul>
+        <li>Wiederverwendung von Code</li>
+        <li>Strukturierung und Übersichtlichkeit</li>
+        <li>Tests und Debugging vereinfachen</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Mit `return` wird die Funktion beendet</li>
+        <li>Parameter werden by value übergeben (Kopie)</li>
+        <li>Mit Referenzen (`&`) oder Zeigern (`*`) kann by reference übergeben werden</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>if-else – Bedingungen</title>
+</head>
+<body>
+  <header>
+    <h1>if-else</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Mit if-else kannst du verschiedene Codeblöcke basierend auf Bedingungen ausführen.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>if (Bedingung) {
+    // Wird ausgeführt, wenn Bedingung wahr ist
+} else if (Bedingung2) {
+    // Wird ausgeführt, wenn Bedingung2 wahr ist
+} else {
+    // Wird ausgeführt, wenn keine Bedingung erfüllt
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int alter = 20;
+    
+    if (alter &lt; 13) {
+        cout &lt;&lt; "Du bist ein Kind." &lt;&lt; endl;
+    } else if (alter &lt; 18) {
+        cout &lt;&lt; "Du bist ein Teenager." &lt;&lt; endl;
+    } else if (alter &lt; 65) {
+        cout &lt;&lt; "Du bist Erwachsen." &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "Du bist ein Senior." &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+      <p>Ausgabe: "Du bist Erwachsen."</p>
+    </section>
+
+    <section>
+      <h2>Vergleichsoperatoren</h2>
+      <ul>
+        <li>`==` : ist gleich</li>
+        <li>`!=` : ist nicht gleich</li>
+        <li>`&lt;` : ist kleiner</li>
+        <li>`&gt;` : ist größer</li>
+        <li>`&lt;=` : ist kleiner oder gleich</li>
+        <li>`&gt;=` : ist größer oder gleich</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Logische Operatoren</h2>
+      <ul>
+        <li>`&&` : UND (beide Bedingungen müssen wahr sein)</li>
+        <li>`||` : ODER (mindestens eine Bedingung muss wahr sein)</li>
+        <li>`!` : NICHT (negiert die Bedingung)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>`else` ist optional</li>
+        <li>Geschweifte Klammern `{}` sind optional bei einzelnen Statements, aber empfohlen</li>
+        <li>Ternärer Operator: `int ergebnis = (x > 5) ? 10 : 20;`</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

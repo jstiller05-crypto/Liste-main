@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>std::cin – Eingabe von Konsole</title>
+</head>
+<body>
+  <header>
+    <h1>std::cin</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>std::cin</code> liest Daten von der Standardeingabe (normalerweise Tastatur) und speichert sie in Variablen.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>std::cin &gt;&gt; variable;
+std::cin &gt;&gt; var1 &gt;&gt; var2;</code></pre>
+      <p>Der `&gt;&gt;`-Operator (Extract-Operator) liest Daten aus dem Input-Stream.</p>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int alter;
+    string name;
+    
+    cout &lt;&lt; "Gib deinen Namen ein: ";
+    cin &gt;&gt; name;
+    
+    cout &lt;&lt; "Gib dein Alter ein: ";
+    cin &gt;&gt; alter;
+    
+    cout &lt;&lt; "Hallo " &lt;&lt; name &lt;&lt; ", du bist " &lt;&lt; alter &lt;&lt; " Jahre alt!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man es?</h2>
+      <p>Um Eingaben vom Benutzer zu lesen und in einem Programm zu verarbeiten.</p>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>`cin &gt;&gt;` stoppt beim Lesen bei Whitespace (Leerzeichen, Tab, Newline)</li>
+        <li>Für ganze Zeilen: `getline(cin, string)` verwenden</li>
+        <li>Immer prüfen, ob die Eingabe erfolgreich war (`if(cin)` oder `cin.fail()`)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

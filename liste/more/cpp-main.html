@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>int main() – Einstiegspunkt</title>
+</head>
+<body>
+  <header>
+    <h1>int main()</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <code>main()</code>-Funktion ist der Einstiegspunkt eines C++-Programms. Hier startet die Ausführung.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>int main() {
+    // Programmcode
+    return 0;  // 0 = erfolgreich beendet
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hallo, Welt!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+      <p>Dieses Programm gibt "Hallo, Welt!" aus und beendet sich erfolgreich.</p>
+    </section>
+
+    <section>
+      <h2>Rückgabewert</h2>
+      <ul>
+        <li><code>0</code> : Programm erfolgreich abgeschlossen</li>
+        <li>Andere Zahlen: Fehlercode (z.B. 1 für Fehler)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Mit Kommandozeilenargumenten</h2>
+      <pre><code>int main(int argc, char* argv[]) {
+    // argc = Anzahl der Argumente
+    // argv = Array der Argumente
+    
+    if (argc &gt; 1) {
+        cout &lt;&lt; "Erstes Argument: " &lt;&lt; argv[1] &lt;&lt; endl;
+    }
+    
+    return 0;
+}</code></pre>
+      <p>Mit diesem Programm: `./programm hello` gibt "hello" aus</p>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Pro Programm gibt es nur eine main()-Funktion</li>
+        <li>Das `int` ist der Rückgabewert für das Betriebssystem</li>
+        <li>In modernen Compilern kann `return 0;` am Ende der main() auch weggelassen werden</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>while-Schleife – Bedingter Schleife</title>
+</head>
+<body>
+  <header>
+    <h1>while-Schleife</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine while-Schleife wiederholt einen Codeblock solange eine Bedingung erfüllt ist.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>while (Bedingung) {
+    // Code wird wiederholt, solange Bedingung wahr ist
+}
+
+do {
+    // Code wird mindestens einmal ausgeführt
+} while (Bedingung);</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 1;
+    
+    // Normale while-Schleife
+    while (i &lt;= 5) {
+        cout &lt;&lt; "i = " &lt;&lt; i &lt;&lt; endl;
+        i++;
+    }
+    
+    cout &lt;&lt; "---" &lt;&lt; endl;
+    
+    // do-while: wird mindestens einmal ausgeführt
+    int j = 10;
+    do {
+        cout &lt;&lt; "j = " &lt;&lt; j &lt;&lt; endl;
+        j++;
+    } while (j &lt;= 5);  // Bedingung ist falsch, aber Code wurde einmal ausgeführt
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man es?</h2>
+      <ul>
+        <li><strong>while:</strong> Wenn du nicht weißt, wie oft die Schleife laufen wird</li>
+        <li><strong>do-while:</strong> Wenn der Code mindestens einmal ausgeführt werden muss</li>
+        <li>Beispiel: Menu, das solange läuft, bis der Nutzer "Beenden" wählt</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Achte auf Endlosschleifen! (Bedingung wird nie falsch)</li>
+        <li>`break` beendet die Schleife</li>
+        <li>`continue` springt zum nächsten Durchlauf</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

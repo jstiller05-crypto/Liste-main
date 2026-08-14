@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>std::cout – Ausgabe in Konsole</title>
+</head>
+<body>
+  <header>
+    <h1>std::cout</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>std::cout</code> gibt Daten auf der Standardausgabe aus, normalerweise im Konsolenfenster.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>std::cout &lt;&lt; "Text" &lt;&lt; variable &lt;&lt; std::endl;</code></pre>
+      <p>Der `&lt;&lt;`-Operator (Insert-Operator) schreibt Daten in den Output-Stream.</p>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int alter = 25;
+    cout &lt;&lt; "Ich bin " &lt;&lt; alter &lt;&lt; " Jahre alt." &lt;&lt; endl;
+    cout &lt;&lt; "Das ist eine neue Zeile." &lt;&lt; endl;
+    return 0;
+}</code></pre>
+      <p>Ausgabe:</p>
+      <pre><code>Ich bin 25 Jahre alt.
+Das ist eine neue Zeile.</code></pre>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man es?</h2>
+      <p>Um Ergebnisse, Meldungen oder Debug-Informationen auf dem Bildschirm anzuzeigen.</p>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li><code>std::endl</code> erzeugt einen Zeilenumbruch und leert den Buffer</li>
+        <li><code>"\n"</code> ist schneller als `endl` (nur Umbruch, kein Flush)</li>
+        <li>Man kann mehrere Werte mit `&lt;&lt;` hintereinander ausgeben</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

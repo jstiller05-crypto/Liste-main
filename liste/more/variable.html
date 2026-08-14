@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Variablen – Deklaration und Initialisierung</title>
+</head>
+<body>
+  <header>
+    <h1>Variablen</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Variable ist ein benannter Speicherbereich, der einen Wert eines bestimmten Typs speichert.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>Typ variableName;              // Deklaration
+Typ variableName = wert;       // Deklaration mit Initialisierung
+variableName = neuerWert;      // Zuweisung</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Deklaration
+    int alter;
+    
+    // Deklaration mit Initialisierung
+    int gewicht = 75;
+    string name = "Anna";
+    float temperatur = 36.5f;
+    
+    // Zuweisung
+    alter = 28;
+    
+    cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; endl;
+    cout &lt;&lt; "Alter: " &lt;&lt; alter &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Namenskonventionen</h2>
+      <ul>
+        <li>Beginne mit Buchstabe oder Unterstrich (_)</li>
+        <li>Keine Leerzeichen oder Sonderzeichen (außer _)</li>
+        <li>Groß- und Kleinschreibung wird unterschieden</li>
+        <li>Good Practice: aussagekräftige Namen verwenden (z.B. `alter` statt `a`)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Variablen müssen deklariert werden, bevor sie verwendet werden</li>
+        <li>Nicht initialisierte Variablen enthalten zufällige Werte (Garbage)</li>
+        <li>Mit `const` können Konstanten definiert werden: `const int MAX = 100;`</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>using namespace – Namespaces nutzen</title>
+</head>
+<body>
+  <header>
+    <h1>using namespace</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <code>using namespace</code>-Anweisung macht Symbole aus einem Namespace verfügbar, ohne den Namespace-Präfix zu brauchen.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>using namespace std;
+using namespace eigenerNamespace;</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hallo!" &lt;&lt; endl;  // ohne std:: Präfix
+    return 0;
+}</code></pre>
+      <p>Ohne `using namespace std;` müsste man `std::cout` schreiben.</p>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man es?</h2>
+      <p>Vor allem für Anfänger praktisch. In größeren Projekten eher sparsam einsetzen, um Namenskollisionen zu vermeiden.</p>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Standard in vielen Anfänger-Programmen</li>
+        <li>In professionellem Code oft vermieden (kann zu Konflikten führen)</li>
+        <li>Alternative: einzelne Symbole importieren mit `using std::cout;`</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

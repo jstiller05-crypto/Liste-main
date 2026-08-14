@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Referenzen (&) – Alias für Variablen</title>
+</head>
+<body>
+  <header>
+    <h1>Referenzen (&)</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Referenz ist ein Alias für eine existierende Variable. Sie verweist auf dieselbe Speicherstelle und kann wie die Original-Variable verwendet werden.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>Typ &referenz = variable;   // Referenz erstellen
+// referenz ist jetzt ein Alias für variable</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int alter = 25;
+    int &rAlter = alter;        // rAlter ist Referenz zu alter
+    
+    cout &lt;&lt; "alter: " &lt;&lt; alter &lt;&lt; endl;     // 25
+    cout &lt;&lt; "rAlter: " &lt;&lt; rAlter &lt;&lt; endl;   // 25 (derselbe Wert)
+    
+    rAlter = 30;                // Ändert BEIDE Variablen
+    
+    cout &lt;&lt; "alter: " &lt;&lt; alter &lt;&lt; endl;     // 30
+    cout &lt;&lt; "rAlter: " &lt;&lt; rAlter &lt;&lt; endl;   // 30
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Referenzen in Funktionen</h2>
+      <pre><code>void veraendereWert(int &x) {
+    x = 100;  // Ändert die Original-Variable!
+}
+
+int main() {
+    int alter = 20;
+    veraendereWert(alter);    // alter wird zu 100
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Unterschied: Referenz vs. Zeiger</h2>
+      <ul>
+        <li><strong>Referenz:</strong> Kann nicht NULL sein, automatisch dereferenziert, kein * nötig</li>
+        <li><strong>Zeiger:</strong> Kann NULL sein, muss dereferenziert werden (*), kann geändert werden</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Referenzen müssen bei der Deklaration initialisiert werden</li>
+        <li>Eine Referenz kann nicht auf eine andere Variable verweisen</li>
+        <li>Konstante Referenzen: `const int &r = x;` (können nicht verändert werden)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

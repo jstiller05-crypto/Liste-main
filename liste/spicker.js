@@ -877,6 +877,105 @@ let oTableEntries = { "List": [
       "Sprache": "CSS",
       "Link": "",
       "class": ["css","selektoren"]
+    },
+    // C++
+    {
+      "Tag": "#include",
+      "Beschreibung": "Präprozessor-Direktive zum Einbinden von Bibliotheken oder Header-Dateien",
+      "Sprache": "C++",
+      "Link": "more/include.html",
+      "class": ["cpp","praeprozessor"]
+    },
+    {
+      "Tag": "using namespace",
+      "Beschreibung": "Macht Symbole aus einem Namespace verfügbar ohne Präfix",
+      "Sprache": "C++",
+      "Link": "more/using-namespace.html",
+      "class": ["cpp","namespace"]
+    },
+    {
+      "Tag": "int main()",
+      "Beschreibung": "Hauptfunktion - Einstiegspunkt eines C++-Programms",
+      "Sprache": "C++",
+      "Link": "more/cpp-main.html",
+      "class": ["cpp","funktion","basis"]
+    },
+    {
+      "Tag": "std::cout",
+      "Beschreibung": "Ausgabe von Daten in die Standardausgabe (Konsole)",
+      "Sprache": "C++",
+      "Link": "more/cout.html",
+      "class": ["cpp","io","ausgabe"]
+    },
+    {
+      "Tag": "std::cin",
+      "Beschreibung": "Eingabe von Daten aus der Standardeingabe (Tastatur)",
+      "Sprache": "C++",
+      "Link": "more/cin.html",
+      "class": ["cpp","io","eingabe"]
+    },
+    {
+      "Tag": "int, float, string, bool",
+      "Beschreibung": "Grundlegende Datentypen in C++",
+      "Sprache": "C++",
+      "Link": "more/datatypes.html",
+      "class": ["cpp","datentyp","basis"]
+    },
+    {
+      "Tag": "Variablen",
+      "Beschreibung": "Deklaration und Initialisierung von Variablen mit Typ und Wert",
+      "Sprache": "C++",
+      "Link": "more/variable.html",
+      "class": ["cpp","variable"]
+    },
+    {
+      "Tag": "for-Schleife",
+      "Beschreibung": "Wiederholung eines Codeblocks eine bestimmte Anzahl von Malen",
+      "Sprache": "C++",
+      "Link": "more/for-loop.html",
+      "class": ["cpp","schleife","kontrolle"]
+    },
+    {
+      "Tag": "while-Schleife",
+      "Beschreibung": "Wiederholung eines Codeblocks solange eine Bedingung erfüllt ist",
+      "Sprache": "C++",
+      "Link": "more/while-loop.html",
+      "class": ["cpp","schleife","kontrolle"]
+    },
+    {
+      "Tag": "if-else",
+      "Beschreibung": "Bedingte Ausführung von Codeblöcken basierend auf Bedingungen",
+      "Sprache": "C++",
+      "Link": "more/if-else.html",
+      "class": ["cpp","bedingung","kontrolle"]
+    },
+    {
+      "Tag": "Funktionen",
+      "Beschreibung": "Wiederverwendbare Codeblöcke mit Parametern und Rückgabewert",
+      "Sprache": "C++",
+      "Link": "more/function.html",
+      "class": ["cpp","funktion"]
+    },
+    {
+      "Tag": "Zeiger (*)",
+      "Beschreibung": "Variable, die die Speicheradresse einer anderen Variable speichert",
+      "Sprache": "C++",
+      "Link": "more/pointer.html",
+      "class": ["cpp","zeiger","speicher"]
+    },
+    {
+      "Tag": "Referenzen (&)",
+      "Beschreibung": "Alias für eine existierende Variable mit derselben Speicheradresse",
+      "Sprache": "C++",
+      "Link": "more/reference.html",
+      "class": ["cpp","referenz","speicher"]
+    },
+    {
+      "Tag": "Klasse",
+      "Beschreibung": "Vorlage für die Erstellung von Objekten mit Eigenschaften und Methoden",
+      "Sprache": "C++",
+      "Link": "more/cpp-class.html",
+      "class": ["cpp","klasse","oop"]
     }
   ]};
 

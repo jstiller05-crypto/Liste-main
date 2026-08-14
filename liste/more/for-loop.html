@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>for-Schleife – Wiederholungen</title>
+</head>
+<body>
+  <header>
+    <h1>for-Schleife</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine for-Schleife wiederholt einen Codeblock eine bekannte Anzahl von Malen.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>for (Initialisierung; Bedingung; Erhöhung) {
+    // Code wird wiederholt
+}</code></pre>
+      <p><strong>Initialisierung:</strong> Counter-Variable setzen<br>
+      <strong>Bedingung:</strong> Solange diese wahr ist, wird die Schleife wiederholt<br>
+      <strong>Erhöhung:</strong> Wird nach jedem Durchlauf ausgeführt</p>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Zaehle von 1 bis 5
+    for (int i = 1; i &lt;= 5; i++) {
+        cout &lt;&lt; "Durchlauf " &lt;&lt; i &lt;&lt; endl;
+    }
+    
+    // Zaehle rückwärts
+    for (int i = 5; i &gt;= 1; i--) {
+        cout &lt;&lt; i &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+      <p>Ausgabe der ersten Schleife:</p>
+      <pre><code>Durchlauf 1
+Durchlauf 2
+Durchlauf 3
+Durchlauf 4
+Durchlauf 5</code></pre>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>`i++` erhöht i um 1, `i--` reduziert um 1</li>
+        <li>`i += 2` erhöht um 2, allgemein: `i += n`</li>
+        <li>Mit `break` kann die Schleife unterbrochen werden</li>
+        <li>Mit `continue` wird der aktuelle Durchlauf übersprungen</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

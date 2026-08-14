@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Zeiger (*) – Speicheradressen</title>
+</head>
+<body>
+  <header>
+    <h1>Zeiger (*)</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein Zeiger ist eine Variable, die die Speicheradresse einer anderen Variable speichert. Der `*`-Operator wird zur Deklaration und Dereferenzierung verwendet.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>int *zeiger;                // Deklaration eines Zeigers auf int
+zeiger = &variable;         // Adresse von variable in zeiger speichern
+int wert = *zeiger;         // Wert auslesen, auf den zeiger zeigt
+*zeiger = 42;               // Wert durch Zeiger ändern</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int alter = 25;
+    int *pAlter;                   // Zeiger auf int deklarieren
+    
+    pAlter = &alter;               // & = Adresse von 'alter'
+    
+    cout &lt;&lt; "Wert: " &lt;&lt; alter &lt;&lt; endl;      // 25
+    cout &lt;&lt; "Adresse: " &lt;&lt; pAlter &lt;&lt; endl;  // z.B. 0x7fff5fbff8ac
+    cout &lt;&lt; "Wert via Zeiger: " &lt;&lt; *pAlter &lt;&lt; endl; // 25
+    
+    *pAlter = 30;                  // Wert ändern
+    cout &lt;&lt; "Neuer Wert: " &lt;&lt; alter &lt;&lt; endl;   // 30
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Wichtige Operatoren</h2>
+      <ul>
+        <li><strong>&</strong> : Address-of Operator (gibt die Adresse)</li>
+        <li><strong>*</strong> : Dereference Operator (gibt den Wert an der Adresse)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man Zeiger?</h2>
+      <ul>
+        <li>Dynamische Speicherzuweisung (`new` und `delete`)</li>
+        <li>Funktionen mit Referenzen übergeben</li>
+        <li>Arrays und Strings manipulieren</li>
+        <li>Datenstrukturen wie Listen und Bäume</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Null-Zeiger: `int *p = nullptr;` (nicht initialisiert)</li>
+        <li>Zeiger auf Zeiger: `int **pZeiger = &pAlter;`</li>
+        <li>Achte auf Speicherlecks! Mit `new` reservierte Speicher mit `delete` freigeben</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

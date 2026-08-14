@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Klassen – Objekt-orientierte Programmierung</title>
+</head>
+<body>
+  <header>
+    <h1>Klassen</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Klasse ist eine Vorlage (Template) zur Erstellung von Objekten. Sie definiert Eigenschaften (Attribute) und Funktionen (Methoden).</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>class Klassenname {
+public:
+    // Öffentliche Eigenschaften und Methoden
+    Datentyp attribut;
+    void methode();
+    
+private:
+    // Private Eigenschaften und Methoden
+    int privateAttribute;
+};</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Auto {
+public:
+    string hersteller;
+    int baujahr;
+    
+    // Konstruktor
+    Auto(string h, int b) {
+        hersteller = h;
+        baujahr = b;
+    }
+    
+    // Methode
+    void info() {
+        cout &lt;&lt; hersteller &lt;&lt; " aus " &lt;&lt; baujahr &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Auto meinAuto("Mercedes", 2020);
+    meinAuto.info();    // Mercedes aus 2020
+    
+    Auto *autoZeiger = new Auto("BMW", 2022);
+    autoZeiger-&gt;info();  // BMW aus 2022
+    delete autoZeiger;
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Wichtige Konzepte</h2>
+      <ul>
+        <li><strong>Konstruktor:</strong> Spezielle Methode, wird beim Erstellen aufgerufen</li>
+        <li><strong>public:</strong> Kann von außen zugegriffen werden</li>
+        <li><strong>private:</strong> Nur innerhalb der Klasse zugänglich</li>
+        <li><strong>Attribut:</strong> Eigenschaft eines Objekts</li>
+        <li><strong>Methode:</strong> Funktion innerhalb einer Klasse</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Objekt erstellen</h2>
+      <pre><code>// Auf dem Stack
+Auto meinAuto("Tesla", 2023);
+
+// Auf dem Heap
+Auto *autoPtr = new Auto("Audi", 2021);
+delete autoPtr;  // Speicher freigeben</code></pre>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>Destruktor (~Klassenname) wird aufgerufen wenn Objekt gelöscht wird</li>
+        <li>Vererbung: `class Sportwagen : public Auto { ... };`</li>
+        <li>Zugriff auf Methoden: `.` für Stack-Objekte, `->` für Zeiger</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Datentypen – int, float, string, bool</title>
+</head>
+<body>
+  <header>
+    <h1>Datentypen: int, float, string, bool</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Datentypen definieren, welche Art von Daten eine Variable speichern kann.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>int ganzeZahl;              // Ganze Zahl: -2147483648 bis 2147483647
+float dezimalzahl;          // Dezimalzahl: ca. 6-7 Dezimalstellen
+double dezimalzahl2;        // Dezimalzahl: ca. 15 Dezimalstellen
+string text;                // Text/String
+bool bedingung;             // Wahrheitswert: true oder false
+char zeichen;               // Ein einzelnes Zeichen</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    int alter = 25;
+    float gewicht = 75.5;
+    string name = "Max";
+    bool istStuedent = true;
+    
+    cout &lt;&lt; name &lt;&lt; " ist " &lt;&lt; alter &lt;&lt; " Jahre alt." &lt;&lt; endl;
+    cout &lt;&lt; "Gewicht: " &lt;&lt; gewicht &lt;&lt; " kg" &lt;&lt; endl;
+    
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Übersicht der wichtigsten Typen</h2>
+      <ul>
+        <li><strong>int</strong>: Ganze Zahlen (-2.1 Mrd bis +2.1 Mrd)</li>
+        <li><strong>float</strong>: Dezimalzahlen (Speicher: 4 Bytes)</li>
+        <li><strong>double</strong>: Dezimalzahlen mit höherer Genauigkeit (8 Bytes)</li>
+        <li><strong>string</strong>: Textketten (benötigt `#include &lt;string&gt;`)</li>
+        <li><strong>bool</strong>: true oder false</li>
+        <li><strong>char</strong>: Ein Zeichen ('A', 'x', '5')</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>C++ ist eine typsichere Sprache – Typen können später nicht geändert werden</li>
+        <li>Typkonvertierung: `int x = (int)3.7;` ergibt 3</li>
+        <li>String benötigt Header `#include &lt;string&gt;`</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+  </footer>
+</body>
+</html>
