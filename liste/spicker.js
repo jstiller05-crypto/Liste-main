@@ -816,6 +816,34 @@ let oTableEntries = { "List": [
     },
     // CSS
     {
+      "Tag": "HTML",
+      "Beschreibung": "Grundlage des Webs: Struktur, Inhalte und semantische Elemente",
+      "Sprache": "html",
+      "Link": "more/html-sprache.html",
+      "class": ["html","sprache","grundlagen"]
+    },
+    {
+      "Tag": "CSS",
+      "Beschreibung": "Gestaltung und Layout von Webseiten mit Farben, Abständen und Positionierung",
+      "Sprache": "CSS",
+      "Link": "more/css-sprache.html",
+      "class": ["css","sprache","grundlagen"]
+    },
+    {
+      "Tag": "JavaScript",
+      "Beschreibung": "Interaktive Sprache für Dynamik, Events und DOM-Logik im Browser",
+      "Sprache": "JS",
+      "Link": "more/javascript-sprache.html",
+      "class": ["javascript","js","sprache","grundlagen"]
+    },
+    {
+      "Tag": "C++",
+      "Beschreibung": "Leistungsstarke Sprache für Systemsoftware, Spiele und effiziente Anwendungen",
+      "Sprache": "C++",
+      "Link": "more/cpp-sprache.html",
+      "class": ["cpp","sprache","grundlagen"]
+    },
+    {
       "Tag": "Typselektor",
       "Beschreibung": "Wählt alle Elemente des angegebenen Typs aus",
       "Sprache": "CSS",

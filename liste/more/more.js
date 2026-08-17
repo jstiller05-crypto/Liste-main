@@ -1,15 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const preElements = document.querySelectorAll("pre");
+  const codeBlocks = document.querySelectorAll("pre, .code-block");
 
-  preElements.forEach(pre => {
+  codeBlocks.forEach(block => {
+    const target = block.tagName === "PRE" ? block : (block.querySelector("code") || block);
+
+    if (!target || !block.parentNode) {
+      return;
+    }
+
     const button = document.createElement("button");
     button.type = "button";
     button.className = "copy-button";
     button.textContent = "Copy";
-    pre.parentNode.insertBefore(button, pre);
+    block.parentNode.insertBefore(button, block);
 
     button.addEventListener("click", async () => {
-      const textToCopy = pre.textContent;
+      const textToCopy = target.textContent;
       try {
         await navigator.clipboard.writeText(textToCopy);
         button.textContent = "Copied!";

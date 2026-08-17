@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS – Sprache des Designs</title>
+  <link rel="stylesheet" href="language-guide.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+</head>
+<body>
+  <div class="language-page">
+    <header class="language-header">
+      <h1>CSS</h1>
+      <p>Die Sprache, mit der Webseiten gestaltet und organisiert werden.</p>
+    </header>
+
+    <nav class="chapter-nav" aria-label="Inhaltsverzeichnis">
+      <a href="#geschichte">Geschichte</a>
+      <a href="#warum">Warum CSS?</a>
+      <a href="#syntax">Syntax</a>
+      <a href="#selektoren">Selektoren</a>
+      <a href="#layout">Layout</a>
+      <a href="#praxis">Praxis</a>
+    </nav>
+
+    <main>
+      <section id="geschichte" class="chapter">
+        <h2>1. Geschichte</h2>
+        <p>CSS steht für Cascading Style Sheets und wurde in den späten 1990er Jahren entwickelt, um HTML-Seiten nicht nur strukturiert, sondern auch optisch ansprechend zu gestalten. Vor CSS mussten Formate direkt im HTML-Code stehen, was schnell unübersichtlich wurde.</p>
+        <p>Die Idee war, Design und Inhalt getrennt zu halten. Dadurch konnte man mehrere Seiten mit derselben Gestaltung nutzen und schneller ändern.</p>
+      </section>
+
+      <section id="warum" class="chapter">
+        <h2>2. Warum gibt es CSS?</h2>
+        <p>HTML legt fest, was etwas ist. CSS legt fest, wie etwas aussieht. Eine Überschrift muss nicht immer in einer Standardfarbe und Größe erscheinen. Mit CSS kannst du Farben, Abstände, Schriftarten, Spalten und Layouts kontrollieren.</p>
+        <p>Das ist besonders wichtig, weil moderne Websites oft auf verschiedenen Bildschirmgrößen funktionieren müssen. CSS hilft beim Responsive Design, also beim anpassbaren Layout für Desktop, Tablet und Mobilgeräte.</p>
+      </section>
+
+      <section id="syntax" class="chapter">
+        <h2>3. Syntax</h2>
+        <p>CSS besteht aus Regeln, die aus Selektor und Deklarationen bestehen.</p>
+        <pre><code>p {
+  color: white;
+  font-size: 16px;
+  margin-top: 10px;
+}</code></pre>
+        <ul>
+          <li><strong>Selektor:</strong> Wählt das Ziel aus, z. B. alle Absätze.</li>
+          <li><strong>Eigenschaft:</strong> z. B. <code>color</code> oder <code>font-size</code>.</li>
+          <li><strong>Wert:</strong> z. B. <code>white</code> oder <code>16px</code>.</li>
+        </ul>
+      </section>
+
+      <section id="selektoren" class="chapter">
+        <h2>4. Selektoren</h2>
+        <p>Selektoren bestimmen, welche Elemente angesprochen werden. Das ist ein Grundpfeiler von CSS.</p>
+        <ul>
+          <li>Typselektor: <code>p</code></li>
+          <li>Klassenselektor: <code>.box</code></li>
+          <li>ID-Selektor: <code>#hauptbereich</code></li>
+          <li>Attributselektor: <code>[type="text"]</code></li>
+        </ul>
+        <p>Durch geschickte Selektoren lässt sich ein Layout sauber und wiederverwendbar strukturieren.</p>
+      </section>
+
+      <section id="layout" class="chapter">
+        <h2>5. Layout und Design</h2>
+        <p>CSS ist nicht nur für Farben und Schriften relevant, sondern auch für die Anordnung von Elementen. Mit Flexbox und Grid lassen sich Seiten zuverlässig aufbauen.</p>
+        <pre><code>.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}</code></pre>
+        <p>Damit lassen sich Navigationen, Karten, Bereiche und responsive Layouts in kurzer Zeit sauber aufbauen.</p>
+      </section>
+
+      <section id="praxis" class="chapter">
+        <h2>6. Praktische Bedeutung</h2>
+        <p>CSS ist entscheidend für das Aussehen und die Benutzerfreundlichkeit von Webauftritten. Es macht Seiten einheitlich, lesbar, modern und auf verschiedene Geräte anpassbar.</p>
+        <p>Ohne CSS wären Websites meist unstrukturiert und schwer zu nutzen. Die Sprache ist deshalb ein zentraler Bestandteil des Frontend-Designs.</p>
+        <div class="note">
+          <strong>Merksatz:</strong> HTML ist das Gerüst, CSS ist die Oberfläche.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JavaScript – Sprache der Interaktion</title>
+  <link rel="stylesheet" href="language-guide.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+</head>
+<body>
+  <div class="language-page">
+    <header class="language-header">
+      <h1>JavaScript</h1>
+      <p>Die Sprache, die Webseiten interaktiv und dynamisch macht.</p>
+    </header>
+
+    <nav class="chapter-nav" aria-label="Inhaltsverzeichnis">
+      <a href="#geschichte">Geschichte</a>
+      <a href="#warum">Warum JavaScript?</a>
+      <a href="#grundlagen">Grundlagen</a>
+      <a href="#dom">DOM</a>
+      <a href="#einsatz">Einsatzgebiete</a>
+      <a href="#praxis">Praxis</a>
+    </nav>
+
+    <main>
+      <section id="geschichte" class="chapter">
+        <h2>1. Geschichte</h2>
+        <p>JavaScript wurde 1995 von Brendan Eich in nur zehn Tagen für Netscape entwickelt. Ursprünglich sollte es die Webinhalte interaktiver machen, ohne dass eine neue Seite geladen werden musste. Die Sprache wurde schnell populär, weil sie direkt im Browser laufen konnte.</p>
+        <p>Im Laufe der Zeit entwickelte sich JavaScript zu einer der wichtigsten Programmiersprachen der Welt. Heute wird sie nicht nur im Browser eingesetzt, sondern auch auf Servern mit Node.js.</p>
+      </section>
+
+      <section id="warum" class="chapter">
+        <h2>2. Warum gibt es JavaScript?</h2>
+        <p>HTML schafft Struktur und CSS schafft das Aussehen, aber JavaScript macht das Verhalten. Damit können Buttons reagieren, Formulare geprüft werden, Inhalte dynamisch geladen und Animationen erzeugt werden.</p>
+        <p>Besonders wichtig ist, dass JavaScript auf der Seite selbst läuft und sofort auf Nutzeraktionen reagiert. Dadurch wirkt eine Webseite deutlich moderner und interaktiver.</p>
+      </section>
+
+      <section id="grundlagen" class="chapter">
+        <h2>3. Grundlagen</h2>
+        <p>JavaScript arbeitet mit Variablen, Bedingungen, Schleifen und Funktionen. Dadurch können Programme logische Entscheidungen treffen und wiederverwendbare Codeblöcke anlegen.</p>
+        <pre><code>const name = "Max";
+if (name === "Max") {
+  console.log("Hallo Max");
+}</code></pre>
+        <h3>Wichtige Konzepte</h3>
+        <ul>
+          <li>Variablen speichern Werte</li>
+          <li>Funktionen bündeln Code</li>
+          <li>Schleifen wiederholen Aktionen</li>
+          <li>Bedingungen prüfen Situationen</li>
+        </ul>
+      </section>
+
+      <section id="dom" class="chapter">
+        <h2>4. DOM – Document Object Model</h2>
+        <p>Das DOM ist das zentrale Konzept von JavaScript im Browser. Es stellt jedes HTML-Element als Objekt dar, das du über JavaScript lesen, verändern oder ergänzen kannst.</p>
+        <pre><code>document.getElementById("button").addEventListener("click", () => {
+  alert("Klick!");
+});</code></pre>
+        <p>Damit kann man Inhalte nachladen, Buttons aktivieren, Formulare validieren und ganze Seiten dynamisch steuern.</p>
+      </section>
+
+      <section id="einsatz" class="chapter">
+        <h2>5. Einsatzgebiete</h2>
+        <p>JavaScript wird in fast jedem Webprojekt genutzt. Es eignet sich für:</p>
+        <ul>
+          <li>Interaktive Menüs und Buttons</li>
+          <li>Formularvalidierung</li>
+          <li>Dynamische Inhalte und Filter</li>
+          <li>Animationen und Effekte</li>
+          <li>Web-Apps und Single-Page-Applications</li>
+          <li>Serverseitige Anwendungen mit Node.js</li>
+        </ul>
+      </section>
+
+      <section id="praxis" class="chapter">
+        <h2>6. Praktische Bedeutung</h2>
+        <p>JavaScript ist die Sprache, die modernen Webanwendungen „lebendig“ macht. Die Kombination aus HTML, CSS und JavaScript bildet die Grundlage für Frontend-Entwicklung.</p>
+        <p>Ohne JavaScript wären viele Anwendungen heute kaum vorstellbar: Suchfilter, Formulare, Karten, Tabs, Modale, Datenladen und viele andere Interaktionen.</p>
+        <div class="note">
+          <strong>Merksatz:</strong> JavaScript macht eine Seite <em>reagieren</em>, nicht nur <em>zeigen</em>.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    </footer>
+  </div>
+</body>
+</html>

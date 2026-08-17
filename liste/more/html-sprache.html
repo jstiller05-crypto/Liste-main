@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML – Sprache der Webseiten</title>
+  <link rel="stylesheet" href="language-guide.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+</head>
+<body>
+  <div class="language-page">
+    <header class="language-header">
+      <h1>HTML</h1>
+      <p>Die Sprache, mit der Inhalte auf einer Webseite strukturiert werden.</p>
+    </header>
+
+    <nav class="chapter-nav" aria-label="Inhaltsverzeichnis">
+      <a href="#geschichte">Geschichte</a>
+      <a href="#warum">Warum HTML?</a>
+      <a href="#aufbau">Aufbau</a>
+      <a href="#elemente">Elemente</a>
+      <a href="#einsatz">Einsatzgebiete</a>
+      <a href="#praxis">Praxis</a>
+    </nav>
+
+    <main>
+      <section id="geschichte" class="chapter">
+        <h2>1. Geschichte</h2>
+        <p>HTML entstand in den frühen 1990er Jahren, als Tim Berners-Lee das World Wide Web mit einem einfachen Dokumentformat begründete. Ziel war es, wissenschaftliche Dokumente im Internet einfach austauschbar und verlinkbar zu machen.</p>
+        <p>In den Anfangsjahren war HTML sehr simpel: Überschriften, Absätze, Links und kleine Formatierungen. Mit der Zeit kamen Semantik, Multimedia und interaktive Elemente hinzu. Heute ist HTML die Grundlage fast jeder Website.</p>
+        <div class="note">
+          <strong>Wichtig:</strong> HTML beschreibt <em>Struktur</em>, nicht Aussehen. Das Styling übernimmt CSS.
+        </div>
+      </section>
+
+      <section id="warum" class="chapter">
+        <h2>2. Warum gibt es HTML?</h2>
+        <p>Ohne HTML gäbe es keine einheitliche Sprache, mit der Browser Inhalte verstehen und darstellen können. HTML sorgt dafür, dass ein Browser weiß, was ein Überschrift, ein Absatz, ein Link, ein Bild oder eine Tabelle ist.</p>
+        <p>Das ist wichtig, weil Webseiten nicht nur schön aussehen sollen, sondern auch verständlich, zugänglich und maschinenlesbar sein müssen. Screenreader, Suchmaschinen und Browser nutzen diese Struktur.</p>
+        <ul>
+          <li>HTML macht Inhalte semantisch verständlich.</li>
+          <li>Es ist die Grundlage für das Web.</li>
+          <li>Es verbindet Inhalte mit Hyperlinks und interaktiven Elementen.</li>
+        </ul>
+      </section>
+
+      <section id="aufbau" class="chapter">
+        <h2>3. Aufbau eines HTML-Dokuments</h2>
+        <p>Ein HTML-Dokument besteht aus mehreren wichtigen Teilen:</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Meine Seite&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hallo Welt&lt;/h1&gt;
+    &lt;p&gt;Das ist mein erster Text.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <h3>Wichtige Bestandteile</h3>
+        <ul>
+          <li><span class="inline-tag">&lt;html&gt;</span> ist das Wurzelelement.</li>
+          <li><span class="inline-tag">&lt;head&gt;</span> enthält Metadaten wie Titel und Zeichensatz.</li>
+          <li><span class="inline-tag">&lt;body&gt;</span> enthält den sichtbaren Inhalt.</li>
+          <li><span class="inline-tag">&lt;title&gt;</span> bestimmt den Browser-Tab-Titel.</li>
+        </ul>
+      </section>
+
+      <section id="elemente" class="chapter">
+        <h2>4. Elemente und Tags</h2>
+        <p>HTML arbeitet mit sogenannten Elementen. Ein Element besteht meist aus einem Start-Tag, Inhalt und einem End-Tag.</p>
+        <div class="code-block">
+          <code>&lt;p&gt;Das ist ein Absatz.&lt;/p&gt;</code>
+        </div>
+        <p>Einige Elemente sind selbstschließend, zum Beispiel Bild, Zeilenumbruch oder Link auf Metadaten:</p>
+        <div class="code-block">
+          <code>&lt;img src="bild.jpg" alt="Beschreibung"&gt;
+&lt;br&gt;</code>
+        </div>
+        <h3>Typische HTML-Elemente</h3>
+        <ul>
+          <li><span class="inline-tag">&lt;h1&gt;</span> bis <span class="inline-tag">&lt;h6&gt;</span> für Überschriften</li>
+          <li><span class="inline-tag">&lt;p&gt;</span> für Absätze</li>
+          <li><span class="inline-tag">&lt;a&gt;</span> für Hyperlinks</li>
+          <li><span class="inline-tag">&lt;img&gt;</span> für Bilder</li>
+          <li><span class="inline-tag">&lt;table&gt;</span> für Tabellen</li>
+          <li><span class="inline-tag">&lt;form&gt;</span> für Formulare</li>
+        </ul>
+      </section>
+
+      <section id="einsatz" class="chapter">
+        <h2>5. Einsatzgebiete</h2>
+        <p>HTML wird überall dort genutzt, wo Inhalte im Browser sichtbar sein sollen: Webseiten, Landingpages, Dokumentenseiten, Portfolios, E-Commerce, Blogs, Admin-Oberflächen und Webapps.</p>
+        <p>Es eignet sich besonders für:</p>
+        <ul>
+          <li>Textbasierte Inhalte und Dokumentseiten</li>
+          <li>Navigation und Verlinkung</li>
+          <li>Formulare für Eingaben</li>
+          <li>Strukturierung von Inhalten</li>
+          <li>Einbettung von Medien wie Bildern, Videos und Audio</li>
+        </ul>
+      </section>
+
+      <section id="praxis" class="chapter">
+        <h2>6. Praktische Bedeutung</h2>
+        <p>Wenn du eine Seite baust, arbeitest du meistens mit HTML als Grundgerüst. Danach kommt CSS für Design und JavaScript für Interaktivität.</p>
+        <p>Ein gutes HTML-Dokument ist sauber, semantisch und barrierearm. Das hilft nicht nur Nutzern, sondern auch Suchmaschinen und Entwicklern.</p>
+        <div class="note">
+          <strong>Merksatz:</strong> HTML legt fest, <em>was</em> etwas ist. CSS legt fest, <em>wie</em> es aussieht. JavaScript legt fest, <em>was</em> es tun kann.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    </footer>
+  </div>
+</body>
+</html>
