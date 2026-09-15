@@ -1,4 +1,9 @@
 
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
 body{
   background-color: #333333; /* dunkler Hintergrund für bessere Lesbarkeit */
 }
@@ -72,17 +77,25 @@ footer {
 }
 
 #noResultsOverlay .overlay-content {
-  background: #fff;
+  background: none;
   padding: 30px 50px;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
   font-size: 1.5em;
   font-weight: bold;
-  color: #b00;
+  color: white;
   text-align: center;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+.class-dropdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  position: relative;
+  background-color: none;
+  min-width: 160px;
 }

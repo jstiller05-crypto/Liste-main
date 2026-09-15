@@ -10,10 +10,54 @@
 </head>
 <body>
     <header>
-        <input type="text" id="myInput" onchange="myFunction()" placeholder="Search for tags.." title="Suche nach tags">
-            <table id="dynamicTable"> 
+        <div>
+            <input type="text" id="myInput" onchange="myFunction()" placeholder="Search for tags.." title="if you read this, you are an GitHub user">
+
+            <div class="class-dropdown">
+                <div class="dropdown-language-content">
+                    <ul>
+                        <li>
+                            <a onclick="filterTable('HTML')">HTML</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('CSS')">CSS</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('JavaScript')">JavaScript</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('PHP')">PHP</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('SQL')">SQL</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dropdown-info-content">
+                    <ul>
+                        <li>
+                            <a onclick="filterTable('Info')">Info</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('Design')">Design</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('Funktion')">Funktion</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('Sonstiges')">API</a>
+                        </li>
+                        <li>
+                            <a onclick="filterTable('Sonstiges')">Sonstiges</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
+        <table id="dynamicTable">
         <thead> 
             <tr> 
                 <th>Tag</th> 
@@ -28,13 +72,13 @@
     </table>
     <div id="noResultsOverlay">
         <div class="overlay-content">
-          🔎 Keine Ergebnisse gefunden!
+        Keine Ergebnisse gefunden!
         </div>
     </div>
     </main>
     <footer>
         <div class="ersteller">
-            <p>Erstellt von:</p><a href="">Julian Stiller</a>
+            <p>Erstellt von:</p><a href="https://github.com/jstiller05-crypto">Julian Stiller</a>
         </div>
     </footer>
 </body>
