@@ -93,9 +93,40 @@ footer {
 }
 
 .class-dropdown {
+  position: absolute;
+  top: 100%; /* direkt unter dem Input */
+  left: 0;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  position: relative;
+  grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
   background-color: none;
   min-width: 160px;
+  font-size: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+header > div:focus-within .class-dropdown {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+header > div{
+  position: relative;
+}
+
+.button {
+  background-color: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: none;
+  box-shadow: 0px 1px 5px #222;
 }
