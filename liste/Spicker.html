@@ -11,48 +11,35 @@
 <body>
     <header>
         <div>
-            <input type="text" id="myInput" onchange="myFunction()" placeholder="Search for tags.." title="if you read this, you are an GitHub user">
+            <input type="text" id="myInput" placeholder="Search for tags.." title="if you read this, you are an GitHub user">
 
             <div class="class-dropdown">
                 <div class="dropdown-language-content">
-                    <div>
-                        <div class="button">
-                            HTML
-                        </div>
-                        <div class="button">
-                            CSS
-                        </div>
-                        <div class="button">
-                            JavaScript
-                        </div>
-                        <div class="button">
-                            PHP
-                        </div>
-                        <div class="button">
-                            SQL
-                        </div>
-                    </div>
-
+                    <p>Sprache</p>
+                    <button type="button" class="button language-btn" data-language="">Alle</button>
+                    <button type="button" class="button language-btn" data-language="html">HTML</button>
+                    <button type="button" class="button language-btn" data-language="css">CSS</button>
+                    <button type="button" class="button language-btn" data-language="js">JavaScript</button>
+                    <button type="button" class="button language-btn" data-language="c++">C++</button>
                 </div>
 
                 <div class="dropdown-info-content">
-                    <div>
-                        <div class="button">
-                            Info
-                        </div>
-                        <div class="button">
-                            Design
-                        </div>
-                        <div class="button">
-                            Funktion
-                        </div>
-                        <div class="button">
-                            API
-                        </div>
-                        <div class="button">
-                            Sonstiges
-                        </div>
-                    </div>
+                    <p>Kategorie</p>
+                    <button type="button" class="button category-btn" data-category="">Alle</button>
+                    <button type="button" class="button category-btn" data-category="basis">Basis</button>
+                    <button type="button" class="button category-btn" data-category="text">Text</button>
+                    <button type="button" class="button category-btn" data-category="container">Container</button>
+                    <button type="button" class="button category-btn" data-category="media">Medien</button>
+                    <button type="button" class="button category-btn" data-category="form">Formular</button>
+                    <button type="button" class="button category-btn" data-category="tabelle">Tabelle</button>
+                </div>
+                <div class="dropdown-sort-content">
+                    <label for="sortSelect">Sortieren nach:</label>
+                    <select id="sortSelect">
+                        <option value="az">A – Z</option>
+                        <option value="za">Z – A</option>
+                        <option value="language">Sprache</option>
+                    </select>
                 </div>
             </div>
         </div>

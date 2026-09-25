@@ -97,7 +97,7 @@ let oTableEntries = { "List": [
       "Tag": "<base>",
       "Beschreibung": "Basis-URL für relative Links",
       "Sprache": "html",
-      "Link": "/more/base.html",
+      "Link": "more/base.html",
       "class": ["html","metadata"]
     },
     {
@@ -1091,38 +1091,133 @@ if (Array.isArray(oTableEntries.List)) {
     }
   }
   
-  // =======================
-  // beim Laden initialisieren
-  // =======================
-  let searcher = null;
-  
-  document.addEventListener("DOMContentLoaded", function() {
-    searcher = new TableSearcher(oTableEntries.List);
-    // initial alles rendern
-    searcher.renderToTable("#dynamicTable tbody", oTableEntries.List);
+  const filterState = {
+  search: "",
+  language: "",
+  category: "",
+  sort: "az"
+};
+
+let searcher = null;
+
+document.addEventListener("DOMContentLoaded", function () {
+  searcher = new TableSearcher(oTableEntries.List);
+
+  setupSearchInput();
+  setupLanguageButtons();
+  setupCategoryButtons();
+  setupSortSelect();
+
+  applyFilters(); // einmal alles anzeigen
+  console.log("Seite geladen, Einträge:", oTableEntries.List.length);
+});
+
+function setupSearchInput() {
+  const input = document.getElementById("myInput");
+
+  // "input" feuert bei JEDEM Tastendruck (anders als "change")
+  input.addEventListener("input", function () {
+    filterState.search = input.value.trim();
+    console.log("Suche:", filterState.search);
+    applyFilters();
   });
-  
-  // =======================
-  // Such-Funktion
-  // =======================
-  function myFunction() {
-    const input = document.getElementById("myInput");
-    const filter = input.value.trim();
-  
-    // nichts eingegeben -> alles anzeigen
-    if (filter === "") {
-      searcher.renderToTable("#dynamicTable tbody", oTableEntries.List);
-      return;
-    }
-  
-    // zuerst versuchen: nach class
-    const byClass = searcher.findByClass(filter);
-    if (byClass.length > 0) {
-      searcher.renderToTable("#dynamicTable tbody", byClass);
-      return;
-    }
-  
-    // sonst: normaler Textsuche
-    const byText = searcher.searchText(filter);
-    searcher.renderToTable("#dynamicTable tbody", byText);
+}
+
+function setupLanguageButtons() {
+  const buttons = document.querySelectorAll(".language-btn");
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      // dataset.language liest das Attribut data-language aus dem HTML
+      filterState.language = btn.dataset.language;
+      console.log("Sprache gewählt:", filterState.language);
+
+      markActiveButton(buttons, btn);
+      applyFilters();
+    });
+  });
+}
+
+function setupCategoryButtons() {
+  const buttons = document.querySelectorAll(".category-btn");
+
+  // TODO 1: Baue diese Funktion genauso wie setupLanguageButtons(),
+  //         nur mit "category" statt "language".
+  //         (Abschreiben und anpassen ist hier ausdrücklich erlaubt!)
+}
+
+function setupSortSelect() {
+  const select = document.getElementById("sortSelect");
+
+  // "change" passt hier, weil ein <select> sich nur beim Auswählen ändert
+  select.addEventListener("change", function () {
+    filterState.sort = select.value;
+    console.log("Sortierung:", filterState.sort);
+    applyFilters();
+  });
+}
+
+function markActiveButton(allButtons, clickedButton) {
+  // erst bei ALLEN Buttons der Gruppe die Klasse entfernen ...
+  allButtons.forEach(function (b) {
+    b.classList.remove("active");
+  });
+
+  // TODO 2: ... und dann nur beim geklickten Button "active" hinzufügen.
+  //         Vokabel: element.classList.add("name")
+}
+
+function applyFilters() {
+  // Schritt 1: Suche (nutzt deine vorhandene Methode)
+  //   [...liste] = Kopie, damit wir die Originalliste nie verändern
+  let result = filterState.search === ""
+    ? [...oTableEntries.List]
+    : searcher.searchText(filterState.search);
+
+  // Schritt 2: Sprache filtern (nur wenn eine gewählt ist)
+  if (filterState.language !== "") {
+    // TODO 3: Behalte nur Einträge, deren Sprache passt.
+    //   Vokabeln: result = result.filter(item => ...)
+    //             item.Sprache.toLowerCase() === filterState.language
   }
+
+  // Schritt 3: Kategorie filtern (nur wenn eine gewählt ist)
+  if (filterState.category !== "") {
+    result = result.filter(function (item) {
+      // .includes() prüft, ob der Wert im class-Array vorkommt
+      return Array.isArray(item.class) && item.class.includes(filterState.category);
+    });
+  }
+
+  // Schritt 4: sortieren
+  result = sortList(result);
+
+  // Schritt 5: anzeigen
+  console.log("Ergebnis:", result.length, "Einträge", filterState);
+  searcher.renderToTable("#dynamicTable tbody", result);
+}
+
+function sortList(list) {
+  const copy = [...list]; // Kopie, weil .sort() das Array selbst verändert
+
+  switch (filterState.sort) {
+    case "az":
+      // localeCompare vergleicht Texte richtig, auch mit Umlauten
+      copy.sort((a, b) => a.Tag.localeCompare(b.Tag, "de"));
+      break;
+
+    case "za":
+      // TODO 4: Wie "az", nur umgekehrt.
+      //   Tipp: Vertausche a und b.
+      break;
+
+    case "language":
+      // erst nach Sprache, bei gleicher Sprache nach Tag
+      copy.sort((a, b) =>
+        a.Sprache.localeCompare(b.Sprache, "de") || a.Tag.localeCompare(b.Tag, "de")
+      );
+      break;
+  }
+
+  return copy;
+}

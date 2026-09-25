@@ -120,13 +120,20 @@ header > div{
 }
 
 .button {
+  all: unset;          /* löscht ALLE Browser-Standardstyles */
+  cursor: pointer;     /* all: unset entfernt auch den Hand-Cursor */
+  display: block;      /* verhält sich dann wie dein div */
   background-color: none;
   color: white;
   border: none;
-  cursor: pointer;
 }
 
 .button:hover {
   background-color: none;
   box-shadow: 0px 1px 5px #222;
+}
+
+.button.active {
+  background-color: #555;
+  font-weight: bold;
 }
