@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>C++: std::vector – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">C++ · Daten</p>
+    <h1>std::vector</h1>
+    <p class="page-lead">Die wichtigste Liste in C++: wächst und schrumpft automatisch.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Anlegen &amp; Zugriff</h2>
+      <pre><code>#include &lt;vector&gt;
+
+std::vector&lt;int&gt; numbers = {3, 1, 4};   // mit Startwerten
+std::vector&lt;std::string&gt; names;          // leer
+std::vector&lt;int&gt; zeros(10, 0);           // 10 Elemente mit Wert 0
+
+numbers[0];            // 3 – ohne Prüfung
+numbers.at(1);         // 1 – mit Prüfung (wirft std::out_of_range)
+numbers.front();       // erstes Element
+numbers.back();        // letztes Element
+numbers.size();        // Anzahl: 3
+numbers.empty();       // true, wenn leer</code></pre>
+    </section>
+    <section>
+      <h2>Hinzufügen &amp; Entfernen</h2>
+      <table class="info-table">
+        <thead><tr><th>Methode</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>push_back(x)</code></td><td>Hinten anhängen</td></tr>
+          <tr><td><code>emplace_back(args)</code></td><td>Hinten direkt erzeugen (spart eine Kopie)</td></tr>
+          <tr><td><code>pop_back()</code></td><td>Letztes entfernen</td></tr>
+          <tr><td><code>insert(pos, x)</code></td><td>An Position einfügen</td></tr>
+          <tr><td><code>erase(pos)</code></td><td>Element an Position entfernen</td></tr>
+          <tr><td><code>clear()</code></td><td>Alles löschen</td></tr>
+          <tr><td><code>resize(n)</code></td><td>Größe ändern</td></tr>
+        </tbody>
+      </table>
+      <pre><code>std::vector&lt;int&gt; scores;
+scores.push_back(80);
+scores.push_back(95);
+scores.push_back(70);
+
+scores.erase(scores.begin() + 1);        // zweites Element (95) entfernen
+scores.insert(scores.begin(), 100);      // vorne einfügen
+
+for (const auto&amp; score : scores) {
+    std::cout &lt;&lt; score &lt;&lt; " ";           // 100 80 70
+}</code></pre>
+    </section>
+    <section>
+      <h2>An Funktionen übergeben</h2>
+      <pre><code>// nur lesen: const-Referenz (keine Kopie!)
+double average(const std::vector&lt;int&gt;&amp; values) {
+    if (values.empty()) return 0.0;
+    int sum = 0;
+    for (int v : values) sum += v;
+    return static_cast&lt;double&gt;(sum) / values.size();
+}
+
+// ändern: normale Referenz
+void addBonus(std::vector&lt;int&gt;&amp; values, int bonus) {
+    for (int&amp; v : values) v += bonus;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Vector aus Objekten</h2>
+      <pre><code>struct Task {
+    std::string question;
+    int answer;
+};
+
+std::vector&lt;Task&gt; tasks;
+tasks.push_back({"3 + 4", 7});
+tasks.push_back({"6 * 7", 42});
+
+for (const auto&amp; task : tasks) {
+    std::cout &lt;&lt; task.question &lt;&lt; " = " &lt;&lt; task.answer &lt;&lt; "\n";
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Beim Übergeben an Funktionen fast immer <code>const std::vector&lt;T&gt;&amp;</code> – sonst wird der ganze Vector kopiert.</li>
+        <li>Während einer Schleife über den Vector keine Elemente hinzufügen oder entfernen – das macht Iteratoren ungültig.</li>
+        <li><code>size()</code> liefert einen vorzeichenlosen Typ. In <code>for (int i = 0; i &lt; v.size(); ++i)</code> warnt der Compiler – <code>size_t i</code> oder eine bereichsbasierte for-Schleife verwenden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-arrays.html">Arrays</a>
+        <a class="chip" href="cpp-algorithmen.html">Algorithmen &amp; Lambdas</a>
+        <a class="chip" href="cpp-map.html">map &amp; set</a>
+        <a class="chip" href="reference.html">Referenzen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

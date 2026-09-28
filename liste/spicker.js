@@ -1661,6 +1661,294 @@ let oTableEntries = { "List": [
       "Sprache": "JS",
       "Link": "more/js-module.html",
       "class": ["javascript","js","werkzeuge"]
+    },
+    // C++ – weiterführende Themen
+    {
+      "Tag": "Operatoren (+ - * / %)",
+      "Beschreibung": "Rechnen, Rest, Kurzformen wie +=",
+      "Sprache": "C++",
+      "Link": "more/cpp-operatoren.html",
+      "class": ["cpp","grundlagen"]
+    },
+    {
+      "Tag": "== / != / && / ||",
+      "Beschreibung": "Vergleichen und logisch verknüpfen",
+      "Sprache": "C++",
+      "Link": "more/cpp-operatoren.html",
+      "class": ["cpp","grundlagen"]
+    },
+    {
+      "Tag": "static_cast",
+      "Beschreibung": "Datentypen sicher umwandeln",
+      "Sprache": "C++",
+      "Link": "more/cpp-operatoren.html",
+      "class": ["cpp","grundlagen"]
+    },
+    {
+      "Tag": "stoi / to_string",
+      "Beschreibung": "Text in Zahl umwandeln und zurück",
+      "Sprache": "C++",
+      "Link": "more/cpp-string.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "switch",
+      "Beschreibung": "Mehrere feste Fälle unterscheiden",
+      "Sprache": "C++",
+      "Link": "more/cpp-kontrolle.html",
+      "class": ["cpp","kontrolle"]
+    },
+    {
+      "Tag": "do-while-Schleife",
+      "Beschreibung": "Schleife, die mindestens einmal läuft",
+      "Sprache": "C++",
+      "Link": "more/cpp-kontrolle.html",
+      "class": ["cpp","schleife","kontrolle"]
+    },
+    {
+      "Tag": "break / continue",
+      "Beschreibung": "Schleife abbrechen oder Durchlauf überspringen",
+      "Sprache": "C++",
+      "Link": "more/cpp-kontrolle.html",
+      "class": ["cpp","kontrolle"]
+    },
+    {
+      "Tag": "Bereichsbasierte for-Schleife",
+      "Beschreibung": "for (auto& x : container)",
+      "Sprache": "C++",
+      "Link": "more/cpp-kontrolle.html",
+      "class": ["cpp","schleife","kontrolle"]
+    },
+    {
+      "Tag": "Array (C-Array)",
+      "Beschreibung": "Feste Anzahl Werte gleichen Typs",
+      "Sprache": "C++",
+      "Link": "more/cpp-arrays.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "std::array",
+      "Beschreibung": "Modernes Array mit fester Größe",
+      "Sprache": "C++",
+      "Link": "more/cpp-arrays.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "std::vector",
+      "Beschreibung": "Dynamische Liste, wächst automatisch",
+      "Sprache": "C++",
+      "Link": "more/cpp-vector.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "push_back / size",
+      "Beschreibung": "Element anhängen, Anzahl abfragen",
+      "Sprache": "C++",
+      "Link": "more/cpp-vector.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "std::string",
+      "Beschreibung": "Text speichern und bearbeiten",
+      "Sprache": "C++",
+      "Link": "more/cpp-string.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "getline",
+      "Beschreibung": "Ganze Zeile mit Leerzeichen einlesen",
+      "Sprache": "C++",
+      "Link": "more/cpp-string.html",
+      "class": ["cpp","io","eingabe"]
+    },
+    {
+      "Tag": "const",
+      "Beschreibung": "Unveränderliche Werte",
+      "Sprache": "C++",
+      "Link": "more/cpp-const-auto.html",
+      "class": ["cpp","grundlagen"]
+    },
+    {
+      "Tag": "constexpr",
+      "Beschreibung": "Zur Compile-Zeit berechnete Konstanten",
+      "Sprache": "C++",
+      "Link": "more/cpp-const-auto.html",
+      "class": ["cpp","grundlagen"]
+    },
+    {
+      "Tag": "auto",
+      "Beschreibung": "Typ vom Compiler bestimmen lassen",
+      "Sprache": "C++",
+      "Link": "more/cpp-const-auto.html",
+      "class": ["cpp","grundlagen"]
+    },
+    {
+      "Tag": "struct",
+      "Beschreibung": "Eigener Datentyp aus mehreren Werten",
+      "Sprache": "C++",
+      "Link": "more/cpp-struct-enum.html",
+      "class": ["cpp","daten","oop"]
+    },
+    {
+      "Tag": "enum class",
+      "Beschreibung": "Benannte feste Auswahlmöglichkeiten",
+      "Sprache": "C++",
+      "Link": "more/cpp-struct-enum.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "Konstruktor / Destruktor",
+      "Beschreibung": "Objekt erzeugen und aufräumen",
+      "Sprache": "C++",
+      "Link": "more/cpp-konstruktor.html",
+      "class": ["cpp","oop","klasse"]
+    },
+    {
+      "Tag": "public / private / protected",
+      "Beschreibung": "Zugriffsrechte in Klassen (Kapselung)",
+      "Sprache": "C++",
+      "Link": "more/cpp-konstruktor.html",
+      "class": ["cpp","oop","klasse"]
+    },
+    {
+      "Tag": "this",
+      "Beschreibung": "Zeiger auf das aktuelle Objekt",
+      "Sprache": "C++",
+      "Link": "more/cpp-konstruktor.html",
+      "class": ["cpp","oop","klasse"]
+    },
+    {
+      "Tag": "Vererbung",
+      "Beschreibung": "Klasse von einer Basisklasse ableiten",
+      "Sprache": "C++",
+      "Link": "more/cpp-vererbung.html",
+      "class": ["cpp","oop"]
+    },
+    {
+      "Tag": "virtual / override",
+      "Beschreibung": "Methoden überschreiben, Polymorphie",
+      "Sprache": "C++",
+      "Link": "more/cpp-vererbung.html",
+      "class": ["cpp","oop"]
+    },
+    {
+      "Tag": "new / delete",
+      "Beschreibung": "Speicher auf dem Heap anlegen und freigeben",
+      "Sprache": "C++",
+      "Link": "more/cpp-speicher.html",
+      "class": ["cpp","speicher"]
+    },
+    {
+      "Tag": "Smart Pointer (unique_ptr)",
+      "Beschreibung": "Automatische Speicherverwaltung",
+      "Sprache": "C++",
+      "Link": "more/cpp-speicher.html",
+      "class": ["cpp","speicher"]
+    },
+    {
+      "Tag": "std::map",
+      "Beschreibung": "Werte über Schlüssel nachschlagen",
+      "Sprache": "C++",
+      "Link": "more/cpp-map.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "std::set",
+      "Beschreibung": "Menge ohne doppelte Werte",
+      "Sprache": "C++",
+      "Link": "more/cpp-map.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "std::pair",
+      "Beschreibung": "Zwei Werte als Paar",
+      "Sprache": "C++",
+      "Link": "more/cpp-map.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "Lambda",
+      "Beschreibung": "Kleine Funktion direkt im Code: [](int x){ … }",
+      "Sprache": "C++",
+      "Link": "more/cpp-algorithmen.html",
+      "class": ["cpp","funktion"]
+    },
+    {
+      "Tag": "std::sort",
+      "Beschreibung": "Container sortieren",
+      "Sprache": "C++",
+      "Link": "more/cpp-algorithmen.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "std::find / std::count",
+      "Beschreibung": "Suchen und Zählen in Containern",
+      "Sprache": "C++",
+      "Link": "more/cpp-algorithmen.html",
+      "class": ["cpp","daten"]
+    },
+    {
+      "Tag": "Zufallszahlen (<random>)",
+      "Beschreibung": "mt19937 und uniform_int_distribution",
+      "Sprache": "C++",
+      "Link": "more/cpp-zufall.html",
+      "class": ["cpp","werkzeuge"]
+    },
+    {
+      "Tag": "Header-Dateien (.h)",
+      "Beschreibung": "Code auf mehrere Dateien verteilen",
+      "Sprache": "C++",
+      "Link": "more/cpp-header.html",
+      "class": ["cpp","werkzeuge","praeprozessor"]
+    },
+    {
+      "Tag": "#pragma once",
+      "Beschreibung": "Header nur einmal einbinden",
+      "Sprache": "C++",
+      "Link": "more/cpp-header.html",
+      "class": ["cpp","werkzeuge","praeprozessor"]
+    },
+    {
+      "Tag": "try / catch / throw",
+      "Beschreibung": "Exceptions werfen und abfangen",
+      "Sprache": "C++",
+      "Link": "more/cpp-fehler.html",
+      "class": ["cpp","werkzeuge"]
+    },
+    {
+      "Tag": "std::cerr",
+      "Beschreibung": "Ausgabe auf dem Fehlerkanal",
+      "Sprache": "C++",
+      "Link": "more/cpp-fehler.html",
+      "class": ["cpp","io","ausgabe"]
+    },
+    {
+      "Tag": "fstream",
+      "Beschreibung": "Dateien lesen und schreiben",
+      "Sprache": "C++",
+      "Link": "more/cpp-dateien.html",
+      "class": ["cpp","io","werkzeuge"]
+    },
+    {
+      "Tag": "template",
+      "Beschreibung": "Funktionen/Klassen für beliebige Typen",
+      "Sprache": "C++",
+      "Link": "more/cpp-templates.html",
+      "class": ["cpp","funktion"]
+    },
+    {
+      "Tag": "g++ / Kompilieren",
+      "Beschreibung": "Vom Quellcode zum Programm",
+      "Sprache": "C++",
+      "Link": "more/cpp-kompilieren.html",
+      "class": ["cpp","werkzeuge"]
+    },
+    {
+      "Tag": "CMake",
+      "Beschreibung": "Build-System für C++-Projekte",
+      "Sprache": "C++",
+      "Link": "more/cpp-kompilieren.html",
+      "class": ["cpp","werkzeuge"]
     }
   ]};
 

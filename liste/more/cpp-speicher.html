@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>C++: Speicher &amp; Smart Pointer – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">C++ · Speicher</p>
+    <h1>Speicher: new/delete &amp; Smart Pointer</h1>
+    <p class="page-lead">Stack und Heap verstehen – und warum man heute Smart Pointer statt <code>new</code>/<code>delete</code> nutzt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Stack und Heap</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Stack</th><th>Heap</th></tr></thead>
+        <tbody>
+          <tr><td>Anlegen</td><td><code>Player p;</code></td><td><code>new Player()</code> / <code>std::make_unique&lt;Player&gt;()</code></td></tr>
+          <tr><td>Freigeben</td><td>Automatisch am Ende des Blocks</td><td>Manuell (<code>delete</code>) oder durch Smart Pointer</td></tr>
+          <tr><td>Größe</td><td>Klein (wenige MB)</td><td>Groß</td></tr>
+          <tr><td>Gut für</td><td>Normale lokale Variablen</td><td>Große Daten, Objekte mit unbestimmter Lebensdauer, Polymorphie</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>new &amp; delete (alt, fehleranfällig)</h2>
+      <pre><code>Player* p = new Player("Max");   // auf dem Heap anlegen
+p-&gt;addScore(10);                 // -&gt; für Zugriff über Zeiger
+delete p;                        // Speicher freigeben – vergessen = Speicherleck
+
+int* numbers = new int[100];
+delete[] numbers;                // bei Arrays delete[]</code></pre>
+    </section>
+    <section>
+      <h2>Smart Pointer (modern)</h2>
+      <pre><code>#include &lt;memory&gt;
+
+// unique_ptr: genau ein Besitzer, gibt automatisch frei
+std::unique_ptr&lt;Player&gt; player = std::make_unique&lt;Player&gt;("Max");
+player-&gt;addScore(10);
+// kein delete nötig – Freigabe am Ende des Blocks
+
+// Besitz weitergeben
+std::unique_ptr&lt;Player&gt; other = std::move(player);   // player ist jetzt leer
+
+// shared_ptr: mehrere Besitzer, frei wenn der letzte weg ist
+std::shared_ptr&lt;Player&gt; a = std::make_shared&lt;Player&gt;("Anna");
+std::shared_ptr&lt;Player&gt; b = a;          // beide zeigen auf dasselbe Objekt
+std::cout &lt;&lt; a.use_count() &lt;&lt; "\n";    // 2</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Smart Pointer</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>std::unique_ptr</code></td><td>Standardfall – ein klarer Besitzer</td></tr>
+          <tr><td><code>std::shared_ptr</code></td><td>Mehrere Stellen teilen sich ein Objekt</td></tr>
+          <tr><td><code>std::weak_ptr</code></td><td>Beobachten ohne zu besitzen (gegen Zyklen)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Typische Speicherfehler</h2>
+      <table class="info-table">
+        <thead><tr><th>Fehler</th><th>Folge</th></tr></thead>
+        <tbody>
+          <tr><td><code>delete</code> vergessen</td><td>Speicherleck – Programm braucht immer mehr RAM</td></tr>
+          <tr><td>Doppeltes <code>delete</code></td><td>Absturz / undefiniertes Verhalten</td></tr>
+          <tr><td>Zugriff nach <code>delete</code></td><td>„Dangling Pointer“ – liest Müll oder stürzt ab</td></tr>
+          <tr><td><code>nullptr</code> dereferenzieren</td><td>Absturz (Segmentation fault)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Faustregel: Kein <code>new</code>/<code>delete</code> im eigenen Code – <code>std::make_unique</code> und Container wie <code>std::vector</code> erledigen das.</li>
+        <li>Vor Zugriff über einen Zeiger prüfen: <code>if (ptr) { … }</code>.</li>
+        <li>In Qt übernimmt oft das Eltern-Objekt die Freigabe (<code>new QLabel(parent)</code>) – dort ist <code>new</code> ohne <code>delete</code> üblich.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="pointer.html">Zeiger</a>
+        <a class="chip" href="reference.html">Referenzen</a>
+        <a class="chip" href="cpp-vererbung.html">Vererbung</a>
+        <a class="chip" href="cpp-konstruktor.html">Konstruktor &amp; Kapselung</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

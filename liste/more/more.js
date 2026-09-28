@@ -28,7 +28,7 @@
 // Die Sprache wird in dieser Reihenfolge bestimmt:
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
-//   3. Dateiname beginnt mit "css-" → css, mit "js-" → js
+//   3. Dateiname beginnt mit "css-" → css, "js-" → js, "cpp-" → cpp
 //   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
@@ -111,11 +111,30 @@ const smartLinkRules = [
   { words: ["Zeiger", "Pointer"],                         links: { cpp: "pointer.html" } },
   { words: ["Referenz", "Referenzen"],                    links: { cpp: "reference.html" } },
   { words: ["Objekt", "Objekte", "Methode", "Methoden",
-            "Konstruktor", "OOP", "objektorientiert", "objektorientierte"],
+            "OOP", "objektorientiert", "objektorientierte"],
                                                           links: { cpp: "cpp-class.html", js: "js-objekte.html" } },
+  { words: ["Konstruktor", "Destruktor", "Kapselung", "private", "public"],
+                                                          links: { cpp: "cpp-konstruktor.html" } },
   { words: ["Namespace", "Namespaces", "using namespace"], links: { cpp: "using-namespace.html" } },
   { words: ["#include", "Bibliothek", "Bibliotheken",
             "Header-Datei", "Header-Dateien"],            links: { cpp: "include.html" } },
+  { words: ["Header-Datei", "Header-Dateien", "Headerdatei", "Include Guard", "#pragma once"],
+                                                          links: { cpp: "cpp-header.html" } },
+  { words: ["Vererbung", "Polymorphie", "virtual", "override", "Basisklasse"],
+                                                          links: { cpp: "cpp-vererbung.html" } },
+  { words: ["Vector", "Vectors", "std::vector"],          links: { cpp: "cpp-vector.html" } },
+  { words: ["std::string"],                               links: { cpp: "cpp-string.html" } },
+  { words: ["std::map", "Map", "std::set"],               links: { cpp: "cpp-map.html" } },
+  { words: ["Lambda", "Lambdas", "Algorithmus", "Algorithmen"], links: { cpp: "cpp-algorithmen.html" } },
+  { words: ["struct", "enum", "enum class"],              links: { cpp: "cpp-struct-enum.html" } },
+  { words: ["switch", "do-while", "break", "continue"],   links: { cpp: "cpp-kontrolle.html" } },
+  { words: ["const", "constexpr", "auto"],                links: { cpp: "cpp-const-auto.html" } },
+  { words: ["Smart Pointer", "unique_ptr", "shared_ptr", "Heap", "Stack", "Speicherleck", "new", "delete"],
+                                                          links: { cpp: "cpp-speicher.html" } },
+  { words: ["Exception", "Exceptions", "Ausnahme"],       links: { cpp: "cpp-fehler.html" } },
+  { words: ["Textdatei", "Textdateien", "fstream", "ifstream", "ofstream"],               links: { cpp: "cpp-dateien.html" } },
+  { words: ["Template", "Templates"],                     links: { cpp: "cpp-templates.html" } },
+  { words: ["Compiler", "kompilieren", "g++", "CMake", "Linker"], links: { cpp: "cpp-kompilieren.html" } },
   { words: ["main()", "main-Funktion", "Einstiegspunkt"], links: { cpp: "cpp-main.html" } },
   { words: ["cout", "std::cout", "Ausgabe"],              links: { cpp: "cout.html" } },
   { words: ["cin", "std::cin"],                           links: { cpp: "cin.html" } },
@@ -151,14 +170,14 @@ const smartLinkRules = [
   // ===== Nur JavaScript =====
   { words: ["Event", "Events", "Ereignis", "Ereignisse", "addEventListener"],
                                                           links: { js: "js-events.html", html: "js-events.html" } },
-  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html" } },
-  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html" } },
+  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html" } },
+  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html" } },
   { words: ["JSON"],                                      links: { js: "js-objekte.html", html: "js-objekte.html" } },
-  { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html" } },
-  { words: ["try/catch", "Fehlermeldung"],                links: { js: "js-konsole.html" } },
+  { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" } },
+  { words: ["try/catch", "Fehlermeldung", "try", "catch"], links: { js: "js-konsole.html", cpp: "cpp-fehler.html" } },
   { words: ["Promise", "async", "await", "fetch"],        links: { js: "js-async.html" } },
   { words: ["localStorage"],                              links: { js: "js-speicher.html", html: "js-speicher.html" } },
-  { words: ["Zufallszahl", "Zufallszahlen", "Math.random"], links: { js: "js-mathe.html" } },
+  { words: ["Zufallszahl", "Zufallszahlen", "Math.random"], links: { js: "js-mathe.html", cpp: "cpp-zufall.html" } },
   { words: ["Modul", "Module", "import", "export"],       links: { js: "js-module.html" } },
 
   // ===== Web (HTML / CSS / JS) =====
@@ -167,7 +186,7 @@ const smartLinkRules = [
   { words: ["DOM"],                                       links: { js: "js-dom.html", html: "js-dom.html", css: "js-dom.html" } },
   { words: ["Selektor", "Selektoren"],                    links: { css: "css-selektoren.html", html: "css-selektoren.html", js: "css-selektoren.html" } },
   { words: ["Überschrift", "Überschriften"],              links: { html: "headings.html", css: "headings.html", js: "headings.html" } },
-  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html" } },
+  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html" } },
   { words: ["Auswahlmenü", "Dropdown"],                   links: { html: "select.html", css: "select.html", js: "select.html" } },
   { words: ["Untertitel"],                                links: { html: "video.html", css: "video.html", js: "video.html" } },
   { words: ["Layout", "Layouts"],                         links: { css: "css-display.html", html: "css-display.html" } },
@@ -370,6 +389,7 @@ function getPageLanguage(pageFile) {
   if (!(pageFile in PAGE_LANGUAGES)) {
     if (pageFile.startsWith("css-")) return "css";
     if (pageFile.startsWith("js-")) return "js";
+    if (pageFile.startsWith("cpp-")) return "cpp";
   }
   // "??" = nimm den rechten Wert, wenn der linke undefined/null ist
   return PAGE_LANGUAGES[pageFile] ?? DEFAULT_PAGE_LANGUAGE;
