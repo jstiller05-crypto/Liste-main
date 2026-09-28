@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Swift: Optionals – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">Swift · Grundlagen</p>
+    <h1>Optionals</h1>
+    <p class="page-lead">Werte, die fehlen dürfen – und wie Swift dadurch Abstürze durch <code>nil</code> verhindert.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein normaler <code>String</code> hat <strong>immer</strong> einen Wert. Soll er fehlen dürfen, schreibt man <code>String?</code> – ein Optional. Bevor man ihn benutzt, muss man ihn „auspacken“. So erzwingt Swift, dass man an den Fall „kein Wert“ denkt.</p>
+    </section>
+    <section>
+      <h2>Auspacken</h2>
+      <pre><code>let input = "42"
+let number: Int? = Int(input)        // nil, wenn input keine Zahl ist
+
+// 1) if let – nur wenn vorhanden
+if let number {                       // Kurzform für: if let number = number
+    print("Zahl: \(number)")
+} else {
+    print("Keine Zahl")
+}
+
+// 2) guard let – früh aussteigen
+func double(_ text: String) -&gt; Int {
+    guard let value = Int(text) else {
+        print("[Fehler] '\(text)' ist keine Zahl")
+        return 0
+    }
+    return value * 2                  // ab hier ist value garantiert vorhanden
+}
+
+// 3) ?? – Ersatzwert
+let safe = number ?? 0
+
+// 4) ?. – Optional Chaining
+let length = user?.name.count        // nil, wenn user nil ist</code></pre>
+    </section>
+    <section>
+      <h2>Die Varianten</h2>
+      <table class="info-table">
+        <thead><tr><th>Schreibweise</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>Type?</code></td><td>Optional – Wert oder <code>nil</code></td></tr>
+          <tr><td><code>if let x { }</code></td><td>Nur ausführen, wenn Wert da ist</td></tr>
+          <tr><td><code>guard let x else { return }</code></td><td>Aussteigen, wenn kein Wert – danach ist x sicher</td></tr>
+          <tr><td><code>x ?? standard</code></td><td>Ersatzwert</td></tr>
+          <tr><td><code>x?.eigenschaft</code></td><td>Nur zugreifen, wenn vorhanden</td></tr>
+          <tr><td><code>x!</code></td><td>Erzwungenes Auspacken – <strong>Absturz</strong>, wenn nil</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>!</code> nur verwenden, wenn ein Wert garantiert da ist – sonst stürzt die App ab.</li>
+        <li>Das Konzept gibt es ähnlich in C# (<code>string?</code>), Kotlin und TypeScript.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="swift-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="swift-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="csharp-grundlagen.html">Grundlagen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

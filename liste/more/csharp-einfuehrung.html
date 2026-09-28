@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>C# – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">C# · Grundlagen</p>
+    <h1>C#</h1>
+    <p class="page-lead">Die Hauptsprache von .NET – für Windows-Apps, Web-Backends, Spiele mit Unity und mehr.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>C# („C Sharp“) wurde von Microsoft entwickelt und läuft auf der .NET-Plattform. Die Syntax ähnelt C++ und Java, aber Speicher wird automatisch verwaltet (Garbage Collector). .NET läuft heute auf Windows, Linux und macOS.</p>
+    </section>
+    <section>
+      <h2>Einsatzgebiete</h2>
+      <table class="info-table">
+        <thead><tr><th>Bereich</th><th>Technik</th></tr></thead>
+        <tbody>
+          <tr><td>Spiele</td><td>Unity, Godot (mit C#)</td></tr>
+          <tr><td>Web & APIs</td><td>ASP.NET Core</td></tr>
+          <tr><td>Windows-Programme</td><td>WPF, WinForms, WinUI</td></tr>
+          <tr><td>Plattformübergreifende Apps</td><td>.NET MAUI, Avalonia</td></tr>
+          <tr><td>Tools & Konsolenprogramme</td><td><code>dotnet new console</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Installieren</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Installation</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td>Visual Studio (Community) oder nur das SDK: <code>winget search Microsoft.DotNet.SDK</code> → neueste LTS-Version installieren</td></tr>
+          <tr><td>Linux (Debian/Ubuntu)</td><td><code>sudo apt install dotnet-sdk-8.0</code> (Versionsnummer je nach Distribution) oder Skript von dot.net</td></tr>
+          <tr><td>Editor</td><td>VS Code mit der Erweiterung „C# Dev Kit“ oder JetBrains Rider</td></tr>
+        </tbody>
+      </table>
+      <p>Prüfen mit <code>dotnet --version</code>.</p>
+    </section>
+    <section>
+      <h2>Erstes Projekt</h2>
+      <pre><code>dotnet new console -o HelloApp    # neues Konsolenprojekt
+cd HelloApp
+dotnet run                         # kompilieren und starten</code></pre>
+      <pre><code>// Program.cs – "Top-level statements": kein Main nötig
+Console.WriteLine("Hallo Welt!");
+
+Console.Write("Wie heißt du? ");
+string? name = Console.ReadLine();
+Console.WriteLine($"Hallo {name}!");</code></pre>
+    </section>
+    <section>
+      <h2>C# im Vergleich</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>C++</th><th>C#</th><th>Java/JS</th></tr></thead>
+        <tbody>
+          <tr><td>Speicher</td><td>manuell / Smart Pointer</td><td>automatisch (Garbage Collector)</td><td>automatisch</td></tr>
+          <tr><td>Ausgabe</td><td><code>std::cout</code></td><td><code>Console.WriteLine</code></td><td><code>System.out.println</code> / <code>console.log</code></td></tr>
+          <tr><td>Text einsetzen</td><td><code>std::format</code> (C++20)</td><td><code>$"Hallo {name}"</code></td><td>Template-String mit <code>${name}</code> (JS)</td></tr>
+          <tr><td>Listen</td><td><code>std::vector</code></td><td><code>List&lt;T&gt;</code></td><td><code>ArrayList</code> / Array</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>dotnet build</code> kompiliert nur, <code>dotnet run</code> kompiliert und startet, <code>dotnet watch</code> startet bei jeder Änderung neu.</li>
+        <li>Das <code>?</code> in <code>string?</code> bedeutet: Der Wert darf <code>null</code> sein (Nullable Reference Types).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="csharp-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="csharp-klassen.html">Klassen</a>
+        <a class="chip" href="cpp-sprache.html">C++</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

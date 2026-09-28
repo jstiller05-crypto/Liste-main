@@ -27,6 +27,16 @@ utils.cpp ─┘              utils.o
                           Linker  → programm.exe</code></pre>
     </section>
     <section>
+      <h2>Compiler installieren</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Installation</th><th>Prüfen</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td><strong>MSYS2</strong> installieren, dann darin <code>pacman -S mingw-w64-ucrt-x86_64-gcc</code> – oder Visual Studio mit „Desktopentwicklung mit C++“ (Compiler MSVC)</td><td><code>g++ --version</code></td></tr>
+          <tr><td>Linux (Debian/Ubuntu)</td><td><code>sudo apt install build-essential cmake gdb</code></td><td><code>g++ --version</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
       <h2>Mit g++ auf der Kommandozeile</h2>
       <pre><code># eine Datei
 g++ main.cpp -o programm
@@ -36,7 +46,7 @@ g++ -std=c++17 -Wall -Wextra main.cpp utils.cpp -o programm
 
 # ausführen
 ./programm          # Linux
-programm.exe        # Windows</code></pre>
+.\programm.exe      # Windows (PowerShell)</code></pre>
       <table class="info-table">
         <thead><tr><th>Option</th><th>Bedeutung</th></tr></thead>
         <tbody>
@@ -95,6 +105,7 @@ cmake --build build</code></pre>
         <a class="chip" href="cpp-fehler.html">Fehler &amp; Exceptions</a>
         <a class="chip" href="include.html">#include</a>
         <a class="chip" href="cpp-main.html">int main()</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
       </div>
     </section>
   </main>

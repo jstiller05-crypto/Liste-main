@@ -2302,6 +2302,431 @@ let oTableEntries = { "List": [
       "Sprache": "PHP",
       "Link": "more/php-oop.html",
       "class": ["php","oop"]
+    },
+    // Terminal
+    {
+      "Tag": "Terminal (Windows vs. Linux)",
+      "Beschreibung": "Wichtige Befehle für PowerShell und Bash im Vergleich",
+      "Sprache": "Terminal",
+      "Link": "more/terminal.html",
+      "class": ["terminal","werkzeuge"]
+    },
+    {
+      "Tag": "cd / ls / mkdir",
+      "Beschreibung": "Im Terminal navigieren und Ordner anlegen",
+      "Sprache": "Terminal",
+      "Link": "more/terminal.html",
+      "class": ["terminal","werkzeuge"]
+    },
+    {
+      "Tag": "winget / apt",
+      "Beschreibung": "Software über die Kommandozeile installieren",
+      "Sprache": "Terminal",
+      "Link": "more/terminal.html",
+      "class": ["terminal","werkzeuge"]
+    },
+    {
+      "Tag": "Umgebungsvariablen ($env / export)",
+      "Beschreibung": "Variablen im Terminal setzen",
+      "Sprache": "Terminal",
+      "Link": "more/terminal.html",
+      "class": ["terminal","werkzeuge"]
+    },
+    // Lua
+    {
+      "Tag": "Lua",
+      "Beschreibung": "Kleine Skriptsprache für Spiele und Mods",
+      "Sprache": "Lua",
+      "Link": "more/lua-einfuehrung.html",
+      "class": ["lua","sprache","grundlagen"]
+    },
+    {
+      "Tag": "local",
+      "Beschreibung": "Lokale Variable anlegen",
+      "Sprache": "Lua",
+      "Link": "more/lua-grundlagen.html",
+      "class": ["lua","grundlagen"]
+    },
+    {
+      "Tag": "nil / type()",
+      "Beschreibung": "Kein Wert / Datentyp prüfen",
+      "Sprache": "Lua",
+      "Link": "more/lua-grundlagen.html",
+      "class": ["lua","grundlagen"]
+    },
+    {
+      "Tag": ".. (Verkettung)",
+      "Beschreibung": "Texte in Lua verbinden",
+      "Sprache": "Lua",
+      "Link": "more/lua-grundlagen.html",
+      "class": ["lua","grundlagen"]
+    },
+    {
+      "Tag": "if … then … end",
+      "Beschreibung": "Bedingungen in Lua",
+      "Sprache": "Lua",
+      "Link": "more/lua-kontrolle.html",
+      "class": ["lua","kontrolle"]
+    },
+    {
+      "Tag": "for / while / repeat",
+      "Beschreibung": "Schleifen in Lua",
+      "Sprache": "Lua",
+      "Link": "more/lua-kontrolle.html",
+      "class": ["lua","kontrolle","schleife"]
+    },
+    {
+      "Tag": "function (Lua)",
+      "Beschreibung": "Funktionen, mehrere Rückgabewerte, Closures",
+      "Sprache": "Lua",
+      "Link": "more/lua-funktionen.html",
+      "class": ["lua","funktion"]
+    },
+    {
+      "Tag": "Tabelle (table)",
+      "Beschreibung": "Liste, Wörterbuch und Objekt in einem",
+      "Sprache": "Lua",
+      "Link": "more/lua-tabellen.html",
+      "class": ["lua","daten"]
+    },
+    {
+      "Tag": "ipairs / pairs",
+      "Beschreibung": "Über Tabellen laufen",
+      "Sprache": "Lua",
+      "Link": "more/lua-tabellen.html",
+      "class": ["lua","daten","kontrolle"]
+    },
+    {
+      "Tag": "table.insert / table.sort",
+      "Beschreibung": "Tabellen bearbeiten",
+      "Sprache": "Lua",
+      "Link": "more/lua-tabellen.html",
+      "class": ["lua","daten"]
+    },
+    {
+      "Tag": "string.format / Patterns",
+      "Beschreibung": "Texte formatieren und durchsuchen",
+      "Sprache": "Lua",
+      "Link": "more/lua-strings.html",
+      "class": ["lua","daten"]
+    },
+    {
+      "Tag": "require",
+      "Beschreibung": "Module laden",
+      "Sprache": "Lua",
+      "Link": "more/lua-module.html",
+      "class": ["lua","werkzeuge"]
+    },
+    {
+      "Tag": "setmetatable",
+      "Beschreibung": "Klassen mit Metatabellen",
+      "Sprache": "Lua",
+      "Link": "more/lua-module.html",
+      "class": ["lua","oop"]
+    },
+    {
+      "Tag": "pcall / error",
+      "Beschreibung": "Fehler abfangen und auslösen",
+      "Sprache": "Lua",
+      "Link": "more/lua-module.html",
+      "class": ["lua","werkzeuge"]
+    },
+    {
+      "Tag": "core.register_node",
+      "Beschreibung": "Block in einem Luanti-Mod registrieren",
+      "Sprache": "Lua",
+      "Link": "more/lua-luanti.html",
+      "class": ["lua","werkzeuge"]
+    },
+    // C
+    {
+      "Tag": "C",
+      "Beschreibung": "Systemnahe Sprache, Vorgängerin von C++",
+      "Sprache": "C",
+      "Link": "more/c-einfuehrung.html",
+      "class": ["c","sprache","grundlagen"]
+    },
+    {
+      "Tag": "printf",
+      "Beschreibung": "Formatierte Ausgabe",
+      "Sprache": "C",
+      "Link": "more/c-ein-ausgabe.html",
+      "class": ["c","io","ausgabe"]
+    },
+    {
+      "Tag": "scanf / fgets",
+      "Beschreibung": "Eingaben einlesen",
+      "Sprache": "C",
+      "Link": "more/c-ein-ausgabe.html",
+      "class": ["c","io","eingabe"]
+    },
+    {
+      "Tag": "char-Array (String)",
+      "Beschreibung": "Texte in C mit \\0 am Ende",
+      "Sprache": "C",
+      "Link": "more/c-strings.html",
+      "class": ["c","daten"]
+    },
+    {
+      "Tag": "strlen / strcmp / snprintf",
+      "Beschreibung": "Funktionen aus string.h",
+      "Sprache": "C",
+      "Link": "more/c-strings.html",
+      "class": ["c","daten"]
+    },
+    {
+      "Tag": "Zeiger (C)",
+      "Beschreibung": "Adressen und Zeiger-Arithmetik",
+      "Sprache": "C",
+      "Link": "more/c-zeiger.html",
+      "class": ["c","speicher"]
+    },
+    {
+      "Tag": "malloc / free",
+      "Beschreibung": "Speicher anfordern und freigeben",
+      "Sprache": "C",
+      "Link": "more/c-speicher.html",
+      "class": ["c","speicher"]
+    },
+    {
+      "Tag": "struct / typedef (C)",
+      "Beschreibung": "Eigene Datentypen in C",
+      "Sprache": "C",
+      "Link": "more/c-structs.html",
+      "class": ["c","daten"]
+    },
+    {
+      "Tag": "#define",
+      "Beschreibung": "Konstanten und Makros",
+      "Sprache": "C",
+      "Link": "more/c-praeprozessor.html",
+      "class": ["c","praeprozessor"]
+    },
+    {
+      "Tag": "fopen / fclose",
+      "Beschreibung": "Dateien in C",
+      "Sprache": "C",
+      "Link": "more/c-praeprozessor.html",
+      "class": ["c","werkzeuge","io"]
+    },
+    // C#
+    {
+      "Tag": "C#",
+      "Beschreibung": "Sprache von .NET für Apps, Web und Spiele",
+      "Sprache": "C#",
+      "Link": "more/csharp-einfuehrung.html",
+      "class": ["c#","sprache","grundlagen"]
+    },
+    {
+      "Tag": "dotnet new / run",
+      "Beschreibung": "Projekt anlegen und starten",
+      "Sprache": "C#",
+      "Link": "more/csharp-einfuehrung.html",
+      "class": ["c#","werkzeuge"]
+    },
+    {
+      "Tag": "Console.WriteLine",
+      "Beschreibung": "Ausgabe in der Konsole",
+      "Sprache": "C#",
+      "Link": "more/csharp-einfuehrung.html",
+      "class": ["c#","io","ausgabe"]
+    },
+    {
+      "Tag": "var / int / string",
+      "Beschreibung": "Variablen und Datentypen",
+      "Sprache": "C#",
+      "Link": "more/csharp-grundlagen.html",
+      "class": ["c#","grundlagen"]
+    },
+    {
+      "Tag": "$\"…{x}…\"",
+      "Beschreibung": "String-Interpolation",
+      "Sprache": "C#",
+      "Link": "more/csharp-grundlagen.html",
+      "class": ["c#","grundlagen"]
+    },
+    {
+      "Tag": "int.TryParse",
+      "Beschreibung": "Text sicher in Zahl umwandeln",
+      "Sprache": "C#",
+      "Link": "more/csharp-grundlagen.html",
+      "class": ["c#","grundlagen"]
+    },
+    {
+      "Tag": "switch-Ausdruck",
+      "Beschreibung": "Werte je nach Fall zuordnen",
+      "Sprache": "C#",
+      "Link": "more/csharp-kontrolle.html",
+      "class": ["c#","kontrolle"]
+    },
+    {
+      "Tag": "foreach (C#)",
+      "Beschreibung": "Über Listen laufen",
+      "Sprache": "C#",
+      "Link": "more/csharp-kontrolle.html",
+      "class": ["c#","kontrolle","schleife"]
+    },
+    {
+      "Tag": "List<T>",
+      "Beschreibung": "Dynamische Liste",
+      "Sprache": "C#",
+      "Link": "more/csharp-collections.html",
+      "class": ["c#","daten"]
+    },
+    {
+      "Tag": "Dictionary",
+      "Beschreibung": "Schlüssel-Wert-Paare",
+      "Sprache": "C#",
+      "Link": "more/csharp-collections.html",
+      "class": ["c#","daten"]
+    },
+    {
+      "Tag": "LINQ (Where / Select)",
+      "Beschreibung": "Daten filtern, sortieren, auswerten",
+      "Sprache": "C#",
+      "Link": "more/csharp-collections.html",
+      "class": ["c#","daten"]
+    },
+    {
+      "Tag": "class / Properties",
+      "Beschreibung": "Klassen mit get/set",
+      "Sprache": "C#",
+      "Link": "more/csharp-klassen.html",
+      "class": ["c#","oop"]
+    },
+    {
+      "Tag": "interface",
+      "Beschreibung": "Vorgabe, welche Methoden eine Klasse hat",
+      "Sprache": "C#",
+      "Link": "more/csharp-klassen.html",
+      "class": ["c#","oop"]
+    },
+    {
+      "Tag": "async / await (C#)",
+      "Beschreibung": "Asynchrone Methoden",
+      "Sprache": "C#",
+      "Link": "more/csharp-async.html",
+      "class": ["c#","werkzeuge"]
+    },
+    {
+      "Tag": "File.ReadAllText",
+      "Beschreibung": "Dateien lesen und schreiben",
+      "Sprache": "C#",
+      "Link": "more/csharp-async.html",
+      "class": ["c#","werkzeuge","io"]
+    },
+    // Swift
+    {
+      "Tag": "Swift",
+      "Beschreibung": "Apples Sprache für iOS-, macOS- und Server-Apps",
+      "Sprache": "Swift",
+      "Link": "more/swift-einfuehrung.html",
+      "class": ["swift","sprache","grundlagen"]
+    },
+    {
+      "Tag": "let / var (Swift)",
+      "Beschreibung": "Konstanten und Variablen",
+      "Sprache": "Swift",
+      "Link": "more/swift-grundlagen.html",
+      "class": ["swift","grundlagen"]
+    },
+    {
+      "Tag": "\\(…) Interpolation",
+      "Beschreibung": "Werte in Text einsetzen",
+      "Sprache": "Swift",
+      "Link": "more/swift-grundlagen.html",
+      "class": ["swift","grundlagen"]
+    },
+    {
+      "Tag": "Optional (?)",
+      "Beschreibung": "Werte, die fehlen dürfen",
+      "Sprache": "Swift",
+      "Link": "more/swift-optionals.html",
+      "class": ["swift","grundlagen"]
+    },
+    {
+      "Tag": "if let / guard let",
+      "Beschreibung": "Optionals sicher auspacken",
+      "Sprache": "Swift",
+      "Link": "more/swift-optionals.html",
+      "class": ["swift","kontrolle"]
+    },
+    {
+      "Tag": "switch (Swift)",
+      "Beschreibung": "Fallunterscheidung mit Bereichen",
+      "Sprache": "Swift",
+      "Link": "more/swift-kontrolle.html",
+      "class": ["swift","kontrolle"]
+    },
+    {
+      "Tag": "for-in / Bereiche (1...5)",
+      "Beschreibung": "Schleifen in Swift",
+      "Sprache": "Swift",
+      "Link": "more/swift-kontrolle.html",
+      "class": ["swift","kontrolle","schleife"]
+    },
+    {
+      "Tag": "func",
+      "Beschreibung": "Funktionen mit Argument-Labels",
+      "Sprache": "Swift",
+      "Link": "more/swift-kontrolle.html",
+      "class": ["swift","funktion"]
+    },
+    {
+      "Tag": "Closure ($0)",
+      "Beschreibung": "Kurze Funktionen, z. B. für map/filter",
+      "Sprache": "Swift",
+      "Link": "more/swift-kontrolle.html",
+      "class": ["swift","funktion"]
+    },
+    {
+      "Tag": "struct / class (Swift)",
+      "Beschreibung": "Wert- und Referenztypen",
+      "Sprache": "Swift",
+      "Link": "more/swift-typen.html",
+      "class": ["swift","oop"]
+    },
+    {
+      "Tag": "enum (Swift)",
+      "Beschreibung": "Aufzählungen mit angehängten Werten",
+      "Sprache": "Swift",
+      "Link": "more/swift-typen.html",
+      "class": ["swift","daten"]
+    },
+    {
+      "Tag": "protocol",
+      "Beschreibung": "Vorgabe für Typen (wie Interface)",
+      "Sprache": "Swift",
+      "Link": "more/swift-typen.html",
+      "class": ["swift","oop"]
+    },
+    {
+      "Tag": "SwiftUI",
+      "Beschreibung": "Oberflächen für Apple-Apps (nur macOS)",
+      "Sprache": "Swift",
+      "Link": "more/swiftui.html",
+      "class": ["swift","gestaltung"]
+    },
+    {
+      "Tag": "@State",
+      "Beschreibung": "Zustand einer SwiftUI-Ansicht",
+      "Sprache": "Swift",
+      "Link": "more/swiftui.html",
+      "class": ["swift","gestaltung"]
+    },
+    {
+      "Tag": "VStack / HStack",
+      "Beschreibung": "Ansichten stapeln",
+      "Sprache": "Swift",
+      "Link": "more/swiftui.html",
+      "class": ["swift","layout"]
+    },
+    {
+      "Tag": "Xcode",
+      "Beschreibung": "Apples Entwicklungsumgebung (nur macOS)",
+      "Sprache": "Swift",
+      "Link": "more/xcode.html",
+      "class": ["swift","werkzeuge"]
     }
   ]};
 

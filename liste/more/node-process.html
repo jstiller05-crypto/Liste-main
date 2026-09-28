@@ -29,6 +29,14 @@ for (let i = 0; i &lt; times; i++) {
     </section>
     <section>
       <h2>Umgebungsvariablen</h2>
+      <table class="info-table">
+        <thead><tr><th>Setzen im Terminal</th><th>Befehl</th></tr></thead>
+        <tbody>
+          <tr><td>Windows (PowerShell)</td><td><code>$env:PORT = 4000; node server.js</code></td></tr>
+          <tr><td>Windows (cmd)</td><td><code>set PORT=4000 &amp;&amp; node server.js</code></td></tr>
+          <tr><td>Linux</td><td><code>PORT=4000 node server.js</code></td></tr>
+        </tbody>
+      </table>
       <pre><code>const PORT = process.env.PORT ?? 3000;
 const isProduction = process.env.NODE_ENV === "production";
 console.log("[config] Port:", PORT, "Produktion:", isProduction);</code></pre>
@@ -66,6 +74,7 @@ DB_PASSWORD=geheim123</code></pre>
         <a class="chip" href="node-npm.html">npm</a>
         <a class="chip" href="node-express.html">Express</a>
         <a class="chip" href="node-einfuehrung.html">Node.js</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
       </div>
     </section>
   </main>

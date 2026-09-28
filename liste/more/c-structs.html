@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>C: struct &amp; enum – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">C · Daten</p>
+    <h1>struct, typedef &amp; enum</h1>
+    <p class="page-lead">Eigene Datentypen in C – ohne Klassen, aber mit Funktionen, die mit ihnen arbeiten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>struct &amp; typedef</h2>
+      <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {             /* typedef: statt "struct Player" reicht "Player" */
+    char name[32];
+    int level;
+    int score;
+} Player;
+
+void player_add_score(Player *player, int points) {   /* "Methode" als normale Funktion */
+    player-&gt;score += points;                          /* -&gt; bei Zeigern */
+}
+
+int main(void) {
+    Player p = { "Max", 1, 0 };
+    player_add_score(&amp;p, 50);
+    printf("%s: Level %d, %d Punkte\n", p.name, p.level, p.score);   /* . bei Variablen */
+    return 0;
+}</code></pre>
+    </section>
+    <section>
+      <h2>enum</h2>
+      <pre><code>typedef enum {
+    DIFFICULTY_EASY,       /* 0 */
+    DIFFICULTY_MEDIUM,     /* 1 */
+    DIFFICULTY_HARD        /* 2 */
+} Difficulty;
+
+Difficulty level = DIFFICULTY_MEDIUM;
+switch (level) {
+    case DIFFICULTY_EASY: printf("Leicht\n"); break;
+    default:              printf("Anders\n");
+}</code></pre>
+    </section>
+    <section>
+      <h2>. oder -&gt;?</h2>
+      <table class="info-table">
+        <thead><tr><th>Zugriff</th><th>Wann</th></tr></thead>
+        <tbody>
+          <tr><td><code>p.score</code></td><td><code>p</code> ist eine Struct-Variable</td></tr>
+          <tr><td><code>ptr-&gt;score</code></td><td><code>ptr</code> ist ein Zeiger auf ein Struct (Kurzform für <code>(*ptr).score</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Structs in Funktionen per Zeiger übergeben (<code>Player *p</code>) – sonst wird kopiert und Änderungen gehen verloren.</li>
+        <li>Übliche Namensregel ohne Klassen: <code>typname_aktion()</code>, z. B. <code>player_add_score</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-struct-enum.html">struct &amp; enum</a>
+        <a class="chip" href="c-zeiger.html">Zeiger</a>
+        <a class="chip" href="c-speicher.html">malloc &amp; free</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Terminal: Windows vs. Linux – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">Werkzeuge · Terminal</p>
+    <h1>Terminal: Windows vs. Linux</h1>
+    <p class="page-lead">Die wichtigsten Befehle für die Kommandozeile – nebeneinander für Windows (PowerShell) und Linux (Bash).</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Welches Terminal?</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Terminal</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td><strong>PowerShell</strong> (empfohlen), alte Eingabeaufforderung <code>cmd</code></td><td>PowerShell versteht viele Linux-Befehle als Alias (<code>ls</code>, <code>cat</code>, <code>cp</code>, <code>rm</code> …)</td></tr>
+          <tr><td>Linux</td><td><strong>Bash</strong> (oft Standard), auch <code>zsh</code></td><td>Groß-/Kleinschreibung zählt bei Dateinamen!</td></tr>
+          <tr><td>Beide</td><td>Terminal in VS Code: Strg+ö</td><td>Öffnet direkt im Projektordner</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Navigieren &amp; anzeigen</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufgabe</th><th>Windows (PowerShell)</th><th>Linux (Bash)</th></tr></thead>
+        <tbody>
+          <tr><td>Wo bin ich?</td><td><code>pwd</code> / <code>Get-Location</code></td><td><code>pwd</code></td></tr>
+          <tr><td>Inhalt anzeigen</td><td><code>ls</code> / <code>dir</code></td><td><code>ls</code> · <code>ls -la</code> (mit versteckten Dateien)</td></tr>
+          <tr><td>Ordner wechseln</td><td><code>cd Ordner</code></td><td><code>cd Ordner</code></td></tr>
+          <tr><td>Eine Ebene hoch</td><td><code>cd ..</code></td><td><code>cd ..</code></td></tr>
+          <tr><td>Home-Ordner</td><td><code>cd ~</code> · <code>$HOME</code></td><td><code>cd ~</code> · <code>$HOME</code></td></tr>
+          <tr><td>Datei anzeigen</td><td><code>cat datei.txt</code> / <code>type datei.txt</code></td><td><code>cat datei.txt</code> · <code>less datei.txt</code></td></tr>
+          <tr><td>Bildschirm leeren</td><td><code>cls</code> / <code>clear</code></td><td><code>clear</code> (oder Strg+L)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Dateien &amp; Ordner</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufgabe</th><th>Windows (PowerShell)</th><th>Linux (Bash)</th></tr></thead>
+        <tbody>
+          <tr><td>Ordner anlegen</td><td><code>mkdir name</code></td><td><code>mkdir name</code> · <code>mkdir -p a/b/c</code></td></tr>
+          <tr><td>Leere Datei anlegen</td><td><code>ni datei.txt</code> (New-Item)</td><td><code>touch datei.txt</code></td></tr>
+          <tr><td>Kopieren</td><td><code>cp a.txt b.txt</code> / <code>copy</code></td><td><code>cp a.txt b.txt</code> · Ordner: <code>cp -r</code></td></tr>
+          <tr><td>Verschieben / umbenennen</td><td><code>mv alt.txt neu.txt</code> / <code>move</code></td><td><code>mv alt.txt neu.txt</code></td></tr>
+          <tr><td>Datei löschen</td><td><code>rm datei.txt</code> / <code>del</code></td><td><code>rm datei.txt</code></td></tr>
+          <tr><td>Ordner löschen</td><td><code>rm -r Ordner</code></td><td><code>rm -r Ordner</code></td></tr>
+          <tr><td>Text in Dateien suchen</td><td><code>Select-String "text" *.js</code></td><td><code>grep -r "text" .</code></td></tr>
+          <tr><td>Datei suchen</td><td><code>Get-ChildItem -Recurse -Filter *.js</code></td><td><code>find . -name "*.js"</code></td></tr>
+        </tbody>
+      </table>
+      <div class="note"><code>rm</code> löscht ohne Papierkorb – endgültig. Besonders vorsichtig mit <code>rm -r</code>.</div>
+    </section>
+    <section>
+      <h2>Programme &amp; Pfade</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufgabe</th><th>Windows</th><th>Linux</th></tr></thead>
+        <tbody>
+          <tr><td>Programm im aktuellen Ordner starten</td><td><code>.\programm.exe</code></td><td><code>./programm</code></td></tr>
+          <tr><td>Skript ausführbar machen</td><td>– (nicht nötig)</td><td><code>chmod +x skript.sh</code></td></tr>
+          <tr><td>Pfad-Trenner</td><td><code>\</code> (PowerShell akzeptiert auch <code>/</code>)</td><td><code>/</code></td></tr>
+          <tr><td>Wo liegt ein Befehl?</td><td><code>Get-Command node</code> · <code>where.exe node</code></td><td><code>which node</code></td></tr>
+          <tr><td>Laufende Prozesse</td><td><code>Get-Process</code> · <code>tasklist</code></td><td><code>ps aux</code> · <code>top</code> / <code>htop</code></td></tr>
+          <tr><td>Prozess beenden</td><td><code>Stop-Process -Id 1234</code> · <code>taskkill /PID 1234</code></td><td><code>kill 1234</code></td></tr>
+          <tr><td>Programm abbrechen</td><td>Strg+C</td><td>Strg+C</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Umgebungsvariablen</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufgabe</th><th>Windows (PowerShell)</th><th>Linux (Bash)</th></tr></thead>
+        <tbody>
+          <tr><td>Setzen (nur dieses Terminal)</td><td><code>$env:PORT = 3000</code></td><td><code>export PORT=3000</code></td></tr>
+          <tr><td>Nur für einen Befehl</td><td>– (vorher setzen)</td><td><code>PORT=3000 node server.js</code></td></tr>
+          <tr><td>Anzeigen</td><td><code>$env:PORT</code></td><td><code>echo $PORT</code></td></tr>
+          <tr><td>Alle anzeigen</td><td><code>Get-ChildItem Env:</code></td><td><code>env</code></td></tr>
+          <tr><td>PATH anzeigen</td><td><code>$env:Path</code></td><td><code>echo $PATH</code></td></tr>
+        </tbody>
+      </table>
+      <p>In der alten <code>cmd</code> lautet es <code>set PORT=3000</code> und <code>echo %PORT%</code>.</p>
+    </section>
+    <section>
+      <h2>Software installieren</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufgabe</th><th>Windows</th><th>Linux (Debian/Ubuntu)</th></tr></thead>
+        <tbody>
+          <tr><td>Paketmanager</td><td><code>winget</code> (eingebaut), alternativ Scoop/Chocolatey</td><td><code>apt</code></td></tr>
+          <tr><td>Suchen</td><td><code>winget search node</code></td><td><code>apt search nodejs</code></td></tr>
+          <tr><td>Installieren</td><td><code>winget install OpenJS.NodeJS.LTS</code></td><td><code>sudo apt install nodejs npm</code></td></tr>
+          <tr><td>Alles aktualisieren</td><td><code>winget upgrade --all</code></td><td><code>sudo apt update &amp;&amp; sudo apt upgrade</code></td></tr>
+          <tr><td>Als Admin ausführen</td><td>Terminal mit Rechtsklick „Als Administrator ausführen“</td><td><code>sudo</code> vor den Befehl</td></tr>
+        </tbody>
+      </table>
+      <p>Auf Fedora heißt der Paketmanager <code>dnf</code>, auf Arch <code>pacman</code> – die Befehle sind ähnlich.</p>
+    </section>
+    <section>
+      <h2>Nützliche Tricks (beide Systeme)</h2>
+      <ul>
+        <li><strong>Tab</strong> vervollständigt Datei- und Ordnernamen.</li>
+        <li><strong>Pfeil hoch</strong> holt den letzten Befehl zurück.</li>
+        <li><code>befehl --help</code> (Linux) bzw. <code>Get-Help befehl</code> (PowerShell) zeigt die Hilfe.</li>
+        <li><code>&amp;&amp;</code> führt den zweiten Befehl nur aus, wenn der erste geklappt hat: <code>npm install &amp;&amp; npm start</code> (PowerShell 7+ und Bash).</li>
+        <li>Pfade mit Leerzeichen in Anführungszeichen setzen: <code>cd "Mein Ordner"</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Zeilenenden: CRLF vs. LF</h2>
+      <p>Windows beendet Textzeilen mit <code>CRLF</code> (<code>\r\n</code>), Linux mit <code>LF</code> (<code>\n</code>). Meist egal, aber Shell-Skripte mit CRLF laufen auf Linux nicht („bad interpreter“). In VS Code steht unten rechts <code>CRLF</code>/<code>LF</code> – ein Klick darauf stellt es um.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Linux unterscheidet <code>Datei.txt</code> und <code>datei.txt</code> – auf Windows ist es dieselbe Datei. Das führt oft zu Fehlern, wenn Projekte auf Linux umziehen.</li>
+        <li>Unter Windows lässt sich mit <strong>WSL</strong> (<code>wsl --install</code>) ein echtes Linux im Terminal nutzen – praktisch zum Testen.</li>
+        <li>Befehle aus dem Internet nie blind mit <code>sudo</code> bzw. als Administrator ausführen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="node-einfuehrung.html">Node.js</a>
+        <a class="chip" href="cpp-kompilieren.html">Kompilieren</a>
+        <a class="chip" href="php-einfuehrung.html">PHP</a>
+        <a class="chip" href="node-process.html">process &amp; .env</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

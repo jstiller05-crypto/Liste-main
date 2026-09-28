@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Swift: Kontrollstrukturen – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">Swift · Kontrollstrukturen</p>
+    <h1>Bedingungen, Schleifen &amp; Funktionen</h1>
+    <p class="page-lead"><code>if</code>, <code>switch</code>, <code>for-in</code> mit Bereichen und Funktionen mit Argument-Labels.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>if &amp; switch</h2>
+      <pre><code>let points = 72
+
+if points &gt;= 90 {                 // keine Klammern um die Bedingung nötig
+    print("Sehr gut")
+} else if points &gt;= 60 {
+    print("Bestanden")
+} else {
+    print("Nicht bestanden")
+}
+
+switch points {
+case 90...100: print("Sehr gut")  // Bereiche als Fall
+case 60..&lt;90:  print("Bestanden")
+default:       print("Nicht bestanden")
+}                                  // kein break nötig – kein Durchfallen</code></pre>
+      <p><code>switch</code> muss in Swift immer alle Fälle abdecken (notfalls mit <code>default</code>).</p>
+    </section>
+    <section>
+      <h2>Schleifen &amp; Bereiche</h2>
+      <pre><code>for i in 1...5 { print(i) }          // 1 bis 5 (inklusive)
+for i in 0..&lt;5 { print(i) }          // 0 bis 4
+for i in stride(from: 10, to: 0, by: -2) { print(i) }   // 10 8 6 4 2
+
+let colors = ["rot", "grün", "blau"]
+for color in colors { print(color) }
+for (index, color) in colors.enumerated() { print(index, color) }
+
+var tries = 0
+while tries &lt; 3 { tries += 1 }
+repeat { tries -= 1 } while tries &gt; 0</code></pre>
+    </section>
+    <section>
+      <h2>Funktionen</h2>
+      <pre><code>func greet(name: String, greeting: String = "Hallo") -&gt; String {
+    return "\(greeting), \(name)!"
+}
+greet(name: "Max")                    // Argument-Label beim Aufruf
+
+func add(_ a: Int, _ b: Int) -&gt; Int {  // _ = ohne Label aufrufen
+    a + b                              // eine Zeile: return optional
+}
+add(2, 3)
+
+func move(from start: Int, to end: Int) { }   // äußeres + inneres Label
+move(from: 1, to: 5)</code></pre>
+      <p>Argument-Labels machen Aufrufe wie Sätze lesbar: <code>move(from: 1, to: 5)</code>.</p>
+    </section>
+    <section>
+      <h2>Closures</h2>
+      <pre><code>let numbers = [4, 9, 1]
+let sorted = numbers.sorted { $0 &lt; $1 }          // $0, $1 = erstes/zweites Argument
+let doubled = numbers.map { $0 * 2 }
+let big = numbers.filter { $0 &gt; 3 }
+let sum = numbers.reduce(0, +)</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>...</code> = inklusive Ende, <code>..&lt;</code> = ohne Ende.</li>
+        <li>Die Array-Methoden <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>sorted</code> funktionieren wie in JavaScript.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="swift-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="swift-typen.html">Typen</a>
+        <a class="chip" href="js-arrays.html">Arrays</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

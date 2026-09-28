@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>C: malloc &amp; free – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">C · Speicher</p>
+    <h1>malloc &amp; free</h1>
+    <p class="page-lead">Speicher zur Laufzeit anfordern, vergrößern und wieder freigeben.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundform</h2>
+      <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void) {
+    size_t count = 5;
+    int *numbers = malloc(count * sizeof *numbers);   /* Platz für 5 int */
+    if (numbers == NULL) {                           /* malloc kann fehlschlagen */
+        fprintf(stderr, "Kein Speicher!\n");
+        return 1;
+    }
+
+    for (size_t i = 0; i &lt; count; i++) {
+        numbers[i] = (int)(i * 10);
+    }
+
+    free(numbers);       /* zurückgeben – genau einmal */
+    numbers = NULL;      /* Schutz vor versehentlicher Weiterverwendung */
+    return 0;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Die Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Funktion</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>malloc(bytes)</code></td><td>Speicher anfordern – Inhalt ist zufällig</td></tr>
+          <tr><td><code>calloc(anzahl, größe)</code></td><td>Speicher anfordern und mit 0 füllen</td></tr>
+          <tr><td><code>realloc(ptr, neue_bytes)</code></td><td>Vergrößern/verkleinern (Daten bleiben erhalten)</td></tr>
+          <tr><td><code>free(ptr)</code></td><td>Speicher freigeben</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Dynamisch wachsende Liste</h2>
+      <pre><code>size_t capacity = 4, size = 0;
+int *list = malloc(capacity * sizeof *list);
+
+void push(int value) {             /* vereinfacht: globale Variablen */
+    if (size == capacity) {
+        capacity *= 2;
+        int *bigger = realloc(list, capacity * sizeof *list);
+        if (bigger == NULL) { /* Fehler behandeln, list bleibt gültig */ return; }
+        list = bigger;
+    }
+    list[size++] = value;
+}</code></pre>
+      <p>So funktioniert im Grunde auch <code>std::vector</code> in C++ – nur automatisch.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jedes <code>malloc</code> braucht genau ein <code>free</code> – sonst Speicherleck, zweimal = Absturz.</li>
+        <li>Speicherfehler findet man auf Linux mit <code>valgrind ./programm</code> oder beim Kompilieren mit <code>-fsanitize=address</code>.</li>
+        <li><code>realloc</code> nie direkt <code>ptr = realloc(ptr, …)</code> zuweisen – schlägt es fehl, ist der alte Zeiger verloren.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="c-zeiger.html">Zeiger</a>
+        <a class="chip" href="cpp-speicher.html">Speicher &amp; Smart Pointer</a>
+        <a class="chip" href="c-structs.html">struct &amp; enum</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

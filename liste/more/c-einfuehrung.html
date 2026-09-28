@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>C – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">C · Grundlagen</p>
+    <h1>C</h1>
+    <p class="page-lead">Die Vorgängerin von C++ – klein, schnell und nah an der Hardware.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>C wurde Anfang der 1970er für das Betriebssystem Unix entwickelt. Bis heute sind Betriebssysteme (Linux-Kernel, Teile von Windows), Mikrocontroller-Programme, Datenbanken und Interpreter (z. B. Lua, Python) in C geschrieben. C++ ist aus C entstanden – fast jeder C-Code ist auch gültiges C++.</p>
+    </section>
+    <section>
+      <h2>Hallo Welt</h2>
+      <pre><code>#include &lt;stdio.h&gt;        /* Standard-Ein-/Ausgabe */
+
+int main(void) {
+    printf("Hallo Welt!\n");
+    return 0;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Kompilieren</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Compiler</th><th>Befehl</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td>MSYS2 (<code>gcc</code>) oder Visual Studio (<code>cl</code>)</td><td><code>gcc -Wall -Wextra main.c -o programm</code> → <code>.\programm.exe</code></td></tr>
+          <tr><td>Linux</td><td><code>sudo apt install build-essential</code></td><td><code>gcc -Wall -Wextra main.c -o programm</code> → <code>./programm</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Was C NICHT hat (im Vergleich zu C++)</h2>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>In C stattdessen</th></tr></thead>
+        <tbody>
+          <tr><td><code>std::cout</code> / <code>std::cin</code></td><td><code>printf</code> / <code>scanf</code></td></tr>
+          <tr><td><code>std::string</code></td><td><code>char</code>-Arrays mit <code>\0</code> am Ende</td></tr>
+          <tr><td><code>std::vector</code></td><td>Arrays fester Größe oder <code>malloc</code></td></tr>
+          <tr><td><code>class</code>, Methoden, Vererbung</td><td><code>struct</code> + normale Funktionen</td></tr>
+          <tr><td><code>new</code> / <code>delete</code></td><td><code>malloc</code> / <code>free</code></td></tr>
+          <tr><td>Referenzen <code>&amp;</code></td><td>Nur Zeiger <code>*</code></td></tr>
+          <tr><td><code>bool</code> eingebaut</td><td><code>#include &lt;stdbool.h&gt;</code></td></tr>
+          <tr><td>Überladen von Funktionen</td><td>Jede Funktion braucht einen eigenen Namen</td></tr>
+          <tr><td>Exceptions</td><td>Rückgabewerte / Fehlercodes prüfen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Dateiendung <code>.c</code>, Header <code>.h</code>. Mit <code>gcc</code> statt <code>g++</code> kompilieren.</li>
+        <li>C prüft sehr wenig – falsche Speicherzugriffe führen oft nicht zu einer Fehlermeldung, sondern zu seltsamem Verhalten. Warnungen (<code>-Wall -Wextra</code>) immer einschalten.</li>
+        <li>Wer C++ kann, kann schon viel C: Variablen, Schleifen, <code>if</code>, Funktionen und Zeiger sind gleich.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="c-ein-ausgabe.html">printf &amp; scanf</a>
+        <a class="chip" href="c-strings.html">Strings</a>
+        <a class="chip" href="c-speicher.html">malloc &amp; free</a>
+        <a class="chip" href="cpp-sprache.html">C++</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

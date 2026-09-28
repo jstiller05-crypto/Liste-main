@@ -36,7 +36,14 @@
     </section>
     <section>
       <h2>Installieren &amp; prüfen</h2>
-      <p>Von nodejs.org die <strong>LTS</strong>-Version (Long Term Support) installieren. npm wird automatisch mitinstalliert.</p>
+      <p>Die <strong>LTS</strong>-Version (Long Term Support) installieren. npm wird automatisch mitinstalliert.</p>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Installation</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td>Installer von nodejs.org oder <code>winget install OpenJS.NodeJS.LTS</code></td></tr>
+          <tr><td>Linux (Debian/Ubuntu)</td><td><code>sudo apt install nodejs npm</code> – oft ältere Version; aktueller über <strong>nvm</strong>: <code>nvm install --lts</code></td></tr>
+        </tbody>
+      </table>
       <pre><code>node -v      # Version von Node.js anzeigen, z. B. v22.x
 npm -v       # Version von npm</code></pre>
     </section>
@@ -81,6 +88,7 @@ node --watch hello.js  # bei jeder Änderung automatisch neu starten</code></pre
         <a class="chip" href="node-module.html">Module</a>
         <a class="chip" href="javascript-sprache.html">JavaScript</a>
         <a class="chip" href="js-async.html">async/await</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
       </div>
     </section>
   </main>

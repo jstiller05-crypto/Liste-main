@@ -28,7 +28,8 @@
 // Die Sprache wird in dieser Reihenfolge bestimmt:
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
-//   3. Dateiname beginnt mit "css-", "js-", "cpp-", "node-", "sql-", "php-"
+//   3. Dateiname beginnt mit "css-", "js-", "cpp-", "node-", "sql-", "php-",
+//      "lua-", "c-", "csharp-", "swift-"
 //   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
@@ -60,7 +61,11 @@ const PAGE_LANGUAGES = {
   "js-klammern.html":        "js",
 
   // --- HTML ---
-  "html-sprache.html":    "html"
+  "html-sprache.html":    "html",
+
+  // --- Swift-Seiten ohne "swift-"-Präfix ---
+  "swiftui.html":         "swift",
+  "xcode.html":           "swift"
   // alle anderen Seiten (die HTML-Tags) → DEFAULT_PAGE_LANGUAGE
 };
 
@@ -69,7 +74,8 @@ const DEFAULT_PAGE_LANGUAGE = "html";
 // Hat eine Regel für eine Sprache kein eigenes Ziel, wird diese Sprache probiert.
 // Node.js IST JavaScript – dort sollen also die JS-Seiten verlinkt werden.
 const LANGUAGE_FALLBACK = {
-  node: "js"
+  node: "js",
+  c: "cpp"          // C-Grundlagen (Schleifen, if, Zeiger …) sind wie in C++
 };
 
 
@@ -100,6 +106,27 @@ const smartLinkRules = [
   { words: ["npm"],              links: { all: "node-npm.html" } },
   { words: ["SQL", "MySQL", "SQLite", "MariaDB", "PostgreSQL"], links: { all: "sql-einfuehrung.html" } },
   { words: ["PHP"],              links: { all: "php-einfuehrung.html" } },
+  { words: ["Lua", "LuaJIT"],    links: { all: "lua-einfuehrung.html" } },
+  { words: ["C#", ".NET"],       links: { all: "csharp-einfuehrung.html" } },
+  { words: ["Swift"],            links: { all: "swift-einfuehrung.html" } },
+  { words: ["SwiftUI"],          links: { all: "swiftui.html" } },
+  { words: ["Xcode"],            links: { all: "xcode.html" } },
+  { words: ["Luanti", "Mod", "Mods"], links: { all: "lua-luanti.html" } },
+  { words: ["Terminal", "Kommandozeile", "PowerShell", "Bash", "WSL"], links: { all: "terminal.html" } },
+
+  // ===== Lua / C / C# / Swift =====
+  { words: ["Metatabelle", "Metatabellen", "require"],    links: { lua: "lua-module.html" } },
+  { words: ["pcall", "Pattern", "Patterns"],              links: { lua: "lua-module.html" } },
+  { words: ["printf", "scanf", "Platzhalter"],            links: { c: "c-ein-ausgabe.html" } },
+  { words: ["malloc", "free", "calloc", "realloc", "Speicherleck"], links: { c: "c-speicher.html" } },
+  { words: ["Zeiger", "Pointer"],                         links: { c: "c-zeiger.html" } },
+  { words: ["struct", "typedef", "enum"],                 links: { c: "c-structs.html", csharp: "csharp-klassen.html", swift: "swift-typen.html" } },
+  { words: ["Makro", "Makros", "#define", "Header-Datei", "Header-Dateien"], links: { c: "c-praeprozessor.html" } },
+  { words: ["LINQ", "List", "Dictionary"],                links: { csharp: "csharp-collections.html" } },
+  { words: ["Property", "Properties", "Interface", "Interfaces", "record"], links: { csharp: "csharp-klassen.html" } },
+  { words: ["Optional", "Optionals", "nil"],              links: { swift: "swift-optionals.html" } },
+  { words: ["Closure", "Closures"],                       links: { swift: "swift-kontrolle.html", lua: "lua-funktionen.html" } },
+  { words: ["Protocol", "Protocols"],                     links: { swift: "swift-typen.html" } },
 
   // ===== Server, Datenbank & Web-Backend =====
   { words: ["Datenbank", "Datenbanken"],
@@ -129,31 +156,31 @@ const smartLinkRules = [
   { words: ["while-Schleife", "while-Schleifen"],
     links: { cpp: "while-loop.html", js: "js-schleifen.html" } },
   { words: ["Schleife", "Schleifen"],
-    links: { cpp: "for-loop.html",   js: "js-schleifen.html", php: "php-kontrolle.html" } },
+    links: { cpp: "for-loop.html",   js: "js-schleifen.html", php: "php-kontrolle.html" , lua: "lua-kontrolle.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html" } },
   { words: ["Funktion", "Funktionen"],
-    links: { cpp: "function.html",   js: "js-funktionen.html", php: "php-funktionen.html" } },
+    links: { cpp: "function.html",   js: "js-funktionen.html", php: "php-funktionen.html" , lua: "lua-funktionen.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html" } },
   { words: ["Variable", "Variablen"],
-    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html", php: "php-grundlagen.html" } },
+    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html", php: "php-grundlagen.html" , lua: "lua-grundlagen.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
   { words: ["if-else", "Bedingung", "Bedingungen"],
-    links: { cpp: "if-else.html",    js: "js-bedingungen.html", php: "php-kontrolle.html" } },
+    links: { cpp: "if-else.html",    js: "js-bedingungen.html", php: "php-kontrolle.html" , lua: "lua-kontrolle.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html" } },
   { words: ["Datentyp", "Datentypen"],
     links: { cpp: "datatypes.html",  js: "js-variablen.html" } },
 
   // ===== Nur C++ =====
   { words: ["Zeiger", "Pointer"],                         links: { cpp: "pointer.html" } },
-  { words: ["Referenz", "Referenzen"],                    links: { cpp: "reference.html" } },
+  { words: ["Referenz", "Referenzen"],                    links: { cpp: "reference.html" , c: "" } },
   { words: ["Objekt", "Objekte", "Methode", "Methoden",
             "OOP", "objektorientiert", "objektorientierte"],
-                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html", php: "php-oop.html" } },
+                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html", php: "php-oop.html" , lua: "lua-module.html", csharp: "csharp-klassen.html", swift: "swift-typen.html" , c: "" } },
   { words: ["Konstruktor", "Destruktor", "Kapselung", "private", "public"],
-                                                          links: { cpp: "cpp-konstruktor.html" } },
+                                                          links: { cpp: "cpp-konstruktor.html" , c: "" } },
   { words: ["Namespace", "Namespaces", "using namespace"], links: { cpp: "using-namespace.html" } },
   { words: ["#include", "Bibliothek", "Bibliotheken",
             "Header-Datei", "Header-Dateien"],            links: { cpp: "include.html" } },
   { words: ["Header-Datei", "Header-Dateien", "Headerdatei", "Include Guard", "#pragma once"],
                                                           links: { cpp: "cpp-header.html" } },
   { words: ["Vererbung", "Polymorphie", "virtual", "override", "Basisklasse"],
-                                                          links: { cpp: "cpp-vererbung.html" } },
+                                                          links: { cpp: "cpp-vererbung.html" , c: "" } },
   { words: ["Vector", "Vectors", "std::vector"],          links: { cpp: "cpp-vector.html" } },
   { words: ["std::string"],                               links: { cpp: "cpp-string.html" } },
   { words: ["std::map", "Map", "std::set"],               links: { cpp: "cpp-map.html" } },
@@ -163,10 +190,10 @@ const smartLinkRules = [
   { words: ["const", "constexpr", "auto"],                links: { cpp: "cpp-const-auto.html" } },
   { words: ["Smart Pointer", "unique_ptr", "shared_ptr", "Heap", "Stack", "Speicherleck", "new", "delete"],
                                                           links: { cpp: "cpp-speicher.html" } },
-  { words: ["Exception", "Exceptions", "Ausnahme"],       links: { cpp: "cpp-fehler.html" } },
+  { words: ["Exception", "Exceptions", "Ausnahme"],       links: { cpp: "cpp-fehler.html" , c: "" } },
   { words: ["Textdatei", "Textdateien", "fstream", "ifstream", "ofstream"],               links: { cpp: "cpp-dateien.html" } },
   { words: ["Template", "Templates"],                     links: { cpp: "cpp-templates.html" } },
-  { words: ["Compiler", "kompilieren", "g++", "CMake", "Linker"], links: { cpp: "cpp-kompilieren.html" } },
+  { words: ["Compiler", "kompilieren", "g++", "CMake", "Linker"], links: { cpp: "cpp-kompilieren.html" , c: "c-einfuehrung.html" } },
   { words: ["main()", "main-Funktion", "Einstiegspunkt"], links: { cpp: "cpp-main.html" } },
   { words: ["cout", "std::cout", "Ausgabe"],              links: { cpp: "cout.html" } },
   { words: ["cin", "std::cin"],                           links: { cpp: "cin.html" } },
@@ -174,7 +201,7 @@ const smartLinkRules = [
   // ===== Gleiches Wort, andere Bedeutung je Sprache =====
   // "Klasse" ist in C++ eine Objekt-Vorlage, in HTML/CSS eine CSS-Klasse
   { words: ["Klasse", "Klassen"],
-    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-objekte.html", sql: "", all: "Class.html" } },   // "" = bewusst kein Link
+    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-objekte.html", sql: "", all: "Class.html" , lua: "lua-module.html", c: "", csharp: "csharp-klassen.html", swift: "swift-typen.html" } },   // "" = bewusst kein Link
   { words: ["CSS-Klasse", "CSS-Klassen"],
     links: { all: "Class.html" } },
   // "Eingabe" ist in C++ cin, im Web ein Eingabefeld
@@ -202,14 +229,14 @@ const smartLinkRules = [
   // ===== Nur JavaScript =====
   { words: ["Event", "Events", "Ereignis", "Ereignisse", "addEventListener"],
                                                           links: { js: "js-events.html", html: "js-events.html" } },
-  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html", php: "php-grundlagen.html" } },
-  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html", php: "php-grundlagen.html" } },
+  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html", php: "php-grundlagen.html" , lua: "lua-grundlagen.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
+  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html", php: "php-grundlagen.html" , lua: "lua-strings.html", c: "c-strings.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
   { words: ["JSON"],                                      links: { js: "js-objekte.html", html: "js-objekte.html" } },
-  { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" } },
+  { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" , c: "c-ein-ausgabe.html", csharp: "csharp-einfuehrung.html" } },
   { words: ["try/catch", "Fehlermeldung", "try", "catch"], links: { js: "js-konsole.html", cpp: "cpp-fehler.html" } },
   { words: ["Promise", "async", "await", "fetch"],        links: { js: "js-async.html" } },
   { words: ["localStorage"],                              links: { js: "js-speicher.html", html: "js-speicher.html" } },
-  { words: ["Zufallszahl", "Zufallszahlen", "Math.random"], links: { js: "js-mathe.html", cpp: "cpp-zufall.html" } },
+  { words: ["Zufallszahl", "Zufallszahlen", "Math.random"], links: { js: "js-mathe.html", cpp: "cpp-zufall.html" , lua: "lua-module.html" } },
   { words: ["Modul", "Module", "import", "export"],       links: { js: "js-module.html" } },
 
   // ===== Web (HTML / CSS / JS) =====
@@ -218,7 +245,7 @@ const smartLinkRules = [
   { words: ["DOM"],                                       links: { js: "js-dom.html", html: "js-dom.html", css: "js-dom.html" } },
   { words: ["Selektor", "Selektoren"],                    links: { css: "css-selektoren.html", html: "css-selektoren.html", js: "css-selektoren.html" } },
   { words: ["Überschrift", "Überschriften"],              links: { html: "headings.html", css: "headings.html", js: "headings.html" } },
-  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html", php: "php-arrays.html" } },
+  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html", php: "php-arrays.html" , lua: "lua-tabellen.html", c: "c-zeiger.html", csharp: "csharp-collections.html", swift: "swift-typen.html" } },
   { words: ["Auswahlmenü", "Dropdown"],                   links: { html: "select.html", css: "select.html", js: "select.html" } },
   { words: ["Untertitel"],                                links: { html: "video.html", css: "video.html", js: "video.html" } },
   { words: ["Layout", "Layouts"],                         links: { css: "css-display.html", html: "css-display.html" } },
@@ -226,7 +253,7 @@ const smartLinkRules = [
   { words: ["Grid"],                                      links: { css: "css-grid.html", html: "css-grid.html", js: "css-grid.html" } },
   { words: ["Stylesheet", "Stylesheets", "CSS-Datei", "CSS-Dateien"],
                                                           links: { html: "link.html", css: "link.html" } },
-  { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html", sql: "sql-tabellen.html", php: "sql-tabellen.html" } },
+  { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html", sql: "sql-tabellen.html", php: "sql-tabellen.html" , lua: "lua-tabellen.html" } },
   { words: ["Liste", "Listen"],                           links: { html: "liste.html", css: "liste.html", js: "liste.html" } },
   { words: ["Formular", "Formulare"],                     links: { html: "form.html", css: "form.html", js: "form.html", php: "php-formulare.html" } },
   { words: ["Container", "Containern"],                   links: { html: "container.html", css: "container.html", js: "container.html" } },
@@ -425,6 +452,10 @@ function getPageLanguage(pageFile) {
     if (pageFile.startsWith("node-")) return "node";
     if (pageFile.startsWith("sql-")) return "sql";
     if (pageFile.startsWith("php-")) return "php";
+    if (pageFile.startsWith("lua-")) return "lua";
+    if (pageFile.startsWith("csharp-")) return "csharp";
+    if (pageFile.startsWith("swift-")) return "swift";
+    if (pageFile.startsWith("c-")) return "c";
   }
   // "??" = nimm den rechten Wert, wenn der linke undefined/null ist
   return PAGE_LANGUAGES[pageFile] ?? DEFAULT_PAGE_LANGUAGE;
@@ -442,19 +473,33 @@ function buildWordLookup(language) {
   const lookup = new Map();
 
   // --- Wort-Regeln (1b) ---
+  // Zwei Stufen, damit eine eigene Angabe für die Sprache IMMER gewinnt:
+  //   explicitTargets: Regel nennt die Sprache direkt (z. B. c: "c-zeiger.html")
+  //   fallbackTargets: nur über LANGUAGE_FALLBACK oder "all" gefunden
+  const explicitTargets = new Map();
+  const fallbackTargets = new Map();
+  const fallback = LANGUAGE_FALLBACK[language];
+
   smartLinkRules.forEach(function addRuleToLookup(rule) {
-    // erst die Sprache probieren, dann die Ersatz-Sprache, sonst "all", sonst null (= kein Link)
-    const fallback = LANGUAGE_FALLBACK[language];
-    const target = rule.links[language]
-      ?? (fallback ? rule.links[fallback] : undefined)
-      ?? rule.links.all
-      ?? null;
-    if (!target) return;
+    const explicit = rule.links[language];
+    const indirect = (fallback ? rule.links[fallback] : undefined) ?? rule.links.all;
 
     rule.words.forEach(function addWord(word) {
-      lookup.set(word.toLowerCase(), target);
+      const key = word.toLowerCase();
+      if (explicit !== undefined) {
+        explicitTargets.set(key, explicit);          // "" = bewusst kein Link
+      } else if (indirect) {
+        fallbackTargets.set(key, indirect);
+      }
     });
   });
+
+  // erst die Ersatz-Ziele, dann die direkten darüber (überschreiben)
+  fallbackTargets.forEach((target, key) => lookup.set(key, target));
+  explicitTargets.forEach((target, key) => lookup.set(key, target));
+
+  // Wörter mit leerem Ziel wieder entfernen
+  lookup.forEach((target, key) => { if (!target) lookup.delete(key); });
 
   // --- HTML-Tags (1c): "<div>" → "container.html" ---
   // Object.entries(obj) macht aus { a: "a.html" } → [ ["a", "a.html"] ]
