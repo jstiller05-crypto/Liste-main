@@ -1,3 +1,28 @@
+/* =====================================================================
+   spicker.js – Inhaltsverzeichnis
+   ---------------------------------------------------------------------
+   1. DATEN            oTableEntries (die ganze Liste)
+   2. ZUSTAND          filterState   (was der Nutzer gerade gewählt hat)
+   3. WERKZEUGE        class TableSearcher (suchen + Tabelle zeichnen)
+  4. HILFSFUNKTIONEN  setActiveFilterButton(), sortEntriesBySelectedOrder()
+  5. HERZSTÜCK        applyEntryFilters()  (alle Filter nacheinander)
+   6. EVENTS           setup...()-Funktionen (Klicks, Tippen, Auswahl)
+   7. START            DOMContentLoaded (setzt alles in Gang)
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. DATEN
+   ---------------------------------------------------------------------
+   Jeder Eintrag ist ein Objekt { ... } mit diesen Feldern:
+     "Tag"          → wird in Spalte 1 angezeigt
+     "Beschreibung" → Spalte 2
+     "Sprache"      → Spalte 3 (+ Sprach-Filter, klein geschrieben verglichen)
+     "Link"         → Spalte 4 ("mehr"-Link), leer lassen = kein Link
+     "class"        → Array mit Schlagwörtern für den Kategorie-Filter
+   Neuer Eintrag: einfach einen { ... }-Block kopieren und anpassen.
+  Die Reihenfolge hier ist egal – sortEntriesBySelectedOrder() sortiert beim Anzeigen.
+   ===================================================================== */
 let oTableEntries = { "List": [
     // Sonderzeichen
     {
@@ -33,7 +58,7 @@ let oTableEntries = { "List": [
       "Beschreibung": "Schließt ein HTML-Element",
       "Sprache": "html",
       "Link": "",
-      "class": ["zeichen","html","basis","html"]
+      "class": ["zeichen","html","basis"]
     },
     // A
     {
@@ -720,7 +745,7 @@ let oTableEntries = { "List": [
       "Tag": "<template>",
       "Beschreibung": "Vorlage für wiederverwendbaren HTML-Code",
       "Sprache": "html",
-      "Link": "more/style.html",
+      "Link": "more/template.html",
       "class": ["html","container"]
     },
     {
@@ -1007,217 +1032,336 @@ let oTableEntries = { "List": [
     }
   ]};
 
-// Sortiere die Einträge alphabetisch nach dem `Tag`-Feld (fallunabhängig)
-if (Array.isArray(oTableEntries.List)) {
-  oTableEntries.List.sort((a, b) => {
-    const ta = (a.Tag || "").toString().toLowerCase();
-    const tb = (b.Tag || "").toString().toLowerCase();
-    if (ta < tb) return -1;
-    if (ta > tb) return 1;
-    return 0;
-  });
-}
-
-  class TableSearcher {
-    constructor(entries) {
-      this.entries = entries;
-    }
-  
-    // filtert nach class
-    findByClass(className) {
-  const lower = className.toLowerCase();
-  return this.entries.filter(item => {
-    if (!item.class) return false;
-
-    // wenn class ein Array ist
-    if (Array.isArray(item.class)) {
-      return item.class.some(c => c.toLowerCase() === lower);
-    }
-
-    // wenn class nur ein einzelner String ist (abwärtskompatibel)
-    return item.class.toLowerCase() === lower;
-  });
-}
-  
-    // filtert nach beliebigem Text
-    searchText(text) {
-      const upper = text.toUpperCase();
-      return this.entries.filter(item =>
-        (item.Tag && item.Tag.toUpperCase().includes(upper)) ||
-        (item.Beschreibung && item.Beschreibung.toUpperCase().includes(upper)) ||
-        (item.Sprache && item.Sprache.toUpperCase().includes(upper))
-      );
-    }
-  
-    // rendert eine Liste in die Tabelle
-    renderToTable(targetSelector, list) {
-      const tableBody = document.querySelector(targetSelector);
-      const overlay = document.getElementById("noResultsOverlay");// Meldung das nichts gefunden wurde
-      tableBody.innerHTML = ""; // alte Inhalte löschen
-
-      if (list.length === 0) {
-        overlay.style.display = "flex"; // Overlay anzeigen
-        return;
-      } else {
-        overlay.style.display = "none"; // Overlay verstecken
-      }
-  
-      list.forEach(item => {
-        const row = document.createElement("tr");
-  
-        const cellTag = document.createElement("td");
-        cellTag.textContent = item.Tag;
-        row.appendChild(cellTag);
-  
-        const cellDesc = document.createElement("td");
-        cellDesc.textContent = item.Beschreibung;
-        row.appendChild(cellDesc);
-  
-        const cellSprache = document.createElement("td");
-        cellSprache.textContent = item.Sprache;
-        row.appendChild(cellSprache);
-  
-        const cellLink = document.createElement("td");
-        if (item.Link) {
-          const link = document.createElement("a");
-          link.href = item.Link;
-          link.textContent = "mehr";
-          cellLink.appendChild(link);
-        }
-        row.appendChild(cellLink);
-  
-        tableBody.appendChild(row);
-      });
-    }
-  }
-  
-  const filterState = {
-  search: "",
-  language: "",
-  category: "",
-  sort: "az"
+/* =====================================================================
+   2. ZUSTAND
+   ---------------------------------------------------------------------
+   Das "Gedächtnis" der Seite. Hier steht, was gerade eingestellt ist.
+  Regel: Events ändern NUR dieses Objekt und rufen dann applyEntryFilters().
+   "" (leerer Text) bedeutet immer: kein Filter aktiv.
+   ===================================================================== */
+const filterState = {
+  search: "",     // Text aus dem Suchfeld
+  language: "",   // z. B. "html", "css", "js", "c++"
+  category: "",   // z. B. "text", "media" (Wert aus dem class-Array)
+  sort: "az"      // "az", "za" oder "language"
 };
 
+// CSS-Selektor für den Tabellenkörper – einmal festgelegt, überall benutzt.
+// Wenn du die Tabelle umbenennst, musst du nur diese Zeile ändern.
+const TABLE_BODY_SELECTOR = "#dynamicTable tbody";
+
+// Hier kommt später das TableSearcher-Objekt rein (siehe 7. START).
+// "let" statt "const", weil der Wert erst später zugewiesen wird.
 let searcher = null;
 
-document.addEventListener("DOMContentLoaded", function () {
-  searcher = new TableSearcher(oTableEntries.List);
 
-  setupSearchInput();
-  setupLanguageButtons();
-  setupCategoryButtons();
-  setupSortSelect();
+/* =====================================================================
+   3. WERKZEUGE: class TableSearcher
+   ---------------------------------------------------------------------
+   Eine Klasse ist ein Bauplan. Mit "new TableSearcher(liste)" wird
+   daraus ein Objekt, das die Liste kennt und damit arbeiten kann.
+   ===================================================================== */
+class TableSearcher {
 
-  applyFilters(); // einmal alles anzeigen
-  console.log("Seite geladen, Einträge:", oTableEntries.List.length);
-});
-
-function setupSearchInput() {
-  const input = document.getElementById("myInput");
-
-  // "input" feuert bei JEDEM Tastendruck (anders als "change")
-  input.addEventListener("input", function () {
-    filterState.search = input.value.trim();
-    console.log("Suche:", filterState.search);
-    applyFilters();
-  });
-}
-
-function setupLanguageButtons() {
-  const buttons = document.querySelectorAll(".language-btn");
-
-  buttons.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      // dataset.language liest das Attribut data-language aus dem HTML
-      filterState.language = btn.dataset.language;
-      console.log("Sprache gewählt:", filterState.language);
-
-      markActiveButton(buttons, btn);
-      applyFilters();
-    });
-  });
-}
-
-function setupCategoryButtons() {
-  const buttons = document.querySelectorAll(".category-btn");
-
-  // TODO 1: Baue diese Funktion genauso wie setupLanguageButtons(),
-  //         nur mit "category" statt "language".
-  //         (Abschreiben und anpassen ist hier ausdrücklich erlaubt!)
-}
-
-function setupSortSelect() {
-  const select = document.getElementById("sortSelect");
-
-  // "change" passt hier, weil ein <select> sich nur beim Auswählen ändert
-  select.addEventListener("change", function () {
-    filterState.sort = select.value;
-    console.log("Sortierung:", filterState.sort);
-    applyFilters();
-  });
-}
-
-function markActiveButton(allButtons, clickedButton) {
-  // erst bei ALLEN Buttons der Gruppe die Klasse entfernen ...
-  allButtons.forEach(function (b) {
-    b.classList.remove("active");
-  });
-
-  // TODO 2: ... und dann nur beim geklickten Button "active" hinzufügen.
-  //         Vokabel: element.classList.add("name")
-}
-
-function applyFilters() {
-  // Schritt 1: Suche (nutzt deine vorhandene Methode)
-  //   [...liste] = Kopie, damit wir die Originalliste nie verändern
-  let result = filterState.search === ""
-    ? [...oTableEntries.List]
-    : searcher.searchText(filterState.search);
-
-  // Schritt 2: Sprache filtern (nur wenn eine gewählt ist)
-  if (filterState.language !== "") {
-    // TODO 3: Behalte nur Einträge, deren Sprache passt.
-    //   Vokabeln: result = result.filter(item => ...)
-    //             item.Sprache.toLowerCase() === filterState.language
+  // Läuft automatisch bei "new TableSearcher(...)".
+  // "this" = das Objekt, das gerade gebaut wird.
+  constructor(entries) {
+    this.entries = entries;
+    console.log("[TableSearcher] erstellt mit", entries.length, "Einträgen");
   }
 
-  // Schritt 3: Kategorie filtern (nur wenn eine gewählt ist)
-  if (filterState.category !== "") {
-    result = result.filter(function (item) {
-      // .includes() prüft, ob der Wert im class-Array vorkommt
-      return Array.isArray(item.class) && item.class.includes(filterState.category);
+  // -------------------------------------------------------------------
+  // Sucht einen Text in Tag, Beschreibung und Sprache.
+  // toUpperCase() auf beiden Seiten → Groß-/Kleinschreibung egal.
+  // Rückgabe: NEUE Liste mit allen Treffern.
+  // -------------------------------------------------------------------
+  findEntriesByText(text) {
+    const upper = text.toUpperCase();
+
+    return this.entries.filter(function matchesEntryText(entry) {
+      // "entry.Tag &&" schützt vor Fehlern, falls ein Feld fehlt
+      return (entry.Tag          && entry.Tag.toUpperCase().includes(upper)) ||
+        (entry.Beschreibung && entry.Beschreibung.toUpperCase().includes(upper)) ||
+        (entry.Sprache      && entry.Sprache.toUpperCase().includes(upper));
     });
   }
 
-  // Schritt 4: sortieren
-  result = sortList(result);
+  // -------------------------------------------------------------------
+  // Sucht Einträge, deren class-Array einen bestimmten Wert enthält.
+  // HINWEIS: wird aktuell nicht benutzt (applyEntryFilters macht das selbst),
+  //          bleibt aber als Werkzeug für später drin.
+  // -------------------------------------------------------------------
+  findEntriesByCategory(className) {
+    const lower = className.toLowerCase();
 
-  // Schritt 5: anzeigen
-  console.log("Ergebnis:", result.length, "Einträge", filterState);
-  searcher.renderToTable("#dynamicTable tbody", result);
+    return this.entries.filter(function matchesEntryCategory(entry) {
+      if (!entry.class) return false;            // kein class-Feld → raus
+
+      if (Array.isArray(entry.class)) {          // class ist ein Array
+        // .some() = "mindestens ein Element erfüllt die Bedingung"
+        return entry.class.some(function hasMatchingCategory(categoryName) {
+          return categoryName.toLowerCase() === lower;
+        });
+      }
+
+      return entry.class.toLowerCase() === lower; // class ist ein einzelner Text
+    });
+  }
+
+  // -------------------------------------------------------------------
+  // Zeichnet eine Liste als Zeilen in die Tabelle.
+  // Ablauf: Tabelle leeren → für jeden Eintrag eine <tr> mit 4 <td> bauen.
+  // -------------------------------------------------------------------
+  renderEntriesInTable(targetSelector, list) {
+    const tableBody = document.querySelector(targetSelector);
+    const overlay   = document.getElementById("noResultsOverlay");
+
+    // Sicherheitsprüfung: Wenn das HTML-Element fehlt, nicht abstürzen,
+    // sondern einen Fehler in die Konsole schreiben.
+    if (!tableBody) {
+      console.error("[render] Tabelle nicht gefunden:", targetSelector);
+      return;
+    }
+
+    tableBody.innerHTML = ""; // alte Zeilen löschen
+
+    // --- Keine Treffer → Overlay zeigen und abbrechen ---
+    if (list.length === 0) {
+      if (overlay) overlay.style.display = "flex";
+      console.log("[render] keine Treffer");
+      return;
+    }
+    if (overlay) overlay.style.display = "none";
+
+    // --- Für jeden Eintrag eine Tabellenzeile bauen ---
+    list.forEach(function appendEntryRow(entry) {
+      const row = document.createElement("tr"); // neue Zeile (noch unsichtbar)
+
+      // Spalte 1: Tag
+      const cellTag = document.createElement("td");
+      cellTag.textContent = entry.Tag;
+      row.appendChild(cellTag);
+
+      // Spalte 2: Beschreibung
+      const cellDesc = document.createElement("td");
+      cellDesc.textContent = entry.Beschreibung;
+      row.appendChild(cellDesc);
+
+      // Spalte 3: Sprache
+      const cellLanguage = document.createElement("td");
+      cellLanguage.textContent = entry.Sprache;
+      row.appendChild(cellLanguage);
+
+      // Spalte 4: Link (nur wenn einer eingetragen ist)
+      const cellLink = document.createElement("td");
+      if (entry.Link) {
+        const link = document.createElement("a");
+        link.href = entry.Link;
+        link.textContent = "mehr";
+        cellLink.appendChild(link);
+      }
+      row.appendChild(cellLink);
+
+      tableBody.appendChild(row); // erst jetzt ist die Zeile sichtbar
+    });
+
+    console.log("[render]", list.length, "Zeilen gezeichnet");
+  }
 }
 
-function sortList(list) {
-  const copy = [...list]; // Kopie, weil .sort() das Array selbst verändert
+
+/* =====================================================================
+   4. HILFSFUNKTIONEN
+   ---------------------------------------------------------------------
+   Kleine Funktionen, die eine einzige Aufgabe erledigen.
+   ===================================================================== */
+
+// ---------------------------------------------------------------------
+// Markiert in einer Button-Gruppe genau EINEN Button als aktiv.
+// allButtons    = alle Buttons der Gruppe (z. B. alle Sprach-Buttons)
+// clickedButton = der Button, der gerade geklickt wurde
+// ---------------------------------------------------------------------
+function setActiveFilterButton(allButtons, clickedButton) {
+  // Schritt 1: bei ALLEN die Markierung entfernen
+  allButtons.forEach(function clearActiveButtonState(button) {
+    button.classList.remove("active");
+  });
+
+  // Schritt 2: nur beim geklickten Button "active" setzen
+  // TODO 2: eine Zeile → clickedButton.classList.add(...)
+}
+
+// ---------------------------------------------------------------------
+// Sortiert eine Liste je nach filterState.sort.
+// Gibt eine SORTIERTE KOPIE zurück – die Originalliste bleibt unverändert.
+// ---------------------------------------------------------------------
+function sortEntriesBySelectedOrder(list) {
+  const copy = [...list]; // [...x] = Kopie (Spread-Operator)
+
+  // Kleine Hilfe: liefert den Tag als Text, auch wenn er mal fehlt.
+  // (a.Tag || "") → wenn a.Tag leer/undefined ist, nimm "" stattdessen
+  function getEntryTag(entry) {
+    return entry.Tag || "";
+  }
 
   switch (filterState.sort) {
+
     case "az":
-      // localeCompare vergleicht Texte richtig, auch mit Umlauten
-      copy.sort((a, b) => a.Tag.localeCompare(b.Tag, "de"));
-      break;
+      // localeCompare liefert: negativ = a zuerst, positiv = b zuerst, 0 = gleich
+      copy.sort(function compareEntriesAlphabetically(firstEntry, secondEntry) {
+        return getEntryTag(firstEntry).localeCompare(getEntryTag(secondEntry), "de");
+      });
+      break; // break = diesen case beenden
 
     case "za":
-      // TODO 4: Wie "az", nur umgekehrt.
-      //   Tipp: Vertausche a und b.
+      // TODO 4: wie "az", nur a und b vorne vertauscht
       break;
 
     case "language":
-      // erst nach Sprache, bei gleicher Sprache nach Tag
-      copy.sort((a, b) =>
-        a.Sprache.localeCompare(b.Sprache, "de") || a.Tag.localeCompare(b.Tag, "de")
-      );
+      // Erst nach Sprache sortieren. Ist die Sprache gleich (Ergebnis 0),
+      // greift der Teil nach || und sortiert nach Tag.
+      copy.sort(function compareEntriesByLanguageThenTag(firstEntry, secondEntry) {
+        return (firstEntry.Sprache || "").localeCompare(secondEntry.Sprache || "", "de") ||
+          getEntryTag(firstEntry).localeCompare(getEntryTag(secondEntry), "de");
+      });
       break;
+
+    default:
+      // Unbekannter Wert → nichts sortieren, aber in der Konsole melden
+      console.warn("[sort] unbekannte Sortierung:", filterState.sort);
   }
 
   return copy;
 }
+
+
+/* =====================================================================
+  5. HERZSTÜCK: applyEntryFilters()
+   ---------------------------------------------------------------------
+   Wird nach JEDER Änderung aufgerufen und fängt jedes Mal von vorne an:
+   Suche → Sprache → Kategorie → Sortieren → Anzeigen
+   Dadurch lassen sich alle Filter frei kombinieren und wieder abwählen.
+   ===================================================================== */
+function applyEntryFilters() {
+  console.log("[filter] Start mit:", filterState);
+
+  // --- Schritt 1: Suche ---
+  // Kurzform für if/else:  bedingung ? wennJa : wennNein
+  let result = filterState.search === ""
+    ? [...oTableEntries.List]                    // keine Suche → alles
+    : searcher.findEntriesByText(filterState.search); // Suche → nur Treffer
+  console.log("[filter] nach Suche:", result.length);
+
+  // --- Schritt 2: Sprache ---
+  if (filterState.language !== "") {
+    // TODO 3: result = result.filter(item => ... )
+    //         Bedingung: item.Sprache.toLowerCase() === filterState.language
+    console.log("[filter] nach Sprache:", result.length);
+  }
+
+  // --- Schritt 3: Kategorie ---
+  if (filterState.category !== "") {
+    result = result.filter(function matchesSelectedCategory(entry) {
+      // .includes() prüft, ob der Wert im class-Array vorkommt
+      return Array.isArray(entry.class) && entry.class.includes(filterState.category);
+    });
+    console.log("[filter] nach Kategorie:", result.length);
+  }
+
+  // --- Schritt 4: Sortieren ---
+  result = sortEntriesBySelectedOrder(result);
+
+  // --- Schritt 5: Anzeigen ---
+  searcher.renderEntriesInTable(TABLE_BODY_SELECTOR, result);
+}
+
+
+/* =====================================================================
+   6. EVENTS
+   ---------------------------------------------------------------------
+   Jede Funktion folgt demselben Muster:
+     1. Element(e) holen
+     2. Event anmelden (addEventListener)
+    3. Bei Event: filterState ändern → applyEntryFilters() aufrufen
+   ===================================================================== */
+
+// --- Suchfeld ---------------------------------------------------------
+function setupTextSearch() {
+  const input = document.getElementById("myInput");
+  if (!input) {
+    console.error("[setup] #myInput nicht gefunden");
+    return;
+  }
+
+  // "input" feuert bei JEDEM Tastendruck (anders als "change")
+  input.addEventListener("input", function handleSearchInput() {
+    filterState.search = input.value.trim(); // trim() = Leerzeichen außen weg
+    console.log("[event] Suche:", filterState.search);
+    applyEntryFilters();
+  });
+}
+
+// --- Sprach-Buttons ---------------------------------------------------
+function setupLanguageFilterButtons() {
+  const buttons = document.querySelectorAll(".language-btn");
+  console.log("[setup] Sprach-Buttons gefunden:", buttons.length);
+
+  buttons.forEach(function setupLanguageFilterButton(button) {
+    button.addEventListener("click", function selectLanguageFilter() {
+      // dataset.language liest data-language="..." aus dem HTML
+      filterState.language = button.dataset.language;
+      console.log("[event] Sprache:", filterState.language || "(alle)");
+
+      setActiveFilterButton(buttons, button);
+      applyEntryFilters();
+    });
+  });
+}
+
+// --- Kategorie-Buttons ------------------------------------------------
+function setupCategoryFilterButtons() {
+  const buttons = document.querySelectorAll(".category-btn");
+  console.log("[setup] Kategorie-Buttons gefunden:", buttons.length);
+
+  // TODO 1: den buttons.forEach(...)-Block aus setupLanguageFilterButtons()
+  //         kopieren und "language" → "category" ersetzen (3 Stellen)
+}
+
+// --- Sortier-Auswahl --------------------------------------------------
+function setupSortSelector() {
+  const select = document.getElementById("sortSelect");
+  if (!select) {
+    console.error("[setup] #sortSelect nicht gefunden");
+    return;
+  }
+
+  // "change" reicht hier: ein <select> ändert sich nur beim Auswählen
+  select.addEventListener("change", function handleSortSelectionChange() {
+    filterState.sort = select.value;
+    console.log("[event] Sortierung:", filterState.sort);
+    applyEntryFilters();
+  });
+}
+
+
+/* =====================================================================
+   7. START
+   ---------------------------------------------------------------------
+   Das <script> steht im <head>, also VOR dem restlichen HTML.
+   DOMContentLoaded wartet, bis das ganze HTML geladen ist –
+   erst dann gibt es Tabelle, Buttons und Suchfeld.
+   Steht ganz unten, weil hier alles oben Definierte benutzt wird.
+   ===================================================================== */
+document.addEventListener("DOMContentLoaded", function initializeSpickerPage() {
+  console.log("[start] Seite geladen");
+
+  searcher = new TableSearcher(oTableEntries.List);
+
+  setupTextSearch();
+  setupLanguageFilterButtons();
+  setupCategoryFilterButtons();
+  setupSortSelector();
+
+  applyEntryFilters(); // einmal alles anzeigen
+  console.log("[start] fertig");
+});
