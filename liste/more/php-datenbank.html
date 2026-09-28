@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>PHP: PDO – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">PHP · Web</p>
+    <h1>Datenbank mit PDO</h1>
+    <p class="page-lead">Mit PDO sicher auf MySQL, MariaDB oder SQLite zugreifen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Verbindung</h2>
+      <pre><code>&lt;?php
+try {
+    $pdo = new PDO(
+        "mysql:host=localhost;dbname=app;charset=utf8mb4",
+        "root",
+        "",                                            // XAMPP-Standard: kein Passwort
+        [
+            PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,        // Fehler als Exception
+            PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,   // Zeilen als assoziative Arrays
+        ]
+    );
+} catch (PDOException $e) {
+    error_log("[db] " . $e-&gt;getMessage());
+    exit("Datenbank nicht erreichbar.");
+}
+
+// SQLite: new PDO("sqlite:" . __DIR__ . "/app.db");</code></pre>
+    </section>
+    <section>
+      <h2>Abfragen mit Platzhaltern</h2>
+      <pre><code>// mehrere Zeilen
+$stmt = $pdo-&gt;prepare("SELECT name, points FROM users WHERE points &gt;= :min ORDER BY points DESC");
+$stmt-&gt;execute(["min" =&gt; 100]);
+$users = $stmt-&gt;fetchAll();
+
+foreach ($users as $user) {
+    echo htmlspecialchars($user["name"]) . ": " . $user["points"] . "&lt;br&gt;";
+}
+
+// eine Zeile
+$stmt = $pdo-&gt;prepare("SELECT * FROM users WHERE id = ?");
+$stmt-&gt;execute([$id]);
+$user = $stmt-&gt;fetch();          // false, wenn nicht gefunden</code></pre>
+    </section>
+    <section>
+      <h2>Einfügen, ändern, löschen</h2>
+      <pre><code>$stmt = $pdo-&gt;prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+$stmt-&gt;execute([$name, $email]);
+$newId = $pdo-&gt;lastInsertId();
+
+$stmt = $pdo-&gt;prepare("UPDATE users SET points = points + ? WHERE id = ?");
+$stmt-&gt;execute([10, $id]);
+echo $stmt-&gt;rowCount() . " Zeile(n) geändert";</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Methoden</h2>
+      <table class="info-table">
+        <thead><tr><th>Methode</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>prepare($sql)</code></td><td>SQL mit Platzhaltern vorbereiten</td></tr>
+          <tr><td><code>execute([…])</code></td><td>Mit Werten ausführen</td></tr>
+          <tr><td><code>fetch()</code></td><td>Nächste Zeile (oder <code>false</code>)</td></tr>
+          <tr><td><code>fetchAll()</code></td><td>Alle Zeilen als Array</td></tr>
+          <tr><td><code>fetchColumn()</code></td><td>Einen einzelnen Wert, z. B. bei <code>COUNT(*)</code></td></tr>
+          <tr><td><code>lastInsertId()</code></td><td>ID des zuletzt eingefügten Datensatzes</td></tr>
+          <tr><td><code>rowCount()</code></td><td>Anzahl betroffener Zeilen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer <code>prepare</code> + <code>execute</code> mit Platzhaltern (<code>?</code> oder <code>:name</code>) – nie Variablen direkt in den SQL-Text.</li>
+        <li>Zugangsdaten in eine eigene <code>config.php</code> außerhalb des öffentlichen Ordners oder in Umgebungsvariablen legen.</li>
+        <li>Beim Ausgeben der Daten <code>htmlspecialchars</code> nicht vergessen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="sql-einfuehrung.html">SQL</a>
+        <a class="chip" href="sql-sicherheit.html">Sicherheit</a>
+        <a class="chip" href="php-formulare.html">Formulare</a>
+        <a class="chip" href="node-datenbank.html">Datenbank</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

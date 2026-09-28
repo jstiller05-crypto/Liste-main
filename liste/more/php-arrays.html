@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>PHP: Arrays – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">PHP · Daten</p>
+    <h1>Arrays</h1>
+    <p class="page-lead">Listen und assoziative Arrays (Schlüssel → Wert) – das wichtigste Datenwerkzeug in PHP.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Indizierte Arrays</h2>
+      <pre><code>&lt;?php
+$colors = ["rot", "grün", "blau"];
+
+echo $colors[0];          // "rot"
+$colors[] = "gelb";       // hinten anhängen
+echo count($colors);      // 4</code></pre>
+    </section>
+    <section>
+      <h2>Assoziative Arrays</h2>
+      <pre><code>$user = [
+    "name"   =&gt; "Max",
+    "age"    =&gt; 17,
+    "skills" =&gt; ["HTML", "CSS"]
+];
+
+echo $user["name"];                 // "Max"
+$user["city"] = "Musterstadt";      // hinzufügen
+unset($user["age"]);                // entfernen
+isset($user["email"]);              // false – existiert der Schlüssel?
+
+$users = [                          // Liste von Datensätzen (typisch aus der Datenbank)
+    ["name" =&gt; "Max",  "points" =&gt; 120],
+    ["name" =&gt; "Anna", "points" =&gt; 150],
+];</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Funktion</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>count($a)</code></td><td>Anzahl</td></tr>
+          <tr><td><code>in_array("rot", $a)</code></td><td>Ist Wert enthalten?</td></tr>
+          <tr><td><code>array_key_exists("name", $a)</code></td><td>Gibt es den Schlüssel?</td></tr>
+          <tr><td><code>array_push($a, $x)</code> / <code>$a[] = $x</code></td><td>Anhängen</td></tr>
+          <tr><td><code>array_pop($a)</code> / <code>array_shift($a)</code></td><td>Letztes / erstes entfernen</td></tr>
+          <tr><td><code>array_merge($a, $b)</code></td><td>Zusammenfügen</td></tr>
+          <tr><td><code>array_keys($a)</code> / <code>array_values($a)</code></td><td>Nur Schlüssel / nur Werte</td></tr>
+          <tr><td><code>array_map(fn, $a)</code></td><td>Jedes Element umwandeln</td></tr>
+          <tr><td><code>array_filter($a, fn)</code></td><td>Passende Elemente behalten</td></tr>
+          <tr><td><code>array_column($users, "name")</code></td><td>Eine Spalte aus einer Liste von Datensätzen</td></tr>
+          <tr><td><code>sort</code> / <code>rsort</code> / <code>usort</code></td><td>Sortieren (ändert das Original)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>$users = [
+    ["name" =&gt; "Max",  "points" =&gt; 120],
+    ["name" =&gt; "Anna", "points" =&gt; 150],
+    ["name" =&gt; "Tom",  "points" =&gt; 90],
+];
+
+// nur Nutzer ab 100 Punkten
+$good = array_filter($users, fn($u) =&gt; $u["points"] &gt;= 100);
+
+// nach Punkten absteigend sortieren
+usort($users, fn($a, $b) =&gt; $b["points"] &lt;=&gt; $a["points"]);
+
+// nur die Namen
+$names = array_column($users, "name");   // ["Anna", "Max", "Tom"]
+
+print_r($names);   // Array lesbar ausgeben (zum Debuggen)</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>In PHP gibt es nur <em>einen</em> Array-Typ – er ist Liste und „Objekt“ (wie in JS) in einem.</li>
+        <li><code>print_r</code> in <code>&lt;pre&gt;</code> einpacken, dann bleibt die Ausgabe im Browser eingerückt: <code>echo "&lt;pre&gt;"; print_r($a); echo "&lt;/pre&gt;";</code>.</li>
+        <li><code>sort</code> und <code>usort</code> ändern das Original und geben nur <code>true</code> zurück.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="php-kontrolle.html">Bedingungen &amp; Schleifen</a>
+        <a class="chip" href="php-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="js-arrays.html">Arrays</a>
+        <a class="chip" href="js-objekte.html">Objekte &amp; JSON</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

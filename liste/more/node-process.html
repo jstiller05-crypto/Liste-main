@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Node.js: process &amp; .env – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">Node.js · Werkzeuge</p>
+    <h1>process, Umgebungsvariablen &amp; .env</h1>
+    <p class="page-lead">Kommandozeilen-Argumente lesen, Einstellungen über Umgebungsvariablen steuern und Geheimnisse aus dem Code halten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Kommandozeilen-Argumente</h2>
+      <pre><code>// greet.js  →  node greet.js Max 3
+const args = process.argv.slice(2);   // [0] = node, [1] = Skript, ab [2] eigene Argumente
+const name = args[0] ?? "Welt";
+const times = Number(args[1] ?? 1);
+
+for (let i = 0; i &lt; times; i++) {
+  console.log(`Hallo ${name}!`);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Umgebungsvariablen</h2>
+      <pre><code>const PORT = process.env.PORT ?? 3000;
+const isProduction = process.env.NODE_ENV === "production";
+console.log("[config] Port:", PORT, "Produktion:", isProduction);</code></pre>
+    </section>
+    <section>
+      <h2>.env-Datei</h2>
+      <pre><code># .env  – NICHT ins Git-Repository!
+PORT=3000
+DB_PASSWORD=geheim123</code></pre>
+      <pre><code>node --env-file=.env server.js    # Node 20.6+ liest .env direkt ein</code></pre>
+      <p>So stehen Passwörter und API-Schlüssel nicht im Code und landen nicht versehentlich öffentlich auf GitHub.</p>
+    </section>
+    <section>
+      <h2>Weitere nützliche process-Werte</h2>
+      <table class="info-table">
+        <thead><tr><th>Ausdruck</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>process.cwd()</code></td><td>Aktuelles Arbeitsverzeichnis</td></tr>
+          <tr><td><code>process.platform</code></td><td><code>win32</code>, <code>linux</code>, <code>darwin</code></td></tr>
+          <tr><td><code>process.exit(1)</code></td><td>Programm beenden (0 = OK, andere Zahl = Fehler)</td></tr>
+          <tr><td><code>process.on("SIGINT", …)</code></td><td>Auf Strg+C reagieren (z. B. aufräumen)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>.env</code> in die <code>.gitignore</code> eintragen. Stattdessen eine <code>.env.example</code> ohne echte Werte committen.</li>
+        <li>Umgebungsvariablen sind immer Strings – Zahlen mit <code>Number()</code> umwandeln.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="node-npm.html">npm</a>
+        <a class="chip" href="node-express.html">Express</a>
+        <a class="chip" href="node-einfuehrung.html">Node.js</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

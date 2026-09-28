@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>PHP: Klassen – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">PHP · OOP</p>
+    <h1>Klassen &amp; Objekte</h1>
+    <p class="page-lead">Objektorientierte Programmierung in PHP – mit Konstruktor, Sichtbarkeit und Vererbung.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Klasse</h2>
+      <pre><code>&lt;?php
+class Player {
+    // Constructor Promotion (PHP 8): Eigenschaften direkt im Konstruktor anlegen
+    public function __construct(
+        private string $name,
+        private int $score = 0
+    ) {}
+
+    public function addScore(int $points): void {
+        if ($points &lt; 0) {
+            throw new InvalidArgumentException("Punkte dürfen nicht negativ sein");
+        }
+        $this-&gt;score += $points;       // $this-&gt; für Zugriff auf Eigenschaften
+    }
+
+    public function getName(): string {
+        return $this-&gt;name;
+    }
+
+    public function getScore(): int {
+        return $this-&gt;score;
+    }
+}
+
+$player = new Player("Max");
+$player-&gt;addScore(50);                 // -&gt; ruft Methoden auf
+echo $player-&gt;getName() . ": " . $player-&gt;getScore();</code></pre>
+    </section>
+    <section>
+      <h2>Vererbung</h2>
+      <pre><code>class Admin extends Player {
+    public function getName(): string {
+        return "[Admin] " . parent::getName();   // Methode der Elternklasse aufrufen
+    }
+}</code></pre>
+    </section>
+    <section>
+      <h2>Vergleich mit C++ und JavaScript</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>PHP</th><th>C++</th><th>JavaScript</th></tr></thead>
+        <tbody>
+          <tr><td>Objekt erzeugen</td><td><code>new Player("Max")</code></td><td><code>Player p("Max");</code></td><td><code>new Player("Max")</code></td></tr>
+          <tr><td>Methode aufrufen</td><td><code>$p-&gt;addScore(5)</code></td><td><code>p.addScore(5)</code></td><td><code>p.addScore(5)</code></td></tr>
+          <tr><td>Eigenes Objekt</td><td><code>$this-&gt;score</code></td><td><code>this-&gt;score</code> / <code>score</code></td><td><code>this.score</code></td></tr>
+          <tr><td>Konstruktor</td><td><code>__construct</code></td><td>Klassenname</td><td><code>constructor</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Eigenschaften <code>private</code> machen und über Methoden ändern – wie in C++.</li>
+        <li>Eine Klasse pro Datei und automatisches Laden mit Composer (<code>composer dump-autoload</code>) sind in größeren Projekten üblich.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="php-funktionen.html">Funktionen</a>
+        <a class="chip" href="cpp-class.html">Klassen</a>
+        <a class="chip" href="cpp-konstruktor.html">Konstruktor &amp; Kapselung</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

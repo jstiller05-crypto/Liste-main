@@ -1949,6 +1949,359 @@ let oTableEntries = { "List": [
       "Sprache": "C++",
       "Link": "more/cpp-kompilieren.html",
       "class": ["cpp","werkzeuge"]
+    },
+    // Node.js
+    {
+      "Tag": "Node.js",
+      "Beschreibung": "JavaScript auf dem Server und in der Kommandozeile",
+      "Sprache": "Node.js",
+      "Link": "more/node-einfuehrung.html",
+      "class": ["node.js","sprache","grundlagen"]
+    },
+    {
+      "Tag": "node datei.js",
+      "Beschreibung": "Ein Skript mit Node.js ausführen",
+      "Sprache": "Node.js",
+      "Link": "more/node-einfuehrung.html",
+      "class": ["node.js","grundlagen","werkzeuge"]
+    },
+    {
+      "Tag": "npm install",
+      "Beschreibung": "Pakete installieren",
+      "Sprache": "Node.js",
+      "Link": "more/node-npm.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "package.json",
+      "Beschreibung": "Projektbeschreibung, Skripte und Abhängigkeiten",
+      "Sprache": "Node.js",
+      "Link": "more/node-npm.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "npm run",
+      "Beschreibung": "Skripte aus package.json starten",
+      "Sprache": "Node.js",
+      "Link": "more/node-npm.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "import / require",
+      "Beschreibung": "Module in Node.js laden (ESM / CommonJS)",
+      "Sprache": "Node.js",
+      "Link": "more/node-module.html",
+      "class": ["node.js","grundlagen"]
+    },
+    {
+      "Tag": "path",
+      "Beschreibung": "Pfade sicher zusammensetzen",
+      "Sprache": "Node.js",
+      "Link": "more/node-module.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "fs (readFile / writeFile)",
+      "Beschreibung": "Dateien lesen und schreiben",
+      "Sprache": "Node.js",
+      "Link": "more/node-dateien.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "http.createServer",
+      "Beschreibung": "Einfachen Webserver starten",
+      "Sprache": "Node.js",
+      "Link": "more/node-http.html",
+      "class": ["node.js","server"]
+    },
+    {
+      "Tag": "Express",
+      "Beschreibung": "Framework für Webserver und APIs",
+      "Sprache": "Node.js",
+      "Link": "more/node-express.html",
+      "class": ["node.js","server"]
+    },
+    {
+      "Tag": "app.get / app.post",
+      "Beschreibung": "Routen in Express definieren",
+      "Sprache": "Node.js",
+      "Link": "more/node-express.html",
+      "class": ["node.js","server"]
+    },
+    {
+      "Tag": "req / res",
+      "Beschreibung": "Anfrage und Antwort im Server",
+      "Sprache": "Node.js",
+      "Link": "more/node-express.html",
+      "class": ["node.js","server"]
+    },
+    {
+      "Tag": "process.argv",
+      "Beschreibung": "Kommandozeilen-Argumente lesen",
+      "Sprache": "Node.js",
+      "Link": "more/node-process.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "process.env / .env",
+      "Beschreibung": "Umgebungsvariablen und Geheimnisse",
+      "Sprache": "Node.js",
+      "Link": "more/node-process.html",
+      "class": ["node.js","werkzeuge"]
+    },
+    {
+      "Tag": "node:sqlite / mysql2",
+      "Beschreibung": "Datenbank aus Node.js ansprechen",
+      "Sprache": "Node.js",
+      "Link": "more/node-datenbank.html",
+      "class": ["node.js","server","daten"]
+    },
+    // SQL
+    {
+      "Tag": "SQL",
+      "Beschreibung": "Sprache für relationale Datenbanken",
+      "Sprache": "SQL",
+      "Link": "more/sql-einfuehrung.html",
+      "class": ["sql","sprache","grundlagen"]
+    },
+    {
+      "Tag": "CREATE TABLE",
+      "Beschreibung": "Tabelle mit Spalten und Datentypen anlegen",
+      "Sprache": "SQL",
+      "Link": "more/sql-tabellen.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "PRIMARY KEY",
+      "Beschreibung": "Eindeutige ID einer Zeile",
+      "Sprache": "SQL",
+      "Link": "more/sql-tabellen.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "ALTER / DROP TABLE",
+      "Beschreibung": "Tabelle ändern oder löschen",
+      "Sprache": "SQL",
+      "Link": "more/sql-tabellen.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "SELECT",
+      "Beschreibung": "Daten abfragen",
+      "Sprache": "SQL",
+      "Link": "more/sql-select.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "WHERE",
+      "Beschreibung": "Zeilen filtern",
+      "Sprache": "SQL",
+      "Link": "more/sql-select.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "ORDER BY / LIMIT",
+      "Beschreibung": "Sortieren und begrenzen",
+      "Sprache": "SQL",
+      "Link": "more/sql-select.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "LIKE / IN / BETWEEN",
+      "Beschreibung": "Muster, Listen und Bereiche prüfen",
+      "Sprache": "SQL",
+      "Link": "more/sql-select.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "INSERT INTO",
+      "Beschreibung": "Datensatz einfügen",
+      "Sprache": "SQL",
+      "Link": "more/sql-daten-aendern.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "UPDATE",
+      "Beschreibung": "Datensätze ändern",
+      "Sprache": "SQL",
+      "Link": "more/sql-daten-aendern.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "DELETE",
+      "Beschreibung": "Datensätze löschen",
+      "Sprache": "SQL",
+      "Link": "more/sql-daten-aendern.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "Transaktion (BEGIN / COMMIT)",
+      "Beschreibung": "Mehrere Änderungen ganz oder gar nicht",
+      "Sprache": "SQL",
+      "Link": "more/sql-daten-aendern.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "COUNT / SUM / AVG",
+      "Beschreibung": "Zählen, summieren, Durchschnitt",
+      "Sprache": "SQL",
+      "Link": "more/sql-aggregat.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "GROUP BY / HAVING",
+      "Beschreibung": "Ergebnisse gruppieren und Gruppen filtern",
+      "Sprache": "SQL",
+      "Link": "more/sql-aggregat.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "JOIN",
+      "Beschreibung": "Tabellen verbinden",
+      "Sprache": "SQL",
+      "Link": "more/sql-joins.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "FOREIGN KEY",
+      "Beschreibung": "Verweis auf eine andere Tabelle",
+      "Sprache": "SQL",
+      "Link": "more/sql-joins.html",
+      "class": ["sql","daten"]
+    },
+    {
+      "Tag": "SQL-Injection",
+      "Beschreibung": "Sicherheitslücke und wie Platzhalter schützen",
+      "Sprache": "SQL",
+      "Link": "more/sql-sicherheit.html",
+      "class": ["sql","werkzeuge"]
+    },
+    // PHP
+    {
+      "Tag": "PHP",
+      "Beschreibung": "Server-Sprache, die HTML-Seiten erzeugt",
+      "Sprache": "PHP",
+      "Link": "more/php-einfuehrung.html",
+      "class": ["php","sprache","grundlagen"]
+    },
+    {
+      "Tag": "<?php ?> / echo",
+      "Beschreibung": "PHP-Code einbetten und ausgeben",
+      "Sprache": "PHP",
+      "Link": "more/php-einfuehrung.html",
+      "class": ["php","grundlagen"]
+    },
+    {
+      "Tag": "$variable",
+      "Beschreibung": "Variablen in PHP",
+      "Sprache": "PHP",
+      "Link": "more/php-grundlagen.html",
+      "class": ["php","grundlagen"]
+    },
+    {
+      "Tag": ". (Verkettung)",
+      "Beschreibung": "Texte in PHP verbinden",
+      "Sprache": "PHP",
+      "Link": "more/php-grundlagen.html",
+      "class": ["php","grundlagen"]
+    },
+    {
+      "Tag": "var_dump / print_r",
+      "Beschreibung": "Werte zum Debuggen ausgeben",
+      "Sprache": "PHP",
+      "Link": "more/php-grundlagen.html",
+      "class": ["php","werkzeuge"]
+    },
+    {
+      "Tag": "if / elseif / match",
+      "Beschreibung": "Bedingungen in PHP",
+      "Sprache": "PHP",
+      "Link": "more/php-kontrolle.html",
+      "class": ["php","kontrolle"]
+    },
+    {
+      "Tag": "foreach",
+      "Beschreibung": "Über Arrays laufen",
+      "Sprache": "PHP",
+      "Link": "more/php-kontrolle.html",
+      "class": ["php","kontrolle"]
+    },
+    {
+      "Tag": "function (PHP)",
+      "Beschreibung": "Eigene Funktionen mit Typangaben",
+      "Sprache": "PHP",
+      "Link": "more/php-funktionen.html",
+      "class": ["php","funktion"]
+    },
+    {
+      "Tag": "include / require",
+      "Beschreibung": "Andere PHP-Dateien einbinden",
+      "Sprache": "PHP",
+      "Link": "more/php-funktionen.html",
+      "class": ["php","einbinden"]
+    },
+    {
+      "Tag": "Array (PHP)",
+      "Beschreibung": "Indizierte und assoziative Arrays",
+      "Sprache": "PHP",
+      "Link": "more/php-arrays.html",
+      "class": ["php","daten"]
+    },
+    {
+      "Tag": "array_map / array_filter",
+      "Beschreibung": "Arrays umwandeln und filtern",
+      "Sprache": "PHP",
+      "Link": "more/php-arrays.html",
+      "class": ["php","daten"]
+    },
+    {
+      "Tag": "$_GET / $_POST",
+      "Beschreibung": "Formulardaten empfangen",
+      "Sprache": "PHP",
+      "Link": "more/php-formulare.html",
+      "class": ["php","form","server"]
+    },
+    {
+      "Tag": "htmlspecialchars",
+      "Beschreibung": "Ausgaben gegen XSS absichern",
+      "Sprache": "PHP",
+      "Link": "more/php-formulare.html",
+      "class": ["php","form","werkzeuge"]
+    },
+    {
+      "Tag": "session_start / $_SESSION",
+      "Beschreibung": "Daten über mehrere Seiten merken",
+      "Sprache": "PHP",
+      "Link": "more/php-sessions.html",
+      "class": ["php","server"]
+    },
+    {
+      "Tag": "setcookie",
+      "Beschreibung": "Cookies setzen",
+      "Sprache": "PHP",
+      "Link": "more/php-sessions.html",
+      "class": ["php","server"]
+    },
+    {
+      "Tag": "password_hash",
+      "Beschreibung": "Passwörter sicher speichern",
+      "Sprache": "PHP",
+      "Link": "more/php-sessions.html",
+      "class": ["php","werkzeuge"]
+    },
+    {
+      "Tag": "PDO",
+      "Beschreibung": "Datenbankzugriff mit Prepared Statements",
+      "Sprache": "PHP",
+      "Link": "more/php-datenbank.html",
+      "class": ["php","server","daten"]
+    },
+    {
+      "Tag": "class (PHP)",
+      "Beschreibung": "Klassen und Objekte in PHP",
+      "Sprache": "PHP",
+      "Link": "more/php-oop.html",
+      "class": ["php","oop"]
     }
   ]};
 

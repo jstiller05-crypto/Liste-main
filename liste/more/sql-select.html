@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>SQL: SELECT – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">SQL · Abfragen</p>
+    <h1>Daten abfragen (SELECT)</h1>
+    <p class="page-lead">Daten lesen, filtern, sortieren und begrenzen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundform</h2>
+      <pre><code>SELECT name, points        -- welche Spalten (* = alle)
+FROM users                 -- aus welcher Tabelle
+WHERE points &gt; 100         -- welche Zeilen
+ORDER BY points DESC       -- Sortierung
+LIMIT 10;                  -- wie viele</code></pre>
+      <p>Die Reihenfolge der Teile ist fest: <code>SELECT</code> → <code>FROM</code> → <code>WHERE</code> → <code>GROUP BY</code> → <code>HAVING</code> → <code>ORDER BY</code> → <code>LIMIT</code>.</p>
+    </section>
+    <section>
+      <h2>WHERE – filtern</h2>
+      <table class="info-table">
+        <thead><tr><th>Bedingung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Vergleich</td><td><code>points &gt;= 100</code>, <code>name = 'Max'</code>, <code>level &lt;&gt; 1</code> (ungleich)</td></tr>
+          <tr><td>UND / ODER / NICHT</td><td><code>points &gt; 50 AND level = 2</code>, <code>NOT done</code></td></tr>
+          <tr><td>Bereich</td><td><code>points BETWEEN 50 AND 100</code></td></tr>
+          <tr><td>Liste</td><td><code>name IN ('Max', 'Anna')</code></td></tr>
+          <tr><td>Muster</td><td><code>email LIKE '%@example.com'</code> (<code>%</code> = beliebig viele Zeichen, <code>_</code> = genau eins)</td></tr>
+          <tr><td>Leer</td><td><code>email IS NULL</code> / <code>email IS NOT NULL</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Sortieren &amp; begrenzen</h2>
+      <pre><code>SELECT * FROM users ORDER BY name;                 -- A–Z
+SELECT * FROM users ORDER BY points DESC, name ASC; -- erst Punkte absteigend, dann Name
+SELECT * FROM users ORDER BY points DESC LIMIT 3;  -- Top 3
+SELECT * FROM users LIMIT 10 OFFSET 20;            -- Seite 3 bei 10 pro Seite</code></pre>
+    </section>
+    <section>
+      <h2>Weitere Helfer</h2>
+      <pre><code>SELECT DISTINCT level FROM users;                 -- jeden Wert nur einmal
+SELECT name AS spieler, points * 2 AS doppelt       -- AS = Spalte umbenennen, rechnen
+FROM users;
+
+SELECT name,
+       CASE WHEN points &gt;= 100 THEN 'Profi' ELSE 'Anfänger' END AS rang
+FROM users;</code></pre>
+    </section>
+    <section>
+      <h2>Nützliche Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Funktion</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>UPPER(name)</code> / <code>LOWER(name)</code></td><td>Groß-/Kleinschreibung</td></tr>
+          <tr><td><code>LENGTH(name)</code></td><td>Textlänge</td></tr>
+          <tr><td><code>ROUND(x, 2)</code></td><td>Runden</td></tr>
+          <tr><td><code>COALESCE(email, 'keine')</code></td><td>Ersatzwert für NULL</td></tr>
+          <tr><td><code>CURRENT_DATE</code></td><td>Heutiges Datum</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>SELECT *</code> ist praktisch zum Ausprobieren – im Programm lieber die benötigten Spalten nennen.</li>
+        <li><code>NULL</code> bedeutet „kein Wert“ und wird mit <code>IS NULL</code> geprüft, nicht mit <code>= NULL</code>.</li>
+        <li>Ob Groß-/Kleinschreibung bei Textvergleichen zählt, hängt von der Datenbank ab.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="sql-aggregat.html">GROUP BY</a>
+        <a class="chip" href="sql-joins.html">JOIN</a>
+        <a class="chip" href="sql-einfuehrung.html">SQL</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

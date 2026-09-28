@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Node.js: Express – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">Node.js · Server</p>
+    <h1>Express</h1>
+    <p class="page-lead">Das beliebteste Framework für Webserver und APIs in Node.js.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Installieren</h2>
+      <pre><code>npm init -y
+npm install express</code></pre>
+    </section>
+    <section>
+      <h2>Server mit Routen</h2>
+      <pre><code>import express from "express";
+
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());                 // JSON im Request-Body lesen
+app.use(express.static("public"));       // Dateien aus /public ausliefern (HTML, CSS, JS, Bilder)
+
+const tasks = [
+  { id: 1, title: "HTML lernen", done: true },
+  { id: 2, title: "Node.js lernen", done: false }
+];
+
+// alle Aufgaben
+app.get("/api/tasks", (req, res) =&gt; {
+  res.json(tasks);
+});
+
+// eine Aufgabe über die ID
+app.get("/api/tasks/:id", (req, res) =&gt; {
+  const task = tasks.find(t =&gt; t.id === Number(req.params.id));
+  if (!task) return res.status(404).json({ error: "Nicht gefunden" });
+  res.json(task);
+});
+
+// neue Aufgabe anlegen
+app.post("/api/tasks", (req, res) =&gt; {
+  const { title } = req.body;
+  if (!title) return res.status(400).json({ error: "title fehlt" });
+  const task = { id: tasks.length + 1, title, done: false };
+  tasks.push(task);
+  console.log("[api] neue Aufgabe:", task);
+  res.status(201).json(task);
+});
+
+app.listen(PORT, () =&gt; console.log(`[express] http://localhost:${PORT}`));</code></pre>
+    </section>
+    <section>
+      <h2>Request &amp; Response</h2>
+      <table class="info-table">
+        <thead><tr><th>Ausdruck</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>req.params.id</code></td><td>Teil der URL: <code>/api/tasks/:id</code></td></tr>
+          <tr><td><code>req.query.search</code></td><td>Query-Parameter: <code>/api/tasks?search=html</code></td></tr>
+          <tr><td><code>req.body</code></td><td>Gesendete Daten (mit <code>express.json()</code>)</td></tr>
+          <tr><td><code>res.json(data)</code></td><td>JSON antworten</td></tr>
+          <tr><td><code>res.send(text)</code></td><td>Text/HTML antworten</td></tr>
+          <tr><td><code>res.status(404)</code></td><td>Statuscode setzen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Vom Browser aus abrufen</h2>
+      <pre><code>// im Frontend (public/app.js)
+const response = await fetch("/api/tasks");
+const tasks = await response.json();
+console.log(tasks);
+
+await fetch("/api/tasks", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ title: "SQL lernen" })
+});</code></pre>
+    </section>
+    <section>
+      <h2>Middleware</h2>
+      <pre><code>// läuft bei JEDER Anfrage, bevor die Route drankommt
+app.use((req, res, next) =&gt; {
+  console.log(`[log] ${req.method} ${req.url}`);
+  next();                      // weiter zur nächsten Station – nicht vergessen!
+});</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Daten in einem Array gehen beim Neustart verloren – für echte Speicherung eine Datenbank (SQL) oder zumindest eine JSON-Datei nutzen.</li>
+        <li>Eingaben vom Client immer prüfen, bevor du sie verwendest.</li>
+        <li>Zum Testen von APIs ohne Frontend: die Erweiterung „REST Client“ oder „Thunder Client“ in VS Code.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="node-http.html">http</a>
+        <a class="chip" href="node-npm.html">npm</a>
+        <a class="chip" href="node-datenbank.html">Datenbank</a>
+        <a class="chip" href="js-async.html">async/await</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

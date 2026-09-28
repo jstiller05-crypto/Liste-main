@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>PHP: Bedingungen &amp; Schleifen – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">PHP · Kontrollstrukturen</p>
+    <h1>Bedingungen &amp; Schleifen</h1>
+    <p class="page-lead"><code>if</code>, <code>switch</code>, <code>match</code> und Schleifen in PHP.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>if / elseif / else</h2>
+      <pre><code>&lt;?php
+$points = 72;
+
+if ($points &gt;= 90) {
+    echo "Sehr gut";
+} elseif ($points &gt;= 60) {     // elseif in einem Wort
+    echo "Bestanden";
+} else {
+    echo "Nicht bestanden";
+}
+
+$label = $points &gt;= 60 ? "bestanden" : "nicht bestanden";   // Ternär</code></pre>
+    </section>
+    <section>
+      <h2>match (PHP 8) &amp; switch</h2>
+      <pre><code>$grade = match (true) {
+    $points &gt;= 90 =&gt; "sehr gut",
+    $points &gt;= 60 =&gt; "bestanden",
+    default       =&gt; "nicht bestanden",
+};
+
+$day = "Sa";
+switch ($day) {
+    case "Sa":
+    case "So":
+        echo "Wochenende";
+        break;
+    default:
+        echo "Werktag";
+}</code></pre>
+      <p><code>match</code> vergleicht streng (<code>===</code>), liefert einen Wert und braucht kein <code>break</code> – meist die bessere Wahl.</p>
+    </section>
+    <section>
+      <h2>Schleifen</h2>
+      <pre><code>for ($i = 1; $i &lt;= 5; $i++) {
+    echo $i;
+}
+
+$tries = 0;
+while ($tries &lt; 3) {
+    $tries++;
+}
+
+$languages = ["HTML", "CSS", "PHP"];
+foreach ($languages as $language) {                 // nur Werte
+    echo "&lt;li&gt;$language&lt;/li&gt;";
+}
+
+$user = ["name" =&gt; "Max", "age" =&gt; 17];
+foreach ($user as $key =&gt; $value) {                 // Schlüssel und Wert
+    echo "$key: $value&lt;br&gt;";
+}</code></pre>
+    </section>
+    <section>
+      <h2>Alternative Syntax in HTML-Vorlagen</h2>
+      <pre><code>&lt;ul&gt;
+&lt;?php foreach ($languages as $language): ?&gt;
+    &lt;li&gt;&lt;?= htmlspecialchars($language) ?&gt;&lt;/li&gt;
+&lt;?php endforeach; ?&gt;
+&lt;/ul&gt;
+
+&lt;?php if ($isLoggedIn): ?&gt;
+    &lt;p&gt;Willkommen zurück!&lt;/p&gt;
+&lt;?php else: ?&gt;
+    &lt;a href="login.php"&gt;Anmelden&lt;/a&gt;
+&lt;?php endif; ?&gt;</code></pre>
+      <p>Mit <code>:</code> und <code>endforeach</code>/<code>endif</code> bleiben Vorlagen mit viel HTML gut lesbar.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>break</code> beendet eine Schleife, <code>continue</code> springt zum nächsten Durchlauf – wie in JS und C++.</li>
+        <li><code>foreach</code> ist in PHP die häufigste Schleife.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="php-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="php-arrays.html">Arrays</a>
+        <a class="chip" href="js-bedingungen.html">if / else</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

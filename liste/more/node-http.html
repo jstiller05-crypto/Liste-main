@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Node.js: http – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">Node.js · Server</p>
+    <h1>Einfacher Webserver (http)</h1>
+    <p class="page-lead">Mit dem eingebauten <code>http</code>-Modul einen Server starten und auf Anfragen antworten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Minimaler Server</h2>
+      <pre><code>import http from "node:http";
+
+const PORT = 3000;
+
+const server = http.createServer((request, response) =&gt; {
+  console.log(`[http] ${request.method} ${request.url}`);
+
+  if (request.url === "/") {
+    response.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    response.end("&lt;h1&gt;Hallo vom Server&lt;/h1&gt;");
+  } else if (request.url === "/api/time") {
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.end(JSON.stringify({ time: new Date().toISOString() }));
+  } else {
+    response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    response.end("Nicht gefunden");
+  }
+});
+
+server.listen(PORT, () =&gt; {
+  console.log(`[http] Server läuft auf http://localhost:${PORT}`);
+});</code></pre>
+      <p>Starten mit <code>node server.js</code>, dann im Browser <code>http://localhost:3000</code> öffnen. Beenden mit Strg+C.</p>
+    </section>
+    <section>
+      <h2>Wie eine Anfrage abläuft</h2>
+      <pre><code>Browser ──► GET /api/time ──► Server
+Browser ◄── 200 + JSON   ◄── Server</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Request</td><td>Anfrage des Browsers: Methode, URL, Header, evtl. Daten</td></tr>
+          <tr><td>Response</td><td>Antwort des Servers: Statuscode, Header, Inhalt</td></tr>
+          <tr><td>Methode</td><td><code>GET</code> (abrufen), <code>POST</code> (senden), <code>PUT</code>/<code>PATCH</code> (ändern), <code>DELETE</code> (löschen)</td></tr>
+          <tr><td>Statuscode</td><td><code>200</code> OK, <code>201</code> erstellt, <code>400</code> falsche Anfrage, <code>404</code> nicht gefunden, <code>500</code> Serverfehler</td></tr>
+          <tr><td>Port</td><td>„Türnummer“ des Servers, z. B. 3000</td></tr>
+          <tr><td>Content-Type</td><td>Art der Antwort: <code>text/html</code>, <code>application/json</code> …</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Für mehr als ein paar Routen wird das schnell unübersichtlich – dafür nutzt man Express.</li>
+        <li>„EADDRINUSE“ heißt: Der Port ist schon belegt (z. B. läuft der Server noch in einem anderen Terminal).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="node-express.html">Express</a>
+        <a class="chip" href="node-einfuehrung.html">Node.js</a>
+        <a class="chip" href="js-async.html">async/await</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

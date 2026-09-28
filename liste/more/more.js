@@ -28,7 +28,7 @@
 // Die Sprache wird in dieser Reihenfolge bestimmt:
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
-//   3. Dateiname beginnt mit "css-" → css, "js-" → js, "cpp-" → cpp
+//   3. Dateiname beginnt mit "css-", "js-", "cpp-", "node-", "sql-", "php-"
 //   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
@@ -66,6 +66,12 @@ const PAGE_LANGUAGES = {
 
 const DEFAULT_PAGE_LANGUAGE = "html";
 
+// Hat eine Regel für eine Sprache kein eigenes Ziel, wird diese Sprache probiert.
+// Node.js IST JavaScript – dort sollen also die JS-Seiten verlinkt werden.
+const LANGUAGE_FALLBACK = {
+  node: "js"
+};
+
 
 // ---------------------------------------------------------------------
 // 1b) WÖRTER → LINKS
@@ -90,6 +96,32 @@ const smartLinkRules = [
   { words: ["CSS"],              links: { all: "css-sprache.html" } },
   { words: ["JavaScript", "JS"], links: { all: "javascript-sprache.html" } },
   { words: ["C++"],              links: { all: "cpp-sprache.html" } },
+  { words: ["Node.js", "Node"],  links: { all: "node-einfuehrung.html" } },
+  { words: ["npm"],              links: { all: "node-npm.html" } },
+  { words: ["SQL", "MySQL", "SQLite", "MariaDB", "PostgreSQL"], links: { all: "sql-einfuehrung.html" } },
+  { words: ["PHP"],              links: { all: "php-einfuehrung.html" } },
+
+  // ===== Server, Datenbank & Web-Backend =====
+  { words: ["Datenbank", "Datenbanken"],
+    links: { all: "sql-einfuehrung.html", node: "node-datenbank.html", php: "php-datenbank.html" } },
+  { words: ["SQL-Injection", "Prepared Statement", "Prepared Statements", "Platzhalter"],
+    links: { sql: "sql-sicherheit.html", node: "sql-sicherheit.html", php: "sql-sicherheit.html" } },
+  { words: ["Server", "Webserver"],
+    links: { node: "node-http.html", php: "php-einfuehrung.html", js: "node-http.html" } },
+  { words: ["Express"],          links: { node: "node-express.html", js: "node-express.html" } },
+  { words: ["API", "REST-API", "APIs"], links: { node: "node-express.html" } },
+  { words: [".env", "Umgebungsvariable", "Umgebungsvariablen"], links: { node: "node-process.html", php: "node-process.html" } },
+  { words: ["package.json"],     links: { node: "node-npm.html", js: "node-npm.html" } },
+  { words: ["fs"],               links: { node: "node-dateien.html" } },
+  { words: ["SELECT", "WHERE", "ORDER BY"], links: { sql: "sql-select.html", node: "sql-select.html", php: "sql-select.html" } },
+  { words: ["INSERT", "UPDATE", "DELETE"],  links: { sql: "sql-daten-aendern.html" } },
+  { words: ["JOIN", "Fremdschlüssel"],      links: { sql: "sql-joins.html", node: "sql-joins.html", php: "sql-joins.html" } },
+  { words: ["GROUP BY", "COUNT", "Aggregatfunktion", "Aggregatfunktionen"], links: { sql: "sql-aggregat.html" } },
+  { words: ["Primärschlüssel", "CREATE TABLE", "Datentyp", "Datentypen"], links: { sql: "sql-tabellen.html" } },
+  { words: ["Session", "Sessions", "Cookie", "Cookies"], links: { php: "php-sessions.html" } },
+  { words: ["PDO"],              links: { php: "php-datenbank.html" } },
+  { words: ["$_GET", "$_POST", "htmlspecialchars"], links: { php: "php-formulare.html" } },
+  { words: ["include", "require"], links: { php: "php-funktionen.html" } },
 
   // ===== Programmier-Grundlagen (je Sprache verschieden!) =====
   { words: ["for-Schleife", "for-Schleifen"],
@@ -97,13 +129,13 @@ const smartLinkRules = [
   { words: ["while-Schleife", "while-Schleifen"],
     links: { cpp: "while-loop.html", js: "js-schleifen.html" } },
   { words: ["Schleife", "Schleifen"],
-    links: { cpp: "for-loop.html",   js: "js-schleifen.html" } },
+    links: { cpp: "for-loop.html",   js: "js-schleifen.html", php: "php-kontrolle.html" } },
   { words: ["Funktion", "Funktionen"],
-    links: { cpp: "function.html",   js: "js-funktionen.html" } },
+    links: { cpp: "function.html",   js: "js-funktionen.html", php: "php-funktionen.html" } },
   { words: ["Variable", "Variablen"],
-    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html" } },
+    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html", php: "php-grundlagen.html" } },
   { words: ["if-else", "Bedingung", "Bedingungen"],
-    links: { cpp: "if-else.html",    js: "js-bedingungen.html" } },
+    links: { cpp: "if-else.html",    js: "js-bedingungen.html", php: "php-kontrolle.html" } },
   { words: ["Datentyp", "Datentypen"],
     links: { cpp: "datatypes.html",  js: "js-variablen.html" } },
 
@@ -112,7 +144,7 @@ const smartLinkRules = [
   { words: ["Referenz", "Referenzen"],                    links: { cpp: "reference.html" } },
   { words: ["Objekt", "Objekte", "Methode", "Methoden",
             "OOP", "objektorientiert", "objektorientierte"],
-                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html" } },
+                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html", php: "php-oop.html" } },
   { words: ["Konstruktor", "Destruktor", "Kapselung", "private", "public"],
                                                           links: { cpp: "cpp-konstruktor.html" } },
   { words: ["Namespace", "Namespaces", "using namespace"], links: { cpp: "using-namespace.html" } },
@@ -142,15 +174,15 @@ const smartLinkRules = [
   // ===== Gleiches Wort, andere Bedeutung je Sprache =====
   // "Klasse" ist in C++ eine Objekt-Vorlage, in HTML/CSS eine CSS-Klasse
   { words: ["Klasse", "Klassen"],
-    links: { cpp: "cpp-class.html", all: "Class.html" } },
+    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-objekte.html", sql: "", all: "Class.html" } },   // "" = bewusst kein Link
   { words: ["CSS-Klasse", "CSS-Klassen"],
     links: { all: "Class.html" } },
   // "Eingabe" ist in C++ cin, im Web ein Eingabefeld
   { words: ["Eingabe", "Eingaben"],
-    links: { cpp: "cin.html", all: "input.html" } },
+    links: { cpp: "cin.html", php: "php-formulare.html", node: "", sql: "", all: "input.html" } },
   // "einbinden" ist in C++ #include, im Web <link>/<script>
   { words: ["einbinden", "eingebunden", "Einbinden"],
-    links: { cpp: "include.html", all: "link.html" } },
+    links: { cpp: "include.html", php: "php-funktionen.html", sql: "", all: "link.html" } },
 
   // ===== Nur CSS =====
   { words: ["Farbe", "Farben", "Hintergrundfarbe", "Farbverlauf"],
@@ -170,8 +202,8 @@ const smartLinkRules = [
   // ===== Nur JavaScript =====
   { words: ["Event", "Events", "Ereignis", "Ereignisse", "addEventListener"],
                                                           links: { js: "js-events.html", html: "js-events.html" } },
-  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html" } },
-  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html" } },
+  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html", php: "php-grundlagen.html" } },
+  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html", php: "php-grundlagen.html" } },
   { words: ["JSON"],                                      links: { js: "js-objekte.html", html: "js-objekte.html" } },
   { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" } },
   { words: ["try/catch", "Fehlermeldung", "try", "catch"], links: { js: "js-konsole.html", cpp: "cpp-fehler.html" } },
@@ -186,7 +218,7 @@ const smartLinkRules = [
   { words: ["DOM"],                                       links: { js: "js-dom.html", html: "js-dom.html", css: "js-dom.html" } },
   { words: ["Selektor", "Selektoren"],                    links: { css: "css-selektoren.html", html: "css-selektoren.html", js: "css-selektoren.html" } },
   { words: ["Überschrift", "Überschriften"],              links: { html: "headings.html", css: "headings.html", js: "headings.html" } },
-  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html" } },
+  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html", php: "php-arrays.html" } },
   { words: ["Auswahlmenü", "Dropdown"],                   links: { html: "select.html", css: "select.html", js: "select.html" } },
   { words: ["Untertitel"],                                links: { html: "video.html", css: "video.html", js: "video.html" } },
   { words: ["Layout", "Layouts"],                         links: { css: "css-display.html", html: "css-display.html" } },
@@ -194,9 +226,9 @@ const smartLinkRules = [
   { words: ["Grid"],                                      links: { css: "css-grid.html", html: "css-grid.html", js: "css-grid.html" } },
   { words: ["Stylesheet", "Stylesheets", "CSS-Datei", "CSS-Dateien"],
                                                           links: { html: "link.html", css: "link.html" } },
-  { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html" } },
+  { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html", sql: "sql-tabellen.html", php: "sql-tabellen.html" } },
   { words: ["Liste", "Listen"],                           links: { html: "liste.html", css: "liste.html", js: "liste.html" } },
-  { words: ["Formular", "Formulare"],                     links: { html: "form.html", css: "form.html", js: "form.html" } },
+  { words: ["Formular", "Formulare"],                     links: { html: "form.html", css: "form.html", js: "form.html", php: "php-formulare.html" } },
   { words: ["Container", "Containern"],                   links: { html: "container.html", css: "container.html", js: "container.html" } },
   { words: ["Bild", "Bilder"],                            links: { html: "img.html", css: "img.html", js: "img.html" } },
   { words: ["Link", "Links", "Hyperlink", "Hyperlinks"],  links: { html: "a.html", css: "a.html", js: "a.html" } },
@@ -390,6 +422,9 @@ function getPageLanguage(pageFile) {
     if (pageFile.startsWith("css-")) return "css";
     if (pageFile.startsWith("js-")) return "js";
     if (pageFile.startsWith("cpp-")) return "cpp";
+    if (pageFile.startsWith("node-")) return "node";
+    if (pageFile.startsWith("sql-")) return "sql";
+    if (pageFile.startsWith("php-")) return "php";
   }
   // "??" = nimm den rechten Wert, wenn der linke undefined/null ist
   return PAGE_LANGUAGES[pageFile] ?? DEFAULT_PAGE_LANGUAGE;
@@ -408,8 +443,12 @@ function buildWordLookup(language) {
 
   // --- Wort-Regeln (1b) ---
   smartLinkRules.forEach(function addRuleToLookup(rule) {
-    // erst die Sprache probieren, sonst "all", sonst null (= kein Link)
-    const target = rule.links[language] ?? rule.links.all ?? null;
+    // erst die Sprache probieren, dann die Ersatz-Sprache, sonst "all", sonst null (= kein Link)
+    const fallback = LANGUAGE_FALLBACK[language];
+    const target = rule.links[language]
+      ?? (fallback ? rule.links[fallback] : undefined)
+      ?? rule.links.all
+      ?? null;
     if (!target) return;
 
     rule.words.forEach(function addWord(word) {
