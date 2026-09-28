@@ -6,24 +6,45 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>cite</title>
+  <title>&lt;cite&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;cite&gt;</h1>
+    <p class="page-lead">Kennzeichnet den Titel eines Werks – z. B. eines Buchs, Films, Songs oder einer Website.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Verwendet für Quellenangaben oder Titel eines Werkes.</p>
+      <p><code>&lt;cite&gt;</code> markiert den <strong>Titel</strong> eines Werks, auf das du dich beziehst. Browser zeigen ihn meist kursiv an.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;p&gt;Quelle: &lt;cite&gt;Musterbuch&lt;/cite&gt;&lt;/p&gt;</code></pre>
+      <pre><code>&lt;p&gt;Mein Lieblingsbuch ist &lt;cite&gt;Der kleine Prinz&lt;/cite&gt;.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Mein Lieblingsbuch ist <cite>Der kleine Prinz</cite>.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nur den Titel auszeichnen, nicht den Namen der Person.</li>
+        <li>Für das Zitat selbst gibt es <code>&lt;blockquote&gt;</code> (lang) und <code>&lt;q&gt;</code> (kurz).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="blockquote.html">&lt;blockquote&gt; / &lt;q&gt;</a>
+        <a class="chip" href="abbr.html">&lt;abbr&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

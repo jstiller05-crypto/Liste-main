@@ -1,38 +1,105 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="more.css">
-    <script defer src="more.js"></script>
-    <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-    <title>Button</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>&lt;button&gt; – Spicker</title>
 </head>
 <body>
-    <header>
-        <h1>Der &lt;button&gt;</h1>
-    </header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Formulare & Interaktion</p>
+    <h1>&lt;button&gt;</h1>
+    <p class="page-lead">Eine klickbare Schaltfläche – zum Absenden von Formularen oder für eigene JavaScript-Aktionen.</p>
+  </header>
 
-    <main>
-        <section>
-            <h2>Was ist das?</h2>
-            <p>Ein &lt;button&gt; ist eine interaktive Schaltfläche für Benutzeraktionen.</p>
-        </section>
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;button&gt;</code> ist <em>das</em> Element für Aktionen: Formular absenden, Menü öffnen, Filter setzen, Text kopieren. Anders als <code>&lt;input type="button"&gt;</code> darf ein <code>&lt;button&gt;</code> auch HTML enthalten, z. B. ein Icon.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>&lt;button type="button"&gt;Klick mich&lt;/button&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Die drei Typen</h2>
+      <table class="info-table">
+        <thead><tr><th>type</th><th>Was passiert beim Klick?</th></tr></thead>
+        <tbody>
+          <tr><td><code>submit</code></td><td>Schickt das Formular ab. <strong>Standard</strong> innerhalb eines <code>&lt;form&gt;</code>!</td></tr>
+          <tr><td><code>button</code></td><td>Nichts – du bestimmst per JavaScript, was passiert</td></tr>
+          <tr><td><code>reset</code></td><td>Setzt alle Felder des Formulars zurück</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiel mit JavaScript</h2>
+      <pre><code>&lt;button type="button" id="counterBtn"&gt;0 Klicks&lt;/button&gt;
 
-        <section>
-            <h2>Syntax</h2>
-            <pre><code>&lt;button type="button"&gt;Klick mich&lt;/button&gt;</code></pre>
-        </section>
+&lt;script&gt;
+  const button = document.getElementById("counterBtn");
+  let clicks = 0;
 
-        <section>
-            <h2>Beispiel</h2>
-            <pre><code>&lt;button&gt;Moin&lt;/button&gt;</code></pre>
-            <p>Der Button kann mit JavaScript verknüpft werden, um Aktionen auszuführen.</p>
-        </section>
-    </main>
+  button.addEventListener("click", () =&gt; {
+    clicks++;                                    // +1
+    button.textContent = clicks + " Klicks";
+    console.log("Button geklickt:", clicks);
+  });
+&lt;/script&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <button type="button" onclick="this.dataset.n=(+this.dataset.n||0)+1;this.textContent=this.dataset.n+' Klicks'">0 Klicks</button>
+      </div>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>type</code></td><td><code>submit</code>, <code>button</code> oder <code>reset</code></td></tr>
+          <tr><td><code>disabled</code></td><td>Button ist ausgegraut und nicht klickbar</td></tr>
+          <tr><td><code>name / value</code></td><td>Werden beim Absenden mitgeschickt</td></tr>
+          <tr><td><code>data-…</code></td><td>Eigene Daten, z. B. <code>data-language="html"</code> – in JS über <code>button.dataset.language</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Button gestalten (CSS)</h2>
+      <p>Browser geben Buttons ein eigenes Aussehen. So setzt du es zurück und gestaltest den Button selbst, hier als runder „Chip“:</p>
+      <pre><code>.button {
+  all: unset;              /* Browser-Styles entfernen */
+  cursor: pointer;         /* Hand-Cursor wieder anzeigen */
+  padding: 6px 14px;
+  border: 1px solid #4a4a4a;
+  border-radius: 999px;    /* Pillenform */
+}
 
-    <footer>
-        <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
-    </footer>
+.button:hover         { background: #474747; }
+.button:focus-visible { outline: 2px solid #4f8cff; }   /* Tastatur-Fokus sichtbar lassen! */</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><strong>Häufigster Fehler:</strong> Ein <code>&lt;button&gt;</code> ohne <code>type</code> im Formular schickt es ab und lädt die Seite neu. Für JS-Buttons immer <code>type="button"</code> schreiben.</li>
+        <li>Nur zu einer anderen Seite springen? Dann ist <code>&lt;a&gt;</code> richtig, nicht <code>&lt;button&gt;</code>.</li>
+        <li>Buttons sind automatisch per Tastatur (Tab + Enter) bedienbar – ein <code>&lt;div&gt;</code> mit Klick-Event nicht.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="form.html">&lt;form&gt;</a>
+        <a class="chip" href="input.html">&lt;input&gt;</a>
+        <a class="chip" href="a.html">&lt;a&gt;</a>
+        <a class="chip" href="dialog.html">&lt;dialog&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
 </body>
 </html>

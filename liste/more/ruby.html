@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>ruby, rt, rp – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;ruby&gt;, &lt;rt&gt;, &lt;rp&gt;</h1>
+    <p class="page-lead">Kleine Aussprachehilfen über Schriftzeichen – vor allem im Japanischen und Chinesischen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ruby-Text steht klein über (oder neben) dem Grundtext und erklärt die Aussprache.</p>
+      <table class="info-table">
+        <thead><tr><th>Tag</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;ruby&gt;</code></td><td>Umschließt Grundtext und Aussprache</td></tr>
+          <tr><td><code>&lt;rt&gt;</code></td><td><em>ruby text</em> – die Aussprachehilfe</td></tr>
+          <tr><td><code>&lt;rp&gt;</code></td><td><em>ruby parenthesis</em> – Klammern, die nur Browser ohne Ruby-Unterstützung anzeigen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;ruby&gt;
+  漢 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;kan&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;
+  字 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;ji&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;
+&lt;/ruby&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p style="font-size:1.6rem"><ruby>漢<rp>(</rp><rt>kan</rt><rp>)</rp>字<rp>(</rp><rt>ji</rt><rp>)</rp></ruby></p>
+      </div>
+      <p>Ohne Ruby-Unterstützung würde der Browser <code>漢(kan)字(ji)</code> anzeigen – dafür sind die <code>&lt;rp&gt;</code>-Klammern da.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Auch für andere Zwecke nutzbar, z. B. Lautschrift über schwierigen Wörtern.</li>
+        <li>Mit CSS <code>ruby-position: under;</code> steht der Ruby-Text unter dem Grundtext.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="bdi.html">&lt;bdi&gt;</a>
+        <a class="chip" href="abbr.html">&lt;abbr&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

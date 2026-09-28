@@ -6,24 +6,50 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>code</title>
+  <title>&lt;code&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;code&gt;</h1>
+    <p class="page-lead">Stellt Programmcode, Befehle oder Dateinamen im Text in Festbreitenschrift dar.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Inline-Element zur Darstellung von Programmcode oder Befehlen.</p>
+      <p><code>&lt;code&gt;</code> zeigt dem Browser (und dem Leser): Das hier ist Code. Für einzelne Wörter im Fließtext reicht <code>&lt;code&gt;</code> allein. Für mehrzeilige Codeblöcke kombiniert man es mit <code>&lt;pre&gt;</code>, damit Einrückungen und Zeilenumbrüche erhalten bleiben.</p>
     </section>
     <section>
-      <h2>Beispiel</h2>
-      <pre><code>&lt;p&gt;Befehl: &lt;code&gt;npm install&lt;/code&gt;&lt;/p&gt;</code></pre>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;!-- im Fließtext --&gt;
+&lt;p&gt;Mit &lt;code&gt;console.log()&lt;/code&gt; gibst du etwas in der Konsole aus.&lt;/p&gt;
+
+&lt;!-- als Block --&gt;
+&lt;pre&gt;&lt;code&gt;for (let i = 0; i &amp;lt; 3; i++) {
+  console.log(i);
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Mit <code>console.log()</code> gibst du etwas in der Konsole aus.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Innerhalb von <code>&lt;code&gt;</code> musst du <code>&lt;</code> als <code>&amp;lt;</code> und <code>&gt;</code> als <code>&amp;gt;</code> schreiben, sonst hält der Browser es für echtes HTML.</li>
+        <li>Tastatureingaben zeichnet man mit <code>&lt;kbd&gt;</code> aus, Programmausgaben mit <code>&lt;samp&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="kbd.html">&lt;kbd&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

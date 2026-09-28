@@ -6,24 +6,45 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>dfn</title>
+  <title>&lt;dfn&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;dfn&gt;</h1>
+    <p class="page-lead">Markiert einen Begriff an der Stelle, an der er definiert (erklärt) wird.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Markiert die Definition eines Begriffs innerhalb eines Textes.</p>
+      <p>Wird ein Fachbegriff im Text erklärt, zeichnest du ihn dort mit <code>&lt;dfn&gt;</code> aus. Der umgebende Satz oder Absatz ist die Definition.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;p&gt;&lt;dfn&gt;API&lt;/dfn&gt;: Schnittstelle zur Kommunikation zwischen Programmen.&lt;/p&gt;</code></pre>
+      <pre><code>&lt;p&gt;Eine &lt;dfn&gt;API&lt;/dfn&gt; ist eine Schnittstelle, über die Programme miteinander kommunizieren.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Eine <dfn>API</dfn> ist eine Schnittstelle, über die Programme miteinander kommunizieren.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jeder Begriff sollte nur einmal mit <code>&lt;dfn&gt;</code> ausgezeichnet werden – dort, wo er erklärt wird.</li>
+        <li>Kombinierbar: <code>&lt;dfn&gt;&lt;abbr title="…"&gt;API&lt;/abbr&gt;&lt;/dfn&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="abbr.html">&lt;abbr&gt;</a>
+        <a class="chip" href="dl.html">&lt;dl&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

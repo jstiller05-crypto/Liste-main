@@ -1,59 +1,74 @@
-<!-- Kopiere diese Seite für neue Einträge und passe die Inhalte an. -->
 <!DOCTYPE html>
+<!--
+  VORLAGE FÜR NEUE DETAILSEITEN
+  1. Datei kopieren und umbenennen (z. B. span.html)
+  2. <title>, Kategorie (page-kicker), <h1> und Einleitung (page-lead) anpassen
+  3. Abschnitte ausfüllen – nicht benötigte einfach löschen.
+     Kurze Tags brauchen oft nur "Was ist das?", "Beispiel" und "Tipps".
+  4. Code in <pre><code> schreiben und < als &lt; bzw. > als &gt; escapen
+  5. Neue Seite in spicker.js beim passenden Eintrag unter "Link" eintragen
+     und – falls kein HTML – in more.js unter PAGE_LANGUAGES
+-->
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>Vorlage: Tag-Details</title>
+  <title>Vorlage: Tag-Details – Spicker</title>
 </head>
 <body>
-  <header>
-    <h1 id="page-title">Element / Thema</h1>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Kategorie</p>
+    <h1>&lt;tag&gt;</h1>
+    <p class="page-lead">Ein Satz: Was macht das Element?</p>
   </header>
 
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Beschreibe hier den Zweck des Elements oder der CSS-Regel in einem einfachen Satz.</p>
+      <p>Erkläre den Zweck in 1–3 einfachen Sätzen. Code im Text so: <code>&lt;tag&gt;</code>.</p>
     </section>
-
     <section>
       <h2>Syntax</h2>
-      <pre><code>&lt;tag&gt;...&lt;/tag&gt;</code></pre>
-      <p>Gib hier die richtige Schreibweise an. Für Attribute benutze ein kurzes Beispiel.</p>
+      <pre><code>&lt;tag attribut="wert"&gt;Inhalt&lt;/tag&gt;</code></pre>
     </section>
-
     <section>
       <h2>Beispiel</h2>
       <pre><code>&lt;tag&gt;Beispielinhalt&lt;/tag&gt;</code></pre>
-      <p>Erkläre, was in diesem Beispiel passiert und wann man es nutzen würde.</p>
+      <div class="preview" aria-label="Vorschau">
+        <p>Optional: dasselbe Beispiel als echtes HTML – wird live angezeigt.</p>
+      </div>
+      <p>Erkläre kurz, was im Beispiel passiert.</p>
     </section>
-
     <section>
-      <h2>Wann nutzt man es?</h2>
-      <p>Beschreibe typische Anwendungsfälle und gute Einsatzbereiche.</p>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>Was das Attribut bewirkt</td></tr>
+        </tbody>
+      </table>
     </section>
-
     <section>
-      <h2>Zuordnung</h2>
-      <p>Beschreibe die passenden Kategorien, z. B. <strong>container</strong>, <strong>text</strong>, <strong>form</strong>.</p>
-    </section>
-
-    <section>
-      <h2>Wichtige Hinweise</h2>
+      <h2>Tipps &amp; typische Fehler</h2>
       <ul>
-        <li>Browser-Unterstützung</li>
-        <li>Wichtiges Attribut</li>
-        <li>Besonderheiten</li>
+        <li>Häufiger Fehler und wie man ihn vermeidet</li>
+        <li>Nützlicher Tipp</li>
       </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="a.html">&lt;a&gt;</a>
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

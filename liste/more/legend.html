@@ -6,26 +6,48 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>legend</title>
+  <title>&lt;legend&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Formulare</p>
     <h1>&lt;legend&gt;</h1>
+    <p class="page-lead">Die Überschrift eines <code>&lt;fieldset&gt;</code>.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Beschriftet ein &lt;fieldset&gt; und erklärt die Gruppe von Formularfeldern.</p>
+      <p><code>&lt;legend&gt;</code> beschriftet eine Gruppe von Formularfeldern. Es muss das <strong>erste Kind</strong> von <code>&lt;fieldset&gt;</code> sein und sitzt standardmäßig im oberen Rahmen.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
       <pre><code>&lt;fieldset&gt;
-  &lt;legend&gt;Persönliche Angaben&lt;/legend&gt;
+  &lt;legend&gt;Adresse&lt;/legend&gt;
+  &lt;label&gt;Straße &lt;input type="text" name="street"&gt;&lt;/label&gt;
+  &lt;label&gt;Ort &lt;input type="text" name="city"&gt;&lt;/label&gt;
 &lt;/fieldset&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <fieldset><legend>Adresse</legend><label>Straße <input type="text"></label> <label>Ort <input type="text"></label></fieldset>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Kurz halten – Screenreader lesen die Legend oft vor jedem Feld der Gruppe vor.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="fieldset.html">&lt;fieldset&gt;</a>
+        <a class="chip" href="label.html">&lt;label&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

@@ -6,24 +6,104 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>img</title>
+  <title>&lt;img&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
     <h1>&lt;img&gt;</h1>
+    <p class="page-lead">Bindet ein Bild in die Seite ein.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Fügt ein Bild in das Dokument ein. Verwende `alt` für Zugänglichkeit.</p>
+      <p><code>&lt;img&gt;</code> ist ein leeres Element (kein End-Tag). Die Bilddatei steht in <code>src</code>, eine Beschreibung in <code>alt</code>. Unterstützte Formate: JPG, PNG, GIF, SVG, WebP, AVIF, ICO.</p>
     </section>
     <section>
-      <h2>Beispiel</h2>
-      <pre><code>&lt;img src="bild.jpg" alt="Beschreibung des Bildes" width="300"&gt;</code></pre>
+      <h2>Syntax</h2>
+      <pre><code>&lt;img src="bild.png" alt="Beschreibung des Bildes"&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;!-- Bild aus einem Unterordner --&gt;
+&lt;img src="icons/logo.png" alt="Firmenlogo" width="40" height="40"&gt;
+
+&lt;!-- Erst laden, wenn man hinscrollt --&gt;
+&lt;img src="grosses-foto.jpg" alt="Sonnenuntergang am Meer" loading="lazy"&gt;
+
+&lt;!-- Bild als Link --&gt;
+&lt;a href="index.html"&gt;
+  &lt;img src="icons/home.png" alt="Zur Startseite"&gt;
+&lt;/a&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>src</code></td><td>Pfad bzw. URL der Bilddatei (Pflicht)</td></tr>
+          <tr><td><code>alt</code></td><td>Ersatztext: wird vorgelesen und angezeigt, wenn das Bild fehlt (Pflicht)</td></tr>
+          <tr><td><code>width / height</code></td><td>Größe in Pixeln – verhindert, dass die Seite beim Laden „springt“</td></tr>
+          <tr><td><code>loading</code></td><td><code>lazy</code> = erst laden, wenn das Bild in Sichtweite kommt</td></tr>
+          <tr><td><code>title</code></td><td>Tooltip beim Drüberfahren</td></tr>
+          <tr><td><code>usemap</code></td><td>Verknüpft das Bild mit einer Image-Map (<code>#name</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Guter alt-Text</h2>
+      <table class="info-table">
+        <thead><tr><th>Bild</th><th>alt</th></tr></thead>
+        <tbody>
+          <tr><td>Logo, das zur Startseite führt</td><td><code>alt="Zur Startseite"</code></td></tr>
+          <tr><td>Foto mit Inhalt</td><td><code>alt="Person am Schreibtisch mit zwei Monitoren"</code></td></tr>
+          <tr><td>Reine Deko</td><td><code>alt=""</code> (leer, damit Screenreader es überspringen)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Ladefehler abfangen</h2>
+      <pre><code>&lt;img src="logo.png" alt="Logo"
+     onerror="console.warn('Bild fehlt:', this.src); this.style.display='none';"&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Bilder mit CSS anpassen</h2>
+      <pre><code>img {
+  max-width: 100%;     /* nie breiter als der Container */
+  height: auto;        /* Seitenverhältnis bleibt erhalten */
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;   /* füllt die Fläche, ohne zu verzerren */
+  border-radius: 50%;  /* rund */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>alt</code> nie weglassen.</li>
+        <li>Große Fotos vorher verkleinern – ein 5-MB-Foto macht die Seite langsam.</li>
+        <li>Pfade: <code>../</code> geht einen Ordner nach oben. Leerzeichen in Dateinamen möglichst vermeiden.</li>
+        <li>Bild mit Bildunterschrift? Dann <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> verwenden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="figure.html">&lt;figure&gt;</a>
+        <a class="chip" href="area &amp; map.html">&lt;map&gt; &amp; &lt;area&gt;</a>
+        <a class="chip" href="a.html">&lt;a&gt;</a>
+        <a class="chip" href="video.html">&lt;video&gt;</a>
+        <a class="chip" href="canvas.html">&lt;canvas&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

@@ -6,24 +6,73 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>script</title>
+  <title>&lt;script&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Einbinden</p>
     <h1>&lt;script&gt;</h1>
+    <p class="page-lead">Bindet JavaScript ein – als eigene Datei oder direkt im HTML.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Enthält oder verweist auf JavaScript-Code. Achte auf sichere Einbindung (defer/async).</p>
+      <p>Mit <code>&lt;script&gt;</code> bringst du JavaScript in die Seite. Entweder verweist <code>src</code> auf eine <code>.js</code>-Datei, oder der Code steht zwischen den Tags.</p>
     </section>
     <section>
-      <h2>Beispiel</h2>
-      <pre><code>&lt;script src="spicker.js" defer&gt;&lt;/script&gt;</code></pre>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;!-- Externe Datei (empfohlen) --&gt;
+&lt;script defer src="app.js"&gt;&lt;/script&gt;
+
+&lt;!-- Code direkt im HTML --&gt;
+&lt;script&gt;
+  console.log("Seite geladen");
+&lt;/script&gt;
+
+&lt;!-- Modernes Modul (import/export möglich) --&gt;
+&lt;script type="module" src="app.js"&gt;&lt;/script&gt;</code></pre>
+    </section>
+    <section>
+      <h2>defer, async oder nichts?</h2>
+      <table class="info-table">
+        <thead><tr><th>Variante</th><th>Wann läuft das Skript?</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;script src&gt;</code></td><td>Sofort – das HTML-Laden stoppt so lange. Im <code>&lt;head&gt;</code> sind Elemente noch nicht da!</td></tr>
+          <tr><td><code>&lt;script defer src&gt;</code></td><td>Nachdem das HTML fertig ist, in der richtigen Reihenfolge. <strong>Meist die beste Wahl.</strong></td></tr>
+          <tr><td><code>&lt;script async src&gt;</code></td><td>Sobald die Datei geladen ist – Reihenfolge nicht garantiert. Für unabhängige Skripte (z. B. Statistik).</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Warum „Element nicht gefunden“?</h2>
+      <p>Steht ein Skript ohne <code>defer</code> im <code>&lt;head&gt;</code>, läuft es, bevor der Browser den <code>&lt;body&gt;</code> kennt. <code>document.getElementById(…)</code> liefert dann <code>null</code>. Lösungen:</p>
+      <ul>
+        <li><code>defer</code> ans <code>&lt;script&gt;</code> schreiben, oder</li>
+        <li>den Code in <code>document.addEventListener("DOMContentLoaded", …)</code> packen, oder</li>
+        <li>das <code>&lt;script&gt;</code> ans Ende des <code>&lt;body&gt;</code> setzen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein <code>&lt;script&gt;</code> mit <code>src</code> muss trotzdem ein End-Tag haben: <code>&lt;script src="…"&gt;&lt;/script&gt;</code>.</li>
+        <li>JavaScript-Fehler siehst du in der Konsole: F12 → Konsole.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="noscript.html">&lt;noscript&gt;</a>
+        <a class="chip" href="link.html">&lt;link&gt; / Einbinden</a>
+        <a class="chip" href="head.html">&lt;head&gt;</a>
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

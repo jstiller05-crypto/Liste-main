@@ -1,116 +1,330 @@
-body {
-  background-color: #333333; /* dunkler Hintergrund für bessere Lesbarkeit */
-  color: white;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+/* =====================================================================
+   more.css – gemeinsames Design aller Detailseiten im Ordner "more"
+   ---------------------------------------------------------------------
+   Schlicht gehalten: Grautöne + EINE Akzentfarbe (Blau, wie im Header
+   der Spicker-Startseite). Alle Farben stehen als Variablen in :root –
+   dort änderst du sie einmal, und sie gelten überall.
+
+   Inhalt:
+   1. Farben & Grundlagen
+   2. Seitenkopf (Kategorie, Titel)
+   3. Abschnitte (Karten)
+   4. Code & Copy-Button
+   5. Tabellen, Hinweise, Vorschau
+   6. Links & Chips (verwandte Seiten)
+   7. Footer (Zurück-Icon)
+   8. Handy
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. FARBEN & GRUNDLAGEN
+   --------------------------------------------------------------------- */
+:root {
+  --page-bg:    #333333;   /* gleicher Hintergrund wie die Spicker-Startseite */
+  --card-bg:    #2b2b2b;   /* Abschnitte */
+  --code-bg:    #222222;   /* Codeblöcke */
+  --border:     #444444;
+  --text-main:  #f2f2f2;
+  --text-muted: #b5b5b5;
+  --accent:     #4f8cff;   /* die einzige Farbe */
 }
 
-header {
-  padding: 1rem 1rem 0.5rem;
+* {
+  box-sizing: border-box;  /* padding zählt zur Breite */
+}
+
+body {
+  margin: 0;
+  background-color: var(--page-bg);
+  color: var(--text-main);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+
+/* Inhalt linksbündig über die volle Breite – kein Zentrieren,
+   damit kein Platz an den Rändern verschwendet wird */
+.page-header,
+main {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+
+/* ---------------------------------------------------------------------
+   2. SEITENKOPF
+   --------------------------------------------------------------------- */
+header,
+.page-header {
+  padding-top: 28px;
+  padding-bottom: 8px;
+}
+
+/* kleine Zeile über dem Titel, z. B. "HTML · Formulare" */
+.page-kicker {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem;
-  color: white;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-family: Consolas, Monaco, monospace;  /* Tag-Namen wie Code */
 }
 
+.page-lead {
+  margin: 10px 0 0;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------------------
+   3. ABSCHNITTE
+   --------------------------------------------------------------------- */
 main {
-  padding: 0 1rem 4rem;
+  padding-bottom: 90px;   /* Platz für das Zurück-Icon unten rechts */
 }
 
 section {
-  background-color: transparent; /* keine Füllfarbe, nur Rand wie Spicker */
-  border: 1px solid #000000; /* Spicker nutzt dunkle Ränder */
-  border-radius: 3px;
-  margin: 12px 0;
-  padding: 12px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
 }
 
 section h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1.25rem;
-  color: #f5f5f5;
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+section h3 {
+  margin: 18px 0 8px;
+  font-size: 1.05rem;
 }
 
 section p,
-section ul,
 section li {
-  margin: 0;
-  line-height: 1.7;
-  color: #d9d9d9;
+  color: var(--text-muted);
 }
 
-section ul {
-  padding-left: 1.2rem;
+section p {
+  margin: 0 0 12px;
 }
 
-pre {
-  background-color: transparent;
-  border: 1px solid #323232;
-  border-radius: 3px;
-  padding: 0.75rem;
-  overflow-x: auto;
-  color: #ffffff;
-  margin: 10px 0;
+section p:last-child {
+  margin-bottom: 0;
 }
 
+section ul,
+section ol {
+  margin: 0 0 12px;
+  padding-left: 1.3rem;
+}
+
+section li {
+  margin-bottom: 6px;
+}
+
+strong {
+  color: var(--text-main);
+}
+
+
+/* ---------------------------------------------------------------------
+   4. CODE & COPY-BUTTON
+   --------------------------------------------------------------------- */
 code {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.92em;
+}
+
+/* Code mitten im Text */
+p code,
+li code,
+td code {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--text-main);
+}
+
+/* Codeblock */
+pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 0 0 12px;
+  overflow-x: auto;       /* lange Zeilen: seitlich scrollen statt umbrechen */
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+/* Der Copy-Button wird von more.js direkt ÜBER jedem <pre> eingefügt */
+.copy-button {
+  display: block;
+  margin: 0 0 6px auto;   /* margin-left: auto → rechtsbündig */
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  color: var(--text-main);
+  border-color: var(--accent);
+}
+
+
+/* ---------------------------------------------------------------------
+   5. TABELLEN, HINWEISE, VORSCHAU
+   --------------------------------------------------------------------- */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;   /* keine doppelten Linien */
+  margin: 0 0 12px;
   font-size: 0.95rem;
 }
 
-.copy-button{
-  background:#222;
-  color:#fff;
-  border:1px solid #444;
-  padding:6px 8px;
-  border-radius:4px;
-  cursor:pointer;
-  margin-bottom:8px;
-  font-size:0.85rem;
+.info-table th,
+.info-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-/* Variante: Button absolut oben rechts innerhalb des pre (pre muss position:relative) */
-pre{ position:relative; }
-.copy-button{
-  position:none;
-  top:8px;
-  right:8px;
-  margin:0;
-  padding:6px 8px;
+.info-table th {
+  color: var(--text-main);
+  font-size: 0.85rem;
 }
 
+.info-table td {
+  color: var(--text-muted);
+}
+
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.note {
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  margin: 0 0 12px;
+  background-color: var(--code-bg);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-muted);
+}
+
+/* Live-Vorschau: zeigt, wie das Beispiel im Browser aussieht.
+   Hier bewusst wenig eigenes Styling, damit man das Browser-Standard-
+   aussehen der Elemente sieht. */
+.preview {
+  position: relative;
+  margin: 0 0 12px;
+  padding: 30px 16px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-main);
+}
+
+.preview::before {
+  content: "Vorschau";
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.preview p,
+.preview li {
+  color: var(--text-main);
+}
+
+.preview table {
+  border-collapse: collapse;
+}
+
+.preview th,
+.preview td {
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+}
+
+
+/* ---------------------------------------------------------------------
+   6. LINKS & CHIPS
+   --------------------------------------------------------------------- */
 a {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-.smart-link {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.12em;
-}
-
-.smart-link:hover {
-  color: #fff;
+  color: var(--text-main);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
 }
 
 a:hover {
-  color: #ddd;
+  color: var(--accent);
 }
 
+/* automatische Links aus more.js – dezenter als normale Links */
+.smart-link {
+  color: inherit;
+  text-decoration: underline dotted var(--accent);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;   /* umbrechen, wenn kein Platz mehr ist */
+  gap: 8px;
+}
+
+.chip {
+  padding: 5px 12px;
+  font-size: 0.9rem;
+  font-family: Consolas, Monaco, monospace;
+  text-decoration: none;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 999px;   /* Pillenform */
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ---------------------------------------------------------------------
+   7. FOOTER (Zurück-Icon unten rechts)
+   --------------------------------------------------------------------- */
 footer {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: 16px;
+  bottom: 16px;
 }
 
 .back-icon {
   display: block;
   width: 44px;
   height: 44px;
+  opacity: 0.8;
+}
+
+.back-icon:hover {
+  opacity: 1;
 }
 
 .back-icon img {
@@ -119,7 +333,20 @@ footer {
   display: block;
 }
 
-ul li {
-  margin-bottom: 0.4rem;
-}
 
+/* ---------------------------------------------------------------------
+   8. HANDY (schmale Bildschirme)
+   --------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.7rem;
+  }
+
+  section {
+    padding: 14px 16px;
+  }
+
+  .info-table {
+    font-size: 0.88rem;
+  }
+}

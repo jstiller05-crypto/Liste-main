@@ -6,24 +6,45 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>i</title>
+  <title>&lt;i&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;i&gt;</h1>
+    <p class="page-lead">Setzt Text ab, der „anders“ gemeint ist – z. B. Fachbegriffe, Fremdwörter oder Gedanken.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Kursiver Text ohne zusätzliche semantische Bedeutung.</p>
+      <p><code>&lt;i&gt;</code> wird kursiv dargestellt, betont aber nicht. Es markiert Wörter, die sich vom normalen Text abheben: Fremdwörter, wissenschaftliche Namen, Schiffsnamen, Gedanken einer Figur.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;p&gt;Das ist &lt;i&gt;kursiv&lt;/i&gt;.&lt;/p&gt;</code></pre>
+      <pre><code>&lt;p&gt;Der Begriff &lt;i lang="en"&gt;debugging&lt;/i&gt; bedeutet Fehlersuche.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Der Begriff <i lang="en">debugging</i> bedeutet Fehlersuche.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei Fremdwörtern hilft das Attribut <code>lang</code> (z. B. <code>lang="en"</code>) Screenreadern bei der Aussprache.</li>
+        <li>Soll ein Wort <em>betont</em> werden, ist <code>&lt;em&gt;</code> richtig.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="em.html">&lt;em&gt;</a>
+        <a class="chip" href="cite.html">&lt;cite&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

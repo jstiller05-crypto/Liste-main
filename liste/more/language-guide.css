@@ -1,12 +1,13 @@
 :root {
-  --bg: #1f1f1f;
-  --panel: #2a2a2a;
-  --panel-strong: #333333;
-  --line: #4a4a4a;
-  --text: #f5f5f5;
-  --muted: #d3d3d3;
-  --accent: #e6e6e6;
-  --accent-strong: #ffffff;
+  /* gleiche Farben wie more.css und die Spicker-Startseite */
+  --bg: #333333;
+  --panel: #2b2b2b;
+  --panel-strong: #222222;
+  --line: #444444;
+  --text: #f2f2f2;
+  --muted: #b5b5b5;
+  --accent: #4f8cff;          /* einzige Akzentfarbe */
+  --accent-strong: #f2f2f2;   /* Überschriften & Links bleiben hell */
 }
 
 * {
@@ -69,7 +70,7 @@ body {
 }
 
 .chapter {
-  background: transparent;
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 1.2rem 1.2rem 1.4rem;
@@ -102,7 +103,13 @@ body {
 .chapter a {
   color: var(--accent-strong);
   text-decoration: underline;
+  text-decoration-color: var(--accent);
   text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.chapter a:hover {
+  color: var(--accent);
 }
 
 .code-block {
@@ -137,19 +144,30 @@ code {
 }
 
 .copy-button {
-  background: #1a1a1a;
-  color: #f0f0f0;
-  border: 1px solid #4a4a4a;
-  padding: 6px 8px;
-  border-radius: 4px;
+  display: block;
+  margin: 0 0 6px auto;   /* rechtsbündig über dem Codeblock */
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   cursor: pointer;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
+}
+
+.copy-button:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.smart-link {
+  color: inherit;
+  text-decoration: underline dotted var(--accent);
 }
 
 pre {
   position: relative;
-  background: rgba(255,255,255,0.02);
+  background: var(--panel-strong);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0.75rem;

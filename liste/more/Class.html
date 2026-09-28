@@ -6,33 +6,91 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>Klassen (class)</title>
+  <title>CSS-Klassen (class) – Spicker</title>
 </head>
 <body>
-  <header>
-    <h1>CSS-Klassen</h1>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Selektoren</p>
+    <h1>CSS-Klassen (class)</h1>
+    <p class="page-lead">Mit Klassen gibst du Elementen einen Namen, um sie mit CSS zu gestalten oder mit JavaScript zu finden.</p>
   </header>
 
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Mit CSS-Klassen kannst du gezielt Elemente formatieren und mehrfach wiederverwenden.</p>
+      <p>Das Attribut <code>class</code> gibt einem Element einen oder mehrere Namen. Im CSS sprichst du die Klasse mit einem <strong>Punkt</strong> an. Anders als eine ID darf eine Klasse beliebig oft auf der Seite vorkommen.</p>
     </section>
-
     <section>
       <h2>Syntax</h2>
-      <pre><code>&lt;div class="example"&gt;Inhalt&lt;/div&gt;
-.example { color: red; }</code></pre>
-    </section>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="card"&gt;Inhalt&lt;/div&gt;
 
+/* CSS */
+.card {
+  padding: 16px;
+  border-radius: 10px;
+}</code></pre>
+    </section>
     <section>
-      <h2>Hinweis</h2>
-      <p>CSS-Dateien müssen im &lt;head&gt; über ein &lt;link&gt; eingebunden werden.</p>
+      <h2>Mehrere Klassen kombinieren</h2>
+      <pre><code>&lt;button class="button filter-btn active"&gt;HTML&lt;/button&gt;
+
+/* trifft alle Buttons */
+.button { padding: 6px 14px; }
+
+/* trifft nur Buttons, die AUCH "active" haben (ohne Leerzeichen!) */
+.button.active { background: #4f8cff; }
+
+/* trifft .button INNERHALB von .button-row (mit Leerzeichen) */
+.button-row .button { margin: 4px; }</code></pre>
+      <p>So lassen sich z. B. Filter-Buttons bauen: alle teilen <code>.button</code>, der gewählte bekommt zusätzlich <code>.active</code>.</p>
+    </section>
+    <section>
+      <h2>Klassen mit JavaScript ändern</h2>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>el.classList.add("active")</code></td><td>Klasse hinzufügen</td></tr>
+          <tr><td><code>el.classList.remove("active")</code></td><td>Klasse entfernen</td></tr>
+          <tr><td><code>el.classList.toggle("active")</code></td><td>An/aus umschalten</td></tr>
+          <tr><td><code>el.classList.contains("active")</code></td><td>Prüfen: <code>true</code>/<code>false</code></td></tr>
+          <tr><td><code>document.querySelectorAll(".card")</code></td><td>Alle Elemente mit der Klasse finden</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Klasse oder ID?</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>class</th><th>id</th></tr></thead>
+        <tbody>
+          <tr><td>Im CSS</td><td><code>.name</code></td><td><code>#name</code></td></tr>
+          <tr><td>Wie oft pro Seite?</td><td>Beliebig oft</td><td>Genau einmal</td></tr>
+          <tr><td>Mehrere pro Element?</td><td>Ja, mit Leerzeichen getrennt</td><td>Nein</td></tr>
+          <tr><td>Typisch für</td><td>Styling</td><td>Sprungmarken, JavaScript, Formular-Labels</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Klassennamen beschreiben, <em>was</em> etwas ist (<code>.warning</code>), nicht wie es aussieht (<code>.red-text</code>).</li>
+        <li>Keine Leerzeichen im Namen – Bindestriche verwenden: <code>class="filter-group"</code>.</li>
+        <li>Groß-/Kleinschreibung zählt: <code>.Card</code> und <code>.card</code> sind verschieden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="id.html">ID-Attribut</a>
+        <a class="chip" href="style.html">&lt;style&gt;</a>
+        <a class="chip" href="container.html">Container</a>
+        <a class="chip" href="css-sprache.html">CSS</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

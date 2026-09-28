@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>h1 – h6 – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;h1&gt; – &lt;h6&gt;</h1>
+    <p class="page-lead">Überschriften in sechs Ebenen – von der wichtigsten (<code>&lt;h1&gt;</code>) bis zur kleinsten (<code>&lt;h6&gt;</code>).</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Überschriften gliedern eine Seite wie ein Inhaltsverzeichnis. Die Zahl steht für die <strong>Ebene</strong>, nicht für die Schriftgröße: <code>&lt;h1&gt;</code> ist der Titel der Seite, <code>&lt;h2&gt;</code> ein Kapitel, <code>&lt;h3&gt;</code> ein Unterkapitel usw.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;h1&gt;Kochbuch&lt;/h1&gt;
+  &lt;h2&gt;Vorspeisen&lt;/h2&gt;
+    &lt;h3&gt;Suppen&lt;/h3&gt;
+    &lt;h3&gt;Salate&lt;/h3&gt;
+  &lt;h2&gt;Hauptgerichte&lt;/h2&gt;
+    &lt;h3&gt;Nudeln&lt;/h3&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <h1>h1 – Kochbuch</h1><h2>h2 – Vorspeisen</h2><h3>h3 – Suppen</h3><h4>h4 – Tomatensuppe</h4><h5>h5 – Zutaten</h5><h6>h6 – Hinweis</h6>
+      </div>
+      <p>Die Einrückung im Code dient nur der Übersicht – der Browser ignoriert sie.</p>
+    </section>
+    <section>
+      <h2>Größe mit CSS anpassen</h2>
+      <pre><code>h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+
+/* h2 soll kleiner aussehen, bleibt aber ein h2 */
+.sidebar h2 { font-size: 1rem; }</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Pro Seite genau eine <code>&lt;h1&gt;</code>.</li>
+        <li>Keine Ebene überspringen: nach <code>&lt;h2&gt;</code> kommt <code>&lt;h3&gt;</code>, nicht <code>&lt;h5&gt;</code>.</li>
+        <li>Überschrift nicht wegen der Größe wählen – die Größe regelt CSS.</li>
+        <li>Screenreader-Nutzer springen oft von Überschrift zu Überschrift. Eine saubere Gliederung hilft ihnen enorm.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="container.html">Container</a>
+        <a class="chip" href="text-format.html">Textformatierung</a>
+        <a class="chip" href="elements.html">Aufbau eines Elements</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -6,24 +6,47 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>footer</title>
+  <title>&lt;footer&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Struktur</p>
     <h1>&lt;footer&gt;</h1>
+    <p class="page-lead">Der Fußbereich einer Seite oder eines Abschnitts – z. B. Kontakt, Copyright, Links.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Fußbereich eines Dokuments oder Abschnitts (z. B. Copyright, Links).</p>
+      <p><code>&lt;footer&gt;</code> enthält abschließende Infos. Wie <code>&lt;header&gt;</code> kann er zur ganzen Seite oder zu einem einzelnen <code>&lt;article&gt;</code> gehören.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;footer&gt;© 2026&lt;/footer&gt;</code></pre>
+      <pre><code>&lt;footer&gt;
+  &lt;p&gt;Erstellt von &lt;a href="https://example.com"&gt;Max Mustermann&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;© 2026&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Kontaktdaten im Footer passen gut in ein <code>&lt;address&gt;</code>.</li>
+        <li>Der Footer muss nicht unten „kleben“ – er steht einfach am Ende seines Bereichs.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="header.html">&lt;header&gt;</a>
+        <a class="chip" href="address.html">&lt;address&gt;</a>
+        <a class="chip" href="main.html">&lt;main&gt;</a>
+        <a class="chip" href="container.html">Container</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

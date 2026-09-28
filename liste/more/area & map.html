@@ -6,39 +6,119 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>area & map</title>
+  <title>map &amp; area – Spicker</title>
 </head>
 <body>
-  <header>
-    <h1>Die map & area Elemente</h1>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
+    <h1>&lt;map&gt; &amp; &lt;area&gt;</h1>
+    <p class="page-lead">Macht bestimmte Bereiche eines Bildes klickbar (Image-Map).</p>
   </header>
 
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Mit <code>&lt;map&gt;</code> und <code>&lt;area&gt;</code> definierst du klickbare Bereiche in einem Bild (image map).</p>
+      <p>Mit einer Image-Map legst du über ein Bild unsichtbare, klickbare Flächen – z. B. Länder auf einer Karte oder Teile eines Schreibtisch-Fotos. <code>&lt;map&gt;</code> ist der Container, jedes <code>&lt;area&gt;</code> ist eine klickbare Fläche.</p>
     </section>
-
+    <section>
+      <h2>So hängt alles zusammen</h2>
+      <ol>
+        <li>Das Bild bekommt <code>usemap="#name"</code> (mit <code>#</code>).</li>
+        <li><code>&lt;map&gt;</code> bekommt <code>name="name"</code> (ohne <code>#</code>).</li>
+        <li>In <code>&lt;map&gt;</code> stehen die <code>&lt;area&gt;</code>-Flächen mit Form (<code>shape</code>), Koordinaten (<code>coords</code>) und Ziel (<code>href</code>).</li>
+      </ol>
+    </section>
     <section>
       <h2>Syntax</h2>
-      <pre><code>&lt;img src="bild.jpg" usemap="#mapname"&gt;
+      <pre><code>&lt;img src="bild.jpg" alt="…" usemap="#mapname"&gt;
+
 &lt;map name="mapname"&gt;
-  &lt;area shape="rect" coords="x1,y1,x2,y2" href="ziel.html" alt="..."&gt;
+  &lt;area shape="rect" coords="x1,y1,x2,y2" href="ziel.html" alt="…"&gt;
 &lt;/map&gt;</code></pre>
     </section>
-
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;img src="workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379"&gt;
+      <pre><code>&lt;img src="workplace.jpg" alt="Arbeitsplatz" usemap="#workmap" width="400" height="379"&gt;
+
 &lt;map name="workmap"&gt;
-  &lt;area shape="rect" coords="34,44,270,350" alt="WWW" href="world-wide-web"&gt;
+  &lt;!-- Rechteck: linke obere Ecke (34,44) bis rechte untere Ecke (270,350) --&gt;
+  &lt;area shape="rect" coords="34,44,270,350" href="computer.html" alt="Computer"&gt;
+
+  &lt;!-- Kreis: Mittelpunkt (337,300), Radius 44 --&gt;
+  &lt;area shape="circle" coords="337,300,44" href="kaffee.html" alt="Kaffeetasse"&gt;
+
+  &lt;!-- Vieleck: beliebig viele Punkte x,y --&gt;
+  &lt;area shape="poly" coords="290,172,333,104,388,172" href="lampe.html" alt="Lampe"&gt;
 &lt;/map&gt;</code></pre>
-      <p>Danach kannst du die Bereiche mit JavaScript weiter bearbeiten.</p>
+    </section>
+    <section>
+      <h2>Formen und Koordinaten</h2>
+      <table class="info-table">
+        <thead><tr><th>shape</th><th>coords</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>rect</code></td><td><code>x1,y1,x2,y2</code></td><td>Linke obere und rechte untere Ecke</td></tr>
+          <tr><td><code>circle</code></td><td><code>x,y,r</code></td><td>Mittelpunkt und Radius</td></tr>
+          <tr><td><code>poly</code></td><td><code>x1,y1,x2,y2,x3,y3,…</code></td><td>Eckpunkte eines Vielecks</td></tr>
+          <tr><td><code>default</code></td><td>–</td><td>Der ganze Rest des Bildes</td></tr>
+        </tbody>
+      </table>
+      <p>Alle Werte sind Pixel, gemessen von der <strong>linken oberen Ecke</strong> des Bildes (0,0).</p>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>name (map)</code></td><td>Name, auf den <code>usemap</code> verweist</td></tr>
+          <tr><td><code>usemap (img)</code></td><td><code>#</code> + Name der Map</td></tr>
+          <tr><td><code>shape (area)</code></td><td><code>rect</code>, <code>circle</code>, <code>poly</code> oder <code>default</code></td></tr>
+          <tr><td><code>coords (area)</code></td><td>Koordinaten der Fläche</td></tr>
+          <tr><td><code>href (area)</code></td><td>Ziel beim Klick</td></tr>
+          <tr><td><code>alt (area)</code></td><td>Beschreibung der Fläche (Pflicht, wenn <code>href</code> gesetzt)</td></tr>
+          <tr><td><code>target (area)</code></td><td>z. B. <code>_blank</code> für neuen Tab</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Koordinaten herausfinden</h2>
+      <p>Am einfachsten mit JavaScript: Klick ins Bild, und die Konsole (F12) zeigt die Position.</p>
+      <pre><code>const image = document.querySelector('img[usemap]');
+
+image.addEventListener("click", (event) =&gt; {
+  // offsetX/Y = Position relativ zum Bild
+  console.log("x:", event.offsetX, "y:", event.offsetY);
+});</code></pre>
+    </section>
+    <section>
+      <h2>Mit JavaScript auf Flächen reagieren</h2>
+      <pre><code>document.querySelectorAll("area").forEach((area) =&gt; {
+  area.addEventListener("click", (event) =&gt; {
+    event.preventDefault();            // Link nicht öffnen
+    console.log("Geklickt:", area.alt);
+  });
+});</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><strong>Größte Falle:</strong> Wird das Bild per CSS skaliert (z. B. <code>max-width: 100%</code>), passen die Koordinaten nicht mehr – sie gelten immer für die Originalgröße.</li>
+        <li>Die Flächen sind unsichtbar. Nutzer wissen nicht, wo sie klicken können – ein Hinweis im Text hilft.</li>
+        <li>Für moderne, responsive Seiten ist oft ein SVG mit Links die flexiblere Lösung.</li>
+        <li><code>usemap</code> braucht das <code>#</code>, <code>name</code> nicht – das wird leicht verwechselt.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+        <a class="chip" href="a.html">&lt;a&gt;</a>
+        <a class="chip" href="canvas.html">&lt;canvas&gt;</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

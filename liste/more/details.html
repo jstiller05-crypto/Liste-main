@@ -6,27 +6,77 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>details</title>
+  <title>&lt;details&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Interaktiv</p>
     <h1>&lt;details&gt;</h1>
+    <p class="page-lead">Ein auf- und zuklappbarer Bereich – ganz ohne JavaScript.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Ein ein-/ausklappbarer Bereich mit zugehörigem &lt;summary&gt; als Titel.</p>
+      <p><code>&lt;details&gt;</code> versteckt seinen Inhalt, bis man auf die Überschrift klickt. Die Überschrift steht im Kind-Element <code>&lt;summary&gt;</code>. Perfekt für FAQs, Spoiler oder „Mehr anzeigen“.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>&lt;details&gt;
+  &lt;summary&gt;Immer sichtbarer Titel&lt;/summary&gt;
+  Inhalt, der erst nach dem Klick erscheint.
+&lt;/details&gt;</code></pre>
     </section>
     <section>
       <h2>Beispiel</h2>
       <pre><code>&lt;details&gt;
-  &lt;summary&gt;Mehr Infos&lt;/summary&gt;
-  &lt;p&gt;Zusätzliche Inhalte.&lt;/p&gt;
+  &lt;summary&gt;Lösung anzeigen&lt;/summary&gt;
+  &lt;p&gt;Die Antwort ist &lt;code&gt;i &amp;lt; 10&lt;/code&gt;.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details open&gt;
+  &lt;summary&gt;Schon geöffnet&lt;/summary&gt;
+  &lt;p&gt;Dank &lt;code&gt;open&lt;/code&gt; ist dieser Bereich von Anfang an offen.&lt;/p&gt;
 &lt;/details&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <details><summary>Lösung anzeigen</summary><p>Die Antwort ist <code>i &lt; 10</code>.</p></details>
+      </div>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>open</code></td><td>Bereich ist von Anfang an geöffnet</td></tr>
+          <tr><td><code>name</code></td><td>Gleicher Name bei mehreren <code>&lt;details&gt;</code> → nur eines kann gleichzeitig offen sein (Akkordeon)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Mit JavaScript reagieren</h2>
+      <pre><code>const box = document.querySelector("details");
+box.addEventListener("toggle", () =&gt; {
+  console.log("offen?", box.open);   // true oder false
+});</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>&lt;summary&gt;</code> muss das erste Kind von <code>&lt;details&gt;</code> sein.</li>
+        <li>Das Dreieck vor dem Titel kannst du per CSS mit <code>summary::marker</code> gestalten oder entfernen (<code>list-style: none</code>).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="dialog.html">&lt;dialog&gt;</a>
+        <a class="chip" href="menu.html">&lt;menu&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

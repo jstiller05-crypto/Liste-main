@@ -6,26 +6,53 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>body</title>
+  <title>&lt;body&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Grundgerüst</p>
     <h1>&lt;body&gt;</h1>
+    <p class="page-lead">Enthält alles, was auf der Seite sichtbar ist.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Beinhaltet den sichtbaren Inhalt einer HTML-Seite (alles, was gerendert wird).</p>
+      <p>Überschriften, Texte, Bilder, Tabellen, Formulare – alles Sichtbare steht in <code>&lt;body&gt;</code>. Pro Seite gibt es genau ein <code>&lt;body&gt;</code>.</p>
     </section>
     <section>
-      <h2>Beispiel</h2>
+      <h2>Typischer Aufbau</h2>
       <pre><code>&lt;body&gt;
-  &lt;h1&gt;Hallo&lt;/h1&gt;
+  &lt;header&gt;Logo, Titel, Navigation&lt;/header&gt;
+  &lt;nav&gt;Hauptmenü&lt;/nav&gt;
+  &lt;main&gt;
+    &lt;article&gt;Der eigentliche Inhalt&lt;/article&gt;
+    &lt;aside&gt;Randinfos&lt;/aside&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;Impressum, Kontakt&lt;/footer&gt;
 &lt;/body&gt;</code></pre>
     </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Wenn du CSS auf <code>body</code> setzt (z. B. <code>background-color</code>, <code>font-family</code>), gilt es für die ganze Seite.</li>
+        <li>Browser geben <code>body</code> standardmäßig <code>margin: 8px</code>. Viele setzen deshalb <code>body { margin: 0; }</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="html.html">&lt;html&gt;</a>
+        <a class="chip" href="head.html">&lt;head&gt;</a>
+        <a class="chip" href="header.html">&lt;header&gt;</a>
+        <a class="chip" href="main.html">&lt;main&gt;</a>
+        <a class="chip" href="footer.html">&lt;footer&gt;</a>
+      </div>
+    </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

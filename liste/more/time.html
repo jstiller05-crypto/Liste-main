@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>&lt;time&gt; – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;time&gt;</h1>
+    <p class="page-lead">Kennzeichnet ein Datum oder eine Uhrzeit – lesbar für Menschen und Maschinen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Der Text zwischen den Tags ist für Menschen, das Attribut <code>datetime</code> enthält dasselbe Datum im festen Format für Programme, Kalender und Suchmaschinen.</p>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;p&gt;Veröffentlicht am &lt;time datetime="2026-09-28"&gt;28. September 2026&lt;/time&gt;.&lt;/p&gt;
+&lt;p&gt;Das Treffen beginnt um &lt;time datetime="18:30"&gt;halb sieben&lt;/time&gt;.&lt;/p&gt;
+&lt;p&gt;Termin: &lt;time datetime="2026-10-03T14:00"&gt;3. Oktober, 14 Uhr&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Dauer: &lt;time datetime="PT1H30M"&gt;1,5 Stunden&lt;/time&gt;&lt;/p&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Formate für datetime</h2>
+      <table class="info-table">
+        <thead><tr><th>Format</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Datum</td><td><code>2026-09-28</code></td></tr>
+          <tr><td>Uhrzeit</td><td><code>18:30</code></td></tr>
+          <tr><td>Datum + Uhrzeit</td><td><code>2026-09-28T18:30</code></td></tr>
+          <tr><td>Mit Zeitzone</td><td><code>2026-09-28T18:30+02:00</code></td></tr>
+          <tr><td>Dauer</td><td><code>PT1H30M</code> (1 Stunde 30 Minuten)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Steht der Text schon im richtigen Format (<code>&lt;time&gt;2026-09-28&lt;/time&gt;</code>), kann <code>datetime</code> entfallen.</li>
+        <li>Für andere Werte (Preise, Artikelnummern) gibt es <code>&lt;data&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="data.html">&lt;data&gt;</a>
+        <a class="chip" href="article.html">&lt;article&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

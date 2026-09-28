@@ -6,24 +6,71 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>iframe</title>
+  <title>&lt;iframe&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Einbetten</p>
     <h1>&lt;iframe&gt;</h1>
+    <p class="page-lead">Zeigt eine andere Webseite als Fenster innerhalb deiner Seite an – z. B. YouTube-Videos oder Karten.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Betten eine andere Webseite innerhalb der aktuellen Seite ein.</p>
+      <p>Ein <code>&lt;iframe&gt;</code> (<em>inline frame</em>) ist wie ein kleines Browserfenster in deiner Seite. YouTube, Google Maps oder CodePen geben dir fertigen iframe-Code zum Einbetten.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;iframe src="https://example.com" width="600" height="400"&gt;&lt;/iframe&gt;</code></pre>
+      <pre><code>&lt;iframe
+  src="https://www.youtube.com/embed/VIDEO-ID"
+  width="560" height="315"
+  title="Mein Tutorial-Video"
+  loading="lazy"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>src</code></td><td>Adresse der eingebetteten Seite</td></tr>
+          <tr><td><code>title</code></td><td>Beschreibung für Screenreader (Pflicht für Barrierefreiheit)</td></tr>
+          <tr><td><code>width / height</code></td><td>Größe des Fensters</td></tr>
+          <tr><td><code>loading</code></td><td><code>lazy</code> = erst laden, wenn sichtbar</td></tr>
+          <tr><td><code>allowfullscreen</code></td><td>Vollbild erlauben (für Videos)</td></tr>
+          <tr><td><code>sandbox</code></td><td>Schränkt ein, was die fremde Seite darf (Skripte, Formulare …)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Responsive (passt sich der Breite an)</h2>
+      <pre><code>iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* Seitenverhältnis wie ein Video */
+  border: none;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Viele Seiten (z. B. Google, Banken) verbieten das Einbetten – dann bleibt der Rahmen leer.</li>
+        <li>Nur vertrauenswürdige Seiten einbetten. Mit <code>sandbox</code> schränkst du fremde Inhalte ein.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="video.html">&lt;video&gt;</a>
+        <a class="chip" href="embed.html">&lt;embed&gt;</a>
+        <a class="chip" href="object.html">&lt;object&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

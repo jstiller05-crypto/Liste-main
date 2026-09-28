@@ -6,28 +6,71 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>audio</title>
+  <title>&lt;audio&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
     <h1>&lt;audio&gt;</h1>
+    <p class="page-lead">Spielt Audiodateien direkt im Browser ab – mit eingebauter Steuerung.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Einbettung von Audiodateien mit Steuerung (Play/Pause) im Browser.</p>
+      <p><code>&lt;audio&gt;</code> bettet Musik, Podcasts oder Soundeffekte ein. Mit <code>controls</code> erscheinen Play, Pause, Lautstärke und Zeitleiste. Über <code>&lt;source&gt;</code> kannst du mehrere Formate anbieten – der Browser nimmt das erste, das er kann.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
       <pre><code>&lt;audio controls&gt;
-  &lt;source src="audio.ogg" type="audio/ogg"&gt;
-  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
-  Ihr Browser unterstützt das Audio-Element nicht.
+  &lt;source src="sound.mp3" type="audio/mpeg"&gt;
+  &lt;source src="sound.ogg" type="audio/ogg"&gt;
+  Dein Browser unterstützt kein Audio.   &lt;!-- nur sichtbar, wenn nichts klappt --&gt;
 &lt;/audio&gt;</code></pre>
     </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>controls</code></td><td>Zeigt die Steuerung an</td></tr>
+          <tr><td><code>autoplay</code></td><td>Startet sofort – wird von Browsern meist blockiert, außer mit <code>muted</code></td></tr>
+          <tr><td><code>loop</code></td><td>Wiederholt endlos</td></tr>
+          <tr><td><code>muted</code></td><td>Startet stumm</td></tr>
+          <tr><td><code>preload</code></td><td><code>none</code>, <code>metadata</code> oder <code>auto</code> – wie viel vorab geladen wird</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Mit JavaScript steuern</h2>
+      <pre><code>const audio = document.querySelector("audio");
+
+audio.play();          // abspielen
+audio.pause();         // pausieren
+audio.volume = 0.5;    // Lautstärke 0 bis 1
+audio.currentTime = 0; // an den Anfang springen
+
+audio.addEventListener("ended", () =&gt; console.log("Fertig abgespielt"));</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>MP3 wird von allen Browsern unterstützt.</li>
+        <li>Automatisch startender Ton nervt – lieber den Nutzer selbst starten lassen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="video.html">&lt;video&gt;</a>
+        <a class="chip" href="embed.html">&lt;embed&gt;</a>
+        <a class="chip" href="object.html">&lt;object&gt;</a>
+      </div>
+    </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

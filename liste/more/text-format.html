@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>Textformatierung – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>Textformatierung</h1>
+    <p class="page-lead">Kleine Elemente, die einzelne Wörter im Fließtext hervorheben oder verändern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Übersicht</h2>
+      <table class="info-table">
+        <thead><tr><th>Tag</th><th>Darstellung</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;strong&gt;</code></td><td><strong>fett</strong></td><td>Wichtig, dringend, Warnung</td></tr>
+          <tr><td><code>&lt;b&gt;</code></td><td><b>fett</b></td><td>Nur optisch hervorgehoben, ohne besondere Wichtigkeit (z. B. Stichwörter)</td></tr>
+          <tr><td><code>&lt;s&gt;</code></td><td><s>durchgestrichen</s></td><td>Nicht mehr richtig oder aktuell (z. B. alter Preis)</td></tr>
+          <tr><td><code>&lt;u&gt;</code></td><td><u>unterstrichen</u></td><td>Unartikulierte Anmerkung, z. B. Rechtschreibfehler markieren</td></tr>
+          <tr><td><code>&lt;small&gt;</code></td><td><small>klein</small></td><td>Kleingedrucktes: Hinweise, Copyright, Rechtliches</td></tr>
+          <tr><td><code>&lt;sub&gt;</code></td><td>H<sub>2</sub>O</td><td>Tiefgestellt: chemische Formeln, Indizes</td></tr>
+          <tr><td><code>&lt;sup&gt;</code></td><td>x<sup>2</sup></td><td>Hochgestellt: Exponenten, Fußnoten</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;p&gt;&lt;strong&gt;Achtung:&lt;/strong&gt; Vor dem Update Daten sichern!&lt;/p&gt;
+&lt;p&gt;Zutaten: &lt;b&gt;Mehl&lt;/b&gt;, &lt;b&gt;Zucker&lt;/b&gt;, &lt;b&gt;Eier&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Preis: &lt;s&gt;49 €&lt;/s&gt; jetzt 39 €&lt;/p&gt;
+&lt;p&gt;Wasser ist H&lt;sub&gt;2&lt;/sub&gt;O, und 2&lt;sup&gt;3&lt;/sup&gt; = 8.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;© 2026 Beispielfirma&lt;/small&gt;&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p><strong>Achtung:</strong> Vor dem Update Daten sichern!</p><p>Zutaten: <b>Mehl</b>, <b>Zucker</b>, <b>Eier</b></p><p>Preis: <s>49 €</s> jetzt 39 €</p><p>Wasser ist H<sub>2</sub>O, und 2<sup>3</sup> = 8.</p><p><small>© 2026 Beispielfirma</small></p>
+      </div>
+    </section>
+    <section>
+      <h2>strong oder b? s oder del?</h2>
+      <table class="info-table">
+        <thead><tr><th>Frage</th><th>Antwort</th></tr></thead>
+        <tbody>
+          <tr><td>Soll der Leser das unbedingt beachten?</td><td><code>&lt;strong&gt;</code></td></tr>
+          <tr><td>Soll es nur auffallen?</td><td><code>&lt;b&gt;</code></td></tr>
+          <tr><td>Ist der Text veraltet?</td><td><code>&lt;s&gt;</code></td></tr>
+          <tr><td>Wurde der Text nachträglich gelöscht (Änderungsverlauf)?</td><td><code>&lt;del&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Soll etwas nur anders <em>aussehen</em>, ist CSS die bessere Wahl (<code>font-weight</code>, <code>text-decoration</code>).</li>
+        <li><code>&lt;u&gt;</code> sparsam einsetzen – Unterstrichenes wird schnell für einen Link gehalten.</li>
+        <li><code>&lt;sup&gt;</code> und <code>&lt;sub&gt;</code> verändern die Zeilenhöhe leicht. Mit <code>line-height: 0</code> bei <code>sup, sub</code> lässt sich das ausgleichen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="em.html">&lt;em&gt;</a>
+        <a class="chip" href="i.html">&lt;i&gt;</a>
+        <a class="chip" href="mark.html">&lt;mark&gt;</a>
+        <a class="chip" href="del.html">&lt;del&gt;</a>
+        <a class="chip" href="ins.html">&lt;ins&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

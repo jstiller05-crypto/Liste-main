@@ -29,35 +29,35 @@ let oTableEntries = { "List": [
       "Tag": "[]",
       "Beschreibung": "zum Definieren von Listen und Arrays",
       "Sprache": "JS",
-      "Link": "",
+      "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
       "Tag": "()",
       "Beschreibung": "zum Definieren von Funktionen und Gruppierungen",
       "Sprache": "JS",
-      "Link": "",
+      "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
       "Tag": "{}",
       "Beschreibung": "zum Definieren von Objekten und Blockstrukturen",
       "Sprache": "JS",
-      "Link": "",
+      "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
       "Tag": "<element>",
       "Beschreibung": "Platzhalter für ein beliebiges HTML-Element",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/elements.html",
       "class": ["zeichen","html"]
     },
     {
       "Tag": "</element>",
       "Beschreibung": "Schließt ein HTML-Element",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/elements.html",
       "class": ["zeichen","html","basis"]
     },
     // A
@@ -115,7 +115,7 @@ let oTableEntries = { "List": [
       "Tag": "<b>",
       "Beschreibung": "Fetter Text ohne zusätzliche Semantik",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
@@ -335,7 +335,7 @@ let oTableEntries = { "List": [
       "Tag": "<g>",
       "Beschreibung": "Gruppiert SVG-Elemente innerhalb eines svg-Tags",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/svg.html",
       "class": ["html","media"]
     },
     // H
@@ -343,42 +343,42 @@ let oTableEntries = { "List": [
       "Tag": "<h1>",
       "Beschreibung": "Wichtigste Überschrift",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
       "Tag": "<h2>",
       "Beschreibung": "Zweite Überschriftenebene",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
       "Tag": "<h3>",
       "Beschreibung": "Dritte Überschriftenebene",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
       "Tag": "<h4>",
       "Beschreibung": "Vierte Überschriftenebene",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
       "Tag": "<h5>",
       "Beschreibung": "Fünfte Überschriftenebene",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
       "Tag": "<h6>",
       "Beschreibung": "Sechste Überschriftenebene",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
@@ -569,28 +569,28 @@ let oTableEntries = { "List": [
       "Tag": "<output>",
       "Beschreibung": "Ausgabe eines Formulars oder Skripts",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/output.html",
       "class": ["html","form","text"]
     },
     {
       "Tag": "<picture>",
       "Beschreibung": "Responsive Bildquelle mit mehreren Quellen",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/picture.html",
       "class": ["html","media"]
     },
     {
       "Tag": "<pre>",
       "Beschreibung": "Vorformatierter Text mit festen Abständen",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/computer-text.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<progress>",
       "Beschreibung": "Fortschrittsanzeige",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/meter.html",
       "class": ["html","form"]
     },
     // Q
@@ -598,42 +598,42 @@ let oTableEntries = { "List": [
       "Tag": "<q>",
       "Beschreibung": "Kurz-Zitat innerhalb eines Textes",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/blockquote.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<ruby>",
       "Beschreibung": "Text mit Aussprachehilfe",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/ruby.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<rp>",
       "Beschreibung": "Text für Browser ohne Ruby-Unterstützung",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/ruby.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<rt>",
       "Beschreibung": "Ruby-Text zur Aussprache",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/ruby.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<s>",
       "Beschreibung": "Durchgestrichener Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<samp>",
       "Beschreibung": "Beispielausgabe eines Programms",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/computer-text.html",
       "class": ["html","text"]
     },
     {
@@ -647,42 +647,42 @@ let oTableEntries = { "List": [
       "Tag": "<section>",
       "Beschreibung": "Thematischer Abschnitt einer Seite",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/container.html",
       "class": ["html","container","semantik"]
     },
     {
       "Tag": "<select>",
       "Beschreibung": "Auswahlmenü im Formular",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/select.html",
       "class": ["html","form","interactive"]
     },
     {
       "Tag": "<small>",
       "Beschreibung": "Kleinerer Nebentext",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<source>",
       "Beschreibung": "Quelle für Audio, Video oder Bild",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/picture.html",
       "class": ["html","media"]
     },
     {
       "Tag": "<span>",
       "Beschreibung": "Inline-Container für Styling oder Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/container.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<strong>",
       "Beschreibung": "Wichtig hervorgehobener Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
@@ -696,28 +696,28 @@ let oTableEntries = { "List": [
       "Tag": "<sub>",
       "Beschreibung": "Tiefgestellter Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<summary>",
       "Beschreibung": "Zusammenfassung für details",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/details.html",
       "class": ["html","interactive","text"]
     },
     {
       "Tag": "<sup>",
       "Beschreibung": "Hochgestellter Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<svg>",
       "Beschreibung": "Vektorgrafik im HTML-Dokument",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/svg.html",
       "class": ["html","media"]
     },
     {
@@ -731,7 +731,7 @@ let oTableEntries = { "List": [
       "Tag": "<tbody>",
       "Beschreibung": "Hauptbereich einer Tabelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
@@ -745,70 +745,70 @@ let oTableEntries = { "List": [
       "Tag": "<template>",
       "Beschreibung": "Vorlage für wiederverwendbaren HTML-Code",
       "Sprache": "html",
-      "Link": "more/template.html",
+      "Link": "more/template-tag.html",
       "class": ["html","container"]
     },
     {
       "Tag": "<textarea>",
       "Beschreibung": "Mehrzeiliges Texteingabefeld",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/textarea.html",
       "class": ["html","form","interactive"]
     },
     {
       "Tag": "<tfoot>",
       "Beschreibung": "Fußbereich einer Tabelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<th>",
       "Beschreibung": "Kopfzelle einer Tabelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<thead>",
       "Beschreibung": "Kopfbereich einer Tabelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<time>",
       "Beschreibung": "Datum oder Uhrzeit markieren",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/time.html",
       "class": ["html","text"]
     },
     {
       "Tag": "<title>",
       "Beschreibung": "Titel des Dokuments im Browser-Tab",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/head.html",
       "class": ["html","metadata"]
     },
     {
       "Tag": "<tr>",
       "Beschreibung": "Zeile in einer Tabelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
       "Tag": "<track>",
       "Beschreibung": "Untertitel oder Textspur für Video/Audio",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/video.html",
       "class": ["html","media"]
     },
     {
       "Tag": "<u>",
       "Beschreibung": "Unterstrichener Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
@@ -822,7 +822,7 @@ let oTableEntries = { "List": [
       "Tag": "<var>",
       "Beschreibung": "Variable oder Ausdruck im Text",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/computer-text.html",
       "class": ["html","text"]
     },
     {
@@ -836,7 +836,7 @@ let oTableEntries = { "List": [
       "Tag": "<wbr>",
       "Beschreibung": "Optionale Zeilenumbruchstelle",
       "Sprache": "html",
-      "Link": "",
+      "Link": "more/br.html",
       "class": ["html","text"]
     },
     // CSS
@@ -872,63 +872,63 @@ let oTableEntries = { "List": [
       "Tag": "Typselektor",
       "Beschreibung": "Wählt alle Elemente des angegebenen Typs aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Klassenselektor",
       "Beschreibung": "Wählt Elemente nach ihrer CSS-Klasse aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "ID-Selektor",
       "Beschreibung": "Wählt Elemente anhand ihres id-Attributs aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Universalselektor",
       "Beschreibung": "Wählt alle Elemente auf der Seite aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Kindselektoren",
       "Beschreibung": "Wählt direkte Kinder eines Elements aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Nachfahrensselektoren",
       "Beschreibung": "Wählt Nachfahren eines Elements aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Allgemeine Geschwisterselektoren",
       "Beschreibung": "Wählt nachfolgende Geschwisterelemente aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Angrenzende Geschwisterselektoren",
       "Beschreibung": "Wählt das unmittelbar folgende Geschwisterelement aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
       "Tag": "Attributselektor",
       "Beschreibung": "Wählt Elemente nach Attributwert aus",
       "Sprache": "CSS",
-      "Link": "",
+      "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     // C++

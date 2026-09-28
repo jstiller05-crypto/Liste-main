@@ -6,24 +6,44 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>bdo</title>
+  <title>&lt;bdo&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;bdo&gt;</h1>
+    <p class="page-lead">Erzwingt eine bestimmte Schreibrichtung für den enthaltenen Text.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Überschreibt die Schreibrichtung des enthaltenen Textes (z. B. `dir="rtl"`).</p>
+      <p><code>&lt;bdo&gt;</code> (<em>bidirectional override</em>) überschreibt die Schreibrichtung. Das Attribut <code>dir</code> ist Pflicht: <code>rtl</code> = rechts nach links, <code>ltr</code> = links nach rechts.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;bdo dir="rtl"&gt;Rechts-nach-links&lt;/bdo&gt;</code></pre>
+      <pre><code>&lt;p&gt;&lt;bdo dir="rtl"&gt;Hallo Welt&lt;/bdo&gt;&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p><bdo dir="rtl">Hallo Welt</bdo></p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Im Alltag selten gebraucht – eher für Sprach-Demos oder Sonderfälle.</li>
+        <li>Für Texte mit unbekannter Richtung lieber <code>&lt;bdi&gt;</code> verwenden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="bdi.html">&lt;bdi&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

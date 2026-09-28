@@ -6,26 +6,67 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>style</title>
+  <title>&lt;style&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Einbinden</p>
     <h1>&lt;style&gt;</h1>
+    <p class="page-lead">Schreibt CSS direkt in die HTML-Seite, statt eine eigene Datei einzubinden.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Schreibt CSS direkt im HTML-Dokument innerhalb des &lt;head&gt;.</p>
+      <p>CSS kann an drei Stellen stehen. <code>&lt;style&gt;</code> im <code>&lt;head&gt;</code> ist die mittlere Variante:</p>
     </section>
     <section>
-      <h2>Beispiel</h2>
-      <pre><code>&lt;style&gt;
-  body { background: #000; color:#fff; }
-&lt;/style&gt;</code></pre>
+      <h2>Die drei Wege für CSS</h2>
+      <pre><code>&lt;!-- 1) Externe Datei – für mehrere Seiten (empfohlen) --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- 2) style-Element – CSS nur für diese eine Seite --&gt;
+&lt;style&gt;
+  h1 {
+    color: #4f8cff;
+  }
+&lt;/style&gt;
+
+&lt;!-- 3) style-Attribut – nur für dieses eine Element --&gt;
+&lt;p style="color: gray;"&gt;Grauer Text&lt;/p&gt;</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Weg</th><th>Gut für</th><th>Nachteil</th></tr></thead>
+        <tbody>
+          <tr><td>Externe Datei</td><td>Ganze Website</td><td>Eine Datei mehr</td></tr>
+          <tr><td><code>&lt;style&gt;</code></td><td>Einzelne Seite, schnelle Tests</td><td>Nicht auf anderen Seiten nutzbar</td></tr>
+          <tr><td><code>style="…"</code></td><td>Einmalige Ausnahme</td><td>Unübersichtlich, schwer zu überschreiben</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Welche Regel gewinnt?</h2>
+      <p>Gelten mehrere Regeln für dasselbe Element, gewinnt die <strong>spezifischere</strong>: <code>style</code>-Attribut &gt; ID &gt; Klasse &gt; Element. Bei Gleichstand gewinnt die Regel, die weiter unten steht.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Für Projekte mit mehreren Seiten immer eine externe CSS-Datei nutzen.</li>
+        <li><code>&lt;style&gt;</code> gehört in den <code>&lt;head&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="link.html">&lt;link&gt; / Einbinden</a>
+        <a class="chip" href="Class.html">CSS-Klassen</a>
+        <a class="chip" href="id.html">ID-Attribut</a>
+        <a class="chip" href="css-sprache.html">CSS</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

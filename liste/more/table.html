@@ -6,27 +6,130 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>table</title>
+  <title>Tabellen (&lt;table&gt;) – Spicker</title>
 </head>
 <body>
-  <header>
-    <h1>&lt;table&gt;</h1>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Tabellen</p>
+    <h1>Tabellen (&lt;table&gt;)</h1>
+    <p class="page-lead">Stellt Daten in Zeilen und Spalten dar.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Struktur für tabellarische Daten mit &lt;thead&gt;, &lt;tbody&gt; und &lt;tfoot&gt;.</p>
+      <p>Eine Tabelle ist aus mehreren Elementen aufgebaut:</p>
+      <table class="info-table">
+        <thead><tr><th>Element</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;table&gt;</code></td><td>Die ganze Tabelle</td></tr>
+          <tr><td><code>&lt;caption&gt;</code></td><td>Titel der Tabelle (optional, als erstes Kind)</td></tr>
+          <tr><td><code>&lt;thead&gt;</code></td><td>Kopfbereich mit den Spaltenüberschriften</td></tr>
+          <tr><td><code>&lt;tbody&gt;</code></td><td>Hauptteil mit den Daten</td></tr>
+          <tr><td><code>&lt;tfoot&gt;</code></td><td>Fußbereich, z. B. Summen</td></tr>
+          <tr><td><code>&lt;tr&gt;</code></td><td><em>table row</em> – eine Zeile</td></tr>
+          <tr><td><code>&lt;th&gt;</code></td><td><em>table header</em> – Überschriftszelle (fett, zentriert)</td></tr>
+          <tr><td><code>&lt;td&gt;</code></td><td><em>table data</em> – normale Datenzelle</td></tr>
+        </tbody>
+      </table>
     </section>
     <section>
       <h2>Beispiel</h2>
       <pre><code>&lt;table&gt;
-  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Wert&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;caption&gt;Meine Lernzeiten&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tag&lt;/th&gt;
+      &lt;th&gt;Sprache&lt;/th&gt;
+      &lt;th&gt;Minuten&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Montag&lt;/td&gt;
+      &lt;td&gt;C++&lt;/td&gt;
+      &lt;td&gt;90&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Dienstag&lt;/td&gt;
+      &lt;td&gt;JavaScript&lt;/td&gt;
+      &lt;td&gt;45&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td colspan="2"&gt;Summe&lt;/td&gt;   &lt;!-- Zelle über 2 Spalten --&gt;
+      &lt;td&gt;135&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
 &lt;/table&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <table><caption>Meine Lernzeiten</caption><thead><tr><th>Tag</th><th>Sprache</th><th>Minuten</th></tr></thead><tbody><tr><td>Montag</td><td>C++</td><td>90</td></tr><tr><td>Dienstag</td><td>JavaScript</td><td>45</td></tr></tbody><tfoot><tr><td colspan="2">Summe</td><td>135</td></tr></tfoot></table>
+      </div>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>colspan</code></td><td>Zelle geht über mehrere Spalten (<code>&lt;td colspan="2"&gt;</code>)</td></tr>
+          <tr><td><code>rowspan</code></td><td>Zelle geht über mehrere Zeilen</td></tr>
+          <tr><td><code>scope</code></td><td>Bei <code>&lt;th&gt;</code>: <code>col</code> oder <code>row</code> – sagt Screenreadern, wofür die Überschrift gilt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tabellen gestalten (CSS)</h2>
+      <pre><code>table {
+  border-collapse: collapse;   /* doppelte Rahmen zusammenfassen */
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #4a4a4a;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {     /* jede zweite Zeile */
+  background-color: #2b2b2b;
+}
+
+tbody tr:hover {
+  background-color: #3a3a3a;   /* Zeile beim Drüberfahren */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tabelle mit JavaScript füllen</h2>
+      <p>Zeilen lassen sich auch per JavaScript erzeugen, z. B. aus einer Liste von Daten:</p>
+      <pre><code>const tbody = document.querySelector("#myTable tbody");
+
+const row = document.createElement("tr");   // neue Zeile
+const cell = document.createElement("td");  // neue Zelle
+cell.textContent = "Montag";
+row.appendChild(cell);                      // Zelle in Zeile
+tbody.appendChild(row);                     // Zeile in Tabelle</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Tabellen nur für Daten verwenden, nicht fürs Seitenlayout – dafür gibt es Flexbox und Grid.</li>
+        <li>Jede Zeile sollte gleich viele Zellen haben (Spannen mit <code>colspan</code> mitgezählt).</li>
+        <li>Auf schmalen Bildschirmen: die Tabelle in ein <code>&lt;div style="overflow-x: auto"&gt;</code> packen, dann kann man seitlich scrollen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="caption.html">&lt;caption&gt;</a>
+        <a class="chip" href="colgroup.html">&lt;colgroup&gt;</a>
+        <a class="chip" href="col.html">&lt;col&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

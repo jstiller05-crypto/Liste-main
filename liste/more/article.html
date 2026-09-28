@@ -6,27 +6,63 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>article</title>
+  <title>&lt;article&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Struktur</p>
     <h1>&lt;article&gt;</h1>
+    <p class="page-lead">Ein in sich abgeschlossener Inhalt, der auch alleine Sinn ergibt – z. B. Blogpost, News, Kommentar.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Ein eigenständiger Inhaltsblock, z. B. Artikel, Blog-Post oder Beitrag.</p>
+      <p>Test: Könnte man den Inhalt herauslösen und woanders veröffentlichen (z. B. im RSS-Feed)? Dann ist <code>&lt;article&gt;</code> richtig.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
       <pre><code>&lt;article&gt;
-  &lt;h2&gt;Titel&lt;/h2&gt;
-  &lt;p&gt;Inhalt des Artikels.&lt;/p&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Mein erstes Projekt&lt;/h2&gt;
+    &lt;p&gt;Veröffentlicht am &lt;time datetime="2026-09-28"&gt;28. September 2026&lt;/time&gt;&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;p&gt;Heute habe ich mit einem neuen Projekt angefangen …&lt;/p&gt;
+  &lt;footer&gt;Kategorie: Projekte&lt;/footer&gt;
 &lt;/article&gt;</code></pre>
     </section>
+    <section>
+      <h2>article, section oder div?</h2>
+      <table class="info-table">
+        <thead><tr><th>Element</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;article&gt;</code></td><td>Eigenständig, auch allein verständlich</td></tr>
+          <tr><td><code>&lt;section&gt;</code></td><td>Thematischer Abschnitt mit Überschrift, Teil eines Ganzen</td></tr>
+          <tr><td><code>&lt;div&gt;</code></td><td>Nur für Layout/Styling, ohne Bedeutung</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jedes <code>&lt;article&gt;</code> sollte eine Überschrift haben.</li>
+        <li>Articles dürfen verschachtelt werden, z. B. Kommentare innerhalb eines Blogposts.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="aside.html">&lt;aside&gt;</a>
+        <a class="chip" href="main.html">&lt;main&gt;</a>
+        <a class="chip" href="header.html">&lt;header&gt;</a>
+        <a class="chip" href="footer.html">&lt;footer&gt;</a>
+        <a class="chip" href="container.html">Container</a>
+      </div>
+    </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

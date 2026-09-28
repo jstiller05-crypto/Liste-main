@@ -6,24 +6,54 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>ins</title>
+  <title>&lt;ins&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;ins&gt;</h1>
+    <p class="page-lead">Markiert Text, der nachträglich eingefügt wurde – wird meist unterstrichen.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Markiert eingefügten Text (wird meist unterstrichen angezeigt).</p>
+      <p><code>&lt;ins&gt;</code> ist das Gegenstück zu <code>&lt;del&gt;</code>: Es zeigt neue oder ergänzte Inhalte.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;p&gt;&lt;ins&gt;Neuer Text&lt;/ins&gt;&lt;/p&gt;</code></pre>
+      <pre><code>&lt;p&gt;Treffen am &lt;del&gt;Montag&lt;/del&gt; &lt;ins&gt;Dienstag&lt;/ins&gt; um 18 Uhr.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Treffen am <del>Montag</del> <ins>Dienstag</ins> um 18 Uhr.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>cite</code></td><td>URL mit einer Erklärung zur Änderung</td></tr>
+          <tr><td><code>datetime</code></td><td>Zeitpunkt der Änderung</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nutzer halten unterstrichenen Text schnell für einen Link. Eventuell mit CSS anders hervorheben (z. B. Hintergrundfarbe).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="del.html">&lt;del&gt;</a>
+        <a class="chip" href="mark.html">&lt;mark&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

@@ -51,10 +51,12 @@ const PAGE_LANGUAGES = {
 
   // --- CSS ---
   "css-sprache.html":     "css",
+  "css-selektoren.html":  "css",
   "class.html":           "css",
 
   // --- JavaScript ---
   "javascript-sprache.html": "js",
+  "js-klammern.html":        "js",
 
   // --- HTML ---
   "html-sprache.html":    "html"
@@ -136,7 +138,11 @@ const smartLinkRules = [
   { words: ["Element", "Elemente", "HTML-Element", "HTML-Elemente"],
     links: { html: "html-sprache.html#elemente", css: "html-sprache.html#elemente", js: "html-sprache.html#elemente" } },
   { words: ["DOM"],                                       links: { js: "javascript-sprache.html#dom", html: "javascript-sprache.html#dom" } },
-  { words: ["Selektor", "Selektoren"],                    links: { css: "css-sprache.html#selektoren", html: "css-sprache.html#selektoren" } },
+  { words: ["Selektor", "Selektoren"],                    links: { css: "css-selektoren.html", html: "css-selektoren.html", js: "css-selektoren.html" } },
+  { words: ["Überschrift", "Überschriften"],              links: { html: "headings.html", css: "headings.html", js: "headings.html" } },
+  { words: ["Array", "Arrays"],                           links: { js: "js-klammern.html" } },
+  { words: ["Auswahlmenü", "Dropdown"],                   links: { html: "select.html", css: "select.html", js: "select.html" } },
+  { words: ["Untertitel"],                                links: { html: "video.html", css: "video.html", js: "video.html" } },
   { words: ["Layout", "Layouts", "Flexbox", "Grid"],      links: { css: "css-sprache.html#layout", html: "css-sprache.html#layout" } },
   { words: ["Stylesheet", "Stylesheets", "CSS-Datei", "CSS-Dateien"],
                                                           links: { html: "link.html", css: "link.html" } },
@@ -165,7 +171,7 @@ const TAG_PAGES = {
   area: "area & map.html", map: "area & map.html",
   article: "article.html", aside: "aside.html", audio: "audio.html",
   base: "base.html", bdi: "bdi.html", bdo: "bdo.html",
-  blockquote: "blockquote.html", body: "body.html", br: "br.html",
+  b: "text-format.html", blockquote: "blockquote.html", body: "body.html", br: "br.html", wbr: "br.html", q: "blockquote.html",
   button: "button.html", canvas: "canvas.html", caption: "caption.html",
   cite: "cite.html", code: "code.html", col: "col.html", colgroup: "colgroup.html",
   data: "data.html", datalist: "datalist.html", dd: "dd.html", del: "del.html",
@@ -173,17 +179,26 @@ const TAG_PAGES = {
   div: "container.html", dl: "dl.html", dt: "dt.html",
   em: "em.html", embed: "embed.html",
   fieldset: "fieldset.html", figcaption: "figcaption.html", figure: "figure.html",
-  footer: "footer.html", form: "form.html",
+  footer: "footer.html", form: "form.html", g: "svg.html",
+  h1: "headings.html", h2: "headings.html", h3: "headings.html",
+  h4: "headings.html", h5: "headings.html", h6: "headings.html",
   head: "head.html", header: "header.html", hr: "hr.html", html: "html.html",
   i: "i.html", iframe: "iframe.html", img: "img.html", input: "input.html", ins: "ins.html",
   kbd: "kbd.html", label: "label.html", legend: "legend.html",
   li: "liste.html", ol: "liste.html", ul: "liste.html",
   link: "link.html", main: "main.html", mark: "mark.html", menu: "menu.html",
   meta: "meta.html", meter: "meter.html", nav: "nav.html", noscript: "noscript.html",
-  object: "object.html", optgroup: "optgroup.html", option: "option.html",
-  script: "script.html", style: "style.html",
-  table: "table.html", td: "table.html", th: "table.html", tr: "table.html",
-  video: "video.html"
+  object: "object.html", optgroup: "optgroup.html", option: "option.html", output: "output.html",
+  picture: "picture.html", pre: "computer-text.html", progress: "meter.html",
+  rp: "ruby.html", rt: "ruby.html", ruby: "ruby.html",
+  s: "text-format.html", samp: "computer-text.html", script: "script.html",
+  section: "container.html", select: "select.html", small: "text-format.html",
+  source: "picture.html", span: "container.html", strong: "text-format.html",
+  style: "style.html", sub: "text-format.html", summary: "details.html", sup: "text-format.html", svg: "svg.html",
+  table: "table.html", tbody: "table.html", td: "table.html", template: "template-tag.html",
+  textarea: "textarea.html", tfoot: "table.html", th: "table.html", thead: "table.html",
+  time: "time.html", title: "head.html", tr: "table.html", track: "video.html",
+  u: "text-format.html", var: "computer-text.html", video: "video.html"
 };
 
 
@@ -196,10 +211,13 @@ const TAG_PAGES = {
 const LINK_ONLY_FIRST_OCCURRENCE = true;
 
 // In diesen Elementen wird nach Begriffen gesucht
-const SMART_LINK_CONTAINERS = "main p, main li, main h2";
+// (Überschriften bewusst nicht – Links in Überschriften wirken unruhig)
+const SMART_LINK_CONTAINERS = "main p, main li, main td";
 
-// In diesen Elementen wird NIE verlinkt (Code soll Code bleiben)
-const SMART_LINK_EXCLUDED = "a, code, pre, script, style";
+// In diesen Elementen wird NIE verlinkt:
+//   Code soll Code bleiben, und .preview zeigt echtes HTML-Beispiel,
+//   das genauso aussehen soll wie im Code darüber.
+const SMART_LINK_EXCLUDED = "a, code, pre, script, style, .preview";
 
 
 /* =====================================================================

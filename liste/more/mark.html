@@ -6,24 +6,46 @@
   <link rel="stylesheet" href="more.css">
   <script defer src="more.js"></script>
   <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
-  <title>mark</title>
+  <title>&lt;mark&gt; – Spicker</title>
 </head>
 <body>
-  <header>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
     <h1>&lt;mark&gt;</h1>
+    <p class="page-lead">Hebt Text wie mit einem Textmarker hervor.</p>
   </header>
+
   <main>
     <section>
       <h2>Was ist das?</h2>
-      <p>Markiert hervorgehobenen Text (z. B. Suchtreffer).</p>
+      <p><code>&lt;mark&gt;</code> markiert Stellen, die in einem bestimmten Zusammenhang relevant sind – typisch: Suchtreffer im Text.</p>
     </section>
     <section>
       <h2>Beispiel</h2>
-      <pre><code>&lt;p&gt;Dies ist &lt;mark&gt;wichtig&lt;/mark&gt;.&lt;/p&gt;</code></pre>
+      <pre><code>&lt;p&gt;Suchergebnis für „Tabelle“: Eine &lt;mark&gt;Tabelle&lt;/mark&gt; besteht aus Zeilen und Spalten.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Suchergebnis für „Tabelle“: Eine <mark>Tabelle</mark> besteht aus Zeilen und Spalten.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Die gelbe Standardfarbe kannst du mit CSS ändern: <code>mark { background: …; }</code>.</li>
+        <li>Für „wichtig“ ist <code>&lt;strong&gt;</code> passender, für Betonung <code>&lt;em&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="em.html">&lt;em&gt;</a>
+        <a class="chip" href="del.html">&lt;del&gt;</a>
+        <a class="chip" href="ins.html">&lt;ins&gt;</a>
+      </div>
     </section>
   </main>
+
   <footer>
-    <a class="back-icon" href="../Spicker.html"><img src="../icons/Back2.ico" alt="Zurück"></a>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
   </footer>
 </body>
 </html>

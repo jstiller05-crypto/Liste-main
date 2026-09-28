@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>picture &amp; source – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
+    <h1>&lt;picture&gt; &amp; &lt;source&gt;</h1>
+    <p class="page-lead">Liefert je nach Bildschirm oder Browser das passende Bild aus.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;picture&gt;</code> enthält mehrere <code>&lt;source&gt;</code>-Elemente und am Ende ein normales <code>&lt;img&gt;</code>. Der Browser nimmt die <strong>erste passende</strong> Quelle; passt keine, wird das <code>&lt;img&gt;</code> verwendet.</p>
+      <p>Typische Gründe: kleinere Bilder fürs Handy, moderne Formate wie WebP/AVIF mit JPG als Rückfall, oder ein anderer Bildausschnitt im Hochformat.</p>
+    </section>
+    <section>
+      <h2>Beispiel: moderne Formate mit Rückfall</h2>
+      <pre><code>&lt;picture&gt;
+  &lt;source srcset="foto.avif" type="image/avif"&gt;
+  &lt;source srcset="foto.webp" type="image/webp"&gt;
+  &lt;img src="foto.jpg" alt="Berglandschaft im Nebel"&gt;
+&lt;/picture&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Beispiel: anderes Bild je nach Bildschirmbreite</h2>
+      <pre><code>&lt;picture&gt;
+  &lt;!-- ab 800px Breite: breites Panorama --&gt;
+  &lt;source media="(min-width: 800px)" srcset="banner-breit.jpg"&gt;
+  &lt;!-- sonst: quadratischer Ausschnitt --&gt;
+  &lt;img src="banner-quadrat.jpg" alt="Team beim Workshop"&gt;
+&lt;/picture&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>srcset (source)</code></td><td>Bilddatei(en) für diese Quelle</td></tr>
+          <tr><td><code>type (source)</code></td><td>Dateiformat, z. B. <code>image/webp</code> – kennt der Browser es nicht, überspringt er die Quelle</td></tr>
+          <tr><td><code>media (source)</code></td><td>Media Query, z. B. <code>(min-width: 800px)</code></td></tr>
+          <tr><td><code>src / alt (img)</code></td><td>Rückfall-Bild und Beschreibung – Pflicht</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>&lt;source&gt; bei Audio und Video</h2>
+      <p><code>&lt;source&gt;</code> gibt es auch in <code>&lt;audio&gt;</code> und <code>&lt;video&gt;</code> – dort mit <code>src</code> statt <code>srcset</code>:</p>
+      <pre><code>&lt;video controls&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Das <code>&lt;img&gt;</code> am Ende ist Pflicht – ohne es wird gar nichts angezeigt.</li>
+        <li><code>alt</code> gehört ans <code>&lt;img&gt;</code>, nicht an <code>&lt;source&gt;</code>.</li>
+        <li>CSS (z. B. Größe) wird auf das <code>&lt;img&gt;</code> angewendet, nicht auf <code>&lt;picture&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+        <a class="chip" href="video.html">&lt;video&gt;</a>
+        <a class="chip" href="audio.html">&lt;audio&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
