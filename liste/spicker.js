@@ -1187,8 +1187,7 @@ function setActiveFilterButton(allButtons, clickedButton) {
     button.classList.remove("active");
   });
 
-  // Schritt 2: nur beim geklickten Button "active" setzen
-  // TODO 2: eine Zeile → clickedButton.classList.add(...)
+  clickedButton.classList.add("active"); // CSS-Klasse "active" setzen → .button.active greift
 }
 
 // ---------------------------------------------------------------------
@@ -1214,7 +1213,10 @@ function sortEntriesBySelectedOrder(list) {
       break; // break = diesen case beenden
 
     case "za":
-      // TODO 4: wie "az", nur a und b vorne vertauscht
+      // b mit a vergleichen statt a mit b → Reihenfolge umgedreht
+      copy.sort(function compareEntriesReverseAlphabetically(firstEntry, secondEntry) {
+        return getEntryTag(secondEntry).localeCompare(getEntryTag(firstEntry), "de");
+      });
       break;
 
     case "language":
@@ -1254,8 +1256,11 @@ function applyEntryFilters() {
 
   // --- Schritt 2: Sprache ---
   if (filterState.language !== "") {
-    // TODO 3: result = result.filter(item => ... )
-    //         Bedingung: item.Sprache.toLowerCase() === filterState.language
+    // Nur Einträge behalten, deren Sprache zum gewählten Button passt.
+    // toLowerCase(): "HTML"/"html"/"Html" werden alle zu "html"
+    result = result.filter(item =>
+      (item.Sprache || "").toLowerCase() === filterState.language
+    );
     console.log("[filter] nach Sprache:", result.length);
   }
 
@@ -1322,9 +1327,18 @@ function setupLanguageFilterButtons() {
 function setupCategoryFilterButtons() {
   const buttons = document.querySelectorAll(".category-btn");
   console.log("[setup] Kategorie-Buttons gefunden:", buttons.length);
+  // Für JEDEN Kategorie-Button einen Klick-Listener anmelden
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      // data-category="..." aus dem HTML in den Zustand schreiben
+      filterState.category = btn.dataset.category;
+      console.log("[event] Kategorie:", filterState.category || "(alle)");
 
-  // TODO 1: den buttons.forEach(...)-Block aus setupLanguageFilterButtons()
-  //         kopieren und "language" → "category" ersetzen (3 Stellen)
+      setActiveFilterButton(buttons, btn); // diesen Button hervorheben
+      applyEntryFilters();                 // Tabelle neu berechnen
+    });
+  });
+
 }
 
 // --- Sortier-Auswahl --------------------------------------------------

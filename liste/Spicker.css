@@ -1,4 +1,3 @@
-
 *{
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -10,16 +9,6 @@ body{
 
 main{
   height: 90%;
-}
-
-#myInput {
-  size: 600px;
-  margin-bottom: 12px;
-  background-position: 10px 12px;
-  width: 94%;
-  border: 2px solid #323232;
-  padding: 12px 20px 12px 40px;
-  color: #4e4e4e;
 }
 
 #dynamicTable {
@@ -92,48 +81,222 @@ footer {
   to   { opacity: 1; }
 }
 
-.class-dropdown {
-  position: absolute;
-  top: 100%; /* direkt unter dem Input */
-  left: 0;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-  background-color: none;
-  min-width: 160px;
-  font-size: 32px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+/* =====================================================================
+   HEADER
+   ---------------------------------------------------------------------
+   Farben stehen als Variablen (--name) an einer Stelle.
+   Benutzen mit var(--name). Ändern → ändert sich überall.
+   ===================================================================== */
+:root {
+  --header-bg:    #222222;  /* gleiche Farbe wie der Footer */
+  --panel-bg:     #2b2b2b;  /* Hintergrund vom Dropdown */
+  --chip-bg:      #3a3a3a;  /* Filter-Button normal */
+  --chip-hover:   #474747;  /* Filter-Button beim Drüberfahren */
+  --border:       #4a4a4a;
+  --text-main:    #f2f2f2;
+  --text-muted:   #a8a8a8;
+  --accent:       #4f8cff;  /* Farbe für aktiv / Fokus */
 }
 
-header > div:focus-within .class-dropdown {
-  position: relative;
+/* Der ganze Header bleibt beim Scrollen oben kleben (sticky) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;               /* liegt über der Tabelle */
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  margin: -8px -8px 16px;     /* gleicht den Standard-Rand vom body aus */
+}
+
+/* Innerer Bereich: Logo links, Suche rechts (Flexbox = nebeneinander) */
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 24px;
+}
+
+/* ----- Logo + Titel ----- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;             /* wird nie zusammengedrückt */
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 24px;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ----- Suchbereich ----- */
+.search-area {
+  position: relative;         /* Bezugspunkt für das Dropdown (absolute) */
+  flex: 1;                    /* nimmt den restlichen Platz ein */
+}
+
+.search-box {
+  position: relative;         /* Bezugspunkt für die Lupe */
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);/* vertikal genau mittig */
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;       /* Klicks gehen durch die Lupe ins Feld */
+}
+
+#myInput {
+  width: 100%;
+  box-sizing: border-box;     /* padding zählt zur Breite → kein Überstehen */
+  padding: 12px 16px 12px 42px; /* links Platz für die Lupe */
+  font-size: 16px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#myInput::placeholder {
+  color: var(--text-muted);
+}
+
+/* Wenn man ins Feld klickt: blauer Rand + leichter Schein */
+#myInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.25);
+}
+
+/* ----- Dropdown-Panel ----- */
+.class-dropdown {
+  position: absolute;         /* schwebt ÜBER der Tabelle, schiebt nichts weg */
+  top: calc(100% + 8px);      /* 8px unter dem Suchfeld */
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Sprache | Kategorie (breiter) | Sortierung */
+  gap: 20px;
+  padding: 18px 20px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  /* versteckt, bis das Suchfeld/ein Button Fokus hat */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+/* :focus-within = "irgendein Kind hat gerade Fokus" → Dropdown zeigen */
+.search-area:focus-within .class-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-header > div{
-  position: relative;
+/* Eine Spalte im Dropdown */
+.filter-group {
+  display: flex;
+  flex-direction: column;     /* Titel über den Buttons */
+  gap: 10px;
 }
 
+.filter-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;  /* schreibt automatisch GROSS */
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+/* Buttons nebeneinander, brechen bei Platzmangel um */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ----- Filter-Buttons als "Chips" (Pillenform) ----- */
 .button {
-  all: unset;          /* löscht ALLE Browser-Standardstyles */
-  cursor: pointer;     /* all: unset entfernt auch den Hand-Cursor */
-  display: block;      /* verhält sich dann wie dein div */
-  background-color: none;
-  color: white;
-  border: none;
+  all: unset;                 /* Browser-Standardstyles löschen */
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;       /* sehr großer Radius = Pillenform */
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .button:hover {
-  background-color: none;
-  box-shadow: 0px 1px 5px #222;
+  background-color: var(--chip-hover);
 }
 
+/* Tastatur-Fokus sichtbar machen (Tab-Taste) */
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Aktiver Filter (Klasse wird per JS gesetzt) */
 .button.active {
-  background-color: #555;
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
   font-weight: bold;
+}
+
+/* ----- Sortier-Auswahl ----- */
+#sortSelect {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#sortSelect:focus {
+  outline: 2px solid var(--accent);
+}
+
+/* ----- Kleine Bildschirme (Handy) ----- */
+/* @media = diese Regeln gelten nur, wenn das Fenster schmaler als 800px ist */
+@media (max-width: 800px) {
+  .header-inner {
+    flex-direction: column;   /* Logo über der Suche statt daneben */
+    align-items: stretch;
+  }
+
+  .class-dropdown {
+    grid-template-columns: 1fr; /* alle Gruppen untereinander */
+  }
 }

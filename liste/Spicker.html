@@ -9,39 +9,81 @@
     <title>liste Tags</title>    
 </head>
 <body>
-    <header>
-        <div>
-            <input type="text" id="myInput" placeholder="Search for tags.." title="if you read this, you are an GitHub user">
+    <!-- =====================================================
+         HEADER
+         Links: Logo + Titel | Rechts: Suche mit Filter-Dropdown
+         Das Dropdown öffnet sich, solange etwas in .search-area
+         fokussiert ist (CSS :focus-within).
+         ===================================================== -->
+    <header class="site-header">
+        <div class="header-inner">
 
-            <div class="class-dropdown">
-                <div class="dropdown-language-content">
-                    <p>Sprache</p>
-                    <button type="button" class="button language-btn" data-language="">Alle</button>
-                    <button type="button" class="button language-btn" data-language="html">HTML</button>
-                    <button type="button" class="button language-btn" data-language="css">CSS</button>
-                    <button type="button" class="button language-btn" data-language="js">JavaScript</button>
-                    <button type="button" class="button language-btn" data-language="c++">C++</button>
-                </div>
-
-                <div class="dropdown-info-content">
-                    <p>Kategorie</p>
-                    <button type="button" class="button category-btn" data-category="">Alle</button>
-                    <button type="button" class="button category-btn" data-category="basis">Basis</button>
-                    <button type="button" class="button category-btn" data-category="text">Text</button>
-                    <button type="button" class="button category-btn" data-category="container">Container</button>
-                    <button type="button" class="button category-btn" data-category="media">Medien</button>
-                    <button type="button" class="button category-btn" data-category="form">Formular</button>
-                    <button type="button" class="button category-btn" data-category="tabelle">Tabelle</button>
-                </div>
-                <div class="dropdown-sort-content">
-                    <label for="sortSelect">Sortieren nach:</label>
-                    <select id="sortSelect">
-                        <option value="az">A – Z</option>
-                        <option value="za">Z – A</option>
-                        <option value="language">Sprache</option>
-                    </select>
+            <!-- ----- Logo + Titel ----- -->
+            <div class="brand">
+                <!-- onerror: Falls das Icon nicht lädt → ausblenden + in der Konsole melden -->
+                <img class="brand-logo" src="icons/S logo.ico" alt=""
+                     onerror="console.warn('[header] Logo konnte nicht geladen werden:', this.src); this.style.display='none';">
+                <div>
+                    <h1 class="brand-title">Spicker</h1>
+                    <span class="brand-subtitle">Alles, was ich gelernt habe</span>
                 </div>
             </div>
+
+            <!-- ----- Suche + Dropdown ----- -->
+            <div class="search-area">
+                <div class="search-box">
+                    <!-- Lupen-Symbol als SVG (braucht keine Datei) -->
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+                    </svg>
+                    <input type="text" id="myInput" placeholder="Tags, Beschreibungen oder Sprachen suchen …" autocomplete="off" title="if you read this, you are an GitHub user">
+                </div>
+
+                <div class="class-dropdown">
+
+                    <!-- Gruppe 1: Sprache -->
+                    <div class="filter-group">
+                        <p class="filter-title">Sprache</p>
+                        <div class="chip-row">
+                            <button type="button" class="button language-btn active" data-language="">Alle</button>
+                            <button type="button" class="button language-btn" data-language="html">HTML</button>
+                            <button type="button" class="button language-btn" data-language="css">CSS</button>
+                            <button type="button" class="button language-btn" data-language="js">JavaScript</button>
+                            <button type="button" class="button language-btn" data-language="c++">C++</button>
+                        </div>
+                    </div>
+
+                    <!-- Gruppe 2: Kategorie (data-category = Wert aus dem class-Array) -->
+                    <div class="filter-group">
+                        <p class="filter-title">Kategorie</p>
+                        <div class="chip-row">
+                            <button type="button" class="button category-btn active" data-category="">Alle</button>
+                            <button type="button" class="button category-btn" data-category="basis">Basis</button>
+                            <button type="button" class="button category-btn" data-category="grundlagen">Grundlagen</button>
+                            <button type="button" class="button category-btn" data-category="text">Text</button>
+                            <button type="button" class="button category-btn" data-category="container">Container</button>
+                            <button type="button" class="button category-btn" data-category="media">Medien</button>
+                            <button type="button" class="button category-btn" data-category="form">Formular</button>
+                            <button type="button" class="button category-btn" data-category="tabelle">Tabelle</button>
+                            <button type="button" class="button category-btn" data-category="selektoren">Selektoren</button>
+                            <button type="button" class="button category-btn" data-category="kontrolle">Kontrollstrukturen</button>
+                        </div>
+                    </div>
+
+                    <!-- Gruppe 3: Sortierung -->
+                    <div class="filter-group">
+                        <label class="filter-title" for="sortSelect">Sortieren nach</label>
+                        <select id="sortSelect">
+                            <option value="az">A – Z</option>
+                            <option value="za">Z – A</option>
+                            <option value="language">Sprache</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </header>
     <main>
