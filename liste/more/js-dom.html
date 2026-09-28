@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: DOM – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Browser</p>
+    <h1>DOM – HTML mit JavaScript ändern</h1>
+    <p class="page-lead">Elemente finden, Inhalte und Klassen ändern, neue Elemente erzeugen und entfernen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das DOM?</h2>
+      <p>Beim Laden baut der Browser aus dem HTML einen Baum aus Objekten – das <em>Document Object Model</em>. Über <code>document</code> greifst du mit JavaScript darauf zu. Änderungen am DOM siehst du sofort auf der Seite.</p>
+    </section>
+    <section>
+      <h2>Elemente finden</h2>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Liefert</th></tr></thead>
+        <tbody>
+          <tr><td><code>document.getElementById("id")</code></td><td>Ein Element (oder <code>null</code>)</td></tr>
+          <tr><td><code>document.querySelector(".klasse")</code></td><td>Das <strong>erste</strong> passende Element – beliebiger CSS-Selektor</td></tr>
+          <tr><td><code>document.querySelectorAll("li")</code></td><td>Alle passenden Elemente (NodeList, mit <code>forEach</code>)</td></tr>
+          <tr><td><code>element.closest(".card")</code></td><td>Nächstes passendes Eltern-Element</td></tr>
+          <tr><td><code>element.children</code> / <code>.parentElement</code></td><td>Kinder / Eltern</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Inhalt &amp; Aussehen ändern</h2>
+      <pre><code>const title = document.querySelector("h1");
+
+title.textContent = "Neuer Titel";          // nur Text (sicher)
+title.innerHTML = "Neu &lt;em&gt;fett&lt;/em&gt;";      // HTML – nur mit eigenen, vertrauenswürdigen Daten!
+
+title.classList.add("active");              // Klasse hinzufügen
+title.classList.remove("active");
+title.classList.toggle("active");           // an/aus
+title.classList.contains("active");         // true/false
+
+title.style.color = "#4f8cff";              // Inline-Style (Bindestrich → camelCase: backgroundColor)
+
+const input = document.querySelector("input");
+input.value;                                // Inhalt eines Feldes
+input.disabled = true;</code></pre>
+    </section>
+    <section>
+      <h2>Attribute &amp; data-*</h2>
+      <pre><code>link.getAttribute("href");
+link.setAttribute("href", "neu.html");
+img.src = "bild.png";                       // viele Attribute gehen auch direkt
+
+// &lt;button data-language="html"&gt;
+button.dataset.language;                    // "html"</code></pre>
+    </section>
+    <section>
+      <h2>Elemente erzeugen &amp; entfernen</h2>
+      <pre><code>const list = document.querySelector("ul");
+
+const item = document.createElement("li");  // 1) erzeugen (noch unsichtbar)
+item.textContent = "Neuer Eintrag";         // 2) füllen
+item.classList.add("entry");
+list.appendChild(item);                     // 3) einhängen → sichtbar
+
+list.prepend(item);                         // am Anfang einfügen
+item.remove();                              // entfernen
+list.innerHTML = "";                        // alle Kinder löschen</code></pre>
+    </section>
+    <section>
+      <h2>Wann ist das HTML da?</h2>
+      <pre><code>// Skript im &lt;head&gt;? Dann warten, bis das HTML geladen ist:
+document.addEventListener("DOMContentLoaded", () =&gt; {
+  console.log("DOM bereit");
+});
+
+// oder einfach: &lt;script defer src="app.js"&gt;&lt;/script&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>null</code>-Fehler („Cannot read properties of null“) heißt fast immer: Element nicht gefunden – Selektor prüfen oder Skript läuft zu früh.</li>
+        <li><code>textContent</code> statt <code>innerHTML</code> für Nutzereingaben – sonst kann fremder Code eingeschleust werden.</li>
+        <li>Styling lieber über Klassen (<code>classList</code>) als über <code>element.style</code> – das CSS bleibt an einem Ort.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-events.html">Events</a>
+        <a class="chip" href="css-selektoren.html">CSS-Selektoren</a>
+        <a class="chip" href="template-tag.html">&lt;template&gt;</a>
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

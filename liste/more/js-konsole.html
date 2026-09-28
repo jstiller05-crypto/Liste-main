@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Konsole &amp; Fehler – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Werkzeuge</p>
+    <h1>Konsole, Fehler &amp; Debugging</h1>
+    <p class="page-lead">Ausgaben in der Konsole, Fehler abfangen und Fehler finden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Die Konsole</h2>
+      <p>F12 → Tab „Konsole“. Hier erscheinen Ausgaben und Fehlermeldungen. Du kannst dort auch direkt JavaScript eintippen.</p>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>console.log(a, b)</code></td><td>Normale Ausgabe</td></tr>
+          <tr><td><code>console.warn(…)</code></td><td>Gelbe Warnung</td></tr>
+          <tr><td><code>console.error(…)</code></td><td>Roter Fehler</td></tr>
+          <tr><td><code>console.table(array)</code></td><td>Arrays/Objekte als Tabelle</td></tr>
+          <tr><td><code>console.group("Name")</code> … <code>console.groupEnd()</code></td><td>Ausgaben einklappbar gruppieren</td></tr>
+          <tr><td><code>console.time("x")</code> … <code>console.timeEnd("x")</code></td><td>Zeit messen</td></tr>
+          <tr><td><code>console.clear()</code></td><td>Konsole leeren</td></tr>
+        </tbody>
+      </table>
+      <pre><code>console.log("[filter] Ergebnis:", result.length, result);   // Präfix in [ ] macht Ausgaben leicht auffindbar</code></pre>
+    </section>
+    <section>
+      <h2>Fehler abfangen: try / catch</h2>
+      <pre><code>try {
+  const data = JSON.parse(text);        // kann fehlschlagen
+  console.log(data);
+} catch (error) {
+  console.error("Ungültiges JSON:", error.message);
+} finally {
+  console.log("läuft immer – mit oder ohne Fehler");
+}</code></pre>
+    </section>
+    <section>
+      <h2>Eigene Fehler werfen</h2>
+      <pre><code>function divide(a, b) {
+  if (b === 0) {
+    throw new Error("Division durch 0 ist nicht erlaubt");
+  }
+  return a / b;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Typische Fehlermeldungen</h2>
+      <table class="info-table">
+        <thead><tr><th>Meldung</th><th>Bedeutet meist …</th></tr></thead>
+        <tbody>
+          <tr><td><code>X is not defined</code></td><td>Tippfehler im Namen oder Variable nicht angelegt</td></tr>
+          <tr><td><code>Cannot read properties of null</code></td><td><code>querySelector</code> hat nichts gefunden</td></tr>
+          <tr><td><code>Cannot read properties of undefined</code></td><td>Eigenschaft/Index existiert nicht</td></tr>
+          <tr><td><code>X is not a function</code></td><td>Tippfehler bei Methode oder falscher Datentyp</td></tr>
+          <tr><td><code>Unexpected token</code></td><td>Klammer, Komma oder Anführungszeichen fehlt/zu viel</td></tr>
+          <tr><td><code>Assignment to constant variable</code></td><td><code>const</code> neu zugewiesen – <code>let</code> verwenden</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Debugger</h2>
+      <pre><code>function calculate(values) {
+  debugger;           // Browser hält hier an, wenn F12 offen ist
+  return values.reduce((a, b) =&gt; a + b, 0);
+}</code></pre>
+      <p>Im Tab „Quellen“ kannst du dann Zeile für Zeile weitergehen und alle Variablen ansehen. Haltepunkte setzt man dort auch per Klick auf die Zeilennummer.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Die Fehlermeldung nennt Datei und Zeile – draufklicken springt direkt zur Stelle.</li>
+        <li>Nach dem ersten Fehler stoppt das Skript. Oft verschwinden weitere Fehler, wenn man den ersten behebt.</li>
+        <li>Vor dem Veröffentlichen überflüssige <code>console.log</code> entfernen oder reduzieren.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-async.html">async/await</a>
+        <a class="chip" href="js-variablen.html">Variablen &amp; Datentypen</a>
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

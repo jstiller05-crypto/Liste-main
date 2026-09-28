@@ -28,7 +28,8 @@
 // Die Sprache wird in dieser Reihenfolge bestimmt:
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
-//   3. sonst DEFAULT_PAGE_LANGUAGE
+//   3. Dateiname beginnt mit "css-" → css, mit "js-" → js
+//   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
 const PAGE_LANGUAGES = {
@@ -83,8 +84,6 @@ const DEFAULT_PAGE_LANGUAGE = "html";
 // NEUES WORT? → einfach eine neue Regel { words: [...], links: {...} }
 // (Die Reihenfolge ist egal – längere Wörter werden automatisch zuerst
 //  gesucht, damit "for-Schleife" nicht als "Schleife" erkannt wird.)
-const JS_BASICS = "javascript-sprache.html#grundlagen";
-
 const smartLinkRules = [
   // ===== Sprachen (überall gleich) =====
   { words: ["HTML"],             links: { all: "html-sprache.html" } },
@@ -94,26 +93,26 @@ const smartLinkRules = [
 
   // ===== Programmier-Grundlagen (je Sprache verschieden!) =====
   { words: ["for-Schleife", "for-Schleifen"],
-    links: { cpp: "for-loop.html",   js: JS_BASICS } },
+    links: { cpp: "for-loop.html",   js: "js-schleifen.html" } },
   { words: ["while-Schleife", "while-Schleifen"],
-    links: { cpp: "while-loop.html", js: JS_BASICS } },
+    links: { cpp: "while-loop.html", js: "js-schleifen.html" } },
   { words: ["Schleife", "Schleifen"],
-    links: { cpp: "for-loop.html",   js: JS_BASICS } },
+    links: { cpp: "for-loop.html",   js: "js-schleifen.html" } },
   { words: ["Funktion", "Funktionen"],
-    links: { cpp: "function.html",   js: JS_BASICS } },
+    links: { cpp: "function.html",   js: "js-funktionen.html" } },
   { words: ["Variable", "Variablen"],
-    links: { cpp: "variable.html",   js: JS_BASICS } },
+    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html" } },
   { words: ["if-else", "Bedingung", "Bedingungen"],
-    links: { cpp: "if-else.html",    js: JS_BASICS } },
+    links: { cpp: "if-else.html",    js: "js-bedingungen.html" } },
   { words: ["Datentyp", "Datentypen"],
-    links: { cpp: "datatypes.html" } },
+    links: { cpp: "datatypes.html",  js: "js-variablen.html" } },
 
   // ===== Nur C++ =====
   { words: ["Zeiger", "Pointer"],                         links: { cpp: "pointer.html" } },
   { words: ["Referenz", "Referenzen"],                    links: { cpp: "reference.html" } },
   { words: ["Objekt", "Objekte", "Methode", "Methoden",
             "Konstruktor", "OOP", "objektorientiert", "objektorientierte"],
-                                                          links: { cpp: "cpp-class.html" } },
+                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html" } },
   { words: ["Namespace", "Namespaces", "using namespace"], links: { cpp: "using-namespace.html" } },
   { words: ["#include", "Bibliothek", "Bibliotheken",
             "Header-Datei", "Header-Dateien"],            links: { cpp: "include.html" } },
@@ -134,16 +133,46 @@ const smartLinkRules = [
   { words: ["einbinden", "eingebunden", "Einbinden"],
     links: { cpp: "include.html", all: "link.html" } },
 
+  // ===== Nur CSS =====
+  { words: ["Farbe", "Farben", "Hintergrundfarbe", "Farbverlauf"],
+                                                          links: { css: "css-farben.html" } },
+  { words: ["Schriftart", "Schriftgröße", "Zeilenabstand"], links: { css: "css-text.html", html: "css-text.html" } },
+  { words: ["Box-Modell", "Innenabstand", "Außenabstand", "Rahmen", "margin", "padding"],
+                                                          links: { css: "css-boxmodell.html", html: "css-boxmodell.html" } },
+  { words: ["Einheit", "Einheiten"],                      links: { css: "css-einheiten.html" } },
+  { words: ["Media Query", "Media Queries", "responsive", "Responsive Design"],
+                                                          links: { css: "css-media-queries.html", html: "css-media-queries.html" } },
+  { words: ["Pseudoklasse", "Pseudoklassen", "Pseudoelement", "Pseudoelemente"],
+                                                          links: { css: "css-pseudo.html", html: "css-pseudo.html" } },
+  { words: ["Animation", "Animationen", "Transition", "Übergang"],
+                                                          links: { css: "css-animation.html", html: "css-animation.html" } },
+  { words: ["Spezifität", "Kaskade", "Vererbung"],        links: { css: "css-grundlagen.html", html: "css-grundlagen.html" } },
+
+  // ===== Nur JavaScript =====
+  { words: ["Event", "Events", "Ereignis", "Ereignisse", "addEventListener"],
+                                                          links: { js: "js-events.html", html: "js-events.html" } },
+  { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html" } },
+  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html" } },
+  { words: ["JSON"],                                      links: { js: "js-objekte.html", html: "js-objekte.html" } },
+  { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html" } },
+  { words: ["try/catch", "Fehlermeldung"],                links: { js: "js-konsole.html" } },
+  { words: ["Promise", "async", "await", "fetch"],        links: { js: "js-async.html" } },
+  { words: ["localStorage"],                              links: { js: "js-speicher.html", html: "js-speicher.html" } },
+  { words: ["Zufallszahl", "Zufallszahlen", "Math.random"], links: { js: "js-mathe.html" } },
+  { words: ["Modul", "Module", "import", "export"],       links: { js: "js-module.html" } },
+
   // ===== Web (HTML / CSS / JS) =====
   { words: ["Element", "Elemente", "HTML-Element", "HTML-Elemente"],
-    links: { html: "html-sprache.html#elemente", css: "html-sprache.html#elemente", js: "html-sprache.html#elemente" } },
-  { words: ["DOM"],                                       links: { js: "javascript-sprache.html#dom", html: "javascript-sprache.html#dom" } },
+    links: { html: "html-sprache.html#elemente", css: "html-sprache.html#elemente" } },   // in JS meist Array-Elemente → kein Link
+  { words: ["DOM"],                                       links: { js: "js-dom.html", html: "js-dom.html", css: "js-dom.html" } },
   { words: ["Selektor", "Selektoren"],                    links: { css: "css-selektoren.html", html: "css-selektoren.html", js: "css-selektoren.html" } },
   { words: ["Überschrift", "Überschriften"],              links: { html: "headings.html", css: "headings.html", js: "headings.html" } },
-  { words: ["Array", "Arrays"],                           links: { js: "js-klammern.html" } },
+  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html" } },
   { words: ["Auswahlmenü", "Dropdown"],                   links: { html: "select.html", css: "select.html", js: "select.html" } },
   { words: ["Untertitel"],                                links: { html: "video.html", css: "video.html", js: "video.html" } },
-  { words: ["Layout", "Layouts", "Flexbox", "Grid"],      links: { css: "css-sprache.html#layout", html: "css-sprache.html#layout" } },
+  { words: ["Layout", "Layouts"],                         links: { css: "css-display.html", html: "css-display.html" } },
+  { words: ["Flexbox"],                                   links: { css: "css-flexbox.html", html: "css-flexbox.html", js: "css-flexbox.html" } },
+  { words: ["Grid"],                                      links: { css: "css-grid.html", html: "css-grid.html", js: "css-grid.html" } },
   { words: ["Stylesheet", "Stylesheets", "CSS-Datei", "CSS-Dateien"],
                                                           links: { html: "link.html", css: "link.html" } },
   { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html" } },
@@ -335,6 +364,12 @@ function getPageLanguage(pageFile) {
   const fromHtmlTag = document.documentElement.dataset.lang;
   if (fromHtmlTag) {
     return fromHtmlTag.toLowerCase();
+  }
+  // Dateien mit "css-" bzw. "js-" am Anfang gehören automatisch zu CSS bzw. JS
+  // (startsWith prüft, ob ein Text mit etwas beginnt)
+  if (!(pageFile in PAGE_LANGUAGES)) {
+    if (pageFile.startsWith("css-")) return "css";
+    if (pageFile.startsWith("js-")) return "js";
   }
   // "??" = nimm den rechten Wert, wenn der linke undefined/null ist
   return PAGE_LANGUAGES[pageFile] ?? DEFAULT_PAGE_LANGUAGE;

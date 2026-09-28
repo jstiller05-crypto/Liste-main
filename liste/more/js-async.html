@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: async/await – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Fortgeschritten</p>
+    <h1>Timer, Promises &amp; async/await</h1>
+    <p class="page-lead">Code später oder regelmäßig ausführen und auf langsame Vorgänge wie das Laden von Daten warten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Timer</h2>
+      <pre><code>// einmal nach 2 Sekunden
+const timeoutId = setTimeout(() =&gt; {
+  console.log("2 Sekunden vorbei");
+}, 2000);
+
+// alle 1000 ms
+let seconds = 0;
+const intervalId = setInterval(() =&gt; {
+  seconds++;
+  console.log(seconds);
+  if (seconds === 5) clearInterval(intervalId);   // stoppen
+}, 1000);
+
+clearTimeout(timeoutId);   // geplanten Timeout abbrechen</code></pre>
+    </section>
+    <section>
+      <h2>Was ist asynchron?</h2>
+      <p>Manche Dinge dauern: Daten aus dem Internet laden, eine Datei lesen, in die Zwischenablage kopieren. JavaScript wartet dabei nicht, sondern macht weiter. Das Ergebnis kommt später als <strong>Promise</strong> – ein „Versprechen“ auf einen Wert.</p>
+    </section>
+    <section>
+      <h2>async / await</h2>
+      <pre><code>async function loadUsers() {
+  try {
+    const response = await fetch("https://example.com/api/users");   // warten auf Antwort
+    if (!response.ok) {
+      throw new Error("HTTP-Fehler " + response.status);
+    }
+    const users = await response.json();   // warten auf die Daten
+    console.log(users);
+  } catch (error) {
+    console.error("Laden fehlgeschlagen:", error);
+  }
+}
+
+loadUsers();</code></pre>
+      <p><code>await</code> geht nur in einer <code>async</code>-Funktion. Die Funktion pausiert an dieser Stelle, der Rest der Seite läuft weiter.</p>
+    </section>
+    <section>
+      <h2>Dasselbe mit .then()</h2>
+      <pre><code>fetch("daten.json")
+  .then(response =&gt; response.json())
+  .then(data =&gt; console.log(data))
+  .catch(error =&gt; console.error(error));</code></pre>
+    </section>
+    <section>
+      <h2>Eigene Verzögerung</h2>
+      <pre><code>const wait = ms =&gt; new Promise(resolve =&gt; setTimeout(resolve, ms));
+
+async function countdown() {
+  for (let i = 3; i &gt; 0; i--) {
+    console.log(i);
+    await wait(1000);
+  }
+  console.log("Los!");
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>fetch</code> funktioniert nicht, wenn die Seite direkt als Datei (<code>file://</code>) geöffnet ist – dafür einen lokalen Server nutzen (z. B. „Live Server“ in VS Code).</li>
+        <li>Immer Fehler behandeln (<code>try/catch</code> oder <code>.catch</code>) – Netzwerkanfragen können scheitern.</li>
+        <li><code>await</code> vergessen? Dann bekommst du statt der Daten ein <code>Promise {&lt;pending&gt;}</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-konsole.html">Konsole &amp; Fehler</a>
+        <a class="chip" href="js-objekte.html">Objekte &amp; JSON</a>
+        <a class="chip" href="js-speicher.html">localStorage</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

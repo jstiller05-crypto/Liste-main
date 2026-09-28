@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Variablen &amp; Datentypen – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Grundlagen</p>
+    <h1>Variablen &amp; Datentypen</h1>
+    <p class="page-lead"><code>let</code>, <code>const</code> und die Grundtypen: Text, Zahlen, Wahrheitswerte, <code>null</code> und <code>undefined</code>.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Variablen anlegen</h2>
+      <pre><code>let score = 0;          // kann später geändert werden
+const name = "Max";     // kann NICHT neu zugewiesen werden
+score = 10;             // ok
+// name = "Tom";        // Fehler: Assignment to constant variable
+
+var old = 1;            // alte Schreibweise – heute nicht mehr verwenden</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Schlüsselwort</th><th>Neu zuweisen?</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>const</code></td><td>Nein</td><td>Standard – immer, wenn sich die Variable nicht ändert</td></tr>
+          <tr><td><code>let</code></td><td>Ja</td><td>Zähler, Zwischenergebnisse, Werte, die sich ändern</td></tr>
+          <tr><td><code>var</code></td><td>Ja</td><td>Veraltet – hat verwirrende Regeln, nicht mehr nutzen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Datentypen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Beispiel</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>string</code></td><td><code>"Hallo"</code>, <code>'Hallo'</code></td><td>Text</td></tr>
+          <tr><td><code>number</code></td><td><code>42</code>, <code>3.14</code>, <code>-7</code></td><td>Zahl (ganze und Kommazahlen – Punkt statt Komma!)</td></tr>
+          <tr><td><code>boolean</code></td><td><code>true</code>, <code>false</code></td><td>Wahrheitswert</td></tr>
+          <tr><td><code>undefined</code></td><td><code>let x;</code></td><td>Variable existiert, hat aber noch keinen Wert</td></tr>
+          <tr><td><code>null</code></td><td><code>let user = null;</code></td><td>Bewusst „leer“</td></tr>
+          <tr><td><code>object</code></td><td><code>{ name: "Max" }</code></td><td>Objekte, Arrays</td></tr>
+        </tbody>
+      </table>
+      <pre><code>console.log(typeof "Hallo");   // "string"
+console.log(typeof 42);        // "number"
+console.log(typeof true);      // "boolean"
+console.log(typeof [1, 2]);    // "object"  – Arrays sind Objekte
+console.log(Array.isArray([1, 2]));  // true – so prüft man auf Array</code></pre>
+    </section>
+    <section>
+      <h2>Typen umwandeln</h2>
+      <pre><code>Number("42");        // 42
+Number("abc");       // NaN  (Not a Number)
+parseInt("42px");    // 42   – liest Zahl am Anfang
+String(42);          // "42"
+Boolean("");         // false
+Boolean("text");     // true
+
+// Achtung: + mit Text hängt an statt zu rechnen
+"5" + 3;             // "53"
+Number("5") + 3;     // 8</code></pre>
+    </section>
+    <section>
+      <h2>Truthy &amp; Falsy</h2>
+      <p>In Bedingungen wird jeder Wert zu <code>true</code> oder <code>false</code>. Diese Werte gelten als <strong>falsy</strong>:</p>
+      <pre><code>false, 0, "", null, undefined, NaN   // alles andere ist truthy
+
+const input = "";
+if (!input) {
+  console.log("Feld ist leer");
+}</code></pre>
+    </section>
+    <section>
+      <h2>Gültigkeitsbereich (Scope)</h2>
+      <pre><code>const a = 1;             // global – überall sichtbar
+
+if (true) {
+  const b = 2;           // nur innerhalb dieser { } sichtbar
+  console.log(a, b);     // 1 2
+}
+// console.log(b);       // Fehler: b is not defined</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Standardmäßig <code>const</code> nehmen, <code>let</code> nur wenn nötig – so siehst du sofort, was sich ändert.</li>
+        <li>Variablennamen: camelCase (<code>userName</code>), nicht mit Zahl beginnen, keine Leerzeichen.</li>
+        <li>Werte aus Eingabefeldern (<code>input.value</code>) sind immer Strings – vor dem Rechnen umwandeln.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-operatoren.html">Operatoren</a>
+        <a class="chip" href="js-strings.html">Strings</a>
+        <a class="chip" href="js-mathe.html">Zahlen &amp; Math</a>
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

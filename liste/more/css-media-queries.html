@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>CSS: Media Queries – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Layout</p>
+    <h1>Media Queries &amp; Responsive Design</h1>
+    <p class="page-lead">Unterschiedliches CSS je nach Bildschirmgröße – damit die Seite auf Handy und PC gut aussieht.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Media Query ist eine Bedingung: Die Regeln darin gelten nur, wenn sie zutrifft – z. B. „Fenster schmaler als 600px“.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>@media (max-width: 600px) {
+  /* gilt nur bis 600px Breite */
+  .sidebar { display: none; }
+}</code></pre>
+    </section>
+    <section>
+      <h2>Mobile First</h2>
+      <p>Gängige Methode: Erst für kleine Bildschirme schreiben, dann mit <code>min-width</code> für größere erweitern.</p>
+      <pre><code>/* Standard: Handy – alles untereinander */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* ab Tablet: 2 Spalten */
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ab Desktop: 4 Spalten */
+@media (min-width: 1000px) {
+  .cards { grid-template-columns: repeat(4, 1fr); }
+}</code></pre>
+    </section>
+    <section>
+      <h2>Weitere Bedingungen</h2>
+      <table class="info-table">
+        <thead><tr><th>Query</th><th>Trifft zu, wenn …</th></tr></thead>
+        <tbody>
+          <tr><td><code>(max-width: 600px)</code></td><td>Fenster höchstens 600px breit</td></tr>
+          <tr><td><code>(min-width: 1000px)</code></td><td>Fenster mindestens 1000px breit</td></tr>
+          <tr><td><code>(orientation: portrait)</code></td><td>Hochformat</td></tr>
+          <tr><td><code>(prefers-color-scheme: dark)</code></td><td>Nutzer hat Dark Mode eingestellt</td></tr>
+          <tr><td><code>(prefers-reduced-motion: reduce)</code></td><td>Nutzer möchte weniger Animationen</td></tr>
+          <tr><td><code>(hover: hover)</code></td><td>Gerät hat eine Maus (kein Touch)</td></tr>
+          <tr><td><code>print</code></td><td>Beim Drucken</td></tr>
+        </tbody>
+      </table>
+      <pre><code>@media (min-width: 600px) and (max-width: 999px) { … }   /* beides */</code></pre>
+    </section>
+    <section>
+      <h2>Pflicht im HTML</h2>
+      <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+      <p>Ohne diese Zeile tut das Handy so, als wäre es ein breiter Bildschirm – und Media Queries greifen nicht.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Breakpoints nach dem Inhalt wählen: Dort, wo das Layout „bricht“, nicht nach bestimmten Geräten.</li>
+        <li>In den Entwicklertools (F12 → Handy-Symbol) kannst du verschiedene Bildschirmgrößen testen.</li>
+        <li>Viel Responsivität geht auch ohne Media Queries: <code>flex-wrap</code>, <code>auto-fill</code>, <code>minmax()</code>, <code>clamp()</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-grid.html">Grid</a>
+        <a class="chip" href="css-flexbox.html">Flexbox</a>
+        <a class="chip" href="css-einheiten.html">Einheiten &amp; calc()</a>
+        <a class="chip" href="meta.html">&lt;meta&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

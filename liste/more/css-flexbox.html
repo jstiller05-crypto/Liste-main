@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>CSS: Flexbox – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Layout</p>
+    <h1>Flexbox</h1>
+    <p class="page-lead">Ordnet Elemente in einer Reihe oder Spalte an – mit Abständen, Ausrichtung und flexibler Größe.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Mit <code>display: flex</code> wird ein Element zum <strong>Flex-Container</strong>. Seine direkten Kinder (<em>Flex-Items</em>) werden dann in einer Linie angeordnet. Flexbox ist ideal für Menüs, Button-Leisten, Karten nebeneinander und zum Zentrieren.</p>
+    </section>
+    <section>
+      <h2>Grundbeispiel</h2>
+      <pre><code>&lt;div class="row"&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <pre><code>.row {
+  display: flex;
+  gap: 12px;                      /* Abstand zwischen den Kindern */
+  justify-content: space-between; /* Verteilung auf der Hauptachse */
+  align-items: center;            /* Ausrichtung auf der Querachse */
+}</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <div style="display:flex;gap:12px;justify-content:space-between;align-items:center;border:1px dashed #444;padding:8px"><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">A</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">B<br>(höher)</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">C</div></div>
+      </div>
+    </section>
+    <section>
+      <h2>Eigenschaften für den Container</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Werte</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>flex-direction</code></td><td><code>row</code> · <code>column</code> · <code>row-reverse</code></td><td>Richtung der Hauptachse</td></tr>
+          <tr><td><code>justify-content</code></td><td><code>flex-start</code> · <code>center</code> · <code>flex-end</code> · <code>space-between</code> · <code>space-around</code> · <code>space-evenly</code></td><td>Verteilung auf der Hauptachse</td></tr>
+          <tr><td><code>align-items</code></td><td><code>stretch</code> · <code>center</code> · <code>flex-start</code> · <code>flex-end</code> · <code>baseline</code></td><td>Ausrichtung auf der Querachse</td></tr>
+          <tr><td><code>flex-wrap</code></td><td><code>nowrap</code> · <code>wrap</code></td><td>Umbrechen in neue Zeilen erlauben</td></tr>
+          <tr><td><code>gap</code></td><td><code>12px</code></td><td>Abstand zwischen den Items</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Eigenschaften für die Kinder</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Beispiel</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>flex</code></td><td><code>1</code></td><td>Nimmt verfügbaren Platz ein (Kurzform für grow/shrink/basis)</td></tr>
+          <tr><td><code>flex-grow</code></td><td><code>2</code></td><td>Wächst doppelt so stark wie Items mit 1</td></tr>
+          <tr><td><code>flex-shrink</code></td><td><code>0</code></td><td>Wird nicht kleiner gedrückt</td></tr>
+          <tr><td><code>flex-basis</code></td><td><code>200px</code></td><td>Startgröße vor dem Verteilen</td></tr>
+          <tr><td><code>align-self</code></td><td><code>flex-end</code></td><td>Eigene Ausrichtung auf der Querachse</td></tr>
+          <tr><td><code>order</code></td><td><code>-1</code></td><td>Reihenfolge ändern (ohne das HTML anzufassen)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Häufige Muster</h2>
+      <pre><code>/* 1) Etwas genau in die Mitte */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+/* 2) Logo links, Menü rechts */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 3) Suchfeld nimmt den Rest der Zeile */
+.search-row { display: flex; gap: 8px; }
+.search-row input { flex: 1; }
+
+/* 4) Karten, die umbrechen */
+.cards { display: flex; flex-wrap: wrap; gap: 16px; }
+.cards &gt; * { flex: 1 1 200px; }   /* mind. 200px, sonst gleichmäßig wachsen */</code></pre>
+    </section>
+    <section>
+      <h2>Hauptachse &amp; Querachse</h2>
+      <table class="info-table">
+        <thead><tr><th>flex-direction</th><th>justify-content wirkt …</th><th>align-items wirkt …</th></tr></thead>
+        <tbody>
+          <tr><td><code>row</code> (Standard)</td><td>waagerecht →</td><td>senkrecht ↓</td></tr>
+          <tr><td><code>column</code></td><td>senkrecht ↓</td><td>waagerecht →</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Flexbox wirkt nur auf die <strong>direkten</strong> Kinder des Containers.</li>
+        <li>Eine Richtung (Reihe <em>oder</em> Spalte) → Flexbox. Zwei Richtungen (Raster) → Grid.</li>
+        <li><code>gap</code> ist sauberer als Margins an den Kindern.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-grid.html">Grid</a>
+        <a class="chip" href="css-display.html">display</a>
+        <a class="chip" href="css-boxmodell.html">Box-Modell</a>
+        <a class="chip" href="container.html">Container</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>CSS: position – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Layout</p>
+    <h1>position &amp; z-index</h1>
+    <p class="page-lead">Elemente verschieben, übereinanderlegen, an den Bildschirm heften oder beim Scrollen festkleben.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Die Werte von position</h2>
+      <table class="info-table">
+        <thead><tr><th>Wert</th><th>Verhalten</th><th>Bezugspunkt für top/left …</th></tr></thead>
+        <tbody>
+          <tr><td><code>static</code></td><td>Standard – normaler Fluss, top/left wirken nicht</td><td>–</td></tr>
+          <tr><td><code>relative</code></td><td>Bleibt im Fluss, lässt sich aber verschieben</td><td>Eigene ursprüngliche Position</td></tr>
+          <tr><td><code>absolute</code></td><td>Aus dem Fluss genommen, schwebt</td><td>Nächstes Eltern-Element mit <code>position</code> ≠ static</td></tr>
+          <tr><td><code>fixed</code></td><td>Klebt am Bildschirm, scrollt nicht mit</td><td>Browserfenster</td></tr>
+          <tr><td><code>sticky</code></td><td>Normal, bis es beim Scrollen eine Kante erreicht – dann klebt es</td><td>Scroll-Container</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiel: Badge oben rechts an einer Karte</h2>
+      <pre><code>.card {
+  position: relative;        /* Bezugspunkt für das Kind */
+}
+
+.card .badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <div style="position:relative;width:220px;height:90px;background:#2b2b2b;border:1px solid #444;border-radius:8px;padding:10px">Karte<span style="position:absolute;top:8px;right:8px;background:#4f8cff;color:#fff;padding:2px 8px;border-radius:999px;font-size:.8rem">Neu</span></div>
+      </div>
+    </section>
+    <section>
+      <h2>Weitere Beispiele</h2>
+      <pre><code>/* Header bleibt beim Scrollen oben */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Button immer unten rechts im Fenster */
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+
+/* Overlay über die ganze Seite */
+.overlay {
+  position: fixed;
+  inset: 0;                  /* Kurzform für top/right/bottom/left: 0 */
+  background: rgb(0 0 0 / 60%);
+}</code></pre>
+    </section>
+    <section>
+      <h2>z-index – Was liegt oben?</h2>
+      <p>Überlappen sich Elemente, liegt das mit dem höheren <code>z-index</code> oben. <code>z-index</code> wirkt nur bei Elementen mit <code>position</code> (außer static) sowie bei Flex-/Grid-Kindern.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>absolute</code> ohne positioniertes Eltern-Element bezieht sich auf die ganze Seite – dann landet es oft „irgendwo“.</li>
+        <li><code>sticky</code> braucht immer einen Wert wie <code>top: 0</code>, sonst klebt nichts.</li>
+        <li>Für normales Layout lieber Flexbox/Grid nutzen – <code>absolute</code> nur für Überlagerungen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-display.html">display</a>
+        <a class="chip" href="css-flexbox.html">Flexbox</a>
+        <a class="chip" href="header.html">&lt;header&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>CSS: Farben &amp; Hintergründe – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Gestaltung</p>
+    <h1>Farben &amp; Hintergründe</h1>
+    <p class="page-lead">Textfarbe, Hintergrundfarbe, Verläufe, Hintergrundbilder und Transparenz.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Die wichtigsten Eigenschaften</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>color</code></td><td>Textfarbe</td></tr>
+          <tr><td><code>background-color</code></td><td>Hintergrundfarbe</td></tr>
+          <tr><td><code>background-image</code></td><td>Hintergrundbild oder Farbverlauf</td></tr>
+          <tr><td><code>background</code> </td><td>Kurzform für alle background-Eigenschaften</td></tr>
+          <tr><td><code>opacity</code></td><td>Durchsichtigkeit des ganzen Elements (0 bis 1)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Farben angeben</h2>
+      <pre><code>color: red;                       /* Farbname */
+color: #4f8cff;                   /* Hex: #RRGGBB */
+color: #4f8cff80;                 /* Hex mit Transparenz (80 = ca. 50 %) */
+color: rgb(79, 140, 255);         /* Rot, Grün, Blau: 0–255 */
+color: rgb(79 140 255 / 50%);     /* mit Transparenz */
+color: hsl(220, 100%, 65%);       /* Farbton 0–360, Sättigung, Helligkeit */</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Format</th><th>Gut für</th></tr></thead>
+        <tbody>
+          <tr><td>Name (<code>red</code>)</td><td>Schnelle Tests</td></tr>
+          <tr><td>Hex (<code>#4f8cff</code>)</td><td>Am verbreitetsten, Farbwähler liefern meist Hex</td></tr>
+          <tr><td><code>rgb()</code></td><td>Wenn Transparenz dazukommt</td></tr>
+          <tr><td><code>hsl()</code></td><td>Farben leicht heller/dunkler machen: nur den letzten Wert ändern</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Farbverläufe</h2>
+      <pre><code>/* linear: von oben nach unten */
+background: linear-gradient(#4f8cff, #222);
+
+/* mit Richtung und mehreren Farben */
+background: linear-gradient(to right, #4f8cff, #9b59ff, #ff5f8c);
+
+/* kreisförmig */
+background: radial-gradient(circle, #4f8cff, #222);</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <div style="height:40px;border-radius:6px;background:linear-gradient(to right,#4f8cff,#9b59ff,#ff5f8c)"></div>
+      </div>
+    </section>
+    <section>
+      <h2>Hintergrundbilder</h2>
+      <pre><code>.hero {
+  background-image: url("bilder/berg.jpg");
+  background-size: cover;       /* Fläche ganz füllen (schneidet evtl. ab) */
+  background-position: center;  /* Bildmitte zeigen */
+  background-repeat: no-repeat; /* nicht kacheln */
+}</code></pre>
+      <table class="info-table">
+        <thead><tr><th>background-size</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>cover</code></td><td>Füllt die Fläche komplett, Teile werden evtl. abgeschnitten</td></tr>
+          <tr><td><code>contain</code></td><td>Ganzes Bild sichtbar, evtl. leere Ränder</td></tr>
+          <tr><td><code>100px auto</code></td><td>Feste Breite, Höhe passend</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>opacity oder transparente Farbe?</h2>
+      <pre><code>.box1 { opacity: 0.5; }                     /* ganzes Element inkl. Text halb durchsichtig */
+.box2 { background: rgb(0 0 0 / 50%); }     /* nur der Hintergrund durchsichtig, Text bleibt klar */</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Auf genug Kontrast zwischen Text und Hintergrund achten – dunkelgrau auf schwarz ist schlecht lesbar.</li>
+        <li>Farben einmal als Variablen festlegen (<code>--accent: #4f8cff;</code>) und überall wiederverwenden.</li>
+        <li>Pfade in <code>url()</code> gehen von der CSS-Datei aus, nicht von der HTML-Datei.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-variablen.html">CSS-Variablen</a>
+        <a class="chip" href="css-text.html">Schrift &amp; Text</a>
+        <a class="chip" href="css-boxmodell.html">Box-Modell</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

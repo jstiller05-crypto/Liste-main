@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>CSS-Grundlagen – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Grundlagen</p>
+    <h1>CSS-Grundlagen</h1>
+    <p class="page-lead">Wie eine CSS-Regel aufgebaut ist, wie CSS in die Seite kommt und welche Regel am Ende gewinnt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Aufbau einer Regel</h2>
+      <pre><code>h1 {                 /* Selektor: WELCHE Elemente */
+  color: #4f8cff;    /* Eigenschaft: Wert;  → eine Deklaration */
+  font-size: 2rem;
+}</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Beispiel</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Selektor</td><td><code>h1</code></td><td>Welche Elemente betroffen sind</td></tr>
+          <tr><td>Eigenschaft</td><td><code>color</code></td><td>Was geändert wird</td></tr>
+          <tr><td>Wert</td><td><code>#4f8cff</code></td><td>Wie es geändert wird</td></tr>
+          <tr><td>Deklaration</td><td><code>color: #4f8cff;</code></td><td>Eigenschaft + Wert, endet mit <code>;</code></td></tr>
+          <tr><td>Regel</td><td><code>h1 { … }</code></td><td>Selektor + alle Deklarationen in <code>{ }</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>CSS einbinden</h2>
+      <pre><code>&lt;!-- 1) externe Datei (empfohlen) --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- 2) im &lt;head&gt; --&gt;
+&lt;style&gt; p { color: gray; } &lt;/style&gt;
+
+&lt;!-- 3) direkt am Element --&gt;
+&lt;p style="color: gray;"&gt;Text&lt;/p&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Kommentare</h2>
+      <pre><code>/* Ein Kommentar in CSS – auch über
+   mehrere Zeilen. // gibt es in CSS NICHT. */</code></pre>
+    </section>
+    <section>
+      <h2>Kaskade: Welche Regel gewinnt?</h2>
+      <p>Gelten mehrere Regeln für dasselbe Element, entscheidet der Browser in dieser Reihenfolge:</p>
+      <ol>
+        <li><strong>Wichtigkeit:</strong> <code>!important</code> schlägt alles (nur im Notfall verwenden).</li>
+        <li><strong>Spezifität:</strong> <code>style="…"</code> &gt; <code>#id</code> &gt; <code>.klasse</code> / <code>[attribut]</code> / <code>:hover</code> &gt; <code>element</code>.</li>
+        <li><strong>Reihenfolge:</strong> Bei Gleichstand gewinnt die Regel, die später kommt.</li>
+      </ol>
+      <pre><code>p { color: gray; }
+.intro { color: white; }   /* gewinnt: Klasse ist spezifischer als Element */
+p { color: red; }          /* verliert trotzdem gegen .intro */</code></pre>
+    </section>
+    <section>
+      <h2>Vererbung</h2>
+      <p>Manche Eigenschaften werden an Kind-Elemente weitergegeben – vor allem Text-Eigenschaften wie <code>color</code>, <code>font-family</code>, <code>line-height</code>. Box-Eigenschaften wie <code>margin</code>, <code>padding</code>, <code>border</code> werden <strong>nicht</strong> vererbt.</p>
+      <pre><code>body {
+  font-family: Arial, sans-serif;  /* gilt für die ganze Seite */
+  color: #f2f2f2;
+}
+
+a { color: inherit; }   /* inherit: Wert vom Eltern-Element übernehmen */</code></pre>
+    </section>
+    <section>
+      <h2>Browser-Standards zurücksetzen</h2>
+      <pre><code>* {
+  box-sizing: border-box;   /* padding zählt zur Breite */
+}
+
+body {
+  margin: 0;                /* Browser geben body 8px Rand */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jede Deklaration mit <code>;</code> abschließen – ein fehlendes Semikolon macht oft die nächste Zeile kaputt.</li>
+        <li>CSS ignoriert Fehler still. Wirkt eine Regel nicht: F12 → Elemente → rechts bei „Styles“ nachsehen, ob sie durchgestrichen ist.</li>
+        <li><code>!important</code> möglichst vermeiden – lieber einen spezifischeren Selektor verwenden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-selektoren.html">CSS-Selektoren</a>
+        <a class="chip" href="style.html">&lt;style&gt;</a>
+        <a class="chip" href="link.html">&lt;link&gt; / Einbinden</a>
+        <a class="chip" href="css-sprache.html">CSS</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

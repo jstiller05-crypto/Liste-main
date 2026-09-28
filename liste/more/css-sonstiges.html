@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>CSS: Weitere Eigenschaften – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">CSS · Gestaltung</p>
+    <h1>Weitere nützliche Eigenschaften</h1>
+    <p class="page-lead">Kleinere Eigenschaften, die man ständig braucht: Cursor, Listen, Bilder, Scrollen, Umbrüche.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Übersicht</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Beispiel</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>cursor</code></td><td><code>pointer</code>, <code>not-allowed</code>, <code>text</code>, <code>grab</code></td><td>Mauszeiger über dem Element</td></tr>
+          <tr><td><code>list-style</code></td><td><code>none</code></td><td>Aufzählungspunkte entfernen</td></tr>
+          <tr><td><code>object-fit</code></td><td><code>cover</code>, <code>contain</code></td><td>Wie ein Bild seine Box füllt</td></tr>
+          <tr><td><code>aspect-ratio</code></td><td><code>16 / 9</code></td><td>Festes Seitenverhältnis</td></tr>
+          <tr><td><code>overflow-wrap</code></td><td><code>break-word</code></td><td>Sehr lange Wörter umbrechen</td></tr>
+          <tr><td><code>user-select</code></td><td><code>none</code></td><td>Text nicht markierbar</td></tr>
+          <tr><td><code>pointer-events</code></td><td><code>none</code></td><td>Klicks gehen durch das Element hindurch</td></tr>
+          <tr><td><code>scroll-behavior</code></td><td><code>smooth</code></td><td>Weiches Scrollen bei Sprungmarken</td></tr>
+          <tr><td><code>outline</code></td><td><code>2px solid #4f8cff</code></td><td>Rahmen außen, ohne Platz zu verbrauchen (Fokus)</td></tr>
+          <tr><td><code>filter</code></td><td><code>blur(4px)</code>, <code>grayscale(1)</code></td><td>Grafik-Filter</td></tr>
+          <tr><td><code>accent-color</code></td><td><code>#4f8cff</code></td><td>Farbe von Checkboxen, Radios, Schiebereglern</td></tr>
+          <tr><td><code>all</code></td><td><code>unset</code></td><td>Alle Browser-Styles eines Elements zurücksetzen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>html { scroll-behavior: smooth; }              /* Sprunglinks scrollen weich */
+
+nav ul { list-style: none; padding: 0; }      /* Menü ohne Punkte */
+
+.avatar {
+  width: 80px;
+  aspect-ratio: 1;                            /* quadratisch */
+  object-fit: cover;                          /* Bild füllt, ohne zu verzerren */
+  border-radius: 50%;
+}
+
+input[type="checkbox"] { accent-color: #4f8cff; }
+
+.disabled { opacity: .5; pointer-events: none; cursor: not-allowed; }</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <label><input type="checkbox" checked style="accent-color:#4f8cff"> accent-color</label> &nbsp; <span style="cursor:pointer;text-decoration:underline">cursor: pointer</span> &nbsp; <span style="cursor:not-allowed;opacity:.5">cursor: not-allowed</span>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Vieles davon lässt sich in den Entwicklertools (F12) live ausprobieren: Element wählen, bei „Styles“ eine neue Eigenschaft eintippen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-boxmodell.html">Box-Modell</a>
+        <a class="chip" href="css-text.html">Schrift &amp; Text</a>
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

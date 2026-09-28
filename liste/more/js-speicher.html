@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: localStorage – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Browser</p>
+    <h1>localStorage – Daten speichern</h1>
+    <p class="page-lead">Daten im Browser speichern, damit sie nach dem Neuladen noch da sind.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>localStorage</code> ist ein kleiner Speicher im Browser (ca. 5 MB pro Website). Die Daten bleiben erhalten, bis sie gelöscht werden. <code>sessionStorage</code> funktioniert genauso, wird aber beim Schließen des Tabs geleert.</p>
+    </section>
+    <section>
+      <h2>Befehle</h2>
+      <pre><code>localStorage.setItem("theme", "dark");       // speichern
+localStorage.getItem("theme");               // "dark"  (oder null, wenn nicht vorhanden)
+localStorage.removeItem("theme");            // einen Eintrag löschen
+localStorage.clear();                        // ALLES dieser Seite löschen</code></pre>
+    </section>
+    <section>
+      <h2>Objekte &amp; Arrays speichern</h2>
+      <p>Gespeichert werden nur Texte. Objekte und Arrays deshalb mit JSON umwandeln:</p>
+      <pre><code>const settings = { sort: "az", language: "html" };
+
+localStorage.setItem("settings", JSON.stringify(settings));    // speichern
+
+const saved = JSON.parse(localStorage.getItem("settings")) ?? {};   // laden</code></pre>
+    </section>
+    <section>
+      <h2>Beispiel: Einstellung merken</h2>
+      <pre><code>const select = document.getElementById("sortSelect");
+
+// beim Laden: gespeicherten Wert wiederherstellen
+try {
+  const savedSort = localStorage.getItem("sort");
+  if (savedSort) select.value = savedSort;
+} catch (error) {
+  console.warn("localStorage nicht verfügbar:", error);
+}
+
+// bei Änderung: speichern
+select.addEventListener("change", () =&gt; {
+  try {
+    localStorage.setItem("sort", select.value);
+  } catch (error) {
+    console.warn("Speichern fehlgeschlagen:", error);
+  }
+});</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Keine Passwörter oder sensiblen Daten speichern – jedes Skript der Seite kann sie lesen.</li>
+        <li>Im privaten Modus oder bei blockierten Cookies kann localStorage fehlen – deshalb <code>try/catch</code>.</li>
+        <li>Gespeicherte Daten ansehen: F12 → „Anwendung“ (Application) → „Lokaler Speicher“.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-objekte.html">Objekte &amp; JSON</a>
+        <a class="chip" href="js-async.html">async/await</a>
+        <a class="chip" href="js-dom.html">DOM</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

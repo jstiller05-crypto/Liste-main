@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Events – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Browser</p>
+    <h1>Events</h1>
+    <p class="page-lead">Auf Klicks, Eingaben, Tasten und mehr reagieren.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundprinzip</h2>
+      <pre><code>const button = document.querySelector("#saveBtn");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("Geklickt!", event);
+});
+//                      ↑ Ereignis  ↑ Funktion, die dann ausgeführt wird</code></pre>
+    </section>
+    <section>
+      <h2>Häufige Events</h2>
+      <table class="info-table">
+        <thead><tr><th>Event</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>click</code></td><td>Klick (auch Enter/Leertaste auf Buttons)</td></tr>
+          <tr><td><code>input</code></td><td>Bei jeder Änderung in einem Feld (jeder Tastendruck)</td></tr>
+          <tr><td><code>change</code></td><td>Feld verlassen bzw. Auswahl geändert (select, checkbox)</td></tr>
+          <tr><td><code>submit</code></td><td>Formular wird abgeschickt</td></tr>
+          <tr><td><code>keydown</code> / <code>keyup</code></td><td>Taste gedrückt / losgelassen</td></tr>
+          <tr><td><code>mouseenter</code> / <code>mouseleave</code></td><td>Maus kommt / geht</td></tr>
+          <tr><td><code>focus</code> / <code>blur</code></td><td>Element bekommt / verliert Fokus</td></tr>
+          <tr><td><code>scroll</code></td><td>Seite oder Element wird gescrollt</td></tr>
+          <tr><td><code>DOMContentLoaded</code></td><td>HTML ist fertig geladen</td></tr>
+          <tr><td><code>load</code></td><td>Alles inkl. Bilder ist geladen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Das Event-Objekt</h2>
+      <pre><code>document.addEventListener("keydown", (event) =&gt; {
+  console.log(event.key);           // z. B. "Enter", "a", "Escape"
+  if (event.key === "Escape") closeMenu();
+  if (event.ctrlKey &amp;&amp; event.key === "s") {
+    event.preventDefault();         // Browser-Standard (Speichern-Dialog) verhindern
+    save();
+  }
+});
+
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();           // Seite NICHT neu laden
+});</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft/Methode</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>event.target</code></td><td>Element, auf das tatsächlich geklickt wurde</td></tr>
+          <tr><td><code>event.currentTarget</code></td><td>Element, an dem der Listener hängt</td></tr>
+          <tr><td><code>event.key</code></td><td>Gedrückte Taste</td></tr>
+          <tr><td><code>event.preventDefault()</code></td><td>Standardverhalten verhindern (Link folgen, Formular senden)</td></tr>
+          <tr><td><code>event.stopPropagation()</code></td><td>Event nicht an Eltern weitergeben</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Event Delegation – ein Listener für viele Elemente</h2>
+      <pre><code>// Statt jedem Button einen Listener zu geben:
+document.querySelector(".toolbar").addEventListener("click", (event) =&gt; {
+  const button = event.target.closest("button");   // welcher Button?
+  if (!button) return;                             // Klick daneben
+  console.log("Aktion:", button.dataset.action);
+});</code></pre>
+      <p>Funktioniert auch für Elemente, die erst später per JavaScript hinzukommen.</p>
+    </section>
+    <section>
+      <h2>Listener entfernen</h2>
+      <pre><code>function onScroll() { … }
+window.addEventListener("scroll", onScroll);
+window.removeEventListener("scroll", onScroll);   // gleiche Funktion übergeben
+
+button.addEventListener("click", handler, { once: true });   // nur einmal auslösen</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Funktion ohne <code>()</code> übergeben: <code>addEventListener("click", save)</code> – mit Klammern läuft sie sofort.</li>
+        <li><code>onclick="…"</code> im HTML funktioniert, <code>addEventListener</code> ist aber sauberer und erlaubt mehrere Listener.</li>
+        <li>Bei Such-Feldern <code>input</code> nehmen, bei <code>&lt;select&gt;</code> und Checkboxen <code>change</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-dom.html">DOM</a>
+        <a class="chip" href="js-funktionen.html">Funktionen</a>
+        <a class="chip" href="form.html">&lt;form&gt;</a>
+        <a class="chip" href="button.html">&lt;button&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

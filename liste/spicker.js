@@ -1029,6 +1029,638 @@ let oTableEntries = { "List": [
       "Sprache": "C++",
       "Link": "more/cpp-class.html",
       "class": ["cpp","klasse","oop"]
+    },
+    // CSS – Eigenschaften & Konzepte
+    {
+      "Tag": "CSS-Regel",
+      "Beschreibung": "Aufbau einer Regel: Selektor { Eigenschaft: Wert; }",
+      "Sprache": "CSS",
+      "Link": "more/css-grundlagen.html",
+      "class": ["css","grundlagen"]
+    },
+    {
+      "Tag": "Kaskade & Spezifität",
+      "Beschreibung": "Welche CSS-Regel gewinnt, wenn mehrere gelten",
+      "Sprache": "CSS",
+      "Link": "more/css-grundlagen.html",
+      "class": ["css","grundlagen"]
+    },
+    {
+      "Tag": "Vererbung (inherit)",
+      "Beschreibung": "Eigenschaften, die Kind-Elemente übernehmen",
+      "Sprache": "CSS",
+      "Link": "more/css-grundlagen.html",
+      "class": ["css","grundlagen"]
+    },
+    {
+      "Tag": "color",
+      "Beschreibung": "Textfarbe",
+      "Sprache": "CSS",
+      "Link": "more/css-farben.html",
+      "class": ["css","gestaltung","farben"]
+    },
+    {
+      "Tag": "background",
+      "Beschreibung": "Hintergrundfarbe, -bild und Farbverläufe",
+      "Sprache": "CSS",
+      "Link": "more/css-farben.html",
+      "class": ["css","gestaltung","farben"]
+    },
+    {
+      "Tag": "Farbformate (hex, rgb, hsl)",
+      "Beschreibung": "Schreibweisen für Farben",
+      "Sprache": "CSS",
+      "Link": "more/css-farben.html",
+      "class": ["css","gestaltung","farben"]
+    },
+    {
+      "Tag": "opacity",
+      "Beschreibung": "Durchsichtigkeit eines Elements",
+      "Sprache": "CSS",
+      "Link": "more/css-farben.html",
+      "class": ["css","gestaltung","farben"]
+    },
+    {
+      "Tag": "font-family / font-size",
+      "Beschreibung": "Schriftart und Schriftgröße",
+      "Sprache": "CSS",
+      "Link": "more/css-text.html",
+      "class": ["css","gestaltung","text"]
+    },
+    {
+      "Tag": "font-weight",
+      "Beschreibung": "Schriftdicke (normal, fett)",
+      "Sprache": "CSS",
+      "Link": "more/css-text.html",
+      "class": ["css","gestaltung","text"]
+    },
+    {
+      "Tag": "line-height",
+      "Beschreibung": "Zeilenabstand",
+      "Sprache": "CSS",
+      "Link": "more/css-text.html",
+      "class": ["css","gestaltung","text"]
+    },
+    {
+      "Tag": "text-align",
+      "Beschreibung": "Textausrichtung (links, zentriert, rechts)",
+      "Sprache": "CSS",
+      "Link": "more/css-text.html",
+      "class": ["css","gestaltung","text"]
+    },
+    {
+      "Tag": "text-decoration / text-transform",
+      "Beschreibung": "Unterstreichen, Großbuchstaben usw.",
+      "Sprache": "CSS",
+      "Link": "more/css-text.html",
+      "class": ["css","gestaltung","text"]
+    },
+    {
+      "Tag": "@font-face",
+      "Beschreibung": "Eigene Schriftarten einbinden",
+      "Sprache": "CSS",
+      "Link": "more/css-text.html",
+      "class": ["css","gestaltung","text"]
+    },
+    {
+      "Tag": "Box-Modell",
+      "Beschreibung": "Inhalt, padding, border und margin einer Box",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "margin",
+      "Beschreibung": "Außenabstand eines Elements",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "padding",
+      "Beschreibung": "Innenabstand eines Elements",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "border / border-radius",
+      "Beschreibung": "Rahmen und abgerundete Ecken",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout","gestaltung"]
+    },
+    {
+      "Tag": "width / height",
+      "Beschreibung": "Breite und Höhe (auch min-/max-)",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "box-sizing",
+      "Beschreibung": "Ob padding und border zur Breite zählen",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "box-shadow",
+      "Beschreibung": "Schatten um eine Box",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","gestaltung"]
+    },
+    {
+      "Tag": "overflow",
+      "Beschreibung": "Umgang mit überstehendem Inhalt",
+      "Sprache": "CSS",
+      "Link": "more/css-boxmodell.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "Einheiten (px, rem, %, vw)",
+      "Beschreibung": "Größenangaben in CSS",
+      "Sprache": "CSS",
+      "Link": "more/css-einheiten.html",
+      "class": ["css","grundlagen"]
+    },
+    {
+      "Tag": "calc() / clamp()",
+      "Beschreibung": "Mit Werten rechnen und begrenzen",
+      "Sprache": "CSS",
+      "Link": "more/css-einheiten.html",
+      "class": ["css","grundlagen"]
+    },
+    {
+      "Tag": "display",
+      "Beschreibung": "block, inline, inline-block, none",
+      "Sprache": "CSS",
+      "Link": "more/css-display.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "visibility",
+      "Beschreibung": "Element unsichtbar machen, Platz bleibt",
+      "Sprache": "CSS",
+      "Link": "more/css-display.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "Flexbox",
+      "Beschreibung": "Elemente in Reihe oder Spalte anordnen",
+      "Sprache": "CSS",
+      "Link": "more/css-flexbox.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "justify-content / align-items",
+      "Beschreibung": "Ausrichtung in Flexbox und Grid",
+      "Sprache": "CSS",
+      "Link": "more/css-flexbox.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "gap",
+      "Beschreibung": "Abstand zwischen Flex- und Grid-Elementen",
+      "Sprache": "CSS",
+      "Link": "more/css-flexbox.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "Grid",
+      "Beschreibung": "Zweidimensionales Raster-Layout",
+      "Sprache": "CSS",
+      "Link": "more/css-grid.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "grid-template-columns",
+      "Beschreibung": "Spalten eines Grids festlegen",
+      "Sprache": "CSS",
+      "Link": "more/css-grid.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "position",
+      "Beschreibung": "static, relative, absolute, fixed, sticky",
+      "Sprache": "CSS",
+      "Link": "more/css-position.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "z-index",
+      "Beschreibung": "Stapelreihenfolge überlappender Elemente",
+      "Sprache": "CSS",
+      "Link": "more/css-position.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": ":hover / :focus",
+      "Beschreibung": "Pseudoklassen für Zustände",
+      "Sprache": "CSS",
+      "Link": "more/css-pseudo.html",
+      "class": ["css","selektoren"]
+    },
+    {
+      "Tag": ":nth-child()",
+      "Beschreibung": "Elemente nach Position auswählen",
+      "Sprache": "CSS",
+      "Link": "more/css-pseudo.html",
+      "class": ["css","selektoren"]
+    },
+    {
+      "Tag": "::before / ::after",
+      "Beschreibung": "Pseudoelemente: Inhalt vor/nach einem Element",
+      "Sprache": "CSS",
+      "Link": "more/css-pseudo.html",
+      "class": ["css","selektoren"]
+    },
+    {
+      "Tag": "@media",
+      "Beschreibung": "Media Queries für Responsive Design",
+      "Sprache": "CSS",
+      "Link": "more/css-media-queries.html",
+      "class": ["css","layout"]
+    },
+    {
+      "Tag": "CSS-Variablen (--name)",
+      "Beschreibung": "Wiederverwendbare Werte mit var()",
+      "Sprache": "CSS",
+      "Link": "more/css-variablen.html",
+      "class": ["css","grundlagen"]
+    },
+    {
+      "Tag": "transition",
+      "Beschreibung": "Weicher Übergang zwischen zwei Zuständen",
+      "Sprache": "CSS",
+      "Link": "more/css-animation.html",
+      "class": ["css","effekte"]
+    },
+    {
+      "Tag": "transform",
+      "Beschreibung": "Verschieben, drehen, skalieren",
+      "Sprache": "CSS",
+      "Link": "more/css-animation.html",
+      "class": ["css","effekte"]
+    },
+    {
+      "Tag": "@keyframes / animation",
+      "Beschreibung": "Eigene Animationen definieren",
+      "Sprache": "CSS",
+      "Link": "more/css-animation.html",
+      "class": ["css","effekte"]
+    },
+    {
+      "Tag": "cursor",
+      "Beschreibung": "Mauszeiger über einem Element",
+      "Sprache": "CSS",
+      "Link": "more/css-sonstiges.html",
+      "class": ["css","gestaltung"]
+    },
+    {
+      "Tag": "list-style",
+      "Beschreibung": "Aufzählungszeichen von Listen",
+      "Sprache": "CSS",
+      "Link": "more/css-sonstiges.html",
+      "class": ["css","gestaltung"]
+    },
+    {
+      "Tag": "object-fit / aspect-ratio",
+      "Beschreibung": "Bilder in Boxen einpassen, Seitenverhältnis",
+      "Sprache": "CSS",
+      "Link": "more/css-sonstiges.html",
+      "class": ["css","gestaltung"]
+    },
+    // JavaScript – Grundlagen, Daten, DOM
+    {
+      "Tag": "let / const",
+      "Beschreibung": "Variablen anlegen",
+      "Sprache": "JS",
+      "Link": "more/js-variablen.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Datentypen (string, number, boolean)",
+      "Beschreibung": "Grundtypen in JavaScript",
+      "Sprache": "JS",
+      "Link": "more/js-variablen.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "typeof",
+      "Beschreibung": "Datentyp eines Werts prüfen",
+      "Sprache": "JS",
+      "Link": "more/js-variablen.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Operatoren (+ - * / %)",
+      "Beschreibung": "Rechnen in JavaScript",
+      "Sprache": "JS",
+      "Link": "more/js-operatoren.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "=== / !==",
+      "Beschreibung": "Streng vergleichen (Wert und Typ)",
+      "Sprache": "JS",
+      "Link": "more/js-operatoren.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "&& / || / !",
+      "Beschreibung": "Logisches UND, ODER, NICHT",
+      "Sprache": "JS",
+      "Link": "more/js-operatoren.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "? : (Ternär)",
+      "Beschreibung": "Kurzes if/else in einer Zeile",
+      "Sprache": "JS",
+      "Link": "more/js-operatoren.html",
+      "class": ["javascript","js","grundlagen","kontrolle"]
+    },
+    {
+      "Tag": "if / else",
+      "Beschreibung": "Code nur unter einer Bedingung ausführen",
+      "Sprache": "JS",
+      "Link": "more/js-bedingungen.html",
+      "class": ["javascript","js","kontrolle"]
+    },
+    {
+      "Tag": "switch",
+      "Beschreibung": "Mehrere feste Fälle unterscheiden",
+      "Sprache": "JS",
+      "Link": "more/js-bedingungen.html",
+      "class": ["javascript","js","kontrolle"]
+    },
+    {
+      "Tag": "for",
+      "Beschreibung": "Schleife mit Zähler",
+      "Sprache": "JS",
+      "Link": "more/js-schleifen.html",
+      "class": ["javascript","js","kontrolle"]
+    },
+    {
+      "Tag": "while / do…while",
+      "Beschreibung": "Schleife solange eine Bedingung gilt",
+      "Sprache": "JS",
+      "Link": "more/js-schleifen.html",
+      "class": ["javascript","js","kontrolle"]
+    },
+    {
+      "Tag": "for…of / for…in",
+      "Beschreibung": "Über Arrays bzw. Objekt-Schlüssel laufen",
+      "Sprache": "JS",
+      "Link": "more/js-schleifen.html",
+      "class": ["javascript","js","kontrolle"]
+    },
+    {
+      "Tag": "break / continue",
+      "Beschreibung": "Schleife abbrechen oder Durchlauf überspringen",
+      "Sprache": "JS",
+      "Link": "more/js-schleifen.html",
+      "class": ["javascript","js","kontrolle"]
+    },
+    {
+      "Tag": "function",
+      "Beschreibung": "Funktion deklarieren",
+      "Sprache": "JS",
+      "Link": "more/js-funktionen.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "=> (Pfeilfunktion)",
+      "Beschreibung": "Kurze Schreibweise für Funktionen",
+      "Sprache": "JS",
+      "Link": "more/js-funktionen.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "return",
+      "Beschreibung": "Wert aus einer Funktion zurückgeben",
+      "Sprache": "JS",
+      "Link": "more/js-funktionen.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Array",
+      "Beschreibung": "Liste von Werten",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "push / pop",
+      "Beschreibung": "Elemente hinten anfügen / entfernen",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "forEach",
+      "Beschreibung": "Für jedes Array-Element etwas ausführen",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "map",
+      "Beschreibung": "Jedes Element umwandeln → neues Array",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "filter",
+      "Beschreibung": "Passende Elemente auswählen → neues Array",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "find / includes",
+      "Beschreibung": "Element suchen / Enthaltensein prüfen",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "sort",
+      "Beschreibung": "Array sortieren",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "reduce",
+      "Beschreibung": "Array zu einem Wert zusammenfassen",
+      "Sprache": "JS",
+      "Link": "more/js-arrays.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Objekt",
+      "Beschreibung": "Daten als Schlüssel-Wert-Paare",
+      "Sprache": "JS",
+      "Link": "more/js-objekte.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Destructuring",
+      "Beschreibung": "Werte aus Objekten/Arrays auspacken",
+      "Sprache": "JS",
+      "Link": "more/js-objekte.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "... (Spread)",
+      "Beschreibung": "Arrays/Objekte kopieren und zusammenführen",
+      "Sprache": "JS",
+      "Link": "more/js-objekte.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "JSON",
+      "Beschreibung": "JSON.stringify / JSON.parse",
+      "Sprache": "JS",
+      "Link": "more/js-objekte.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Template-String",
+      "Beschreibung": "Text mit ${Variablen} in Backticks",
+      "Sprache": "JS",
+      "Link": "more/js-strings.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "String-Methoden",
+      "Beschreibung": "toUpperCase, trim, includes, split, slice …",
+      "Sprache": "JS",
+      "Link": "more/js-strings.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "document.querySelector",
+      "Beschreibung": "Element per CSS-Selektor finden",
+      "Sprache": "JS",
+      "Link": "more/js-dom.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "getElementById",
+      "Beschreibung": "Element über seine ID finden",
+      "Sprache": "JS",
+      "Link": "more/js-dom.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "textContent / innerHTML",
+      "Beschreibung": "Inhalt eines Elements lesen/ändern",
+      "Sprache": "JS",
+      "Link": "more/js-dom.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "classList",
+      "Beschreibung": "CSS-Klassen hinzufügen, entfernen, umschalten",
+      "Sprache": "JS",
+      "Link": "more/js-dom.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "createElement / appendChild",
+      "Beschreibung": "Neue Elemente erzeugen und einfügen",
+      "Sprache": "JS",
+      "Link": "more/js-dom.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "dataset",
+      "Beschreibung": "data-*-Attribute auslesen",
+      "Sprache": "JS",
+      "Link": "more/js-dom.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "addEventListener",
+      "Beschreibung": "Auf Ereignisse wie Klicks reagieren",
+      "Sprache": "JS",
+      "Link": "more/js-events.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "event.preventDefault()",
+      "Beschreibung": "Standardverhalten des Browsers verhindern",
+      "Sprache": "JS",
+      "Link": "more/js-events.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "console.log",
+      "Beschreibung": "Ausgabe in der Browser-Konsole",
+      "Sprache": "JS",
+      "Link": "more/js-konsole.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    {
+      "Tag": "try / catch",
+      "Beschreibung": "Fehler abfangen",
+      "Sprache": "JS",
+      "Link": "more/js-konsole.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    {
+      "Tag": "setTimeout / setInterval",
+      "Beschreibung": "Code verzögert oder wiederholt ausführen",
+      "Sprache": "JS",
+      "Link": "more/js-async.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    {
+      "Tag": "async / await",
+      "Beschreibung": "Auf asynchrone Vorgänge warten",
+      "Sprache": "JS",
+      "Link": "more/js-async.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    {
+      "Tag": "fetch",
+      "Beschreibung": "Daten aus dem Netz laden",
+      "Sprache": "JS",
+      "Link": "more/js-async.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    {
+      "Tag": "localStorage",
+      "Beschreibung": "Daten im Browser speichern",
+      "Sprache": "JS",
+      "Link": "more/js-speicher.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Math",
+      "Beschreibung": "Runden, Zufallszahlen, Wurzel …",
+      "Sprache": "JS",
+      "Link": "more/js-mathe.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Date",
+      "Beschreibung": "Datum und Uhrzeit",
+      "Sprache": "JS",
+      "Link": "more/js-mathe.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "import / export",
+      "Beschreibung": "Code auf Module verteilen",
+      "Sprache": "JS",
+      "Link": "more/js-module.html",
+      "class": ["javascript","js","werkzeuge"]
     }
   ]};
 

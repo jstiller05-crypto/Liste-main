@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Schleifen – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Grundlagen</p>
+    <h1>Schleifen</h1>
+    <p class="page-lead">Code wiederholen: <code>for</code>, <code>while</code>, <code>for…of</code>, <code>forEach</code> – und wie man abbricht.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>for – feste Anzahl</h2>
+      <pre><code>for (let i = 0; i &lt; 5; i++) {
+  console.log("Durchlauf", i);   // 0, 1, 2, 3, 4
+}
+//   Start     Bedingung  Schritt</code></pre>
+    </section>
+    <section>
+      <h2>while / do…while – solange eine Bedingung gilt</h2>
+      <pre><code>let tries = 0;
+while (tries &lt; 3) {
+  console.log("Versuch", tries);
+  tries++;
+}
+
+// do…while läuft mindestens einmal
+let answer;
+do {
+  answer = prompt("Passwort?");
+} while (answer !== "geheim");</code></pre>
+    </section>
+    <section>
+      <h2>Über Arrays und Objekte</h2>
+      <pre><code>const colors = ["rot", "grün", "blau"];
+
+for (const color of colors) {          // for…of: jeder WERT
+  console.log(color);
+}
+
+colors.forEach((color, index) =&gt; {     // forEach: Wert + Position
+  console.log(index, color);
+});
+
+const user = { name: "Max", age: 30 };
+for (const key in user) {              // for…in: jeder SCHLÜSSEL eines Objekts
+  console.log(key, user[key]);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Welche Schleife wann?</h2>
+      <table class="info-table">
+        <thead><tr><th>Schleife</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>for</code></td><td>Du brauchst einen Zähler oder eine feste Anzahl</td></tr>
+          <tr><td><code>for…of</code></td><td>Jedes Element eines Arrays/Strings durchgehen</td></tr>
+          <tr><td><code>forEach</code></td><td>Wie for…of, als Methode – kann nicht mit <code>break</code> abbrechen</td></tr>
+          <tr><td><code>for…in</code></td><td>Schlüssel eines Objekts durchgehen</td></tr>
+          <tr><td><code>while</code></td><td>Anzahl vorher unbekannt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Abbrechen und überspringen</h2>
+      <pre><code>for (const n of [1, 2, 3, 4, 5]) {
+  if (n === 2) continue;   // diesen Durchlauf überspringen
+  if (n === 4) break;      // Schleife komplett beenden
+  console.log(n);          // 1, 3
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><strong>Endlosschleife:</strong> Ändert sich die Bedingung nie (z. B. <code>i++</code> vergessen), hängt der Browser-Tab.</li>
+        <li>Zum Umwandeln oder Filtern von Arrays sind <code>map</code> und <code>filter</code> oft besser als eine Schleife.</li>
+        <li><code>i &lt; array.length</code>, nicht <code>&lt;=</code> – sonst greifst du einmal zu weit.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-arrays.html">Arrays</a>
+        <a class="chip" href="js-bedingungen.html">if / else</a>
+        <a class="chip" href="for-loop.html">&lt;for-loop&gt;</a>
+        <a class="chip" href="while-loop.html">&lt;while-loop&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
