@@ -13,7 +13,8 @@
    5. Tabellen, Hinweise, Vorschau
    6. Links & Chips (verwandte Seiten)
    7. Footer (Zurück-Icon)
-   8. Handy
+   8. Verständnis-Bewertung (Button + Punkte-Lineal)
+   9. Handy
    ===================================================================== */
 
 
@@ -335,7 +336,122 @@ footer {
 
 
 /* ---------------------------------------------------------------------
-   8. HANDY (schmale Bildschirme)
+   8. VERSTÄNDNIS-BEWERTUNG (Button + Punkte-Lineal)
+   ---------------------------------------------------------------------
+   Wird von more.js in den vorhandenen <footer> eingefügt (Button über
+   dem Zurück-Pfeil). Nutzt bewusst nur die Farb-Variablen von oben –
+   keine neuen Farben, nichts zentriert.
+   --------------------------------------------------------------------- */
+
+/* Umhüllt Button + Lineal. "position: relative" ist der Ankerpunkt für
+   das Lineal (position: absolute), s. u. */
+.progress-widget {
+  position: relative;
+}
+
+.progress-button {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 0 8px;   /* Abstand zum Zurück-Pfeil darunter */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: Consolas, Monaco, monospace;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.progress-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Das Lineal klappt ÜBER dem Button auf (bottom: 100%) und ist rechts-
+   bündig zum Button (right: 0) – dadurch wächst es nach links, weg vom
+   rechten Bildschirmrand, an dem der Footer klebt. */
+.progress-ruler {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  min-width: 220px;
+  padding: 10px 12px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.progress-ruler[hidden] {
+  display: none;
+}
+
+.progress-ruler-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 16px;
+  margin: 0 0 6px;
+}
+
+.progress-ruler-preview {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.progress-ruler-reset {
+  padding: 0 2px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.progress-ruler-reset:hover {
+  color: var(--accent);
+}
+
+.progress-ruler-dots {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.progress-dot:hover,
+.progress-dot:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.progress-dot.is-filled {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.progress-ruler-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------------------
+   9. HANDY (schmale Bildschirme)
    --------------------------------------------------------------------- */
 @media (max-width: 600px) {
   header h1 {
@@ -348,5 +464,16 @@ footer {
 
   .info-table {
     font-size: 0.88rem;
+  }
+
+  .progress-ruler {
+    min-width: 200px;
+    max-width: calc(100vw - 32px);   /* nie über den Bildschirmrand hinaus */
+    padding: 8px 10px;
+  }
+
+  .progress-dot {
+    width: 10px;
+    height: 10px;
   }
 }

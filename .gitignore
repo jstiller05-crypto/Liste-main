@@ -1,0 +1,7 @@
+# Alles unter data/ ist lokal & maschinenspezifisch – darf NIE ins Repo:
+#   data/progress.db   – die Verständnis-Bewertungen (SQLite)
+#   data/server.log    – Server-Log (start-hidden.vbs schreibt hierhin)
+#   data/server.pid    – Prozess-ID des laufenden Servers
+# Eine einzelne Regel "data/" deckt automatisch ALLE drei ab, auch
+# zukünftige Dateien in diesem Ordner.
+data/
