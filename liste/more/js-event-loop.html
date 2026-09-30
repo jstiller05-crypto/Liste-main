@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Event Loop – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Hintergrund</p>
+    <h1>Event Loop</h1>
+    <p class="page-lead">Wie JavaScript mit nur einem Thread trotzdem auf Klicks, Timer und Netzwerk reagiert.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Das Grundprinzip</h2>
+      <p>JavaScript führt Code in <strong>einem</strong> Thread aus – immer nur eine Sache gleichzeitig. Langsame Dinge (Timer, <code>fetch</code>, Klicks) erledigt der Browser nebenher und legt die fertigen Callbacks in Warteschlangen. Die Event Loop holt sie heraus, sobald der aktuelle Code fertig ist.</p>
+      <pre><code>┌─────────────────┐
+│   Call Stack    │  ← läuft gerade (immer nur eins)
+└────────┬────────┘
+         │ leer?
+         ▼
+┌─────────────────┐   zuerst ALLE
+│ Microtask-Queue │   Promise.then, await-Fortsetzungen
+└────────┬────────┘
+         ▼
+┌─────────────────┐   dann EINE
+│   Task-Queue    │   setTimeout, Klicks, Events
+└────────┬────────┘
+         ▼
+     Neu zeichnen → von vorn</code></pre>
+    </section>
+    <section>
+      <h2>Welche Reihenfolge?</h2>
+      <pre><code>console.log("1: synchron");
+
+setTimeout(() =&gt; console.log("4: setTimeout (Task)"), 0);
+
+Promise.resolve().then(() =&gt; console.log("3: Promise (Microtask)"));
+
+console.log("2: synchron");
+
+// Ausgabe: 1, 2, 3, 4</code></pre>
+      <p><code>setTimeout(…, 0)</code> heißt nicht „sofort“, sondern „so bald wie möglich, nachdem alles andere fertig ist“.</p>
+    </section>
+    <section>
+      <h2>Warum die Seite einfriert</h2>
+      <pre><code>button.addEventListener("click", () =&gt; {
+  const end = Date.now() + 3000;
+  while (Date.now() &lt; end) {}     // 3 Sekunden Dauerschleife blockiert ALLES:
+});                               // keine Klicks, kein Scrollen, kein Neuzeichnen</code></pre>
+      <p>Lange Berechnungen deshalb aufteilen oder in einen <strong>Web Worker</strong> auslagern – der läuft in einem eigenen Thread.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>await</code> pausiert nur die aktuelle <code>async</code>-Funktion, nicht die ganze Seite.</li>
+        <li>Ein Tab, der „nicht reagiert“, hängt fast immer in einer langen synchronen Schleife.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-async.html">async/await</a>
+        <a class="chip" href="js-animation.html">Animationen</a>
+        <a class="chip" href="js-debounce.html">Debounce &amp; Throttle</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

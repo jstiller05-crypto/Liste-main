@@ -31,7 +31,7 @@
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
 //   3. Dateiname beginnt mit "css-", "js-", "cpp-", "node-", "sql-", "php-",
-//      "lua-", "c-", "csharp-", "swift-"
+//      "lua-", "c-", "csharp-", "swift-", "ts-"
 //   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
@@ -77,7 +77,8 @@ const DEFAULT_PAGE_LANGUAGE = "html";
 // Node.js IST JavaScript – dort sollen also die JS-Seiten verlinkt werden.
 const LANGUAGE_FALLBACK = {
   node: "js",
-  c: "cpp"          // C-Grundlagen (Schleifen, if, Zeiger …) sind wie in C++
+  c: "cpp",         // C-Grundlagen (Schleifen, if, Zeiger …) sind wie in C++
+  ts: "js"          // TypeScript IST JavaScript mit Typen → sonst die JS-Seiten
 };
 
 
@@ -111,6 +112,8 @@ const smartLinkRules = [
   { words: ["Lua", "LuaJIT"],    links: { all: "lua-einfuehrung.html" } },
   { words: ["C#", ".NET"],       links: { all: "csharp-einfuehrung.html" } },
   { words: ["Swift"],            links: { all: "swift-einfuehrung.html" } },
+  { words: ["TypeScript", "TS"], links: { all: "ts-einfuehrung.html" } },
+  { words: ["tsconfig", "tsconfig.json", "tsc"], links: { all: "ts-projekt.html" } },
   { words: ["SwiftUI"],          links: { all: "swiftui.html" } },
   { words: ["Xcode"],            links: { all: "xcode.html" } },
   { words: ["Luanti", "Mod", "Mods"], links: { all: "lua-luanti.html" } },
@@ -203,7 +206,7 @@ const smartLinkRules = [
   // ===== Gleiches Wort, andere Bedeutung je Sprache =====
   // "Klasse" ist in C++ eine Objekt-Vorlage, in HTML/CSS eine CSS-Klasse
   { words: ["Klasse", "Klassen"],
-    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-objekte.html", sql: "", all: "Class.html" , lua: "lua-module.html", c: "", csharp: "csharp-klassen.html", swift: "swift-typen.html" } },   // "" = bewusst kein Link
+    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-klassen.html", ts: "ts-klassen-generics.html", sql: "", all: "Class.html" , lua: "lua-module.html", c: "", csharp: "csharp-klassen.html", swift: "swift-typen.html" } },   // "" = bewusst kein Link
   { words: ["CSS-Klasse", "CSS-Klassen"],
     links: { all: "Class.html" } },
   // "Eingabe" ist in C++ cin, im Web ein Eingabefeld
@@ -236,7 +239,7 @@ const smartLinkRules = [
   { words: ["JSON"],                                      links: { js: "js-objekte.html", html: "js-objekte.html" } },
   { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" , c: "c-ein-ausgabe.html", csharp: "csharp-einfuehrung.html" } },
   { words: ["try/catch", "Fehlermeldung", "try", "catch"], links: { js: "js-konsole.html", cpp: "cpp-fehler.html" } },
-  { words: ["Promise", "async", "await", "fetch"],        links: { js: "js-async.html" } },
+  { words: ["Promise", "async", "await"],                 links: { js: "js-async.html" } },
   { words: ["localStorage"],                              links: { js: "js-speicher.html", html: "js-speicher.html" } },
   { words: ["Zufallszahl", "Zufallszahlen", "Math.random"], links: { js: "js-mathe.html", cpp: "cpp-zufall.html" , lua: "lua-module.html" } },
   { words: ["Modul", "Module", "import", "export"],       links: { js: "js-module.html" } },
@@ -257,7 +260,7 @@ const smartLinkRules = [
                                                           links: { html: "link.html", css: "link.html" } },
   { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html", sql: "sql-tabellen.html", php: "sql-tabellen.html" , lua: "lua-tabellen.html" } },
   { words: ["Liste", "Listen"],                           links: { html: "liste.html", css: "liste.html", js: "liste.html" } },
-  { words: ["Formular", "Formulare"],                     links: { html: "form.html", css: "form.html", js: "form.html", php: "php-formulare.html" } },
+  { words: ["Formular", "Formulare"],                     links: { html: "form.html", css: "form.html", js: "js-formulare.html", php: "php-formulare.html" } },
   { words: ["Container", "Containern"],                   links: { html: "container.html", css: "container.html", js: "container.html" } },
   { words: ["Bild", "Bilder"],                            links: { html: "img.html", css: "img.html", js: "img.html" } },
   { words: ["Link", "Links", "Hyperlink", "Hyperlinks"],  links: { html: "a.html", css: "a.html", js: "a.html" } },
@@ -265,7 +268,35 @@ const smartLinkRules = [
                                                           links: { html: "button.html", css: "button.html", js: "button.html" } },
   { words: ["Eingabefeld", "Eingabefelder"],              links: { html: "input.html", css: "input.html", js: "input.html" } },
   { words: ["Attribut", "Attribute", "ID-Attribut", "ID"],
-                                                          links: { html: "id.html", css: "id.html", js: "id.html" } }
+                                                          links: { html: "id.html", css: "id.html", js: "id.html" } },
+  // ===== Weitere JavaScript-Themen =====
+  // (stehen am Ende: kommt ein Wort doppelt vor, gewinnt die spätere Regel)
+  { words: ["Konstruktor", "constructor", "extends", "Vererbung", "Getter", "Setter"],
+                                                          links: { js: "js-klassen.html", ts: "ts-klassen-generics.html" } },
+  { words: ["Scope", "Closure", "Closures", "Hoisting", "this"], links: { js: "js-scope.html" } },
+  { words: ["Map", "Set", "WeakMap"],                     links: { js: "js-map-set.html" } },
+  { words: ["fetch", "API", "APIs", "REST-API", "HTTP-Anfrage"], links: { js: "js-fetch.html" } },
+  { words: ["FormData", "Validierung", "preventDefault"], links: { js: "js-formulare.html" } },
+  { words: ["Zwischenablage", "IntersectionObserver", "Geolocation", "Notification"],
+                                                          links: { js: "js-browser-apis.html" } },
+  { words: ["Debounce", "Throttle", "Debouncing"],        links: { js: "js-debounce.html" } },
+  { words: ["Animation", "Animationen", "requestAnimationFrame"], links: { js: "js-animation.html" } },
+  { words: ["XSS", "Sicherheit", "innerHTML"],            links: { js: "js-sicherheit.html" } },
+  { words: ["Barrierefreiheit", "barrierefrei", "ARIA", "Screenreader"],
+                                                          links: { js: "js-barrierefreiheit.html", html: "js-barrierefreiheit.html" } },
+  { words: ["Regex", "regulärer Ausdruck", "reguläre Ausdrücke"], links: { js: "js-regex.html" } },
+  { words: ["Event Loop", "Microtask", "Microtasks", "Callstack"], links: { js: "js-event-loop.html" } },
+  { words: ["Intl", "toLocaleString", "Zeitzone"],        links: { js: "js-intl.html" } },
+  { words: ["Generator", "Generatoren", "Iterator", "Iteratoren", "yield"], links: { js: "js-generatoren.html" } },
+  { words: ["Vite", "Build-Tool", "Bundler"],             links: { all: "js-vite.html" } },
+  { words: ["Vitest", "Test", "Tests", "Unit-Test", "Unit-Tests"], links: { js: "js-testen.html" } },
+
+  // ===== Nur TypeScript =====
+  { words: ["Typ", "Typen", "Union", "Union-Typ", "Union-Typen", "any", "unknown"],
+                                                          links: { ts: "ts-typen.html" } },
+  { words: ["Interface", "Interfaces", "Record", "Partial"], links: { ts: "ts-interfaces.html" } },
+  { words: ["Generic", "Generics", "private", "public", "protected", "implements"],
+                                                          links: { ts: "ts-klassen-generics.html" } },
 ];
 
 
@@ -458,6 +489,7 @@ function getPageLanguage(pageFile) {
     if (pageFile.startsWith("csharp-")) return "csharp";
     if (pageFile.startsWith("swift-")) return "swift";
     if (pageFile.startsWith("c-")) return "c";
+    if (pageFile.startsWith("ts-")) return "ts";
   }
   // "??" = nimm den rechten Wert, wenn der linke undefined/null ist
   return PAGE_LANGUAGES[pageFile] ?? DEFAULT_PAGE_LANGUAGE;

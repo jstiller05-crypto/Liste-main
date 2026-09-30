@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Debounce &amp; Throttle – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Muster</p>
+    <h1>Debounce &amp; Throttle</h1>
+    <p class="page-lead">Funktionen bremsen, die sonst viel zu oft aufgerufen würden – z. B. bei Suche, Scrollen oder Fenstergröße.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Das Problem</h2>
+      <p>Das Event <code>input</code> feuert bei <strong>jedem</strong> Tastendruck. Startet jede Eingabe eine teure Suche oder eine Server-Anfrage, läuft beim Wort „Tabelle“ siebenmal dieselbe Arbeit.</p>
+    </section>
+    <section>
+      <h2>Debounce – erst wenn Ruhe ist</h2>
+      <pre><code>function debounce(fn, delay = 300) {
+  let timeoutId;
+  return (...args) =&gt; {
+    clearTimeout(timeoutId);                          // alten Timer verwerfen
+    timeoutId = setTimeout(() =&gt; fn(...args), delay); // neuen starten
+  };
+}
+
+const search = debounce((text) =&gt; {
+  console.log("[search] suche nach:", text);
+}, 300);
+
+input.addEventListener("input", () =&gt; search(input.value));</code></pre>
+      <p>Erst wenn 300 ms lang nichts getippt wurde, läuft die Suche – genau einmal.</p>
+      <div class="preview" aria-label="Vorschau">
+        <input id="dbInput" placeholder="Schnell tippen …" style="padding:6px 10px"> <span id="dbOut" style="margin-left:8px;color:#b5b5b5">Aufrufe: 0 (input) · 0 (debounced)</span><script>(function(){var i=document.getElementById("dbInput"),o=document.getElementById("dbOut");if(!i)return;var a=0,b=0,t;i.addEventListener("input",function(){a++;clearTimeout(t);t=setTimeout(function(){b++;show();},300);show();});function show(){o.textContent="Aufrufe: "+a+" (input) · "+b+" (debounced)";}})();</script>
+      </div>
+    </section>
+    <section>
+      <h2>Throttle – höchstens alle X ms</h2>
+      <pre><code>function throttle(fn, interval = 200) {
+  let lastRun = 0;
+  return (...args) =&gt; {
+    const now = Date.now();
+    if (now - lastRun &gt;= interval) {
+      lastRun = now;
+      fn(...args);
+    }
+  };
+}
+
+window.addEventListener("scroll", throttle(() =&gt; {
+  console.log("[scroll]", window.scrollY);
+}, 200));</code></pre>
+    </section>
+    <section>
+      <h2>Welches wann?</h2>
+      <table class="info-table">
+        <thead><tr><th>Muster</th><th>Verhalten</th><th>Typisch für</th></tr></thead>
+        <tbody>
+          <tr><td>Debounce</td><td>Wartet, bis die Ereignisse aufhören, dann einmal</td><td>Suchfeld, Autosave, Fenstergröße</td></tr>
+          <tr><td>Throttle</td><td>Führt regelmäßig aus, solange Ereignisse kommen</td><td>Scrollen, Mausbewegung, Spiel-Eingaben</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Beide Funktionen nutzen eine Closure, um sich den Timer bzw. den letzten Zeitpunkt zu merken.</li>
+        <li>Für kleine Listen (wie ein paar hundert Einträge) ist Filtern ohne Debounce meist schnell genug – bei Server-Anfragen ist Debounce Pflicht.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-scope.html">Scope &amp; this</a>
+        <a class="chip" href="js-events.html">Events</a>
+        <a class="chip" href="js-async.html">async/await</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

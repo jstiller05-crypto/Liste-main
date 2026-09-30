@@ -11,6 +11,10 @@
       wie gut man ein Thema verstanden hat (0–10 Punkte). Die Werte
       landen in einer SQLite-Datenbank unter data/progress.db.
 
+   3. Schreibt zusätzlich eine Kopie aller Bewertungen nach
+      data/progress.json (siehe Abschnitt 2b). Die kann eine andere
+      Anwendung lesen, die keine SQLite-Datenbank öffnen kann.
+
    WICHTIG: Nur eingebaute Node-Module (node:http, node:fs, node:path,
    node:sqlite) – keine npm-Pakete nötig, also auch kein "npm install".
 
@@ -78,6 +82,7 @@ const STATIC_ROOT = path.join(ROOT_DIR, "liste");   // hier liegen die Webseiten
 const DATA_DIR = path.join(ROOT_DIR, "data");        // hier liegt Datenbank, Log, PID
 const DB_PATH = path.join(DATA_DIR, "progress.db");
 const PID_PATH = path.join(DATA_DIR, "server.pid");
+const EXPORT_PATH = path.join(DATA_DIR, "progress.json");  // JSON-Kopie für andere Programme
 
 // data/-Ordner anlegen, falls er noch nicht existiert.
 // { recursive: true } = auch Zwischenordner anlegen, und KEIN Fehler,
@@ -141,6 +146,117 @@ const statements = {
   `),
   remove: db.prepare("DELETE FROM progress WHERE page = ?")
 };
+
+
+/* =====================================================================
+   2b. JSON-EXPORT  (data/progress.json)
+   ---------------------------------------------------------------------
+   Die SQLite-Datei progress.db ist eine Binärdatei – ein anderes
+   Programm kann sie nur mit einer SQLite-Bibliothek lesen. Deshalb
+   schreibt der Server nach jeder Änderung zusätzlich eine einfache
+   JSON-Datei mit ALLEN Bewertungen. Die Datenbank bleibt dabei die
+   eigentliche Quelle – die JSON-Datei ist nur eine Kopie zum Lesen.
+
+   Aufbau der Datei:
+     {
+       "exported_at": "2026-09-30T18:04:12.345Z",
+       "entries": [
+         { "page": "pointer.html", "level": 3, "updated": "2026-09-30T..." }
+       ]
+     }
+
+   Wann wird exportiert?
+     - einmal beim Serverstart (damit die Datei sofort existiert)
+     - nach JEDEM erfolgreichen UPSERT (PUT) und DELETE
+   ===================================================================== */
+
+// Die Zwischendatei liegt im SELBEN Ordner wie die Zieldatei. Das ist
+// wichtig: Umbenennen ist nur innerhalb desselben Laufwerks ein einziger,
+// schneller Schritt (siehe unten). Über Laufwerke hinweg müsste das
+// Betriebssystem stattdessen kopieren – dann wäre es nicht mehr atomar.
+const EXPORT_TMP_PATH = EXPORT_PATH + ".tmp";
+
+// ---------------------------------------------------------------------
+// Schreibt alle Zeilen der Tabelle progress nach data/progress.json.
+// Gibt true zurück, wenn es geklappt hat, sonst false.
+//
+// WICHTIG: Diese Funktion wirft NIE einen Fehler nach außen. Ein
+// fehlgeschlagener Export darf weder den Server abstürzen lassen noch
+// die eigentliche API-Antwort verhindern – die Bewertung ist ja schon
+// sicher in der Datenbank. Beim nächsten Export (nächste Änderung oder
+// nächster Serverstart) wird die Datei ohnehin wieder komplett neu
+// geschrieben.
+// ---------------------------------------------------------------------
+function exportProgressJson() {
+  try {
+    // .all() liefert ein Array mit einem Objekt pro Zeile, z. B.
+    // [ { page: "a.html", level: 7, updated: "..." }, ... ]
+    // (getAll ist schon nach page sortiert → Datei ist immer gleich geordnet)
+    const rows = statements.getAll.all();
+
+    // Neue, "saubere" Objekte bauen, statt die Zeilen direkt zu benutzen:
+    // So stehen in der Datei garantiert GENAU diese drei Felder in GENAU
+    // dieser Reihenfolge – auch falls die Tabelle später mehr Spalten bekommt.
+    const entries = rows.map(function toExportEntry(row) {
+      return { page: row.page, level: row.level, updated: row.updated };
+    });
+
+    const exportData = {
+      exported_at: new Date().toISOString(),
+      entries: entries
+    };
+
+    // JSON.stringify(wert, null, 2):
+    //   2. Argument (null) = keine Felder herausfiltern
+    //   3. Argument (2)    = mit 2 Leerzeichen einrücken → für Menschen lesbar
+    // "\n" am Ende, weil Textdateien üblicherweise mit einem Zeilenumbruch enden.
+    const jsonText = JSON.stringify(exportData, null, 2) + "\n";
+
+    // -----------------------------------------------------------------
+    // ATOMAR SCHREIBEN – warum der Umweg über eine .tmp-Datei?
+    // -----------------------------------------------------------------
+    // Würde man direkt in progress.json schreiben, gäbe es einen kurzen
+    // Moment, in dem die Datei schon geöffnet und geleert, aber noch nicht
+    // fertig beschrieben ist. Liest das andere Programm GENAU dann, bekommt
+    // es eine leere oder halbe Datei → JSON.parse schlägt fehl.
+    //
+    // Deshalb in zwei Schritten:
+    //   1. Alles in eine Zwischendatei schreiben (progress.json.tmp).
+    //      Die kennt das andere Programm nicht, dort darf also ruhig
+    //      "halb fertig" drinstehen.
+    //   2. Die fertige Zwischendatei in progress.json UMBENENNEN.
+    //      Umbenennen ersetzt die alte Datei in einem einzigen Schritt:
+    //      Wer progress.json öffnet, bekommt ENTWEDER die komplette alte
+    //      ODER die komplette neue Version – nie etwas dazwischen.
+    //      Genau das bedeutet "atomar" (= unteilbar).
+    // -----------------------------------------------------------------
+    fs.writeFileSync(EXPORT_TMP_PATH, jsonText, "utf8");   // Schritt 1
+    fs.renameSync(EXPORT_TMP_PATH, EXPORT_PATH);            // Schritt 2
+
+    console.log("[export] " + entries.length + " Einträge nach data/progress.json geschrieben");
+    return true;
+  } catch (error) {
+    // Typischer Fall unter Windows: Das andere Programm hat progress.json
+    // gerade GEÖFFNET, dann verweigert Windows das Ersetzen (EPERM/EBUSY).
+    // Kein Problem: loggen und weitermachen, der nächste Export klappt wieder.
+    console.error("[export] JSON-Export fehlgeschlagen:", error.message);
+
+    // Eine übrig gebliebene Zwischendatei aufräumen, damit sie nicht
+    // herumliegt. Auch das darf nicht abstürzen, daher eigenes try/catch.
+    try {
+      if (fs.existsSync(EXPORT_TMP_PATH)) {
+        fs.unlinkSync(EXPORT_TMP_PATH);
+      }
+    } catch (cleanupError) {
+      console.error("[export] Zwischendatei konnte nicht gelöscht werden:", cleanupError.message);
+    }
+    return false;
+  }
+}
+
+// Einmal beim Start exportieren, damit progress.json sofort existiert
+// und zum aktuellen Stand der Datenbank passt.
+exportProgressJson();
 
 
 /* =====================================================================
@@ -355,6 +471,10 @@ async function handleApiRequest(req, res, urlPathname) {
     statements.upsert.run(page, payload.level, updated);
     console.log("[db] UPSERT", page, "=", payload.level);
 
+    // JSON-Kopie aktualisieren. Fängt eigene Fehler selbst ab (siehe 2b),
+    // die Antwort unten wird also auf jeden Fall gesendet.
+    exportProgressJson();
+
     sendJson(res, 200, { page, level: payload.level, updated });
     return;
   }
@@ -362,6 +482,11 @@ async function handleApiRequest(req, res, urlPathname) {
   if (method === "DELETE") {
     const info = statements.remove.run(page);
     console.log("[db] DELETE", page, "→ entfernte Zeilen:", info.changes);
+
+    // Auch nach dem Löschen die JSON-Kopie neu schreiben (Fehler werden
+    // in exportProgressJson selbst abgefangen, siehe 2b).
+    exportProgressJson();
+
     sendJson(res, 200, { deleted: info.changes > 0, page });
     return;
   }

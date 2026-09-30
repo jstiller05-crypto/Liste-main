@@ -19,11 +19,19 @@
      "Beschreibung" → Spalte 2
      "Sprache"      → Spalte 3 (+ Sprach-Filter, klein geschrieben verglichen)
      "Link"         → Spalte 4 ("mehr"-Link), leer lassen = kein Link
-     "class"        → Array mit Schlagwörtern für den Kategorie-Filter
+     "class"        → Array mit Schlagwörtern für den Kategorie-Filter UND die Suche
    Neuer Eintrag: einfach einen { ... }-Block kopieren und anpassen.
   Die Reihenfolge hier ist egal – sortEntriesBySelectedOrder() sortiert beim Anzeigen.
    ===================================================================== */
 let oTableEntries = { "List": [
+    // Spicker selbst
+    {
+      "Tag": "Anleitung",
+      "Beschreibung": "So funktioniert der Spicker: Aufbau, alle Funktionen und Lerntipps",
+      "Sprache": "Spicker",
+      "Link": "more/anleitung.html",
+      "class": ["spicker","hilfe","anleitung","bedienung","funktionen","lernen","lerntipps","verständnis","bewertung","speichern","suche","filter","aufbau"]
+    },
     // Sonderzeichen
     {
       "Tag": "[]",
@@ -2727,6 +2735,358 @@ let oTableEntries = { "List": [
       "Sprache": "Swift",
       "Link": "more/xcode.html",
       "class": ["swift","werkzeuge"]
+    },
+    // JavaScript (Erweiterung)
+    {
+      "Tag": "class",
+      "Beschreibung": "Klassen mit Konstruktor, Methoden und Vererbung",
+      "Sprache": "JS",
+      "Link": "more/js-klassen.html",
+      "class": ["javascript","js","oop"]
+    },
+    {
+      "Tag": "extends / super",
+      "Beschreibung": "Eine Klasse von einer anderen erben lassen",
+      "Sprache": "JS",
+      "Link": "more/js-klassen.html",
+      "class": ["javascript","js","oop"]
+    },
+    {
+      "Tag": "get / set",
+      "Beschreibung": "Getter und Setter in Klassen",
+      "Sprache": "JS",
+      "Link": "more/js-klassen.html",
+      "class": ["javascript","js","oop"]
+    },
+    {
+      "Tag": "#privat",
+      "Beschreibung": "Private Felder in Klassen",
+      "Sprache": "JS",
+      "Link": "more/js-klassen.html",
+      "class": ["javascript","js","oop"]
+    },
+    {
+      "Tag": "Scope",
+      "Beschreibung": "Wo eine Variable sichtbar ist",
+      "Sprache": "JS",
+      "Link": "more/js-scope.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Closure",
+      "Beschreibung": "Funktion, die sich Variablen von außen merkt",
+      "Sprache": "JS",
+      "Link": "more/js-scope.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "this",
+      "Beschreibung": "Worauf this zeigt – normal und in Pfeilfunktionen",
+      "Sprache": "JS",
+      "Link": "more/js-scope.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Hoisting",
+      "Beschreibung": "Warum man Funktionen vor ihrer Definition aufrufen kann",
+      "Sprache": "JS",
+      "Link": "more/js-scope.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Map",
+      "Beschreibung": "Schlüssel-Wert-Speicher mit beliebigen Schlüsseln",
+      "Sprache": "JS",
+      "Link": "more/js-map-set.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Set",
+      "Beschreibung": "Liste ohne doppelte Werte",
+      "Sprache": "JS",
+      "Link": "more/js-map-set.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "FormData",
+      "Beschreibung": "Formularwerte auf einmal auslesen",
+      "Sprache": "JS",
+      "Link": "more/js-formulare.html",
+      "class": ["javascript","js","form"]
+    },
+    {
+      "Tag": "Formular prüfen",
+      "Beschreibung": "Eingaben mit JavaScript validieren",
+      "Sprache": "JS",
+      "Link": "more/js-formulare.html",
+      "class": ["javascript","js","form"]
+    },
+    {
+      "Tag": "preventDefault",
+      "Beschreibung": "Absenden eines Formulars verhindern",
+      "Sprache": "JS",
+      "Link": "more/js-formulare.html",
+      "class": ["javascript","js","form"]
+    },
+    {
+      "Tag": "fetch",
+      "Beschreibung": "Daten von einem Server oder einer API laden",
+      "Sprache": "JS",
+      "Link": "more/js-fetch.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "POST mit fetch",
+      "Beschreibung": "Daten als JSON an einen Server senden",
+      "Sprache": "JS",
+      "Link": "more/js-fetch.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "AbortController",
+      "Beschreibung": "Anfragen abbrechen und Timeouts setzen",
+      "Sprache": "JS",
+      "Link": "more/js-fetch.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Zwischenablage",
+      "Beschreibung": "Text kopieren mit navigator.clipboard",
+      "Sprache": "JS",
+      "Link": "more/js-browser-apis.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "IntersectionObserver",
+      "Beschreibung": "Erkennen, wann ein Element sichtbar wird",
+      "Sprache": "JS",
+      "Link": "more/js-browser-apis.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "URLSearchParams",
+      "Beschreibung": "Parameter aus der Adresszeile lesen",
+      "Sprache": "JS",
+      "Link": "more/js-browser-apis.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "Debounce",
+      "Beschreibung": "Funktion erst nach einer Pause ausführen",
+      "Sprache": "JS",
+      "Link": "more/js-debounce.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "Throttle",
+      "Beschreibung": "Funktion höchstens alle X ms ausführen",
+      "Sprache": "JS",
+      "Link": "more/js-debounce.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "requestAnimationFrame",
+      "Beschreibung": "Flüssige Animationen im Takt des Bildschirms",
+      "Sprache": "JS",
+      "Link": "more/js-animation.html",
+      "class": ["javascript","js","gestaltung"]
+    },
+    {
+      "Tag": "element.animate",
+      "Beschreibung": "Web Animations API",
+      "Sprache": "JS",
+      "Link": "more/js-animation.html",
+      "class": ["javascript","js","gestaltung"]
+    },
+    {
+      "Tag": "XSS",
+      "Beschreibung": "Sicherheit: innerHTML vs. textContent",
+      "Sprache": "JS",
+      "Link": "more/js-sicherheit.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "ARIA",
+      "Beschreibung": "Barrierefreiheit für eigene Bedienelemente",
+      "Sprache": "JS",
+      "Link": "more/js-barrierefreiheit.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "Fokus steuern",
+      "Beschreibung": "Tastaturbedienung mit focus() und tabindex",
+      "Sprache": "JS",
+      "Link": "more/js-barrierefreiheit.html",
+      "class": ["javascript","js","dom"]
+    },
+    {
+      "Tag": "RegExp",
+      "Beschreibung": "Reguläre Ausdrücke: Muster in Texten finden",
+      "Sprache": "JS",
+      "Link": "more/js-regex.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "replace / match",
+      "Beschreibung": "Text mit Regex ersetzen und suchen",
+      "Sprache": "JS",
+      "Link": "more/js-regex.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Event Loop",
+      "Beschreibung": "Wie JavaScript Aufgaben nacheinander abarbeitet",
+      "Sprache": "JS",
+      "Link": "more/js-event-loop.html",
+      "class": ["javascript","js","grundlagen"]
+    },
+    {
+      "Tag": "Intl.NumberFormat",
+      "Beschreibung": "Zahlen und Währungen formatieren",
+      "Sprache": "JS",
+      "Link": "more/js-intl.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Intl.DateTimeFormat",
+      "Beschreibung": "Datum und Uhrzeit formatieren",
+      "Sprache": "JS",
+      "Link": "more/js-intl.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "function*",
+      "Beschreibung": "Generatoren und yield",
+      "Sprache": "JS",
+      "Link": "more/js-generatoren.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Symbol.iterator",
+      "Beschreibung": "Eigene Objekte mit for...of durchlaufen",
+      "Sprache": "JS",
+      "Link": "more/js-generatoren.html",
+      "class": ["javascript","js","daten"]
+    },
+    {
+      "Tag": "Vite",
+      "Beschreibung": "Entwicklungsserver und Build-Tool",
+      "Sprache": "JS",
+      "Link": "more/js-vite.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    {
+      "Tag": "Vitest",
+      "Beschreibung": "Automatische Tests schreiben",
+      "Sprache": "JS",
+      "Link": "more/js-testen.html",
+      "class": ["javascript","js","werkzeuge"]
+    },
+    // TypeScript
+    {
+      "Tag": "TypeScript",
+      "Beschreibung": "JavaScript mit Typen – Einführung und Installation",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-einfuehrung.html",
+      "class": ["typescript","grundlagen"]
+    },
+    {
+      "Tag": "tsc",
+      "Beschreibung": "Der TypeScript-Compiler",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-einfuehrung.html",
+      "class": ["typescript","werkzeuge"]
+    },
+    {
+      "Tag": "string / number / boolean",
+      "Beschreibung": "Grundtypen und Typangaben",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-typen.html",
+      "class": ["typescript","grundlagen"]
+    },
+    {
+      "Tag": "Union-Typ",
+      "Beschreibung": "Wert kann das eine ODER das andere sein",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-typen.html",
+      "class": ["typescript","grundlagen"]
+    },
+    {
+      "Tag": "any / unknown",
+      "Beschreibung": "Unbekannte Werte sicher behandeln",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-typen.html",
+      "class": ["typescript","grundlagen"]
+    },
+    {
+      "Tag": "type",
+      "Beschreibung": "Einem Typ einen Namen geben",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-typen.html",
+      "class": ["typescript","grundlagen"]
+    },
+    {
+      "Tag": "as",
+      "Beschreibung": "Type Assertion – TS einen Typ mitteilen",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-typen.html",
+      "class": ["typescript","grundlagen"]
+    },
+    {
+      "Tag": "interface",
+      "Beschreibung": "Aufbau eines Objekts beschreiben",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-interfaces.html",
+      "class": ["typescript","oop"]
+    },
+    {
+      "Tag": "optional ?",
+      "Beschreibung": "Optionale und readonly Eigenschaften",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-interfaces.html",
+      "class": ["typescript","oop"]
+    },
+    {
+      "Tag": "Partial / Pick / Omit",
+      "Beschreibung": "Hilfstypen zum Umbauen von Typen",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-interfaces.html",
+      "class": ["typescript","daten"]
+    },
+    {
+      "Tag": "Record",
+      "Beschreibung": "Objekt mit beliebigen Schlüsseln",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-interfaces.html",
+      "class": ["typescript","daten"]
+    },
+    {
+      "Tag": "private / public",
+      "Beschreibung": "Sichtbarkeit in Klassen",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-klassen-generics.html",
+      "class": ["typescript","oop"]
+    },
+    {
+      "Tag": "implements",
+      "Beschreibung": "Klasse erfüllt ein Interface",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-klassen-generics.html",
+      "class": ["typescript","oop"]
+    },
+    {
+      "Tag": "Generics <T>",
+      "Beschreibung": "Typen als Platzhalter",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-klassen-generics.html",
+      "class": ["typescript","oop"]
+    },
+    {
+      "Tag": "tsconfig.json",
+      "Beschreibung": "Projekt-Einstellungen für TypeScript",
+      "Sprache": "TypeScript",
+      "Link": "more/ts-projekt.html",
+      "class": ["typescript","werkzeuge"]
     }
   ]};
 
@@ -2769,7 +3129,7 @@ class TableSearcher {
   }
 
   // -------------------------------------------------------------------
-  // Sucht einen Text in Tag, Beschreibung und Sprache.
+  // Sucht einen Text in Tag, Beschreibung, Sprache und Kategorien (class).
   // toUpperCase() auf beiden Seiten → Groß-/Kleinschreibung egal.
   // Rückgabe: NEUE Liste mit allen Treffern.
   // -------------------------------------------------------------------
@@ -2778,9 +3138,19 @@ class TableSearcher {
 
     return this.entries.filter(function matchesEntryText(entry) {
       // "entry.Tag &&" schützt vor Fehlern, falls ein Feld fehlt
+      // Kategorien (class) werden mit durchsucht. So findet man einen
+      // Eintrag auch über Begriffe, die nicht in Tag/Beschreibung stehen,
+      // z. B. "hilfe" → Anleitung. Array.isArray schützt vor Einträgen,
+      // bei denen class fehlt oder nur ein einzelner Text ist.
+      const classes = Array.isArray(entry.class) ? entry.class : [entry.class || ""];
+      const matchesClass = classes.some(function classContainsText(className) {
+        return className.toUpperCase().includes(upper);
+      });
+
       return (entry.Tag          && entry.Tag.toUpperCase().includes(upper)) ||
         (entry.Beschreibung && entry.Beschreibung.toUpperCase().includes(upper)) ||
-        (entry.Sprache      && entry.Sprache.toUpperCase().includes(upper));
+        (entry.Sprache      && entry.Sprache.toUpperCase().includes(upper)) ||
+        matchesClass;
     });
   }
 

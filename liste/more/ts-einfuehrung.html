@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>TypeScript: Einführung – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">TypeScript · Grundlagen</p>
+    <h1>Was ist TypeScript?</h1>
+    <p class="page-lead">TypeScript ist JavaScript mit Typangaben. Es findet Fehler schon beim Schreiben – und wird am Ende in normales JavaScript übersetzt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Die Idee in einem Satz</h2>
+      <p>Jedes JavaScript ist auch gültiges TypeScript. TypeScript fügt nur <strong>Typen</strong> hinzu: Du schreibst dazu, was eine Variable enthalten darf. Der TypeScript-Compiler prüft das und meckert, <em>bevor</em> du die Seite überhaupt öffnest.</p>
+      <pre><code>// JavaScript: der Fehler fällt erst im Browser auf
+function double(value) {
+  return value * 2;
+}
+double("5");   // ergibt 10 – oder NaN, je nach Fall. Keine Warnung.
+
+// TypeScript: ": number" sagt, was erlaubt ist
+function double(value: number): number {
+  return value * 2;
+}
+double("5");   // Fehler schon im Editor: "string" ist nicht "number"</code></pre>
+    </section>
+    <section>
+      <h2>Wie läuft TypeScript?</h2>
+      <ol>
+        <li>Du schreibst Dateien mit der Endung <code>.ts</code> (statt <code>.js</code>).</li>
+        <li>Der Compiler <code>tsc</code> prüft die Typen und erzeugt daraus normale <code>.js</code>-Dateien.</li>
+        <li>Die Typangaben werden dabei einfach entfernt – der Browser oder Node.js sieht nur JavaScript.</li>
+      </ol>
+      <div class="note">Browser können TypeScript nicht direkt ausführen. Es braucht immer einen Übersetzungsschritt – den erledigt <code>tsc</code>, Vite oder ein anderes Build-Tool.</div>
+    </section>
+    <section>
+      <h2>Installieren (Windows und Linux gleich)</h2>
+      <p>Voraussetzung ist Node.js. Die Befehle sind in PowerShell und im Linux-Terminal identisch.</p>
+      <pre><code># im Projektordner
+npm init -y                      # package.json anlegen (falls noch nicht da)
+npm install -D typescript        # TypeScript nur für die Entwicklung installieren
+npx tsc --init                   # tsconfig.json mit Einstellungen erzeugen
+
+npx tsc                          # alle .ts-Dateien prüfen und übersetzen
+npx tsc --watch                  # bei jeder Änderung automatisch neu übersetzen
+npx tsc --noEmit                 # nur prüfen, keine .js-Dateien erzeugen</code></pre>
+    </section>
+    <section>
+      <h2>Erstes Beispiel</h2>
+      <pre><code>// hallo.ts
+const userName: string = "Max Mustermann";
+let visits: number = 3;
+
+function greet(name: string): string {
+  return `Hallo ${name}, Besuch Nummer ${visits}`;
+}
+
+console.log(greet(userName));
+// visits = "viele";   // Fehler: Type 'string' is not assignable to type 'number'.</code></pre>
+      <pre><code>npx tsc hallo.ts      # erzeugt hallo.js
+node hallo.js         # Hallo Max Mustermann, Besuch Nummer 3</code></pre>
+    </section>
+    <section>
+      <h2>Schneller Start mit Vite</h2>
+      <p>Für eine Webseite ist Vite am bequemsten: Es übersetzt TypeScript automatisch, du musst <code>tsc</code> nicht selbst starten.</p>
+      <pre><code>npm create vite@latest mein-projekt -- --template vanilla-ts
+cd mein-projekt
+npm install
+npm run dev</code></pre>
+      <p>Im HTML bindest du dann direkt <code>main.ts</code> ein – Vite kümmert sich um den Rest.</p>
+    </section>
+    <section>
+      <h2>Was bringt das?</h2>
+      <table class="info-table">
+        <thead><tr><th>Vorteil</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Tippfehler werden sofort gefunden</td><td><code>user.nmae</code> → Fehler: Property 'nmae' does not exist</td></tr>
+          <tr><td>Bessere Autovervollständigung</td><td>Der Editor kennt alle Eigenschaften eines Objekts</td></tr>
+          <tr><td>Funktionen erklären sich selbst</td><td><code>(price: number, tax: number): number</code> sagt mehr als ein Kommentar</td></tr>
+          <tr><td>Sicheres Umbenennen</td><td>Ändert man einen Namen, zeigt TS jede Stelle, die nicht mehr passt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Du musst nicht alles typisieren: TypeScript errät viele Typen selbst (siehe „Typen“).</li>
+        <li>Typfehler verhindern nicht zwingend die Ausgabe – <code>tsc</code> erzeugt trotzdem JavaScript. Fehler also ernst nehmen und lesen.</li>
+        <li>VS Code versteht TypeScript ohne Erweiterung: Fehler erscheinen rot unterstrichen schon beim Tippen.</li>
+        <li>Zum Ausprobieren ohne Installation gibt es den offiziellen „TypeScript Playground“ im Browser.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="ts-typen.html">Typen</a>
+        <a class="chip" href="ts-interfaces.html">Interfaces</a>
+        <a class="chip" href="ts-klassen-generics.html">Klassen &amp; Generics</a>
+        <a class="chip" href="ts-projekt.html">tsconfig</a>
+        <a class="chip" href="js-vite.html">Vite</a>
+        <a class="chip" href="node-npm.html">npm</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

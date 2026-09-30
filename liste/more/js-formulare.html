@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Formulare – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Browser</p>
+    <h1>Formulare mit JavaScript</h1>
+    <p class="page-lead">Eingaben lesen, prüfen, eigene Fehlermeldungen anzeigen und ohne Neuladen absenden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundgerüst</h2>
+      <pre><code>&lt;form id="signupForm" novalidate&gt;
+  &lt;label for="email"&gt;E-Mail&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required&gt;
+  &lt;p class="error" id="emailError" aria-live="polite"&gt;&lt;/p&gt;
+
+  &lt;label for="age"&gt;Alter&lt;/label&gt;
+  &lt;input id="age" name="age" type="number" min="1" max="120"&gt;
+
+  &lt;button type="submit"&gt;Anmelden&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      <p><code>novalidate</code> schaltet die Browser-Sprechblasen ab, damit wir eigene Meldungen anzeigen können – die HTML-Regeln (<code>required</code>, <code>type="email"</code>) gelten trotzdem und lassen sich per JS abfragen.</p>
+    </section>
+    <section>
+      <h2>Prüfen &amp; absenden</h2>
+      <pre><code>const form = document.getElementById("signupForm");
+const email = document.getElementById("email");
+const emailError = document.getElementById("emailError");
+
+// Live-Prüfung beim Tippen
+email.addEventListener("input", () =&gt; {
+  emailError.textContent = email.validity.valid ? "" : "Bitte eine gültige E-Mail eingeben.";
+});
+
+form.addEventListener("submit", async (event) =&gt; {
+  event.preventDefault();                          // nicht neu laden
+
+  if (!form.checkValidity()) {                     // alle HTML-Regeln erfüllt?
+    console.warn("[form] ungültig");
+    form.querySelector(":invalid")?.focus();       // zum ersten Fehler springen
+    return;
+  }
+
+  const data = Object.fromEntries(new FormData(form));   // { email: "...", age: "..." }
+  console.log("[form] sende", data);
+
+  const button = form.querySelector("button");
+  button.disabled = true;                          // Doppelklick verhindern
+  try {
+    await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    form.reset();
+  } catch (error) {
+    console.error("[form] Fehler:", error);
+  } finally {
+    button.disabled = false;
+  }
+});</code></pre>
+    </section>
+    <section>
+      <h2>Nützliche Eigenschaften</h2>
+      <table class="info-table">
+        <thead><tr><th>Ausdruck</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>input.value</code></td><td>Aktueller Inhalt (immer ein String)</td></tr>
+          <tr><td><code>input.valueAsNumber</code></td><td>Bei Zahlenfeldern direkt als Zahl</td></tr>
+          <tr><td><code>checkbox.checked</code></td><td>Angehakt?</td></tr>
+          <tr><td><code>input.validity.valid</code></td><td>Erfüllt das Feld alle Regeln?</td></tr>
+          <tr><td><code>input.validity.valueMissing</code> / <code>typeMismatch</code> / <code>tooShort</code></td><td>Warum ungültig?</td></tr>
+          <tr><td><code>input.setCustomValidity("Text")</code></td><td>Eigene Regel: Feld als ungültig markieren (<code>""</code> = gültig)</td></tr>
+          <tr><td><code>form.checkValidity()</code></td><td>Ganzes Formular prüfen</td></tr>
+          <tr><td><code>new FormData(form)</code></td><td>Alle Felder mit <code>name</code> einsammeln</td></tr>
+          <tr><td><code>form.reset()</code></td><td>Alles zurücksetzen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Ungültige Felder mit CSS markieren</h2>
+      <pre><code>/* :user-invalid greift erst, nachdem der Nutzer das Feld bearbeitet hat */
+input:user-invalid {
+  border-color: #ff5f5f;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Prüfung im Browser ist Komfort, keine Sicherheit – der Server muss alles noch einmal prüfen.</li>
+        <li>Fehlermeldung neben das Feld schreiben und mit <code>aria-live</code> versehen, damit Screenreader sie vorlesen.</li>
+        <li>Absende-Button während des Sendens deaktivieren.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="form.html">&lt;form&gt;</a>
+        <a class="chip" href="input.html">&lt;input&gt;</a>
+        <a class="chip" href="js-fetch.html">fetch &amp; APIs</a>
+        <a class="chip" href="js-regex.html">Regex</a>
+        <a class="chip" href="js-barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Intl – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Daten</p>
+    <h1>Zahlen &amp; Datum formatieren (Intl)</h1>
+    <p class="page-lead">Zahlen, Währungen, Datum und relative Zeitangaben automatisch im deutschen Format.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Zahlen &amp; Währung</h2>
+      <pre><code>const number = 1234567.891;
+
+new Intl.NumberFormat("de-DE").format(number);                         // "1.234.567,891"
+new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 }).format(number);   // "1.234.567,89"
+new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(19.9);   // "19,90 €"
+new Intl.NumberFormat("de-DE", { style: "percent" }).format(0.853);    // "85 %"
+new Intl.NumberFormat("de-DE", { notation: "compact" }).format(15300); // "15.300" bzw. "15.3 Tsd."</code></pre>
+    </section>
+    <section>
+      <h2>Datum &amp; Uhrzeit</h2>
+      <pre><code>const date = new Date(2026, 8, 30, 14, 5);    // Monat 8 = September!
+
+new Intl.DateTimeFormat("de-DE").format(date);                 // "30.9.2026"
+new Intl.DateTimeFormat("de-DE", { dateStyle: "full" }).format(date);
+// "Mittwoch, 30. September 2026"
+new Intl.DateTimeFormat("de-DE", { dateStyle: "medium", timeStyle: "short" }).format(date);
+// "30.09.2026, 14:05"
+new Intl.DateTimeFormat("de-DE", { weekday: "long" }).format(date);   // "Mittwoch"</code></pre>
+    </section>
+    <section>
+      <h2>Relative Zeit</h2>
+      <pre><code>const rtf = new Intl.RelativeTimeFormat("de", { numeric: "auto" });
+
+rtf.format(-1, "day");      // "gestern"
+rtf.format(-3, "day");      // "vor 3 Tagen"
+rtf.format(2, "week");      // "in 2 Wochen"</code></pre>
+    </section>
+    <section>
+      <h2>Listen &amp; Sortieren</h2>
+      <pre><code>new Intl.ListFormat("de", { type: "conjunction" }).format(["HTML", "CSS", "JS"]);
+// "HTML, CSS und JS"
+
+const collator = new Intl.Collator("de");
+["Zebra", "Äpfel", "apfel"].sort(collator.compare);   // Umlaute richtig einsortiert</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Formatter wiederverwenden (einmal in einer Variable anlegen), statt in einer Schleife ständig neu zu erzeugen.</li>
+        <li><code>toLocaleString("de-DE")</code> ist die Kurzform für einfache Fälle.</li>
+        <li>Für Rechnungen: Beträge in Cent als ganze Zahl rechnen und erst zur Anzeige formatieren.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-mathe.html">Zahlen &amp; Math</a>
+        <a class="chip" href="js-strings.html">Strings</a>
+        <a class="chip" href="time.html">&lt;time&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

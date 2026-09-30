@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="more.css">
+  <script defer src="more.js"></script>
+  <link rel="icon" type="image/x-icon" href="../icons/S logo.ico">
+  <title>JS: Vite – Spicker</title>
+</head>
+<body>
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Werkzeuge</p>
+    <h1>Vite &amp; Build-Tools</h1>
+    <p class="page-lead">Ein modernes Frontend-Projekt aufsetzen: Dev-Server mit Live-Neuladen und fertiger Build zum Veröffentlichen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Warum ein Build-Tool?</h2>
+      <ul>
+        <li>Dev-Server mit sofortigem Neuladen beim Speichern</li>
+        <li>npm-Pakete per <code>import</code> im Browser nutzen</li>
+        <li>TypeScript, Sass oder Frameworks (React, Vue, Svelte) ohne Extra-Aufwand</li>
+        <li>Beim Build: Dateien verkleinern und zusammenfassen – schnellere Webseite</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Projekt anlegen</h2>
+      <pre><code>npm create vite@latest mein-projekt    # Vorlage wählen: Vanilla / TypeScript / React …
+cd mein-projekt
+npm install
+npm run dev          # Dev-Server, z. B. http://localhost:5173
+npm run build        # fertige Dateien im Ordner dist/
+npm run preview      # den Build lokal testen</code></pre>
+      <p>Die Befehle sind auf Windows und Linux gleich.</p>
+    </section>
+    <section>
+      <h2>Aufbau</h2>
+      <pre><code>mein-projekt/
+├── index.html          ← Einstieg (lädt src/main.js als Modul)
+├── package.json
+├── public/             ← Dateien, die 1:1 kopiert werden (Favicon …)
+└── src/
+    ├── main.js
+    └── style.css</code></pre>
+      <pre><code>// src/main.js
+import "./style.css";                 // CSS direkt importieren
+import confetti from "canvas-confetti";   // npm-Paket (vorher: npm install canvas-confetti)
+
+document.querySelector("#app").textContent = "Hallo Vite";
+confetti();</code></pre>
+    </section>
+    <section>
+      <h2>Veröffentlichen</h2>
+      <p>Der Ordner <code>dist/</code> enthält normale HTML-, CSS- und JS-Dateien. Die lassen sich auf jedem Webspace hochladen oder kostenlos über GitHub Pages, Netlify oder Vercel veröffentlichen.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>node_modules</code> und <code>dist</code> gehören in die <code>.gitignore</code>.</li>
+        <li>Für kleine Seiten wie einen Spickzettel ist kein Build-Tool nötig – es lohnt sich, sobald npm-Pakete oder TypeScript dazukommen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="node-npm.html">npm</a>
+        <a class="chip" href="js-module.html">Module</a>
+        <a class="chip" href="ts-einfuehrung.html">Einführung</a>
+        <a class="chip" href="js-testen.html">Testen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../Spicker.html" title="Zurück zur Liste"><img src="../icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
