@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Kerzenchart – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Chartanalyse</p>
+    <h1>Kerzenchart (Candlestick)</h1>
+    <p class="page-lead">Die übliche Darstellung von Kursen: Jede Kerze zeigt auf einen Blick, wie sich der Kurs in einem Zeitraum bewegt hat.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist ein Kerzenchart?</h2>
+      <p>Ein Kerzenchart zeigt den Kurs nicht als einfache Linie, sondern als Reihe von „Kerzen“. Jede Kerze steht für einen Zeitraum – z. B. einen Tag – und verrät vier Preise: <strong>Eröffnung</strong>, <strong>Hoch</strong>, <strong>Tief</strong> und <strong>Schluss</strong>.</p>
+      <p><strong>Woher kommt das?</strong> Die Darstellung stammt aus Japan: Reishändler zeichneten schon im 18. Jahrhundert so ihre Preise auf. Im Westen wurde sie erst ab den 1990er-Jahren bekannt.</p>
+    </section>
+    <section>
+      <h2>Aufbau einer Kerze</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Aufbau einer Kerze" xmlns="http://www.w3.org/2000/svg">
+        <line x1="170.0" y1="50.0" x2="170.0" y2="270.0" class="dg-up-wick"/>
+        <rect x="142.0" y="100.0" width="56.0" height="120.0" rx="3" class="dg-up"/>
+        <text x="170.0" y="300.0" class="dg-label" text-anchor="middle">steigende Kerze</text>
+        <line x1="470.0" y1="50.0" x2="470.0" y2="270.0" class="dg-down-wick"/>
+        <rect x="442.0" y="100.0" width="56.0" height="120.0" rx="3" class="dg-down"/>
+        <text x="470.0" y="300.0" class="dg-label" text-anchor="middle">fallende Kerze</text>
+        <line x1="206.0" y1="50.0" x2="250.0" y2="50.0" class="dg-note-line"/>
+        <text x="256.0" y="54.0" class="dg-text" text-anchor="start">Hoch</text>
+        <line x1="206.0" y1="100.0" x2="250.0" y2="100.0" class="dg-note-line"/>
+        <text x="256.0" y="104.0" class="dg-text" text-anchor="start">Schluss</text>
+        <line x1="206.0" y1="220.0" x2="250.0" y2="220.0" class="dg-note-line"/>
+        <text x="256.0" y="224.0" class="dg-text" text-anchor="start">Eröffnung</text>
+        <line x1="206.0" y1="270.0" x2="250.0" y2="270.0" class="dg-note-line"/>
+        <text x="256.0" y="274.0" class="dg-text" text-anchor="start">Tief</text>
+        <line x1="434.0" y1="50.0" x2="390.0" y2="50.0" class="dg-note-line"/>
+        <text x="384.0" y="54.0" class="dg-text" text-anchor="end">Hoch</text>
+        <line x1="434.0" y1="100.0" x2="390.0" y2="100.0" class="dg-note-line"/>
+        <text x="384.0" y="104.0" class="dg-text" text-anchor="end">Eröffnung</text>
+        <line x1="434.0" y1="220.0" x2="390.0" y2="220.0" class="dg-note-line"/>
+        <text x="384.0" y="224.0" class="dg-text" text-anchor="end">Schluss</text>
+        <line x1="434.0" y1="270.0" x2="390.0" y2="270.0" class="dg-note-line"/>
+        <text x="384.0" y="274.0" class="dg-text" text-anchor="end">Tief</text>
+        <text x="170.0" y="165.0" class="dg-on-candle" text-anchor="middle">Körper</text>
+        <text x="470.0" y="165.0" class="dg-on-candle" text-anchor="middle">Körper</text>
+        <text x="184.0" y="40.0" class="dg-small" text-anchor="start">Docht</text>
+        </svg>
+        <figcaption>Links eine steigende, rechts eine fallende Kerze. Der dicke Teil ist der Körper, die dünnen Striche sind die Dochte.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Teil</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Körper</td><td>Bereich zwischen Eröffnungs- und Schlusskurs.</td></tr>
+          <tr><td>Grün (steigend)</td><td>Schluss liegt ÜBER der Eröffnung – der Kurs ist gestiegen.</td></tr>
+          <tr><td>Rot (fallend)</td><td>Schluss liegt UNTER der Eröffnung – der Kurs ist gefallen.</td></tr>
+          <tr><td>Docht oben</td><td>Höchster Kurs im Zeitraum.</td></tr>
+          <tr><td>Docht unten</td><td>Tiefster Kurs im Zeitraum.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Ein Chart aus vielen Kerzen</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Kerzenchart" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40.0" y1="280.0" x2="600.0" y2="280.0" class="dg-grid"/>
+        <text x="34.0" y="284.0" class="dg-small" text-anchor="end">93</text>
+        <line x1="40.0" y1="220.0" x2="600.0" y2="220.0" class="dg-grid"/>
+        <text x="34.0" y="224.0" class="dg-small" text-anchor="end">99</text>
+        <line x1="40.0" y1="160.0" x2="600.0" y2="160.0" class="dg-grid"/>
+        <text x="34.0" y="164.0" class="dg-small" text-anchor="end">104</text>
+        <line x1="40.0" y1="100.0" x2="600.0" y2="100.0" class="dg-grid"/>
+        <text x="34.0" y="104.0" class="dg-small" text-anchor="end">109</text>
+        <line x1="40.0" y1="40.0" x2="600.0" y2="40.0" class="dg-grid"/>
+        <text x="34.0" y="44.0" class="dg-small" text-anchor="end">115</text>
+        <line x1="67.2" y1="171.1" x2="67.2" y2="226.7" class="dg-up-wick"/>
+        <rect x="55.6" y="182.2" width="23.3" height="22.2" rx="1" class="dg-up"/>
+        <line x1="106.1" y1="137.8" x2="106.1" y2="193.3" class="dg-up-wick"/>
+        <rect x="94.4" y="148.9" width="23.3" height="33.3" rx="1" class="dg-up"/>
+        <line x1="145.0" y1="126.7" x2="145.0" y2="171.1" class="dg-down-wick"/>
+        <rect x="133.3" y="148.9" width="23.3" height="11.1" rx="1" class="dg-down"/>
+        <line x1="183.9" y1="148.9" x2="183.9" y2="215.6" class="dg-down-wick"/>
+        <rect x="172.2" y="160.0" width="23.3" height="44.4" rx="1" class="dg-down"/>
+        <line x1="222.8" y1="193.3" x2="222.8" y2="248.9" class="dg-down-wick"/>
+        <rect x="211.1" y="204.4" width="23.3" height="33.3" rx="1" class="dg-down"/>
+        <line x1="261.7" y1="215.6" x2="261.7" y2="260.0" class="dg-up-wick"/>
+        <rect x="250.0" y="226.7" width="23.3" height="11.1" rx="1" class="dg-up"/>
+        <line x1="300.6" y1="171.1" x2="300.6" y2="237.8" class="dg-up-wick"/>
+        <rect x="288.9" y="182.2" width="23.3" height="44.4" rx="1" class="dg-up"/>
+        <line x1="339.4" y1="115.6" x2="339.4" y2="193.3" class="dg-up-wick"/>
+        <rect x="327.8" y="126.7" width="23.3" height="55.6" rx="1" class="dg-up"/>
+        <line x1="378.3" y1="104.4" x2="378.3" y2="160.0" class="dg-down-wick"/>
+        <rect x="366.7" y="126.7" width="23.3" height="22.2" rx="1" class="dg-down"/>
+        <line x1="417.2" y1="71.1" x2="417.2" y2="160.0" class="dg-up-wick"/>
+        <rect x="405.6" y="82.2" width="23.3" height="66.7" rx="1" class="dg-up"/>
+        <line x1="456.1" y1="60.0" x2="456.1" y2="115.6" class="dg-down-wick"/>
+        <rect x="444.4" y="82.2" width="23.3" height="22.2" rx="1" class="dg-down"/>
+        <line x1="495.0" y1="93.3" x2="495.0" y2="182.2" class="dg-down-wick"/>
+        <rect x="483.3" y="104.4" width="23.3" height="66.7" rx="1" class="dg-down"/>
+        <line x1="533.9" y1="137.8" x2="533.9" y2="182.2" class="dg-up-wick"/>
+        <rect x="522.2" y="148.9" width="23.3" height="22.2" rx="1" class="dg-up"/>
+        <line x1="572.8" y1="93.3" x2="572.8" y2="160.0" class="dg-up-wick"/>
+        <rect x="561.1" y="104.4" width="23.3" height="44.4" rx="1" class="dg-up"/>
+        <text x="600.0" y="310.0" class="dg-small" text-anchor="end">Zeit (1 Kerze = 1 Tag)</text>
+        </svg>
+        <figcaption>Beispiel: 14 Tageskerzen. Man sieht sofort, an welchen Tagen der Kurs gestiegen (grün) und gefallen (rot) ist.</figcaption>
+      </figure>
+      <p>Lange Körper zeigen starke Bewegungen, kurze Körper Unentschlossenheit. Lange Dochte bedeuten: Der Kurs war zwischendurch viel höher oder tiefer, wurde aber wieder zurückgedrängt.</p>
+    </section>
+    <section>
+      <h2>Zeiteinheiten</h2>
+      <table class="info-table">
+        <thead><tr><th>Eine Kerze =</th><th>Typisch für</th></tr></thead>
+        <tbody>
+          <tr><td>1–15 Minuten</td><td>Daytrading (Positionen nur Minuten bis Stunden)</td></tr>
+          <tr><td>1–4 Stunden</td><td>Swingtrading (Tage bis Wochen)</td></tr>
+          <tr><td>1 Tag</td><td>Die meisten Anleger, Übersicht über Wochen/Monate</td></tr>
+          <tr><td>1 Woche / 1 Monat</td><td>Langfristige Trends über Jahre</td></tr>
+        </tbody>
+      </table>
+      <p>Je kleiner die Zeiteinheit, desto mehr zufälliges „Rauschen“ steckt in den Kerzen.</p>
+    </section>
+    <section>
+      <h2>Bekannte Einzelkerzen</h2>
+      <table class="info-table">
+        <thead><tr><th>Name</th><th>Aussehen</th><th>Wird gedeutet als</th></tr></thead>
+        <tbody>
+          <tr><td>Doji</td><td>fast kein Körper, Eröffnung ≈ Schluss</td><td>Unentschlossenheit</td></tr>
+          <tr><td>Hammer</td><td>kleiner Körper oben, langer Docht unten</td><td>Käufer haben einen Absturz abgewehrt</td></tr>
+          <tr><td>Shooting Star</td><td>kleiner Körper unten, langer Docht oben</td><td>Verkäufer haben einen Anstieg abgewehrt</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Einzelne Kerzen sind keine sicheren Signale. Sie werden erst zusammen mit Trend, Volumen und wichtigen Kursmarken aussagekräftig.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei manchen Plattformen sind die Farben vertauscht oder es gibt hohle/gefüllte Kerzen – Legende prüfen.</li>
+        <li>Erst die größere Zeiteinheit anschauen (Tag/Woche), dann die kleinere.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="kursbildung.html">Kursbildung</a>
+        <a class="chip" href="aktie-ipo.html">Aktie &amp; IPO</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

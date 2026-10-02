@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: GuV – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Bilanz & GuV</p>
+    <h1>Gewinn- und Verlustrechnung (GuV)</h1>
+    <p class="page-lead">Die GuV zeigt, wie ein Jahr gelaufen ist: alle Erträge minus alle Aufwendungen ergibt den Gewinn oder Verlust.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist die GuV?</h2>
+      <p>Während die Bilanz ein Foto zu einem Stichtag ist, ist die <strong>GuV</strong> eher ein Film über das ganze Jahr. Sie beantwortet die Frage: <strong>Hat das Unternehmen in diesem Jahr Geld verdient oder verloren – und womit?</strong></p>
+      <pre><code>Erträge − Aufwendungen = Jahresüberschuss (Gewinn) bzw. Jahresfehlbetrag (Verlust)</code></pre>
+    </section>
+    <section>
+      <h2>Vom Umsatz zum Gewinn</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Vom Umsatz zum Jahresüberschuss" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20.0" y1="260.0" x2="620.0" y2="260.0" class="dg-axis"/>
+        <rect x="30.0" y="30.0" width="64.0" height="230.0" rx="2" class="dg-bar"/>
+        <text x="62.0" y="24.0" class="dg-small" text-anchor="middle">200.000</text>
+        <text x="62.0" y="278.0" class="dg-text" text-anchor="middle">Umsatz</text>
+        <rect x="103.7" y="30.0" width="64.0" height="92.0" rx="2" class="dg-bar-minus"/>
+        <text x="135.7" y="24.0" class="dg-small" text-anchor="middle">−80.000</text>
+        <text x="135.7" y="278.0" class="dg-text" text-anchor="middle">Material</text>
+        <rect x="177.4" y="122.0" width="64.0" height="69.0" rx="2" class="dg-bar-minus"/>
+        <text x="209.4" y="116.0" class="dg-small" text-anchor="middle">−60.000</text>
+        <text x="209.4" y="278.0" class="dg-text" text-anchor="middle">Personal</text>
+        <rect x="251.1" y="191.0" width="64.0" height="28.8" rx="2" class="dg-bar-minus"/>
+        <text x="283.1" y="185.0" class="dg-small" text-anchor="middle">−25.000</text>
+        <text x="283.1" y="278.0" class="dg-text" text-anchor="middle">Sonstiges</text>
+        <rect x="324.9" y="219.8" width="64.0" height="11.5" rx="2" class="dg-bar-minus"/>
+        <text x="356.9" y="213.8" class="dg-small" text-anchor="middle">−10.000</text>
+        <text x="356.9" y="278.0" class="dg-text" text-anchor="middle">Abschrei-</text>
+        <text x="356.9" y="292.0" class="dg-text" text-anchor="middle">bungen</text>
+        <rect x="398.6" y="231.2" width="64.0" height="5.8" rx="2" class="dg-bar-minus"/>
+        <text x="430.6" y="225.2" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="430.6" y="278.0" class="dg-text" text-anchor="middle">Zinsen</text>
+        <rect x="472.3" y="237.0" width="64.0" height="6.9" rx="2" class="dg-bar-minus"/>
+        <text x="504.3" y="231.0" class="dg-small" text-anchor="middle">−6.000</text>
+        <text x="504.3" y="278.0" class="dg-text" text-anchor="middle">Steuern</text>
+        <rect x="546.0" y="243.9" width="64.0" height="16.1" rx="2" class="dg-bar-total"/>
+        <text x="578.0" y="237.9" class="dg-small" text-anchor="middle">14.000</text>
+        <text x="578.0" y="278.0" class="dg-text" text-anchor="middle">Jahres-</text>
+        <text x="578.0" y="292.0" class="dg-text" text-anchor="middle">überschuss</text>
+        </svg>
+        <figcaption>Vom Umsatz (200.000 €) bleiben nach allen Kosten, Zinsen und Steuern 14.000 € Gewinn übrig.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Posten</th><th>Betrag</th><th>Erklärung</th></tr></thead>
+        <tbody>
+          <tr><td>Umsatzerlöse</td><td>200.000 €</td><td>alles, was Kunden für Waren/Leistungen bezahlt haben (netto)</td></tr>
+          <tr><td>− Materialaufwand</td><td>80.000 €</td><td>Rohstoffe, Waren, Fremdleistungen</td></tr>
+          <tr><td>− Personalaufwand</td><td>60.000 €</td><td>Löhne, Gehälter, Sozialabgaben</td></tr>
+          <tr><td>− sonstige Aufwendungen</td><td>25.000 €</td><td>Miete, Versicherungen, Werbung, Strom …</td></tr>
+          <tr><td>− Abschreibungen</td><td>10.000 €</td><td>Wertverlust von Maschinen, Fahrzeugen usw.</td></tr>
+          <tr><td>= Betriebsergebnis (EBIT)</td><td>25.000 €</td><td>Gewinn aus dem eigentlichen Geschäft</td></tr>
+          <tr><td>− Zinsen</td><td>5.000 €</td><td>Kosten für Kredite</td></tr>
+          <tr><td>− Steuern</td><td>6.000 €</td><td>Steuern auf den Gewinn</td></tr>
+          <tr><td>= Jahresüberschuss</td><td>14.000 €</td><td>was am Ende übrig bleibt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Gewinn ist nicht gleich Geld auf dem Konto</h2>
+      <p>Die GuV zählt Erträge und Aufwendungen, wenn sie <em>entstehen</em> – nicht, wenn Geld fließt:</p>
+      <ul>
+        <li>Eine Rechnung über 5.000 € ist <strong>Ertrag</strong>, auch wenn der Kunde erst in 2 Monaten zahlt.</li>
+        <li>Eine Maschine für 50.000 € ist nicht sofort Aufwand, sondern wird über Jahre <strong>abgeschrieben</strong>.</li>
+        <li>Ein Kredit bringt Geld aufs Konto, ist aber <strong>kein Ertrag</strong>.</li>
+      </ul>
+      <div class="note">Darum kann ein Unternehmen Gewinn machen und trotzdem pleitegehen, wenn das Geld zu spät hereinkommt. Für die Zahlungsfähigkeit braucht man zusätzlich einen Liquiditätsplan.</div>
+    </section>
+    <section>
+      <h2>Kennzahlen aus der GuV</h2>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Rechnung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Umsatzrendite</td><td>Jahresüberschuss / Umsatz</td><td>14.000 / 200.000 = 7 %</td></tr>
+          <tr><td>Personalquote</td><td>Personalaufwand / Umsatz</td><td>60.000 / 200.000 = 30 %</td></tr>
+          <tr><td>Materialquote</td><td>Materialaufwand / Umsatz</td><td>80.000 / 200.000 = 40 %</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Umsatz ist nicht Gewinn – ein hoher Umsatz kann trotzdem Verlust bedeuten.</li>
+        <li>Die GuV immer mit dem Vorjahr vergleichen: Wo sind die Kosten stärker gestiegen als der Umsatz?</li>
+        <li>Kleine Selbstständige ermitteln den Gewinn meist mit der einfacheren EÜR statt mit Bilanz + GuV.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="bilanz.html">Bilanz</a>
+        <a class="chip" href="break-even.html">Break-even</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

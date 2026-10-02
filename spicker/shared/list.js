@@ -242,6 +242,16 @@ function buildFilterDropdown(config) {
 
   dropdown.innerHTML = "";
 
+  // Optional: eigene Spaltenbreiten fürs Dropdown, z. B. "2fr 1fr 1fr",
+  // wenn die erste Filtergruppe viele Buttons hat. Ohne Angabe gilt der
+  // Standard aus core.css (1fr 2fr 1fr).
+  // Gesetzt wird die CSS-Variable --dropdown-columns statt der Eigenschaft
+  // selbst – so kann core.css auf dem Handy trotzdem auf eine Spalte umstellen.
+  if (config.dropdownColumns) {
+    dropdown.style.setProperty("--dropdown-columns", config.dropdownColumns);
+    console.log("[setup] Dropdown-Spalten:", config.dropdownColumns);
+  }
+
   config.filterGroups.forEach(function appendFilterGroup(group) {
     // Startwert: "" = nichts gefiltert
     filterState.filters[group.id] = "";

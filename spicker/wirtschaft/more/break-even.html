@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Break-even – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Kostenrechnung</p>
+    <h1>Break-even-Point (Gewinnschwelle)</h1>
+    <p class="page-lead">Ab welcher Menge verdient man Geld? Der Break-even-Point ist der Punkt, an dem Umsatz und Kosten genau gleich sind.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Jedes Unternehmen hat Kosten, die immer anfallen, und Kosten, die mit jedem verkauften Stück dazukommen. Der <strong>Break-even-Point</strong> (englisch für „Gewinnschwelle“) ist die Menge, ab der der Umsatz alle Kosten deckt. Darunter macht man Verlust, darüber Gewinn.</p>
+    </section>
+    <section>
+      <h2>Die Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th><th>Beispiel T-Shirt-Shop</th></tr></thead>
+        <tbody>
+          <tr><td>Fixkosten</td><td>fallen immer an, egal wie viel man verkauft</td><td>Miete, Website, Software: 2.000 € pro Monat</td></tr>
+          <tr><td>Variable Kosten</td><td>entstehen pro Stück</td><td>Einkauf + Druck + Versand: 20 € pro Shirt</td></tr>
+          <tr><td>Verkaufspreis</td><td>was der Kunde pro Stück bezahlt (netto)</td><td>60 € pro Shirt</td></tr>
+          <tr><td>Deckungsbeitrag</td><td>Preis − variable Kosten je Stück</td><td>60 € − 20 € = 40 €</td></tr>
+        </tbody>
+      </table>
+      <p>Der <strong>Deckungsbeitrag</strong> ist der Betrag, den jedes verkaufte Stück zur Deckung der Fixkosten beiträgt. Sind die Fixkosten gedeckt, ist alles weitere Gewinn.</p>
+    </section>
+    <section>
+      <h2>Berechnung</h2>
+      <pre><code>Break-even-Menge = Fixkosten / Deckungsbeitrag je Stück
+
+Beispiel: 2.000 € / 40 € = 50 Shirts pro Monat</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Break-even-Diagramm" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="268.0" x2="588.0" y2="268.0" class="dg-grid"/>
+        <text x="46.0" y="272.0" class="dg-small" text-anchor="end">0 €</text>
+        <line x1="52.0" y1="224.8" x2="588.0" y2="224.8" class="dg-grid"/>
+        <text x="46.0" y="228.8" class="dg-small" text-anchor="end">1.260 €</text>
+        <line x1="52.0" y1="181.6" x2="588.0" y2="181.6" class="dg-grid"/>
+        <text x="46.0" y="185.6" class="dg-small" text-anchor="end">2.520 €</text>
+        <line x1="52.0" y1="138.4" x2="588.0" y2="138.4" class="dg-grid"/>
+        <text x="46.0" y="142.4" class="dg-small" text-anchor="end">3.780 €</text>
+        <line x1="52.0" y1="95.2" x2="588.0" y2="95.2" class="dg-grid"/>
+        <text x="46.0" y="99.2" class="dg-small" text-anchor="end">5.040 €</text>
+        <line x1="52.0" y1="52.0" x2="588.0" y2="52.0" class="dg-grid"/>
+        <text x="46.0" y="56.0" class="dg-small" text-anchor="end">6.300 €</text>
+        <text x="52.0" y="284.0" class="dg-small" text-anchor="middle">0</text>
+        <text x="159.2" y="284.0" class="dg-small" text-anchor="middle">20</text>
+        <text x="266.4" y="284.0" class="dg-small" text-anchor="middle">40</text>
+        <text x="373.6" y="284.0" class="dg-small" text-anchor="middle">60</text>
+        <text x="480.8" y="284.0" class="dg-small" text-anchor="middle">80</text>
+        <text x="588.0" y="284.0" class="dg-small" text-anchor="middle">100</text>
+        <line x1="52.0" y1="268.0" x2="588.0" y2="268.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="52.0" y1="268.0" x2="52.0" y2="52.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <polyline points="52.0,199.4 320.0,199.4 588.0,199.4" class="dg-line-3"/>
+        <polyline points="52.0,199.4 320.0,165.1 588.0,130.9" class="dg-line-2"/>
+        <polyline points="52.0,268.0 320.0,165.1 588.0,62.3" class="dg-line"/>
+        <text x="584.0" y="191.4" class="dg-text" text-anchor="end">Fixkosten</text>
+        <text x="584.0" y="148.9" class="dg-text" text-anchor="end">Gesamtkosten</text>
+        <text x="470.1" y="97.5" class="dg-label" text-anchor="end">Umsatz</text>
+        <circle cx="320.0" cy="165.1" r="4.5" class="dg-point"/><text x="330.0" y="187.1" class="dg-label" text-anchor="start">Break-even: 50 Stück</text>
+        <text x="534.4" y="128.9" class="dg-good" text-anchor="middle">Gewinn</text>
+        <text x="172.6" y="216.6" class="dg-bad" text-anchor="middle">Verlust</text>
+        <text x="588.0" y="312.0" class="dg-small" text-anchor="end">Menge (Stück)</text>
+        </svg>
+        <figcaption>Bis 50 Stück liegt die Umsatzlinie unter den Gesamtkosten (Verlust), danach darüber (Gewinn). Der Abstand zwischen den Linien ist der Gewinn bzw. Verlust.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Verkaufte Shirts</th><th>Umsatz</th><th>Kosten</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td>30</td><td>1.800 €</td><td>2.600 €</td><td>−800 €</td></tr>
+          <tr><td>50</td><td>3.000 €</td><td>3.000 €</td><td>0 € (Break-even)</td></tr>
+          <tr><td>80</td><td>4.800 €</td><td>3.600 €</td><td>+1.200 €</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Was verschiebt die Gewinnschwelle?</h2>
+      <table class="info-table">
+        <thead><tr><th>Änderung</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td>Fixkosten steigen (z. B. größeres Büro)</td><td>Break-even steigt – man muss mehr verkaufen</td></tr>
+          <tr><td>Preis erhöhen</td><td>höherer Deckungsbeitrag → Break-even sinkt</td></tr>
+          <tr><td>Einkauf günstiger</td><td>höherer Deckungsbeitrag → Break-even sinkt</td></tr>
+          <tr><td>Rabattaktion</td><td>niedrigerer Deckungsbeitrag → mehr Verkäufe nötig</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Mit Netto-Preisen rechnen – die Umsatzsteuer gehört dem Finanzamt.</li>
+        <li>Eigenen Unternehmerlohn als Fixkosten einplanen, sonst ist „Break-even“ nur ein Nullsummenspiel.</li>
+        <li>Den Break-even für einen Monat UND für ein Jahr ausrechnen – Fixkosten wie Versicherungen fallen oft jährlich an.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="guv.html">GuV</a>
+        <a class="chip" href="bilanz.html">Bilanz</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

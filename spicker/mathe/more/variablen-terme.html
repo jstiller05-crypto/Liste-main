@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Variablen &amp; Terme – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Algebra</p>
+    <h1>Variablen, Terme und Gleichungen</h1>
+    <p class="page-lead">Warum in Mathe plötzlich Buchstaben auftauchen – und was die üblichen Buchstaben bedeuten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist eine Variable?</h2>
+      <p>Eine <strong>Variable</strong> ist ein <strong>Platzhalter für eine Zahl</strong>. Man schreibt einen Buchstaben, weil man die Zahl noch nicht kennt oder weil eine Regel für <em>viele</em> Zahlen gelten soll.</p>
+      <p>Beispiel: „Ein Kinoticket kostet 9 €.“ Für <em>beliebig viele</em> Tickets: Preis = 9 · x. Hier steht <code>x</code> für die Anzahl der Tickets – egal ob 1, 2 oder 30.</p>
+      <p><strong>Woher kommt das?</strong> Lange schrieb man Rechnungen in ganzen Sätzen. Um 1600 begann der Franzose François Viète, Buchstaben für Zahlen zu benutzen; René Descartes machte kurz danach x, y, z für Unbekannte üblich. So konnte man Rechenregeln kurz und allgemein aufschreiben.</p>
+    </section>
+    <section>
+      <h2>Welcher Buchstabe bedeutet meistens was?</h2>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Steht meistens für</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>x</code>, <code>y</code>, <code>z</code></td><td>Unbekannte oder veränderliche Zahlen</td><td><code>x + 3 = 7</code></td></tr>
+          <tr><td><code>a</code>, <code>b</code>, <code>c</code></td><td>feste, aber beliebige Zahlen (Parameter)</td><td><code>ax² + bx + c</code></td></tr>
+          <tr><td><code>n</code>, <code>k</code></td><td>natürliche Zahlen, Anzahlen, Zähler</td><td><code>n</code>-tes Glied, <code>k</code> Treffer</td></tr>
+          <tr><td><code>m</code>, <code>b</code></td><td>Steigung und y-Achsenabschnitt einer Geraden</td><td><code>y = mx + b</code></td></tr>
+          <tr><td><code>t</code></td><td>Zeit</td><td><code>s(t)</code> = Weg nach <code>t</code> Sekunden</td></tr>
+          <tr><td><code>r</code>, <code>d</code>, <code>h</code></td><td>Radius, Durchmesser, Höhe</td><td><code>A = π r²</code></td></tr>
+          <tr><td><code>f</code>, <code>g</code></td><td>Namen von Funktionen</td><td><code>f(x) = 2x</code></td></tr>
+          <tr><td><code>π</code>, <code>e</code></td><td>feste Konstanten (≈ 3,14 bzw. ≈ 2,72)</td><td><code>U = 2πr</code></td></tr>
+          <tr><td><code>Δ</code> (Delta)</td><td>Differenz, Änderung</td><td><code>Δx = x₂ − x₁</code></td></tr>
+          <tr><td><code>Σ</code> (Sigma)</td><td>Summe vieler Glieder</td><td><code>Σ xᵢ</code></td></tr>
+        </tbody>
+      </table>
+      <div class="note">Das sind nur Gewohnheiten, keine festen Regeln. Was ein Buchstabe bedeutet, steht immer in der Aufgabe oder wird vorher festgelegt.</div>
+    </section>
+    <section>
+      <h2>Term und Gleichung</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Term</th><th>Gleichung</th></tr></thead>
+        <tbody>
+          <tr><td>Was ist das?</td><td>ein Rechenausdruck</td><td>zwei Terme mit „=“ dazwischen</td></tr>
+          <tr><td>Beispiel</td><td><code>3x + 2</code></td><td><code>3x + 2 = 11</code></td></tr>
+          <tr><td>Was macht man damit?</td><td>vereinfachen, ausrechnen, einsetzen</td><td>lösen: die Zahl für x finden</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Gleichungen lösen: die Waage</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Waage als Bild für eine Gleichung" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="320,250 296,290 344,290" class="dg-box"/>
+        <line x1="320.0" y1="250.0" x2="320.0" y2="110.0" class="dg-axis"/>
+        <line x1="140.0" y1="110.0" x2="500.0" y2="110.0" class="dg-line"/>
+        <line x1="160.0" y1="110.0" x2="100.0" y2="190.0" class="dg-grid"/>
+        <line x1="160.0" y1="110.0" x2="220.0" y2="190.0" class="dg-grid"/>
+        <path d="M80,190 Q160,225 240,190 Z" class="dg-box"/>
+        <text x="160.0" y="182.0" class="dg-big" text-anchor="middle">x + 3</text>
+        <line x1="480.0" y1="110.0" x2="420.0" y2="190.0" class="dg-grid"/>
+        <line x1="480.0" y1="110.0" x2="540.0" y2="190.0" class="dg-grid"/>
+        <path d="M400,190 Q480,225 560,190 Z" class="dg-box"/>
+        <text x="480.0" y="182.0" class="dg-big" text-anchor="middle">7</text>
+        <text x="320.0" y="60.0" class="dg-label" text-anchor="middle">Beide Seiten sind gleich schwer: links = rechts</text>
+        </svg>
+        <figcaption>Eine Gleichung ist wie eine Waage im Gleichgewicht. Was man auf einer Seite wegnimmt, muss man auch auf der anderen wegnehmen.</figcaption>
+      </figure>
+      <pre><code>x + 3 = 7      | −3   (auf beiden Seiten 3 wegnehmen)
+    x = 4
+
+Probe: 4 + 3 = 7  ✓</code></pre>
+      <p>Jeder Schritt muss auf <strong>beiden Seiten</strong> gleich gemacht werden – so bleibt die Waage im Gleichgewicht.</p>
+    </section>
+    <section>
+      <h2>Schreibweisen</h2>
+      <table class="info-table">
+        <thead><tr><th>So geschrieben</th><th>bedeutet</th></tr></thead>
+        <tbody>
+          <tr><td><code>3x</code></td><td><code>3 · x</code> – der Malpunkt wird weggelassen</td></tr>
+          <tr><td><code>x²</code></td><td><code>x · x</code></td></tr>
+          <tr><td><code>2(x + 1)</code></td><td><code>2 · (x + 1) = 2x + 2</code></td></tr>
+          <tr><td><code>−x</code></td><td><code>(−1) · x</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer die Probe machen: Lösung in die Ausgangsgleichung einsetzen.</li>
+        <li><code>2x</code> und <code>x²</code> verwechseln: <code>2x</code> = x + x, <code>x²</code> = x · x.</li>
+        <li>Eine Variable kann auch negativ oder eine Kommazahl sein.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="funktion.html">Funktion</a>
+        <a class="chip" href="lineare-funktion.html">Lineare Funktion</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

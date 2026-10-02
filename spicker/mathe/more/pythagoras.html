@@ -5,22 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
   <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
-  <!-- Mathe hat (noch) keine links.js → page.js lässt die Smart-Links weg -->
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
   <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
   <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
-  <title>Satz des Pythagoras – Spicker</title>
+  <title>Mathe: Pythagoras – Spicker</title>
 </head>
 <body class="detail-page">
   <header class="page-header">
     <p class="page-kicker">Mathe · Geometrie</p>
     <h1>Satz des Pythagoras</h1>
-    <p class="page-lead">Beispielseite der Mathe-Vorlage.</p>
+    <p class="page-lead">a² + b² = c² – damit berechnet man im rechtwinkligen Dreieck eine Seite aus den beiden anderen.</p>
   </header>
 
   <main>
     <section>
-      <h2>Formel</h2>
-      <p>Im rechtwinkligen Dreieck gilt <code>a² + b² = c²</code>. <code>c</code> ist die längste Seite (Hypotenuse).</p>
+      <h2>Was sagt der Satz?</h2>
+      <p>In jedem <strong>rechtwinkligen Dreieck</strong> gilt: Die beiden kurzen Seiten (Katheten) zum Quadrat addiert ergeben die lange Seite (Hypotenuse) zum Quadrat.</p>
+      <pre><code>a² + b² = c²</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Rechtwinkliges Dreieck mit den Seiten 3, 4, 5" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="160,260 400,260 160,80" class="dg-fill dg-shape"/>
+        <rect x="160.0" y="236.0" width="24.0" height="24.0" rx="0" class="dg-right-angle"/>
+        <text x="280.0" y="286.0" class="dg-label" text-anchor="middle">a = 4 (Kathete)</text>
+        <text x="148.0" y="175.0" class="dg-label" text-anchor="end">b = 3 (Kathete)</text>
+        <text x="292.0" y="160.0" class="dg-accent-text" text-anchor="start">c = 5 (Hypotenuse)</text>
+        <text x="190.0" y="252.0" class="dg-small" text-anchor="start">90°</text>
+        </svg>
+        <figcaption>Die Hypotenuse c liegt immer gegenüber dem rechten Winkel und ist die längste Seite.</figcaption>
+      </figure>
+      <p><strong>Woher kommt das?</strong> Benannt nach dem griechischen Mathematiker Pythagoras (um 570–510 v. Chr.). Babylonier und Ägypter kannten die Regel aber schon über 1.000 Jahre früher – z. B. das Dreieck 3-4-5 zum Abstecken rechter Winkel.</p>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Rechter Winkel</td><td>Winkel von genau 90° (das kleine Quadrat in der Zeichnung).</td></tr>
+          <tr><td>Katheten (a, b)</td><td>Die beiden Seiten, die den rechten Winkel bilden.</td></tr>
+          <tr><td>Hypotenuse (c)</td><td>Die Seite gegenüber dem rechten Winkel – immer die längste.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Formel umstellen</h2>
+      <table class="info-table">
+        <thead><tr><th>Gesucht</th><th>Formel</th></tr></thead>
+        <tbody>
+          <tr><td>Hypotenuse c</td><td><code>c = √(a² + b²)</code></td></tr>
+          <tr><td>Kathete a</td><td><code>a = √(c² − b²)</code></td></tr>
+          <tr><td>Kathete b</td><td><code>b = √(c² − a²)</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>Beispiel: a = 4, b = 3
+c² = 4² + 3² = 16 + 9 = 25
+c  = √25 = 5</code></pre>
+    </section>
+    <section>
+      <h2>Wo braucht man das?</h2>
+      <ul>
+        <li>Bildschirmdiagonale: 16:9-Bildschirm, 48 cm breit, 27 cm hoch → Diagonale ≈ 55 cm.</li>
+        <li>Leiter an der Wand: Wie hoch reicht eine 5-m-Leiter, wenn sie 1,5 m von der Wand entfernt steht?</li>
+        <li>Abstand zweier Punkte im Koordinatensystem: d = √((x₂ − x₁)² + (y₂ − y₁)²).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nur im rechtwinkligen Dreieck anwenden!</li>
+        <li>Immer zuerst die Hypotenuse finden (gegenüber vom rechten Winkel) – sie steht allein auf einer Seite der Gleichung.</li>
+        <li>Erst quadrieren und addieren, ganz am Ende die Wurzel ziehen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="variablen-terme.html">Variablen &amp; Terme</a>
+      </div>
     </section>
   </main>
 

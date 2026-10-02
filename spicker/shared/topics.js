@@ -38,9 +38,25 @@ const SPICKER_TOPICS = [
   {
     id: "mathe",
     title: "Mathe",
-    subtitle: "Begriffe und Formeln (Vorlage)",
+    subtitle: "Algebra, Geometrie, Analysis, Stochastik",
     folder: "mathe",
     accent: "#f0a040",
+    icon: "S logo.ico"
+  },
+  {
+    id: "trading",
+    title: "Trading",
+    subtitle: "Börse, ETFs, CFDs, Charts, Risiko",
+    folder: "trading",
+    accent: "#3fb950",
+    icon: "S logo.ico"
+  },
+  {
+    id: "wirtschaft",
+    title: "Wirtschaft",
+    subtitle: "BWL, Buchhaltung, Steuern, Recht",
+    folder: "wirtschaft",
+    accent: "#a371f7",
     icon: "S logo.ico"
   }
 ];

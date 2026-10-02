@@ -41,6 +41,11 @@
   --text-muted: #b5b5b5;
   --accent:     #4f8cff;   /* die einzige Farbe – theme.css setzt sie pro Spicker */
 
+  /* Nur für Grafiken mit steigend/fallend (Kerzencharts, Gewinn/Verlust).
+     Grün/Rot ist dort so üblich, dass andere Farben eher verwirren. */
+  --chart-up:   #3fb950;
+  --chart-down: #f85149;
+
   /* Leichter Schein um das Suchfeld: die Akzentfarbe zu 25 % deckend.
      color-mix() mischt zwei Farben; "transparent" = durchsichtig.
      Weil hier var(--accent) benutzt wird, passt sich der Schein
@@ -505,6 +510,107 @@ body.detail-page {
 }
 
 
+/* ---------------------------------------------------------------------
+   B10. GRAFIKEN (Diagramme auf Detailseiten)
+   ---------------------------------------------------------------------
+   Die Grafiken sind SVG direkt im HTML. Ihre Farben stehen NICHT im SVG,
+   sondern hier – über Klassen, die mit "dg-" beginnen (dg = diagram).
+   Darum passt jede Grafik automatisch zur Akzentfarbe des Spickers.
+   fill   = Füllfarbe einer Fläche oder eines Textes
+   stroke = Farbe einer Linie / eines Randes
+   --------------------------------------------------------------------- */
+.detail-page .diagram {
+  margin: 0 0 12px;
+  padding: 14px;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.detail-page .diagram svg {
+  display: block;
+  width: 100%;
+  max-width: 720px;   /* auf großen Bildschirmen nicht riesig werden */
+  height: auto;       /* Seitenverhältnis aus viewBox behalten */
+}
+
+.detail-page .diagram figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Linien */
+.detail-page .dg-grid       { stroke: var(--border); stroke-width: 1; }
+.detail-page .dg-axis       { stroke: var(--text-muted); stroke-width: 1.5; }
+.detail-page .dg-line       { stroke: var(--accent); stroke-width: 3; fill: none; stroke-linecap: round; }
+.detail-page .dg-line-2     { stroke: var(--text-main); stroke-width: 2; fill: none; }
+.detail-page .dg-line-3     { stroke: var(--text-muted); stroke-width: 2; fill: none; stroke-dasharray: 6 5; }
+.detail-page .dg-dashed     { stroke-dasharray: 8 6; opacity: 0.8; }
+.detail-page .dg-note-line  { stroke: var(--text-muted); stroke-width: 1.2; }
+.detail-page .dg-arrowhead  { fill: var(--text-muted); }
+
+/* Flächen */
+.detail-page .dg-fill       { fill: var(--accent); fill-opacity: 0.15; }
+.detail-page .dg-shape      { stroke: var(--accent); stroke-width: 3; }
+.detail-page .dg-box        { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.5; }
+.detail-page .dg-point      { fill: var(--accent); stroke: var(--code-bg); stroke-width: 2; }
+.detail-page .dg-right-angle { fill: none; stroke: var(--text-muted); stroke-width: 1.5; }
+
+/* Balken (Bilanz, GuV) */
+.detail-page .dg-asset      { fill: var(--accent); fill-opacity: 0.55; }
+.detail-page .dg-asset-2    { fill: var(--accent); fill-opacity: 0.3; }
+.detail-page .dg-equity     { fill: var(--accent); fill-opacity: 0.75; }
+.detail-page .dg-debt       { fill: var(--text-muted); fill-opacity: 0.35; }
+.detail-page .dg-bar        { fill: var(--accent); fill-opacity: 0.7; }
+.detail-page .dg-bar-total  { fill: var(--accent); }
+.detail-page .dg-bar-minus  { fill: var(--text-muted); fill-opacity: 0.45; }
+
+/* Kerzen */
+.detail-page .dg-up         { fill: var(--chart-up); }
+.detail-page .dg-down       { fill: var(--chart-down); }
+.detail-page .dg-up-wick    { stroke: var(--chart-up); stroke-width: 2; }
+.detail-page .dg-down-wick  { stroke: var(--chart-down); stroke-width: 2; }
+
+/* Texte */
+.detail-page .dg-text       { fill: var(--text-muted); font: 13px Arial, sans-serif; }
+.detail-page .dg-small      { fill: var(--text-muted); font: 11px Arial, sans-serif; }
+.detail-page .dg-label      { fill: var(--text-main); font: bold 13px Arial, sans-serif; }
+.detail-page .dg-big        { fill: var(--text-main); font: bold 18px Consolas, Monaco, monospace; }
+.detail-page .dg-accent-text { fill: var(--accent); font: bold 14px Arial, sans-serif; }
+.detail-page .dg-on-box     { fill: var(--text-main); font: bold 13px Arial, sans-serif; }
+.detail-page .dg-on-candle  { fill: #ffffff; font: bold 13px Arial, sans-serif; }
+.detail-page .dg-good       { fill: var(--chart-up); font: bold 14px Arial, sans-serif; }
+.detail-page .dg-bad        { fill: var(--chart-down); font: bold 14px Arial, sans-serif; }
+
+/* Schieberegler unter interaktiven Grafiken */
+.detail-page .diagram-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.detail-page .diagram-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-page .diagram-controls input[type="range"] {
+  accent-color: var(--accent);   /* Farbe des Reglers */
+}
+
+.detail-page .diagram-controls output {
+  min-width: 3ch;
+  color: var(--text-main);
+  font-family: Consolas, Monaco, monospace;
+}
+
+
+
 /* =====================================================================
    C. LISTEN-SEITEN  (<body class="list-page">)
    ---------------------------------------------------------------------
@@ -698,7 +804,9 @@ body.list-page {
   left: 0;
   right: 0;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* Sprache | Kategorie (breiter) | Sortierung */
+  /* Standard: Gruppe 1 | Gruppe 2 (breiter) | Sortierung.
+     entries.js kann das über config.dropdownColumns ändern (list.js setzt dann --dropdown-columns). */
+  grid-template-columns: var(--dropdown-columns, 1fr 2fr 1fr);
   gap: 20px;
   padding: 18px 20px;
   background-color: var(--panel-bg);
