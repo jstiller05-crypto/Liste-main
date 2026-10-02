@@ -73,847 +73,847 @@ window.SpickerData["trading"] = {
   oTableEntries: { "List": [
     {
       "Begriff": "Anleitung",
-      "Erklärung": "So funktioniert dieser Spicker: Aufbau, Filter und Lerntipps",
+      "Erklärung": "Aufbau, Filter und Lerntipps",
       "Bereich": "Spicker",
       "Link": "more/anleitung.html",
       "class": ["hilfe","anleitung","bedienung","lerntipps"]
     },
     {
       "Begriff": "Trading vs. Investieren",
-      "Erklärung": "Trading: kurze Haltedauer, Kursbewegungen ausnutzen. Investieren: Jahre bis Jahrzehnte, Wachstum und Dividenden.",
+      "Erklärung": "Kurz handeln oder lange halten",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/grundlagen.html",
       "class": ["begriff","langfristig","kurzfristig"]
     },
     {
       "Begriff": "Long",
-      "Erklärung": "Auf steigende Kurse setzen: jetzt kaufen, später teurer verkaufen.",
+      "Erklärung": "Auf steigende Kurse setzen",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/grundlagen.html",
       "class": ["begriff","kaufen"]
     },
     {
       "Begriff": "Short",
-      "Erklärung": "Auf fallende Kurse setzen: erst (geliehen) verkaufen, später billiger zurückkaufen.",
+      "Erklärung": "Auf fallende Kurse setzen",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/grundlagen.html",
       "class": ["begriff","leerverkauf","verkaufen"]
     },
     {
       "Begriff": "Bulle / Bär",
-      "Erklärung": "Bulle = Optimist, steigende Märkte (Bullenmarkt). Bär = Pessimist, fallende Märkte (Bärenmarkt).",
+      "Erklärung": "Steigender bzw. fallender Markt",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/grundlagen.html",
       "class": ["begriff","bullish","bearish"]
     },
     {
       "Begriff": "Volatilität",
-      "Erklärung": "Wie stark ein Kurs schwankt. Hohe Volatilität = größere Chancen, aber auch größere Verluste.",
+      "Erklärung": "Wie stark ein Kurs schwankt",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/bollinger-atr.html",
       "class": ["begriff","schwankung"]
     },
     {
       "Begriff": "Liquidität",
-      "Erklärung": "Wie leicht ein Wert ohne großen Kurssprung gekauft/verkauft werden kann. Viel Handel = hohe Liquidität.",
+      "Erklärung": "Wie leicht man kaufen/verkaufen kann",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/boerse-spread.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Diversifikation",
-      "Erklärung": "Geld auf viele, möglichst unabhängige Anlagen verteilen, damit ein einzelner Verlust nicht alles trifft.",
+      "Erklärung": "Geld auf viele Anlagen verteilen",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/diversifikation.html",
       "class": ["regel","streuung"]
     },
     {
       "Begriff": "Zinseszins",
-      "Erklärung": "Erträge werden wieder angelegt und bringen selbst Erträge. Endwert = Startwert · (1 + Zins)^Jahre.",
+      "Erklärung": "Erträge bringen selbst wieder Erträge",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/rendite-zinseszins.html",
       "class": ["formel","compounding"]
     },
     {
       "Begriff": "Rendite",
-      "Erklärung": "Gewinn im Verhältnis zum Einsatz: (Endwert − Startwert) / Startwert · 100 %.",
+      "Erklärung": "Gewinn im Verhältnis zum Einsatz",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/rendite-zinseszins.html",
       "class": ["formel","performance"]
     },
     {
       "Begriff": "Inflation",
-      "Erklärung": "Allgemeiner Preisanstieg. Senkt die Kaufkraft von Bargeld – Rendite nach Inflation zählt.",
+      "Erklärung": "Preise steigen, Geld verliert Kaufkraft",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/rendite-zinseszins.html",
       "class": ["begriff","realzins"]
     },
     {
       "Begriff": "Asset-Klassen",
-      "Erklärung": "Gruppen von Anlagen: Aktien, Anleihen, Rohstoffe, Immobilien, Devisen, Kryptowährungen, Bargeld.",
+      "Erklärung": "Aktien, Anleihen, Rohstoffe, Krypto …",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/diversifikation.html",
       "class": ["begriff","anlageklassen"]
     },
     {
       "Begriff": "Demokonto",
-      "Erklärung": "Konto mit Spielgeld beim Broker. Zum Üben von Plattform und Strategie ohne echtes Risiko.",
+      "Erklärung": "Üben mit Spielgeld",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/broker-depot.html",
       "class": ["regel","paper trading","üben"]
     },
     {
       "Begriff": "Broker",
-      "Erklärung": "Vermittler, über den man an der Börse oder außerbörslich handelt. Auf Regulierung (z. B. BaFin) und Kosten achten.",
+      "Erklärung": "Vermittler für deine Orders",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/broker-depot.html",
       "class": ["begriff","depot"]
     },
     {
       "Begriff": "Depot",
-      "Erklärung": "Konto, in dem Wertpapiere verwahrt werden. Gehört dem Anleger, nicht der Bank (Sondervermögen).",
+      "Erklärung": "Konto für deine Wertpapiere",
       "Bereich": "Grundlagen",
-      "Link": "",
+      "Link": "more/broker-depot.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Börse",
-      "Erklärung": "Marktplatz, auf dem Käufer und Verkäufer Wertpapiere handeln.",
+      "Erklärung": "Marktplatz für Wertpapiere",
       "Bereich": "Börse & Orders",
-      "Link": "more/kursbildung.html",
+      "Link": "more/boerse-spread.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Bid / Ask",
-      "Erklärung": "Kaufpreis (Bid) und Verkaufspreis (Ask) im Orderbuch.",
+      "Erklärung": "Verkaufs- und Kaufpreis",
       "Bereich": "Börse & Orders",
-      "Link": "more/kursbildung.html",
+      "Link": "more/boerse-spread.html",
       "class": ["begriff","geldkurs","briefkurs"]
     },
     {
       "Begriff": "Spread",
-      "Erklärung": "Differenz zwischen Ask und Bid. Versteckte Kosten jedes Trades – bei illiquiden Werten größer.",
+      "Erklärung": "Differenz Ask − Bid: versteckte Kosten",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/boerse-spread.html",
       "class": ["kennzahl","kosten"]
     },
     {
       "Begriff": "Market-Order",
-      "Erklärung": "Sofort zum nächsten verfügbaren Preis ausführen. Schnell, aber Preis nicht garantiert.",
+      "Erklärung": "Sofort zum nächsten Preis kaufen",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["begriff","bestens","billigst"]
     },
     {
       "Begriff": "Limit-Order",
-      "Erklärung": "Nur zu einem bestimmten Preis oder besser ausführen. Preis sicher, Ausführung nicht.",
+      "Erklärung": "Nur zum Limit oder besser",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["begriff","limit"]
     },
     {
       "Begriff": "Stop-Loss",
-      "Erklärung": "Verkauft automatisch, wenn der Kurs eine Grenze unterschreitet. Begrenzt Verluste – bei Kurslücken evtl. schlechter ausgeführt.",
+      "Erklärung": "Verkauft automatisch bei Verlustgrenze",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["regel","verlustbegrenzung","stop"]
     },
     {
       "Begriff": "Take-Profit",
-      "Erklärung": "Schließt die Position automatisch, wenn ein Gewinnziel erreicht ist.",
+      "Erklärung": "Schließt automatisch beim Gewinnziel",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["begriff","gewinnziel"]
     },
     {
       "Begriff": "Trailing Stop",
-      "Erklärung": "Stop-Loss, der dem Kurs im Abstand folgt, aber nie zurückgeht. Sichert Gewinne bei laufendem Trend.",
+      "Erklärung": "Stop-Loss, der dem Kurs nachzieht",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["strategie","nachziehen"]
     },
     {
       "Begriff": "Slippage",
-      "Erklärung": "Abweichung zwischen gewünschtem und tatsächlichem Ausführungspreis, v. a. bei schnellen Märkten.",
+      "Erklärung": "Ausführung zu schlechterem Preis",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["begriff","ausführung"]
     },
     {
       "Begriff": "Gap / Kurslücke",
-      "Erklärung": "Sprung zwischen Schlusskurs und nächstem Eröffnungskurs, z. B. nach Nachrichten über Nacht.",
+      "Erklärung": "Kurssprung zwischen zwei Handelstagen",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/orders.html",
       "class": ["begriff","eröffnung"]
     },
     {
       "Begriff": "Orderbuch",
-      "Erklärung": "Liste aller offenen Kauf- und Verkaufsaufträge.",
+      "Erklärung": "Alle offenen Kauf- und Verkaufsorders",
       "Bereich": "Börse & Orders",
-      "Link": "more/kursbildung.html",
+      "Link": "more/boerse-spread.html",
       "class": ["begriff","markttiefe"]
     },
     {
       "Begriff": "Handelszeiten",
-      "Erklärung": "Börsen handeln zu festen Zeiten (Xetra 9–17:30 Uhr). Außerhalb: größere Spreads, weniger Liquidität.",
+      "Erklärung": "Wann eine Börse handelt (Xetra 9–17:30)",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/boerse-spread.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Ordergebühren",
-      "Erklärung": "Kosten pro Trade beim Broker plus Börsenentgelte. Bei vielen kleinen Trades fressen sie die Rendite.",
+      "Erklärung": "Kosten pro Trade beim Broker",
       "Bereich": "Börse & Orders",
-      "Link": "",
+      "Link": "more/boerse-spread.html",
       "class": ["kennzahl","kosten"]
     },
     {
       "Begriff": "Aktie",
-      "Erklärung": "Anteil an einem Unternehmen.",
+      "Erklärung": "Anteil an einem Unternehmen",
       "Bereich": "Aktien & ETFs",
       "Link": "more/aktie-ipo.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Dividende",
-      "Erklärung": "Ausschüttung eines Teils des Gewinns an die Aktionäre, meist jährlich oder quartalsweise.",
+      "Erklärung": "Gewinnausschüttung an Aktionäre",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/dividende.html",
       "class": ["begriff","ausschüttung"]
     },
     {
       "Begriff": "ETF",
-      "Erklärung": "Börsengehandelter Indexfonds: bildet einen Index nach, breit gestreut, meist günstig.",
+      "Erklärung": "Börsengehandelter Indexfonds",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["begriff","indexfonds"]
     },
     {
       "Begriff": "Index",
-      "Erklärung": "Kennzahl für eine Gruppe von Aktien, z. B. DAX (40 deutsche Werte), S&P 500, MSCI World.",
+      "Erklärung": "Kennzahl für eine Aktiengruppe (z. B. DAX)",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["begriff","dax","msci"]
     },
     {
       "Begriff": "TER",
-      "Erklärung": "Total Expense Ratio: laufende jährliche Kosten eines Fonds in Prozent des Vermögens.",
+      "Erklärung": "Laufende Fondskosten pro Jahr",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["kennzahl","kosten","gebühren"]
     },
     {
       "Begriff": "Thesaurierend / ausschüttend",
-      "Erklärung": "Thesaurierend: Erträge werden automatisch wieder angelegt. Ausschüttend: Erträge werden ausgezahlt.",
+      "Erklärung": "Erträge wieder anlegen oder auszahlen",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["begriff","acc","dist"]
     },
     {
       "Begriff": "Sparplan",
-      "Erklärung": "Regelmäßig (z. B. monatlich) einen festen Betrag investieren. Glättet Einstiegskurse (Cost-Average-Effekt).",
+      "Erklärung": "Regelmäßig festen Betrag investieren",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["strategie","cost average"]
     },
     {
       "Begriff": "Marktkapitalisierung",
-      "Erklärung": "Anzahl Aktien · Aktienkurs = Börsenwert eines Unternehmens.",
+      "Erklärung": "Aktienanzahl · Kurs = Börsenwert",
       "Bereich": "Aktien & ETFs",
       "Link": "more/aktie-ipo.html",
       "class": ["formel","market cap"]
     },
     {
       "Begriff": "Aktiv vs. passiv",
-      "Erklärung": "Aktiv: Fondsmanager wählt Titel aus. Passiv: Index wird nachgebildet. Passiv meist günstiger.",
+      "Erklärung": "Fondsmanager oder Index nachbilden",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["begriff","fonds"]
     },
     {
       "Begriff": "Rebalancing",
-      "Erklärung": "Depot regelmäßig auf die geplante Aufteilung zurückbringen, z. B. 70 % Aktien / 30 % Anleihen.",
+      "Erklärung": "Depot auf Zielaufteilung zurücksetzen",
       "Bereich": "Aktien & ETFs",
-      "Link": "",
+      "Link": "more/etf-index.html",
       "class": ["strategie","umschichten"]
     },
     {
       "Begriff": "Anleihe",
-      "Erklärung": "Schuldschein: Man leiht einem Staat/Unternehmen Geld und bekommt Zinsen (Kupon) und am Ende den Nennwert zurück.",
+      "Erklärung": "Schuldschein mit Zinsen",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["begriff","bond","rente"]
     },
     {
       "Begriff": "Kupon",
-      "Erklärung": "Fester Zinssatz einer Anleihe bezogen auf den Nennwert.",
+      "Erklärung": "Fester Zinssatz einer Anleihe",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["begriff","zins"]
     },
     {
       "Begriff": "Rendite einer Anleihe",
-      "Erklärung": "Hängt vom Kaufkurs ab: Kurs unter 100 % → Rendite höher als der Kupon, darüber → niedriger.",
+      "Erklärung": "Hängt vom Kaufkurs ab",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["regel","effektivzins"]
     },
     {
       "Begriff": "Zinsen und Anleihekurse",
-      "Erklärung": "Steigen die Marktzinsen, fallen die Kurse bestehender Anleihen – und umgekehrt.",
+      "Erklärung": "Zins rauf → Anleihekurs runter",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["regel","zinsrisiko"]
     },
     {
       "Begriff": "Duration",
-      "Erklärung": "Maß für die Zinsempfindlichkeit einer Anleihe. Faustregel: Zins +1 % → Kurs ca. −Duration %.",
+      "Erklärung": "Zinsempfindlichkeit einer Anleihe",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["kennzahl"]
     },
     {
       "Begriff": "Rating",
-      "Erklärung": "Bonitätsnote von Agenturen (AAA bis D). Ab unter BBB− spricht man von 'High Yield' (Ramsch).",
+      "Erklärung": "Bonitätsnote von AAA bis D",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["begriff","bonität"]
     },
     {
       "Begriff": "Leitzins",
-      "Erklärung": "Zins, zu dem sich Banken bei der Zentralbank (EZB, Fed) Geld leihen. Beeinflusst alle anderen Zinsen.",
+      "Erklärung": "Zins der Zentralbank (EZB, Fed)",
       "Bereich": "Anleihen & Zinsen",
-      "Link": "",
+      "Link": "more/anleihen.html",
       "class": ["begriff","ezb","fed"]
     },
     {
       "Begriff": "CFD",
-      "Erklärung": "Contract for Difference: Vertrag mit dem Broker über die Kursdifferenz. Man besitzt den Basiswert nicht.",
+      "Erklärung": "Vertrag über die Kursdifferenz",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/cfd-hebel.html",
       "class": ["begriff","differenzkontrakt"]
     },
     {
       "Begriff": "CFD-Risikohinweis",
-      "Erklärung": "Die meisten Privatanleger verlieren mit CFDs Geld – Broker müssen den Anteil der Verlustkonten angeben.",
+      "Erklärung": "Die meisten Privatanleger verlieren",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/cfd-hebel.html",
       "class": ["regel","warnung","risiko"]
     },
     {
       "Begriff": "Hebel",
-      "Erklärung": "Mit wenig Eigenkapital eine große Position bewegen. Hebel 10 = 1 % Kursbewegung → 10 % Gewinn oder Verlust.",
+      "Erklärung": "Wenig Geld bewegt große Position",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/cfd-hebel.html",
       "class": ["begriff","leverage"]
     },
     {
       "Begriff": "Margin",
-      "Erklärung": "Sicherheitsleistung, die für eine gehebelte Position hinterlegt wird. Margin = Positionswert / Hebel.",
+      "Erklärung": "Sicherheitsleistung = Position / Hebel",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/margin.html",
       "class": ["formel","sicherheitsleistung"]
     },
     {
       "Begriff": "Margin Call",
-      "Erklärung": "Aufforderung, Geld nachzuschießen, weil das Konto die nötige Margin nicht mehr deckt.",
+      "Erklärung": "Aufforderung, Geld nachzuschießen",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/margin.html",
       "class": ["begriff","nachschuss"]
     },
     {
       "Begriff": "Glattstellung",
-      "Erklärung": "Broker schließt Positionen automatisch, wenn die Margin zu stark sinkt (in der EU spätestens bei 50 %).",
+      "Erklärung": "Broker schließt bei 50 % Margin",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/margin.html",
       "class": ["regel","stop out"]
     },
     {
       "Begriff": "Hebel-Grenzen (EU)",
-      "Erklärung": "Für Privatkunden begrenzt: 30:1 Hauptwährungen, 20:1 Indizes/Gold, 10:1 Rohstoffe, 5:1 Aktien, 2:1 Krypto.",
+      "Erklärung": "30:1 bis 2:1 für Privatkunden",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/cfd-hebel.html",
       "class": ["regel","esma"]
     },
     {
       "Begriff": "Negativsaldoschutz",
-      "Erklärung": "In der EU dürfen Privatkunden bei CFDs nicht mehr als ihr Kontoguthaben verlieren.",
+      "Erklärung": "Kein Verlust über das Guthaben hinaus",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/cfd-hebel.html",
       "class": ["regel","nachschusspflicht"]
     },
     {
       "Begriff": "Overnight-Finanzierung",
-      "Erklärung": "Gebühr für über Nacht gehaltene CFD-Positionen. Macht CFDs für lange Haltedauern teuer.",
+      "Erklärung": "Gebühr pro Nacht für CFD-Positionen",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/margin.html",
       "class": ["kennzahl","swap","kosten"]
     },
     {
       "Begriff": "Forex",
-      "Erklärung": "Devisenhandel mit Währungspaaren wie EUR/USD. Wird oft per CFD gehandelt.",
+      "Erklärung": "Handel mit Währungspaaren",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/forex.html",
       "class": ["begriff","fx","devisen","währung"]
     },
     {
       "Begriff": "Pip",
-      "Erklärung": "Kleinste übliche Kursänderung im Forex, meist die 4. Nachkommastelle (0,0001).",
+      "Erklärung": "Kleinste Kursänderung (0,0001)",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/forex.html",
       "class": ["begriff","forex"]
     },
     {
       "Begriff": "Lot",
-      "Erklärung": "Standardgröße im Forex: 1 Lot = 100.000 Einheiten der Basiswährung (Mini 10.000, Micro 1.000).",
+      "Erklärung": "Standardgröße: 100.000 Einheiten",
       "Bereich": "CFDs & Hebel",
-      "Link": "",
+      "Link": "more/forex.html",
       "class": ["begriff","positionsgröße"]
     },
     {
       "Begriff": "Derivat",
-      "Erklärung": "Finanzprodukt, dessen Wert von einem anderen Wert (Basiswert) abhängt, z. B. Optionen, Futures, CFDs.",
+      "Erklärung": "Wert hängt von einem Basiswert ab",
       "Bereich": "Derivate",
-      "Link": "",
+      "Link": "more/derivate.html",
       "class": ["begriff","basiswert"]
     },
     {
       "Begriff": "Option (Call / Put)",
-      "Erklärung": "Recht, aber keine Pflicht, einen Basiswert zu einem festen Preis zu kaufen (Call) oder zu verkaufen (Put).",
+      "Erklärung": "Recht zu kaufen (Call) / verkaufen (Put)",
       "Bereich": "Derivate",
-      "Link": "",
+      "Link": "more/derivate.html",
       "class": ["begriff","optionsschein"]
     },
     {
       "Begriff": "Future",
-      "Erklärung": "Verbindlicher Vertrag, einen Basiswert zu einem festen Termin und Preis zu kaufen oder zu verkaufen.",
+      "Erklärung": "Pflicht zu Kauf/Verkauf zum Termin",
       "Bereich": "Derivate",
-      "Link": "",
+      "Link": "more/derivate.html",
       "class": ["begriff","termingeschäft"]
     },
     {
       "Begriff": "Knock-out-Zertifikat",
-      "Erklärung": "Hebelprodukt mit Schwelle: Wird sie berührt, verfällt das Produkt (fast) wertlos.",
+      "Erklärung": "Hebelprodukt, verfällt an der Schwelle",
       "Bereich": "Derivate",
-      "Link": "",
+      "Link": "more/derivate.html",
       "class": ["begriff","turbo"]
     },
     {
       "Begriff": "Optionsschein-Griechen",
-      "Erklärung": "Kennzahlen für Optionen: Delta (Kursreaktion), Theta (Zeitwertverlust), Vega (Volatilität).",
+      "Erklärung": "Delta, Theta, Vega: Options-Kennzahlen",
       "Bereich": "Derivate",
-      "Link": "",
+      "Link": "more/derivate.html",
       "class": ["kennzahl","delta","theta"]
     },
     {
       "Begriff": "Hedging",
-      "Erklärung": "Absichern einer Position mit einer Gegenposition, z. B. Put-Option auf gehaltene Aktien.",
+      "Erklärung": "Position mit Gegenposition absichern",
       "Bereich": "Derivate",
-      "Link": "",
+      "Link": "more/derivate.html",
       "class": ["strategie","absicherung"]
     },
     {
       "Begriff": "Candlestick",
-      "Erklärung": "Kerze mit Eröffnung, Hoch, Tief und Schluss.",
+      "Erklärung": "Kerze: Eröffnung, Hoch, Tief, Schluss",
       "Bereich": "Chartanalyse",
       "Link": "more/kerzenchart.html",
       "class": ["begriff","kerze","ohlc"]
     },
     {
       "Begriff": "Zeiteinheit (Timeframe)",
-      "Erklärung": "Länge einer Kerze, z. B. 1 Minute, 1 Stunde, 1 Tag. Größere Zeiteinheit = weniger Rauschen.",
+      "Erklärung": "Zeitraum einer Kerze (1 Min. bis 1 Mon.)",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/kerzenchart.html",
       "class": ["begriff","timeframe"]
     },
     {
       "Begriff": "Trend",
-      "Erklärung": "Aufwärtstrend: höhere Hochs und höhere Tiefs. Abwärtstrend: tiefere Hochs und tiefere Tiefs.",
+      "Erklärung": "Höhere Hochs und Tiefs = Aufwärtstrend",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/trend-unterstuetzung.html",
       "class": ["regel","trendlinie"]
     },
     {
       "Begriff": "Unterstützung / Widerstand",
-      "Erklärung": "Kursbereiche, an denen der Kurs oft dreht: Unterstützung unten (Käufer), Widerstand oben (Verkäufer).",
+      "Erklärung": "Preiszonen, an denen der Kurs oft dreht",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/trend-unterstuetzung.html",
       "class": ["begriff","support","resistance"]
     },
     {
       "Begriff": "Ausbruch (Breakout)",
-      "Erklärung": "Kurs durchbricht einen Widerstand oder eine Unterstützung deutlich, oft mit hohem Volumen.",
+      "Erklärung": "Kurs durchbricht eine wichtige Marke",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/trend-unterstuetzung.html",
       "class": ["strategie","breakout"]
     },
     {
       "Begriff": "Volumen",
-      "Erklärung": "Anzahl gehandelter Stücke. Bestätigt Bewegungen: Ausbruch mit hohem Volumen ist aussagekräftiger.",
+      "Erklärung": "Anzahl gehandelter Stücke",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/trend-unterstuetzung.html",
       "class": ["kennzahl"]
     },
     {
       "Begriff": "Formationen",
-      "Erklärung": "Wiederkehrende Muster wie Schulter-Kopf-Schulter, Doppelboden, Dreieck, Flagge.",
+      "Erklärung": "Chartmuster wie Doppelboden, SKS",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/formationen.html",
       "class": ["begriff","muster","pattern"]
     },
     {
       "Begriff": "Log- vs. lineare Skala",
-      "Erklärung": "Logarithmisch: gleiche Prozent-Bewegung = gleicher Abstand. Für lange Zeiträume besser.",
+      "Erklärung": "Prozent- oder Euro-Abstände im Chart",
       "Bereich": "Chartanalyse",
-      "Link": "",
+      "Link": "more/formationen.html",
       "class": ["begriff","chart"]
     },
     {
       "Begriff": "Gleitender Durchschnitt (SMA)",
-      "Erklärung": "Durchschnitt der letzten n Schlusskurse. Glättet den Kurs und zeigt die Trendrichtung.",
+      "Erklärung": "Durchschnitt der letzten n Kurse",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/gleitende-durchschnitte.html",
       "class": ["formel","moving average","sma"]
     },
     {
       "Begriff": "EMA",
-      "Erklärung": "Exponentieller Durchschnitt: gewichtet neuere Kurse stärker, reagiert schneller als der SMA.",
+      "Erklärung": "Durchschnitt, neuere Kurse zählen mehr",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/gleitende-durchschnitte.html",
       "class": ["formel","moving average"]
     },
     {
       "Begriff": "Golden / Death Cross",
-      "Erklärung": "50-Tage-Linie kreuzt die 200-Tage-Linie nach oben (Golden) bzw. unten (Death).",
+      "Erklärung": "50-Tage-Linie kreuzt 200-Tage-Linie",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/gleitende-durchschnitte.html",
       "class": ["strategie","200 tage"]
     },
     {
       "Begriff": "RSI",
-      "Erklärung": "Relative Strength Index (0–100). Über 70 gilt als überkauft, unter 30 als überverkauft.",
+      "Erklärung": "Über 70 überkauft, unter 30 überverkauft",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/rsi-macd.html",
       "class": ["kennzahl","oszillator"]
     },
     {
       "Begriff": "MACD",
-      "Erklärung": "Differenz zweier EMAs plus Signallinie. Kreuzungen gelten als Kauf-/Verkaufssignal.",
+      "Erklärung": "Differenz zweier EMAs plus Signallinie",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/rsi-macd.html",
       "class": ["kennzahl"]
     },
     {
       "Begriff": "Bollinger-Bänder",
-      "Erklärung": "Gleitender Durchschnitt ± 2 Standardabweichungen. Enge Bänder = wenig Volatilität, oft vor großen Bewegungen.",
+      "Erklärung": "Durchschnitt ± 2 Standardabweichungen",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/bollinger-atr.html",
       "class": ["kennzahl","volatilität"]
     },
     {
       "Begriff": "ATR",
-      "Erklärung": "Average True Range: durchschnittliche Schwankungsbreite. Hilft, Stop-Abstände sinnvoll zu wählen.",
+      "Erklärung": "Durchschnittliche Schwankungsbreite",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/bollinger-atr.html",
       "class": ["kennzahl","stop"]
     },
     {
       "Begriff": "Fibonacci-Retracement",
-      "Erklärung": "Linien bei 23,6 / 38,2 / 50 / 61,8 % einer Bewegung als mögliche Umkehrzonen.",
+      "Erklärung": "Umkehrzonen bei 38,2 / 50 / 61,8 %",
       "Bereich": "Indikatoren",
-      "Link": "",
+      "Link": "more/formationen.html",
       "class": ["strategie"]
     },
     {
       "Begriff": "KGV",
-      "Erklärung": "Kurs-Gewinn-Verhältnis = Aktienkurs / Gewinn je Aktie. Wie viele Jahresgewinne man 'bezahlt'.",
+      "Erklärung": "Kurs / Gewinn je Aktie",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/aktien-kennzahlen.html",
       "class": ["kennzahl","pe ratio"]
     },
     {
       "Begriff": "EPS",
-      "Erklärung": "Gewinn je Aktie = Jahresüberschuss / Anzahl Aktien.",
+      "Erklärung": "Gewinn je Aktie",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/aktien-kennzahlen.html",
       "class": ["formel","gewinn je aktie"]
     },
     {
       "Begriff": "KBV",
-      "Erklärung": "Kurs-Buchwert-Verhältnis = Kurs / Buchwert (Eigenkapital) je Aktie. Unter 1 = unter Substanzwert.",
+      "Erklärung": "Kurs / Buchwert je Aktie",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/aktien-kennzahlen.html",
       "class": ["kennzahl"]
     },
     {
       "Begriff": "Dividendenrendite",
-      "Erklärung": "Dividende je Aktie / Aktienkurs · 100 %.",
+      "Erklärung": "Dividende / Kurs · 100 %",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/dividende.html",
       "class": ["formel"]
     },
     {
       "Begriff": "Ausschüttungsquote",
-      "Erklärung": "Anteil des Gewinns, der als Dividende ausgezahlt wird. Über 100 % ist auf Dauer nicht haltbar.",
+      "Erklärung": "Anteil des Gewinns als Dividende",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/dividende.html",
       "class": ["kennzahl","payout ratio"]
     },
     {
       "Begriff": "Free Cashflow",
-      "Erklärung": "Operativer Cashflow minus Investitionen: Geld, das wirklich übrig bleibt.",
+      "Erklärung": "Geld, das nach Investitionen übrig bleibt",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/aktien-kennzahlen.html",
       "class": ["kennzahl","cashflow"]
     },
     {
       "Begriff": "Burggraben (Moat)",
-      "Erklärung": "Dauerhafter Wettbewerbsvorteil, z. B. Marke, Netzwerkeffekt, Patente, Kostenvorteil.",
+      "Erklärung": "Dauerhafter Vorteil gegenüber Konkurrenz",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/aktien-kennzahlen.html",
       "class": ["begriff","moat"]
     },
     {
       "Begriff": "Quartalszahlen",
-      "Erklärung": "Unternehmen berichten vierteljährlich. Abweichungen von den Erwartungen bewegen den Kurs stark.",
+      "Erklärung": "Vierteljährliche Geschäftszahlen",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/quartalszahlen-makro.html",
       "class": ["begriff","earnings"]
     },
     {
       "Begriff": "Makrodaten",
-      "Erklärung": "Wirtschaftsdaten wie Inflation, Arbeitsmarkt, Leitzins, BIP. Ein Wirtschaftskalender zeigt die Termine.",
+      "Erklärung": "Inflation, Zinsen, Arbeitsmarkt, BIP",
       "Bereich": "Fundamentalanalyse",
-      "Link": "",
+      "Link": "more/quartalszahlen-makro.html",
       "class": ["begriff","wirtschaftskalender"]
     },
     {
       "Begriff": "1-%-Regel",
-      "Erklärung": "Pro Trade höchstens 1–2 % des Kontos riskieren. Auch eine Verlustserie ist dann überlebbar.",
+      "Erklärung": "Max. 1–2 % des Kontos pro Trade riskieren",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/risiko-positionsgroesse.html",
       "class": ["regel","risiko pro trade"]
     },
     {
       "Begriff": "Positionsgröße",
-      "Erklärung": "Positionsgröße = riskierter Betrag / Abstand Einstieg–Stop. Erst den Stop festlegen, dann die Größe.",
+      "Erklärung": "Risiko / Abstand zum Stop",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/risiko-positionsgroesse.html",
       "class": ["formel","position sizing"]
     },
     {
       "Begriff": "Chance-Risiko-Verhältnis (CRV)",
-      "Erklärung": "Möglicher Gewinn / möglicher Verlust. CRV 2 = doppelt so viel Gewinn wie Risiko.",
+      "Erklärung": "Möglicher Gewinn / möglicher Verlust",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/risiko-positionsgroesse.html",
       "class": ["formel","risk reward"]
     },
     {
       "Begriff": "Trefferquote",
-      "Erklärung": "Anteil der Gewinn-Trades. Mit gutem CRV kann man auch mit unter 50 % Trefferquote profitabel sein.",
+      "Erklärung": "Anteil der Gewinn-Trades",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/erwartungswert-drawdown.html",
       "class": ["kennzahl","winrate"]
     },
     {
       "Begriff": "Erwartungswert",
-      "Erklärung": "Trefferquote · Ø Gewinn − Verlustquote · Ø Verlust. Muss positiv sein, sonst verliert die Strategie langfristig.",
+      "Erklärung": "Ø Ergebnis pro Trade – muss positiv sein",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/erwartungswert-drawdown.html",
       "class": ["formel","expectancy"]
     },
     {
       "Begriff": "Drawdown",
-      "Erklärung": "Rückgang vom Höchststand des Kontos. −50 % brauchen danach +100 %, um wieder auszugleichen.",
+      "Erklärung": "Rückgang vom Höchststand des Kontos",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/erwartungswert-drawdown.html",
       "class": ["kennzahl","verlust"]
     },
     {
       "Begriff": "Klumpenrisiko",
-      "Erklärung": "Zu viel Geld in einem Wert, einer Branche oder einem Land. Gegenmittel: Diversifikation.",
+      "Erklärung": "Zu viel Geld in einem Wert/einer Branche",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/diversifikation.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Korrelation",
-      "Erklärung": "Wie stark sich zwei Werte gemeinsam bewegen (−1 bis +1). Viele korrelierte Positionen = ein großes Risiko.",
+      "Erklärung": "Wie stark sich Werte gleich bewegen",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/diversifikation.html",
       "class": ["kennzahl"]
     },
     {
       "Begriff": "Notgroschen",
-      "Erklärung": "Vor dem Investieren 3–6 Monatsausgaben als sofort verfügbare Reserve. Nur Geld anlegen, das man entbehren kann.",
+      "Erklärung": "3–6 Monatsausgaben als Reserve",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/risiko-positionsgroesse.html",
       "class": ["regel","reserve"]
     },
     {
       "Begriff": "Backtest",
-      "Erklärung": "Strategie mit historischen Daten testen. Vorsicht: Vergangenheit garantiert keine Zukunft (Overfitting).",
+      "Erklärung": "Strategie an alten Daten testen",
       "Bereich": "Risikomanagement",
-      "Link": "",
+      "Link": "more/erwartungswert-drawdown.html",
       "class": ["strategie","test"]
     },
     {
       "Begriff": "Abgeltungsteuer",
-      "Erklärung": "In Deutschland 25 % auf Kapitalerträge plus Solidaritätszuschlag und ggf. Kirchensteuer.",
+      "Erklärung": "25 % + Soli auf Kapitalerträge",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/steuern.html",
       "class": ["regel","steuer","kapitalertragsteuer"]
     },
     {
       "Begriff": "Sparerpauschbetrag",
-      "Erklärung": "Steuerfreie Kapitalerträge pro Jahr: 1.000 € (Zusammenveranlagung 2.000 €). Per Freistellungsauftrag nutzen. (Stand 2026)",
+      "Erklärung": "1.000 € / 2.000 € steuerfrei pro Jahr",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/steuern.html",
       "class": ["regel","freistellungsauftrag"]
     },
     {
       "Begriff": "Verlusttopf",
-      "Erklärung": "Die Bank verrechnet Verluste automatisch mit Gewinnen. Aktienverluste nur mit Aktiengewinnen.",
+      "Erklärung": "Verluste werden mit Gewinnen verrechnet",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/steuern.html",
       "class": ["regel","verlustverrechnung"]
     },
     {
       "Begriff": "Teilfreistellung",
-      "Erklärung": "Bei Aktien-ETFs (mind. 51 % Aktien) sind 30 % der Erträge steuerfrei.",
+      "Erklärung": "30 % der Aktien-ETF-Erträge steuerfrei",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/steuern.html",
       "class": ["regel","etf"]
     },
     {
       "Begriff": "Vorabpauschale",
-      "Erklärung": "Steuer auf thesaurierende Fonds für einen fiktiven Mindestertrag – wird später beim Verkauf angerechnet.",
+      "Erklärung": "Jährliche Steuer auf thesaurierende Fonds",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/steuern.html",
       "class": ["regel","etf"]
     },
     {
       "Begriff": "BaFin",
-      "Erklärung": "Bundesanstalt für Finanzdienstleistungsaufsicht. Prüft, ob ein Anbieter in Deutschland zugelassen ist.",
+      "Erklärung": "Deutsche Finanzaufsicht",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/broker-depot.html",
       "class": ["begriff","regulierung","aufsicht"]
     },
     {
       "Begriff": "Einlagensicherung",
-      "Erklärung": "Bankguthaben gesetzlich bis 100.000 € pro Person und Bank geschützt. Wertpapiere im Depot sind Sondervermögen.",
+      "Erklärung": "Bankguthaben bis 100.000 € geschützt",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/broker-depot.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Insiderhandel",
-      "Erklärung": "Handel mit nicht öffentlichen, kursrelevanten Informationen – strafbar.",
+      "Erklärung": "Handel mit Geheimwissen – strafbar",
       "Bereich": "Steuern & Recht",
-      "Link": "",
+      "Link": "more/quartalszahlen-makro.html",
       "class": ["regel","marktmissbrauch"]
     },
     {
       "Begriff": "Trading-Plan",
-      "Erklärung": "Schriftliche Regeln: Was, wann, wie viel, Ein- und Ausstieg, maximaler Tagesverlust. Vorher festlegen, dann befolgen.",
+      "Erklärung": "Schriftliche Regeln für jeden Trade",
       "Bereich": "Psychologie",
-      "Link": "",
+      "Link": "more/psychologie.html",
       "class": ["regel","plan"]
     },
     {
       "Begriff": "Trading-Journal",
-      "Erklärung": "Jeden Trade mit Grund, Ergebnis und Gefühl notieren. Zeigt Muster und Fehler.",
+      "Erklärung": "Jeden Trade notieren und auswerten",
       "Bereich": "Psychologie",
-      "Link": "",
+      "Link": "more/psychologie.html",
       "class": ["strategie","tagebuch"]
     },
     {
       "Begriff": "FOMO",
-      "Erklärung": "Fear of Missing Out: Angst, eine Bewegung zu verpassen. Führt zu spätem, ungeplantem Einstieg.",
+      "Erklärung": "Angst, etwas zu verpassen",
       "Bereich": "Psychologie",
-      "Link": "",
+      "Link": "more/psychologie.html",
       "class": ["begriff","angst"]
     },
     {
       "Begriff": "Revenge Trading",
-      "Erklärung": "Nach einem Verlust sofort größer handeln, um ihn 'zurückzuholen'. Häufiger Grund für große Verluste.",
+      "Erklärung": "Verluste sofort „zurückholen“ wollen",
       "Bereich": "Psychologie",
-      "Link": "",
+      "Link": "more/psychologie.html",
       "class": ["begriff","emotion"]
     },
     {
       "Begriff": "Verlustaversion",
-      "Erklärung": "Verluste schmerzen stärker als gleich große Gewinne freuen → Verlierer zu lange halten, Gewinner zu früh verkaufen.",
+      "Erklärung": "Verluste schmerzen mehr als Gewinne freuen",
       "Bereich": "Psychologie",
-      "Link": "",
+      "Link": "more/psychologie.html",
       "class": ["begriff","behavioral finance"]
     },
     {
       "Begriff": "Overtrading",
-      "Erklärung": "Zu viele Trades ohne echtes Signal – meist aus Langeweile. Kostet Gebühren und Nerven.",
+      "Erklärung": "Zu viele Trades ohne echtes Signal",
       "Bereich": "Psychologie",
-      "Link": "",
+      "Link": "more/psychologie.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Kryptowährung",
-      "Erklärung": "Digitale Währung auf einer Blockchain, z. B. Bitcoin, Ether. Sehr hohe Volatilität.",
+      "Erklärung": "Digitales Geld auf einer Blockchain",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["begriff","bitcoin"]
     },
     {
       "Begriff": "Blockchain",
-      "Erklärung": "Dezentral gespeicherte, verkettete Liste von Transaktionen, die nachträglich kaum änderbar ist.",
+      "Erklärung": "Verkettete, kaum fälschbare Datenblöcke",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Wallet",
-      "Erklärung": "Speicher für die privaten Schlüssel. Wer den Schlüssel hat, kontrolliert die Coins ('Not your keys, not your coins').",
+      "Erklärung": "Speicher für deine privaten Schlüssel",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["regel","private key"]
     },
     {
       "Begriff": "Exchange",
-      "Erklärung": "Krypto-Handelsplatz. Coins auf der Börse liegen bei der Börse – Pleite- und Hackrisiko.",
+      "Erklärung": "Handelsplatz für Kryptowährungen",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["begriff","börse"]
     },
     {
       "Begriff": "Stablecoin",
-      "Erklärung": "Coin, der an einen festen Wert gekoppelt ist (z. B. 1 USD). Kopplung kann trotzdem brechen.",
+      "Erklärung": "Coin mit festem Wert, z. B. 1 USD",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["begriff","usdt","usdc"]
     },
     {
       "Begriff": "Krypto-Steuer (privat)",
-      "Erklärung": "Privat gehaltene Coins: Gewinne nach über einem Jahr Haltedauer steuerfrei, vorher Einkommensteuer (Freigrenze 1.000 €/Jahr).",
+      "Erklärung": "Nach 1 Jahr Haltedauer steuerfrei",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["regel","steuer","haltefrist"]
     },
     {
       "Begriff": "MiCA",
-      "Erklärung": "EU-Verordnung für Kryptowerte: Anbieter brauchen eine Zulassung und müssen Regeln zum Anlegerschutz einhalten.",
+      "Erklärung": "EU-Regeln für Krypto-Anbieter",
       "Bereich": "Krypto",
-      "Link": "",
+      "Link": "more/krypto.html",
       "class": ["regel","regulierung"]
     },
     {
       "Begriff": "IPO (Börsengang)",
-      "Erklärung": "Ein Unternehmen verkauft zum ersten Mal Aktien an alle.",
+      "Erklärung": "Erstmals Aktien für alle anbieten",
       "Bereich": "Aktien & ETFs",
       "Link": "more/aktie-ipo.html",
       "class": ["begriff","emission","neuemission"]
     },
     {
       "Begriff": "Kursbildung",
-      "Erklärung": "Warum Kurse steigen und fallen: Angebot und Nachfrage.",
+      "Erklärung": "Angebot und Nachfrage bilden den Kurs",
       "Bereich": "Börse & Orders",
       "Link": "more/kursbildung.html",
       "class": ["begriff","kurs fällt","kurs steigt"]

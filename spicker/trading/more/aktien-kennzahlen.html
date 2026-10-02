@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Kennzahlen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Fundamentalanalyse</p>
+    <h1>KGV, EPS, KBV &amp; Free Cashflow</h1>
+    <p class="page-lead">Mit diesen Kennzahlen schaust du hinter den Kurs: Wie viel verdient das Unternehmen wirklich – und ist die Aktie teuer oder günstig?</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist Fundamentalanalyse?</h2>
+      <p>Die <strong>Fundamentalanalyse</strong> bewertet ein Unternehmen anhand seiner Zahlen: Gewinn, Umsatz, Schulden, Cashflow, Wettbewerb. Sie fragt: Was ist das Unternehmen wert – und ist der aktuelle Kurs dafür angemessen?</p>
+      <p><strong>Woher kommt das?</strong> Benjamin Graham und David Dodd schrieben 1934 das Buch <em>Security Analysis</em>. Grahams bekanntester Schüler ist Warren Buffett.</p>
+    </section>
+    <section>
+      <h2>EPS und KGV</h2>
+      <pre><code>EPS (Gewinn je Aktie) = Jahresüberschuss / Anzahl Aktien
+  80 Mio. € / 10 Mio. Aktien = 8 € je Aktie
+
+KGV = Aktienkurs / Gewinn je Aktie
+  120 € / 8 € = 15</code></pre>
+      <p>Ein KGV von 15 heißt: Du zahlst heute das 15-Fache des Jahresgewinns. Bliebe der Gewinn gleich, hätte das Unternehmen den Kaufpreis in 15 Jahren „verdient“.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="KGV im Vergleich" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="22.0" class="dg-label" text-anchor="middle">KGV dreier fiktiver Unternehmen</text>
+        <line x1="20.0" y1="248.0" x2="620.0" y2="248.0" class="dg-axis"/>
+        <rect x="84.0" y="204.3" width="72.0" height="43.7" rx="2" class="dg-bar"/>
+        <text x="120.0" y="197.3" class="dg-small" text-anchor="middle">KGV 9</text>
+        <text x="120.0" y="270.0" class="dg-text" text-anchor="middle">Beispiel AG</text>
+        <text x="120.0" y="284.0" class="dg-text" text-anchor="middle">(Versorger)</text>
+        <rect x="284.0" y="175.2" width="72.0" height="72.8" rx="2" class="dg-bar"/>
+        <text x="320.0" y="168.2" class="dg-small" text-anchor="middle">KGV 15</text>
+        <text x="320.0" y="270.0" class="dg-text" text-anchor="middle">Muster SE</text>
+        <text x="320.0" y="284.0" class="dg-text" text-anchor="middle">(Industrie)</text>
+        <rect x="484.0" y="54.0" width="72.0" height="194.0" rx="2" class="dg-bar-total"/>
+        <text x="520.0" y="47.0" class="dg-small" text-anchor="middle">KGV 40</text>
+        <text x="520.0" y="270.0" class="dg-text" text-anchor="middle">Test Inc.</text>
+        <text x="520.0" y="284.0" class="dg-text" text-anchor="middle">(Software)</text>
+        </svg>
+        <figcaption>Ein hohes KGV heißt: Anleger erwarten starkes Wachstum. Bleibt es aus, fällt der Kurs oft heftig.</figcaption>
+      </figure>
+      <div class="note">KGV nur innerhalb einer Branche vergleichen. Software-Firmen haben fast immer ein höheres KGV als Versorger.</div>
+    </section>
+    <section>
+      <h2>KBV: Kurs-Buchwert-Verhältnis</h2>
+      <pre><code>KBV = Aktienkurs / Buchwert (Eigenkapital) je Aktie
+
+120 € / 60 € = 2</code></pre>
+      <p>Der Buchwert ist das Eigenkapital aus der Bilanz. Ein KBV unter 1 heißt: Die Börse bewertet das Unternehmen niedriger als sein Eigenkapital – entweder eine Chance oder ein Zeichen für Probleme.</p>
+    </section>
+    <section>
+      <h2>Free Cashflow</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Vom Cashflow zum Free Cashflow" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20.0" y1="260.0" x2="620.0" y2="260.0" class="dg-axis"/>
+        <rect x="30.0" y="30.0" width="64.0" height="230.0" rx="2" class="dg-bar"/>
+        <text x="62.0" y="24.0" class="dg-small" text-anchor="middle">500</text>
+        <text x="62.0" y="278.0" class="dg-text" text-anchor="middle">Operativer</text>
+        <text x="62.0" y="292.0" class="dg-text" text-anchor="middle">Cashflow</text>
+        <rect x="159.0" y="30.0" width="64.0" height="92.0" rx="2" class="dg-bar-minus"/>
+        <text x="191.0" y="24.0" class="dg-small" text-anchor="middle">−200</text>
+        <text x="191.0" y="278.0" class="dg-text" text-anchor="middle">Investi-</text>
+        <text x="191.0" y="292.0" class="dg-text" text-anchor="middle">tionen</text>
+        <rect x="288.0" y="122.0" width="64.0" height="138.0" rx="2" class="dg-bar-total"/>
+        <text x="320.0" y="116.0" class="dg-small" text-anchor="middle">300</text>
+        <text x="320.0" y="278.0" class="dg-text" text-anchor="middle">Free</text>
+        <text x="320.0" y="292.0" class="dg-text" text-anchor="middle">Cashflow</text>
+        <rect x="417.0" y="122.0" width="64.0" height="55.2" rx="2" class="dg-bar-minus"/>
+        <text x="449.0" y="116.0" class="dg-small" text-anchor="middle">−120</text>
+        <text x="449.0" y="278.0" class="dg-text" text-anchor="middle">Dividende</text>
+        <rect x="546.0" y="177.2" width="64.0" height="82.8" rx="2" class="dg-bar-total"/>
+        <text x="578.0" y="171.2" class="dg-small" text-anchor="middle">180</text>
+        <text x="578.0" y="278.0" class="dg-text" text-anchor="middle">bleibt</text>
+        <text x="578.0" y="292.0" class="dg-text" text-anchor="middle">übrig</text>
+        </svg>
+        <figcaption>In Mio. €: Vom Geld aus dem laufenden Geschäft werden die Investitionen abgezogen. Was bleibt, ist der Free Cashflow.</figcaption>
+      </figure>
+      <p>Gewinn kann man buchhalterisch „gestalten“ – <strong>Geld auf dem Konto</strong> kaum. Der Free Cashflow zeigt, wie viel echtes Geld übrig bleibt für Dividenden, Aktienrückkäufe oder Schuldenabbau.</p>
+    </section>
+    <section>
+      <h2>Burggraben (Moat)</h2>
+      <p>Den Begriff prägte <strong>Warren Buffett</strong>: Wie eine Burg einen Graben hat, braucht ein gutes Unternehmen einen dauerhaften Schutz vor Konkurrenz.</p>
+      <table class="info-table">
+        <thead><tr><th>Art von Burggraben</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Starke Marke</td><td>Kunden zahlen mehr für den bekannten Namen</td></tr>
+          <tr><td>Netzwerkeffekt</td><td>Je mehr Nutzer, desto wertvoller die Plattform</td></tr>
+          <tr><td>Wechselkosten</td><td>Umstieg auf ein anderes Produkt ist teuer oder mühsam</td></tr>
+          <tr><td>Kostenvorteil</td><td>Größe macht die Produktion billiger als bei Konkurrenten</td></tr>
+          <tr><td>Patente / Lizenzen</td><td>Gesetzlich geschützt vor Nachahmern</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Keine Kennzahl allein entscheidet – immer mehrere zusammen und über mehrere Jahre anschauen.</li>
+        <li>Ein niedriges KGV kann eine „Value-Falle“ sein, wenn die Gewinne bald einbrechen.</li>
+        <li>Erwartete Gewinne (Forward-KGV) sind Schätzungen und können falsch sein.</li>
+        <li>Diese Seite erklärt Begriffe und Zusammenhänge – sie ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="dividende.html">Dividende</a>
+        <a class="chip" href="quartalszahlen-makro.html">Quartalszahlen &amp; Makro</a>
+        <a class="chip" href="aktie-ipo.html">Aktie &amp; IPO</a>
+        <a class="chip" href="kursbildung.html">Kursbildung</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

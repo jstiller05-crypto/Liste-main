@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Kombinatorik – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Stochastik</p>
+    <h1>Kombinatorik: Fakultät &amp; Binomialkoeffizient</h1>
+    <p class="page-lead">Die Kunst des geschickten Zählens: Wie viele Reihenfolgen, Auswahlen und Möglichkeiten gibt es?</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <strong>Kombinatorik</strong> zählt Möglichkeiten, ohne sie alle aufzuschreiben. Das braucht man für Laplace-Wahrscheinlichkeiten (günstige ÷ mögliche), aber auch für Passwörter, Lotto oder Turnierpläne.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Zählprinzip: 5 mal 4 mal 3 Möglichkeiten" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40.0" y="90.0" width="110.0" height="100.0" rx="8" class="dg-fill dg-shape"/>
+        <text x="95.0" y="76.0" class="dg-label" text-anchor="middle">1. Platz</text>
+        <text x="95.0" y="152.0" class="dg-big" text-anchor="middle">5</text>
+        <text x="95.0" y="176.0" class="dg-small" text-anchor="middle">Möglichkeiten</text>
+        <text x="170.0" y="146.0" class="dg-big" text-anchor="middle">·</text>
+        <rect x="190.0" y="90.0" width="110.0" height="100.0" rx="8" class="dg-fill dg-shape"/>
+        <text x="245.0" y="76.0" class="dg-label" text-anchor="middle">2. Platz</text>
+        <text x="245.0" y="152.0" class="dg-big" text-anchor="middle">4</text>
+        <text x="245.0" y="176.0" class="dg-small" text-anchor="middle">Möglichkeiten</text>
+        <text x="320.0" y="146.0" class="dg-big" text-anchor="middle">·</text>
+        <rect x="340.0" y="90.0" width="110.0" height="100.0" rx="8" class="dg-fill dg-shape"/>
+        <text x="395.0" y="76.0" class="dg-label" text-anchor="middle">3. Platz</text>
+        <text x="395.0" y="152.0" class="dg-big" text-anchor="middle">3</text>
+        <text x="395.0" y="176.0" class="dg-small" text-anchor="middle">Möglichkeiten</text>
+        <text x="520.0" y="146.0" class="dg-big" text-anchor="middle">= 60</text>
+        <text x="40.0" y="240.0" class="dg-text" text-anchor="start">Für jeden weiteren Platz bleibt einer weniger übrig.</text>
+        <text x="40.0" y="268.0" class="dg-accent-text" text-anchor="start">5 · 4 · 3 = 5! / (5 − 3)! = 120 / 2 = 60</text>
+        </svg>
+        <figcaption>Zählprinzip: Gibt es für jeden Schritt eine feste Anzahl Möglichkeiten, multipliziert man sie.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>n!</code></td><td>„n Fakultät“ = 1 · 2 · 3 · … · n</td></tr>
+          <tr><td><code>(n über k)</code></td><td>Binomialkoeffizient – wird als n über k untereinander in einer großen Klammer geschrieben</td></tr>
+          <tr><td><code>n</code></td><td>Anzahl der Dinge, aus denen man auswählt</td></tr>
+          <tr><td><code>k</code></td><td>Anzahl der Dinge, die man auswählt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Indische Gelehrte zählten schon um 300 v. Chr. Silbenkombinationen in Gedichten. Das Zahlendreieck, aus dem man die Binomialkoeffizienten abliest, kannten chinesische und persische Mathematiker im 11. Jahrhundert; in Europa heißt es <strong>Pascalsches Dreieck</strong> (1654). Das Zeichen n! führte Christian Kramp 1808 ein.</p>
+    </section>
+    <section>
+      <h2>Fakultät: Reihenfolgen</h2>
+      <pre><code>n! = 1 · 2 · 3 · … · n        0! = 1 (festgelegt)
+
+3! = 1 · 2 · 3 = 6       ABC, ACB, BAC, BCA, CAB, CBA
+5! = 120
+10! = 3 628 800</code></pre>
+      <p>n! ist die Anzahl der Möglichkeiten, n verschiedene Dinge <strong>in eine Reihenfolge</strong> zu bringen.</p>
+    </section>
+    <section>
+      <h2>Binomialkoeffizient: Auswählen ohne Reihenfolge</h2>
+      <pre><code>(n über k) = n! / ( k! · (n − k)! )
+
+Lotto 6 aus 49:
+(49 über 6) = 49! / (6! · 43!) = 13 983 816
+→ Chance auf 6 Richtige: 1 : 13 983 816
+
+Schneller von Hand:  (5 über 2) = (5 · 4) / (2 · 1) = 10</code></pre>
+      <p>Im Taschenrechner heißt die Taste meist <code>nCr</code>.</p>
+    </section>
+    <section>
+      <h2>Die vier Grundfälle</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>mit Reihenfolge</th><th>ohne Reihenfolge</th></tr></thead>
+        <tbody>
+          <tr><td>mit Wiederholung</td><td><code>nᵏ</code> – z. B. 4-stellige PIN: 10⁴ = 10.000</td><td><code>(n + k − 1 über k)</code> – z. B. 3 Kugeln Eis aus 5 Sorten</td></tr>
+          <tr><td>ohne Wiederholung</td><td><code>n! / (n − k)!</code> – z. B. Podest: 5 · 4 · 3 = 60</td><td><code>(n über k)</code> – z. B. Lotto</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li><strong>Reihenfolge wichtig?</strong> Ist „AB“ etwas anderes als „BA“? (Podest ja, Lottozahlen nein)</li>
+        <li><strong>Wiederholung erlaubt?</strong> Darf dasselbe mehrfach vorkommen? (PIN ja, Lotto nein)</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Fakultäten werden riesig: 20! hat schon 19 Stellen – vor dem Ausrechnen kürzen.</li>
+        <li><code>(n über k) = (n über n − k)</code>: 2 aus 5 wählen ist dasselbe wie 3 aus 5 weglassen.</li>
+        <li>Erst die zwei Fragen (Reihenfolge? Wiederholung?) beantworten, dann die Formel wählen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="wahrscheinlichkeit.html">Wahrscheinlichkeit</a>
+        <a class="chip" href="verteilungen.html">Verteilungen</a>
+        <a class="chip" href="teiler-primzahlen.html">Teiler &amp; Primzahlen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

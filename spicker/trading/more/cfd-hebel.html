@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: CFDs &amp; Hebel – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · CFDs & Hebel</p>
+    <h1>CFDs und Hebel</h1>
+    <p class="page-lead">Mit wenig Geld eine große Position bewegen – klingt verlockend, vergrößert aber Gewinne UND Verluste gleichermaßen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist ein CFD?</h2>
+      <p>Ein <strong>CFD</strong> (Contract for Difference, Differenzkontrakt) ist ein Vertrag zwischen dir und deinem Broker. Ihr vereinbart: Die <strong>Kursdifferenz</strong> zwischen Eröffnung und Schließung wird ausgezahlt. Du besitzt die Aktie, den Index oder das Gold dabei <strong>nicht</strong>.</p>
+      <div class="note"><strong>Risikohinweis:</strong> CFDs und andere Hebelprodukte sind komplex. Die meisten Privatanleger verlieren damit Geld – jeder Broker muss angeben, wie viel Prozent seiner Kundenkonten Verluste machen (oft 70–80 %). Diese Seite erklärt nur, wie es funktioniert, und ist keine Anlageberatung.</div>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>CFDs wurden Anfang der 1990er-Jahre in London erfunden. Große Investoren wollten Aktien handeln, ohne die britische Börsenumsatzsteuer (Stamp Duty) zu zahlen – mit einem Vertrag über die Differenz besaßen sie die Aktie ja nicht. Später wurden CFDs über Online-Broker auch für Privatleute angeboten.</p>
+    </section>
+    <section>
+      <h2>Was macht der Hebel?</h2>
+      <p>Beim Hebel musst du nur einen Teil des Positionswerts selbst hinterlegen. Hebel 10 heißt: Mit 1.000 € bewegst du eine Position von 10.000 €.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Hebelwirkung" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="22.0" class="dg-label" text-anchor="middle">Gewinn/Verlust bei 1.000 € Eigenkapital</text>
+        <line x1="20.0" y1="151.0" x2="620.0" y2="151.0" class="dg-axis"/>
+        <rect x="59.0" y="141.3" width="72.0" height="9.7" rx="2" class="dg-bar"/>
+        <text x="95.0" y="134.3" class="dg-small" text-anchor="middle">+20 €</text>
+        <text x="95.0" y="270.0" class="dg-text" text-anchor="middle">ohne Hebel</text>
+        <text x="95.0" y="284.0" class="dg-text" text-anchor="middle">Kurs +2 %</text>
+        <rect x="209.0" y="54.0" width="72.0" height="97.0" rx="2" class="dg-bar-total"/>
+        <text x="245.0" y="47.0" class="dg-small" text-anchor="middle">+200 €</text>
+        <text x="245.0" y="270.0" class="dg-text" text-anchor="middle">Hebel 10</text>
+        <text x="245.0" y="284.0" class="dg-text" text-anchor="middle">Kurs +2 %</text>
+        <rect x="359.0" y="151.0" width="72.0" height="9.7" rx="2" class="dg-bar-minus"/>
+        <text x="395.0" y="175.7" class="dg-small" text-anchor="middle">−20 €</text>
+        <text x="395.0" y="270.0" class="dg-text" text-anchor="middle">ohne Hebel</text>
+        <text x="395.0" y="284.0" class="dg-text" text-anchor="middle">Kurs −2 %</text>
+        <rect x="509.0" y="151.0" width="72.0" height="97.0" rx="2" class="dg-bar-minus"/>
+        <text x="545.0" y="263.0" class="dg-small" text-anchor="middle">−200 €</text>
+        <text x="545.0" y="270.0" class="dg-text" text-anchor="middle">Hebel 10</text>
+        <text x="545.0" y="284.0" class="dg-text" text-anchor="middle">Kurs −2 %</text>
+        </svg>
+        <figcaption>Der Hebel vergrößert beides: +2 % Kurs werden zu +20 % auf dein Geld – und −2 % zu −20 %.</figcaption>
+      </figure>
+      <pre><code>Gewinn/Verlust in % deines Geldes ≈ Kursänderung in % · Hebel
+
+−2 % · 10 = −20 %
+−10 % · 10 = −100 %  (alles weg)</code></pre>
+    </section>
+    <section>
+      <h2>Hebel-Grenzen in der EU</h2>
+      <p>Seit 2018 begrenzt die EU-Wertpapieraufsicht <strong>ESMA</strong> den Hebel für Privatkunden (Stand 2026):</p>
+      <table class="info-table">
+        <thead><tr><th>Basiswert</th><th>Max. Hebel</th><th>Nötige Margin</th></tr></thead>
+        <tbody>
+          <tr><td>Hauptwährungspaare (z. B. EUR/USD)</td><td>30 : 1</td><td>3,33 %</td></tr>
+          <tr><td>andere Währungen, Gold, große Indizes (z. B. DAX)</td><td>20 : 1</td><td>5 %</td></tr>
+          <tr><td>Rohstoffe (außer Gold), kleinere Indizes</td><td>10 : 1</td><td>10 %</td></tr>
+          <tr><td>Einzelaktien und Sonstiges</td><td>5 : 1</td><td>20 %</td></tr>
+          <tr><td>Kryptowährungen</td><td>2 : 1</td><td>50 %</td></tr>
+        </tbody>
+      </table>
+      <p>Wer als „professioneller Kunde“ eingestuft wird, darf mehr Hebel nutzen – verliert aber die Schutzregeln.</p>
+    </section>
+    <section>
+      <h2>Schutzregeln für Privatkunden</h2>
+      <table class="info-table">
+        <thead><tr><th>Regel</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Negativsaldoschutz</td><td>Du kannst nicht mehr verlieren als dein Kontoguthaben – keine Nachschusspflicht.</td></tr>
+          <tr><td>Glattstellung bei 50 %</td><td>Fällt dein Konto auf die Hälfte der nötigen Margin, schließt der Broker Positionen.</td></tr>
+          <tr><td>Risikowarnung</td><td>Broker müssen den Anteil der Kundenkonten mit Verlust angeben.</td></tr>
+          <tr><td>Keine Boni</td><td>Lockangebote wie „100 € geschenkt“ sind verboten.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Basiswert</td><td>Das, worauf sich der CFD bezieht (Aktie, Index, Währung …).</td></tr>
+          <tr><td>Positionswert</td><td>Kurs · Stückzahl – die volle Größe der Position.</td></tr>
+          <tr><td>Market Maker</td><td>Der Broker stellt selbst die Kurse und ist oft dein Gegenüber.</td></tr>
+          <tr><td>Overnight-Gebühr</td><td>Finanzierungskosten für jede Nacht, die du die Position hältst.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Hebel macht aus einer guten Strategie keine bessere – nur eine schnellere, in beide Richtungen.</li>
+        <li>Rechne immer in Positionswert, nicht im eingesetzten Betrag.</li>
+        <li>Mit Demokonto üben und den Risikohinweis des Brokers ernst nehmen.</li>
+        <li>Diese Seite erklärt Begriffe und Zusammenhänge – sie ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="margin.html">Margin</a>
+        <a class="chip" href="forex.html">Forex</a>
+        <a class="chip" href="derivate.html">Derivate</a>
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

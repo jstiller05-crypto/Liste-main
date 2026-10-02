@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Gleichungssysteme &amp; Matrizen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Algebra</p>
+    <h1>Gleichungssysteme, Gauß &amp; Matrizen</h1>
+    <p class="page-lead">Mehrere Gleichungen mit mehreren Unbekannten lösen – von Hand und mit Matrizen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein <strong>lineares Gleichungssystem (LGS)</strong> besteht aus mehreren Gleichungen, die <em>gleichzeitig</em> gelten sollen. Gesucht sind Zahlen für alle Unbekannten, die jede Gleichung erfüllen.</p>
+      <pre><code>I:   2x −  y = 1
+II:   x +  y = 5</code></pre>
+      <p>Jede Gleichung mit zwei Unbekannten ist eine Gerade. Die Lösung ist der <strong>Schnittpunkt</strong>:</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Zwei Geraden mit Schnittpunkt (2 | 3)" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip6"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="36.0" y1="284.0" x2="36.0" y2="36.0" class="dg-grid"/>
+        <text x="36.0" y="238.0" class="dg-small" text-anchor="middle">-1</text>
+        <line x1="117.1" y1="284.0" x2="117.1" y2="36.0" class="dg-grid"/>
+        <line x1="198.3" y1="284.0" x2="198.3" y2="36.0" class="dg-grid"/>
+        <text x="198.3" y="238.0" class="dg-small" text-anchor="middle">1</text>
+        <line x1="279.4" y1="284.0" x2="279.4" y2="36.0" class="dg-grid"/>
+        <text x="279.4" y="238.0" class="dg-small" text-anchor="middle">2</text>
+        <line x1="360.6" y1="284.0" x2="360.6" y2="36.0" class="dg-grid"/>
+        <text x="360.6" y="238.0" class="dg-small" text-anchor="middle">3</text>
+        <line x1="441.7" y1="284.0" x2="441.7" y2="36.0" class="dg-grid"/>
+        <text x="441.7" y="238.0" class="dg-small" text-anchor="middle">4</text>
+        <line x1="522.9" y1="284.0" x2="522.9" y2="36.0" class="dg-grid"/>
+        <text x="522.9" y="238.0" class="dg-small" text-anchor="middle">5</text>
+        <line x1="604.0" y1="284.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="604.0" y="238.0" class="dg-small" text-anchor="middle">6</text>
+        <line x1="36.0" y1="284.0" x2="604.0" y2="284.0" class="dg-grid"/>
+        <text x="111.1" y="288.0" class="dg-small" text-anchor="end">-2</text>
+        <line x1="36.0" y1="253.0" x2="604.0" y2="253.0" class="dg-grid"/>
+        <text x="111.1" y="257.0" class="dg-small" text-anchor="end">-1</text>
+        <line x1="36.0" y1="222.0" x2="604.0" y2="222.0" class="dg-grid"/>
+        <line x1="36.0" y1="191.0" x2="604.0" y2="191.0" class="dg-grid"/>
+        <text x="111.1" y="195.0" class="dg-small" text-anchor="end">1</text>
+        <line x1="36.0" y1="160.0" x2="604.0" y2="160.0" class="dg-grid"/>
+        <text x="111.1" y="164.0" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="129.0" x2="604.0" y2="129.0" class="dg-grid"/>
+        <text x="111.1" y="133.0" class="dg-small" text-anchor="end">3</text>
+        <line x1="36.0" y1="98.0" x2="604.0" y2="98.0" class="dg-grid"/>
+        <text x="111.1" y="102.0" class="dg-small" text-anchor="end">4</text>
+        <line x1="36.0" y1="67.0" x2="604.0" y2="67.0" class="dg-grid"/>
+        <text x="111.1" y="71.0" class="dg-small" text-anchor="end">5</text>
+        <line x1="36.0" y1="36.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="111.1" y="40.0" class="dg-small" text-anchor="end">6</text>
+        <line x1="36.0" y1="222.0" x2="604.0" y2="222.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="117.1" y1="284.0" x2="117.1" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="214.0" class="dg-label" text-anchor="end">x</text>
+        <text x="125.1" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polyline points="36.0,315.0 38.8,312.8 41.7,310.7 44.5,308.5 47.4,306.3 50.2,304.1 53.0,302.0 55.9,299.8 58.7,297.6 61.6,295.5 64.4,293.3 67.2,291.1 70.1,289.0 72.9,286.8 75.8,284.6 78.6,282.4 81.4,280.3 84.3,278.1 87.1,275.9 90.0,273.8 92.8,271.6 95.6,269.4 98.5,267.3 101.3,265.1 104.2,262.9 107.0,260.8 109.8,258.6 112.7,256.4 115.5,254.2 118.4,252.1 121.2,249.9 124.0,247.7 126.9,245.6 129.7,243.4 132.6,241.2 135.4,239.1 138.2,236.9 141.1,234.7 143.9,232.5 146.8,230.4 149.6,228.2 152.4,226.0 155.3,223.9 158.1,221.7 161.0,219.5 163.8,217.4 166.6,215.2 169.5,213.0 172.3,210.8 175.2,208.7 178.0,206.5 180.8,204.3 183.7,202.2 186.5,200.0 189.4,197.8 192.2,195.6 195.0,193.5 197.9,191.3 200.7,189.1 203.6,187.0 206.4,184.8 209.2,182.6 212.1,180.5 214.9,178.3 217.8,176.1 220.6,173.9 223.4,171.8 226.3,169.6 229.1,167.4 232.0,165.3 234.8,163.1 237.6,160.9 240.5,158.8 243.3,156.6 246.2,154.4 249.0,152.2 251.8,150.1 254.7,147.9 257.5,145.7 260.4,143.6 263.2,141.4 266.0,139.2 268.9,137.1 271.7,134.9 274.6,132.7 277.4,130.5 280.2,128.4 283.1,126.2 285.9,124.0 288.8,121.9 291.6,119.7 294.4,117.5 297.3,115.4 300.1,113.2 303.0,111.0 305.8,108.8 308.6,106.7 311.5,104.5 314.3,102.3 317.2,100.2 320.0,98.0 322.8,95.8 325.7,93.7 328.5,91.5 331.4,89.3 334.2,87.2 337.0,85.0 339.9,82.8 342.7,80.6 345.6,78.5 348.4,76.3 351.2,74.1 354.1,72.0 356.9,69.8 359.8,67.6 362.6,65.4 365.4,63.3 368.3,61.1 371.1,58.9 374.0,56.8 376.8,54.6 379.6,52.4 382.5,50.3 385.3,48.1 388.2,45.9 391.0,43.8 393.8,41.6 396.7,39.4 399.5,37.2 402.4,35.1 405.2,32.9 408.0,30.7 410.9,28.6 413.7,26.4 416.6,24.2 419.4,22.1 422.2,19.9 425.1,17.7 427.9,15.5 430.8,13.4 433.6,11.2 436.4,9.0 439.3,6.9 442.1,4.7 445.0,2.5 447.8,0.3 450.6,-1.8 453.5,-4.0 456.3,-6.2 459.2,-8.3 462.0,-10.5 464.8,-12.7 467.7,-14.8 470.5,-17.0 473.4,-19.2 476.2,-21.3 479.0,-23.5 481.9,-25.7 484.7,-27.9 487.6,-30.0 490.4,-32.2 493.2,-34.4 496.1,-36.5 498.9,-38.7 501.8,-40.9 504.6,-43.1 507.4,-45.2 510.3,-47.4 513.1,-49.6 516.0,-51.7 518.8,-53.9 521.6,-56.1 524.5,-58.2 527.3,-60.4 530.2,-62.6 533.0,-64.8 535.8,-66.9 538.7,-69.1 541.5,-71.3 544.4,-73.4 547.2,-75.6 550.0,-77.8 552.9,-79.9 555.7,-82.1 558.6,-84.3 561.4,-86.4 564.2,-88.6 567.1,-90.8 569.9,-93.0 572.8,-95.1 575.6,-97.3 578.4,-99.5 581.3,-101.6 584.1,-103.8 587.0,-106.0 589.8,-108.2 592.6,-110.3 595.5,-112.5 598.3,-114.7 601.2,-116.8 604.0,-119.0" class="dg-line" clip-path="url(#plotClip6)"/>
+        <polyline points="36.0,36.0 38.8,37.1 41.7,38.2 44.5,39.3 47.4,40.3 50.2,41.4 53.0,42.5 55.9,43.6 58.7,44.7 61.6,45.8 64.4,46.8 67.2,47.9 70.1,49.0 72.9,50.1 75.8,51.2 78.6,52.3 81.4,53.4 84.3,54.4 87.1,55.5 90.0,56.6 92.8,57.7 95.6,58.8 98.5,59.9 101.3,61.0 104.2,62.0 107.0,63.1 109.8,64.2 112.7,65.3 115.5,66.4 118.4,67.5 121.2,68.5 124.0,69.6 126.9,70.7 129.7,71.8 132.6,72.9 135.4,74.0 138.2,75.1 141.1,76.1 143.9,77.2 146.8,78.3 149.6,79.4 152.4,80.5 155.3,81.6 158.1,82.7 161.0,83.7 163.8,84.8 166.6,85.9 169.5,87.0 172.3,88.1 175.2,89.2 178.0,90.2 180.8,91.3 183.7,92.4 186.5,93.5 189.4,94.6 192.2,95.7 195.0,96.8 197.9,97.8 200.7,98.9 203.6,100.0 206.4,101.1 209.2,102.2 212.1,103.3 214.9,104.4 217.8,105.4 220.6,106.5 223.4,107.6 226.3,108.7 229.1,109.8 232.0,110.9 234.8,112.0 237.6,113.0 240.5,114.1 243.3,115.2 246.2,116.3 249.0,117.4 251.8,118.5 254.7,119.5 257.5,120.6 260.4,121.7 263.2,122.8 266.0,123.9 268.9,125.0 271.7,126.1 274.6,127.1 277.4,128.2 280.2,129.3 283.1,130.4 285.9,131.5 288.8,132.6 291.6,133.7 294.4,134.7 297.3,135.8 300.1,136.9 303.0,138.0 305.8,139.1 308.6,140.2 311.5,141.2 314.3,142.3 317.2,143.4 320.0,144.5 322.8,145.6 325.7,146.7 328.5,147.8 331.4,148.8 334.2,149.9 337.0,151.0 339.9,152.1 342.7,153.2 345.6,154.3 348.4,155.3 351.2,156.4 354.1,157.5 356.9,158.6 359.8,159.7 362.6,160.8 365.4,161.9 368.3,162.9 371.1,164.0 374.0,165.1 376.8,166.2 379.6,167.3 382.5,168.4 385.3,169.5 388.2,170.5 391.0,171.6 393.8,172.7 396.7,173.8 399.5,174.9 402.4,176.0 405.2,177.1 408.0,178.1 410.9,179.2 413.7,180.3 416.6,181.4 419.4,182.5 422.2,183.6 425.1,184.6 427.9,185.7 430.8,186.8 433.6,187.9 436.4,189.0 439.3,190.1 442.1,191.2 445.0,192.2 447.8,193.3 450.6,194.4 453.5,195.5 456.3,196.6 459.2,197.7 462.0,198.8 464.8,199.8 467.7,200.9 470.5,202.0 473.4,203.1 476.2,204.2 479.0,205.3 481.9,206.3 484.7,207.4 487.6,208.5 490.4,209.6 493.2,210.7 496.1,211.8 498.9,212.9 501.8,213.9 504.6,215.0 507.4,216.1 510.3,217.2 513.1,218.3 516.0,219.4 518.8,220.4 521.6,221.5 524.5,222.6 527.3,223.7 530.2,224.8 533.0,225.9 535.8,227.0 538.7,228.0 541.5,229.1 544.4,230.2 547.2,231.3 550.0,232.4 552.9,233.5 555.7,234.6 558.6,235.6 561.4,236.7 564.2,237.8 567.1,238.9 569.9,240.0 572.8,241.1 575.6,242.2 578.4,243.2 581.3,244.3 584.1,245.4 587.0,246.5 589.8,247.6 592.6,248.7 595.5,249.7 598.3,250.8 601.2,251.9 604.0,253.0" class="dg-line-2" clip-path="url(#plotClip6)"/>
+        <circle cx="279.4" cy="129.0" r="4.5" class="dg-point"/><text x="291.4" y="133.0" class="dg-label" text-anchor="start">Lösung (2 | 3)</text>
+        <text x="409.3" y="54.0" class="dg-accent-text" text-anchor="start">y = 2x − 1</text>
+        <text x="490.4" y="227.6" class="dg-label" text-anchor="start">y = −x + 5</text>
+        </svg>
+        <figcaption>I umgestellt: y = 2x − 1. II umgestellt: y = −x + 5. Schnittpunkt (2 | 3) → x = 2, y = 3.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Fall</th><th>Geraden</th><th>Lösungen</th></tr></thead>
+        <tbody>
+          <tr><td>eindeutig</td><td>schneiden sich</td><td>genau eine</td></tr>
+          <tr><td>keine</td><td>parallel</td><td>keine Lösung</td></tr>
+          <tr><td>unendlich viele</td><td>liegen aufeinander</td><td>unendlich viele</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Ein chinesisches Rechenbuch („Neun Kapitel“, um 200 v. Chr.) löst Gleichungssysteme schon mit Zahlentafeln – im Grunde mit dem heutigen Gauß-Verfahren. Carl Friedrich Gauß nutzte es um 1810, um aus Messungen die Bahn eines Asteroiden zu berechnen. Heute lösen Computer Systeme mit Millionen Unbekannten (Wetter, Statik, 3D-Grafik, KI).</p>
+    </section>
+    <section>
+      <h2>Drei Verfahren von Hand</h2>
+      <table class="info-table">
+        <thead><tr><th>Verfahren</th><th>Idee</th></tr></thead>
+        <tbody>
+          <tr><td>Einsetzungsverfahren</td><td>eine Gleichung nach einer Variablen umstellen und in die andere einsetzen</td></tr>
+          <tr><td>Gleichsetzungsverfahren</td><td>beide Gleichungen nach derselben Variablen umstellen und gleichsetzen</td></tr>
+          <tr><td>Additionsverfahren</td><td>Gleichungen so addieren, dass eine Variable wegfällt</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Additionsverfahren:
+I + II:  (2x − y) + (x + y) = 1 + 5
+         3x = 6   →  x = 2
+in II:   2 + y = 5 →  y = 3
+Lösung:  x = 2, y = 3   (Probe in I: 4 − 3 = 1 ✓)</code></pre>
+    </section>
+    <section>
+      <h2>Gauß-Verfahren (für 3 und mehr Unbekannte)</h2>
+      <p>Man bringt das System in <strong>Stufenform</strong>: Unten stehen immer weniger Unbekannte. Erlaubt sind: Gleichungen vertauschen, mit einer Zahl ≠ 0 malnehmen und das Vielfache einer Gleichung zu einer anderen addieren.</p>
+      <pre><code>I:    x +  y +  z = 6
+II:  2x −  y +  z = 3
+III:  x + 2y −  z = 2
+
+II − 2·I:    −3y −  z = −9
+III − I:       y − 2z = −4
+3·III' + II':      −7z = −21   →  z = 3
+
+Rückwärts einsetzen:  y − 6 = −4 → y = 2
+                      x + 2 + 3 = 6 → x = 1</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>I, II, III</code></td><td>Nummern der Gleichungen (Zeilen)</td></tr>
+          <tr><td><code>II − 2·I</code></td><td>„zu Gleichung II das (−2)-Fache von Gleichung I addieren“</td></tr>
+          <tr><td><code>III'</code></td><td>die bereits veränderte Gleichung III</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Matrizen</h2>
+      <p>Eine <strong>Matrix</strong> ist eine rechteckige Zahlentabelle. Ein LGS lässt sich kurz als Matrix schreiben – man lässt einfach die Buchstaben weg und rechnet nur mit den Zahlen (genau das macht das Gauß-Verfahren).</p>
+      <pre><code>2x − y = 1        ( 2  −1 | 1 )
+ x + y = 5   →    ( 1   1 | 5 )
+
+Größe „m × n“: m Zeilen, n Spalten.  Aᵢⱼ = Eintrag in Zeile i, Spalte j</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Matrizenmultiplikation: Zeile mal Spalte" xmlns="http://www.w3.org/2000/svg">
+        <text x="92.0" y="56.0" class="dg-label" text-anchor="middle">A</text>
+        <rect x="40.0" y="70.0" width="52.0" height="52.0" rx="0" class="dg-fill dg-shape"/>
+        <text x="66.0" y="103.0" class="dg-big" text-anchor="middle">1</text>
+        <rect x="92.0" y="70.0" width="52.0" height="52.0" rx="0" class="dg-fill dg-shape"/>
+        <text x="118.0" y="103.0" class="dg-big" text-anchor="middle">2</text>
+        <rect x="40.0" y="122.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="66.0" y="155.0" class="dg-big" text-anchor="middle">3</text>
+        <rect x="92.0" y="122.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="118.0" y="155.0" class="dg-big" text-anchor="middle">4</text>
+        <text x="178.0" y="128.0" class="dg-big" text-anchor="middle">·</text>
+        <text x="262.0" y="56.0" class="dg-label" text-anchor="middle">B</text>
+        <rect x="210.0" y="70.0" width="52.0" height="52.0" rx="0" class="dg-fill dg-shape"/>
+        <text x="236.0" y="103.0" class="dg-big" text-anchor="middle">5</text>
+        <rect x="262.0" y="70.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="288.0" y="103.0" class="dg-big" text-anchor="middle">6</text>
+        <rect x="210.0" y="122.0" width="52.0" height="52.0" rx="0" class="dg-fill dg-shape"/>
+        <text x="236.0" y="155.0" class="dg-big" text-anchor="middle">7</text>
+        <rect x="262.0" y="122.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="288.0" y="155.0" class="dg-big" text-anchor="middle">8</text>
+        <text x="348.0" y="128.0" class="dg-big" text-anchor="middle">=</text>
+        <text x="432.0" y="56.0" class="dg-label" text-anchor="middle">A · B</text>
+        <rect x="380.0" y="70.0" width="52.0" height="52.0" rx="0" class="dg-fill dg-shape"/>
+        <text x="406.0" y="103.0" class="dg-big" text-anchor="middle">19</text>
+        <rect x="432.0" y="70.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="458.0" y="103.0" class="dg-big" text-anchor="middle">22</text>
+        <rect x="380.0" y="122.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="406.0" y="155.0" class="dg-big" text-anchor="middle">43</text>
+        <rect x="432.0" y="122.0" width="52.0" height="52.0" rx="0" class="dg-box"/>
+        <text x="458.0" y="155.0" class="dg-big" text-anchor="middle">50</text>
+        <text x="40.0" y="230.0" class="dg-text" text-anchor="start">Zeile 1 von A  ·  Spalte 1 von B:</text>
+        <text x="40.0" y="260.0" class="dg-accent-text" text-anchor="start">1 · 5 + 2 · 7 = 5 + 14 = 19</text>
+        <text x="40.0" y="290.0" class="dg-small" text-anchor="start">→ Eintrag oben links im Ergebnis</text>
+        </svg>
+        <figcaption>Matrizen multipliziert man „Zeile mal Spalte“: Einträge paarweise malnehmen und addieren.</figcaption>
+      </figure>
+      <div class="note">Im Allgemeinen gilt A · B ≠ B · A – die Reihenfolge ist wichtig! Multiplizieren geht nur, wenn A so viele Spalten hat wie B Zeilen.</div>
+    </section>
+    <section>
+      <h2>Determinante (2 × 2)</h2>
+      <pre><code>    ( a  b )
+A = ( c  d )      det(A) = a · d − b · c
+
+Beispiel: ( 2  −1 )
+          ( 1   1 )   det = 2·1 − (−1)·1 = 3</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>det(A)</code></td><td>Determinante – eine einzige Zahl, die man aus einer quadratischen Matrix berechnet</td></tr>
+          <tr><td><code>a, b, c, d</code></td><td>die vier Einträge: a oben links, b oben rechts, c unten links, d unten rechts</td></tr>
+        </tbody>
+      </table>
+      <p>Ist det(A) ≠ 0, hat das zugehörige LGS <strong>genau eine Lösung</strong> und A ist umkehrbar (invertierbar). Ist det(A) = 0, gibt es keine oder unendlich viele Lösungen. Geometrisch ist |det| die Fläche des Parallelogramms aus den Spaltenvektoren.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Erst eine Variable eliminieren, dann rückwärts einsetzen – und am Ende in ALLE Gleichungen einsetzen (Probe).</li>
+        <li>Beim Subtrahieren von Gleichungen jede Seite komplett abziehen – Vorzeichenfehler sind der Klassiker.</li>
+        <li>Taschenrechner und Programme (z. B. Python mit NumPy) lösen LGS mit Matrizen in einer Zeile.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="variablen-terme.html">Variablen &amp; Terme</a>
+        <a class="chip" href="lineare-funktion.html">Lineare Funktion</a>
+        <a class="chip" href="vektoren.html">Vektoren</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

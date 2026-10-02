@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Verteilungen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Stochastik</p>
+    <h1>Erwartungswert, Binomial- &amp; Normalverteilung</h1>
+    <p class="page-lead">Was man „im Durchschnitt“ erwarten kann und wie sich Zufallsergebnisse verteilen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine <strong>Zufallsgröße</strong> X ordnet jedem Ergebnis eines Zufallsexperiments eine Zahl zu (z. B. Gewinn in €, Anzahl Treffer). Die <strong>Verteilung</strong> sagt, mit welcher Wahrscheinlichkeit X welchen Wert annimmt.</p>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>X</code></td><td>Zufallsgröße (großes X)</td></tr>
+          <tr><td><code>xᵢ</code></td><td>ein möglicher Wert von X</td></tr>
+          <tr><td><code>P(X = k)</code></td><td>Wahrscheinlichkeit, dass X genau den Wert k annimmt</td></tr>
+          <tr><td><code>E(X), μ</code></td><td>Erwartungswert (mü) – der langfristige Durchschnitt</td></tr>
+          <tr><td><code>σ</code></td><td>Standardabweichung (sigma) – typische Abweichung vom Erwartungswert</td></tr>
+          <tr><td><code>n, p</code></td><td>Anzahl der Versuche und Trefferwahrscheinlichkeit je Versuch</td></tr>
+          <tr><td><code>Σ</code></td><td>Summe über alle Werte</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Jakob Bernoulli bewies 1713, dass sich relative Häufigkeiten bei vielen Versuchen der Wahrscheinlichkeit nähern (Gesetz der großen Zahlen). Abraham de Moivre fand 1733 die Glockenkurve als Näherung; Carl Friedrich Gauß nutzte sie um 1809 für Messfehler – deshalb war sie auf dem alten 10-DM-Schein abgebildet.</p>
+    </section>
+    <section>
+      <h2>Erwartungswert</h2>
+      <pre><code>E(X) = x₁ · P(X = x₁) + x₂ · P(X = x₂) + …  = Σ xᵢ · P(X = xᵢ)
+
+Glücksspiel: Einsatz 1 €. Bei einer 6 gibt es 5 € (Gewinn 4 €), sonst ist der Euro weg.
+E(X) = 4 · 1/6 + (−1) · 5/6 = 4/6 − 5/6 = −1/6 ≈ −0,17 €
+→ Auf Dauer verliert man pro Spiel etwa 17 Cent. E(X) = 0 hieße „faires Spiel“.</code></pre>
+    </section>
+    <section>
+      <h2>Binomialverteilung</h2>
+      <p>Sie passt, wenn man <strong>n-mal</strong> unabhängig dasselbe Experiment mit nur <strong>zwei Ausgängen</strong> (Treffer/Niete) wiederholt und die Trefferwahrscheinlichkeit p immer gleich bleibt (Bernoulli-Kette).</p>
+      <pre><code>P(X = k) = (n über k) · pᵏ · (1 − p)ⁿ⁻ᵏ
+
+Erwartungswert:      μ = n · p
+Standardabweichung:  σ = √( n · p · (1 − p) )
+
+10 Münzwürfe, genau 5-mal Kopf:
+P(X = 5) = (10 über 5) · 0,5⁵ · 0,5⁵ = 252 / 1024 ≈ 24,6 %</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>k</code></td><td>gewünschte Anzahl Treffer</td></tr>
+          <tr><td><code>1 − p</code></td><td>Wahrscheinlichkeit einer Niete</td></tr>
+          <tr><td><code>(n über k)</code></td><td>Anzahl der Pfade mit genau k Treffern</td></tr>
+        </tbody>
+      </table>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Binomialverteilung als Säulendiagramm" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50.0" y1="270.0" x2="600.0" y2="270.0" class="dg-axis"/>
+        <rect x="64.0" y="269.1" width="39.3" height="0.9" rx="2" class="dg-bar"/>
+        <text x="83.6" y="288.0" class="dg-small" text-anchor="middle">0</text>
+        <text x="83.6" y="263.1" class="dg-small" text-anchor="middle">0 %</text>
+        <rect x="111.3" y="260.9" width="39.3" height="9.1" rx="2" class="dg-bar"/>
+        <text x="130.9" y="288.0" class="dg-small" text-anchor="middle">1</text>
+        <text x="130.9" y="254.9" class="dg-small" text-anchor="middle">1 %</text>
+        <rect x="158.5" y="228.9" width="39.3" height="41.1" rx="2" class="dg-bar"/>
+        <text x="178.2" y="288.0" class="dg-small" text-anchor="middle">2</text>
+        <text x="178.2" y="222.9" class="dg-small" text-anchor="middle">4 %</text>
+        <rect x="205.8" y="160.5" width="39.3" height="109.5" rx="2" class="dg-bar"/>
+        <text x="225.5" y="288.0" class="dg-small" text-anchor="middle">3</text>
+        <text x="225.5" y="154.5" class="dg-small" text-anchor="middle">12 %</text>
+        <rect x="253.1" y="78.3" width="39.3" height="191.7" rx="2" class="dg-bar"/>
+        <text x="272.7" y="288.0" class="dg-small" text-anchor="middle">4</text>
+        <text x="272.7" y="72.3" class="dg-small" text-anchor="middle">21 %</text>
+        <rect x="300.4" y="40.0" width="39.3" height="230.0" rx="2" class="dg-bar-total"/>
+        <text x="320.0" y="288.0" class="dg-small" text-anchor="middle">5</text>
+        <text x="320.0" y="34.0" class="dg-small" text-anchor="middle">25 %</text>
+        <rect x="347.6" y="78.3" width="39.3" height="191.7" rx="2" class="dg-bar"/>
+        <text x="367.3" y="288.0" class="dg-small" text-anchor="middle">6</text>
+        <text x="367.3" y="72.3" class="dg-small" text-anchor="middle">21 %</text>
+        <rect x="394.9" y="160.5" width="39.3" height="109.5" rx="2" class="dg-bar"/>
+        <text x="414.5" y="288.0" class="dg-small" text-anchor="middle">7</text>
+        <text x="414.5" y="154.5" class="dg-small" text-anchor="middle">12 %</text>
+        <rect x="442.2" y="228.9" width="39.3" height="41.1" rx="2" class="dg-bar"/>
+        <text x="461.8" y="288.0" class="dg-small" text-anchor="middle">8</text>
+        <text x="461.8" y="222.9" class="dg-small" text-anchor="middle">4 %</text>
+        <rect x="489.5" y="260.9" width="39.3" height="9.1" rx="2" class="dg-bar"/>
+        <text x="509.1" y="288.0" class="dg-small" text-anchor="middle">9</text>
+        <text x="509.1" y="254.9" class="dg-small" text-anchor="middle">1 %</text>
+        <rect x="536.7" y="269.1" width="39.3" height="0.9" rx="2" class="dg-bar"/>
+        <text x="556.4" y="288.0" class="dg-small" text-anchor="middle">10</text>
+        <text x="556.4" y="263.1" class="dg-small" text-anchor="middle">0 %</text>
+        <text x="600.0" y="310.0" class="dg-small" text-anchor="end">k = Anzahl Treffer</text>
+        <text x="50.0" y="24.0" class="dg-label" text-anchor="start">n = 10 Würfe, p = 0,5 → Erwartungswert n·p = 5</text>
+        </svg>
+        <figcaption>Die meisten Ergebnisse liegen beim Erwartungswert 5 – aber auch 5 Treffer kommen nur in knapp einem Viertel der Fälle.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Normalverteilung</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Normalverteilung mit Sigma-Bereichen" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="158.9,274.1 158.9,245.4 164.3,241.4 169.6,237.0 175.0,232.2 180.4,227.0 185.7,221.3 191.1,215.2 196.5,208.7 201.9,201.9 207.2,194.6 212.6,187.1 218.0,179.2 223.3,171.0 228.7,162.7 234.1,154.2 239.4,145.7 244.8,137.1 250.2,128.7 255.6,120.4 260.9,112.3 266.3,104.6 271.7,97.3 277.0,90.5 282.4,84.2 287.8,78.7 293.1,73.8 298.5,69.8 303.9,66.6 309.3,64.3 314.6,62.9 320.0,62.4 325.4,62.9 330.7,64.3 336.1,66.6 341.5,69.8 346.9,73.8 352.2,78.7 357.6,84.2 363.0,90.5 368.3,97.3 373.7,104.6 379.1,112.3 384.4,120.4 389.8,128.7 395.2,137.1 400.6,145.7 405.9,154.2 411.3,162.7 416.7,171.0 422.0,179.2 427.4,187.1 432.8,194.6 438.1,201.9 443.5,208.7 448.9,215.2 454.3,221.3 459.6,227.0 465.0,232.2 470.4,237.0 475.7,241.4 481.1,245.4 481.1,274.1" class="dg-fill"/>
+        <polygon points="239.4,274.1 239.4,145.7 242.1,141.4 244.8,137.1 247.5,132.9 250.2,128.7 252.9,124.5 255.6,120.4 258.2,116.3 260.9,112.3 263.6,108.4 266.3,104.6 269.0,100.9 271.7,97.3 274.4,93.8 277.0,90.5 279.7,87.3 282.4,84.2 285.1,81.4 287.8,78.7 290.5,76.2 293.1,73.8 295.8,71.7 298.5,69.8 301.2,68.1 303.9,66.6 306.6,65.3 309.3,64.3 311.9,63.5 314.6,62.9 317.3,62.5 320.0,62.4 322.7,62.5 325.4,62.9 328.1,63.5 330.7,64.3 333.4,65.3 336.1,66.6 338.8,68.1 341.5,69.8 344.2,71.7 346.9,73.8 349.5,76.2 352.2,78.7 354.9,81.4 357.6,84.2 360.3,87.3 363.0,90.5 365.6,93.8 368.3,97.3 371.0,100.9 373.7,104.6 376.4,108.4 379.1,112.3 381.8,116.3 384.4,120.4 387.1,124.5 389.8,128.7 392.5,132.9 395.2,137.1 397.9,141.4 400.6,145.7 400.6,274.1" class="dg-fill"/>
+        <line x1="30.0" y1="274.1" x2="610.0" y2="274.1" class="dg-axis"/>
+        <polyline points="30.0,273.8 32.9,273.7 35.8,273.7 38.7,273.6 41.6,273.5 44.5,273.5 47.4,273.4 50.3,273.3 53.2,273.2 56.1,273.1 59.0,273.0 61.9,272.8 64.8,272.7 67.7,272.5 70.6,272.3 73.5,272.1 76.4,271.9 79.3,271.6 82.2,271.4 85.1,271.1 88.0,270.7 90.9,270.4 93.8,270.0 96.7,269.5 99.6,269.1 102.5,268.6 105.4,268.0 108.3,267.4 111.2,266.7 114.1,266.0 117.0,265.2 119.9,264.4 122.8,263.5 125.7,262.5 128.6,261.5 131.5,260.4 134.4,259.2 137.3,257.9 140.2,256.5 143.1,255.1 146.0,253.5 148.9,251.9 151.8,250.1 154.7,248.3 157.6,246.3 160.5,244.3 163.4,242.1 166.3,239.8 169.2,237.4 172.1,234.8 175.0,232.2 177.9,229.4 180.8,226.5 183.7,223.5 186.6,220.4 189.5,217.1 192.4,213.7 195.3,210.2 198.2,206.6 201.1,202.9 204.0,199.0 206.9,195.1 209.8,191.0 212.7,186.9 215.6,182.7 218.5,178.4 221.4,174.0 224.3,169.6 227.2,165.1 230.1,160.5 233.0,155.9 235.9,151.3 238.8,146.7 241.7,142.1 244.6,137.5 247.5,132.9 250.4,128.3 253.3,123.8 256.2,119.4 259.1,115.0 262.0,110.7 264.9,106.6 267.8,102.5 270.7,98.5 273.6,94.8 276.5,91.1 279.4,87.6 282.3,84.4 285.2,81.3 288.1,78.4 291.0,75.7 293.9,73.2 296.8,71.0 299.7,69.0 302.6,67.3 305.5,65.8 308.4,64.6 311.3,63.6 314.2,62.9 317.1,62.5 320.0,62.4 322.9,62.5 325.8,62.9 328.7,63.6 331.6,64.6 334.5,65.8 337.4,67.3 340.3,69.0 343.2,71.0 346.1,73.2 349.0,75.7 351.9,78.4 354.8,81.3 357.7,84.4 360.6,87.6 363.5,91.1 366.4,94.8 369.3,98.5 372.2,102.5 375.1,106.6 378.0,110.7 380.9,115.0 383.8,119.4 386.7,123.8 389.6,128.3 392.5,132.9 395.4,137.5 398.3,142.1 401.2,146.7 404.1,151.3 407.0,155.9 409.9,160.5 412.8,165.1 415.7,169.6 418.6,174.0 421.5,178.4 424.4,182.7 427.3,186.9 430.2,191.0 433.1,195.1 436.0,199.0 438.9,202.9 441.8,206.6 444.7,210.2 447.6,213.7 450.5,217.1 453.4,220.4 456.3,223.5 459.2,226.5 462.1,229.4 465.0,232.2 467.9,234.8 470.8,237.4 473.7,239.8 476.6,242.1 479.5,244.3 482.4,246.3 485.3,248.3 488.2,250.1 491.1,251.9 494.0,253.5 496.9,255.1 499.8,256.5 502.7,257.9 505.6,259.2 508.5,260.4 511.4,261.5 514.3,262.5 517.2,263.5 520.1,264.4 523.0,265.2 525.9,266.0 528.8,266.7 531.7,267.4 534.6,268.0 537.5,268.6 540.4,269.1 543.3,269.5 546.2,270.0 549.1,270.4 552.0,270.7 554.9,271.1 557.8,271.4 560.7,271.6 563.6,271.9 566.5,272.1 569.4,272.3 572.3,272.5 575.2,272.7 578.1,272.8 581.0,273.0 583.9,273.1 586.8,273.2 589.7,273.3 592.6,273.4 595.5,273.5 598.4,273.5 601.3,273.6 604.2,273.7 607.1,273.7 610.0,273.8" class="dg-line"/>
+        <line x1="320.0" y1="274.1" x2="320.0" y2="62.4" class="dg-line-3"/>
+        <line x1="158.9" y1="270.1" x2="158.9" y2="278.1" class="dg-axis"/>
+        <text x="158.9" y="292.1" class="dg-small" text-anchor="middle">μ − 2σ</text>
+        <line x1="239.4" y1="270.1" x2="239.4" y2="278.1" class="dg-axis"/>
+        <text x="239.4" y="292.1" class="dg-small" text-anchor="middle">μ − σ</text>
+        <line x1="320.0" y1="270.1" x2="320.0" y2="278.1" class="dg-axis"/>
+        <text x="320.0" y="292.1" class="dg-small" text-anchor="middle">μ</text>
+        <line x1="400.6" y1="270.1" x2="400.6" y2="278.1" class="dg-axis"/>
+        <text x="400.6" y="292.1" class="dg-small" text-anchor="middle">μ + σ</text>
+        <line x1="481.1" y1="270.1" x2="481.1" y2="278.1" class="dg-axis"/>
+        <text x="481.1" y="292.1" class="dg-small" text-anchor="middle">μ + 2σ</text>
+        <text x="320.0" y="183.9" class="dg-label" text-anchor="middle">≈ 68 %</text>
+        <text x="320.0" y="201.9" class="dg-small" text-anchor="middle">(±1σ)</text>
+        <text x="529.4" y="168.0" class="dg-small" text-anchor="middle">≈ 95 % zwischen</text>
+        <text x="529.4" y="182.0" class="dg-small" text-anchor="middle">μ − 2σ und μ + 2σ</text>
+        <text x="38.1" y="51.2" class="dg-accent-text" text-anchor="start">Glockenkurve (Gauß)</text>
+        </svg>
+        <figcaption>Die Glockenkurve ist symmetrisch um μ. Die σ-Regeln gelten für jede Normalverteilung.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Bereich</th><th>Anteil der Werte</th></tr></thead>
+        <tbody>
+          <tr><td>μ ± 1σ</td><td>≈ 68,3 %</td></tr>
+          <tr><td>μ ± 2σ</td><td>≈ 95,4 %</td></tr>
+          <tr><td>μ ± 3σ</td><td>≈ 99,7 %</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Körpergröße: μ = 175 cm, σ = 7 cm
+68 % liegen zwischen 168 und 182 cm
+95 % liegen zwischen 161 und 189 cm</code></pre>
+      <p>Viele Größen sind ungefähr normalverteilt: Körpergröße, Messfehler, Abfüllmengen. Auch die Binomialverteilung sieht für großes n fast wie eine Glockenkurve aus.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Binomialverteilung nur, wenn p bei jedem Versuch gleich bleibt (mit Zurücklegen oder sehr große Grundmenge).</li>
+        <li>„Höchstens 3 Treffer“ = P(X ≤ 3) = P(0) + P(1) + P(2) + P(3) – das heißt kumulierte Wahrscheinlichkeit.</li>
+        <li>Der Erwartungswert muss selbst nicht vorkommen: Beim Würfel ist E(X) = 3,5.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="wahrscheinlichkeit.html">Wahrscheinlichkeit</a>
+        <a class="chip" href="kombinatorik.html">Kombinatorik</a>
+        <a class="chip" href="statistik.html">Statistik</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

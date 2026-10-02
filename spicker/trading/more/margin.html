@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Margin – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · CFDs & Hebel</p>
+    <h1>Margin, Margin Call &amp; Glattstellung</h1>
+    <p class="page-lead">Was beim Hebelhandel als Sicherheit hinterlegt werden muss und was passiert, wenn das Geld knapp wird.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist die Margin?</h2>
+      <p>Die <strong>Margin</strong> ist die Sicherheitsleistung, die du für eine gehebelte Position hinterlegen musst. Sie wird von deinem Konto „geblockt“, solange die Position offen ist.</p>
+      <pre><code>Margin = Positionswert / Hebel
+
+10.000 € / 10 = 1.000 € Margin</code></pre>
+      <p>Das Wort kommt aus dem Englischen: <em>margin</em> = Rand, Spielraum. Margin-Konten gab es in den USA schon in den 1920ern – massiver Kauf auf Kredit war ein Grund für den Börsencrash 1929.</p>
+    </section>
+    <section>
+      <h2>Margin Call und Glattstellung</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Margin Call und Glattstellung" xmlns="http://www.w3.org/2000/svg">
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">0</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">575</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">1.150</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">1.725</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">2.300</text>
+        <line x1="52.0" y1="173.8" x2="620.0" y2="173.8" class="dg-line-3"/>
+        <text x="58.0" y="167.8" class="dg-label" text-anchor="start">hinterlegte Margin 1.000 € (100 %)</text>
+        <line x1="52.0" y1="229.9" x2="620.0" y2="229.9" class="dg-down-wick dg-dashed"/>
+        <text x="58.0" y="223.9" class="dg-bad" text-anchor="start">50 %: Broker stellt glatt</text>
+        <polyline points="52.0,61.7 87.5,67.3 123.0,75.1 158.5,72.9 194.0,88.6 229.5,102.0 265.0,117.7 300.5,126.7 336.0,140.2 371.5,157.0 407.0,171.6 442.5,178.3 478.0,187.3 513.5,200.7 549.0,214.2 584.5,227.7 620.0,232.2" class="dg-line" fill="none"/>
+        <text x="123.0" y="63.1" class="dg-label" text-anchor="start">Kontowert (Equity)</text>
+        <circle cx="442.5" cy="178.3" r="4.5" class="dg-point"/>
+        <text x="450.5" y="166.3" class="dg-label" text-anchor="start">Margin Call</text>
+        <circle cx="620.0" cy="232.2" r="4.5" class="dg-point"/>
+        <text x="612.0" y="256.2" class="dg-label" text-anchor="end">Glattstellung</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit (Position läuft gegen dich)</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Konto in €</text>
+        </svg>
+        <figcaption>Läuft die Position gegen dich, sinkt der Kontowert. Unter der hinterlegten Margin kommt ein Margin Call, bei 50 % schließt der Broker automatisch.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Schritt</th><th>Was passiert?</th></tr></thead>
+        <tbody>
+          <tr><td>Margin Call</td><td>Warnung: Dein Konto deckt die nötige Margin nicht mehr. Du sollst Geld nachschießen oder Positionen verkleinern.</td></tr>
+          <tr><td>Glattstellung (Stop-out)</td><td>In der EU spätestens bei 50 % der nötigen Margin: Der Broker schließt Positionen automatisch – der Verlust ist dann echt.</td></tr>
+          <tr><td>Negativsaldoschutz</td><td>Fällt der Kurs so schnell, dass das Konto ins Minus rutscht, wird es für Privatkunden auf 0 gesetzt.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispielrechnung</h2>
+      <ol>
+        <li>Konto: 2.000 €. Du eröffnest einen CFD auf einen Index mit 10.000 € Positionswert (Hebel 10, Margin 1.000 €).</li>
+        <li>Der Index fällt um 10 % → Verlust 1.000 € → Kontowert 1.000 € = genau die Margin.</li>
+        <li>Er fällt weiter auf −15 % → Kontowert 500 € = 50 % der Margin → <strong>Glattstellung</strong>.</li>
+        <li>Ergebnis: 1.500 € von 2.000 € verloren, obwohl der Index nur 15 % gefallen ist.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Overnight-Finanzierung</h2>
+      <p>Ein CFD ist wie ein Kredit für den gehebelten Teil. Darum zahlst du für jede Nacht eine <strong>Finanzierungsgebühr</strong> (auch Swap).</p>
+      <pre><code>Gebühr pro Nacht ≈ Positionswert · Jahreszins / 365
+
+10.000 € · 7 % / 365 ≈ 1,92 € pro Nacht ≈ 700 € pro Jahr</code></pre>
+      <p>Für Daytrades fällt sie nicht an, für lange Haltedauern wird es aber teuer. Der Jahreszins ist meist ein Referenzzins plus Aufschlag des Brokers (Beispielwert).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nie die ganze freie Margin ausnutzen – sonst reicht schon eine kleine Bewegung für einen Margin Call.</li>
+        <li>Ein Stop-Loss vor dem Glattstellungs-Niveau ist besser, als vom Broker geschlossen zu werden.</li>
+        <li>Am Wochenende kann der Kurs mit einer Lücke öffnen – Stops und Glattstellung greifen dann schlechter.</li>
+        <li><strong>Risikohinweis:</strong> CFDs und andere Hebelprodukte sind komplex. Die meisten Privatanleger verlieren damit Geld – jeder Broker muss angeben, wie viel Prozent seiner Kundenkonten Verluste machen (oft 70–80 %). Diese Seite erklärt nur, wie es funktioniert, und ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cfd-hebel.html">CFDs &amp; Hebel</a>
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+        <a class="chip" href="forex.html">Forex</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

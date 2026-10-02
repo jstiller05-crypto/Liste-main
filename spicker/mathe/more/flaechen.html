@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Flächen &amp; Winkel – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Geometrie</p>
+    <h1>Flächen &amp; Winkelsumme</h1>
+    <p class="page-lead">Wie man die Fläche von Rechteck, Dreieck, Parallelogramm und Trapez berechnet – und warum ein Dreieck immer 180° hat.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <strong>Fläche</strong> (Flächeninhalt A) gibt an, wie viele Einheitsquadrate in eine Figur passen – z. B. wie viele Fliesen von 1 m × 1 m auf einen Boden passen. Der <strong>Umfang</strong> U ist die Länge des Randes, also einmal außen herum.</p>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>A</code></td><td>Flächeninhalt (lateinisch <em>area</em>), Einheit z. B. cm² oder m²</td></tr>
+          <tr><td><code>U</code></td><td>Umfang, Einheit z. B. cm oder m</td></tr>
+          <tr><td><code>a, b, c</code></td><td>Seitenlängen</td></tr>
+          <tr><td><code>g</code></td><td>Grundseite – die Seite, auf der die Höhe senkrecht steht</td></tr>
+          <tr><td><code>h</code></td><td>Höhe – Abstand senkrecht (90°) zur Grundseite, NICHT die schräge Seite</td></tr>
+          <tr><td><code>α, β, γ</code></td><td>Winkel (griechisch alpha, beta, gamma), gemessen in Grad °</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Die Geometrie („Erdvermessung“) entstand im alten Ägypten: Nach jeder Nilflut mussten die Felder neu vermessen werden, um Steuern zu berechnen. Euklid fasste um 300 v. Chr. alles in seinem Werk „Elemente“ zusammen – es war 2.000 Jahre lang das wichtigste Mathebuch der Welt.</p>
+    </section>
+    <section>
+      <h2>Flächenformeln</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Flächenformeln für Vierecke und Dreiecke" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20.0" y="80.0" width="120.0" height="100.0" rx="0" class="dg-fill dg-shape"/>
+        <text x="80.0" y="200.0" class="dg-label" text-anchor="middle">a</text>
+        <text x="148.0" y="135.0" class="dg-label" text-anchor="start">b</text>
+        <polygon points="175.0,180.0 305.0,180.0 215.0,70.0" class="dg-fill dg-shape"/>
+        <line x1="215.0" y1="70.0" x2="215.0" y2="180.0" class="dg-line-3"/>
+        <text x="240.0" y="200.0" class="dg-label" text-anchor="middle">g</text>
+        <text x="221.0" y="135.0" class="dg-label" text-anchor="start">h</text>
+        <polygon points="335.0,180.0 445.0,180.0 475.0,80.0 365.0,80.0" class="dg-fill dg-shape"/>
+        <line x1="365.0" y1="80.0" x2="365.0" y2="180.0" class="dg-line-3"/>
+        <text x="390.0" y="200.0" class="dg-label" text-anchor="middle">g</text>
+        <text x="371.0" y="135.0" class="dg-label" text-anchor="start">h</text>
+        <polygon points="505.0,180.0 625.0,180.0 595.0,80.0 540.0,80.0" class="dg-fill dg-shape"/>
+        <line x1="540.0" y1="80.0" x2="540.0" y2="180.0" class="dg-line-3"/>
+        <text x="565.0" y="200.0" class="dg-label" text-anchor="middle">a</text>
+        <text x="568.0" y="72.0" class="dg-label" text-anchor="middle">c</text>
+        <text x="546.0" y="135.0" class="dg-label" text-anchor="start">h</text>
+        <text x="80.0" y="40.0" class="dg-label" text-anchor="middle">Rechteck</text>
+        <text x="80.0" y="250.0" class="dg-accent-text" text-anchor="middle">A = a · b</text>
+        <text x="240.0" y="40.0" class="dg-label" text-anchor="middle">Dreieck</text>
+        <text x="240.0" y="250.0" class="dg-accent-text" text-anchor="middle">A = ½ · g · h</text>
+        <text x="405.0" y="40.0" class="dg-label" text-anchor="middle">Parallelogramm</text>
+        <text x="405.0" y="250.0" class="dg-accent-text" text-anchor="middle">A = g · h</text>
+        <text x="565.0" y="40.0" class="dg-label" text-anchor="middle">Trapez</text>
+        <text x="565.0" y="250.0" class="dg-accent-text" text-anchor="middle">A = ½(a + c) · h</text>
+        <text x="320.0" y="300.0" class="dg-small" text-anchor="middle">h (Höhe) steht immer senkrecht auf der Grundseite</text>
+        </svg>
+        <figcaption>Das Dreieck ist ein halbes Parallelogramm – daher das ½ in der Formel.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Figur</th><th>Fläche A</th><th>Umfang U</th></tr></thead>
+        <tbody>
+          <tr><td>Quadrat</td><td><code>A = a²</code></td><td><code>U = 4a</code></td></tr>
+          <tr><td>Rechteck</td><td><code>A = a · b</code></td><td><code>U = 2(a + b)</code></td></tr>
+          <tr><td>Dreieck</td><td><code>A = ½ · g · h</code></td><td><code>U = a + b + c</code></td></tr>
+          <tr><td>Parallelogramm</td><td><code>A = g · h</code></td><td>Summe aller Seiten</td></tr>
+          <tr><td>Trapez</td><td><code>A = ½ · (a + c) · h</code></td><td>Summe aller Seiten</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Rechteck 5 m × 3 m:      A = 5 · 3 = 15 m²,   U = 2 · (5 + 3) = 16 m
+Dreieck g = 6 cm, h = 4 cm: A = ½ · 6 · 4 = 12 cm²
+Trapez a = 8, c = 4, h = 3: A = ½ · (8 + 4) · 3 = 18</code></pre>
+    </section>
+    <section>
+      <h2>Winkelsumme</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Winkelsumme im Dreieck" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="110.0,270.0 530.0,270.0 290.0,60.0" class="dg-fill dg-shape"/>
+        <path d="M138.0,270.0 A28,28 0 0 0 128.2,248.7" class="dg-note-line" fill="none"/>
+        <path d="M508.9,251.6 A28,28 0 0 0 502.0,270.0" class="dg-note-line" fill="none"/>
+        <path d="M271.8,81.3 A28,28 0 0 0 311.1,78.4" class="dg-note-line" fill="none"/>
+        <text x="151.8" y="255.8" class="dg-label" text-anchor="middle">α</text>
+        <text x="486.9" y="258.8" class="dg-label" text-anchor="middle">β</text>
+        <text x="293.3" y="110.9" class="dg-label" text-anchor="middle">γ</text>
+        <text x="102.0" y="290.0" class="dg-label" text-anchor="middle">A</text>
+        <text x="538.0" y="290.0" class="dg-label" text-anchor="middle">B</text>
+        <text x="290.0" y="50.0" class="dg-label" text-anchor="middle">C</text>
+        <text x="620.0" y="50.0" class="dg-accent-text" text-anchor="end">α + β + γ = 180°</text>
+        <text x="620.0" y="76.0" class="dg-small" text-anchor="end">z. B. 50° + 40° + 90°</text>
+        </svg>
+        <figcaption>In jedem Dreieck ergeben die drei Innenwinkel zusammen 180°.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Figur</th><th>Summe der Innenwinkel</th></tr></thead>
+        <tbody>
+          <tr><td>Dreieck</td><td>180°</td></tr>
+          <tr><td>Viereck</td><td>360°</td></tr>
+          <tr><td>Fünfeck</td><td>540°</td></tr>
+          <tr><td>n-Eck</td><td><code>(n − 2) · 180°</code></td></tr>
+        </tbody>
+      </table>
+      <p>Warum? Jedes n-Eck lässt sich von einer Ecke aus in n − 2 Dreiecke zerlegen – und jedes davon hat 180°.</p>
+      <pre><code>Dreieck mit α = 50°, β = 70°:   γ = 180° − 50° − 70° = 60°</code></pre>
+    </section>
+    <section>
+      <h2>Einheiten umrechnen</h2>
+      <table class="info-table">
+        <thead><tr><th>Länge</th><th>Fläche</th></tr></thead>
+        <tbody>
+          <tr><td>1 m = 10 dm = 100 cm</td><td>1 m² = 100 dm² = 10.000 cm²</td></tr>
+          <tr><td>1 cm = 10 mm</td><td>1 cm² = 100 mm²</td></tr>
+          <tr><td>1 km = 1.000 m</td><td>1 km² = 1.000.000 m², 1 ha = 10.000 m²</td></tr>
+        </tbody>
+      </table>
+      <p>Bei Flächen ist der Umrechnungsfaktor das <strong>Quadrat</strong> des Längenfaktors (10 → 100).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Die Höhe steht immer im 90°-Winkel zur Grundseite – sie kann auch außerhalb der Figur liegen (stumpfwinkliges Dreieck).</li>
+        <li>Vor dem Rechnen alle Längen in dieselbe Einheit umwandeln.</li>
+        <li>Fläche hat immer eine „²“-Einheit, Umfang nicht.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="kreis.html">Kreis &amp; Thales</a>
+        <a class="chip" href="koerper.html">Körper</a>
+        <a class="chip" href="pythagoras.html">Pythagoras</a>
+        <a class="chip" href="aehnlichkeit.html">Ähnlichkeit &amp; Strahlensätze</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

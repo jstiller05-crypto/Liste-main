@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Buchungssatz – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Buchhaltung</p>
+    <h1>Buchungssatz: Soll an Haben</h1>
+    <p class="page-lead">In der doppelten Buchführung wird jeder Vorgang zweimal gebucht. Der Buchungssatz sagt, auf welchen Konten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein <strong>Buchungssatz</strong> ist eine Kurzanweisung: <strong>„Soll an Haben“</strong>. Zuerst kommt das Konto, das im <strong>Soll</strong> (linke Seite) gebucht wird, dann nach dem Wort „an“ das Konto im <strong>Haben</strong> (rechte Seite).</p>
+      <pre><code>Bank  2.380 €   an   Forderungen  2.380 €
+ ↑ Soll (links)          ↑ Haben (rechts)</code></pre>
+      <p>Jedes Konto ist ein <strong>T-Konto</strong>: links Soll, rechts Haben. Die Summe aller Soll-Buchungen ist immer gleich der Summe aller Haben-Buchungen.</p>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>„Soll“ und „Haben“ kommen aus dem alten Kaufmannsdeutsch: Ein Kunde <em>soll</em> (= muss) noch zahlen, ein Lieferant <em>hat</em> (= hat gut) noch Geld zu bekommen. Die Methode stammt aus Venedig und wurde 1494 von Luca Pacioli veröffentlicht – Goethe nannte sie „eine der schönsten Erfindungen des menschlichen Geistes“.</p>
+    </section>
+    <section>
+      <h2>Wo steht ein Plus, wo ein Minus?</h2>
+      <table class="info-table">
+        <thead><tr><th>Kontoart</th><th>Zugang (+)</th><th>Abgang (−)</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Aktivkonto (Vermögen)</td><td>Soll</td><td>Haben</td><td>Bank, Kasse, Forderungen</td></tr>
+          <tr><td>Passivkonto (Schulden, Kapital)</td><td>Haben</td><td>Soll</td><td>Darlehen, Verbindlichkeiten</td></tr>
+          <tr><td>Ertragskonto</td><td>Haben</td><td>Soll</td><td>Umsatzerlöse</td></tr>
+          <tr><td>Aufwandskonto</td><td>Soll</td><td>Haben</td><td>Miete, Software, Löhne</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Merksatz: <strong>Geld kommt aufs Konto → Bank im Soll.</strong> Geld geht vom Konto → Bank im Haben.</div>
+    </section>
+    <section>
+      <h2>Beispiel: Max schreibt eine Rechnung und wird bezahlt</h2>
+      <p>1) Rechnung an die Beispiel GmbH über 2.000 € netto + 19 % USt:</p>
+      <pre><code>Forderungen  2.380 €   an   Umsatzerlöse    2.000 €
+                            Umsatzsteuer      380 €</code></pre>
+      <p>2) Der Kunde überweist zwei Wochen später:</p>
+      <pre><code>Bank  2.380 €   an   Forderungen  2.380 €</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="T-Konten zum Beispiel" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="26.0" class="dg-accent-text" text-anchor="middle">Bank an Forderungen 2.380 €</text>
+        <text x="112.0" y="60.0" class="dg-label" text-anchor="middle">Forderungen</text>
+        <line x1="20.0" y1="70.0" x2="204.0" y2="70.0" class="dg-axis"/>
+        <line x1="112.0" y1="70.0" x2="112.0" y2="250.0" class="dg-axis"/>
+        <text x="24.0" y="88.0" class="dg-small" text-anchor="start">Soll</text>
+        <text x="200.0" y="88.0" class="dg-small" text-anchor="end">Haben</text>
+        <text x="24.0" y="114.0" class="dg-text" text-anchor="start">an Erlöse+USt</text>
+        <text x="106.0" y="114.0" class="dg-label" text-anchor="end">2.380</text>
+        <text x="118.0" y="114.0" class="dg-text" text-anchor="start">an Bank</text>
+        <text x="200.0" y="114.0" class="dg-label" text-anchor="end">2.380</text>
+        <text x="320.0" y="60.0" class="dg-label" text-anchor="middle">Bank</text>
+        <line x1="228.0" y1="70.0" x2="412.0" y2="70.0" class="dg-axis"/>
+        <line x1="320.0" y1="70.0" x2="320.0" y2="250.0" class="dg-axis"/>
+        <text x="232.0" y="88.0" class="dg-small" text-anchor="start">Soll</text>
+        <text x="408.0" y="88.0" class="dg-small" text-anchor="end">Haben</text>
+        <text x="232.0" y="114.0" class="dg-text" text-anchor="start">Kundenzahlung</text>
+        <text x="314.0" y="114.0" class="dg-label" text-anchor="end">2.380</text>
+        <text x="528.0" y="60.0" class="dg-label" text-anchor="middle">Umsatzerlöse</text>
+        <line x1="436.0" y1="70.0" x2="620.0" y2="70.0" class="dg-axis"/>
+        <line x1="528.0" y1="70.0" x2="528.0" y2="250.0" class="dg-axis"/>
+        <text x="440.0" y="88.0" class="dg-small" text-anchor="start">Soll</text>
+        <text x="616.0" y="88.0" class="dg-small" text-anchor="end">Haben</text>
+        <text x="534.0" y="114.0" class="dg-text" text-anchor="start">Rechnung</text>
+        <text x="616.0" y="114.0" class="dg-label" text-anchor="end">2.000</text>
+        </svg>
+        <figcaption>Die Forderung entsteht im Soll und wird bei der Zahlung im Haben wieder ausgebucht – das Geld landet im Soll der Bank.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Weitere Beispiele</h2>
+      <table class="info-table">
+        <thead><tr><th>Vorgang</th><th>Buchungssatz</th></tr></thead>
+        <tbody>
+          <tr><td>Software-Abo 50 € + 9,50 € USt per Bank bezahlt</td><td>EDV-Kosten 50 € + Vorsteuer 9,50 € an Bank 59,50 €</td></tr>
+          <tr><td>Laptop 1.500 € netto gekauft (Rechnung, noch nicht bezahlt)</td><td>Betriebs- und Geschäftsausstattung 1.500 € + Vorsteuer 285 € an Verbindlichkeiten 1.785 €</td></tr>
+          <tr><td>Privatentnahme 1.000 €</td><td>Privatentnahmen an Bank 1.000 €</td></tr>
+          <tr><td>Kredit 5.000 € ausgezahlt</td><td>Bank an Darlehen 5.000 €</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Soll</td><td>linke Seite eines Kontos</td></tr>
+          <tr><td>Haben</td><td>rechte Seite eines Kontos</td></tr>
+          <tr><td>Buchungssatz</td><td>„Soll an Haben“ – nennt beide Konten und den Betrag</td></tr>
+          <tr><td>zusammengesetzter Buchungssatz</td><td>mehr als zwei Konten, z. B. mit Umsatzsteuer</td></tr>
+          <tr><td>Saldo</td><td>Differenz zwischen Soll- und Habenseite eines Kontos</td></tr>
+          <tr><td>Forderung</td><td>Geld, das ein Kunde dir noch schuldet</td></tr>
+          <tr><td>Verbindlichkeit</td><td>Geld, das du einem Lieferanten noch schuldest</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Soll“ heißt nicht „Minus“ und „Haben“ nicht „Plus“ – es sind nur die linke und rechte Seite.</li>
+        <li>Prüfe jeden Buchungssatz: Summe Soll = Summe Haben.</li>
+        <li>Als EÜR-Rechner brauchst du keine Buchungssätze – es hilft aber sehr, Bilanzen und BWAs zu verstehen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="buchfuehrung.html">Buchführung</a>
+        <a class="chip" href="bilanz.html">Bilanz</a>
+        <a class="chip" href="umsatzsteuer.html">Umsatzsteuer</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

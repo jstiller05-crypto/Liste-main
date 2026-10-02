@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Bruchrechnen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Arithmetik</p>
+    <h1>Bruchrechnen</h1>
+    <p class="page-lead">Was Zähler und Nenner bedeuten, wie man kürzt, erweitert und mit Brüchen rechnet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein <strong>Bruch</strong> beschreibt einen Teil von einem Ganzen. ¾ heißt: Das Ganze wird in 4 gleiche Teile geteilt, davon nimmt man 3. Ein Bruch ist gleichzeitig eine Division: ¾ = 3 : 4 = 0,75.</p>
+      <pre><code>  3     ← Zähler  (wie viele Teile man nimmt)
+ ───    ← Bruchstrich (heißt „geteilt durch“)
+  4     ← Nenner  (in wie viele Teile das Ganze zerlegt ist)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>a/b</code></td><td>Bruch „a durch b“: Zähler a, Nenner b. Der Nenner darf nie 0 sein.</td></tr>
+          <tr><td><code>b/a</code></td><td><strong>Kehrwert</strong> von a/b – Zähler und Nenner vertauscht.</td></tr>
+          <tr><td><code>2 ¼</code></td><td>gemischte Zahl: 2 + ¼ = 9/4.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Brüche gibt es seit über 4.000 Jahren: Die Ägypter rechneten mit Stammbrüchen wie ½, ⅓, ¼, die Babylonier mit Sechzigsteln (davon kommen heute noch 60 Minuten und 60 Sekunden). Den waagerechten Bruchstrich führten arabische Mathematiker ein; Leonardo Fibonacci brachte ihn um 1200 nach Europa.</p>
+    </section>
+    <section>
+      <h2>Kürzen und Erweitern</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Brüche 1/2 = 2/4 = 4/8 als Balken" xmlns="http://www.w3.org/2000/svg">
+        <rect x="150.0" y="34.0" width="220.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="370.0" y="34.0" width="220.0" height="50.0" rx="0" class="dg-box"/>
+        <text x="120.0" y="66.0" class="dg-big" text-anchor="end">1/2</text>
+        <rect x="150.0" y="126.0" width="110.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="260.0" y="126.0" width="110.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="370.0" y="126.0" width="110.0" height="50.0" rx="0" class="dg-box"/>
+        <rect x="480.0" y="126.0" width="110.0" height="50.0" rx="0" class="dg-box"/>
+        <text x="120.0" y="158.0" class="dg-big" text-anchor="end">2/4</text>
+        <text x="40.0" y="158.0" class="dg-big" text-anchor="middle">=</text>
+        <rect x="150.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="205.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="260.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="315.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-bar"/>
+        <rect x="370.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-box"/>
+        <rect x="425.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-box"/>
+        <rect x="480.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-box"/>
+        <rect x="535.0" y="218.0" width="55.0" height="50.0" rx="0" class="dg-box"/>
+        <text x="120.0" y="250.0" class="dg-big" text-anchor="end">4/8</text>
+        <text x="40.0" y="250.0" class="dg-big" text-anchor="middle">=</text>
+        <text x="370.0" y="312.0" class="dg-small" text-anchor="middle">Immer gleich viel eingefärbt – nur feiner aufgeteilt</text>
+        </svg>
+        <figcaption>½, 2/4 und 4/8 sind gleich groß – nur feiner eingeteilt. Das ist Erweitern (nach unten) bzw. Kürzen (nach oben).</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th></th><th>Was man tut</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Erweitern</td><td>Zähler <strong>und</strong> Nenner mit derselben Zahl malnehmen</td><td><code>1/2 = (1·4)/(2·4) = 4/8</code></td></tr>
+          <tr><td>Kürzen</td><td>Zähler <strong>und</strong> Nenner durch dieselbe Zahl teilen</td><td><code>12/18 = (12:6)/(18:6) = 2/3</code></td></tr>
+        </tbody>
+      </table>
+      <p>Der Wert bleibt dabei <strong>gleich</strong> – es ändert sich nur die Darstellung. Am schnellsten kürzt man mit dem ggT von Zähler und Nenner.</p>
+    </section>
+    <section>
+      <h2>Die vier Grundrechenarten</h2>
+      <table class="info-table">
+        <thead><tr><th>Rechenart</th><th>Regel</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Addieren / Subtrahieren</td><td>erst auf denselben Nenner bringen (gleichnamig), dann nur die Zähler rechnen</td><td><code>1/4 + 1/6 = 3/12 + 2/12 = 5/12</code></td></tr>
+          <tr><td>Multiplizieren</td><td>Zähler · Zähler und Nenner · Nenner</td><td><code>2/3 · 3/5 = 6/15 = 2/5</code></td></tr>
+          <tr><td>Dividieren</td><td>mit dem Kehrwert des zweiten Bruchs malnehmen</td><td><code>2/3 : 4/5 = 2/3 · 5/4 = 10/12 = 5/6</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>Hauptnenner finden (kgV der Nenner):
+1/4 + 1/6        kgV(4, 6) = 12
+= 3/12 + 2/12    (1/4 mit 3 erweitert, 1/6 mit 2 erweitert)
+= 5/12</code></pre>
+    </section>
+    <section>
+      <h2>Brüche, Dezimalzahlen und Prozent</h2>
+      <table class="info-table">
+        <thead><tr><th>Bruch</th><th>Dezimalzahl</th><th>Prozent</th></tr></thead>
+        <tbody>
+          <tr><td>1/2</td><td>0,5</td><td>50 %</td></tr>
+          <tr><td>1/4</td><td>0,25</td><td>25 %</td></tr>
+          <tr><td>3/4</td><td>0,75</td><td>75 %</td></tr>
+          <tr><td>1/5</td><td>0,2</td><td>20 %</td></tr>
+          <tr><td>1/3</td><td>0,333… (Periode)</td><td>≈ 33,3 %</td></tr>
+          <tr><td>1/8</td><td>0,125</td><td>12,5 %</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Beim Addieren NIE die Nenner addieren: <code>1/2 + 1/3</code> ist nicht <code>2/5</code>, sondern <code>5/6</code>.</li>
+        <li>Aus Summen darf man nicht kürzen: <code>(3 + x)/3</code> ist nicht <code>x</code>. Kürzen geht nur bei Produkten: <code>(3 · x)/3 = x</code>.</li>
+        <li>Gemischte Zahlen vor dem Malnehmen in unechte Brüche umwandeln: <code>2 ¼ = 9/4</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="teiler-primzahlen.html">Teiler &amp; Primzahlen</a>
+        <a class="chip" href="prozent.html">Prozent &amp; Dreisatz</a>
+        <a class="chip" href="zahlen.html">Zahlenmengen &amp; Rechenregeln</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

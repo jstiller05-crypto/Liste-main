@@ -120,7 +120,7 @@ window.SpickerData["coding"] = {
     // Spicker selbst
     {
       "Tag": "Anleitung",
-      "Beschreibung": "So funktioniert der Spicker: Aufbau, alle Funktionen und Lerntipps",
+      "Beschreibung": "Aufbau, Funktionen und Lerntipps",
       "Sprache": "Spicker",
       "Link": "more/anleitung.html",
       "class": ["spicker","hilfe","anleitung","bedienung","funktionen","lernen","lerntipps","verständnis","bewertung","speichern","suche","filter","aufbau"]
@@ -135,14 +135,14 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "()",
-      "Beschreibung": "zum Definieren von Funktionen und Gruppierungen",
+      "Beschreibung": "Funktionsaufrufe und Gruppierung",
       "Sprache": "JS",
       "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
       "Tag": "{}",
-      "Beschreibung": "zum Definieren von Objekten und Blockstrukturen",
+      "Beschreibung": "Objekte und Codeblöcke",
       "Sprache": "JS",
       "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
@@ -369,7 +369,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "<dl>",
-      "Beschreibung": "Definitionsliste mit Begriffen und Beschreibungen",
+      "Beschreibung": "Liste aus Begriffen und Erklärungen",
       "Sprache": "html",
       "Link": "more/dl.html",
       "class": ["html","liste"]
@@ -434,7 +434,7 @@ window.SpickerData["coding"] = {
     // G
     {
       "Tag": "<g>",
-      "Beschreibung": "Gruppiert SVG-Elemente innerhalb eines svg-Tags",
+      "Beschreibung": "Gruppiert SVG-Elemente",
       "Sprache": "html",
       "Link": "more/svg.html",
       "class": ["html","media"]
@@ -591,7 +591,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "<map>",
-      "Beschreibung": "Definiert eine Bild-Map mit klickbaren Bereichen",
+      "Beschreibung": "Bild mit klickbaren Bereichen",
       "Sprache": "html",
       "Link": "more/area & map.html",
       "class": ["html","media"]
@@ -619,7 +619,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "<meter>",
-      "Beschreibung": "Anzeige eines Messwerts innerhalb eines Bereichs",
+      "Beschreibung": "Messwert in einem Bereich anzeigen",
       "Sprache": "html",
       "Link": "more/meter.html",
       "class": ["html","form"]
@@ -943,28 +943,28 @@ window.SpickerData["coding"] = {
     // CSS
     {
       "Tag": "HTML",
-      "Beschreibung": "Grundlage des Webs: Struktur, Inhalte und semantische Elemente",
+      "Beschreibung": "Struktur und Inhalt von Webseiten",
       "Sprache": "html",
       "Link": "more/html-sprache.html",
       "class": ["html","sprache","grundlagen"]
     },
     {
       "Tag": "CSS",
-      "Beschreibung": "Gestaltung und Layout von Webseiten mit Farben, Abständen und Positionierung",
+      "Beschreibung": "Aussehen und Layout von Webseiten",
       "Sprache": "CSS",
       "Link": "more/css-sprache.html",
       "class": ["css","sprache","grundlagen"]
     },
     {
       "Tag": "JavaScript",
-      "Beschreibung": "Interaktive Sprache für Dynamik, Events und DOM-Logik im Browser",
+      "Beschreibung": "Macht Webseiten interaktiv",
       "Sprache": "JS",
       "Link": "more/javascript-sprache.html",
       "class": ["javascript","js","sprache","grundlagen"]
     },
     {
       "Tag": "C++",
-      "Beschreibung": "Leistungsstarke Sprache für Systemsoftware, Spiele und effiziente Anwendungen",
+      "Beschreibung": "Schnelle Sprache für Programme und Spiele",
       "Sprache": "C++",
       "Link": "more/cpp-sprache.html",
       "class": ["cpp","sprache","grundlagen"]
@@ -1020,7 +1020,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "Angrenzende Geschwisterselektoren",
-      "Beschreibung": "Wählt das unmittelbar folgende Geschwisterelement aus",
+      "Beschreibung": "Direkt folgendes Geschwisterelement (+)",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
@@ -1035,35 +1035,35 @@ window.SpickerData["coding"] = {
     // C++
     {
       "Tag": "#include",
-      "Beschreibung": "Präprozessor-Direktive zum Einbinden von Bibliotheken oder Header-Dateien",
+      "Beschreibung": "Bibliotheken und Header einbinden",
       "Sprache": "C++",
       "Link": "more/include.html",
       "class": ["cpp","praeprozessor"]
     },
     {
       "Tag": "using namespace",
-      "Beschreibung": "Macht Symbole aus einem Namespace verfügbar ohne Präfix",
+      "Beschreibung": "Namespace ohne std:: benutzen",
       "Sprache": "C++",
       "Link": "more/using-namespace.html",
       "class": ["cpp","namespace"]
     },
     {
       "Tag": "int main()",
-      "Beschreibung": "Hauptfunktion - Einstiegspunkt eines C++-Programms",
+      "Beschreibung": "Startpunkt jedes C++-Programms",
       "Sprache": "C++",
       "Link": "more/cpp-main.html",
       "class": ["cpp","funktion","basis"]
     },
     {
       "Tag": "std::cout",
-      "Beschreibung": "Ausgabe von Daten in die Standardausgabe (Konsole)",
+      "Beschreibung": "Text in der Konsole ausgeben",
       "Sprache": "C++",
       "Link": "more/cout.html",
       "class": ["cpp","io","ausgabe"]
     },
     {
       "Tag": "std::cin",
-      "Beschreibung": "Eingabe von Daten aus der Standardeingabe (Tastatur)",
+      "Beschreibung": "Eingabe von der Tastatur lesen",
       "Sprache": "C++",
       "Link": "more/cin.html",
       "class": ["cpp","io","eingabe"]
@@ -1077,56 +1077,56 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "Variablen",
-      "Beschreibung": "Deklaration und Initialisierung von Variablen mit Typ und Wert",
+      "Beschreibung": "Werte mit Typ und Namen speichern",
       "Sprache": "C++",
       "Link": "more/variable.html",
       "class": ["cpp","variable"]
     },
     {
       "Tag": "for-Schleife",
-      "Beschreibung": "Wiederholung eines Codeblocks eine bestimmte Anzahl von Malen",
+      "Beschreibung": "Code feste Anzahl Male wiederholen",
       "Sprache": "C++",
       "Link": "more/for-loop.html",
       "class": ["cpp","schleife","kontrolle"]
     },
     {
       "Tag": "while-Schleife",
-      "Beschreibung": "Wiederholung eines Codeblocks solange eine Bedingung erfüllt ist",
+      "Beschreibung": "Wiederholen, solange Bedingung gilt",
       "Sprache": "C++",
       "Link": "more/while-loop.html",
       "class": ["cpp","schleife","kontrolle"]
     },
     {
       "Tag": "if-else",
-      "Beschreibung": "Bedingte Ausführung von Codeblöcken basierend auf Bedingungen",
+      "Beschreibung": "Code nur unter einer Bedingung ausführen",
       "Sprache": "C++",
       "Link": "more/if-else.html",
       "class": ["cpp","bedingung","kontrolle"]
     },
     {
       "Tag": "Funktionen",
-      "Beschreibung": "Wiederverwendbare Codeblöcke mit Parametern und Rückgabewert",
+      "Beschreibung": "Wiederverwendbare Codeblöcke",
       "Sprache": "C++",
       "Link": "more/function.html",
       "class": ["cpp","funktion"]
     },
     {
       "Tag": "Zeiger (*)",
-      "Beschreibung": "Variable, die die Speicheradresse einer anderen Variable speichert",
+      "Beschreibung": "Speichert die Adresse einer Variable",
       "Sprache": "C++",
       "Link": "more/pointer.html",
       "class": ["cpp","zeiger","speicher"]
     },
     {
       "Tag": "Referenzen (&)",
-      "Beschreibung": "Alias für eine existierende Variable mit derselben Speicheradresse",
+      "Beschreibung": "Zweiter Name für eine Variable",
       "Sprache": "C++",
       "Link": "more/reference.html",
       "class": ["cpp","referenz","speicher"]
     },
     {
       "Tag": "Klasse",
-      "Beschreibung": "Vorlage für die Erstellung von Objekten mit Eigenschaften und Methoden",
+      "Beschreibung": "Bauplan für Objekte",
       "Sprache": "C++",
       "Link": "more/cpp-class.html",
       "class": ["cpp","klasse","oop"]
@@ -1134,7 +1134,7 @@ window.SpickerData["coding"] = {
     // CSS – Eigenschaften & Konzepte
     {
       "Tag": "CSS-Regel",
-      "Beschreibung": "Aufbau einer Regel: Selektor { Eigenschaft: Wert; }",
+      "Beschreibung": "Selektor { Eigenschaft: Wert; }",
       "Sprache": "CSS",
       "Link": "more/css-grundlagen.html",
       "class": ["css","grundlagen"]
@@ -1520,7 +1520,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "break / continue",
-      "Beschreibung": "Schleife abbrechen oder Durchlauf überspringen",
+      "Beschreibung": "Schleife abbrechen / Runde überspringen",
       "Sprache": "JS",
       "Link": "more/js-schleifen.html",
       "class": ["javascript","js","kontrolle"]
@@ -1808,7 +1808,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "break / continue",
-      "Beschreibung": "Schleife abbrechen oder Durchlauf überspringen",
+      "Beschreibung": "Schleife abbrechen / Runde überspringen",
       "Sprache": "C++",
       "Link": "more/cpp-kontrolle.html",
       "class": ["cpp","kontrolle"]
@@ -1969,7 +1969,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "Lambda",
-      "Beschreibung": "Kleine Funktion direkt im Code: [](int x){ … }",
+      "Beschreibung": "Kleine Funktion direkt im Code",
       "Sprache": "C++",
       "Link": "more/cpp-algorithmen.html",
       "class": ["cpp","funktion"]
@@ -2054,7 +2054,7 @@ window.SpickerData["coding"] = {
     // Node.js
     {
       "Tag": "Node.js",
-      "Beschreibung": "JavaScript auf dem Server und in der Kommandozeile",
+      "Beschreibung": "JavaScript außerhalb des Browsers",
       "Sprache": "Node.js",
       "Link": "more/node-einfuehrung.html",
       "class": ["node.js","sprache","grundlagen"]
@@ -2075,7 +2075,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "package.json",
-      "Beschreibung": "Projektbeschreibung, Skripte und Abhängigkeiten",
+      "Beschreibung": "Projektdatei mit Skripten und Paketen",
       "Sprache": "Node.js",
       "Link": "more/node-npm.html",
       "class": ["node.js","werkzeuge"]
@@ -2407,7 +2407,7 @@ window.SpickerData["coding"] = {
     // Terminal
     {
       "Tag": "Terminal (Windows vs. Linux)",
-      "Beschreibung": "Wichtige Befehle für PowerShell und Bash im Vergleich",
+      "Beschreibung": "Befehle für PowerShell und Bash",
       "Sprache": "Terminal",
       "Link": "more/terminal.html",
       "class": ["terminal","werkzeuge"]
@@ -2719,7 +2719,7 @@ window.SpickerData["coding"] = {
     // Swift
     {
       "Tag": "Swift",
-      "Beschreibung": "Apples Sprache für iOS-, macOS- und Server-Apps",
+      "Beschreibung": "Apples Sprache für iOS und macOS",
       "Sprache": "Swift",
       "Link": "more/swift-einfuehrung.html",
       "class": ["swift","sprache","grundlagen"]
@@ -2832,7 +2832,7 @@ window.SpickerData["coding"] = {
     // JavaScript (Erweiterung)
     {
       "Tag": "class",
-      "Beschreibung": "Klassen mit Konstruktor, Methoden und Vererbung",
+      "Beschreibung": "Klassen, Konstruktor und Vererbung",
       "Sprache": "JS",
       "Link": "more/js-klassen.html",
       "class": ["javascript","js","oop"]
@@ -2874,21 +2874,21 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "this",
-      "Beschreibung": "Worauf this zeigt – normal und in Pfeilfunktionen",
+      "Beschreibung": "Worauf this zeigt",
       "Sprache": "JS",
       "Link": "more/js-scope.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
       "Tag": "Hoisting",
-      "Beschreibung": "Warum man Funktionen vor ihrer Definition aufrufen kann",
+      "Beschreibung": "Funktionen vor ihrer Definition nutzen",
       "Sprache": "JS",
       "Link": "more/js-scope.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
       "Tag": "Map",
-      "Beschreibung": "Schlüssel-Wert-Speicher mit beliebigen Schlüsseln",
+      "Beschreibung": "Schlüssel-Wert-Speicher",
       "Sprache": "JS",
       "Link": "more/js-map-set.html",
       "class": ["javascript","js","daten"]
@@ -3028,7 +3028,7 @@ window.SpickerData["coding"] = {
     },
     {
       "Tag": "Event Loop",
-      "Beschreibung": "Wie JavaScript Aufgaben nacheinander abarbeitet",
+      "Beschreibung": "Wie JS Aufgaben der Reihe nach abarbeitet",
       "Sprache": "JS",
       "Link": "more/js-event-loop.html",
       "class": ["javascript","js","grundlagen"]
@@ -3078,7 +3078,7 @@ window.SpickerData["coding"] = {
     // TypeScript
     {
       "Tag": "TypeScript",
-      "Beschreibung": "JavaScript mit Typen – Einführung und Installation",
+      "Beschreibung": "JavaScript mit Typen",
       "Sprache": "TypeScript",
       "Link": "more/ts-einfuehrung.html",
       "class": ["typescript","grundlagen"]

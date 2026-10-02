@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Kennzahlen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Kennzahlen</p>
+    <h1>Betriebswirtschaftliche Kennzahlen</h1>
+    <p class="page-lead">Mit wenigen Zahlen sehen, wie gesund ein Unternehmen ist: Erfolg, Rendite, Verschuldung, Zahlungsfähigkeit.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><strong>Kennzahlen</strong> verdichten viele Zahlen aus Bilanz und GuV zu wenigen, vergleichbaren Werten. Eine Kennzahl allein sagt wenig – spannend wird es im <strong>Vergleich</strong>: mit dem Vorjahr, mit dem Plan oder mit der Branche.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Vom Umsatz zum EBIT" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20.0" y1="260.0" x2="620.0" y2="260.0" class="dg-axis"/>
+        <rect x="30.0" y="30.0" width="64.0" height="230.0" rx="2" class="dg-bar"/>
+        <text x="62.0" y="24.0" class="dg-small" text-anchor="middle">500.000</text>
+        <text x="62.0" y="278.0" class="dg-text" text-anchor="middle">Umsatz</text>
+        <rect x="103.7" y="30.0" width="64.0" height="92.0" rx="2" class="dg-bar-minus"/>
+        <text x="135.7" y="24.0" class="dg-small" text-anchor="middle">−200.000</text>
+        <text x="135.7" y="278.0" class="dg-text" text-anchor="middle">Waren-</text>
+        <text x="135.7" y="292.0" class="dg-text" text-anchor="middle">einsatz</text>
+        <rect x="177.4" y="122.0" width="64.0" height="138.0" rx="2" class="dg-bar-total"/>
+        <text x="209.4" y="116.0" class="dg-small" text-anchor="middle">300.000</text>
+        <text x="209.4" y="278.0" class="dg-text" text-anchor="middle">Rohertrag</text>
+        <rect x="251.1" y="122.0" width="64.0" height="82.8" rx="2" class="dg-bar-minus"/>
+        <text x="283.1" y="116.0" class="dg-small" text-anchor="middle">−180.000</text>
+        <text x="283.1" y="278.0" class="dg-text" text-anchor="middle">Personal</text>
+        <rect x="324.9" y="204.8" width="64.0" height="27.6" rx="2" class="dg-bar-minus"/>
+        <text x="356.9" y="198.8" class="dg-small" text-anchor="middle">−60.000</text>
+        <text x="356.9" y="278.0" class="dg-text" text-anchor="middle">Sonstiges</text>
+        <rect x="398.6" y="232.4" width="64.0" height="27.6" rx="2" class="dg-bar-total"/>
+        <text x="430.6" y="226.4" class="dg-small" text-anchor="middle">60.000</text>
+        <text x="430.6" y="278.0" class="dg-text" text-anchor="middle">EBITDA</text>
+        <rect x="472.3" y="232.4" width="64.0" height="9.2" rx="2" class="dg-bar-minus"/>
+        <text x="504.3" y="226.4" class="dg-small" text-anchor="middle">−20.000</text>
+        <text x="504.3" y="278.0" class="dg-text" text-anchor="middle">AfA</text>
+        <rect x="546.0" y="241.6" width="64.0" height="18.4" rx="2" class="dg-bar-total"/>
+        <text x="578.0" y="235.6" class="dg-small" text-anchor="middle">40.000</text>
+        <text x="578.0" y="278.0" class="dg-text" text-anchor="middle">EBIT</text>
+        </svg>
+        <figcaption>Beispiel GmbH: Vom Umsatz (500.000 €) über den Rohertrag zum EBITDA und EBIT.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Systematische Kennzahlen entwickelte der Chemiekonzern <strong>DuPont</strong> ab <strong>1919</strong>: Das „DuPont-Schema“ zerlegt den <strong>ROI</strong> in Umsatzrendite × Kapitalumschlag. <strong>EBIT/EBITDA</strong> kommen aus den USA und wurden in den 1980ern populär, um Firmen unabhängig von Finanzierung und Steuern vergleichen zu können.</p>
+    </section>
+    <section>
+      <h2>Erfolgskennzahlen</h2>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Formel</th><th>Beispiel GmbH</th></tr></thead>
+        <tbody>
+          <tr><td>Umsatz</td><td>Menge × Preis (netto)</td><td>500.000 €</td></tr>
+          <tr><td>Rohertrag</td><td>Umsatz − Wareneinsatz</td><td>500.000 − 200.000 = 300.000 €</td></tr>
+          <tr><td>EBITDA</td><td>Gewinn vor Zinsen, Steuern und Abschreibungen</td><td>60.000 €</td></tr>
+          <tr><td>EBIT</td><td>Gewinn vor Zinsen und Steuern (= EBITDA − AfA)</td><td>40.000 €</td></tr>
+          <tr><td>Gewinn (Jahresüberschuss)</td><td>Erträge − Aufwendungen</td><td>40.000 − 5.000 Zinsen − 10.500 Steuern = 24.500 €</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Rentabilität: Lohnt sich das eingesetzte Geld?</h2>
+      <p>Annahme: Eigenkapital 100.000 €, Fremdkapital 150.000 €, Gesamtkapital 250.000 €, Zinsen 5.000 €.</p>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Formel</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Umsatzrendite</td><td>Gewinn / Umsatz × 100 %</td><td>24.500 / 500.000 = 4,9 %</td></tr>
+          <tr><td>Eigenkapitalrendite</td><td>Gewinn / Eigenkapital × 100 %</td><td>24.500 / 100.000 = 24,5 %</td></tr>
+          <tr><td>Gesamtkapitalrendite</td><td>(Gewinn + FK-Zinsen) / Gesamtkapital × 100 %</td><td>29.500 / 250.000 = 11,8 %</td></tr>
+          <tr><td>ROI</td><td>Gewinn / eingesetztes Kapital × 100 %</td><td>Laptop für 2.500 € bringt 1.000 € Gewinn/Jahr → 40 %</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Eine hohe Eigenkapitalrendite ist gut für die Eigentümer – kann aber auch heißen, dass sehr viel mit Schulden gearbeitet wird (Leverage-Effekt).</div>
+    </section>
+    <section>
+      <h2>Finanzierung und Liquidität</h2>
+      <p>Annahme: flüssige Mittel 30.000 €, Forderungen 50.000 €, Vorräte 40.000 €, kurzfristige Verbindlichkeiten 60.000 €.</p>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Formel</th><th>Beispiel</th><th>Faustregel</th></tr></thead>
+        <tbody>
+          <tr><td>Eigenkapitalquote</td><td>EK / Gesamtkapital</td><td>100.000 / 250.000 = 40 %</td><td>über 30 % solide</td></tr>
+          <tr><td>Verschuldungsgrad</td><td>FK / EK</td><td>150.000 / 100.000 = 1,5</td><td>unter 2 ist meist ok</td></tr>
+          <tr><td>Liquidität 1. Grades</td><td>flüssige Mittel / kurzfr. Verb.</td><td>30.000 / 60.000 = 50 %</td><td>20–50 %</td></tr>
+          <tr><td>Liquidität 2. Grades</td><td>(flüssige Mittel + Forderungen) / kurzfr. Verb.</td><td>80.000 / 60.000 = 133 %</td><td>mind. 100 %</td></tr>
+          <tr><td>Liquidität 3. Grades</td><td>(… + Vorräte) / kurzfr. Verb.</td><td>120.000 / 60.000 = 200 %</td><td>150–200 %</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Effizienz</h2>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Formel</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Lagerumschlag</td><td>Wareneinsatz / Ø Lagerbestand</td><td>200.000 / 40.000 = 5-mal im Jahr (alle 73 Tage)</td></tr>
+          <tr><td>Debitorenlaufzeit (DSO)</td><td>Ø Forderungen / Umsatz × 365</td><td>50.000 / 500.000 × 365 = 36,5 Tage</td></tr>
+        </tbody>
+      </table>
+      <p>Die <strong>DSO</strong> (Days Sales Outstanding) zeigt, wie lange Kunden im Schnitt bis zur Zahlung brauchen. Steigt sie, wird das Mahnwesen wichtig.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Kennzahlen immer im Zeitverlauf ansehen – ein Wert allein ist nur ein Foto.</li>
+        <li>Für Selbstständige reichen am Anfang wenige: Umsatz, Gewinn, Umsatzrendite, Kontostand, offene Forderungen.</li>
+        <li>EBITDA klingt gut, ignoriert aber Investitionen – Abschreibungen sind echte Kosten.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="bilanz.html">Bilanz</a>
+        <a class="chip" href="guv.html">GuV</a>
+        <a class="chip" href="controlling.html">Controlling</a>
+        <a class="chip" href="liquiditaet.html">Liquidität</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

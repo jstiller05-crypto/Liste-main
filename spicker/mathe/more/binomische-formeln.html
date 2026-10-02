@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Binomische Formeln – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Algebra</p>
+    <h1>Binomische Formeln &amp; Ausklammern</h1>
+    <p class="page-lead">Drei Abkürzungen fürs Ausmultiplizieren – und der umgekehrte Weg: Ausklammern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <strong>binomischen Formeln</strong> sind Abkürzungen für das Ausmultiplizieren von Klammern mit zwei Gliedern („Binom“ = zweigliedrig). Man könnte alles auch einzeln ausmultiplizieren – mit den Formeln geht es schneller.</p>
+      <table class="info-table">
+        <thead><tr><th>Nr.</th><th>Formel</th><th>Merkhilfe</th></tr></thead>
+        <tbody>
+          <tr><td>1.</td><td><code>(a + b)² = a² + 2ab + b²</code></td><td>Plus-Formel</td></tr>
+          <tr><td>2.</td><td><code>(a − b)² = a² − 2ab + b²</code></td><td>Minus-Formel – nur der Mittelteil wird negativ</td></tr>
+          <tr><td>3.</td><td><code>(a + b)(a − b) = a² − b²</code></td><td>Plus-Minus-Formel – der Mittelteil fällt weg</td></tr>
+        </tbody>
+      </table>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>a, b</code></td><td>beliebige Zahlen oder Terme, z. B. a = 3x, b = 2</td></tr>
+          <tr><td><code>²</code></td><td>„zum Quadrat“: mit sich selbst malnehmen, (a + b)² = (a + b) · (a + b)</td></tr>
+          <tr><td><code>2ab</code></td><td>das doppelte Produkt: 2 · a · b</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Die erste binomische Formel kannten schon die Babylonier und Euklid (um 300 v. Chr.) – allerdings als <strong>Flächenbild</strong>, nicht mit Buchstaben. Das Bild zeigt, warum sie stimmt:</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Erste binomische Formel als Flächenbild" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40.0" y="20.0" width="170.0" height="170.0" rx="0" class="dg-bar"/>
+        <rect x="210.0" y="20.0" width="100.0" height="170.0" rx="0" class="dg-box"/>
+        <rect x="40.0" y="190.0" width="170.0" height="100.0" rx="0" class="dg-box"/>
+        <rect x="210.0" y="190.0" width="100.0" height="100.0" rx="0" class="dg-bar-minus"/>
+        <text x="125.0" y="111.0" class="dg-big" text-anchor="middle">a²</text>
+        <text x="260.0" y="111.0" class="dg-big" text-anchor="middle">a·b</text>
+        <text x="125.0" y="246.0" class="dg-big" text-anchor="middle">a·b</text>
+        <text x="260.0" y="246.0" class="dg-big" text-anchor="middle">b²</text>
+        <text x="322.0" y="109.0" class="dg-label" text-anchor="start">a</text>
+        <text x="322.0" y="244.0" class="dg-label" text-anchor="start">b</text>
+        <text x="390.0" y="90.0" class="dg-text" text-anchor="start">Fläche des großen Quadrats:</text>
+        <text x="390.0" y="124.0" class="dg-big" text-anchor="start">(a + b)²</text>
+        <text x="390.0" y="158.0" class="dg-big" text-anchor="start">= a² + ab + ab + b²</text>
+        <text x="390.0" y="192.0" class="dg-accent-text" text-anchor="start">= a² + 2ab + b²</text>
+        <text x="390.0" y="236.0" class="dg-small" text-anchor="start">Seitenlänge: a + b</text>
+        </svg>
+        <figcaption>Ein Quadrat mit Seite a + b besteht aus a², b² und zweimal dem Rechteck a·b.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>(x + 3)²       = x² + 2·x·3 + 3²   = x² + 6x + 9
+(2x − 5)²      = (2x)² − 2·2x·5 + 5² = 4x² − 20x + 25
+(x + 4)(x − 4) = x² − 16
+
+Kopfrechnen mit der 3. Formel:
+21 · 19 = (20 + 1)(20 − 1) = 400 − 1 = 399</code></pre>
+    </section>
+    <section>
+      <h2>Ausklammern (Faktorisieren)</h2>
+      <p>Ausklammern ist das Gegenteil von Ausmultiplizieren: Man zieht einen <strong>gemeinsamen Faktor</strong> vor die Klammer.</p>
+      <pre><code>6x + 9       = 3 · 2x + 3 · 3 = 3(2x + 3)
+x² − 5x      = x · x − 5 · x   = x(x − 5)
+4x³ + 8x²    = 4x²(x + 2)
+
+Probe: wieder ausmultiplizieren → 3(2x + 3) = 6x + 9  ✓</code></pre>
+      <p>Auch die binomischen Formeln kann man „rückwärts“ nutzen: <code>x² − 9 = (x + 3)(x − 3)</code>. Das hilft beim Lösen von Gleichungen, denn ein Produkt ist 0, wenn einer der Faktoren 0 ist.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Der häufigste Fehler: <code>(a + b)² = a² + b²</code> – das ist FALSCH, der Mittelteil 2ab fehlt.</li>
+        <li>Bei <code>(2x)²</code> beide Teile quadrieren: 4x², nicht 2x².</li>
+        <li>Beim Ausklammern immer den größten gemeinsamen Faktor nehmen und die Probe machen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="variablen-terme.html">Variablen &amp; Terme</a>
+        <a class="chip" href="quadratische-gleichungen.html">Quadratische Gleichungen</a>
+        <a class="chip" href="potenzen-wurzeln-log.html">Potenzen, Wurzeln, Log</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

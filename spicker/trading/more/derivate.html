@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Derivate – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Derivate</p>
+    <h1>Derivate: Optionen, Futures &amp; Knock-outs</h1>
+    <p class="page-lead">Finanzprodukte, deren Wert von etwas anderem abhängt. Sie können absichern – oder sehr schnell sehr viel Geld kosten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist ein Derivat?</h2>
+      <p>Ein <strong>Derivat</strong> (lat. <em>derivare</em> = ableiten) ist ein Vertrag, dessen Wert vom Kurs eines anderen Werts abhängt – dem <strong>Basiswert</strong> (Aktie, Index, Rohstoff, Währung).</p>
+      <table class="info-table">
+        <thead><tr><th>Derivat</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td>Option</td><td>Recht, aber keine Pflicht, zu einem festen Preis zu kaufen oder zu verkaufen</td></tr>
+          <tr><td>Future</td><td>Pflicht, zu einem festen Termin und Preis zu kaufen oder zu verkaufen</td></tr>
+          <tr><td>Knock-out-Zertifikat</td><td>Hebelprodukt, das an einer Schwelle wertlos verfällt</td></tr>
+          <tr><td>CFD</td><td>Vertrag über die Kursdifferenz (eigene Seite)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Schon Aristoteles erzählt von Thales von Milet, der sich gegen eine kleine Gebühr das Recht auf Olivenpressen sicherte – eine frühe Option. In Osaka wurden ab 1730 an der Dojima-Reisbörse Reis-Futures gehandelt, 1848 entstand in Chicago der erste große Terminmarkt. Ursprünglich dienten Derivate vor allem der <strong>Absicherung</strong>: Ein Bauer konnte seinen Erntepreis schon im Frühjahr festlegen.</p>
+    </section>
+    <section>
+      <h2>Optionen: Call und Put</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Gewinn und Verlust von Call und Put" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="10.0" y="6.0" width="304.0" height="306.0" rx="8" class="dg-box"/>
+        <text x="162.0" y="30.0" class="dg-label" text-anchor="middle">Call (Kaufrecht)</text>
+        <line x1="44.0" y1="234.7" x2="306.0" y2="234.7" class="dg-grid"/>
+        <text x="39.0" y="238.7" class="dg-small" text-anchor="end">−5</text>
+        <line x1="44.0" y1="199.4" x2="306.0" y2="199.4" class="dg-axis"/>
+        <text x="39.0" y="203.4" class="dg-small" text-anchor="end">0</text>
+        <line x1="44.0" y1="128.8" x2="306.0" y2="128.8" class="dg-grid"/>
+        <text x="39.0" y="132.8" class="dg-small" text-anchor="end">+10</text>
+        <line x1="44.0" y1="58.1" x2="306.0" y2="58.1" class="dg-grid"/>
+        <text x="39.0" y="62.1" class="dg-small" text-anchor="end">+20</text>
+        <text x="70.2" y="286.0" class="dg-small" text-anchor="middle">80</text>
+        <text x="175.0" y="286.0" class="dg-small" text-anchor="middle">100</text>
+        <text x="279.8" y="286.0" class="dg-small" text-anchor="middle">120</text>
+        <polyline points="44.0,234.7 49.2,234.7 54.5,234.7 59.7,234.7 65.0,234.7 70.2,234.7 75.4,234.7 80.7,234.7 85.9,234.7 91.2,234.7 96.4,234.7 101.6,234.7 106.9,234.7 112.1,234.7 117.4,234.7 122.6,234.7 127.8,234.7 133.1,234.7 138.3,234.7 143.6,234.7 148.8,234.7 154.0,234.7 159.3,234.7 164.5,234.7 169.8,234.7 175.0,234.7 180.2,227.6 185.5,220.6 190.7,213.5 196.0,206.4 201.2,199.4 206.4,192.3 211.7,185.2 216.9,178.2 222.2,171.1 227.4,164.1 232.6,157.0 237.9,149.9 243.1,142.9 248.4,135.8 253.6,128.8 258.8,121.7 264.1,114.6 269.3,107.6 274.6,100.5 279.8,93.4 285.0,86.4 290.3,79.3 295.5,72.2 300.8,65.2 306.0,58.1" class="dg-line" fill="none"/>
+        <line x1="175.0" y1="255.9" x2="175.0" y2="58.1" class="dg-note-line"/>
+        <text x="179.0" y="257.9" class="dg-small" text-anchor="start">Basispreis</text>
+        <circle cx="201.2" cy="199.4" r="4.5" class="dg-point"/>
+        <text x="207.2" y="191.4" class="dg-small" text-anchor="start">Break-even 105</text>
+        <text x="227.4" y="252.7" class="dg-bad" text-anchor="middle">max. Verlust = Prämie</text>
+        <text x="162.0" y="304.0" class="dg-small" text-anchor="middle">Kurs des Basiswerts bei Fälligkeit</text>
+        <rect x="330.0" y="6.0" width="304.0" height="306.0" rx="8" class="dg-box"/>
+        <text x="482.0" y="30.0" class="dg-label" text-anchor="middle">Put (Verkaufsrecht)</text>
+        <line x1="364.0" y1="234.7" x2="626.0" y2="234.7" class="dg-grid"/>
+        <text x="359.0" y="238.7" class="dg-small" text-anchor="end">−5</text>
+        <line x1="364.0" y1="199.4" x2="626.0" y2="199.4" class="dg-axis"/>
+        <text x="359.0" y="203.4" class="dg-small" text-anchor="end">0</text>
+        <line x1="364.0" y1="128.8" x2="626.0" y2="128.8" class="dg-grid"/>
+        <text x="359.0" y="132.8" class="dg-small" text-anchor="end">+10</text>
+        <line x1="364.0" y1="58.1" x2="626.0" y2="58.1" class="dg-grid"/>
+        <text x="359.0" y="62.1" class="dg-small" text-anchor="end">+20</text>
+        <text x="390.2" y="286.0" class="dg-small" text-anchor="middle">80</text>
+        <text x="495.0" y="286.0" class="dg-small" text-anchor="middle">100</text>
+        <text x="599.8" y="286.0" class="dg-small" text-anchor="middle">120</text>
+        <polyline points="364.0,58.1 369.2,65.2 374.5,72.2 379.7,79.3 385.0,86.4 390.2,93.4 395.4,100.5 400.7,107.6 405.9,114.6 411.2,121.7 416.4,128.8 421.6,135.8 426.9,142.9 432.1,149.9 437.4,157.0 442.6,164.1 447.8,171.1 453.1,178.2 458.3,185.2 463.6,192.3 468.8,199.4 474.0,206.4 479.3,213.5 484.5,220.6 489.8,227.6 495.0,234.7 500.2,234.7 505.5,234.7 510.7,234.7 516.0,234.7 521.2,234.7 526.4,234.7 531.7,234.7 536.9,234.7 542.2,234.7 547.4,234.7 552.6,234.7 557.9,234.7 563.1,234.7 568.4,234.7 573.6,234.7 578.8,234.7 584.1,234.7 589.3,234.7 594.6,234.7 599.8,234.7 605.0,234.7 610.3,234.7 615.5,234.7 620.8,234.7 626.0,234.7" class="dg-line" fill="none"/>
+        <line x1="495.0" y1="255.9" x2="495.0" y2="58.1" class="dg-note-line"/>
+        <text x="491.0" y="257.9" class="dg-small" text-anchor="end">Basispreis</text>
+        <circle cx="468.8" cy="199.4" r="4.5" class="dg-point"/>
+        <text x="462.8" y="191.4" class="dg-small" text-anchor="end">Break-even 95</text>
+        <text x="442.6" y="252.7" class="dg-bad" text-anchor="middle">max. Verlust = Prämie</text>
+        <text x="482.0" y="304.0" class="dg-small" text-anchor="middle">Kurs des Basiswerts bei Fälligkeit</text>
+        <text x="14.0" y="22.0" class="dg-small" text-anchor="start">€</text>
+        </svg>
+        <figcaption>Gewinn/Verlust bei Fälligkeit für eine Option mit Basispreis 100 € und 5 € Prämie. Der Verlust ist auf die Prämie begrenzt.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th></th><th>Call</th><th>Put</th></tr></thead>
+        <tbody>
+          <tr><td>Recht auf …</td><td>Kaufen zum Basispreis</td><td>Verkaufen zum Basispreis</td></tr>
+          <tr><td>Lohnt sich, wenn …</td><td>der Kurs deutlich steigt</td><td>der Kurs deutlich fällt</td></tr>
+          <tr><td>Break-even (Beispiel)</td><td>100 € + 5 € = 105 €</td><td>100 € − 5 € = 95 €</td></tr>
+        </tbody>
+      </table>
+      <p>Für das Recht zahlst du eine <strong>Prämie</strong>. Läuft die Option wertlos aus, ist genau diese Prämie weg. In Deutschland handeln Privatanleger meist <strong>Optionsscheine</strong> – von Banken ausgegebene, verbriefte Optionen.</p>
+    </section>
+    <section>
+      <h2>Die Griechen</h2>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Misst …</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Delta</td><td>wie stark sich der Optionspreis bei 1 € Kursänderung bewegt</td><td>Delta 0,5 → Basiswert +1 € → Option ca. +0,50 €</td></tr>
+          <tr><td>Theta</td><td>Zeitwertverlust pro Tag</td><td>Option verliert jeden Tag etwas Wert, auch ohne Kursänderung</td></tr>
+          <tr><td>Vega</td><td>Reaktion auf die Volatilität</td><td>mehr erwartete Schwankung → Option teurer</td></tr>
+          <tr><td>Gamma</td><td>wie schnell sich Delta ändert</td><td>nahe am Basispreis kurz vor Fälligkeit besonders hoch</td></tr>
+        </tbody>
+      </table>
+      <p>Die Bewertung von Optionen wurde 1973 durch die <strong>Black-Scholes-Formel</strong> berechenbar – im selben Jahr startete in Chicago die erste Optionsbörse.</p>
+    </section>
+    <section>
+      <h2>Futures und Hedging</h2>
+      <p>Ein <strong>Future</strong> ist verbindlich: Beide Seiten müssen zum Termin liefern bzw. zahlen (oder vorher glattstellen). Futures gibt es auf Indizes (z. B. DAX-Future), Rohstoffe, Zinsen und Währungen.</p>
+      <p><strong>Hedging</strong> heißt Absichern: Du gehst eine Gegenposition ein. Beispiel: Du hast Aktien der Beispiel AG und kaufst einen Put. Fällt die Aktie stark, gewinnt der Put und gleicht einen Teil des Verlusts aus – wie eine Versicherung mit Prämie.</p>
+    </section>
+    <section>
+      <h2>Knock-out-Zertifikate</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Knock-out-Schwelle" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">85</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">91</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">96</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">102</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">108</text>
+        <line x1="52.0" y1="229.9" x2="620.0" y2="229.9" class="dg-down-wick dg-dashed"/>
+        <text x="616.0" y="223.9" class="dg-bad" text-anchor="end">Knock-out-Schwelle 90 €</text>
+        <polyline points="52.0,117.7 81.9,129.0 111.8,106.5 141.7,140.2 171.6,151.4 201.5,134.6 231.4,173.8 261.3,185.0 291.2,207.5 321.1,196.3 350.9,224.3 380.8,234.4 410.7,218.7 440.6,185.0 470.5,151.4 500.4,129.0 530.3,95.3 560.2,72.9 590.1,84.1 620.0,50.4" class="dg-line" fill="none"/>
+        <circle cx="380.8" cy="234.4" r="4.5" class="dg-point"/>
+        <text x="390.8" y="256.4" class="dg-label" text-anchor="start">Schwelle berührt → Produkt wertlos</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Ein Long-Knock-out mit Schwelle bei 90 €: Wird sie auch nur kurz berührt, ist das Produkt (fast) wertlos – die spätere Erholung bringt dir nichts mehr.</figcaption>
+      </figure>
+      <p>Knock-outs (auch Turbos) sind in Deutschland sehr beliebt, weil sie einfach aussehen: fester Hebel, keine Nachschusspflicht. Aber: Je näher die Schwelle am Kurs, desto größer der Hebel – und desto eher der Totalverlust.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei Optionen arbeitet die Zeit gegen den Käufer (Theta).</li>
+        <li>Knock-outs nie „aussitzen“: Ist die Schwelle berührt, ist das Geld weg.</li>
+        <li>Derivate sind Werkzeuge zum Absichern oder Spekulieren – nicht zum langfristigen Sparen.</li>
+        <li><strong>Risikohinweis:</strong> Derivate und Hebelprodukte sind komplex. Die meisten Privatanleger verlieren damit Geld – jeder Broker muss angeben, wie viel Prozent seiner Kundenkonten Verluste machen (oft 70–80 %). Diese Seite erklärt nur, wie es funktioniert, und ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cfd-hebel.html">CFDs &amp; Hebel</a>
+        <a class="chip" href="margin.html">Margin</a>
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+        <a class="chip" href="bollinger-atr.html">Volatilität &amp; Bollinger</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

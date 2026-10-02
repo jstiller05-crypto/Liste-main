@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Zahlenmengen &amp; Rechenregeln – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Arithmetik</p>
+    <h1>Zahlenmengen &amp; Rechenregeln</h1>
+    <p class="page-lead">Welche Arten von Zahlen es gibt, in welcher Reihenfolge man rechnet und wie man richtig rundet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Zahlen werden in <strong>Zahlenmengen</strong> eingeteilt. Jede Menge ist eine Erweiterung der vorherigen: Man hat immer neue Zahlen „erfunden“, wenn man eine Rechnung sonst nicht lösen konnte.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Zahlenmengen: N in Z in Q in R" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10.0" y="14.0" width="620.0" height="292.0" rx="14" class="dg-box"/>
+        <rect x="30.0" y="48.0" width="440.0" height="238.0" rx="12" class="dg-box"/>
+        <rect x="50.0" y="82.0" width="280.0" height="184.0" rx="10" class="dg-box"/>
+        <rect x="70.0" y="116.0" width="140.0" height="130.0" rx="8" class="dg-fill dg-shape"/>
+        <text x="24.0" y="38.0" class="dg-label" text-anchor="start">ℝ  reelle Zahlen</text>
+        <text x="44.0" y="72.0" class="dg-label" text-anchor="start">ℚ  rationale Zahlen (Brüche)</text>
+        <text x="64.0" y="106.0" class="dg-label" text-anchor="start">ℤ  ganze Zahlen</text>
+        <text x="140.0" y="140.0" class="dg-label" text-anchor="middle">ℕ  natürliche</text>
+        <text x="140.0" y="178.0" class="dg-big" text-anchor="middle">1, 2, 3, …</text>
+        <text x="140.0" y="206.0" class="dg-small" text-anchor="middle">(ℕ₀: auch die 0)</text>
+        <text x="270.0" y="160.0" class="dg-big" text-anchor="middle">0</text>
+        <text x="270.0" y="196.0" class="dg-big" text-anchor="middle">−1, −2, −3</text>
+        <text x="400.0" y="140.0" class="dg-big" text-anchor="middle">½</text>
+        <text x="400.0" y="176.0" class="dg-big" text-anchor="middle">−0,75</text>
+        <text x="400.0" y="212.0" class="dg-big" text-anchor="middle">0,333…</text>
+        <text x="550.0" y="140.0" class="dg-big" text-anchor="middle">√2</text>
+        <text x="550.0" y="176.0" class="dg-big" text-anchor="middle">π ≈ 3,14</text>
+        <text x="550.0" y="212.0" class="dg-big" text-anchor="middle">e ≈ 2,72</text>
+        <text x="550.0" y="246.0" class="dg-small" text-anchor="middle">(nie endend,</text>
+        <text x="550.0" y="262.0" class="dg-small" text-anchor="middle">nie periodisch)</text>
+        </svg>
+        <figcaption>Jede Menge steckt in der nächstgrößeren: Jede natürliche Zahl ist auch eine ganze, rationale und reelle Zahl.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Name</th><th>Was gehört dazu?</th><th>Warum gibt es sie?</th></tr></thead>
+        <tbody>
+          <tr><td><code>ℕ</code></td><td>natürliche Zahlen</td><td>1, 2, 3, … (ℕ₀: mit 0)</td><td>Zählen</td></tr>
+          <tr><td><code>ℤ</code></td><td>ganze Zahlen</td><td>… −2, −1, 0, 1, 2 …</td><td>damit <code>3 − 5</code> ein Ergebnis hat</td></tr>
+          <tr><td><code>ℚ</code></td><td>rationale Zahlen</td><td>alle Brüche, z. B. ½, −0,75, 0,333…</td><td>damit <code>1 : 3</code> ein Ergebnis hat</td></tr>
+          <tr><td><code>ℝ</code></td><td>reelle Zahlen</td><td>zusätzlich √2, π, e …</td><td>damit <code>x² = 2</code> eine Lösung hat</td></tr>
+          <tr><td><code>ℂ</code></td><td>komplexe Zahlen</td><td>zusätzlich i mit i² = −1</td><td>damit <code>x² = −1</code> eine Lösung hat (Oberstufe/Studium)</td></tr>
+        </tbody>
+      </table>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>⊂</code></td><td>„ist Teilmenge von“: ℕ ⊂ ℤ heißt „alle natürlichen Zahlen sind auch ganze Zahlen“.</td></tr>
+          <tr><td><code>∈</code></td><td>„ist Element von“: 5 ∈ ℕ heißt „5 ist eine natürliche Zahl“.</td></tr>
+          <tr><td><code>∉</code></td><td>„ist nicht Element von“: −2 ∉ ℕ.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Zuerst gab es nur Zählzahlen (Kerben auf Knochen, über 20.000 Jahre alt). Brüche nutzten schon die Ägypter. Die <strong>Null</strong> und negative Zahlen kamen über Indien (um 600 n. Chr.) und arabische Gelehrte nach Europa. Dass √2 <em>kein</em> Bruch ist, entdeckten die Griechen um 500 v. Chr. – das war ein Schock und der Beginn der reellen Zahlen.</p>
+      <p>Die Buchstaben ℕ, ℤ, ℚ, ℝ stammen von <em>natürlich</em>, <em>Zahlen</em> (deutsch!), <em>Quotient</em> und <em>reell</em>.</p>
+    </section>
+    <section>
+      <h2>Punkt vor Strich: die Reihenfolge</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Reihenfolge beim Rechnen" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="10.0" y="100.0" width="128.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="74.0" y="140.0" class="dg-label" text-anchor="middle">Klammern</text>
+        <text x="74.0" y="164.0" class="dg-small" text-anchor="middle">( … ) zuerst,</text>
+        <text x="74.0" y="180.0" class="dg-small" text-anchor="middle">innen nach außen</text>
+        <text x="74.0" y="86.0" class="dg-accent-text" text-anchor="middle">1</text>
+        <line x1="142.0" y1="155.0" x2="168.0" y2="155.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="174.0" y="100.0" width="128.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="238.0" y="140.0" class="dg-label" text-anchor="middle">Potenzen</text>
+        <text x="238.0" y="164.0" class="dg-small" text-anchor="middle">x², √ …</text>
+        <text x="238.0" y="86.0" class="dg-accent-text" text-anchor="middle">2</text>
+        <line x1="306.0" y1="155.0" x2="332.0" y2="155.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="338.0" y="100.0" width="128.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="402.0" y="140.0" class="dg-label" text-anchor="middle">Punkt</text>
+        <text x="402.0" y="164.0" class="dg-small" text-anchor="middle">·  und  :</text>
+        <text x="402.0" y="180.0" class="dg-small" text-anchor="middle">von links</text>
+        <text x="402.0" y="86.0" class="dg-accent-text" text-anchor="middle">3</text>
+        <line x1="470.0" y1="155.0" x2="496.0" y2="155.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="502.0" y="100.0" width="128.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="566.0" y="140.0" class="dg-label" text-anchor="middle">Strich</text>
+        <text x="566.0" y="164.0" class="dg-small" text-anchor="middle">+  und  −</text>
+        <text x="566.0" y="180.0" class="dg-small" text-anchor="middle">von links</text>
+        <text x="566.0" y="86.0" class="dg-accent-text" text-anchor="middle">4</text>
+        </svg>
+        <figcaption>Merkwort „KlaPoPuStri“: Klammern, Potenzen, Punkt, Strich.</figcaption>
+      </figure>
+      <pre><code>3 + 4 · 2      = 3 + 8       = 11     (nicht 14!)
+(3 + 4) · 2    = 7 · 2       = 14     (Klammer zuerst)
+2 · 3²         = 2 · 9       = 18     (Potenz vor Punkt)
+20 − 8 − 2     = 12 − 2      = 10     (gleiche Stufe: von links)
+24 : 4 · 2     = 6 · 2       = 12     (nicht 24 : 8 = 3)</code></pre>
+      <div class="note">Vorsicht bei Minus und Potenz: <code>−3² = −9</code>, denn erst wird 3² = 9 gerechnet, dann das Minus davor. Nur <code>(−3)² = 9</code>.</div>
+    </section>
+    <section>
+      <h2>Runden</h2>
+      <p>Beim Runden schaut man nur auf die <strong>erste Ziffer, die wegfällt</strong>:</p>
+      <table class="info-table">
+        <thead><tr><th>Ziffer danach</th><th>Was passiert?</th><th>Beispiel (auf 1 Nachkommastelle)</th></tr></thead>
+        <tbody>
+          <tr><td>0, 1, 2, 3, 4</td><td>abrunden – die letzte Ziffer bleibt</td><td>3,14 → 3,1</td></tr>
+          <tr><td>5, 6, 7, 8, 9</td><td>aufrunden – die letzte Ziffer +1</td><td>3,15 → 3,2   ·   2,96 → 3,0</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Zwischenergebnisse NICHT runden:
+1 : 3 · 3   genau:   0,3333… · 3 = 1
+            gerundet: 0,33 · 3    = 0,99   ← Fehler!</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>≈</code></td><td>„ungefähr gleich“ – zeigt an, dass gerundet wurde: π ≈ 3,14.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei Brüchen und Divisionen hilft eine Klammer um Zähler oder Nenner, damit der Taschenrechner richtig rechnet: <code>(3 + 5) / (2 + 2)</code>.</li>
+        <li>Ob 0 zu ℕ gehört, ist nicht überall gleich – im Zweifel schreibt man ℕ₀ für „mit 0“.</li>
+        <li>Geldbeträge rundet man auf 2 Nachkommastellen (Cent), Messwerte so genau, wie gemessen wurde.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="teiler-primzahlen.html">Teiler &amp; Primzahlen</a>
+        <a class="chip" href="brueche.html">Bruchrechnen</a>
+        <a class="chip" href="potenzen-wurzeln-log.html">Potenzen, Wurzeln, Log</a>
+        <a class="chip" href="mengen-logik.html">Mengen &amp; Logik</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

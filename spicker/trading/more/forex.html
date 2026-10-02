@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Forex – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · CFDs & Hebel</p>
+    <h1>Forex: Währungen, Pips &amp; Lots</h1>
+    <p class="page-lead">Der größte Markt der Welt: Hier werden Währungen gegeneinander getauscht. Mit eigener Sprache aus Pips und Lots.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist Forex?</h2>
+      <p><strong>Forex</strong> (Foreign Exchange, auch FX) ist der Devisenmarkt. Gehandelt wird immer ein <strong>Währungspaar</strong>: Du kaufst die eine Währung und verkaufst gleichzeitig die andere.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Aufbau eines Währungspaars" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <text x="320.0" y="70.0" class="dg-big" text-anchor="middle">EUR / USD = 1,0850</text>
+        <line x1="250.0" y1="80.0" x2="160.0" y2="140.0" class="dg-note-line" marker-end="url(#arrow)"/>
+        <line x1="390.0" y1="80.0" x2="470.0" y2="140.0" class="dg-note-line" marker-end="url(#arrow)"/>
+        <rect x="40.0" y="146.0" width="240.0" height="60.0" rx="6" class="dg-box"/>
+        <text x="160.0" y="170.0" class="dg-label" text-anchor="middle">Basiswährung: EUR</text>
+        <text x="160.0" y="192.0" class="dg-small" text-anchor="middle">das, was du kaufst/verkaufst</text>
+        <rect x="360.0" y="146.0" width="240.0" height="60.0" rx="6" class="dg-box"/>
+        <text x="480.0" y="170.0" class="dg-label" text-anchor="middle">Kurswährung: USD</text>
+        <text x="480.0" y="192.0" class="dg-small" text-anchor="middle">1 Euro kostet 1,0850 Dollar</text>
+        <text x="320.0" y="246.0" class="dg-accent-text" text-anchor="middle">1 Pip = 0,0001  →  1,0850 → 1,0851 ist 1 Pip</text>
+        <text x="320.0" y="272.0" class="dg-text" text-anchor="middle">Bei 1 Lot (100.000 €) ist 1 Pip = 10 US-Dollar wert</text>
+        </svg>
+        <figcaption>Die erste Währung ist die Basiswährung, die zweite die Kurswährung. Der Kurs sagt, wie viel von der zweiten eine Einheit der ersten kostet.</figcaption>
+      </figure>
+      <p>Steigt EUR/USD von 1,0850 auf 1,0950, ist der Euro stärker geworden. Wer „EUR/USD long“ war, verdient.</p>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Bis 1971/73 waren die Wechselkurse großer Währungen im <strong>Bretton-Woods-System</strong> fest an den US-Dollar gebunden. Danach durften sie frei schwanken – der moderne Devisenmarkt entstand. Heute werden dort täglich mehrere Billionen US-Dollar umgesetzt, vor allem von Banken, Unternehmen und Zentralbanken. Privatleute handeln meist per CFD.</p>
+    </section>
+    <section>
+      <h2>Pip und Lot</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Pip</td><td>kleinste übliche Kursänderung, meist 4. Nachkommastelle (0,0001)</td><td>1,0850 → 1,0870 = 20 Pips</td></tr>
+          <tr><td>Pip bei JPY-Paaren</td><td>2. Nachkommastelle (0,01)</td><td>USD/JPY 150,20 → 150,50 = 30 Pips</td></tr>
+          <tr><td>Standard-Lot</td><td>100.000 Einheiten der Basiswährung</td><td>1 Pip ≈ 10 USD bei EUR/USD</td></tr>
+          <tr><td>Mini-Lot</td><td>10.000 Einheiten</td><td>1 Pip ≈ 1 USD</td></tr>
+          <tr><td>Micro-Lot</td><td>1.000 Einheiten</td><td>1 Pip ≈ 0,10 USD</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Pip-Wert = Positionsgröße · 0,0001
+
+100.000 € · 0,0001 = 10 USD pro Pip
+20 Pips Gewinn mit 1 Lot = 200 USD</code></pre>
+      <p><strong>Pip</strong> steht für <em>Percentage in Point</em> (oder Price Interest Point).</p>
+    </section>
+    <section>
+      <h2>Was bewegt Wechselkurse?</h2>
+      <table class="info-table">
+        <thead><tr><th>Faktor</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td>Zinsen / Leitzins</td><td>höhere Zinsen ziehen Kapital an → Währung wird oft stärker</td></tr>
+          <tr><td>Inflation</td><td>hohe Inflation schwächt meist die Währung</td></tr>
+          <tr><td>Wirtschaftsdaten</td><td>starke Daten (Arbeitsmarkt, BIP) stärken die Währung</td></tr>
+          <tr><td>Krisen</td><td>Geld flieht in „sichere Häfen“ wie USD, CHF, JPY</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Handelszeiten</h2>
+      <p>Der Devisenmarkt hat keine zentrale Börse und handelt von Sonntagabend bis Freitagabend <strong>rund um die Uhr</strong>: erst in Asien (Tokio), dann Europa (London), dann Amerika (New York). Wenn sich London und New York überschneiden, ist am meisten los.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Mit dem 30er-Hebel bewegt schon 1 % Kursänderung 30 % deines Geldes.</li>
+        <li>Wichtige Termine (Zinsentscheide, US-Arbeitsmarkt) im Wirtschaftskalender prüfen – dann springen Kurse.</li>
+        <li>Pip-Wert vor jedem Trade ausrechnen, sonst ist die Positionsgröße nur geraten.</li>
+        <li><strong>Risikohinweis:</strong> CFDs und andere Hebelprodukte sind komplex. Die meisten Privatanleger verlieren damit Geld – jeder Broker muss angeben, wie viel Prozent seiner Kundenkonten Verluste machen (oft 70–80 %). Diese Seite erklärt nur, wie es funktioniert, und ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cfd-hebel.html">CFDs &amp; Hebel</a>
+        <a class="chip" href="margin.html">Margin</a>
+        <a class="chip" href="quartalszahlen-makro.html">Quartalszahlen &amp; Makro</a>
+        <a class="chip" href="boerse-spread.html">Börse &amp; Spread</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

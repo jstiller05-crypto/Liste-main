@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Exponentialfunktion – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Funktionen</p>
+    <h1>Exponentialfunktion &amp; Eulersche Zahl e</h1>
+    <p class="page-lead">Wenn sich etwas in gleichen Zeitschritten immer um denselben Faktor ändert: Zinsen, Bakterien, Radioaktivität.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Bei einer <strong>Exponentialfunktion</strong> steht das x im <strong>Exponenten</strong>. Pro Schritt wird nicht etwas addiert (wie bei einer Geraden), sondern mit demselben Faktor <strong>malgenommen</strong>.</p>
+      <pre><code>f(x) = a · bˣ
+f(x) = a · e^(k·x)       (gleiche Idee, mit der Basis e)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>a</code></td><td>Anfangswert: f(0) = a (der Wert zum Zeitpunkt 0)</td></tr>
+          <tr><td><code>b</code></td><td>Wachstumsfaktor pro Schritt: b > 1 Wachstum, 0 &lt; b &lt; 1 Zerfall</td></tr>
+          <tr><td><code>x</code></td><td>meist die Zeit (Jahre, Stunden, …)</td></tr>
+          <tr><td><code>e</code></td><td>Eulersche Zahl ≈ 2,71828 – eine feste Konstante wie π</td></tr>
+          <tr><td><code>k</code></td><td>Wachstumskonstante: k > 0 Wachstum, k &lt; 0 Zerfall (es gilt b = eᵏ)</td></tr>
+          <tr><td><code>p %</code></td><td>Wachstumsrate: b = 1 + p/100, z. B. 5 % → b = 1,05</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Die Zahl <strong>e</strong> entdeckte Jakob Bernoulli 1683 beim Zinsrechnen: Verzinst man 1 € zu 100 % jährlich, aber in immer kleineren Abständen (halbjährlich, monatlich, täglich …), nähert sich das Guthaben immer mehr 2,71828… €. Leonhard Euler gab ihr um 1730 den Namen e.</p>
+      <pre><code>(1 + 1/n)ⁿ   für n = 1:    2
+              n = 12:   2,613
+              n = 365:  2,7146
+              n → ∞:    e = 2,71828…</code></pre>
+      <p>Das Besondere: Die Funktion eˣ ist ihre <strong>eigene Ableitung</strong> – ihre Steigung ist an jeder Stelle genauso groß wie ihr Wert. Deshalb taucht e überall in Natur und Technik auf.</p>
+    </section>
+    <section>
+      <h2>Wachstum und Zerfall</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Exponentielles Wachstum und exponentieller Zerfall" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip8"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="36.0" y1="284.0" x2="36.0" y2="36.0" class="dg-grid"/>
+        <text x="36.0" y="285.4" class="dg-small" text-anchor="middle">-3</text>
+        <line x1="117.1" y1="284.0" x2="117.1" y2="36.0" class="dg-grid"/>
+        <text x="117.1" y="285.4" class="dg-small" text-anchor="middle">-2</text>
+        <line x1="198.3" y1="284.0" x2="198.3" y2="36.0" class="dg-grid"/>
+        <text x="198.3" y="285.4" class="dg-small" text-anchor="middle">-1</text>
+        <line x1="279.4" y1="284.0" x2="279.4" y2="36.0" class="dg-grid"/>
+        <line x1="360.6" y1="284.0" x2="360.6" y2="36.0" class="dg-grid"/>
+        <text x="360.6" y="285.4" class="dg-small" text-anchor="middle">1</text>
+        <line x1="441.7" y1="284.0" x2="441.7" y2="36.0" class="dg-grid"/>
+        <text x="441.7" y="285.4" class="dg-small" text-anchor="middle">2</text>
+        <line x1="522.9" y1="284.0" x2="522.9" y2="36.0" class="dg-grid"/>
+        <text x="522.9" y="285.4" class="dg-small" text-anchor="middle">3</text>
+        <line x1="604.0" y1="284.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="604.0" y="285.4" class="dg-small" text-anchor="middle">4</text>
+        <line x1="36.0" y1="269.4" x2="604.0" y2="269.4" class="dg-grid"/>
+        <line x1="36.0" y1="240.2" x2="604.0" y2="240.2" class="dg-grid"/>
+        <text x="273.4" y="244.2" class="dg-small" text-anchor="end">1</text>
+        <line x1="36.0" y1="211.1" x2="604.0" y2="211.1" class="dg-grid"/>
+        <text x="273.4" y="215.1" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="181.9" x2="604.0" y2="181.9" class="dg-grid"/>
+        <text x="273.4" y="185.9" class="dg-small" text-anchor="end">3</text>
+        <line x1="36.0" y1="152.7" x2="604.0" y2="152.7" class="dg-grid"/>
+        <text x="273.4" y="156.7" class="dg-small" text-anchor="end">4</text>
+        <line x1="36.0" y1="123.5" x2="604.0" y2="123.5" class="dg-grid"/>
+        <text x="273.4" y="127.5" class="dg-small" text-anchor="end">5</text>
+        <line x1="36.0" y1="94.4" x2="604.0" y2="94.4" class="dg-grid"/>
+        <text x="273.4" y="98.4" class="dg-small" text-anchor="end">6</text>
+        <line x1="36.0" y1="65.2" x2="604.0" y2="65.2" class="dg-grid"/>
+        <text x="273.4" y="69.2" class="dg-small" text-anchor="end">7</text>
+        <line x1="36.0" y1="36.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="273.4" y="40.0" class="dg-small" text-anchor="end">8</text>
+        <line x1="36.0" y1="269.4" x2="604.0" y2="269.4" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="279.4" y1="284.0" x2="279.4" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="261.4" class="dg-label" text-anchor="end">x</text>
+        <text x="287.4" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polyline points="36.0,265.8 38.8,265.7 41.7,265.6 44.5,265.5 47.4,265.4 50.2,265.3 53.0,265.2 55.9,265.1 58.7,265.0 61.6,264.9 64.4,264.8 67.2,264.6 70.1,264.5 72.9,264.4 75.8,264.3 78.6,264.2 81.4,264.0 84.3,263.9 87.1,263.8 90.0,263.6 92.8,263.5 95.6,263.3 98.5,263.2 101.3,263.0 104.2,262.9 107.0,262.7 109.8,262.6 112.7,262.4 115.5,262.2 118.4,262.0 121.2,261.9 124.0,261.7 126.9,261.5 129.7,261.3 132.6,261.1 135.4,260.9 138.2,260.7 141.1,260.5 143.9,260.2 146.8,260.0 149.6,259.8 152.4,259.6 155.3,259.3 158.1,259.1 161.0,258.8 163.8,258.5 166.6,258.3 169.5,258.0 172.3,257.7 175.2,257.4 178.0,257.1 180.8,256.8 183.7,256.5 186.5,256.2 189.4,255.9 192.2,255.6 195.0,255.2 197.9,254.9 200.7,254.5 203.6,254.2 206.4,253.8 209.2,253.4 212.1,253.0 214.9,252.6 217.8,252.2 220.6,251.8 223.4,251.3 226.3,250.9 229.1,250.4 232.0,250.0 234.8,249.5 237.6,249.0 240.5,248.5 243.3,248.0 246.2,247.5 249.0,246.9 251.8,246.4 254.7,245.8 257.5,245.2 260.4,244.6 263.2,244.0 266.0,243.4 268.9,242.7 271.7,242.1 274.6,241.4 277.4,240.7 280.2,240.0 283.1,239.3 285.9,238.6 288.8,237.8 291.6,237.0 294.4,236.2 297.3,235.4 300.1,234.6 303.0,233.7 305.8,232.9 308.6,232.0 311.5,231.0 314.3,230.1 317.2,229.1 320.0,228.2 322.8,227.1 325.7,226.1 328.5,225.0 331.4,223.9 334.2,222.8 337.0,221.7 339.9,220.5 342.7,219.3 345.6,218.1 348.4,216.8 351.2,215.5 354.1,214.2 356.9,212.9 359.8,211.5 362.6,210.0 365.4,208.6 368.3,207.1 371.1,205.6 374.0,204.0 376.8,202.4 379.6,200.7 382.5,199.0 385.3,197.3 388.2,195.6 391.0,193.7 393.8,191.9 396.7,190.0 399.5,188.0 402.4,186.0 405.2,184.0 408.0,181.9 410.9,179.7 413.7,177.5 416.6,175.3 419.4,173.0 422.2,170.6 425.1,168.2 427.9,165.7 430.8,163.1 433.6,160.5 436.4,157.8 439.3,155.1 442.1,152.3 445.0,149.4 447.8,146.5 450.6,143.5 453.5,140.4 456.3,137.2 459.2,134.0 462.0,130.6 464.8,127.2 467.7,123.7 470.5,120.1 473.4,116.5 476.2,112.7 479.0,108.9 481.9,104.9 484.7,100.9 487.6,96.8 490.4,92.5 493.2,88.2 496.1,83.7 498.9,79.2 501.8,74.5 504.6,69.7 507.4,64.8 510.3,59.8 513.1,54.6 516.0,49.4 518.8,44.0 521.6,38.4 524.5,32.7 527.3,26.9 530.2,21.0 533.0,14.9 535.8,8.6 538.7,2.2 541.5,-4.3 544.4,-11.1 547.2,-18.0 550.0,-25.0 552.9,-32.2 555.7,-39.6 558.6,-47.2 561.4,-55.0 564.2,-63.0 567.1,-71.1 569.9,-79.5 572.8,-88.1 575.6,-96.9 578.4,-105.8" class="dg-line" clip-path="url(#plotClip8)"/>
+        <polyline points="36.0,36.0 38.8,41.6 41.7,47.1 44.5,52.4 47.4,57.6 50.2,62.7 53.0,67.6 55.9,72.5 58.7,77.2 61.6,81.8 64.4,86.3 67.2,90.7 70.1,95.0 72.9,99.1 75.8,103.2 78.6,107.2 81.4,111.1 84.3,114.9 87.1,118.6 90.0,122.2 92.8,125.7 95.6,129.2 98.5,132.5 101.3,135.8 104.2,139.0 107.0,142.1 109.8,145.2 112.7,148.2 115.5,151.1 118.4,153.9 121.2,156.7 124.0,159.4 126.9,162.0 129.7,164.6 132.6,167.1 135.4,169.6 138.2,172.0 141.1,174.3 143.9,176.6 146.8,178.8 149.6,181.0 152.4,183.1 155.3,185.2 158.1,187.2 161.0,189.1 163.8,191.1 166.6,192.9 169.5,194.8 172.3,196.6 175.2,198.3 178.0,200.0 180.8,201.7 183.7,203.3 186.5,204.9 189.4,206.4 192.2,207.9 195.0,209.4 197.9,210.9 200.7,212.3 203.6,213.6 206.4,215.0 209.2,216.3 212.1,217.5 214.9,218.8 217.8,220.0 220.6,221.2 223.4,222.3 226.3,223.5 229.1,224.6 232.0,225.6 234.8,226.7 237.6,227.7 240.5,228.7 243.3,229.7 246.2,230.6 249.0,231.6 251.8,232.5 254.7,233.4 257.5,234.2 260.4,235.1 263.2,235.9 266.0,236.7 268.9,237.5 271.7,238.2 274.6,239.0 277.4,239.7 280.2,240.4 283.1,241.1 285.9,241.8 288.8,242.5 291.6,243.1 294.4,243.7 297.3,244.4 300.1,245.0 303.0,245.5 305.8,246.1 308.6,246.7 311.5,247.2 314.3,247.8 317.2,248.3 320.0,248.8 322.8,249.3 325.7,249.8 328.5,250.2 331.4,250.7 334.2,251.1 337.0,251.6 339.9,252.0 342.7,252.4 345.6,252.8 348.4,253.2 351.2,253.6 354.1,254.0 356.9,254.4 359.8,254.7 362.6,255.1 365.4,255.4 368.3,255.8 371.1,256.1 374.0,256.4 376.8,256.7 379.6,257.0 382.5,257.3 385.3,257.6 388.2,257.9 391.0,258.2 393.8,258.4 396.7,258.7 399.5,259.0 402.4,259.2 405.2,259.4 408.0,259.7 410.9,259.9 413.7,260.1 416.6,260.4 419.4,260.6 422.2,260.8 425.1,261.0 427.9,261.2 430.8,261.4 433.6,261.6 436.4,261.8 439.3,262.0 442.1,262.1 445.0,262.3 447.8,262.5 450.6,262.7 453.5,262.8 456.3,263.0 459.2,263.1 462.0,263.3 464.8,263.4 467.7,263.6 470.5,263.7 473.4,263.8 476.2,264.0 479.0,264.1 481.9,264.2 484.7,264.4 487.6,264.5 490.4,264.6 493.2,264.7 496.1,264.8 498.9,264.9 501.8,265.0 504.6,265.1 507.4,265.3 510.3,265.4 513.1,265.4 516.0,265.5 518.8,265.6 521.6,265.7 524.5,265.8 527.3,265.9 530.2,266.0 533.0,266.1 535.8,266.1 538.7,266.2 541.5,266.3 544.4,266.4 547.2,266.4 550.0,266.5 552.9,266.6 555.7,266.7 558.6,266.7 561.4,266.8 564.2,266.9 567.1,266.9 569.9,267.0 572.8,267.0 575.6,267.1 578.4,267.1 581.3,267.2 584.1,267.3 587.0,267.3 589.8,267.4 592.6,267.4 595.5,267.5 598.3,267.5 601.2,267.5 604.0,267.6" class="dg-line-2" clip-path="url(#plotClip8)"/>
+        <circle cx="279.4" cy="240.2" r="4.5" class="dg-point"/><text x="287.4" y="230.2" class="dg-label" text-anchor="start">(0 | 1)</text>
+        <text x="490.4" y="59.3" class="dg-accent-text" text-anchor="end">Wachstum: f(x) = 2ˣ</text>
+        <text x="133.4" y="59.3" class="dg-label" text-anchor="start">Zerfall: g(x) = 0,5ˣ</text>
+        <text x="595.9" y="248.8" class="dg-small" text-anchor="end">nähert sich 0, erreicht sie nie</text>
+        </svg>
+        <figcaption>Beide Kurven gehen durch (0 | 1), weil b⁰ = 1. Sie kommen der x-Achse beliebig nahe, berühren sie aber nie.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th></th><th>Wachstum (b > 1)</th><th>Zerfall (0 &lt; b &lt; 1)</th></tr></thead>
+        <tbody>
+          <tr><td>Beispiel</td><td>Zinsen, Bakterien, Viren</td><td>Radioaktivität, Medikament im Blut, Wertverlust</td></tr>
+          <tr><td>Kennzahl</td><td>Verdopplungszeit</td><td>Halbwertszeit</td></tr>
+          <tr><td>Graph</td><td>steigt immer schneller</td><td>fällt immer langsamer</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>Sparbuch: 1000 €, 3 % Zinsen pro Jahr
+K(t) = 1000 · 1,03ᵗ
+K(10) = 1000 · 1,03¹⁰ ≈ 1343,92 €
+
+Halbwertszeit: 80 mg Medikament, Halbwertszeit 4 Stunden
+m(t) = 80 · 0,5^(t/4)
+m(12) = 80 · 0,5³ = 10 mg
+
+Verdopplungszeit bei 3 %:  1,03ᵗ = 2  →  t = ln 2 / ln 1,03 ≈ 23,4 Jahre</code></pre>
+    </section>
+    <section>
+      <h2>Linear vs. exponentiell</h2>
+      <table class="info-table">
+        <thead><tr><th>Jahr</th><th>linear: +100 pro Jahr</th><th>exponentiell: ·2 pro Jahr</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>100</td><td>100</td></tr>
+          <tr><td>1</td><td>200</td><td>200</td></tr>
+          <tr><td>2</td><td>300</td><td>400</td></tr>
+          <tr><td>5</td><td>600</td><td>3.200</td></tr>
+          <tr><td>10</td><td>1.100</td><td>102.400</td></tr>
+        </tbody>
+      </table>
+      <p>Anfangs sehen beide ähnlich aus – auf Dauer ist exponentielles Wachstum nicht zu schlagen.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nach t auflösen geht nur mit dem Logarithmus (siehe Potenzen & Logarithmus).</li>
+        <li>Prozent nicht direkt als Faktor nehmen: 3 % Wachstum heißt b = 1,03, nicht b = 3 oder 0,03.</li>
+        <li>Auf dem Taschenrechner heißt eˣ meist <code>e^x</code> oder <code>exp</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="potenzen-wurzeln-log.html">Potenzen, Wurzeln, Log</a>
+        <a class="chip" href="prozent.html">Prozent &amp; Dreisatz</a>
+        <a class="chip" href="ableitungsregeln.html">Ableitungsregeln</a>
+        <a class="chip" href="funktion.html">Funktion</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

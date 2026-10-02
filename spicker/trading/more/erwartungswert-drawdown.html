@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Erwartungswert &amp; Drawdown – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Risikomanagement</p>
+    <h1>Trefferquote, Erwartungswert &amp; Drawdown</h1>
+    <p class="page-lead">Wie du erkennst, ob eine Strategie auf Dauer überhaupt Geld verdienen kann – und wie tief die Durststrecken werden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Trefferquote</h2>
+      <p>Die <strong>Trefferquote</strong> (Winrate) ist der Anteil der Trades mit Gewinn. 40 % heißt: 4 von 10 Trades gewinnen.</p>
+      <p>Eine hohe Trefferquote allein sagt nichts: Wer 90 % kleine Gewinne macht, aber bei 10 % alles verliert, ist trotzdem im Minus.</p>
+    </section>
+    <section>
+      <h2>Erwartungswert</h2>
+      <pre><code>Erwartungswert = Trefferquote · Ø Gewinn − Verlustquote · Ø Verlust
+
+0,4 · 300 € − 0,6 · 100 € = 120 € − 60 € = +60 € pro Trade</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Trefferquote</th><th>Ø Gewinn</th><th>Ø Verlust</th><th>Erwartungswert</th></tr></thead>
+        <tbody>
+          <tr><td>40 %</td><td>300 €</td><td>100 €</td><td><strong>+60 €</strong> → langfristig profitabel</td></tr>
+          <tr><td>70 %</td><td>50 €</td><td>150 €</td><td><strong>−10 €</strong> → verliert trotz vieler Treffer</td></tr>
+          <tr><td>50 %</td><td>100 €</td><td>100 €</td><td><strong>0 €</strong> → nach Gebühren im Minus</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Woher kommt das?</strong> Der Erwartungswert stammt aus der Wahrscheinlichkeitsrechnung: Blaise Pascal und Pierre de Fermat entwickelten ihn 1654 in Briefen über Glücksspiele. Casinos leben genau davon: Ihr Erwartungswert ist immer leicht positiv.</p>
+    </section>
+    <section>
+      <h2>Drawdown</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Drawdown eines Kontos" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">8.148</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">9.608</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">11.069</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">12.530</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">13.990</text>
+        <polyline points="52.0,204.2 81.9,191.0 111.8,164.5 141.7,138.0 171.6,151.2 201.5,124.7 231.4,98.2 261.3,111.5 291.2,146.8 321.1,182.1 350.9,213.0 380.8,230.7 410.7,261.6 440.6,235.1 470.5,208.6 500.4,177.7 530.3,142.4 560.2,107.1 590.1,76.1 620.0,58.5" class="dg-line" fill="none"/>
+        <line x1="231.4" y1="98.2" x2="620.0" y2="98.2" class="dg-line-3"/>
+        <line x1="410.7" y1="98.2" x2="410.7" y2="261.6" class="dg-down-wick" marker-end="url(#arrow)"/>
+        <text x="418.7" y="179.9" class="dg-bad" text-anchor="start">Drawdown −30 %</text>
+        <circle cx="231.4" cy="98.2" r="4.5" class="dg-point"/>
+        <text x="231.4" y="86.2" class="dg-label" text-anchor="middle">Höchststand</text>
+        <circle cx="410.7" cy="261.6" r="4.5" class="dg-point"/>
+        <text x="410.7" y="283.6" class="dg-label" text-anchor="middle">Tiefpunkt</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit (Wochen)</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Konto in €</text>
+        </svg>
+        <figcaption>Der Drawdown ist der Rückgang vom letzten Höchststand bis zum Tiefpunkt – hier rund 30 %.</figcaption>
+      </figure>
+      <p>Das Gemeine: Nach einem Verlust brauchst du prozentual <strong>mehr</strong> Gewinn, um wieder auszugleichen.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Nötiger Gewinn nach einem Verlust" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20.0" y1="221.2" x2="620.0" y2="221.2" class="dg-axis"/>
+        <rect x="34.2" y="221.2" width="46.5" height="6.2" rx="2" class="dg-bar-minus"/>
+        <text x="57.5" y="242.4" class="dg-small" text-anchor="middle">−10 %</text>
+        <text x="57.5" y="290.0" class="dg-text" text-anchor="middle">Verlust</text>
+        <text x="57.5" y="304.0" class="dg-text" text-anchor="middle">−10 %</text>
+        <rect x="109.2" y="214.3" width="46.5" height="6.9" rx="2" class="dg-bar"/>
+        <text x="132.5" y="207.3" class="dg-small" text-anchor="middle">+11 %</text>
+        <text x="132.5" y="290.0" class="dg-text" text-anchor="middle">nötig</text>
+        <text x="132.5" y="304.0" class="dg-text" text-anchor="middle">+11 %</text>
+        <rect x="184.2" y="221.2" width="46.5" height="15.6" rx="2" class="dg-bar-minus"/>
+        <text x="207.5" y="251.8" class="dg-small" text-anchor="middle">−25 %</text>
+        <text x="207.5" y="290.0" class="dg-text" text-anchor="middle">Verlust</text>
+        <text x="207.5" y="304.0" class="dg-text" text-anchor="middle">−25 %</text>
+        <rect x="259.2" y="200.4" width="46.5" height="20.8" rx="2" class="dg-bar"/>
+        <text x="282.5" y="193.4" class="dg-small" text-anchor="middle">+33 %</text>
+        <text x="282.5" y="290.0" class="dg-text" text-anchor="middle">nötig</text>
+        <text x="282.5" y="304.0" class="dg-text" text-anchor="middle">+33 %</text>
+        <rect x="334.2" y="221.2" width="46.5" height="31.2" rx="2" class="dg-bar-minus"/>
+        <text x="357.5" y="267.4" class="dg-small" text-anchor="middle">−50 %</text>
+        <text x="357.5" y="290.0" class="dg-text" text-anchor="middle">Verlust</text>
+        <text x="357.5" y="304.0" class="dg-text" text-anchor="middle">−50 %</text>
+        <rect x="409.2" y="158.8" width="46.5" height="62.4" rx="2" class="dg-bar"/>
+        <text x="432.5" y="151.8" class="dg-small" text-anchor="middle">+100 %</text>
+        <text x="432.5" y="290.0" class="dg-text" text-anchor="middle">nötig</text>
+        <text x="432.5" y="304.0" class="dg-text" text-anchor="middle">+100 %</text>
+        <rect x="484.2" y="221.2" width="46.5" height="46.8" rx="2" class="dg-bar-minus"/>
+        <text x="507.5" y="283.0" class="dg-small" text-anchor="middle">−75 %</text>
+        <text x="507.5" y="290.0" class="dg-text" text-anchor="middle">Verlust</text>
+        <text x="507.5" y="304.0" class="dg-text" text-anchor="middle">−75 %</text>
+        <rect x="559.2" y="34.0" width="46.5" height="187.2" rx="2" class="dg-bar-total"/>
+        <text x="582.5" y="27.0" class="dg-small" text-anchor="middle">+300 %</text>
+        <text x="582.5" y="290.0" class="dg-text" text-anchor="middle">nötig</text>
+        <text x="582.5" y="304.0" class="dg-text" text-anchor="middle">+300 %</text>
+        </svg>
+        <figcaption>Aus 100 € werden mit −50 % nur 50 €. Um wieder auf 100 € zu kommen, müssen sich diese 50 € verdoppeln (+100 %).</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Backtest</h2>
+      <p>Beim <strong>Backtest</strong> spielst du eine Strategie mit alten Kursdaten durch: Hätte sie in den letzten Jahren funktioniert? So bekommst du Trefferquote, Erwartungswert und maximalen Drawdown, bevor du echtes Geld riskierst.</p>
+      <table class="info-table">
+        <thead><tr><th>Falle</th><th>Was passiert</th></tr></thead>
+        <tbody>
+          <tr><td>Overfitting</td><td>Regeln so lange angepasst, bis sie perfekt auf die Vergangenheit passen – in der Zukunft versagen sie.</td></tr>
+          <tr><td>Zu wenige Trades</td><td>20 Trades sind Zufall; aussagekräftig wird es erst ab vielen Dutzend bis Hunderten.</td></tr>
+          <tr><td>Kosten vergessen</td><td>Gebühren, Spreads und Slippage machen aus Gewinn oft Verlust.</td></tr>
+          <tr><td>Blick in die Zukunft</td><td>Daten benutzt, die man zum Zeitpunkt des Trades noch nicht wissen konnte.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Vergangene Ergebnisse garantieren keine Zukunft – auch nicht im Backtest.</li>
+        <li>Überlege vorher, welchen Drawdown du aushalten kannst, ohne die Strategie panisch abzubrechen.</li>
+        <li>Im Trading-Journal Trefferquote und Ø Gewinn/Verlust laufend mitschreiben.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+        <a class="chip" href="psychologie.html">Psychologie</a>
+        <a class="chip" href="rendite-zinseszins.html">Rendite &amp; Zinseszins</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

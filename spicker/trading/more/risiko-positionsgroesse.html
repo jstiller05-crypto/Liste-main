@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Risikomanagement – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Risikomanagement</p>
+    <h1>Risikomanagement: 1-%-Regel, Positionsgröße &amp; CRV</h1>
+    <p class="page-lead">Nicht die Treffer entscheiden, ob man langfristig überlebt, sondern wie viel man bei den Fehlern verliert.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist Risikomanagement?</h2>
+      <p><strong>Risikomanagement</strong> heißt: <em>vor</em> jedem Trade festlegen, wie viel du maximal verlieren darfst – und die Position so klein wählen, dass ein Verlust nicht weh tut. Profis sagen: „Erst das Risiko, dann die Chance.“</p>
+    </section>
+    <section>
+      <h2>Die 1-%-Regel</h2>
+      <p>Pro Trade riskierst du höchstens <strong>1–2 % deines Kontos</strong>. Bei 10.000 € sind das 100–200 €.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Verlustserie bei 1 % und 10 % Risiko" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">0 %</text>
+        <line x1="52.0" y1="227.4" x2="620.0" y2="227.4" class="dg-grid"/>
+        <text x="46.0" y="231.4" class="dg-small" text-anchor="end">25 %</text>
+        <line x1="52.0" y1="168.7" x2="620.0" y2="168.7" class="dg-grid"/>
+        <text x="46.0" y="172.7" class="dg-small" text-anchor="end">50 %</text>
+        <line x1="52.0" y1="110.1" x2="620.0" y2="110.1" class="dg-grid"/>
+        <text x="46.0" y="114.1" class="dg-small" text-anchor="end">75 %</text>
+        <line x1="52.0" y1="51.5" x2="620.0" y2="51.5" class="dg-grid"/>
+        <text x="46.0" y="55.5" class="dg-small" text-anchor="end">100 %</text>
+        <polyline points="52.0,51.5 108.8,53.8 165.6,56.1 222.4,58.4 279.2,60.7 336.0,62.9 392.8,65.2 449.6,67.4 506.4,69.6 563.2,71.7 620.0,73.9" class="dg-line" fill="none"/>
+        <text x="620.0" y="63.9" class="dg-label" text-anchor="end">1 % Risiko: noch 90 %</text>
+        <polyline points="52.0,51.5 108.8,74.9 165.6,96.0 222.4,115.0 279.2,132.1 336.0,147.5 392.8,161.4 449.6,173.8 506.4,185.0 563.2,195.1 620.0,204.2" class="dg-line-3" fill="none"/>
+        <text x="620.0" y="194.2" class="dg-label" text-anchor="end">10 % Risiko: nur noch 35 %</text>
+        <text x="52.0" y="302.0" class="dg-small" text-anchor="middle">0</text>
+        <text x="336.0" y="302.0" class="dg-small" text-anchor="middle">5</text>
+        <text x="620.0" y="302.0" class="dg-small" text-anchor="middle">10</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Anzahl Verlust-Trades hintereinander</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Konto</text>
+        </svg>
+        <figcaption>Zehn Verluste in Folge passieren jedem einmal. Mit 1 % Risiko bleibt der Großteil des Kontos, mit 10 % ist fast zwei Drittel weg.</figcaption>
+      </figure>
+      <p><strong>Woher kommt das?</strong> Die Regel stammt aus der Welt der professionellen Rohstoff-Trader der 1970er/80er (z. B. den „Turtle Tradern“), die streng mit festen Prozent-Risiken pro Trade arbeiteten.</p>
+    </section>
+    <section>
+      <h2>Positionsgröße berechnen</h2>
+      <pre><code>Positionsgröße = riskierter Betrag / (Einstieg − Stop)
+
+Konto 10.000 € · 1 % = 100 € Risiko
+Einstieg 50 €, Stop 48 € → Abstand 2 €
+100 € / 2 € = 50 Aktien (Positionswert 2.500 €)</code></pre>
+      <ol>
+        <li>Stop-Loss festlegen (wo ist meine Idee falsch?).</li>
+        <li>Riskierten Betrag festlegen (z. B. 1 % des Kontos).</li>
+        <li>Daraus die Stückzahl ausrechnen – nicht umgekehrt.</li>
+      </ol>
+      <div class="note">Gebühren und mögliche Slippage gehören mit zum Risiko – bei kleinen Konten machen sie viel aus.</div>
+    </section>
+    <section>
+      <h2>Chance-Risiko-Verhältnis (CRV)</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Chance-Risiko-Verhältnis als Box" xmlns="http://www.w3.org/2000/svg">
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">91</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">97</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">102</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">108</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">114</text>
+        <polyline points="52.0,218.7 92.6,201.9 133.1,209.7 173.7,194.0 214.3,200.7 254.9,185.0" class="dg-line" fill="none"/>
+        <rect x="254.9" y="72.9" width="359.1" height="112.2" rx="0" class="dg-up"/>
+        <rect x="254.9" y="185.0" width="359.1" height="56.1" rx="0" class="dg-down"/>
+        <text x="434.4" y="134.0" class="dg-on-candle" text-anchor="middle">Chance: +10 €</text>
+        <text x="434.4" y="218.1" class="dg-on-candle" text-anchor="middle">Risiko: −5 €</text>
+        <text x="246.9" y="76.9" class="dg-good" text-anchor="end">Ziel 110</text>
+        <text x="246.9" y="179.0" class="dg-label" text-anchor="end">Einstieg 100</text>
+        <text x="246.9" y="245.1" class="dg-bad" text-anchor="end">Stop 95</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Einstieg 100 €, Stop 95 €, Ziel 110 €: 10 € Chance gegen 5 € Risiko → CRV 2.</figcaption>
+      </figure>
+      <pre><code>CRV = (Ziel − Einstieg) / (Einstieg − Stop)
+
+(110 − 100) / (100 − 95) = 10 / 5 = 2</code></pre>
+      <p>Mit CRV 2 reicht es, wenn etwas mehr als jeder dritte Trade aufgeht. Viele Trader nehmen nur Trades mit CRV ab 2.</p>
+    </section>
+    <section>
+      <h2>Notgroschen zuerst</h2>
+      <p>Bevor du überhaupt investierst oder tradest: <strong>3–6 Monatsausgaben</strong> als Reserve auf einem Tagesgeldkonto. So musst du bei einer kaputten Waschmaschine nicht im ungünstigsten Moment verkaufen.</p>
+      <ul>
+        <li>Nur Geld anlegen, das du mehrere Jahre nicht brauchst.</li>
+        <li>Fürs Traden nur einen kleinen Teil, dessen Verlust du verkraften kannst.</li>
+        <li>Nie mit Kredit (Dispo, Ratenkredit) traden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Den Stop nach dem Chart setzen (unter Unterstützung, mit ATR-Abstand), nicht nach dem Wunschbetrag.</li>
+        <li>Ein festes Tages- oder Wochenlimit für Verluste schützt vor Revenge Trading.</li>
+        <li>Viele kleine Positionen im selben Thema sind ein großes Risiko (Korrelation beachten).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="erwartungswert-drawdown.html">Erwartungswert &amp; Drawdown</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+        <a class="chip" href="bollinger-atr.html">Volatilität &amp; Bollinger</a>
+        <a class="chip" href="psychologie.html">Psychologie</a>
+        <a class="chip" href="diversifikation.html">Diversifikation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

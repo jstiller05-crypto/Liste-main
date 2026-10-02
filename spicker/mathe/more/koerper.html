@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Körper – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Geometrie</p>
+    <h1>Körper: Volumen &amp; Oberfläche</h1>
+    <p class="page-lead">Quader, Würfel, Zylinder, Kegel, Pyramide und Kugel – wie viel hineinpasst (Volumen) und wie groß die Hülle ist (Oberfläche).</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein <strong>Körper</strong> ist eine dreidimensionale Figur. Das <strong>Volumen</strong> V sagt, wie viel hineinpasst (z. B. Wasser), die <strong>Oberfläche</strong> O, wie viel Material man für die Hülle braucht (z. B. Verpackung).</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Quader, Zylinder, Kegel und Kugel mit Volumenformeln" xmlns="http://www.w3.org/2000/svg">
+        <rect x="22.0" y="120.0" width="96.0" height="80.0" rx="0" class="dg-fill dg-shape"/>
+        <polyline points="22.0,120.0 50.0,92.0 146.0,92.0 118.0,120.0" class="dg-line"/>
+        <polyline points="146.0,92.0 146.0,172.0 118.0,200.0" class="dg-line"/>
+        <text x="70.0" y="218.0" class="dg-label" text-anchor="middle">a</text>
+        <text x="138.0" y="196.0" class="dg-label" text-anchor="start">b</text>
+        <text x="16.0" y="164.0" class="dg-label" text-anchor="end">c</text>
+        <ellipse cx="240" cy="92" rx="50" ry="14" class="dg-fill dg-shape"/>
+        <path d="M190,200 A50,14 0 0 0 290,200" class="dg-line"/>
+        <path d="M190,200 A50,14 0 0 1 290,200" class="dg-line-3"/>
+        <line x1="190.0" y1="92.0" x2="190.0" y2="200.0" class="dg-line"/>
+        <line x1="290.0" y1="92.0" x2="290.0" y2="200.0" class="dg-line"/>
+        <line x1="240.0" y1="92.0" x2="290.0" y2="92.0" class="dg-line-2"/>
+        <text x="265.0" y="86.0" class="dg-label" text-anchor="middle">r</text>
+        <text x="298.0" y="146.0" class="dg-label" text-anchor="start">h</text>
+        <path d="M350,200 A50,14 0 0 0 450,200" class="dg-line"/>
+        <path d="M350,200 A50,14 0 0 1 450,200" class="dg-line-3"/>
+        <line x1="350.0" y1="200.0" x2="400.0" y2="66.0" class="dg-line"/>
+        <line x1="450.0" y1="200.0" x2="400.0" y2="66.0" class="dg-line"/>
+        <line x1="400.0" y1="66.0" x2="400.0" y2="200.0" class="dg-line-3"/>
+        <line x1="400.0" y1="200.0" x2="450.0" y2="200.0" class="dg-line-2"/>
+        <text x="406.0" y="133.0" class="dg-label" text-anchor="start">h</text>
+        <text x="425.0" y="224.0" class="dg-label" text-anchor="middle">r</text>
+        <circle cx="560.0" cy="140.0" r="62.0" class="dg-fill dg-shape"/>
+        <path d="M498,140 A62,15.5 0 0 0 622,140" class="dg-line-3"/>
+        <line x1="560.0" y1="140.0" x2="622.0" y2="140.0" class="dg-line-2"/>
+        <circle cx="560.0" cy="140.0" r="3.5" class="dg-point"/>
+        <text x="591.0" y="134.0" class="dg-label" text-anchor="middle">r</text>
+        <text x="70.0" y="30.0" class="dg-label" text-anchor="middle">Quader</text>
+        <text x="70.0" y="262.0" class="dg-accent-text" text-anchor="middle">V = a · b · c</text>
+        <text x="240.0" y="30.0" class="dg-label" text-anchor="middle">Zylinder</text>
+        <text x="240.0" y="262.0" class="dg-accent-text" text-anchor="middle">V = π r² · h</text>
+        <text x="400.0" y="30.0" class="dg-label" text-anchor="middle">Kegel</text>
+        <text x="400.0" y="262.0" class="dg-accent-text" text-anchor="middle">V = ⅓ π r² · h</text>
+        <text x="560.0" y="30.0" class="dg-label" text-anchor="middle">Kugel</text>
+        <text x="560.0" y="262.0" class="dg-accent-text" text-anchor="middle">V = 4/3 π r³</text>
+        <text x="320.0" y="304.0" class="dg-small" text-anchor="middle">gestrichelt = verdeckte Kante bzw. Hilfslinie</text>
+        </svg>
+        <figcaption>Vier Grundkörper mit ihren Volumenformeln.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>V</code></td><td>Volumen, Einheit z. B. cm³ oder m³ (1 dm³ = 1 Liter)</td></tr>
+          <tr><td><code>O</code></td><td>Oberfläche, Einheit z. B. cm²</td></tr>
+          <tr><td><code>M</code></td><td>Mantelfläche – die Seitenfläche ohne Boden und Deckel</td></tr>
+          <tr><td><code>G</code></td><td>Grundfläche – die Fläche, auf der der Körper steht</td></tr>
+          <tr><td><code>h</code></td><td>Höhe – senkrecht zur Grundfläche gemessen</td></tr>
+          <tr><td><code>r</code></td><td>Radius der kreisförmigen Grundfläche bzw. der Kugel</td></tr>
+          <tr><td><code>a, b, c</code></td><td>Kantenlängen (Länge, Breite, Höhe)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Die Ägypter berechneten Pyramidenvolumen schon um 1850 v. Chr. (Moskauer Papyrus). Archimedes fand heraus, dass eine Kugel genau ⅔ des Zylinders füllt, in den sie hineinpasst – darauf war er so stolz, dass er Kugel und Zylinder auf seinen Grabstein meißeln ließ.</p>
+    </section>
+    <section>
+      <h2>Prismen und Zylinder: Grundfläche mal Höhe</h2>
+      <table class="info-table">
+        <thead><tr><th>Körper</th><th>Volumen V</th><th>Oberfläche O</th></tr></thead>
+        <tbody>
+          <tr><td>Würfel</td><td><code>V = a³</code></td><td><code>O = 6a²</code></td></tr>
+          <tr><td>Quader</td><td><code>V = a · b · c</code></td><td><code>O = 2(ab + ac + bc)</code></td></tr>
+          <tr><td>Zylinder</td><td><code>V = π r² · h</code></td><td><code>O = 2πr² + 2πrh</code> (Boden + Deckel + Mantel)</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Getränkedose: r = 3 cm, h = 12 cm
+V = π · 3² · 12 ≈ 339,3 cm³ ≈ 0,34 Liter
+M = 2π · 3 · 12 ≈ 226,2 cm²   (Etikett)</code></pre>
+    </section>
+    <section>
+      <h2>Spitze Körper: ⅓ · Grundfläche · Höhe</h2>
+      <table class="info-table">
+        <thead><tr><th>Körper</th><th>Volumen V</th></tr></thead>
+        <tbody>
+          <tr><td>Pyramide</td><td><code>V = ⅓ · G · h</code> (G z. B. a² bei quadratischer Grundfläche)</td></tr>
+          <tr><td>Kegel</td><td><code>V = ⅓ · π r² · h</code></td></tr>
+        </tbody>
+      </table>
+      <p>Ein spitzer Körper hat genau <strong>ein Drittel</strong> des Volumens eines Prismas bzw. Zylinders mit gleicher Grundfläche und Höhe – dreimal Kegel füllen genau einen Zylinder.</p>
+      <pre><code>Eiswaffel (Kegel): r = 2,5 cm, h = 12 cm
+V = ⅓ · π · 2,5² · 12 ≈ 78,5 cm³</code></pre>
+    </section>
+    <section>
+      <h2>Kugel</h2>
+      <pre><code>V = 4/3 · π · r³
+O = 4 · π · r²
+
+Fußball: r = 11 cm
+V = 4/3 · π · 1331 ≈ 5575 cm³ ≈ 5,6 Liter
+O = 4 · π · 121 ≈ 1520,5 cm²</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Volumeneinheiten: 1 m³ = 1.000 dm³ = 1.000.000 cm³ (Faktor 1000 pro Stufe).</li>
+        <li>1 Liter = 1 dm³, 1 ml = 1 cm³.</li>
+        <li>Bei Kegel und Pyramide die echte Höhe (senkrecht) nehmen, nicht die schräge Seitenlinie.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="flaechen.html">Flächen &amp; Winkel</a>
+        <a class="chip" href="kreis.html">Kreis &amp; Thales</a>
+        <a class="chip" href="integral.html">Integral</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

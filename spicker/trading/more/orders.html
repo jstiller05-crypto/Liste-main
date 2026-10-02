@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Ordertypen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Börse & Orders</p>
+    <h1>Ordertypen: Market, Limit, Stop-Loss &amp; Co.</h1>
+    <p class="page-lead">Mit welchem Auftrag du kaufst oder verkaufst, entscheidet über Preis, Ausführung und Risiko. Hier die wichtigsten Ordertypen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist eine Order?</h2>
+      <p>Eine <strong>Order</strong> ist ein Auftrag an deinen Broker: „Kaufe/verkaufe X Stück von Y“. Zusätzlich legst du fest, <strong>zu welchem Preis</strong> und <strong>unter welcher Bedingung</strong> der Auftrag ausgeführt werden soll.</p>
+      <table class="info-table">
+        <thead><tr><th>Ordertyp</th><th>Was passiert?</th><th>Vorteil</th><th>Nachteil</th></tr></thead>
+        <tbody>
+          <tr><td>Market-Order (bestens/billigst)</td><td>sofort zum nächsten verfügbaren Preis</td><td>wird fast immer ausgeführt</td><td>Preis nicht garantiert</td></tr>
+          <tr><td>Limit-Order</td><td>nur zum Limit oder besser</td><td>Preis garantiert</td><td>evtl. keine Ausführung</td></tr>
+          <tr><td>Stop-Loss</td><td>wird beim Erreichen der Stop-Marke zur Market-Order</td><td>begrenzt Verluste automatisch</td><td>bei Kurslücken schlechterer Preis</td></tr>
+          <tr><td>Stop-Limit</td><td>wird beim Stop zur Limit-Order</td><td>kein Verkauf zu „jedem“ Preis</td><td>bei Absturz evtl. gar kein Verkauf</td></tr>
+          <tr><td>Take-Profit</td><td>schließt beim Gewinnziel</td><td>Gewinn wird gesichert</td><td>Kurs kann danach weiterlaufen</td></tr>
+          <tr><td>Trailing Stop</td><td>Stop zieht mit dem Kurs nach</td><td>sichert laufende Gewinne</td><td>kann durch normale Schwankung auslösen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Früher riefen Makler auf dem <strong>Börsenparkett</strong> ihre Aufträge laut in den Saal. Limit-Aufträge wurden in ein Buch des Maklers (das „Orderbuch“) geschrieben. Heute laufen Orders elektronisch – an Xetra seit 1997 – aber die Grundtypen sind die gleichen geblieben.</p>
+    </section>
+    <section>
+      <h2>Stop-Loss und Take-Profit</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Stop-Loss und Take-Profit" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">92</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">97</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">102</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">108</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">113</text>
+        <line x1="52.0" y1="249.1" x2="620.0" y2="249.1" class="dg-down-wick dg-dashed"/>
+        <text x="616.0" y="243.1" class="dg-bad" text-anchor="end">Stop-Loss 95 €</text>
+        <line x1="52.0" y1="64.9" x2="620.0" y2="64.9" class="dg-up-wick dg-dashed"/>
+        <text x="58.0" y="58.9" class="dg-good" text-anchor="start">Take-Profit 110 €</text>
+        <line x1="52.0" y1="187.7" x2="620.0" y2="187.7" class="dg-line-3"/>
+        <text x="58.0" y="181.7" class="dg-label" text-anchor="start">Einstieg 100 €</text>
+        <polyline points="52.0,224.6 85.4,212.3 118.8,218.4 152.2,200.0 185.6,206.1 219.1,187.7 252.5,175.4 285.9,193.9 319.3,212.3 352.7,200.0 386.1,169.3 419.5,150.9 452.9,163.1 486.4,132.4 519.8,114.0 553.2,126.3 586.6,95.6 620.0,64.9" class="dg-line" fill="none"/>
+        <circle cx="219.1" cy="187.7" r="4.5" class="dg-point"/>
+        <circle cx="620.0" cy="64.9" r="4.5" class="dg-point"/>
+        <text x="610.0" y="86.9" class="dg-label" text-anchor="end">Ziel erreicht → Verkauf</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Du kaufst bei 100 €. Fällt der Kurs auf 95 €, verkauft der Stop-Loss automatisch. Steigt er auf 110 €, sichert der Take-Profit den Gewinn.</figcaption>
+      </figure>
+      <p>Beide Marken werden <strong>vor</strong> dem Trade festgelegt – dann entscheidet nicht die Angst oder Gier im Moment.</p>
+      <p>Beispiel: 20 Aktien zu 100 €. Stop bei 95 € → maximaler Verlust 20 · 5 € = 100 €. Ziel 110 € → möglicher Gewinn 200 €.</p>
+    </section>
+    <section>
+      <h2>Trailing Stop</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Trailing Stop folgt dem Kurs" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">87</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">100</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">112</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">124</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">136</text>
+        <polyline points="52.0,218.9 80.4,208.2 108.8,213.5 137.2,197.5 165.6,181.4 194.0,186.8 222.4,165.4 250.8,149.4 279.2,160.0 307.6,133.3 336.0,111.9 364.4,122.6 392.8,95.9 421.2,74.5 449.6,85.2 478.0,58.5 506.4,69.2 534.8,79.9 563.2,90.5 591.6,106.6 620.0,117.3" class="dg-line" fill="none"/>
+        <text x="222.4" y="153.4" class="dg-label" text-anchor="end">Kurs</text>
+        <polyline points="52.0,261.6 80.4,250.9 108.8,250.9 137.2,240.2 165.6,224.2 194.0,224.2 222.4,208.2 250.8,192.1 279.2,192.1 307.6,176.1 336.0,154.7 364.4,154.7 392.8,138.7 421.2,117.3 449.6,117.3 478.0,101.2 506.4,101.2 534.8,101.2 563.2,101.2 591.6,101.2 620.0,101.2" class="dg-line-3" fill="none"/>
+        <text x="222.4" y="230.2" class="dg-label" text-anchor="start">Trailing Stop (8 € Abstand)</text>
+        <circle cx="591.6" cy="106.6" r="4.5" class="dg-point"/>
+        <text x="581.6" y="128.6" class="dg-label" text-anchor="end">Verkauf bei ca. 122 €</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Der Stop wandert mit jedem neuen Hoch nach oben, aber nie zurück. Dreht der Kurs, wird mit Gewinn verkauft.</figcaption>
+      </figure>
+      <p>Gestartet bei 100 € mit Stop bei 92 €. Beim Hoch von 130 € liegt der Stop schon bei 122 € – der Gewinn ist zum großen Teil gesichert.</p>
+    </section>
+    <section>
+      <h2>Slippage und Kurslücken (Gaps)</h2>
+      <p><strong>Slippage</strong> ist die Differenz zwischen dem Preis, den du wolltest, und dem Preis, den du bekommst. Sie entsteht, wenn sich der Kurs schnell bewegt oder zu wenig Angebote im Orderbuch stehen.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Kurslücke durch den Stop" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">86</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">91</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">96</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">101</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">106</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-down-wick dg-dashed"/>
+        <text x="58.0" y="151.0" class="dg-bad" text-anchor="start">Stop-Loss 96 €</text>
+        <line x1="99.3" y1="66.7" x2="99.3" y2="105.4" class="dg-up-wick"/>
+        <rect x="79.0" y="79.6" width="40.6" height="12.9" rx="1" class="dg-up"/>
+        <line x1="167.0" y1="53.8" x2="167.0" y2="92.5" class="dg-up-wick"/>
+        <rect x="146.7" y="66.7" width="40.6" height="12.9" rx="1" class="dg-up"/>
+        <line x1="234.6" y1="60.2" x2="234.6" y2="111.8" class="dg-down-wick"/>
+        <rect x="214.3" y="66.7" width="40.6" height="38.7" rx="1" class="dg-down"/>
+        <line x1="302.2" y1="92.5" x2="302.2" y2="137.7" class="dg-down-wick"/>
+        <rect x="281.9" y="105.4" width="40.6" height="25.8" rx="1" class="dg-down"/>
+        <line x1="369.8" y1="111.8" x2="369.8" y2="144.1" class="dg-up-wick"/>
+        <rect x="349.5" y="118.3" width="40.6" height="12.9" rx="1" class="dg-up"/>
+        <line x1="437.4" y1="105.4" x2="437.4" y2="137.7" class="dg-down-wick"/>
+        <rect x="417.1" y="118.3" width="40.6" height="12.9" rx="1" class="dg-down"/>
+        <line x1="505.0" y1="208.6" x2="505.0" y2="253.8" class="dg-up-wick"/>
+        <rect x="484.8" y="221.5" width="40.6" height="12.9" rx="1" class="dg-up"/>
+        <line x1="572.7" y1="195.7" x2="572.7" y2="234.4" class="dg-up-wick"/>
+        <rect x="552.4" y="202.1" width="40.6" height="19.4" rx="1" class="dg-up"/>
+        <circle cx="505.0" cy="234.4" r="4.5" class="dg-point"/>
+        <text x="495.0" y="256.4" class="dg-label" text-anchor="end">Eröffnung 90 € → Verkauf weit unter dem Stop</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit (1 Kerze = 1 Tag)</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Über Nacht kommen schlechte Nachrichten. Der Kurs eröffnet bei 90 € – der Stop bei 96 € wird zur Market-Order und erst bei etwa 90 € ausgeführt.</figcaption>
+      </figure>
+      <p>Ein <strong>Gap</strong> (Kurslücke) entsteht, wenn der nächste Eröffnungskurs deutlich vom letzten Schlusskurs abweicht, z. B. nach Quartalszahlen am Abend oder am Wochenende.</p>
+      <div class="note">Ein Stop-Loss ist also <strong>kein garantierter</strong> Verkaufspreis. Nur ein garantierter Stop (bei manchen CFD-Brokern, gegen Gebühr) schützt davor.</div>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Gültigkeit</td><td>Wie lange eine Order gilt, z. B. nur heute oder bis auf Widerruf (GTC).</td></tr>
+          <tr><td>Teilausführung</td><td>Nur ein Teil der Stückzahl wurde gekauft, weil nicht genug Angebot da war.</td></tr>
+          <tr><td>Stop-Buy</td><td>Kauf-Order, die erst über einer Marke auslöst (z. B. bei einem Ausbruch).</td></tr>
+          <tr><td>OCO (one cancels other)</td><td>Stop-Loss und Take-Profit gekoppelt: Wird einer ausgeführt, wird der andere gelöscht.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei wenig gehandelten Werten nie mit Market-Order kaufen – immer ein Limit setzen.</li>
+        <li>Stop nicht zu eng setzen: Normale Schwankungen lösen ihn sonst ständig aus (siehe ATR).</li>
+        <li>Stops nie „mal eben“ nach unten verschieben, nur weil der Kurs in die Nähe kommt.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="boerse-spread.html">Börse &amp; Spread</a>
+        <a class="chip" href="kursbildung.html">Kursbildung</a>
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+        <a class="chip" href="bollinger-atr.html">Volatilität &amp; Bollinger</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

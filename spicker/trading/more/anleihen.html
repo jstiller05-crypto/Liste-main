@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Anleihen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Anleihen & Zinsen</p>
+    <h1>Anleihen, Zinsen &amp; Rating</h1>
+    <p class="page-lead">Bei einer Anleihe leihst du jemandem Geld und bekommst Zinsen dafür. Hier erfährst du, warum ihr Kurs trotzdem schwankt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist eine Anleihe?</h2>
+      <p>Eine <strong>Anleihe</strong> (engl. <em>Bond</em>) ist ein Schuldschein: Du leihst einem Staat oder Unternehmen Geld. Dafür bekommst du jedes Jahr einen festen Zins – den <strong>Kupon</strong> – und am Ende den <strong>Nennwert</strong> zurück.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Zahlungsströme einer Anleihe" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="22.0" class="dg-label" text-anchor="middle">Anleihe: Nennwert 100 €, Kupon 3 %, Laufzeit 5 Jahre, gekauft zu 95 %</text>
+        <line x1="20.0" y1="154.9" x2="620.0" y2="154.9" class="dg-axis"/>
+        <rect x="39.0" y="154.9" width="62.0" height="93.1" rx="2" class="dg-bar-minus"/>
+        <text x="70.0" y="263.0" class="dg-small" text-anchor="middle">−95 €</text>
+        <text x="70.0" y="270.0" class="dg-text" text-anchor="middle">Kauf</text>
+        <text x="70.0" y="284.0" class="dg-text" text-anchor="middle">Jahr 0</text>
+        <rect x="139.0" y="152.0" width="62.0" height="2.9" rx="2" class="dg-bar"/>
+        <text x="170.0" y="145.0" class="dg-small" text-anchor="middle">+3 €</text>
+        <text x="170.0" y="270.0" class="dg-text" text-anchor="middle">Jahr 1</text>
+        <rect x="239.0" y="152.0" width="62.0" height="2.9" rx="2" class="dg-bar"/>
+        <text x="270.0" y="145.0" class="dg-small" text-anchor="middle">+3 €</text>
+        <text x="270.0" y="270.0" class="dg-text" text-anchor="middle">Jahr 2</text>
+        <rect x="339.0" y="152.0" width="62.0" height="2.9" rx="2" class="dg-bar"/>
+        <text x="370.0" y="145.0" class="dg-small" text-anchor="middle">+3 €</text>
+        <text x="370.0" y="270.0" class="dg-text" text-anchor="middle">Jahr 3</text>
+        <rect x="439.0" y="152.0" width="62.0" height="2.9" rx="2" class="dg-bar"/>
+        <text x="470.0" y="145.0" class="dg-small" text-anchor="middle">+3 €</text>
+        <text x="470.0" y="270.0" class="dg-text" text-anchor="middle">Jahr 4</text>
+        <rect x="539.0" y="54.0" width="62.0" height="100.9" rx="2" class="dg-bar-total"/>
+        <text x="570.0" y="47.0" class="dg-small" text-anchor="middle">+103 €</text>
+        <text x="570.0" y="270.0" class="dg-text" text-anchor="middle">Jahr 5</text>
+        </svg>
+        <figcaption>Du zahlst 95 €, bekommst 4-mal 3 € Zinsen und im letzten Jahr 3 € Zinsen plus 100 € zurück.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Schon die Stadt Venedig lieh sich im 12. Jahrhundert Geld von ihren Bürgern und zahlte Zinsen dafür. Das Wort <strong>Kupon</strong> kommt von früher: Papier-Anleihen hatten kleine Zettel zum Abschneiden (frz. <em>couper</em>), die man gegen die Zinszahlung eintauschte.</p>
+    </section>
+    <section>
+      <h2>Kupon und Rendite sind nicht dasselbe</h2>
+      <p>Anleihekurse werden in <strong>Prozent vom Nennwert</strong> angegeben. Kaufst du unter 100 %, bekommst du am Ende mehr zurück, als du bezahlt hast.</p>
+      <table class="info-table">
+        <thead><tr><th>Kaufkurs</th><th>Rendite im Vergleich zum Kupon (3 %)</th></tr></thead>
+        <tbody>
+          <tr><td>unter 100 % (z. B. 95 %)</td><td>höher – im Beispiel rund 4,1 % pro Jahr</td></tr>
+          <tr><td>genau 100 %</td><td>gleich – 3 %</td></tr>
+          <tr><td>über 100 % (z. B. 105 %)</td><td>niedriger – der Aufpreis geht bis zum Ende verloren</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Zinsen und Anleihekurse: die Wippe</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Wippe aus Zins und Anleihekurs" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <polygon points="320,190 290,250 350,250" class="dg-box"/>
+        <line x1="110.0" y1="120.0" x2="530.0" y2="260.0" class="dg-line"/>
+        <rect x="60.0" y="64.0" width="150.0" height="52.0" rx="6" class="dg-box"/>
+        <text x="135.0" y="86.0" class="dg-label" text-anchor="middle">Marktzins</text>
+        <text x="135.0" y="106.0" class="dg-bad" text-anchor="middle">steigt ↑</text>
+        <rect x="440.0" y="200.0" width="170.0" height="52.0" rx="6" class="dg-box"/>
+        <text x="525.0" y="222.0" class="dg-label" text-anchor="middle">alte Anleihe</text>
+        <text x="525.0" y="242.0" class="dg-bad" text-anchor="middle">Kurs fällt ↓</text>
+        <text x="320.0" y="30.0" class="dg-label" text-anchor="middle">Zinsen und Anleihekurse bewegen sich wie eine Wippe</text>
+        <text x="320.0" y="286.0" class="dg-text" text-anchor="middle">Neue Anleihen zahlen 5 %, deine nur 3 % → niemand zahlt dir mehr den vollen Preis.</text>
+        <text x="320.0" y="306.0" class="dg-small" text-anchor="middle">Fällt der Zins, passiert das Gegenteil: deine alte Anleihe wird mehr wert.</text>
+        </svg>
+        <figcaption>Steigt der Marktzins, fallen die Kurse bestehender Anleihen – und umgekehrt.</figcaption>
+      </figure>
+      <p><strong>Duration</strong> misst, wie stark eine Anleihe auf Zinsänderungen reagiert (entwickelt 1938 von Frederick Macaulay). Faustregel: Zins +1 Prozentpunkt → Kurs ca. <strong>−Duration %</strong>.</p>
+      <p>Beispiel: Duration 7 – der Marktzins steigt um 1 % → die Anleihe verliert etwa 7 %. Lange Laufzeiten = höhere Duration = mehr Zinsrisiko.</p>
+      <div class="note">Das ist 2022 passiert: Die Zinsen stiegen sehr schnell, und lange Staatsanleihen verloren teils über 20 % an Wert.</div>
+    </section>
+    <section>
+      <h2>Leitzins</h2>
+      <p>Der <strong>Leitzins</strong> ist der Zins, zu dem sich Banken Geld bei der Zentralbank leihen – in Europa bei der <strong>EZB</strong>, in den USA bei der <strong>Fed</strong>. Er beeinflusst alle anderen Zinsen: Kredit, Tagesgeld, Anleihen.</p>
+      <table class="info-table">
+        <thead><tr><th>Zentralbank …</th><th>Ziel</th><th>Folge für die Börse</th></tr></thead>
+        <tbody>
+          <tr><td>erhöht den Leitzins</td><td>Inflation bremsen</td><td>Anleihen werden attraktiver, Aktien oft unter Druck</td></tr>
+          <tr><td>senkt den Leitzins</td><td>Wirtschaft ankurbeln</td><td>Kredite billiger, Aktien oft gefragt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Rating: Wie sicher ist der Schuldner?</h2>
+      <p>Ratingagenturen wie <strong>S&P</strong>, <strong>Moody’s</strong> und <strong>Fitch</strong> geben Bonitätsnoten. Moody’s bewertete schon 1909 amerikanische Eisenbahnanleihen.</p>
+      <table class="info-table">
+        <thead><tr><th>Note (S&P)</th><th>Bedeutung</th><th>Zins</th></tr></thead>
+        <tbody>
+          <tr><td>AAA</td><td>beste Bonität, z. B. Deutschland</td><td>niedrig</td></tr>
+          <tr><td>AA bis BBB−</td><td>Investment Grade – solide</td><td>mittel</td></tr>
+          <tr><td>BB+ bis B</td><td>High Yield („Ramsch“) – spekulativ</td><td>hoch</td></tr>
+          <tr><td>CCC bis D</td><td>Ausfall droht bzw. ist eingetreten</td><td>sehr hoch</td></tr>
+        </tbody>
+      </table>
+      <p>Je schlechter das Rating, desto mehr Zinsen muss der Schuldner bieten – als Ausgleich für das höhere Ausfallrisiko.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Hohe Zinsen bedeuten fast immer hohes Risiko.</li>
+        <li>Hältst du eine Anleihe bis zum Ende, sind Kursschwankungen dazwischen egal – solange der Schuldner zahlt.</li>
+        <li>Anleihe-ETFs haben keine feste Laufzeit – dort wirkt das Zinsrisiko dauerhaft.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="rendite-zinseszins.html">Rendite &amp; Zinseszins</a>
+        <a class="chip" href="diversifikation.html">Diversifikation</a>
+        <a class="chip" href="quartalszahlen-makro.html">Quartalszahlen &amp; Makro</a>
+        <a class="chip" href="etf-index.html">ETF &amp; Index</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

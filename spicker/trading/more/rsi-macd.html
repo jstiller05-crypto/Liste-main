@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: RSI &amp; MACD – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Indikatoren</p>
+    <h1>RSI und MACD</h1>
+    <p class="page-lead">Zwei Oszillatoren, die unter dem Chart angezeigt werden: Sie zeigen, wie stark und wie schnell sich ein Kurs bewegt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist ein Oszillator?</h2>
+      <p>Ein <strong>Oszillator</strong> schwingt in einem eigenen Fenster unter dem Kurs hin und her. Er misst den <strong>Schwung</strong> (Momentum): Steigt der Kurs gerade schnell? Lässt die Kraft nach?</p>
+    </section>
+    <section>
+      <h2>RSI (Relative Strength Index)</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Kurs mit RSI" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="168.0" x2="620.0" y2="168.0" class="dg-grid"/>
+        <text x="46.0" y="172.0" class="dg-small" text-anchor="end">95</text>
+        <line x1="52.0" y1="96.0" x2="620.0" y2="96.0" class="dg-grid"/>
+        <text x="46.0" y="100.0" class="dg-small" text-anchor="end">119</text>
+        <line x1="52.0" y1="24.0" x2="620.0" y2="24.0" class="dg-grid"/>
+        <text x="46.0" y="28.0" class="dg-small" text-anchor="end">143</text>
+        <polyline points="52.0,154.4 58.4,148.1 64.8,142.4 71.1,140.5 77.5,138.2 83.9,134.2 90.3,127.8 96.7,123.7 103.1,122.4 109.4,120.5 115.8,117.2 122.2,112.2 128.6,108.8 135.0,106.1 141.3,103.2 147.7,99.5 154.1,97.5 160.5,94.1 166.9,90.3 173.3,84.0 179.6,80.8 186.0,75.7 192.4,74.2 198.8,69.3 205.2,65.7 211.6,63.3 217.9,60.0 224.3,55.0 230.7,52.2 237.1,47.1 243.5,41.0 249.8,42.6 256.2,44.2 262.6,50.9 269.0,54.7 275.4,60.3 281.8,63.1 288.1,67.4 294.5,71.5 300.9,75.1 307.3,80.6 313.7,84.8 320.0,90.5 326.4,91.3 332.8,96.5 339.2,101.0 345.6,108.5 352.0,115.5 358.3,121.5 364.7,124.5 371.1,127.6 377.5,131.5 383.9,137.1 390.2,138.2 396.6,144.5 403.0,150.4 409.4,148.0 415.8,148.2 422.2,146.2 428.5,142.9 434.9,141.5 441.3,139.2 447.7,137.5 454.1,137.2 460.4,141.2 466.8,141.8 473.2,140.2 479.6,141.6 486.0,141.0 492.4,139.1 498.7,135.2 505.1,136.0 511.5,135.4 517.9,133.4 524.3,130.9 530.7,131.8 537.0,126.9 543.4,126.8 549.8,123.3 556.2,122.1 562.6,119.8 568.9,115.3 575.3,112.5 581.7,110.7 588.1,110.9 594.5,110.5 600.9,111.5 607.2,106.3 613.6,107.5 620.0,110.6" class="dg-line-2" fill="none"/>
+        <text x="8.0" y="12.0" class="dg-small" text-anchor="start">Kurs</text>
+        <rect x="52.0" y="196.0" width="568.0" height="100.0" rx="0" class="dg-box"/>
+        <line x1="52.0" y1="226.0" x2="620.0" y2="226.0" class="dg-line-3"/>
+        <text x="46.0" y="230.0" class="dg-small" text-anchor="end">70</text>
+        <line x1="52.0" y1="266.0" x2="620.0" y2="266.0" class="dg-line-3"/>
+        <text x="46.0" y="270.0" class="dg-small" text-anchor="end">30</text>
+        <polyline points="141.3,196.0 147.7,196.0 154.1,196.0 160.5,196.0 166.9,196.0 173.3,196.0 179.6,196.0 186.0,196.0 192.4,196.0 198.8,196.0 205.2,196.0 211.6,196.0 217.9,196.0 224.3,196.0 230.7,196.0 237.1,196.0 243.5,196.0 249.8,199.0 256.2,202.1 262.6,213.8 269.0,219.7 275.4,227.5 281.8,231.0 288.1,236.2 294.5,240.6 300.9,244.3 307.3,249.4 313.7,252.9 320.0,257.1 326.4,257.7 332.8,261.3 339.2,264.0 345.6,268.0 352.0,271.2 358.3,273.5 364.7,274.6 371.1,275.6 377.5,277.0 383.9,278.7 390.2,279.0 396.6,280.8 403.0,282.2 409.4,278.8 415.8,278.8 422.2,275.7 428.5,270.8 434.9,268.7 441.3,265.4 447.7,263.0 454.1,262.5 460.4,265.4 466.8,265.9 473.2,263.2 479.6,264.3 486.0,263.3 492.4,259.8 498.7,253.2 505.1,254.2 511.5,253.2 517.9,249.8 524.3,245.9 530.7,247.3 537.0,240.1 543.4,240.0 549.8,235.4 556.2,233.9 562.6,231.3 568.9,226.7 575.3,224.2 581.7,222.7 588.1,223.2 594.5,222.9 600.9,225.3 607.2,220.6 613.6,223.5 620.0,230.4" class="dg-line" fill="none"/>
+        <text x="58.0" y="210.0" class="dg-label" text-anchor="start">RSI (14)</text>
+        <circle cx="141.3" cy="103.2" r="4.5" class="dg-point"/>
+        <text x="141.3" y="93.2" class="dg-label" text-anchor="middle">überkauft</text>
+        <circle cx="403.0" cy="150.4" r="4.5" class="dg-point"/>
+        <text x="403.0" y="170.4" class="dg-label" text-anchor="middle">überverkauft</text>
+        <text x="620.0" y="314.0" class="dg-small" text-anchor="end">Zeit</text>
+        </svg>
+        <figcaption>Oben der Kurs, unten der RSI. Über 70 gilt der Wert als überkauft, unter 30 als überverkauft.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>RSI-Wert</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>über 70</td><td>überkauft – der Anstieg war sehr stark, evtl. Rücksetzer</td></tr>
+          <tr><td>30–70</td><td>neutraler Bereich</td></tr>
+          <tr><td>unter 30</td><td>überverkauft – der Fall war sehr stark, evtl. Erholung</td></tr>
+        </tbody>
+      </table>
+      <pre><code>RSI = 100 − 100 / (1 + RS)
+RS  = Ø Gewinn der letzten 14 Tage / Ø Verlust der letzten 14 Tage</code></pre>
+      <p><strong>Woher kommt das?</strong> J. Welles Wilder stellte den RSI 1978 in seinem Buch <em>New Concepts in Technical Trading Systems</em> vor – zusammen mit der ATR. Damals rechnete man noch per Hand oder Taschenrechner.</p>
+      <div class="note">Überkauft heißt nicht „muss fallen“: In starken Trends kann der RSI wochenlang über 70 bleiben.</div>
+    </section>
+    <section>
+      <h2>MACD</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Kurs mit MACD" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="168.0" x2="620.0" y2="168.0" class="dg-grid"/>
+        <text x="46.0" y="172.0" class="dg-small" text-anchor="end">95</text>
+        <line x1="52.0" y1="96.0" x2="620.0" y2="96.0" class="dg-grid"/>
+        <text x="46.0" y="100.0" class="dg-small" text-anchor="end">119</text>
+        <line x1="52.0" y1="24.0" x2="620.0" y2="24.0" class="dg-grid"/>
+        <text x="46.0" y="28.0" class="dg-small" text-anchor="end">143</text>
+        <polyline points="52.0,154.4 58.4,148.1 64.8,142.4 71.1,140.5 77.5,138.2 83.9,134.2 90.3,127.8 96.7,123.7 103.1,122.4 109.4,120.5 115.8,117.2 122.2,112.2 128.6,108.8 135.0,106.1 141.3,103.2 147.7,99.5 154.1,97.5 160.5,94.1 166.9,90.3 173.3,84.0 179.6,80.8 186.0,75.7 192.4,74.2 198.8,69.3 205.2,65.7 211.6,63.3 217.9,60.0 224.3,55.0 230.7,52.2 237.1,47.1 243.5,41.0 249.8,42.6 256.2,44.2 262.6,50.9 269.0,54.7 275.4,60.3 281.8,63.1 288.1,67.4 294.5,71.5 300.9,75.1 307.3,80.6 313.7,84.8 320.0,90.5 326.4,91.3 332.8,96.5 339.2,101.0 345.6,108.5 352.0,115.5 358.3,121.5 364.7,124.5 371.1,127.6 377.5,131.5 383.9,137.1 390.2,138.2 396.6,144.5 403.0,150.4 409.4,148.0 415.8,148.2 422.2,146.2 428.5,142.9 434.9,141.5 441.3,139.2 447.7,137.5 454.1,137.2 460.4,141.2 466.8,141.8 473.2,140.2 479.6,141.6 486.0,141.0 492.4,139.1 498.7,135.2 505.1,136.0 511.5,135.4 517.9,133.4 524.3,130.9 530.7,131.8 537.0,126.9 543.4,126.8 549.8,123.3 556.2,122.1 562.6,119.8 568.9,115.3 575.3,112.5 581.7,110.7 588.1,110.9 594.5,110.5 600.9,111.5 607.2,106.3 613.6,107.5 620.0,110.6" class="dg-line-2" fill="none"/>
+        <text x="8.0" y="12.0" class="dg-small" text-anchor="start">Kurs</text>
+        <rect x="52.0" y="196.0" width="568.0" height="100.0" rx="0" class="dg-box"/>
+        <line x1="52.0" y1="246.0" x2="620.0" y2="246.0" class="dg-line-3"/>
+        <text x="46.0" y="250.0" class="dg-small" text-anchor="end">0</text>
+        <rect x="260.7" y="246.0" width="3.8" height="2.4" rx="0" class="dg-bar-minus"/>
+        <rect x="267.1" y="246.0" width="3.8" height="4.1" rx="0" class="dg-bar-minus"/>
+        <rect x="273.5" y="246.0" width="3.8" height="5.9" rx="0" class="dg-bar-minus"/>
+        <rect x="279.8" y="246.0" width="3.8" height="7.4" rx="0" class="dg-bar-minus"/>
+        <rect x="286.2" y="246.0" width="3.8" height="8.7" rx="0" class="dg-bar-minus"/>
+        <rect x="292.6" y="246.0" width="3.8" height="9.9" rx="0" class="dg-bar-minus"/>
+        <rect x="299.0" y="246.0" width="3.8" height="10.8" rx="0" class="dg-bar-minus"/>
+        <rect x="305.4" y="246.0" width="3.8" height="11.7" rx="0" class="dg-bar-minus"/>
+        <rect x="311.7" y="246.0" width="3.8" height="12.4" rx="0" class="dg-bar-minus"/>
+        <rect x="318.1" y="246.0" width="3.8" height="13.0" rx="0" class="dg-bar-minus"/>
+        <rect x="324.5" y="246.0" width="3.8" height="13.0" rx="0" class="dg-bar-minus"/>
+        <rect x="330.9" y="246.0" width="3.8" height="13.0" rx="0" class="dg-bar-minus"/>
+        <rect x="337.3" y="246.0" width="3.8" height="13.0" rx="0" class="dg-bar-minus"/>
+        <rect x="343.7" y="246.0" width="3.8" height="13.2" rx="0" class="dg-bar-minus"/>
+        <rect x="350.0" y="246.0" width="3.8" height="13.5" rx="0" class="dg-bar-minus"/>
+        <rect x="356.4" y="246.0" width="3.8" height="13.7" rx="0" class="dg-bar-minus"/>
+        <rect x="362.8" y="246.0" width="3.8" height="13.4" rx="0" class="dg-bar-minus"/>
+        <rect x="369.2" y="246.0" width="3.8" height="12.9" rx="0" class="dg-bar-minus"/>
+        <rect x="375.6" y="246.0" width="3.8" height="12.3" rx="0" class="dg-bar-minus"/>
+        <rect x="382.0" y="246.0" width="3.8" height="11.8" rx="0" class="dg-bar-minus"/>
+        <rect x="388.3" y="246.0" width="3.8" height="10.9" rx="0" class="dg-bar-minus"/>
+        <rect x="394.7" y="246.0" width="3.8" height="10.3" rx="0" class="dg-bar-minus"/>
+        <rect x="401.1" y="246.0" width="3.8" height="9.9" rx="0" class="dg-bar-minus"/>
+        <rect x="407.5" y="246.0" width="3.8" height="8.7" rx="0" class="dg-bar-minus"/>
+        <rect x="413.9" y="246.0" width="3.8" height="7.3" rx="0" class="dg-bar-minus"/>
+        <rect x="420.2" y="246.0" width="3.8" height="5.6" rx="0" class="dg-bar-minus"/>
+        <rect x="426.6" y="246.0" width="3.8" height="3.7" rx="0" class="dg-bar-minus"/>
+        <rect x="433.0" y="246.0" width="3.8" height="1.9" rx="0" class="dg-bar-minus"/>
+        <rect x="439.4" y="246.0" width="3.8" height="0.8" rx="0" class="dg-bar-minus"/>
+        <rect x="445.8" y="244.7" width="3.8" height="1.3" rx="0" class="dg-bar"/>
+        <rect x="452.2" y="243.6" width="3.8" height="2.4" rx="0" class="dg-bar"/>
+        <rect x="458.5" y="243.2" width="3.8" height="2.8" rx="0" class="dg-bar"/>
+        <rect x="464.9" y="243.0" width="3.8" height="3.0" rx="0" class="dg-bar"/>
+        <rect x="471.3" y="242.6" width="3.8" height="3.4" rx="0" class="dg-bar"/>
+        <rect x="477.7" y="242.5" width="3.8" height="3.5" rx="0" class="dg-bar"/>
+        <rect x="484.1" y="242.3" width="3.8" height="3.7" rx="0" class="dg-bar"/>
+        <rect x="490.4" y="242.1" width="3.8" height="3.9" rx="0" class="dg-bar"/>
+        <rect x="496.8" y="241.5" width="3.8" height="4.5" rx="0" class="dg-bar"/>
+        <rect x="503.2" y="241.3" width="3.8" height="4.7" rx="0" class="dg-bar"/>
+        <rect x="509.6" y="241.2" width="3.8" height="4.8" rx="0" class="dg-bar"/>
+        <rect x="516.0" y="241.0" width="3.8" height="5.0" rx="0" class="dg-bar"/>
+        <rect x="522.4" y="240.7" width="3.8" height="5.3" rx="0" class="dg-bar"/>
+        <rect x="528.7" y="240.8" width="3.8" height="5.2" rx="0" class="dg-bar"/>
+        <rect x="535.1" y="240.5" width="3.8" height="5.5" rx="0" class="dg-bar"/>
+        <rect x="541.5" y="240.5" width="3.8" height="5.5" rx="0" class="dg-bar"/>
+        <rect x="547.9" y="240.3" width="3.8" height="5.7" rx="0" class="dg-bar"/>
+        <rect x="554.3" y="240.3" width="3.8" height="5.7" rx="0" class="dg-bar"/>
+        <rect x="560.6" y="240.2" width="3.8" height="5.8" rx="0" class="dg-bar"/>
+        <rect x="567.0" y="240.0" width="3.8" height="6.0" rx="0" class="dg-bar"/>
+        <rect x="573.4" y="239.8" width="3.8" height="6.2" rx="0" class="dg-bar"/>
+        <rect x="579.8" y="239.8" width="3.8" height="6.2" rx="0" class="dg-bar"/>
+        <rect x="586.2" y="240.1" width="3.8" height="5.9" rx="0" class="dg-bar"/>
+        <rect x="592.6" y="240.6" width="3.8" height="5.4" rx="0" class="dg-bar"/>
+        <rect x="598.9" y="241.3" width="3.8" height="4.7" rx="0" class="dg-bar"/>
+        <rect x="605.3" y="241.5" width="3.8" height="4.5" rx="0" class="dg-bar"/>
+        <rect x="611.7" y="242.0" width="3.8" height="4.0" rx="0" class="dg-bar"/>
+        <rect x="618.1" y="242.9" width="3.8" height="3.1" rx="0" class="dg-bar"/>
+        <polyline points="211.6,203.4 217.9,203.4 224.3,203.3 230.7,203.3 237.1,203.0 243.5,202.5 249.8,202.8 256.2,203.8 262.6,205.9 269.0,208.6 275.4,211.9 281.8,215.2 288.1,218.8 294.5,222.4 300.9,226.0 307.3,229.8 313.7,233.6 320.0,237.5 326.4,240.7 332.8,244.0 339.2,247.2 345.6,250.8 352.0,254.5 358.3,258.1 364.7,261.2 371.1,263.8 377.5,266.3 383.9,268.7 390.2,270.5 396.6,272.5 403.0,274.6 409.4,275.5 415.8,276.0 422.2,275.7 428.5,274.7 434.9,273.4 441.3,271.8 447.7,270.0 454.1,268.2 460.4,267.2 466.8,266.2 473.2,264.9 479.6,263.9 486.0,262.9 492.4,261.6 498.7,259.9 505.1,258.5 511.5,257.2 517.9,255.7 524.3,254.2 530.7,253.0 537.0,251.3 543.4,249.9 549.8,248.3 556.2,246.8 562.6,245.3 568.9,243.6 575.3,241.8 581.7,240.3 588.1,239.2 594.5,238.3 600.9,237.8 607.2,236.9 613.6,236.4 620.0,236.5" class="dg-line" fill="none"/>
+        <polyline points="262.6,203.5 269.0,204.5 275.4,206.0 281.8,207.8 288.1,210.0 294.5,212.5 300.9,215.2 307.3,218.1 313.7,221.2 320.0,224.5 326.4,227.7 332.8,231.0 339.2,234.2 345.6,237.5 352.0,240.9 358.3,244.4 364.7,247.7 371.1,250.9 377.5,254.0 383.9,256.9 390.2,259.7 396.6,262.2 403.0,264.7 409.4,266.9 415.8,268.7 422.2,270.1 428.5,271.0 434.9,271.5 441.3,271.6 447.7,271.2 454.1,270.6 460.4,269.9 466.8,269.2 473.2,268.3 479.6,267.5 486.0,266.5 492.4,265.6 498.7,264.4 505.1,263.2 511.5,262.0 517.9,260.8 524.3,259.5 530.7,258.2 537.0,256.8 543.4,255.4 549.8,254.0 556.2,252.5 562.6,251.1 568.9,249.6 575.3,248.0 581.7,246.5 588.1,245.0 594.5,243.7 600.9,242.5 607.2,241.4 613.6,240.4 620.0,239.6" class="dg-line-3" fill="none"/>
+        <text x="58.0" y="210.0" class="dg-label" text-anchor="start">MACD (12, 26, 9)</text>
+        <text x="620.0" y="314.0" class="dg-small" text-anchor="end">Zeit</text>
+        </svg>
+        <figcaption>MACD-Linie (Akzentfarbe), Signallinie (gestrichelt) und Histogramm (Abstand der beiden).</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Teil</th><th>Berechnung</th></tr></thead>
+        <tbody>
+          <tr><td>MACD-Linie</td><td>EMA 12 − EMA 26</td></tr>
+          <tr><td>Signallinie</td><td>EMA 9 der MACD-Linie</td></tr>
+          <tr><td>Histogramm</td><td>MACD − Signal</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>MACD kreuzt die Signallinie <strong>nach oben</strong> → gilt als Kaufsignal.</li>
+        <li>MACD kreuzt die Signallinie <strong>nach unten</strong> → gilt als Verkaufssignal.</li>
+        <li>MACD über 0 → kurzfristiger Durchschnitt über langfristigem → eher Aufwärtstrend.</li>
+      </ul>
+      <p>Erfunden hat ihn Gerald Appel Ende der 1970er-Jahre. MACD steht für <em>Moving Average Convergence Divergence</em>.</p>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Momentum</td><td>Geschwindigkeit/Kraft einer Kursbewegung.</td></tr>
+          <tr><td>Divergenz</td><td>Kurs macht ein neues Hoch, der Indikator nicht – Schwung lässt nach.</td></tr>
+          <tr><td>Periode</td><td>Anzahl der Kerzen, über die gerechnet wird (z. B. 14).</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein Indikator ist aus dem Kurs berechnet – er weiß nichts, was der Kurs nicht schon zeigt.</li>
+        <li>Signale nie allein nutzen, sondern mit Trend und Unterstützung/Widerstand kombinieren.</li>
+        <li>Zu viele Indikatoren gleichzeitig verwirren eher, als dass sie helfen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="gleitende-durchschnitte.html">Gleitende Durchschnitte</a>
+        <a class="chip" href="bollinger-atr.html">Volatilität &amp; Bollinger</a>
+        <a class="chip" href="trend-unterstuetzung.html">Trend &amp; Unterstützung</a>
+        <a class="chip" href="formationen.html">Formationen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

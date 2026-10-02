@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Mengen &amp; Logik – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Logik & Mengen</p>
+    <h1>Mengen, Logik &amp; Beweise</h1>
+    <p class="page-lead">Die Sprache der Mathematik: Mengen, Verknüpfungen wie „und“/„oder“ und wie man etwas sicher beweist.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine <strong>Menge</strong> ist eine Zusammenfassung von Dingen (Elementen), z. B. A = {1, 2, 3}. Die Reihenfolge und Wiederholungen spielen keine Rolle. Die <strong>Aussagenlogik</strong> untersucht, wann Aussagen wahr oder falsch sind – das ist auch die Grundlage jeder if-Abfrage im Programmieren.</p>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>{ }</code></td><td>Mengenklammern: A = {1, 2, 3}; {} oder ∅ ist die leere Menge</td></tr>
+          <tr><td><code>∈ / ∉</code></td><td>ist Element von / ist nicht Element von: 2 ∈ A</td></tr>
+          <tr><td><code>⊂</code></td><td>Teilmenge: {1, 2} ⊂ A</td></tr>
+          <tr><td><code>∩</code></td><td>Schnittmenge – Elemente, die in beiden sind</td></tr>
+          <tr><td><code>∪</code></td><td>Vereinigungsmenge – Elemente, die in mindestens einer sind</td></tr>
+          <tr><td><code>\</code></td><td>Differenzmenge: A \ B – in A, aber nicht in B</td></tr>
+          <tr><td><code>|A|</code></td><td>Anzahl der Elemente von A (Mächtigkeit)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>George Boole beschrieb 1847 Logik als Rechnen mit wahr/falsch – daher der Datentyp <code>bool</code>. Georg Cantor begründete um 1874 die Mengenlehre und zeigte, dass es verschieden große Unendlichkeiten gibt. John Venn erfand 1880 die Kreisdiagramme.</p>
+    </section>
+    <section>
+      <h2>Mengenoperationen</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Venn-Diagramm zweier Mengen mit Schnittmenge" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="vennClipA"><circle cx="250" cy="165" r="115"/></clipPath></defs>
+        <rect x="20.0" y="20.0" width="600.0" height="290.0" rx="8" class="dg-box"/>
+        <circle cx="390.0" cy="165.0" r="115.0" class="dg-fill" clip-path="url(#vennClipA)"/>
+        <circle cx="250.0" cy="165.0" r="115.0" class="dg-line"/>
+        <circle cx="390.0" cy="165.0" r="115.0" class="dg-line-2"/>
+        <text x="170.0" y="70.0" class="dg-big" text-anchor="middle">A</text>
+        <text x="470.0" y="70.0" class="dg-big" text-anchor="middle">B</text>
+        <text x="200.0" y="165.0" class="dg-big" text-anchor="middle">1   2</text>
+        <text x="320.0" y="165.0" class="dg-big" text-anchor="middle">3  4</text>
+        <text x="320.0" y="189.0" class="dg-small" text-anchor="middle">A ∩ B</text>
+        <text x="440.0" y="165.0" class="dg-big" text-anchor="middle">5   6</text>
+        <text x="40.0" y="300.0" class="dg-small" text-anchor="start">G (Grundmenge)</text>
+        <text x="600.0" y="300.0" class="dg-small" text-anchor="end">A ∪ B = {1, 2, 3, 4, 5, 6}</text>
+        </svg>
+        <figcaption>A = {1, 2, 3, 4}, B = {3, 4, 5, 6}. Die Fläche in beiden Kreisen ist A ∩ B.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Operation</th><th>Bedeutung</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td><code>A ∩ B</code></td><td>in A <strong>und</strong> in B</td><td>{3, 4}</td></tr>
+          <tr><td><code>A ∪ B</code></td><td>in A <strong>oder</strong> in B (oder beiden)</td><td>{1, 2, 3, 4, 5, 6}</td></tr>
+          <tr><td><code>A \ B</code></td><td>in A, aber nicht in B</td><td>{1, 2}</td></tr>
+          <tr><td><code>B \ A</code></td><td>in B, aber nicht in A</td><td>{5, 6}</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Aussagenlogik</h2>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Name</th><th>wahr, wenn …</th><th>Programmieren</th></tr></thead>
+        <tbody>
+          <tr><td><code>¬A</code></td><td>Negation (nicht)</td><td>A falsch ist</td><td><code>!a</code></td></tr>
+          <tr><td><code>A ∧ B</code></td><td>Konjunktion (und)</td><td>beide wahr sind</td><td><code>a &amp;&amp; b</code></td></tr>
+          <tr><td><code>A ∨ B</code></td><td>Disjunktion (oder)</td><td>mindestens eine wahr ist</td><td><code>a || b</code></td></tr>
+          <tr><td><code>A ⇒ B</code></td><td>Implikation (wenn … dann)</td><td>nicht (A wahr und B falsch)</td><td>–</td></tr>
+          <tr><td><code>A ⇔ B</code></td><td>Äquivalenz (genau dann, wenn)</td><td>beide gleich sind</td><td><code>a == b</code></td></tr>
+        </tbody>
+      </table>
+      <table class="info-table">
+        <thead><tr><th>A</th><th>B</th><th>A ∧ B</th><th>A ∨ B</th><th>A ⇒ B</th></tr></thead>
+        <tbody>
+          <tr><td>w</td><td>w</td><td>w</td><td>w</td><td>w</td></tr>
+          <tr><td>w</td><td>f</td><td>f</td><td>w</td><td>f</td></tr>
+          <tr><td>f</td><td>w</td><td>f</td><td>w</td><td>w</td></tr>
+          <tr><td>f</td><td>f</td><td>f</td><td>f</td><td>w</td></tr>
+        </tbody>
+      </table>
+      <div class="note">„Wenn es regnet, ist die Straße nass“ (A ⇒ B) ist nur falsch, wenn es regnet und die Straße trotzdem trocken ist. Aus einer falschen Voraussetzung folgt alles – deshalb ist A ⇒ B wahr, wenn A falsch ist.</div>
+    </section>
+    <section>
+      <h2>Beweisverfahren</h2>
+      <table class="info-table">
+        <thead><tr><th>Verfahren</th><th>Idee</th></tr></thead>
+        <tbody>
+          <tr><td>Direkter Beweis</td><td>von der Voraussetzung Schritt für Schritt zur Behauptung</td></tr>
+          <tr><td>Widerspruchsbeweis</td><td>annehmen, die Behauptung sei falsch, und daraus einen Widerspruch herleiten</td></tr>
+          <tr><td>Vollständige Induktion</td><td>Anfang: gilt für n = 1. Schritt: wenn es für n gilt, dann auch für n + 1 → gilt für alle n (Dominoeffekt)</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Direkt: Die Summe zweier gerader Zahlen ist gerade.
+2a + 2b = 2(a + b)  → wieder durch 2 teilbar  ∎
+
+Induktion: 1 + 2 + … + n = n(n + 1)/2
+Anfang n = 1:   1 = 1 · 2 / 2  ✓
+Schritt:  1 + … + n + (n + 1) = n(n + 1)/2 + (n + 1) = (n + 1)(n + 2)/2  ✓ ∎</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>∎</code></td><td>„was zu beweisen war“ (q. e. d.) – Ende eines Beweises</td></tr>
+          <tr><td><code>∀ / ∃</code></td><td>„für alle“ / „es gibt (mindestens) ein“</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei A ∪ B werden gemeinsame Elemente nur einmal aufgeschrieben.</li>
+        <li>Das mathematische „oder“ ist kein „entweder oder“ – beide dürfen wahr sein.</li>
+        <li>Ein einziges Gegenbeispiel widerlegt eine „für alle“-Aussage.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="zahlen.html">Zahlenmengen &amp; Rechenregeln</a>
+        <a class="chip" href="ungleichungen-betrag.html">Ungleichungen &amp; Betrag</a>
+        <a class="chip" href="wahrscheinlichkeit.html">Wahrscheinlichkeit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

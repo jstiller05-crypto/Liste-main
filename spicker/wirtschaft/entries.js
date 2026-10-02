@@ -73,238 +73,238 @@ window.SpickerData["wirtschaft"] = {
   oTableEntries: { "List": [
     {
       "Begriff": "Anleitung",
-      "Erklärung": "So funktioniert dieser Spicker: Aufbau, Filter und Lerntipps",
+      "Erklärung": "Aufbau, Filter und Lerntipps",
       "Bereich": "Spicker",
       "Link": "more/anleitung.html",
       "class": ["hilfe","anleitung","bedienung","lerntipps"]
     },
     {
       "Begriff": "Betriebswirtschaftslehre (BWL)",
-      "Erklärung": "Lehre davon, wie Unternehmen planen, entscheiden, produzieren, verkaufen und finanzieren.",
+      "Erklärung": "Wie Unternehmen planen und wirtschaften.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/bwl-grundlagen.html",
       "class": ["begriff","bwl"]
     },
     {
       "Begriff": "Ökonomisches Prinzip",
-      "Erklärung": "Maximalprinzip: mit gegebenen Mitteln möglichst viel erreichen. Minimalprinzip: ein Ziel mit möglichst wenig Mitteln.",
+      "Erklärung": "Maximal- oder Minimalprinzip.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/bwl-grundlagen.html",
       "class": ["regel","wirtschaftlichkeit"]
     },
     {
       "Begriff": "Produktionsfaktoren",
-      "Erklärung": "Arbeit, Betriebsmittel (Maschinen, Gebäude), Werkstoffe – plus die Leitung, die alles kombiniert.",
+      "Erklärung": "Arbeit, Betriebsmittel, Werkstoffe.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/bwl-grundlagen.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Angebot und Nachfrage",
-      "Erklärung": "Der Preis pendelt sich dort ein, wo angebotene und nachgefragte Menge gleich sind.",
+      "Erklärung": "Bestimmen gemeinsam den Marktpreis.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/bwl-grundlagen.html",
       "class": ["regel","markt","preis"]
     },
     {
       "Begriff": "Wertschöpfungskette",
-      "Erklärung": "Alle Schritte vom Einkauf über Produktion und Vertrieb bis zum Service, die Wert für den Kunden schaffen.",
+      "Erklärung": "Alle Schritte, die Kundenwert schaffen.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/bwl-grundlagen.html",
       "class": ["begriff","porter"]
     },
     {
       "Begriff": "Geschäftsmodell",
-      "Erklärung": "Wie ein Unternehmen Wert schafft und Geld verdient: Kunden, Angebot, Kanäle, Einnahmen, Kosten.",
+      "Erklärung": "Wie du Wert schaffst und Geld verdienst.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/geschaeftsmodell.html",
       "class": ["begriff","business model canvas"]
     },
     {
       "Begriff": "SWOT-Analyse",
-      "Erklärung": "Stärken, Schwächen (intern), Chancen, Risiken (extern) gegenüberstellen und daraus Strategien ableiten.",
+      "Erklärung": "Stärken, Schwächen, Chancen, Risiken.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/geschaeftsmodell.html",
       "class": ["strategie","analyse"]
     },
     {
       "Begriff": "Zielgruppe",
-      "Erklärung": "Die Kunden, für die ein Angebot gemacht ist – nach Alter, Bedarf, Branche, Budget usw. beschrieben.",
+      "Erklärung": "Genau beschriebene Wunschkunden.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/geschaeftsmodell.html",
       "class": ["begriff","kunde"]
     },
     {
       "Begriff": "Alleinstellungsmerkmal (USP)",
-      "Erklärung": "Was das eigene Angebot klar von der Konkurrenz unterscheidet.",
+      "Erklärung": "Was dich klar von anderen abhebt.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/geschaeftsmodell.html",
       "class": ["begriff","usp"]
     },
     {
       "Begriff": "Skaleneffekt",
-      "Erklärung": "Mit steigender Menge sinken die Stückkosten, weil Fixkosten auf mehr Einheiten verteilt werden.",
+      "Erklärung": "Mehr Menge → kleinere Stückkosten.",
       "Bereich": "BWL-Grundlagen",
-      "Link": "",
+      "Link": "more/bwl-grundlagen.html",
       "class": ["regel","economies of scale"]
     },
     {
       "Begriff": "Einzelunternehmen",
-      "Erklärung": "Eine Person, kein Mindestkapital, volle private Haftung. Einfachste Form.",
+      "Erklärung": "Eine Person, volle private Haftung.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/rechtsformen.html",
       "class": ["begriff","rechtsform"]
     },
     {
       "Begriff": "Freiberufler",
-      "Erklärung": "Bestimmte Berufe (z. B. Ärzte, Ingenieure, Journalisten, viele IT-Berater) – keine Gewerbeanmeldung, keine Gewerbesteuer.",
+      "Erklärung": "Katalogberufe, keine Gewerbesteuer.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/rechtsformen.html",
       "class": ["begriff","selbstständig"]
     },
     {
       "Begriff": "Gewerbeanmeldung",
-      "Erklärung": "Beim Gewerbeamt vor Beginn der gewerblichen Tätigkeit. Danach meldet sich das Finanzamt (Fragebogen zur steuerlichen Erfassung).",
+      "Erklärung": "Beim Gewerbeamt vor dem Start.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/gruendung.html",
       "class": ["regel","gewerbe"]
     },
     {
       "Begriff": "GbR",
-      "Erklärung": "Gesellschaft bürgerlichen Rechts: mindestens zwei Personen, kein Mindestkapital, Gesellschafter haften privat.",
+      "Erklärung": "Ab 2 Personen, Gesellschafter haften privat.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/rechtsformen.html",
       "class": ["begriff","rechtsform"]
     },
     {
       "Begriff": "GmbH",
-      "Erklärung": "Gesellschaft mit beschränkter Haftung: 25.000 € Stammkapital, Haftung auf das Gesellschaftsvermögen beschränkt.",
+      "Erklärung": "25.000 € Kapital, Haftung beschränkt.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/rechtsformen.html",
       "class": ["begriff","rechtsform","haftung"]
     },
     {
       "Begriff": "UG (haftungsbeschränkt)",
-      "Erklärung": "'Mini-GmbH' ab 1 € Stammkapital. Muss 25 % des Jahresüberschusses zurücklegen, bis 25.000 € erreicht sind.",
+      "Erklärung": "Mini-GmbH ab 1 €, 25 % Rücklage.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/rechtsformen.html",
       "class": ["begriff","rechtsform"]
     },
     {
       "Begriff": "Handelsregister",
-      "Erklärung": "Öffentliches Verzeichnis der Kaufleute und Gesellschaften. GmbH/UG entstehen erst mit der Eintragung.",
+      "Erklärung": "Öffentliches Register der Firmen.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/gruendung.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Businessplan",
-      "Erklärung": "Schriftliches Konzept: Idee, Markt, Wettbewerb, Marketing, Organisation, Finanzplan. Pflicht für Bank und Förderung.",
+      "Erklärung": "Konzept mit Markt- und Finanzplan.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/gruendung.html",
       "class": ["strategie","gründung"]
     },
     {
       "Begriff": "Haftung",
-      "Erklärung": "Wer für Schulden einsteht. Einzelunternehmer und GbR-Gesellschafter mit Privatvermögen, GmbH nur mit Firmenvermögen.",
+      "Erklärung": "Wer mit welchem Vermögen einsteht.",
       "Bereich": "Gründung & Rechtsformen",
-      "Link": "",
+      "Link": "more/rechtsformen.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Buchführungspflicht",
-      "Erklärung": "Kaufleute (HGB) müssen doppelt buchen und bilanzieren. Kleine Einzelunternehmer/Freiberufler dürfen die EÜR nutzen.",
+      "Erklärung": "Wer bilanzieren muss, wer EÜR darf.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/buchfuehrung.html",
       "class": ["regel","hgb"]
     },
     {
       "Begriff": "EÜR",
-      "Erklärung": "Einnahmen-Überschuss-Rechnung: Gewinn = Betriebseinnahmen − Betriebsausgaben. Einfacher als die Bilanz.",
+      "Erklärung": "Gewinn = Einnahmen − Ausgaben.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/buchfuehrung.html",
       "class": ["formel","gewinnermittlung"]
     },
     {
       "Begriff": "Doppelte Buchführung",
-      "Erklärung": "Jeder Geschäftsvorfall wird zweimal gebucht: im Soll eines Kontos und im Haben eines anderen.",
+      "Erklärung": "Jede Buchung im Soll und im Haben.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/buchfuehrung.html",
       "class": ["regel","doppik"]
     },
     {
       "Begriff": "Buchungssatz",
-      "Erklärung": "'Soll an Haben', z. B. 'Bank an Umsatzerlöse' bei einer Kundenzahlung.",
+      "Erklärung": "„Soll an Haben“, z. B. Bank an Erlöse.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/buchungssatz.html",
       "class": ["regel","soll","haben"]
     },
     {
       "Begriff": "Kontenrahmen",
-      "Erklärung": "Standardliste aller Konten, in Deutschland meist SKR 03 oder SKR 04 (DATEV).",
+      "Erklärung": "Kontenliste, meist SKR 03 / SKR 04.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/buchfuehrung.html",
       "class": ["begriff","skr"]
     },
     {
       "Begriff": "Beleg",
-      "Erklärung": "Grundlage jeder Buchung: Rechnung, Quittung, Kontoauszug. 'Keine Buchung ohne Beleg.'",
+      "Erklärung": "Keine Buchung ohne Beleg.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/buchfuehrung.html",
       "class": ["regel","rechnung"]
     },
     {
       "Begriff": "Pflichtangaben Rechnung",
-      "Erklärung": "U. a. Name/Anschrift beider Seiten, Steuernummer oder USt-IdNr., Datum, fortlaufende Nummer, Leistung, Netto, Steuersatz, Steuer, Brutto.",
+      "Erklärung": "Was laut § 14 UStG draufstehen muss.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/rechnung.html",
       "class": ["regel","rechnung"]
     },
     {
       "Begriff": "E-Rechnung",
-      "Erklärung": "Rechnung in strukturiertem Datenformat (XRechnung, ZUGFeRD). Unternehmen müssen sie seit 2025 empfangen können; Versandpflicht folgt schrittweise.",
+      "Erklärung": "XRechnung/ZUGFeRD, Empfang seit 2025.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/rechnung.html",
       "class": ["regel","xrechnung","zugferd"]
     },
     {
       "Begriff": "Aufbewahrungsfristen",
-      "Erklärung": "Bücher, Bilanzen: 10 Jahre. Buchungsbelege: 8 Jahre. Geschäftsbriefe: 6 Jahre. (Stand 2026)",
+      "Erklärung": "10 / 8 / 6 Jahre aufbewahren.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/aufbewahrung-gobd.html",
       "class": ["regel","archiv"]
     },
     {
       "Begriff": "GoBD",
-      "Erklärung": "Regeln für ordnungsgemäße, digitale Buchführung: vollständig, richtig, zeitgerecht, unveränderbar, nachvollziehbar.",
+      "Erklärung": "Regeln für digitale Buchführung.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/aufbewahrung-gobd.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Abschreibung (AfA)",
-      "Erklärung": "Anschaffungskosten langlebiger Güter werden über die Nutzungsdauer verteilt als Aufwand gebucht.",
+      "Erklärung": "Kaufpreis über die Nutzungsdauer verteilen.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/abschreibung.html",
       "class": ["regel","afa"]
     },
     {
       "Begriff": "Lineare Abschreibung",
-      "Erklärung": "Jährlicher Betrag = Anschaffungskosten / Nutzungsdauer (Jahre).",
+      "Erklärung": "AfA = Kosten / Nutzungsdauer.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/abschreibung.html",
       "class": ["formel","afa"]
     },
     {
       "Begriff": "Geringwertiges Wirtschaftsgut (GWG)",
-      "Erklärung": "Bewegliche Güter bis 800 € netto dürfen sofort im Jahr der Anschaffung voll abgeschrieben werden.",
+      "Erklärung": "Bis 800 € netto sofort absetzbar.",
       "Bereich": "Buchhaltung",
-      "Link": "",
+      "Link": "more/abschreibung.html",
       "class": ["regel","gwg"]
     },
     {
       "Begriff": "Bilanz",
-      "Erklärung": "Was das Unternehmen hat (Aktiva) und woher das Geld kommt (Passiva).",
+      "Erklärung": "Vermögen (Aktiva) = Kapital (Passiva).",
       "Bereich": "Bilanz & GuV",
       "Link": "more/bilanz.html",
       "class": ["begriff","jahresabschluss"]
@@ -318,238 +318,238 @@ window.SpickerData["wirtschaft"] = {
     },
     {
       "Begriff": "Passiva",
-      "Erklärung": "Rechte Bilanzseite: Eigen- und Fremdkapital.",
+      "Erklärung": "Rechte Seite: Eigen- und Fremdkapital.",
       "Bereich": "Bilanz & GuV",
       "Link": "more/bilanz.html",
       "class": ["begriff","kapital"]
     },
     {
       "Begriff": "Anlagevermögen",
-      "Erklärung": "Was dauerhaft im Betrieb bleibt: Grundstücke, Gebäude, Maschinen, Software, Beteiligungen.",
+      "Erklärung": "Bleibt dauerhaft im Betrieb.",
       "Bereich": "Bilanz & GuV",
       "Link": "more/bilanz.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Umlaufvermögen",
-      "Erklärung": "Was sich schnell umschlägt: Vorräte, Forderungen, Kasse, Bankguthaben.",
+      "Erklärung": "Vorräte, Forderungen, Bank.",
       "Bereich": "Bilanz & GuV",
       "Link": "more/bilanz.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Eigenkapital",
-      "Erklärung": "Vermögen minus Schulden: Geld der Eigentümer plus einbehaltene Gewinne.",
+      "Erklärung": "Vermögen minus Schulden.",
       "Bereich": "Bilanz & GuV",
       "Link": "more/bilanz.html",
       "class": ["formel","ek"]
     },
     {
       "Begriff": "Rückstellungen",
-      "Erklärung": "Schulden, deren Höhe oder Zeitpunkt noch unsicher ist, z. B. für Steuernachzahlungen oder Prozesse.",
+      "Erklärung": "Schulden mit unsicherer Höhe.",
       "Bereich": "Bilanz & GuV",
-      "Link": "",
+      "Link": "more/jahresabschluss.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "GuV",
-      "Erklärung": "Erträge − Aufwendungen eines Jahres = Gewinn oder Verlust.",
+      "Erklärung": "Erträge − Aufwendungen = Ergebnis.",
       "Bereich": "Bilanz & GuV",
       "Link": "more/guv.html",
       "class": ["formel","erfolgsrechnung"]
     },
     {
       "Begriff": "Aufwand vs. Ausgabe",
-      "Erklärung": "Ausgabe = Geld fließt ab. Aufwand = Werteverzehr in der GuV. Beispiel: Maschinenkauf ist Ausgabe, die Abschreibung Aufwand.",
+      "Erklärung": "Werteverzehr ist nicht Geldabfluss.",
       "Bereich": "Bilanz & GuV",
       "Link": "more/guv.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Inventur",
-      "Erklärung": "Körperliche Bestandsaufnahme aller Vermögensteile und Schulden, meist zum Jahresende.",
+      "Erklärung": "Alles zählen zum Jahresende.",
       "Bereich": "Bilanz & GuV",
-      "Link": "",
+      "Link": "more/jahresabschluss.html",
       "class": ["begriff","inventar"]
     },
     {
       "Begriff": "Jahresabschluss",
-      "Erklärung": "Bilanz + GuV (bei Kapitalgesellschaften zusätzlich Anhang, ggf. Lagebericht). Muss offengelegt werden.",
+      "Erklärung": "Bilanz + GuV (+ Anhang).",
       "Bereich": "Bilanz & GuV",
-      "Link": "",
+      "Link": "more/jahresabschluss.html",
       "class": ["regel","offenlegung"]
     },
     {
       "Begriff": "Cashflow",
-      "Erklärung": "Tatsächlicher Geldzufluss minus Geldabfluss einer Periode – zeigt, ob Geld verdient wird, nicht nur Gewinn.",
+      "Erklärung": "Geldzufluss minus Geldabfluss.",
       "Bereich": "Bilanz & GuV",
-      "Link": "",
+      "Link": "more/liquiditaet.html",
       "class": ["kennzahl","liquidität"]
     },
     {
       "Begriff": "Umsatz",
-      "Erklärung": "Menge · Preis: alle Erlöse aus verkauften Leistungen (netto, ohne Umsatzsteuer).",
+      "Erklärung": "Menge × Preis, netto.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","erlös"]
     },
     {
       "Begriff": "Gewinn",
-      "Erklärung": "Erträge − Aufwendungen. Positiv = Gewinn, negativ = Verlust.",
+      "Erklärung": "Erträge − Aufwendungen.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","jahresüberschuss"]
     },
     {
       "Begriff": "Umsatzrendite",
-      "Erklärung": "Gewinn / Umsatz · 100 %. Wie viel von jedem Euro Umsatz als Gewinn bleibt.",
+      "Erklärung": "Gewinn / Umsatz × 100 %.",
       "Bereich": "Kennzahlen",
       "Link": "more/guv.html",
       "class": ["formel","marge"]
     },
     {
       "Begriff": "Eigenkapitalrendite",
-      "Erklärung": "Gewinn / Eigenkapital · 100 %. Verzinsung des Kapitals der Eigentümer.",
+      "Erklärung": "Gewinn / Eigenkapital × 100 %.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","roe"]
     },
     {
       "Begriff": "Gesamtkapitalrendite",
-      "Erklärung": "(Gewinn + Fremdkapitalzinsen) / Gesamtkapital · 100 %.",
+      "Erklärung": "(Gewinn + Zinsen) / Gesamtkapital.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","roi"]
     },
     {
       "Begriff": "ROI",
-      "Erklärung": "Return on Investment = Gewinn / eingesetztes Kapital · 100 %. Lohnt sich eine Investition?",
+      "Erklärung": "Gewinn / eingesetztes Kapital.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel"]
     },
     {
       "Begriff": "Eigenkapitalquote",
-      "Erklärung": "Eigenkapital / Gesamtkapital · 100 %. Je höher, desto unabhängiger und krisenfester.",
+      "Erklärung": "Eigenkapital / Gesamtkapital.",
       "Bereich": "Kennzahlen",
       "Link": "more/bilanz.html",
       "class": ["formel","ek-quote"]
     },
     {
       "Begriff": "Verschuldungsgrad",
-      "Erklärung": "Fremdkapital / Eigenkapital. Zeigt die Abhängigkeit von Geldgebern.",
+      "Erklärung": "Fremdkapital / Eigenkapital.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel"]
     },
     {
       "Begriff": "Liquiditätsgrade",
-      "Erklärung": "1. Grad: flüssige Mittel / kurzfr. Verbindlichkeiten. 2. Grad: + Forderungen. 3. Grad: + Vorräte.",
+      "Erklärung": "Flüssige Mittel / kurzfr. Schulden.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","liquidität"]
     },
     {
       "Begriff": "EBIT / EBITDA",
-      "Erklärung": "Gewinn vor Zinsen und Steuern (EBIT), zusätzlich vor Abschreibungen (EBITDA). Gut zum Vergleichen.",
+      "Erklärung": "Gewinn vor Zinsen, Steuern (und AfA).",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["kennzahl"]
     },
     {
       "Begriff": "Rohertrag",
-      "Erklärung": "Umsatz − Wareneinsatz. Was nach dem Einkauf der Ware übrig bleibt.",
+      "Erklärung": "Umsatz − Wareneinsatz.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","handelsspanne"]
     },
     {
       "Begriff": "Lagerumschlag",
-      "Erklärung": "Wareneinsatz / Ø Lagerbestand. Wie oft sich das Lager pro Jahr leert.",
+      "Erklärung": "Wie oft sich das Lager pro Jahr leert.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel"]
     },
     {
       "Begriff": "Debitorenlaufzeit (DSO)",
-      "Erklärung": "Ø Forderungen / Umsatz · 365. Wie viele Tage Kunden im Schnitt bis zur Zahlung brauchen.",
+      "Erklärung": "Tage bis Kunden im Schnitt zahlen.",
       "Bereich": "Kennzahlen",
-      "Link": "",
+      "Link": "more/kennzahlen.html",
       "class": ["formel","forderungen"]
     },
     {
       "Begriff": "Umsatzsteuer",
-      "Erklärung": "19 % Regelsatz, 7 % ermäßigt (z. B. Lebensmittel, Bücher). Wird auf den Netto-Preis aufgeschlagen und ans Finanzamt abgeführt.",
+      "Erklärung": "19 % / 7 % auf den Nettopreis.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/umsatzsteuer.html",
       "class": ["regel","mehrwertsteuer","ust"]
     },
     {
       "Begriff": "Vorsteuer",
-      "Erklärung": "Umsatzsteuer auf Einkäufe. Wird mit der eingenommenen Umsatzsteuer verrechnet – Zahllast = USt − Vorsteuer.",
+      "Erklärung": "USt auf Einkäufe, wird verrechnet.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/umsatzsteuer.html",
       "class": ["formel","zahllast"]
     },
     {
       "Begriff": "Umsatzsteuer-Voranmeldung",
-      "Erklärung": "Monatlich oder vierteljährlich elektronisch über ELSTER an das Finanzamt.",
+      "Erklärung": "Monatlich/quartalsweise per ELSTER.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/umsatzsteuer.html",
       "class": ["regel","elster","ustva"]
     },
     {
       "Begriff": "Kleinunternehmerregelung",
-      "Erklärung": "Keine Umsatzsteuer, wenn Vorjahr ≤ 25.000 € und laufendes Jahr ≤ 100.000 € Umsatz. Dafür kein Vorsteuerabzug. (Stand 2026)",
+      "Erklärung": "Keine USt bis 25.000 € Vorjahresumsatz.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/umsatzsteuer.html",
       "class": ["regel","§19 ustg"]
     },
     {
       "Begriff": "Einkommensteuer",
-      "Erklärung": "Steuer auf das Einkommen natürlicher Personen (auch Einzelunternehmer). Progressiv, mit Grundfreibetrag.",
+      "Erklärung": "Steuer auf den Gewinn von Personen.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/ertragsteuern.html",
       "class": ["regel","est"]
     },
     {
       "Begriff": "Gewerbesteuer",
-      "Erklärung": "Gemeindesteuer auf Gewerbebetriebe, Höhe abhängig vom Hebesatz. Personenunternehmen haben 24.500 € Freibetrag.",
+      "Erklärung": "Gemeindesteuer, Freibetrag 24.500 €.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/ertragsteuern.html",
       "class": ["regel","hebesatz"]
     },
     {
       "Begriff": "Körperschaftsteuer",
-      "Erklärung": "Einkommensteuer der Kapitalgesellschaften (GmbH, UG): 15 % plus Solidaritätszuschlag; Senkung ab 2028 beschlossen.",
+      "Erklärung": "15 % + Soli für GmbH und UG.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/ertragsteuern.html",
       "class": ["regel","kst"]
     },
     {
       "Begriff": "Betriebsausgaben",
-      "Erklärung": "Alle betrieblich veranlassten Kosten. Mindern den Gewinn und damit die Steuer.",
+      "Erklärung": "Betriebliche Kosten mindern den Gewinn.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/ertragsteuern.html",
       "class": ["begriff","absetzen"]
     },
     {
       "Begriff": "Steuerrücklagen",
-      "Erklärung": "Faustregel für Selbstständige: 30–40 % des Gewinns sofort zurücklegen, damit Nachzahlungen bezahlbar sind.",
+      "Erklärung": "30–40 % des Gewinns zurücklegen.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/ertragsteuern.html",
       "class": ["regel","rücklage"]
     },
     {
       "Begriff": "Reverse-Charge",
-      "Erklärung": "Bei bestimmten Leistungen (z. B. aus dem EU-Ausland) schuldet der Kunde die Umsatzsteuer statt des Lieferanten.",
+      "Erklärung": "Kunde schuldet die Umsatzsteuer.",
       "Bereich": "Steuern",
-      "Link": "",
+      "Link": "more/umsatzsteuer.html",
       "class": ["regel","§13b"]
     },
     {
       "Begriff": "Fixkosten",
-      "Erklärung": "Kosten, die immer anfallen (Miete, Gehälter).",
+      "Erklärung": "Kosten, die immer anfallen.",
       "Bereich": "Kostenrechnung",
       "Link": "more/break-even.html",
       "class": ["begriff"]
@@ -577,394 +577,394 @@ window.SpickerData["wirtschaft"] = {
     },
     {
       "Begriff": "Kalkulation",
-      "Erklärung": "Preis aufbauen: Materialkosten + Fertigungskosten + Gemeinkosten-Zuschläge + Gewinnzuschlag = Netto-Verkaufspreis.",
+      "Erklärung": "Preis aus Kosten + Zuschlägen bauen.",
       "Bereich": "Kostenrechnung",
-      "Link": "",
+      "Link": "more/kalkulation.html",
       "class": ["formel","preis"]
     },
     {
       "Begriff": "Stundensatz",
-      "Erklärung": "(Fixkosten + gewünschter Gewinn + Steuerreserve) / verrechenbare Stunden pro Jahr.",
+      "Erklärung": "Jahresbedarf / abrechenbare Stunden.",
       "Bereich": "Kostenrechnung",
-      "Link": "",
+      "Link": "more/kalkulation.html",
       "class": ["formel","freelancer"]
     },
     {
       "Begriff": "Gemeinkosten",
-      "Erklärung": "Kosten, die keinem Produkt direkt zuzuordnen sind (Verwaltung, Strom) – werden per Zuschlag verteilt.",
+      "Erklärung": "Indirekte Kosten, per Zuschlag verteilt.",
       "Bereich": "Kostenrechnung",
-      "Link": "",
+      "Link": "more/kalkulation.html",
       "class": ["begriff","overhead"]
     },
     {
       "Begriff": "Kostenstelle",
-      "Erklärung": "Bereich, in dem Kosten entstehen und verantwortet werden, z. B. Vertrieb, Produktion, IT.",
+      "Erklärung": "Bereich, in dem Kosten entstehen.",
       "Bereich": "Kostenrechnung",
-      "Link": "",
+      "Link": "more/kalkulation.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Opportunitätskosten",
-      "Erklärung": "Entgangener Nutzen der besten nicht gewählten Alternative.",
+      "Erklärung": "Entgangener Nutzen der Alternative.",
       "Bereich": "Kostenrechnung",
-      "Link": "",
+      "Link": "more/kalkulation.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Liquidität",
-      "Erklärung": "Fähigkeit, Rechnungen pünktlich zu bezahlen. Häufiger Insolvenzgrund ist fehlende Liquidität, nicht fehlender Gewinn.",
+      "Erklärung": "Rechnungen pünktlich zahlen können.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/liquiditaet.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Liquiditätsplan",
-      "Erklärung": "Plan der erwarteten Ein- und Auszahlungen pro Monat für die nächsten 6–12 Monate.",
+      "Erklärung": "Ein- und Auszahlungen je Monat planen.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/liquiditaet.html",
       "class": ["strategie","finanzplan"]
     },
     {
       "Begriff": "Eigenfinanzierung",
-      "Erklärung": "Finanzierung aus eigenem Geld oder einbehaltenen Gewinnen. Keine Zinsen, keine Abhängigkeit.",
+      "Erklärung": "Mit eigenem Geld oder Gewinnen.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Fremdfinanzierung",
-      "Erklärung": "Kredite, Darlehen, Lieferantenkredit. Kostet Zinsen, Eigentümer behalten die Kontrolle.",
+      "Erklärung": "Mit Krediten und Darlehen.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["begriff","kredit"]
     },
     {
       "Begriff": "Kontokorrentkredit",
-      "Erklärung": "Dispo-Rahmen für das Geschäftskonto. Flexibel, aber teuer – nur für kurze Engpässe.",
+      "Erklärung": "Dispo: flexibel, aber teuer.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["begriff","dispo"]
     },
     {
       "Begriff": "Leasing",
-      "Erklärung": "Gegenstand mieten statt kaufen. Schont die Liquidität, ist über die Laufzeit meist teurer.",
+      "Erklärung": "Mieten statt kaufen.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Factoring",
-      "Erklärung": "Offene Forderungen an einen Dienstleister verkaufen und sofort Geld erhalten (gegen Gebühr).",
+      "Erklärung": "Offene Rechnungen verkaufen.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["begriff","forderungen"]
     },
     {
       "Begriff": "Fördermittel",
-      "Erklärung": "Zuschüsse und günstige Kredite, z. B. über die KfW oder Landesförderbanken. Meist VOR dem Projekt beantragen.",
+      "Erklärung": "Zuschüsse, KfW – vorher beantragen.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["regel","kfw"]
     },
     {
       "Begriff": "Skonto",
-      "Erklärung": "Preisnachlass bei schneller Zahlung, z. B. '2 % Skonto bei Zahlung in 10 Tagen' – oft sehr lohnend.",
+      "Erklärung": "Rabatt bei schneller Zahlung.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/finanzierung.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Mahnwesen",
-      "Erklärung": "Zahlungserinnerung → Mahnung(en) → gerichtliches Mahnverfahren. Verzug spätestens 30 Tage nach Rechnung.",
+      "Erklärung": "Erinnerung → Mahnung → Mahnbescheid.",
       "Bereich": "Finanzierung & Liquidität",
-      "Link": "",
+      "Link": "more/mahnwesen.html",
       "class": ["regel","mahnung","verzug"]
     },
     {
       "Begriff": "Controlling",
-      "Erklärung": "Planung, Steuerung und Kontrolle anhand von Zahlen: Plan mit Ist vergleichen und gegensteuern.",
+      "Erklärung": "Planen, messen, vergleichen, steuern.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/controlling.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Soll-Ist-Vergleich",
-      "Erklärung": "Geplante Werte den tatsächlichen gegenüberstellen und Abweichungen begründen.",
+      "Erklärung": "Plan und Wirklichkeit vergleichen.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/controlling.html",
       "class": ["strategie","abweichung"]
     },
     {
       "Begriff": "BWA",
-      "Erklärung": "Betriebswirtschaftliche Auswertung: monatlicher Kurzbericht aus der Buchhaltung (Umsatz, Kosten, Ergebnis).",
+      "Erklärung": "Monatlicher Kurzbericht aus der Buchhaltung.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/controlling.html",
       "class": ["begriff","datev"]
     },
     {
       "Begriff": "KPI",
-      "Erklärung": "Key Performance Indicator: wenige Kennzahlen, an denen der Erfolg gemessen wird.",
+      "Erklärung": "Die wichtigsten Erfolgskennzahlen.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/controlling.html",
       "class": ["begriff","kennzahl"]
     },
     {
       "Begriff": "SMART-Ziele",
-      "Erklärung": "Spezifisch, Messbar, Attraktiv, Realistisch, Terminiert.",
+      "Erklärung": "Spezifisch, messbar, …, terminiert.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/controlling.html",
       "class": ["regel","ziel"]
     },
     {
       "Begriff": "Budget",
-      "Erklärung": "Für einen Zeitraum festgelegter Betrag für Kosten oder Investitionen.",
+      "Erklärung": "Festgelegter Betrag für einen Zeitraum.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/controlling.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Investitionsrechnung",
-      "Erklärung": "Lohnt sich eine Investition? Z. B. Amortisationsdauer, Kapitalwertmethode.",
+      "Erklärung": "Prüfen, ob sich eine Investition lohnt.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/investitionsrechnung.html",
       "class": ["strategie"]
     },
     {
       "Begriff": "Amortisationsdauer",
-      "Erklärung": "Investition / jährlicher Rückfluss = Jahre, bis das Geld wieder drin ist.",
+      "Erklärung": "Investition / jährlicher Rückfluss.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/investitionsrechnung.html",
       "class": ["formel","payback"]
     },
     {
       "Begriff": "Kapitalwert (NPV)",
-      "Erklärung": "Summe aller abgezinsten zukünftigen Zahlungen minus Investition. Positiv = lohnt sich.",
+      "Erklärung": "Abgezinste Rückflüsse − Investition.",
       "Bereich": "Controlling & Planung",
-      "Link": "",
+      "Link": "more/investitionsrechnung.html",
       "class": ["formel","abzinsung"]
     },
     {
       "Begriff": "Arbeitsvertrag",
-      "Erklärung": "Regelt Tätigkeit, Lohn, Arbeitszeit, Urlaub, Kündigungsfristen. Wesentliche Bedingungen müssen schriftlich festgehalten werden.",
+      "Erklärung": "Regelt Tätigkeit, Lohn, Zeit, Urlaub.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["regel","nachweisgesetz"]
     },
     {
       "Begriff": "Mindestlohn",
-      "Erklärung": "Gesetzliche Lohnuntergrenze pro Stunde – wird regelmäßig angepasst (2026: 13,90 €).",
+      "Erklärung": "13,90 € pro Stunde (2026).",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["regel","lohn"]
     },
     {
       "Begriff": "Minijob",
-      "Erklärung": "Geringfügige Beschäftigung bis zur Minijob-Grenze pro Monat; pauschale Abgaben über die Minijob-Zentrale.",
+      "Erklärung": "Bis 603 € im Monat, pauschale Abgaben.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["begriff","geringfügig"]
     },
     {
       "Begriff": "Lohnnebenkosten",
-      "Erklärung": "Arbeitgeberanteile zur Sozialversicherung (ca. 20 % vom Brutto) plus Umlagen, Berufsgenossenschaft.",
+      "Erklärung": "AG-Anteile Sozialversicherung + Umlagen.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["kennzahl","sozialversicherung"]
     },
     {
       "Begriff": "Brutto / Netto",
-      "Erklärung": "Brutto = vereinbarter Lohn. Netto = Brutto minus Lohnsteuer und Arbeitnehmeranteile zur Sozialversicherung.",
+      "Erklärung": "Vereinbarter Lohn vs. Auszahlung.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["begriff","lohn"]
     },
     {
       "Begriff": "Probezeit",
-      "Erklärung": "Bis zu 6 Monate, in denen mit 2 Wochen Frist gekündigt werden kann.",
+      "Erklärung": "Max. 6 Monate, 2 Wochen Kündigungsfrist.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["regel","kündigung"]
     },
     {
       "Begriff": "Arbeitsschutz",
-      "Erklärung": "Arbeitgeber muss Gefährdungen beurteilen und Mitarbeiter schützen (Arbeitsschutzgesetz).",
+      "Erklärung": "Gefährdungen beurteilen, Personal schützen.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["regel"]
     },
     {
       "Begriff": "Scheinselbstständigkeit",
-      "Erklärung": "Freie Mitarbeiter, die wie Angestellte arbeiten → Nachzahlung von Sozialabgaben droht.",
+      "Erklärung": "Freelancer arbeitet wie ein Angestellter.",
       "Bereich": "Personal",
-      "Link": "",
+      "Link": "more/personal.html",
       "class": ["regel","freelancer"]
     },
     {
       "Begriff": "Marketing-Mix (4P)",
-      "Erklärung": "Product (Produkt), Price (Preis), Place (Vertrieb), Promotion (Kommunikation).",
+      "Erklärung": "Product, Price, Place, Promotion.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/marketing.html",
       "class": ["begriff","4p"]
     },
     {
       "Begriff": "Customer Journey",
-      "Erklärung": "Alle Berührungspunkte eines Kunden vom ersten Kontakt bis nach dem Kauf.",
+      "Erklärung": "Weg des Kunden vom Kontakt bis danach.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/marketing.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Conversion Rate",
-      "Erklärung": "Käufer / Besucher · 100 %. Wie viele Interessenten tatsächlich kaufen.",
+      "Erklärung": "Käufer / Besucher × 100 %.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/vertrieb-kennzahlen.html",
       "class": ["formel","konversion"]
     },
     {
       "Begriff": "Kundenakquisekosten (CAC)",
-      "Erklärung": "Marketing- und Vertriebskosten / Anzahl neuer Kunden.",
+      "Erklärung": "Was ein neuer Kunde kostet.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/vertrieb-kennzahlen.html",
       "class": ["formel","cac"]
     },
     {
       "Begriff": "Customer Lifetime Value",
-      "Erklärung": "Gesamter Deckungsbeitrag, den ein Kunde über die ganze Zeit bringt. Sollte deutlich über den CAC liegen.",
+      "Erklärung": "Was ein Kunde insgesamt einbringt.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/vertrieb-kennzahlen.html",
       "class": ["formel","clv","ltv"]
     },
     {
       "Begriff": "Wiederkehrende Umsätze",
-      "Erklärung": "Abo- oder Wartungsverträge mit monatlicher Zahlung – planbarer als Einzelaufträge.",
+      "Erklärung": "Abo- und Wartungsumsatz pro Monat.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/vertrieb-kennzahlen.html",
       "class": ["strategie","abo","mrr"]
     },
     {
       "Begriff": "Preisstrategie",
-      "Erklärung": "Kostenorientiert, konkurrenzorientiert oder wertorientiert (nach Nutzen für den Kunden).",
+      "Erklärung": "Kosten-, konkurrenz- oder wertorientiert.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/marketing.html",
       "class": ["strategie","preis"]
     },
     {
       "Begriff": "Impressumspflicht",
-      "Erklärung": "Geschäftliche Webseiten brauchen ein leicht erreichbares Impressum (Digitale-Dienste-Gesetz).",
+      "Erklärung": "Anbieterangaben nach § 5 DDG.",
       "Bereich": "Marketing & Vertrieb",
-      "Link": "",
+      "Link": "more/datenschutz-impressum.html",
       "class": ["regel","webseite"]
     },
     {
       "Begriff": "Vertrag",
-      "Erklärung": "Entsteht durch zwei übereinstimmende Willenserklärungen: Angebot und Annahme.",
+      "Erklärung": "Angebot + Annahme = Vertrag.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/vertraege-agb.html",
       "class": ["regel","bgb"]
     },
     {
       "Begriff": "AGB",
-      "Erklärung": "Allgemeine Geschäftsbedingungen: vorformulierte Vertragsbedingungen. Unwirksam, wenn sie den Kunden unangemessen benachteiligen.",
+      "Erklärung": "Vorformulierte Vertragsbedingungen.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/vertraege-agb.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "Gewährleistung",
-      "Erklärung": "Gesetzliche Mängelhaftung des Verkäufers: 2 Jahre bei neuen Sachen.",
+      "Erklärung": "2 Jahre gesetzliche Mängelhaftung.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/vertraege-agb.html",
       "class": ["regel","mängel"]
     },
     {
       "Begriff": "Widerrufsrecht",
-      "Erklärung": "Verbraucher können Online- und Fernabsatzkäufe meist 14 Tage ohne Grund widerrufen.",
+      "Erklärung": "14 Tage für Verbraucher online.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/vertraege-agb.html",
       "class": ["regel","fernabsatz"]
     },
     {
       "Begriff": "Dienst- vs. Werkvertrag",
-      "Erklärung": "Dienstvertrag: Tätigkeit geschuldet. Werkvertrag: Ergebnis (Werk) geschuldet, mit Abnahme.",
+      "Erklärung": "Tätigkeit oder Ergebnis geschuldet.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/vertraege-agb.html",
       "class": ["begriff"]
     },
     {
       "Begriff": "DSGVO",
-      "Erklärung": "Datenschutz-Grundverordnung: personenbezogene Daten nur mit Rechtsgrundlage verarbeiten; Datenschutzerklärung, Auskunftsrecht.",
+      "Erklärung": "Regeln für personenbezogene Daten.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/datenschutz-impressum.html",
       "class": ["regel","datenschutz"]
     },
     {
       "Begriff": "Verjährung",
-      "Erklärung": "Regelmäßige Verjährungsfrist: 3 Jahre, beginnend mit Ende des Jahres, in dem der Anspruch entstand.",
+      "Erklärung": "3 Jahre, ab Ende des Entstehungsjahres.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/mahnwesen.html",
       "class": ["regel","frist"]
     },
     {
       "Begriff": "Insolvenz",
-      "Erklärung": "Zahlungsunfähigkeit oder Überschuldung. Geschäftsführer einer GmbH müssen dann unverzüglich Insolvenz anmelden.",
+      "Erklärung": "Zahlungsunfähig oder überschuldet.",
       "Bereich": "Recht & Verträge",
-      "Link": "",
+      "Link": "more/liquiditaet.html",
       "class": ["regel","insolvenzantrag"]
     },
     {
       "Begriff": "Betriebshaftpflicht",
-      "Erklärung": "Deckt Schäden, die das Unternehmen Dritten zufügt. Für fast jedes Unternehmen wichtig.",
+      "Erklärung": "Personen- und Sachschäden bei Dritten.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/versicherungen.html",
       "class": ["begriff","versicherung"]
     },
     {
       "Begriff": "Berufshaftpflicht",
-      "Erklärung": "Deckt Vermögensschäden durch fachliche Fehler, z. B. bei Beratern, IT-Dienstleistern.",
+      "Erklärung": "Vermögensschäden durch fachliche Fehler.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/versicherungen.html",
       "class": ["begriff","versicherung"]
     },
     {
       "Begriff": "Krankenversicherung (Selbstständige)",
-      "Erklärung": "Pflicht für alle: gesetzlich (freiwillig) oder privat. Beiträge vom Einkommen bzw. nach Tarif.",
+      "Erklärung": "Pflicht: gesetzlich oder privat.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/versicherungen.html",
       "class": ["regel","versicherung"]
     },
     {
       "Begriff": "Altersvorsorge (Selbstständige)",
-      "Erklärung": "Meist keine Rentenpflicht – selbst vorsorgen, z. B. über ETF-Sparplan, Rürup-Rente oder freiwillig gesetzlich.",
+      "Erklärung": "Selbst vorsorgen, z. B. ETF oder Rürup.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/versicherungen.html",
       "class": ["strategie","rente"]
     },
     {
       "Begriff": "Risikomanagement",
-      "Erklärung": "Risiken erkennen, bewerten (Wahrscheinlichkeit · Schaden), vermeiden, vermindern, versichern oder tragen.",
+      "Erklärung": "Risiken erkennen, bewerten, behandeln.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/risikomanagement.html",
       "class": ["strategie","risiko"]
     },
     {
       "Begriff": "Abhängigkeit von Großkunden",
-      "Erklärung": "Mehr als ca. 30 % Umsatz mit einem Kunden ist ein Klumpenrisiko.",
+      "Erklärung": "Über 30 % Umsatz = Klumpenrisiko.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/risikomanagement.html",
       "class": ["regel","klumpenrisiko"]
     },
     {
       "Begriff": "Liquiditätsreserve",
-      "Erklärung": "Rücklage für mehrere Monate Fixkosten, um Umsatzeinbrüche zu überstehen.",
+      "Erklärung": "Polster für 3–6 Monate Fixkosten.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/liquiditaet.html",
       "class": ["regel","reserve"]
     },
     {
       "Begriff": "Datensicherung",
-      "Erklärung": "Regelmäßige Backups nach der 3-2-1-Regel: 3 Kopien, 2 Medien, 1 außer Haus.",
+      "Erklärung": "Backups nach der 3-2-1-Regel.",
       "Bereich": "Risiko & Absicherung",
-      "Link": "",
+      "Link": "more/risikomanagement.html",
       "class": ["regel","backup"]
     }
   ]}

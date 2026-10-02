@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Aufbewahrung &amp; GoBD – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Buchhaltung</p>
+    <h1>Aufbewahrungsfristen &amp; GoBD</h1>
+    <p class="page-lead">Wie lange du Belege, Rechnungen und Bücher aufheben musst – und welche Regeln für die digitale Buchführung gelten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Das Finanzamt darf deine Buchhaltung noch Jahre später prüfen (Betriebsprüfung). Darum musst du Unterlagen eine bestimmte Zeit <strong>aufbewahren</strong>. Die <strong>GoBD</strong> legen fest, <strong>wie</strong> die digitale Buchführung und Archivierung aussehen muss.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Aufbewahrungsfristen" xmlns="http://www.w3.org/2000/svg">
+        <text x="220.0" y="90.0" class="dg-label" text-anchor="end">Bücher, Jahresabschlüsse</text>
+        <rect x="230.0" y="66.0" width="300.0" height="38.0" rx="3" class="dg-bar-total"/>
+        <text x="538.0" y="90.0" class="dg-text" text-anchor="start">10 Jahre</text>
+        <text x="220.0" y="142.0" class="dg-label" text-anchor="end">Inventare, Eröffnungsbilanz</text>
+        <rect x="230.0" y="118.0" width="300.0" height="38.0" rx="3" class="dg-bar-total"/>
+        <text x="538.0" y="142.0" class="dg-text" text-anchor="start">10 Jahre</text>
+        <text x="220.0" y="194.0" class="dg-label" text-anchor="end">Buchungsbelege (Rechnungen)</text>
+        <rect x="230.0" y="170.0" width="240.0" height="38.0" rx="3" class="dg-bar"/>
+        <text x="478.0" y="194.0" class="dg-text" text-anchor="start">8 Jahre</text>
+        <text x="220.0" y="246.0" class="dg-label" text-anchor="end">Geschäftsbriefe, Angebote</text>
+        <rect x="230.0" y="222.0" width="180.0" height="38.0" rx="3" class="dg-asset-2"/>
+        <text x="418.0" y="246.0" class="dg-text" text-anchor="start">6 Jahre</text>
+        </svg>
+        <figcaption>Aufbewahrungsfristen nach HGB und AO (Stand 2026). Die Frist beginnt am Ende des Jahres, in dem das Dokument entstanden ist.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Die Fristen stehen in <strong>§ 257 HGB</strong> und <strong>§ 147 AO</strong> (Abgabenordnung). Mit dem <strong>Bürokratieentlastungsgesetz IV</strong> wurde die Frist für Buchungsbelege 2025 von 10 auf <strong>8 Jahre</strong> verkürzt. Die <strong>GoBD</strong> („Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff“) sind ein Schreiben des Bundesfinanzministeriums, zuerst 2014, überarbeitet 2019 und 2024/2025.</p>
+    </section>
+    <section>
+      <h2>Wie rechnet man die Frist?</h2>
+      <p>Die Frist beginnt <strong>nicht</strong> mit dem Datum des Dokuments, sondern mit dem <strong>Ende des Kalenderjahres</strong>.</p>
+      <pre><code>Rechnung vom 15.03.2026 (Buchungsbeleg, 8 Jahre)
+Fristbeginn:  31.12.2026
+Fristende:    31.12.2034  → ab 2035 darf sie vernichtet werden</code></pre>
+      <div class="note">Achtung: Die Frist läuft nicht ab, solange die Unterlagen für eine noch offene Steuerfestsetzung wichtig sind (z. B. laufende Betriebsprüfung).</div>
+    </section>
+    <section>
+      <h2>Die GoBD-Grundsätze</h2>
+      <table class="info-table">
+        <thead><tr><th>Grundsatz</th><th>Bedeutung</th><th>Praxis</th></tr></thead>
+        <tbody>
+          <tr><td>Vollständigkeit</td><td>jeder Vorgang wird erfasst</td><td>auch Barzahlungen und Kleinbeträge</td></tr>
+          <tr><td>Richtigkeit</td><td>Buchungen stimmen mit der Wirklichkeit überein</td><td>Beträge und Daten korrekt</td></tr>
+          <tr><td>Zeitgerechtheit</td><td>zeitnah buchen</td><td>Kassenbuch täglich, sonst bis Ende des Folgemonats</td></tr>
+          <tr><td>Ordnung</td><td>systematisch, auffindbar</td><td>Belege nummerieren, Ordner/Ordnerstruktur</td></tr>
+          <tr><td>Unveränderbarkeit</td><td>nichts nachträglich unbemerkt ändern</td><td>kein Excel als Kassenbuch; Änderungen protokollieren</td></tr>
+          <tr><td>Nachvollziehbarkeit</td><td>ein Prüfer versteht alles in angemessener Zeit</td><td>Verfahrensdokumentation</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Digital aufbewahren</h2>
+      <ul>
+        <li>Digital erhaltene Belege (E-Mail-Rechnung, E-Rechnung) müssen <strong>digital im Original</strong> aufbewahrt werden.</li>
+        <li>Papierbelege dürfen eingescannt und danach meist vernichtet werden – wenn das Verfahren beschrieben ist (Verfahrensdokumentation).</li>
+        <li>Die Daten müssen während der ganzen Frist lesbar und auswertbar bleiben (auch wenn du das Programm wechselst).</li>
+        <li>Backups nicht vergessen – siehe Datensicherung.</li>
+      </ul>
+      <div class="note"><strong>Keine Rechts- oder Steuerberatung:</strong> Diese Seite erklärt die Grundlagen vereinfacht. Zahlen und Regeln ändern sich (Stand 2026). Für deinen konkreten Fall frag eine Steuerberaterin oder einen Steuerberater.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein Ordner pro Jahr (digital), Unterordner nach Monat – so findest du alles schnell.</li>
+        <li>Rechnungen aus E-Mails nicht nur im Postfach lassen, sondern ins Archiv/Buchhaltungsprogramm übernehmen.</li>
+        <li>Eine kurze Verfahrensdokumentation (Wer scannt wann, wo wird gespeichert?) reicht für Kleinunternehmen oft aus.</li>
+        <li>Im Zweifel länger aufheben – zu früh vernichtet kann teuer werden (Schätzung durch das Finanzamt).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="buchfuehrung.html">Buchführung</a>
+        <a class="chip" href="rechnung.html">Rechnung</a>
+        <a class="chip" href="risikomanagement.html">Risikomanagement</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Teiler &amp; Primzahlen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Arithmetik</p>
+    <h1>Teiler, Primzahlen, ggT und kgV</h1>
+    <p class="page-lead">Wie man schnell sieht, ob eine Zahl teilbar ist, was Primzahlen sind und wofür man ggT und kgV braucht.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Zahl <code>a</code> ist ein <strong>Teiler</strong> von <code>b</code>, wenn <code>b : a</code> ohne Rest aufgeht. Die Teiler von 12 sind 1, 2, 3, 4, 6 und 12.</p>
+      <p>Eine <strong>Primzahl</strong> ist eine natürliche Zahl größer als 1, die <em>genau zwei</em> Teiler hat: 1 und sich selbst. Primzahlen sind die „Atome“ der Zahlen – jede andere Zahl lässt sich eindeutig aus ihnen zusammenmultiplizieren.</p>
+      <pre><code>Primzahlen bis 50:  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47</code></pre>
+      <div class="note">1 ist <strong>keine</strong> Primzahl (sie hat nur einen Teiler). 2 ist die einzige gerade Primzahl.</div>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Schon Euklid bewies um 300 v. Chr., dass es <strong>unendlich viele</strong> Primzahlen gibt. Eratosthenes erfand das „Sieb“: Alle Vielfachen von 2, 3, 5, … streichen – was übrig bleibt, ist prim.</p>
+      <p>Heute sind Primzahlen überall in der IT: Die Verschlüsselung RSA (z. B. bei HTTPS) beruht darauf, dass es sehr schwer ist, eine riesige Zahl wieder in ihre zwei Primfaktoren zu zerlegen.</p>
+    </section>
+    <section>
+      <h2>Teilbarkeitsregeln</h2>
+      <table class="info-table">
+        <thead><tr><th>Teilbar durch</th><th>Regel</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>2</td><td>letzte Ziffer ist gerade (0, 2, 4, 6, 8)</td><td>538 ✓</td></tr>
+          <tr><td>3</td><td>Quersumme ist durch 3 teilbar</td><td>471: 4+7+1 = 12 ✓</td></tr>
+          <tr><td>4</td><td>die letzten zwei Ziffern bilden eine durch 4 teilbare Zahl</td><td>1316: 16 ✓</td></tr>
+          <tr><td>5</td><td>endet auf 0 oder 5</td><td>245 ✓</td></tr>
+          <tr><td>6</td><td>durch 2 <strong>und</strong> durch 3 teilbar</td><td>534 ✓</td></tr>
+          <tr><td>9</td><td>Quersumme ist durch 9 teilbar</td><td>729: 7+2+9 = 18 ✓</td></tr>
+          <tr><td>10</td><td>endet auf 0</td><td>730 ✓</td></tr>
+        </tbody>
+      </table>
+      <p>Die <strong>Quersumme</strong> ist die Summe aller Ziffern einer Zahl.</p>
+    </section>
+    <section>
+      <h2>Primfaktorzerlegung</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Primfaktorzerlegung von 60 als Baum" xmlns="http://www.w3.org/2000/svg">
+        <line x1="320.0" y1="60.0" x2="220.0" y2="98.0" class="dg-note-line"/>
+        <line x1="320.0" y1="60.0" x2="420.0" y2="98.0" class="dg-note-line"/>
+        <line x1="420.0" y1="130.0" x2="330.0" y2="168.0" class="dg-note-line"/>
+        <line x1="420.0" y1="130.0" x2="510.0" y2="168.0" class="dg-note-line"/>
+        <line x1="510.0" y1="200.0" x2="430.0" y2="238.0" class="dg-note-line"/>
+        <line x1="510.0" y1="200.0" x2="590.0" y2="238.0" class="dg-note-line"/>
+        <text x="320.0" y="47.0" class="dg-big" text-anchor="middle">60</text>
+        <circle cx="220.0" cy="110.0" r="22.0" class="dg-fill dg-shape"/>
+        <text x="220.0" y="117.0" class="dg-big" text-anchor="middle">2</text>
+        <text x="420.0" y="117.0" class="dg-big" text-anchor="middle">30</text>
+        <circle cx="330.0" cy="180.0" r="22.0" class="dg-fill dg-shape"/>
+        <text x="330.0" y="187.0" class="dg-big" text-anchor="middle">2</text>
+        <text x="510.0" y="187.0" class="dg-big" text-anchor="middle">15</text>
+        <circle cx="430.0" cy="250.0" r="22.0" class="dg-fill dg-shape"/>
+        <text x="430.0" y="257.0" class="dg-big" text-anchor="middle">3</text>
+        <circle cx="590.0" cy="250.0" r="22.0" class="dg-fill dg-shape"/>
+        <text x="590.0" y="257.0" class="dg-big" text-anchor="middle">5</text>
+        <text x="20.0" y="300.0" class="dg-accent-text" text-anchor="start">60 = 2 · 2 · 3 · 5 = 2² · 3 · 5</text>
+        <text x="20.0" y="40.0" class="dg-small" text-anchor="start">Kreis = Primzahl</text>
+        <text x="20.0" y="56.0" class="dg-small" text-anchor="start">(nicht weiter zerlegbar)</text>
+        </svg>
+        <figcaption>Man teilt so lange durch Primzahlen, bis nur noch Primzahlen übrig sind.</figcaption>
+      </figure>
+      <pre><code>60 : 2 = 30
+30 : 2 = 15
+15 : 3 = 5      (5 ist prim → fertig)
+60 = 2 · 2 · 3 · 5 = 2² · 3 · 5</code></pre>
+    </section>
+    <section>
+      <h2>ggT und kgV</h2>
+      <table class="info-table">
+        <thead><tr><th>Abkürzung</th><th>Bedeutung</th><th>Wofür?</th></tr></thead>
+        <tbody>
+          <tr><td>ggT(a, b)</td><td><strong>g</strong>rößter <strong>g</strong>emeinsamer <strong>T</strong>eiler – die größte Zahl, die a und b teilt</td><td>Brüche vollständig kürzen</td></tr>
+          <tr><td>kgV(a, b)</td><td><strong>k</strong>leinstes <strong>g</strong>emeinsames <strong>V</strong>ielfaches – die kleinste Zahl, die durch a und b teilbar ist</td><td>Hauptnenner beim Addieren von Brüchen</td></tr>
+        </tbody>
+      </table>
+      <pre><code>a = 12 = 2² · 3
+b = 18 = 2  · 3²
+
+ggT: jede gemeinsame Primzahl mit dem KLEINEREN Exponenten
+     2¹ · 3¹ = 6
+kgV: jede vorkommende Primzahl mit dem GRÖSSEREN Exponenten
+     2² · 3² = 36
+
+Probe: ggT · kgV = 6 · 36 = 216 = 12 · 18  ✓</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Die Quersummenregel gilt nur für 3 und 9 – nicht für 7!</li>
+        <li>Zum Zerlegen immer mit der kleinsten Primzahl 2 anfangen und dann 3, 5, 7 … durchprobieren.</li>
+        <li>Man muss nur bis zur Wurzel der Zahl prüfen: Hat 97 keinen Teiler bis √97 ≈ 9,8, ist 97 prim.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="zahlen.html">Zahlenmengen &amp; Rechenregeln</a>
+        <a class="chip" href="brueche.html">Bruchrechnen</a>
+        <a class="chip" href="kombinatorik.html">Kombinatorik</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

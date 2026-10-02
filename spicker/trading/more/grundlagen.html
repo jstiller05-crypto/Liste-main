@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Grundlagen</p>
+    <h1>Trading, Investieren, Long &amp; Short</h1>
+    <p class="page-lead">Die allerersten Begriffe: Was der Unterschied zwischen Trading und Investieren ist und wie man auf steigende oder fallende Kurse setzen kann.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><strong>Investieren</strong> heißt: Du kaufst etwas (z. B. Aktien oder einen ETF) und hältst es <strong>Jahre bis Jahrzehnte</strong>. Du willst davon profitieren, dass Unternehmen wachsen und Gewinne auszahlen.</p>
+      <p><strong>Trading</strong> heißt: Du kaufst und verkaufst <strong>kurzfristig</strong> – Minuten, Tage oder Wochen. Du willst an den Kursschwankungen verdienen, nicht am langfristigen Wachstum.</p>
+      <table class="info-table">
+        <thead><tr><th></th><th>Investieren</th><th>Trading</th></tr></thead>
+        <tbody>
+          <tr><td>Haltedauer</td><td>Jahre bis Jahrzehnte</td><td>Minuten bis Wochen</td></tr>
+          <tr><td>Woran verdient man?</td><td>Wachstum, Dividenden, Zinseszins</td><td>Kursbewegungen</td></tr>
+          <tr><td>Zeitaufwand</td><td>gering (z. B. Sparplan)</td><td>hoch (Charts beobachten, planen)</td></tr>
+          <tr><td>Kosten</td><td>wenige Käufe → geringe Gebühren</td><td>viele Trades → Gebühren und Spreads summieren sich</td></tr>
+          <tr><td>Typisches Werkzeug</td><td>Fundamentalanalyse, ETFs</td><td>Chartanalyse, Indikatoren, Stop-Loss</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Lange Zeit konnten nur Profis an der Börse schnell handeln. Erst Online-Broker (ab den 1990ern) und später Smartphone-Apps mit sehr niedrigen Gebühren haben Trading für Privatleute einfach gemacht.</p>
+      <p>Das <strong>Leerverkaufen</strong> (Short) ist dagegen uralt: Schon 1609 hat der Händler Isaac Le Maire in Amsterdam auf fallende Kurse der Niederländischen Ostindien-Kompanie gesetzt – kurz danach gab es die ersten Verbote.</p>
+    </section>
+    <section>
+      <h2>Long und Short</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Long und Short im Vergleich" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="10.0" y="8.0" width="300.0" height="300.0" rx="8" class="dg-box"/>
+        <text x="160.0" y="32.0" class="dg-label" text-anchor="middle">LONG: auf steigende Kurse</text>
+        <polyline points="40.0,204.7 68.9,193.7 97.8,199.2 126.7,177.1 155.6,160.5 184.4,166.1 213.3,138.4 242.2,121.8 271.1,127.4 300.0,94.2" class="dg-line" fill="none"/>
+        <circle cx="68.9" cy="193.7" r="4.5" class="dg-point"/>
+        <circle cx="300.0" cy="94.2" r="4.5" class="dg-point"/>
+        <text x="74.9" y="211.7" class="dg-text" text-anchor="start">1. kaufen</text>
+        <text x="296.0" y="84.2" class="dg-text" text-anchor="end">2. verkaufen</text>
+        <line x1="312.0" y1="193.7" x2="312.0" y2="94.2" class="dg-up-wick" marker-end="url(#arrow)"/>
+        <text x="160.0" y="290.0" class="dg-good" text-anchor="middle">Gewinn: +18 €</text>
+        <rect x="330.0" y="8.0" width="300.0" height="300.0" rx="8" class="dg-box"/>
+        <text x="480.0" y="32.0" class="dg-label" text-anchor="middle">SHORT: auf fallende Kurse</text>
+        <polyline points="360.0,94.2 388.9,105.3 417.8,99.7 446.7,121.8 475.6,138.4 504.4,132.9 533.3,160.5 562.2,171.6 591.1,166.1 620.0,193.7" class="dg-line" fill="none"/>
+        <circle cx="360.0" cy="94.2" r="4.5" class="dg-point"/>
+        <circle cx="620.0" cy="193.7" r="4.5" class="dg-point"/>
+        <text x="368.0" y="86.2" class="dg-text" text-anchor="start">1. verkaufen</text>
+        <text x="616.0" y="213.7" class="dg-text" text-anchor="end">2. zurückkaufen</text>
+        <line x1="632.0" y1="94.2" x2="632.0" y2="193.7" class="dg-up-wick" marker-end="url(#arrow)"/>
+        <text x="480.0" y="290.0" class="dg-good" text-anchor="middle">Gewinn: +18 €</text>
+        </svg>
+        <figcaption>Long: billig kaufen, teurer verkaufen. Short: erst teuer verkaufen, dann billiger zurückkaufen. In beiden Fällen ist die Differenz der Gewinn.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th></th><th>Long</th><th>Short</th></tr></thead>
+        <tbody>
+          <tr><td>Du setzt auf …</td><td>steigende Kurse</td><td>fallende Kurse</td></tr>
+          <tr><td>Erster Schritt</td><td>kaufen</td><td>verkaufen (geliehene Aktien oder per CFD/Derivat)</td></tr>
+          <tr><td>Zweiter Schritt</td><td>verkaufen</td><td>zurückkaufen (Position „eindecken“)</td></tr>
+          <tr><td>Maximaler Verlust</td><td>dein Einsatz (Kurs fällt auf 0)</td><td>theoretisch unbegrenzt (Kurs kann immer weiter steigen)</td></tr>
+        </tbody>
+      </table>
+      <p>Beispiel Long: Du kaufst 10 Aktien der Beispiel AG zu 82 € und verkaufst sie zu 100 € → 10 · 18 € = <strong>180 € Gewinn</strong> (vor Kosten).</p>
+      <p>Beispiel Short: Du verkaufst (geliehen) 10 Aktien zu 100 € und kaufst sie zu 82 € zurück → ebenfalls <strong>180 € Gewinn</strong>. Steigt der Kurs stattdessen auf 130 €, verlierst du 300 €.</p>
+      <div class="note">Als Privatanleger kannst du Aktien meist nicht direkt leerverkaufen. Short geht dann nur über Derivate wie CFDs, Knock-outs oder Put-Optionen – alles Produkte mit eigenen Risiken.</div>
+    </section>
+    <section>
+      <h2>Bulle und Bär</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Bullen- und Bärenmarkt" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">96</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">107</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">118</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">129</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">140</text>
+        <rect x="52.0" y="28.0" width="277.1" height="258.0" rx="0" class="dg-fill"/>
+        <text x="190.5" y="44.0" class="dg-label" text-anchor="middle">Bullenmarkt</text>
+        <rect x="329.1" y="28.0" width="152.4" height="258.0" rx="0" class="dg-box"/>
+        <text x="405.3" y="44.0" class="dg-label" text-anchor="middle">Bärenmarkt</text>
+        <polyline points="52.0,261.6 65.9,250.0 79.7,255.8 93.6,238.4 107.4,221.0 121.3,226.8 135.1,203.6 149.0,186.2 162.8,192.0 176.7,168.8 190.5,151.3 204.4,157.1 218.2,133.9 232.1,116.5 246.0,122.3 259.8,99.1 273.7,81.7 287.5,93.3 301.4,70.1 315.2,58.5 329.1,64.3 342.9,87.5 356.8,110.7 370.6,99.1 384.5,139.7 398.3,162.9 412.2,151.3 426.0,192.0 439.9,215.2 453.8,203.6 467.6,238.4 481.5,255.8 495.3,244.2 509.2,226.8 523.0,232.6 536.9,209.4 550.7,192.0 564.6,197.8 578.4,174.6 592.3,157.1 606.1,162.9 620.0,139.7" class="dg-line" fill="none"/>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Steigende Phase = Bullenmarkt, fallende Phase = Bärenmarkt. Oft spricht man erst ab etwa 20 % Minus vom Hoch von einem Bärenmarkt.</figcaption>
+      </figure>
+      <ul>
+        <li><strong>Bulle</strong> stößt mit den Hörnern <strong>nach oben</strong> → steigende Kurse, Optimismus („bullish“).</li>
+        <li><strong>Bär</strong> schlägt mit der Tatze <strong>nach unten</strong> → fallende Kurse, Pessimismus („bearish“).</li>
+        <li>Vor der Frankfurter Börse stehen deshalb ein Bulle und ein Bär als Statuen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Position</td><td>Ein offener Trade, z. B. „ich bin long in der Beispiel AG“.</td></tr>
+          <tr><td>Long gehen / Short gehen</td><td>Eine Kauf- bzw. Verkaufsposition eröffnen.</td></tr>
+          <tr><td>Glattstellen / schließen</td><td>Die Position beenden – erst dann ist Gewinn oder Verlust echt (realisiert).</td></tr>
+          <tr><td>Daytrading</td><td>Alle Positionen werden am selben Tag wieder geschlossen.</td></tr>
+          <tr><td>Swingtrading</td><td>Positionen über einige Tage bis Wochen halten.</td></tr>
+          <tr><td>Buy and Hold</td><td>Kaufen und langfristig liegen lassen – klassisches Investieren.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Studien zeigen immer wieder: Die meisten privaten Daytrader verdienen auf Dauer kein Geld – Kosten und Emotionen fressen die Gewinne.</li>
+        <li>Short-Positionen haben ein unbegrenztes Verlustrisiko – nie ohne Stop-Loss.</li>
+        <li>Erst investieren lernen, dann (wenn überhaupt) mit kleinem Betrag traden.</li>
+        <li>Diese Seite erklärt Begriffe und Zusammenhänge – sie ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="rendite-zinseszins.html">Rendite &amp; Zinseszins</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+        <a class="chip" href="broker-depot.html">Broker &amp; Depot</a>
+        <a class="chip" href="psychologie.html">Psychologie</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

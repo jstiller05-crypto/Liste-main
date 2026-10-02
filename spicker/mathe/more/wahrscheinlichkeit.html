@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Wahrscheinlichkeit – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Stochastik</p>
+    <h1>Wahrscheinlichkeit</h1>
+    <p class="page-lead">Wie wahrscheinlich ist ein Ergebnis? Laplace, Gegenereignis, Baumdiagramm und bedingte Wahrscheinlichkeit.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <strong>Wahrscheinlichkeit</strong> P(E) ist eine Zahl zwischen 0 und 1 (bzw. 0 % und 100 %), die angibt, wie sicher ein Ereignis E eintritt. 0 = unmöglich, 1 = sicher.</p>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th><th>Beispiel Würfel</th></tr></thead>
+        <tbody>
+          <tr><td>Zufallsexperiment</td><td>Vorgang mit unvorhersehbarem Ausgang</td><td>einmal würfeln</td></tr>
+          <tr><td>Ergebnis</td><td>ein möglicher Ausgang</td><td>die 4</td></tr>
+          <tr><td>Ergebnismenge Ω</td><td>alle möglichen Ergebnisse</td><td>{1, 2, 3, 4, 5, 6}</td></tr>
+          <tr><td>Ereignis E</td><td>eine Auswahl von Ergebnissen</td><td>„gerade Zahl“ = {2, 4, 6}</td></tr>
+        </tbody>
+      </table>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>P(E)</code></td><td>Wahrscheinlichkeit von E (P von englisch <em>probability</em>)</td></tr>
+          <tr><td><code>Ω</code></td><td>Ergebnismenge (Omega)</td></tr>
+          <tr><td><code>Ē</code></td><td>Gegenereignis „nicht E“</td></tr>
+          <tr><td><code>A ∩ B</code></td><td>A <strong>und</strong> B treten beide ein</td></tr>
+          <tr><td><code>A ∪ B</code></td><td>A <strong>oder</strong> B (oder beide)</td></tr>
+          <tr><td><code>P(A|B)</code></td><td>Wahrscheinlichkeit von A, <strong>wenn</strong> B schon eingetreten ist</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>1654 fragte ein Glücksspieler Blaise Pascal, wie man den Einsatz eines abgebrochenen Spiels gerecht verteilt. Pascal und Pierre de Fermat lösten das per Briefwechsel – die Geburtsstunde der Wahrscheinlichkeitsrechnung. Pierre-Simon Laplace fasste sie 1812 zusammen.</p>
+    </section>
+    <section>
+      <h2>Laplace und Gegenereignis</h2>
+      <pre><code>P(E) = Anzahl günstiger Ergebnisse / Anzahl möglicher Ergebnisse
+(nur wenn alle Ergebnisse gleich wahrscheinlich sind: fairer Würfel, Münze …)
+
+P(gerade Zahl) = 3/6 = 0,5
+P(Ē) = 1 − P(E)</code></pre>
+      <pre><code>Mindestens eine 6 bei 4 Würfen?
+Direkt: sehr viele Fälle. Über das Gegenereignis „keine 6“:
+P(keine 6) = (5/6)⁴ ≈ 0,482
+P(mindestens eine 6) = 1 − 0,482 = 0,518 ≈ 51,8 %</code></pre>
+    </section>
+    <section>
+      <h2>Baumdiagramm</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Baumdiagramm für zweimal Ziehen ohne Zurücklegen" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="36.0" cy="160.0" r="6.0" class="dg-point"/>
+        <line x1="42.0" y1="160.0" x2="214.0" y2="84.0" class="dg-line-2"/>
+        <text x="133.0" y="114.0" class="dg-label" text-anchor="middle">3/5</text>
+        <circle cx="230.0" cy="84.0" r="15.0" class="dg-fill dg-shape"/>
+        <text x="230.0" y="89.0" class="dg-label" text-anchor="middle">r</text>
+        <line x1="42.0" y1="160.0" x2="214.0" y2="236.0" class="dg-line-2"/>
+        <text x="133.0" y="216.0" class="dg-label" text-anchor="middle">2/5</text>
+        <circle cx="230.0" cy="236.0" r="15.0" class="dg-fill dg-shape"/>
+        <text x="230.0" y="241.0" class="dg-label" text-anchor="middle">b</text>
+        <line x1="246.0" y1="84.0" x2="384.0" y2="40.0" class="dg-line-2"/>
+        <text x="315.0" y="54.0" class="dg-label" text-anchor="middle">2/4</text>
+        <circle cx="398.0" cy="40.0" r="13.0" class="dg-fill dg-shape"/>
+        <text x="398.0" y="45.0" class="dg-label" text-anchor="middle">r</text>
+        <text x="420.0" y="45.0" class="dg-text" text-anchor="start">rr: 3/5 · 2/4 = 6/20</text>
+        <line x1="246.0" y1="84.0" x2="384.0" y2="124.0" class="dg-line-2"/>
+        <text x="315.0" y="120.0" class="dg-label" text-anchor="middle">2/4</text>
+        <circle cx="398.0" cy="124.0" r="13.0" class="dg-fill dg-shape"/>
+        <text x="398.0" y="129.0" class="dg-label" text-anchor="middle">b</text>
+        <text x="420.0" y="129.0" class="dg-text" text-anchor="start">rb: 3/5 · 2/4 = 6/20</text>
+        <line x1="246.0" y1="236.0" x2="384.0" y2="196.0" class="dg-line-2"/>
+        <text x="315.0" y="208.0" class="dg-label" text-anchor="middle">3/4</text>
+        <circle cx="398.0" cy="196.0" r="13.0" class="dg-fill dg-shape"/>
+        <text x="398.0" y="201.0" class="dg-label" text-anchor="middle">r</text>
+        <text x="420.0" y="201.0" class="dg-text" text-anchor="start">br: 2/5 · 3/4 = 6/20</text>
+        <line x1="246.0" y1="236.0" x2="384.0" y2="280.0" class="dg-line-2"/>
+        <text x="315.0" y="274.0" class="dg-label" text-anchor="middle">1/4</text>
+        <circle cx="398.0" cy="280.0" r="13.0" class="dg-fill dg-shape"/>
+        <text x="398.0" y="285.0" class="dg-label" text-anchor="middle">b</text>
+        <text x="420.0" y="285.0" class="dg-text" text-anchor="start">bb: 2/5 · 1/4 = 2/20</text>
+        <text x="230.0" y="312.0" class="dg-small" text-anchor="middle">r = rot, b = blau</text>
+        </svg>
+        <figcaption>Urne mit 3 roten und 2 blauen Kugeln, zweimal ziehen ohne Zurücklegen.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Regel</th><th>Was tun?</th></tr></thead>
+        <tbody>
+          <tr><td>Pfadregel (Produktregel)</td><td>Wahrscheinlichkeiten <strong>entlang</strong> eines Pfades malnehmen</td></tr>
+          <tr><td>Summenregel</td><td>Pfade, die zum gleichen Ereignis gehören, <strong>addieren</strong></td></tr>
+        </tbody>
+      </table>
+      <pre><code>P(genau eine rote) = P(rb) + P(br) = 6/20 + 6/20 = 12/20 = 0,6
+Kontrolle: alle Pfade zusammen = 6/20 + 6/20 + 6/20 + 2/20 = 1  ✓</code></pre>
+    </section>
+    <section>
+      <h2>Bedingte Wahrscheinlichkeit</h2>
+      <pre><code>P(A|B) = P(A ∩ B) / P(B)
+
+Beispiel aus dem Baum: P(2. Kugel rot | 1. Kugel rot)
+= P(rr) / P(1. rot) = (6/20) / (3/5) = 0,3 / 0,6 = 0,5   (= 2/4 am Ast)</code></pre>
+      <p>A und B heißen <strong>unabhängig</strong>, wenn P(A|B) = P(A) – das Wissen über B ändert nichts an A (z. B. zwei Münzwürfe). Mit dem <strong>Satz von Bayes</strong> dreht man die Bedingung um: P(B|A) = P(A|B) · P(B) / P(A).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Wahrscheinlichkeiten sind nie negativ und nie größer als 1 – sonst ist ein Rechenfehler passiert.</li>
+        <li>„Mindestens einmal“ fast immer über das Gegenereignis „keinmal“ rechnen.</li>
+        <li>Ohne Zurücklegen ändern sich die Brüche im zweiten Zug (Nenner wird kleiner).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="kombinatorik.html">Kombinatorik</a>
+        <a class="chip" href="verteilungen.html">Verteilungen</a>
+        <a class="chip" href="mengen-logik.html">Mengen &amp; Logik</a>
+        <a class="chip" href="brueche.html">Bruchrechnen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

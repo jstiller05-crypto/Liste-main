@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Kurvendiskussion – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Analysis</p>
+    <h1>Kurvendiskussion</h1>
+    <p class="page-lead">Eine Funktion Schritt für Schritt untersuchen: Wo steigt sie, wo hat sie Hoch- und Tiefpunkte, wo ändert sich die Krümmung?</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Bei einer <strong>Kurvendiskussion</strong> (Funktionsuntersuchung) sammelt man alle wichtigen Eigenschaften eines Graphen, um ihn ohne Computer genau zeichnen und beschreiben zu können. Die Ableitungen verraten dabei die Form.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Kubische Funktion mit Hochpunkt, Tiefpunkt und Wendepunkt" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip15"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="101.5" y1="284.0" x2="101.5" y2="36.0" class="dg-grid"/>
+        <text x="101.5" y="176.0" class="dg-small" text-anchor="middle">-2</text>
+        <line x1="210.8" y1="284.0" x2="210.8" y2="36.0" class="dg-grid"/>
+        <text x="210.8" y="176.0" class="dg-small" text-anchor="middle">-1</text>
+        <line x1="320.0" y1="284.0" x2="320.0" y2="36.0" class="dg-grid"/>
+        <line x1="429.2" y1="284.0" x2="429.2" y2="36.0" class="dg-grid"/>
+        <text x="429.2" y="176.0" class="dg-small" text-anchor="middle">1</text>
+        <line x1="538.5" y1="284.0" x2="538.5" y2="36.0" class="dg-grid"/>
+        <text x="538.5" y="176.0" class="dg-small" text-anchor="middle">2</text>
+        <line x1="36.0" y1="276.2" x2="604.0" y2="276.2" class="dg-grid"/>
+        <text x="314.0" y="280.2" class="dg-small" text-anchor="end">-3</text>
+        <line x1="36.0" y1="237.5" x2="604.0" y2="237.5" class="dg-grid"/>
+        <text x="314.0" y="241.5" class="dg-small" text-anchor="end">-2</text>
+        <line x1="36.0" y1="198.8" x2="604.0" y2="198.8" class="dg-grid"/>
+        <text x="314.0" y="202.8" class="dg-small" text-anchor="end">-1</text>
+        <line x1="36.0" y1="160.0" x2="604.0" y2="160.0" class="dg-grid"/>
+        <line x1="36.0" y1="121.2" x2="604.0" y2="121.2" class="dg-grid"/>
+        <text x="314.0" y="125.2" class="dg-small" text-anchor="end">1</text>
+        <line x1="36.0" y1="82.5" x2="604.0" y2="82.5" class="dg-grid"/>
+        <text x="314.0" y="86.5" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="43.8" x2="604.0" y2="43.8" class="dg-grid"/>
+        <text x="314.0" y="47.8" class="dg-small" text-anchor="end">3</text>
+        <line x1="36.0" y1="160.0" x2="604.0" y2="160.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="320.0" y1="284.0" x2="320.0" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="152.0" class="dg-label" text-anchor="end">x</text>
+        <text x="328.0" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polyline points="47.4,472.4 50.2,456.8 53.0,441.6 55.9,426.7 58.7,412.3 61.6,398.2 64.4,384.5 67.2,371.1 70.1,358.2 72.9,345.5 75.8,333.3 78.6,321.3 81.4,309.8 84.3,298.6 87.1,287.7 90.0,277.1 92.8,266.9 95.6,257.0 98.5,247.4 101.3,238.2 104.2,229.3 107.0,220.6 109.8,212.3 112.7,204.3 115.5,196.6 118.4,189.2 121.2,182.0 124.0,175.2 126.9,168.6 129.7,162.3 132.6,156.3 135.4,150.6 138.2,145.1 141.1,139.9 143.9,134.9 146.8,130.2 149.6,125.8 152.4,121.5 155.3,117.6 158.1,113.8 161.0,110.3 163.8,107.1 166.6,104.0 169.5,101.2 172.3,98.6 175.2,96.2 178.0,94.0 180.8,92.0 183.7,90.2 186.5,88.7 189.4,87.3 192.2,86.1 195.0,85.0 197.9,84.2 200.7,83.5 203.6,83.0 206.4,82.7 209.2,82.5 212.1,82.5 214.9,82.7 217.8,83.0 220.6,83.4 223.4,84.0 226.3,84.7 229.1,85.6 232.0,86.6 234.8,87.7 237.6,89.0 240.5,90.3 243.3,91.8 246.2,93.4 249.0,95.1 251.8,96.9 254.7,98.8 257.5,100.8 260.4,102.8 263.2,105.0 266.0,107.2 268.9,109.6 271.7,112.0 274.6,114.4 277.4,117.0 280.2,119.6 283.1,122.2 285.9,124.9 288.8,127.7 291.6,130.5 294.4,133.3 297.3,136.2 300.1,139.1 303.0,142.0 305.8,145.0 308.6,148.0 311.5,151.0 314.3,154.0 317.2,157.0 320.0,160.0 322.8,163.0 325.7,166.0 328.5,169.0 331.4,172.0 334.2,175.0 337.0,178.0 339.9,180.9 342.7,183.8 345.6,186.7 348.4,189.5 351.2,192.3 354.1,195.1 356.9,197.8 359.8,200.4 362.6,203.0 365.4,205.6 368.3,208.0 371.1,210.4 374.0,212.8 376.8,215.0 379.6,217.2 382.5,219.2 385.3,221.2 388.2,223.1 391.0,224.9 393.8,226.6 396.7,228.2 399.5,229.7 402.4,231.0 405.2,232.3 408.0,233.4 410.9,234.4 413.7,235.3 416.6,236.0 419.4,236.6 422.2,237.0 425.1,237.3 427.9,237.5 430.8,237.5 433.6,237.3 436.4,237.0 439.3,236.5 442.1,235.8 445.0,235.0 447.8,233.9 450.6,232.7 453.5,231.3 456.3,229.8 459.2,228.0 462.0,226.0 464.8,223.8 467.7,221.4 470.5,218.8 473.4,216.0 476.2,212.9 479.0,209.7 481.9,206.2 484.7,202.4 487.6,198.5 490.4,194.2 493.2,189.8 496.1,185.1 498.9,180.1 501.8,174.9 504.6,169.4 507.4,163.7 510.3,157.7 513.1,151.4 516.0,144.8 518.8,138.0 521.6,130.8 524.5,123.4 527.3,115.7 530.2,107.7 533.0,99.4 535.8,90.7 538.7,81.8 541.5,72.6 544.4,63.0 547.2,53.1 550.0,42.9 552.9,32.3 555.7,21.4 558.6,10.2 561.4,-1.3 564.2,-13.3 567.1,-25.5 569.9,-38.2 572.8,-51.1 575.6,-64.5 578.4,-78.2 581.3,-92.3 584.1,-106.7 587.0,-121.6 589.8,-136.8 592.6,-152.4" class="dg-line" clip-path="url(#plotClip15)"/>
+        <line x1="145.2" y1="82.5" x2="276.3" y2="82.5" class="dg-line-3"/>
+        <line x1="363.7" y1="237.5" x2="494.8" y2="237.5" class="dg-line-3"/>
+        <circle cx="210.8" cy="82.5" r="4.5" class="dg-point"/><text x="150.8" y="68.5" class="dg-label" text-anchor="start">Hochpunkt H(−1 | 2)</text>
+        <circle cx="429.2" cy="237.5" r="4.5" class="dg-point"/><text x="389.2" y="263.5" class="dg-label" text-anchor="start">Tiefpunkt T(1 | −2)</text>
+        <circle cx="320.0" cy="160.0" r="4.5" class="dg-point"/><text x="332.0" y="154.0" class="dg-label" text-anchor="start">Wendepunkt W(0 | 0)</text>
+        <text x="90.6" y="260.8" class="dg-small" text-anchor="middle">steigend</text>
+        <text x="347.3" y="94.1" class="dg-small" text-anchor="start">fallend</text>
+        <text x="543.9" y="183.2" class="dg-small" text-anchor="middle">steigend</text>
+        <text x="593.1" y="47.8" class="dg-accent-text" text-anchor="end">f(x) = x³ − 3x</text>
+        </svg>
+        <figcaption>f(x) = x³ − 3x: Am Hoch- und Tiefpunkt ist die Tangente waagerecht (f' = 0). Am Wendepunkt wechselt die Krümmung.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>f'(x)</code></td><td>Steigung: > 0 steigend, &lt; 0 fallend, = 0 waagerecht</td></tr>
+          <tr><td><code>f''(x)</code></td><td>Krümmung: > 0 Linkskurve (∪), &lt; 0 Rechtskurve (∩)</td></tr>
+          <tr><td><code>f'''(x)</code></td><td>dritte Ableitung – nur zur Kontrolle beim Wendepunkt</td></tr>
+          <tr><td><code>H, T</code></td><td>Hochpunkt (lokales Maximum), Tiefpunkt (lokales Minimum)</td></tr>
+          <tr><td><code>W</code></td><td>Wendepunkt – dort wechselt die Kurve von Links- in Rechtskurve oder umgekehrt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Pierre de Fermat fand um 1636 heraus, dass an einem Maximum oder Minimum die Tangente waagerecht ist – noch bevor es die Ableitung offiziell gab. Das „Extremwertproblem“ ist bis heute eine der wichtigsten Anwendungen: kleinste Kosten, größter Gewinn, kürzester Weg.</p>
+    </section>
+    <section>
+      <h2>Monotonie</h2>
+      <table class="info-table">
+        <thead><tr><th>Bedingung</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>f'(x) &gt; 0</code> auf einem Intervall</td><td>f ist dort <strong>streng monoton steigend</strong></td></tr>
+          <tr><td><code>f'(x) &amp;lt; 0</code> auf einem Intervall</td><td>f ist dort <strong>streng monoton fallend</strong></td></tr>
+        </tbody>
+      </table>
+      <p>Die Stellen mit f'(x) = 0 teilen die x-Achse in Abschnitte; in jedem Abschnitt prüft man das Vorzeichen von f' mit einem Testwert.</p>
+    </section>
+    <section>
+      <h2>Extrempunkte und Wendepunkte</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>notwendige Bedingung</th><th>hinreichende Bedingung</th></tr></thead>
+        <tbody>
+          <tr><td>Hochpunkt</td><td><code>f'(x) = 0</code></td><td><code>f''(x) &amp;lt; 0</code> (Rechtskurve)</td></tr>
+          <tr><td>Tiefpunkt</td><td><code>f'(x) = 0</code></td><td><code>f''(x) &gt; 0</code> (Linkskurve)</td></tr>
+          <tr><td>Wendepunkt</td><td><code>f''(x) = 0</code></td><td><code>f'''(x) ≠ 0</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>f(x)   = x³ − 3x
+f'(x)  = 3x² − 3
+f''(x) = 6x
+f'''(x)= 6
+
+Extremstellen: 3x² − 3 = 0 → x² = 1 → x = −1 oder x = 1
+  f''(−1) = −6 &lt; 0 → Hochpunkt, f(−1) = −1 + 3 = 2  → H(−1 | 2)
+  f''(1)  =  6 &gt; 0 → Tiefpunkt, f(1)  = 1 − 3 = −2  → T(1 | −2)
+Wendestelle:  6x = 0 → x = 0, f'''(0) = 6 ≠ 0 → W(0 | 0)</code></pre>
+    </section>
+    <section>
+      <h2>Ablauf einer Kurvendiskussion</h2>
+      <ol>
+        <li><strong>Definitionsbereich</strong>: Welche x sind erlaubt?</li>
+        <li><strong>Symmetrie</strong>: f(−x) = f(x) oder f(−x) = −f(x)?</li>
+        <li><strong>Achsenschnittpunkte</strong>: Nullstellen f(x) = 0 und y-Achsenabschnitt f(0).</li>
+        <li><strong>Ableitungen</strong> f', f'', f''' bilden.</li>
+        <li><strong>Extrempunkte</strong>: f'(x) = 0 lösen, mit f'' prüfen, y-Wert berechnen.</li>
+        <li><strong>Wendepunkte</strong>: f''(x) = 0 lösen, mit f''' prüfen.</li>
+        <li><strong>Verhalten für x → ±∞</strong> (höchste Potenz anschauen).</li>
+        <li><strong>Skizze</strong> mit allen Punkten zeichnen.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Den y-Wert immer in der <strong>Originalfunktion</strong> f berechnen, nicht in f'.</li>
+        <li>Ist f''(x) = 0 an einer Extremstelle, hilft der Vorzeichenwechsel von f' (Testwerte links und rechts).</li>
+        <li>Ein Polynom vom Grad n hat höchstens n − 1 Extrempunkte und n − 2 Wendepunkte.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="ableitung.html">Ableitung</a>
+        <a class="chip" href="ableitungsregeln.html">Ableitungsregeln</a>
+        <a class="chip" href="polynomfunktion.html">Polynomfunktionen</a>
+        <a class="chip" href="quadratische-gleichungen.html">Quadratische Gleichungen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

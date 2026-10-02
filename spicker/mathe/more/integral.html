@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Integral – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Analysis</p>
+    <h1>Integral &amp; Stammfunktion</h1>
+    <p class="page-lead">Das Integral ist die Umkehrung der Ableitung – und berechnet Flächen unter Kurven.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine <strong>Stammfunktion</strong> F ist eine Funktion, deren Ableitung f ergibt: F' = f. Integrieren ist also „rückwärts ableiten“.</p>
+      <p>Das <strong>bestimmte Integral</strong> addiert unendlich viele, unendlich schmale Rechtecke unter dem Graphen – das Ergebnis ist die Fläche zwischen Kurve und x-Achse.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Fläche unter einer Kurve zwischen a und b" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip16"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="76.6" y1="284.0" x2="76.6" y2="36.0" class="dg-grid"/>
+        <line x1="157.7" y1="284.0" x2="157.7" y2="36.0" class="dg-grid"/>
+        <text x="157.7" y="273.4" class="dg-small" text-anchor="middle">1</text>
+        <line x1="238.9" y1="284.0" x2="238.9" y2="36.0" class="dg-grid"/>
+        <text x="238.9" y="273.4" class="dg-small" text-anchor="middle">2</text>
+        <line x1="320.0" y1="284.0" x2="320.0" y2="36.0" class="dg-grid"/>
+        <text x="320.0" y="273.4" class="dg-small" text-anchor="middle">3</text>
+        <line x1="401.1" y1="284.0" x2="401.1" y2="36.0" class="dg-grid"/>
+        <text x="401.1" y="273.4" class="dg-small" text-anchor="middle">4</text>
+        <line x1="482.3" y1="284.0" x2="482.3" y2="36.0" class="dg-grid"/>
+        <text x="482.3" y="273.4" class="dg-small" text-anchor="middle">5</text>
+        <line x1="563.4" y1="284.0" x2="563.4" y2="36.0" class="dg-grid"/>
+        <text x="563.4" y="273.4" class="dg-small" text-anchor="middle">6</text>
+        <line x1="36.0" y1="257.4" x2="604.0" y2="257.4" class="dg-grid"/>
+        <line x1="36.0" y1="213.1" x2="604.0" y2="213.1" class="dg-grid"/>
+        <text x="70.6" y="217.1" class="dg-small" text-anchor="end">1</text>
+        <line x1="36.0" y1="168.9" x2="604.0" y2="168.9" class="dg-grid"/>
+        <text x="70.6" y="172.9" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="124.6" x2="604.0" y2="124.6" class="dg-grid"/>
+        <text x="70.6" y="128.6" class="dg-small" text-anchor="end">3</text>
+        <line x1="36.0" y1="80.3" x2="604.0" y2="80.3" class="dg-grid"/>
+        <text x="70.6" y="84.3" class="dg-small" text-anchor="end">4</text>
+        <line x1="36.0" y1="36.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="70.6" y="40.0" class="dg-small" text-anchor="end">5</text>
+        <line x1="36.0" y1="257.4" x2="604.0" y2="257.4" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="76.6" y1="284.0" x2="76.6" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="249.4" class="dg-label" text-anchor="end">x</text>
+        <text x="84.6" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polygon points="157.7,257.4 157.7,124.6 163.1,121.7 168.5,118.9 173.9,116.2 179.4,113.5 184.8,111.0 190.2,108.6 195.6,106.3 201.0,104.1 206.4,102.0 211.8,100.0 217.2,98.0 222.6,96.2 228.0,94.5 233.4,92.9 238.9,91.4 244.3,89.9 249.7,88.6 255.1,87.4 260.5,86.2 265.9,85.2 271.3,84.3 276.7,83.4 282.1,82.7 287.5,82.1 293.0,81.5 298.4,81.1 303.8,80.7 309.2,80.5 314.6,80.3 320.0,80.3 325.4,80.3 330.8,80.5 336.2,80.7 341.6,81.1 347.0,81.5 352.5,82.1 357.9,82.7 363.3,83.4 368.7,84.3 374.1,85.2 379.5,86.2 384.9,87.4 390.3,88.6 395.7,89.9 401.1,91.4 406.6,92.9 412.0,94.5 417.4,96.2 422.8,98.0 428.2,100.0 433.6,102.0 439.0,104.1 444.4,106.3 449.8,108.6 455.2,111.0 460.6,113.5 466.1,116.2 471.5,118.9 476.9,121.7 482.3,124.6 482.3,257.4" class="dg-fill"/>
+        <polyline points="36.0,215.9 38.8,213.2 41.7,210.5 44.5,207.9 47.4,205.3 50.2,202.7 53.0,200.1 55.9,197.6 58.7,195.1 61.6,192.6 64.4,190.1 67.2,187.7 70.1,185.3 72.9,182.9 75.8,180.6 78.6,178.3 81.4,176.0 84.3,173.7 87.1,171.5 90.0,169.3 92.8,167.1 95.6,164.9 98.5,162.8 101.3,160.7 104.2,158.6 107.0,156.6 109.8,154.6 112.7,152.6 115.5,150.6 118.4,148.7 121.2,146.7 124.0,144.9 126.9,143.0 129.7,141.2 132.6,139.4 135.4,137.6 138.2,135.8 141.1,134.1 143.9,132.4 146.8,130.8 149.6,129.1 152.4,127.5 155.3,125.9 158.1,124.4 161.0,122.8 163.8,121.3 166.6,119.8 169.5,118.4 172.3,117.0 175.2,115.6 178.0,114.2 180.8,112.8 183.7,111.5 186.5,110.2 189.4,109.0 192.2,107.7 195.0,106.5 197.9,105.4 200.7,104.2 203.6,103.1 206.4,102.0 209.2,100.9 212.1,99.9 214.9,98.9 217.8,97.9 220.6,96.9 223.4,96.0 226.3,95.1 229.1,94.2 232.0,93.3 234.8,92.5 237.6,91.7 240.5,90.9 243.3,90.2 246.2,89.5 249.0,88.8 251.8,88.1 254.7,87.5 257.5,86.8 260.4,86.3 263.2,85.7 266.0,85.2 268.9,84.7 271.7,84.2 274.6,83.8 277.4,83.3 280.2,82.9 283.1,82.6 285.9,82.2 288.8,81.9 291.6,81.6 294.4,81.4 297.3,81.2 300.1,81.0 303.0,80.8 305.8,80.6 308.6,80.5 311.5,80.4 314.3,80.3 317.2,80.3 320.0,80.3 322.8,80.3 325.7,80.3 328.5,80.4 331.4,80.5 334.2,80.6 337.0,80.8 339.9,81.0 342.7,81.2 345.6,81.4 348.4,81.6 351.2,81.9 354.1,82.2 356.9,82.6 359.8,82.9 362.6,83.3 365.4,83.8 368.3,84.2 371.1,84.7 374.0,85.2 376.8,85.7 379.6,86.3 382.5,86.8 385.3,87.5 388.2,88.1 391.0,88.8 393.8,89.5 396.7,90.2 399.5,90.9 402.4,91.7 405.2,92.5 408.0,93.3 410.9,94.2 413.7,95.1 416.6,96.0 419.4,96.9 422.2,97.9 425.1,98.9 427.9,99.9 430.8,100.9 433.6,102.0 436.4,103.1 439.3,104.2 442.1,105.4 445.0,106.5 447.8,107.7 450.6,109.0 453.5,110.2 456.3,111.5 459.2,112.8 462.0,114.2 464.8,115.6 467.7,117.0 470.5,118.4 473.4,119.8 476.2,121.3 479.0,122.8 481.9,124.4 484.7,125.9 487.6,127.5 490.4,129.1 493.2,130.8 496.1,132.4 498.9,134.1 501.8,135.8 504.6,137.6 507.4,139.4 510.3,141.2 513.1,143.0 516.0,144.9 518.8,146.7 521.6,148.7 524.5,150.6 527.3,152.6 530.2,154.6 533.0,156.6 535.8,158.6 538.7,160.7 541.5,162.8 544.4,164.9 547.2,167.1 550.0,169.3 552.9,171.5 555.7,173.7 558.6,176.0 561.4,178.3 564.2,180.6 567.1,182.9 569.9,185.3 572.8,187.7 575.6,190.1 578.4,192.6 581.3,195.1 584.1,197.6 587.0,200.1 589.8,202.7 592.6,205.3 595.5,207.9 598.3,210.5 601.2,213.2 604.0,215.9" class="dg-line" clip-path="url(#plotClip16)"/>
+        <line x1="157.7" y1="257.4" x2="157.7" y2="124.6" class="dg-line-3"/>
+        <line x1="482.3" y1="257.4" x2="482.3" y2="124.6" class="dg-line-3"/>
+        <text x="157.7" y="287.4" class="dg-label" text-anchor="middle">a = 1</text>
+        <text x="482.3" y="287.4" class="dg-label" text-anchor="middle">b = 5</text>
+        <text x="320.0" y="186.6" class="dg-label" text-anchor="middle">Fläche A</text>
+        <text x="595.9" y="49.3" class="dg-accent-text" text-anchor="end">A = ∫₁⁵ f(x) dx</text>
+        </svg>
+        <figcaption>Die eingefärbte Fläche zwischen x = 1 und x = 5 ist das bestimmte Integral.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>∫</code></td><td>Integralzeichen – ein langgezogenes S für „Summe“</td></tr>
+          <tr><td><code>a, b</code></td><td>untere und obere Grenze (von wo bis wo)</td></tr>
+          <tr><td><code>f(x)</code></td><td>die Funktion, unter der die Fläche liegt (Integrand)</td></tr>
+          <tr><td><code>dx</code></td><td>„nach x“ – steht für die unendlich schmale Breite der Rechtecke</td></tr>
+          <tr><td><code>F(x)</code></td><td>Stammfunktion: F'(x) = f(x)</td></tr>
+          <tr><td><code>C</code></td><td>Integrationskonstante – eine beliebige Zahl, die beim Ableiten wegfällt</td></tr>
+          <tr><td><code>[F(x)]ₐᵇ</code></td><td>Kurzschreibweise für F(b) − F(a)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Archimedes berechnete um 250 v. Chr. die Fläche unter einer Parabel mit immer feineren Dreiecken. Newton und Leibniz erkannten um 1670, dass Flächenberechnung und Ableitung <strong>Umkehrungen</strong> voneinander sind – der „Hauptsatz der Differential- und Integralrechnung“. Das Zeichen ∫ führte Leibniz 1675 ein.</p>
+    </section>
+    <section>
+      <h2>Stammfunktionen bilden</h2>
+      <table class="info-table">
+        <thead><tr><th>f(x)</th><th>Stammfunktion F(x)</th></tr></thead>
+        <tbody>
+          <tr><td><code>xⁿ</code> (n ≠ −1)</td><td><code>xⁿ⁺¹ / (n + 1) + C</code></td></tr>
+          <tr><td><code>k</code> (Zahl)</td><td><code>k · x + C</code></td></tr>
+          <tr><td><code>1/x</code></td><td><code>ln|x| + C</code></td></tr>
+          <tr><td><code>eˣ</code></td><td><code>eˣ + C</code></td></tr>
+          <tr><td><code>sin x</code></td><td><code>−cos x + C</code></td></tr>
+          <tr><td><code>cos x</code></td><td><code>sin x + C</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>f(x) = 3x² + 4x − 1
+F(x) = x³ + 2x² − x + C
+Probe: F'(x) = 3x² + 4x − 1 = f(x)  ✓</code></pre>
+    </section>
+    <section>
+      <h2>Bestimmtes Integral (Hauptsatz)</h2>
+      <pre><code>  b
+  ∫ f(x) dx = F(b) − F(a)
+  a
+
+Beispiel: ∫ von 0 bis 2 von x² dx
+F(x) = x³/3
+F(2) − F(0) = 8/3 − 0 = 8/3 ≈ 2,67  Flächeneinheiten</code></pre>
+      <div class="note">Flächen <strong>unter</strong> der x-Achse zählen beim Integral <strong>negativ</strong>. Für die echte Fläche Teilstücke zwischen den Nullstellen einzeln berechnen und Beträge addieren.</div>
+    </section>
+    <section>
+      <h2>Fläche zwischen zwei Graphen</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Fläche zwischen zwei Graphen" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip17"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="36.0" y1="284.0" x2="36.0" y2="36.0" class="dg-grid"/>
+        <text x="36.0" y="229.1" class="dg-small" text-anchor="middle">-3</text>
+        <line x1="139.3" y1="284.0" x2="139.3" y2="36.0" class="dg-grid"/>
+        <text x="139.3" y="229.1" class="dg-small" text-anchor="middle">-2</text>
+        <line x1="242.5" y1="284.0" x2="242.5" y2="36.0" class="dg-grid"/>
+        <text x="242.5" y="229.1" class="dg-small" text-anchor="middle">-1</text>
+        <line x1="345.8" y1="284.0" x2="345.8" y2="36.0" class="dg-grid"/>
+        <line x1="449.1" y1="284.0" x2="449.1" y2="36.0" class="dg-grid"/>
+        <text x="449.1" y="229.1" class="dg-small" text-anchor="middle">1</text>
+        <line x1="552.4" y1="284.0" x2="552.4" y2="36.0" class="dg-grid"/>
+        <text x="552.4" y="229.1" class="dg-small" text-anchor="middle">2</text>
+        <line x1="36.0" y1="284.0" x2="604.0" y2="284.0" class="dg-grid"/>
+        <text x="339.8" y="288.0" class="dg-small" text-anchor="end">-2</text>
+        <line x1="36.0" y1="248.6" x2="604.0" y2="248.6" class="dg-grid"/>
+        <text x="339.8" y="252.6" class="dg-small" text-anchor="end">-1</text>
+        <line x1="36.0" y1="213.1" x2="604.0" y2="213.1" class="dg-grid"/>
+        <line x1="36.0" y1="177.7" x2="604.0" y2="177.7" class="dg-grid"/>
+        <text x="339.8" y="181.7" class="dg-small" text-anchor="end">1</text>
+        <line x1="36.0" y1="142.3" x2="604.0" y2="142.3" class="dg-grid"/>
+        <text x="339.8" y="146.3" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="106.9" x2="604.0" y2="106.9" class="dg-grid"/>
+        <text x="339.8" y="110.9" class="dg-small" text-anchor="end">3</text>
+        <line x1="36.0" y1="71.4" x2="604.0" y2="71.4" class="dg-grid"/>
+        <text x="339.8" y="75.4" class="dg-small" text-anchor="end">4</text>
+        <line x1="36.0" y1="36.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="339.8" y="40.0" class="dg-small" text-anchor="end">5</text>
+        <line x1="36.0" y1="213.1" x2="604.0" y2="213.1" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="345.8" y1="284.0" x2="345.8" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="205.1" class="dg-label" text-anchor="end">x</text>
+        <text x="353.8" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polygon points="139.3,213.1 144.4,206.1 149.6,199.3 154.8,192.7 159.9,186.2 165.1,179.9 170.3,173.8 175.4,167.9 180.6,162.1 185.7,156.5 190.9,151.1 196.1,145.9 201.2,140.9 206.4,136.0 211.6,131.3 216.7,126.8 221.9,122.4 227.1,118.3 232.2,114.3 237.4,110.5 242.5,106.9 247.7,103.4 252.9,100.1 258.0,97.0 263.2,94.1 268.4,91.4 273.5,88.8 278.7,86.4 283.9,84.2 289.0,82.1 294.2,80.3 299.3,78.6 304.5,77.1 309.7,75.8 314.8,74.6 320.0,73.6 325.2,72.8 330.3,72.2 335.5,71.8 340.7,71.5 345.8,71.4 351.0,71.5 356.1,71.8 361.3,72.2 366.5,72.8 371.6,73.6 376.8,74.6 382.0,75.8 387.1,77.1 392.3,78.6 397.5,80.3 402.6,82.1 407.8,84.2 412.9,86.4 418.1,88.8 423.3,91.4 428.4,94.1 433.6,97.0 438.8,100.1 443.9,103.4 449.1,106.9 449.1,106.9 443.9,108.6 438.8,110.4 433.6,112.2 428.4,113.9 423.3,115.7 418.1,117.5 412.9,119.3 407.8,121.0 402.6,122.8 397.5,124.6 392.3,126.3 387.1,128.1 382.0,129.9 376.8,131.7 371.6,133.4 366.5,135.2 361.3,137.0 356.1,138.7 351.0,140.5 345.8,142.3 340.7,144.1 335.5,145.8 330.3,147.6 325.2,149.4 320.0,151.1 314.8,152.9 309.7,154.7 304.5,156.5 299.3,158.2 294.2,160.0 289.0,161.8 283.9,163.5 278.7,165.3 273.5,167.1 268.4,168.9 263.2,170.6 258.0,172.4 252.9,174.2 247.7,175.9 242.5,177.7 237.4,179.5 232.2,181.3 227.1,183.0 221.9,184.8 216.7,186.6 211.6,188.3 206.4,190.1 201.2,191.9 196.1,193.7 190.9,195.4 185.7,197.2 180.6,199.0 175.4,200.7 170.3,202.5 165.1,204.3 159.9,206.1 154.8,207.8 149.6,209.6 144.4,211.4 139.3,213.1" class="dg-fill"/>
+        <polyline points="36.0,390.3 38.8,384.5 41.7,378.7 44.5,373.0 47.4,367.3 50.2,361.7 53.0,356.2 55.9,350.7 58.7,345.2 61.6,339.8 64.4,334.5 67.2,329.2 70.1,324.0 72.9,318.8 75.8,313.7 78.6,308.6 81.4,303.6 84.3,298.7 87.1,293.7 90.0,288.9 92.8,284.1 95.6,279.3 98.5,274.6 101.3,270.0 104.2,265.4 107.0,260.9 109.8,256.4 112.7,252.0 115.5,247.6 118.4,243.3 121.2,239.0 124.0,234.8 126.9,230.7 129.7,226.6 132.6,222.5 135.4,218.5 138.2,214.6 141.1,210.7 143.9,206.8 146.8,203.1 149.6,199.3 152.4,195.7 155.3,192.0 158.1,188.5 161.0,184.9 163.8,181.5 166.6,178.1 169.5,174.7 172.3,171.4 175.2,168.2 178.0,165.0 180.8,161.8 183.7,158.8 186.5,155.7 189.4,152.7 192.2,149.8 195.0,146.9 197.9,144.1 200.7,141.4 203.6,138.7 206.4,136.0 209.2,133.4 212.1,130.8 214.9,128.3 217.8,125.9 220.6,123.5 223.4,121.2 226.3,118.9 229.1,116.7 232.0,114.5 234.8,112.4 237.6,110.3 240.5,108.3 243.3,106.3 246.2,104.4 249.0,102.6 251.8,100.8 254.7,99.0 257.5,97.3 260.4,95.7 263.2,94.1 266.0,92.6 268.9,91.1 271.7,89.7 274.6,88.3 277.4,87.0 280.2,85.7 283.1,84.5 285.9,83.3 288.8,82.2 291.6,81.2 294.4,80.2 297.3,79.3 300.1,78.4 303.0,77.5 305.8,76.7 308.6,76.0 311.5,75.3 314.3,74.7 317.2,74.2 320.0,73.6 322.8,73.2 325.7,72.8 328.5,72.4 331.4,72.1 334.2,71.9 337.0,71.7 339.9,71.5 342.7,71.5 345.6,71.4 348.4,71.5 351.2,71.5 354.1,71.7 356.9,71.8 359.8,72.1 362.6,72.4 365.4,72.7 368.3,73.1 371.1,73.6 374.0,74.1 376.8,74.6 379.6,75.2 382.5,75.9 385.3,76.6 388.2,77.4 391.0,78.2 393.8,79.1 396.7,80.0 399.5,81.0 402.4,82.0 405.2,83.1 408.0,84.3 410.9,85.5 413.7,86.7 416.6,88.1 419.4,89.4 422.2,90.8 425.1,92.3 427.9,93.8 430.8,95.4 433.6,97.0 436.4,98.7 439.3,100.4 442.1,102.2 445.0,104.1 447.8,106.0 450.6,107.9 453.5,109.9 456.3,112.0 459.2,114.1 462.0,116.3 464.8,118.5 467.7,120.8 470.5,123.1 473.4,125.5 476.2,127.9 479.0,130.4 481.9,132.9 484.7,135.5 487.6,138.2 490.4,140.9 493.2,143.6 496.1,146.4 498.9,149.3 501.8,152.2 504.6,155.2 507.4,158.2 510.3,161.3 513.1,164.4 516.0,167.6 518.8,170.8 521.6,174.1 524.5,177.5 527.3,180.9 530.2,184.3 533.0,187.8 535.8,191.4 538.7,195.0 541.5,198.7 544.4,202.4 547.2,206.1 550.0,210.0 552.9,213.9 555.7,217.8 558.6,221.8 561.4,225.8 564.2,229.9 567.1,234.1 569.9,238.3 572.8,242.5 575.6,246.8 578.4,251.2 581.3,255.6 584.1,260.1 587.0,264.6 589.8,269.2 592.6,273.8 595.5,278.5 598.3,283.2 601.2,288.0 604.0,292.9" class="dg-line" clip-path="url(#plotClip17)"/>
+        <polyline points="36.0,248.6 38.8,247.6 41.7,246.6 44.5,245.6 47.4,244.7 50.2,243.7 53.0,242.7 55.9,241.8 58.7,240.8 61.6,239.8 64.4,238.8 67.2,237.9 70.1,236.9 72.9,235.9 75.8,234.9 78.6,234.0 81.4,233.0 84.3,232.0 87.1,231.0 90.0,230.1 92.8,229.1 95.6,228.1 98.5,227.1 101.3,226.2 104.2,225.2 107.0,224.2 109.8,223.2 112.7,222.3 115.5,221.3 118.4,220.3 121.2,219.3 124.0,218.4 126.9,217.4 129.7,216.4 132.6,215.4 135.4,214.5 138.2,213.5 141.1,212.5 143.9,211.5 146.8,210.6 149.6,209.6 152.4,208.6 155.3,207.7 158.1,206.7 161.0,205.7 163.8,204.7 166.6,203.8 169.5,202.8 172.3,201.8 175.2,200.8 178.0,199.9 180.8,198.9 183.7,197.9 186.5,196.9 189.4,196.0 192.2,195.0 195.0,194.0 197.9,193.0 200.7,192.1 203.6,191.1 206.4,190.1 209.2,189.1 212.1,188.2 214.9,187.2 217.8,186.2 220.6,185.2 223.4,184.3 226.3,183.3 229.1,182.3 232.0,181.3 234.8,180.4 237.6,179.4 240.5,178.4 243.3,177.4 246.2,176.5 249.0,175.5 251.8,174.5 254.7,173.6 257.5,172.6 260.4,171.6 263.2,170.6 266.0,169.7 268.9,168.7 271.7,167.7 274.6,166.7 277.4,165.8 280.2,164.8 283.1,163.8 285.9,162.8 288.8,161.9 291.6,160.9 294.4,159.9 297.3,158.9 300.1,158.0 303.0,157.0 305.8,156.0 308.6,155.0 311.5,154.1 314.3,153.1 317.2,152.1 320.0,151.1 322.8,150.2 325.7,149.2 328.5,148.2 331.4,147.2 334.2,146.3 337.0,145.3 339.9,144.3 342.7,143.3 345.6,142.4 348.4,141.4 351.2,140.4 354.1,139.5 356.9,138.5 359.8,137.5 362.6,136.5 365.4,135.6 368.3,134.6 371.1,133.6 374.0,132.6 376.8,131.7 379.6,130.7 382.5,129.7 385.3,128.7 388.2,127.8 391.0,126.8 393.8,125.8 396.7,124.8 399.5,123.9 402.4,122.9 405.2,121.9 408.0,120.9 410.9,120.0 413.7,119.0 416.6,118.0 419.4,117.0 422.2,116.1 425.1,115.1 427.9,114.1 430.8,113.1 433.6,112.2 436.4,111.2 439.3,110.2 442.1,109.2 445.0,108.3 447.8,107.3 450.6,106.3 453.5,105.4 456.3,104.4 459.2,103.4 462.0,102.4 464.8,101.5 467.7,100.5 470.5,99.5 473.4,98.5 476.2,97.6 479.0,96.6 481.9,95.6 484.7,94.6 487.6,93.7 490.4,92.7 493.2,91.7 496.1,90.7 498.9,89.8 501.8,88.8 504.6,87.8 507.4,86.8 510.3,85.9 513.1,84.9 516.0,83.9 518.8,82.9 521.6,82.0 524.5,81.0 527.3,80.0 530.2,79.0 533.0,78.1 535.8,77.1 538.7,76.1 541.5,75.1 544.4,74.2 547.2,73.2 550.0,72.2 552.9,71.3 555.7,70.3 558.6,69.3 561.4,68.3 564.2,67.4 567.1,66.4 569.9,65.4 572.8,64.4 575.6,63.5 578.4,62.5 581.3,61.5 584.1,60.5 587.0,59.6 589.8,58.6 592.6,57.6 595.5,56.6 598.3,55.7 601.2,54.7 604.0,53.7" class="dg-line-2" clip-path="url(#plotClip17)"/>
+        <circle cx="139.3" cy="213.1" r="4.5" class="dg-point"/><text x="81.3" y="205.1" class="dg-label" text-anchor="start">x = −2</text>
+        <circle cx="449.1" cy="106.9" r="4.5" class="dg-point"/><text x="459.1" y="100.9" class="dg-label" text-anchor="start">x = 1</text>
+        <text x="46.3" y="50.2" class="dg-accent-text" text-anchor="start">f(x) = 4 − x²</text>
+        <text x="593.7" y="50.2" class="dg-label" text-anchor="end">g(x) = x + 2</text>
+        </svg>
+        <figcaption>Die Fläche zwischen f und g reicht von Schnittpunkt zu Schnittpunkt.</figcaption>
+      </figure>
+      <pre><code>A = ∫ |f(x) − g(x)| dx    zwischen den Schnittstellen
+
+f(x) = 4 − x²,  g(x) = x + 2
+Schnittstellen: 4 − x² = x + 2 → x² + x − 2 = 0 → x = −2, x = 1
+f − g = −x² − x + 2   →   Stammfunktion −x³/3 − x²/2 + 2x
+A = [−1/3 − 1/2 + 2] − [8/3 − 2 − 4] = 7/6 + 10/3 = 4,5</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Beim Integrieren Exponent +1 und durch den neuen Exponenten teilen – genau umgekehrt zum Ableiten.</li>
+        <li>Beim unbestimmten Integral das + C nicht vergessen; beim bestimmten fällt es weg.</li>
+        <li>Immer prüfen, ob die Kurve zwischen a und b die x-Achse schneidet.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="ableitungsregeln.html">Ableitungsregeln</a>
+        <a class="chip" href="ableitung.html">Ableitung</a>
+        <a class="chip" href="koerper.html">Körper</a>
+        <a class="chip" href="grenzwert-folgen.html">Grenzwert &amp; Folgen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

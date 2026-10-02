@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Abschreibung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Buchhaltung</p>
+    <h1>Abschreibung (AfA) &amp; GWG</h1>
+    <p class="page-lead">Warum ein Laptop oder Auto nicht sofort komplett den Gewinn mindert, sondern über mehrere Jahre verteilt wird.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Wenn du etwas kaufst, das <strong>länger als ein Jahr</strong> im Betrieb bleibt (Auto, Möbel, Maschinen), darfst du den Preis meist <strong>nicht sofort</strong> als Betriebsausgabe abziehen. Stattdessen verteilst du ihn über die <strong>Nutzungsdauer</strong>. Das nennt man <strong>Abschreibung</strong> oder <strong>AfA</strong> (Absetzung für Abnutzung).</p>
+      <p>Die Idee: Der Gegenstand verliert jedes Jahr an Wert. Dieser Wertverlust ist der Aufwand des Jahres.</p>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Geregelt ist die AfA in <strong>§ 7 EStG</strong> (Steuer) und § 253 HGB (Handelsrecht). Wie lange etwas genutzt wird, steht in den <strong>AfA-Tabellen</strong> des Bundesfinanzministeriums – z. B. Pkw 6 Jahre, Büromöbel 13 Jahre. Für <strong>Computer-Hardware und Software</strong> gilt seit 2021 eine Nutzungsdauer von <strong>1 Jahr</strong> (Wahlrecht, Stand 2026).</p>
+    </section>
+    <section>
+      <h2>Lineare Abschreibung</h2>
+      <pre><code>Jährliche AfA = Anschaffungskosten (netto) / Nutzungsdauer
+
+Beispiel: Firmenwagen 30.000 € netto, Nutzungsdauer 6 Jahre
+AfA pro Jahr = 30.000 € / 6 = 5.000 €</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Lineare Abschreibung eines Firmenwagens" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60.0" y1="260.0" x2="620.0" y2="260.0" class="dg-axis"/>
+        <line x1="60.0" y1="260.0" x2="620.0" y2="260.0" class="dg-grid"/>
+        <text x="54.0" y="264.0" class="dg-small" text-anchor="end">0</text>
+        <line x1="60.0" y1="207.5" x2="620.0" y2="207.5" class="dg-grid"/>
+        <text x="54.0" y="211.5" class="dg-small" text-anchor="end">7.500</text>
+        <line x1="60.0" y1="155.0" x2="620.0" y2="155.0" class="dg-grid"/>
+        <text x="54.0" y="159.0" class="dg-small" text-anchor="end">15.000</text>
+        <line x1="60.0" y1="102.5" x2="620.0" y2="102.5" class="dg-grid"/>
+        <text x="54.0" y="106.5" class="dg-small" text-anchor="end">22.500</text>
+        <line x1="60.0" y1="50.0" x2="620.0" y2="50.0" class="dg-grid"/>
+        <text x="54.0" y="54.0" class="dg-small" text-anchor="end">30.000</text>
+        <rect x="70.0" y="50.0" width="64.0" height="210.0" rx="2" class="dg-bar-total"/>
+        <text x="102.0" y="278.0" class="dg-text" text-anchor="middle">Kauf</text>
+        <text x="102.0" y="42.0" class="dg-small" text-anchor="middle">30.000 €</text>
+        <rect x="149.3" y="85.0" width="64.0" height="35.0" rx="2" class="dg-bar-minus"/>
+        <rect x="149.3" y="120.0" width="64.0" height="140.0" rx="2" class="dg-bar"/>
+        <text x="181.3" y="77.0" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="181.3" y="278.0" class="dg-text" text-anchor="middle">Jahr 1</text>
+        <rect x="228.7" y="120.0" width="64.0" height="35.0" rx="2" class="dg-bar-minus"/>
+        <rect x="228.7" y="155.0" width="64.0" height="105.0" rx="2" class="dg-bar"/>
+        <text x="260.7" y="112.0" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="260.7" y="278.0" class="dg-text" text-anchor="middle">Jahr 2</text>
+        <rect x="308.0" y="155.0" width="64.0" height="35.0" rx="2" class="dg-bar-minus"/>
+        <rect x="308.0" y="190.0" width="64.0" height="70.0" rx="2" class="dg-bar"/>
+        <text x="340.0" y="147.0" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="340.0" y="278.0" class="dg-text" text-anchor="middle">Jahr 3</text>
+        <rect x="387.3" y="190.0" width="64.0" height="35.0" rx="2" class="dg-bar-minus"/>
+        <rect x="387.3" y="225.0" width="64.0" height="35.0" rx="2" class="dg-bar"/>
+        <text x="419.3" y="182.0" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="419.3" y="278.0" class="dg-text" text-anchor="middle">Jahr 4</text>
+        <rect x="466.7" y="225.0" width="64.0" height="35.0" rx="2" class="dg-bar-minus"/>
+        <text x="498.7" y="217.0" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="498.7" y="278.0" class="dg-text" text-anchor="middle">Jahr 5</text>
+        <rect x="546.0" y="260.0" width="64.0" height="35.0" rx="2" class="dg-bar-minus"/>
+        <text x="578.0" y="252.0" class="dg-small" text-anchor="middle">−5.000</text>
+        <text x="578.0" y="278.0" class="dg-text" text-anchor="middle">Jahr 6</text>
+        <rect x="70.0" y="290.0" width="14.0" height="12.0" rx="2" class="dg-bar-minus"/>
+        <text x="90.0" y="300.0" class="dg-small" text-anchor="start">Abschreibung (Aufwand des Jahres)</text>
+        <rect x="330.0" y="290.0" width="14.0" height="12.0" rx="2" class="dg-bar"/>
+        <text x="350.0" y="300.0" class="dg-small" text-anchor="start">Restbuchwert am Jahresende</text>
+        <text x="8.0" y="22.0" class="dg-small" text-anchor="start">Wert in €</text>
+        </svg>
+        <figcaption>Jedes Jahr werden 5.000 € als Aufwand gebucht. Der Restbuchwert sinkt gleichmäßig, bis er nach 6 Jahren bei 0 € ist.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Jahr</th><th>AfA</th><th>Restbuchwert am Jahresende</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>5.000 €</td><td>25.000 €</td></tr>
+          <tr><td>2</td><td>5.000 €</td><td>20.000 €</td></tr>
+          <tr><td>3</td><td>5.000 €</td><td>15.000 €</td></tr>
+          <tr><td>6</td><td>5.000 €</td><td>0 €</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Im Anschaffungsjahr wird <strong>monatsgenau</strong> abgeschrieben: Kauf im April → 9/12 der Jahres-AfA (3.750 €).</div>
+    </section>
+    <section>
+      <h2>Geringwertige Wirtschaftsgüter (GWG)</h2>
+      <table class="info-table">
+        <thead><tr><th>Netto-Preis</th><th>Regel (Stand 2026)</th></tr></thead>
+        <tbody>
+          <tr><td>bis 250 €</td><td>sofort als Betriebsausgabe, keine Aufzeichnung nötig</td></tr>
+          <tr><td>bis 800 €</td><td><strong>GWG</strong>: darf im Jahr der Anschaffung komplett abgeschrieben werden (ins Verzeichnis aufnehmen)</td></tr>
+          <tr><td>250 € bis 1.000 €</td><td>alternativ: Sammelposten, gleichmäßig über 5 Jahre</td></tr>
+          <tr><td>über 800 €</td><td>normale Abschreibung über die Nutzungsdauer</td></tr>
+        </tbody>
+      </table>
+      <p>Voraussetzung: Der Gegenstand ist <strong>beweglich</strong> und <strong>selbstständig nutzbar</strong> (ein Monitor ja, eine einzelne Grafikkarte im PC nein).</p>
+      <p>Beispiel: Max kauft einen Bürostuhl für 650 € netto → GWG → 650 € sofort als Aufwand.</p>
+    </section>
+    <section>
+      <h2>Aufwand ist nicht Ausgabe</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Jahr 1</th><th>Jahr 2</th><th>Jahr 3</th></tr></thead>
+        <tbody>
+          <tr><td>Ausgabe (Geld fließt ab)</td><td>30.000 €</td><td>0 €</td><td>0 €</td></tr>
+          <tr><td>Aufwand (Gewinn sinkt)</td><td>5.000 €</td><td>5.000 €</td><td>5.000 €</td></tr>
+        </tbody>
+      </table>
+      <p>Darum kann der Kontostand deutlich niedriger sein, als der Gewinn vermuten lässt – siehe GuV und Liquidität.</p>
+      <div class="note"><strong>Keine Rechts- oder Steuerberatung:</strong> Diese Seite erklärt die Grundlagen vereinfacht. Zahlen und Regeln ändern sich (Stand 2026). Für deinen konkreten Fall frag eine Steuerberaterin oder einen Steuerberater.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer mit dem <strong>Netto</strong>-Preis rechnen, wenn du vorsteuerabzugsberechtigt bist (kein Kleinunternehmer).</li>
+        <li>Kleinunternehmer rechnen mit dem Bruttopreis – sie bekommen ja keine Vorsteuer zurück.</li>
+        <li>Ein Anlagenverzeichnis führen: Was, wann gekauft, Preis, Nutzungsdauer, Restwert.</li>
+        <li>Wird ein abgeschriebener Gegenstand verkauft, ist der Erlös Betriebseinnahme.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="buchfuehrung.html">Buchführung</a>
+        <a class="chip" href="guv.html">GuV</a>
+        <a class="chip" href="ertragsteuern.html">Gewinnsteuern</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

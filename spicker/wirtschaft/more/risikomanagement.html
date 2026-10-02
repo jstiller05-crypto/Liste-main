@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Risikomanagement – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Risiko & Absicherung</p>
+    <h1>Risikomanagement, Klumpenrisiko &amp; Datensicherung</h1>
+    <p class="page-lead">Risiken erkennen, bewerten und behandeln – bevor sie dein Unternehmen gefährden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><strong>Risikomanagement</strong> heißt: systematisch überlegen, <strong>was schiefgehen kann</strong>, wie wahrscheinlich das ist und wie schlimm es wäre – und dann entscheiden, was du dagegen tust.</p>
+      <pre><code>Risiko = Eintrittswahrscheinlichkeit × Schadenshöhe</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Risikomatrix eines Webdesigners" xmlns="http://www.w3.org/2000/svg">
+        <rect x="110.0" y="20.0" width="166.0" height="76.0" rx="4" class="dg-asset-2"/>
+        <rect x="280.0" y="20.0" width="166.0" height="76.0" rx="4" class="dg-asset"/>
+        <rect x="450.0" y="20.0" width="166.0" height="76.0" rx="4" class="dg-asset"/>
+        <rect x="110.0" y="100.0" width="166.0" height="76.0" rx="4" class="dg-fill"/>
+        <rect x="280.0" y="100.0" width="166.0" height="76.0" rx="4" class="dg-asset-2"/>
+        <rect x="450.0" y="100.0" width="166.0" height="76.0" rx="4" class="dg-asset"/>
+        <rect x="110.0" y="180.0" width="166.0" height="76.0" rx="4" class="dg-fill"/>
+        <rect x="280.0" y="180.0" width="166.0" height="76.0" rx="4" class="dg-fill"/>
+        <rect x="450.0" y="180.0" width="166.0" height="76.0" rx="4" class="dg-asset-2"/>
+        <text x="100.0" y="62.0" class="dg-text" text-anchor="end">hoch</text>
+        <text x="100.0" y="142.0" class="dg-text" text-anchor="end">mittel</text>
+        <text x="100.0" y="222.0" class="dg-text" text-anchor="end">gering</text>
+        <text x="195.0" y="274.0" class="dg-text" text-anchor="middle">klein</text>
+        <text x="365.0" y="274.0" class="dg-text" text-anchor="middle">mittel</text>
+        <text x="535.0" y="274.0" class="dg-text" text-anchor="middle">groß</text>
+        <text x="14.0" y="132.0" class="dg-small" text-anchor="start">Wahrschein-</text>
+        <text x="14.0" y="146.0" class="dg-small" text-anchor="start">lichkeit</text>
+        <text x="365.0" y="314.0" class="dg-small" text-anchor="middle">Schaden (Auswirkung) →</text>
+        <circle cx="294.0" cy="40.0" r="4" class="dg-point"/>
+        <text x="304.0" y="44.0" class="dg-on-box" text-anchor="start">Laptop kaputt</text>
+        <circle cx="464.0" cy="120.0" r="4" class="dg-point"/>
+        <text x="474.0" y="124.0" class="dg-on-box" text-anchor="start">Datenverlust</text>
+        <circle cx="464.0" cy="142.0" r="4" class="dg-point"/>
+        <text x="474.0" y="146.0" class="dg-on-box" text-anchor="start">Großkunde weg</text>
+        <circle cx="294.0" cy="120.0" r="4" class="dg-point"/>
+        <text x="304.0" y="124.0" class="dg-on-box" text-anchor="start">Krankheit</text>
+        <circle cx="294.0" cy="200.0" r="4" class="dg-point"/>
+        <text x="304.0" y="204.0" class="dg-on-box" text-anchor="start">Abmahnung</text>
+        <circle cx="124.0" cy="40.0" r="4" class="dg-point"/>
+        <text x="134.0" y="44.0" class="dg-on-box" text-anchor="start">Zahlungsausfall</text>
+        </svg>
+        <figcaption>Je weiter oben rechts, desto gefährlicher. Datenverlust und Abhängigkeit vom Großkunden brauchen zuerst Maßnahmen.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Professionelles Risikomanagement stammt aus Versicherungen und Banken. In Deutschland verpflichtet das <strong>KonTraG</strong> (1998) Aktiengesellschaften zu einem Risikofrüherkennungssystem; seit 2021 verlangt das <strong>StaRUG</strong> von allen Geschäftsführern von Kapitalgesellschaften, bestandsgefährdende Entwicklungen früh zu erkennen. Die <strong>3-2-1-Backup-Regel</strong> machte der Fotograf Peter Krogh (2009) bekannt.</p>
+    </section>
+    <section>
+      <h2>Vier Strategien</h2>
+      <table class="info-table">
+        <thead><tr><th>Strategie</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Vermeiden</td><td>riskante Tätigkeit nicht machen</td><td>keine Online-Shops mit Zahlungsabwicklung anbieten</td></tr>
+          <tr><td>Vermindern</td><td>Wahrscheinlichkeit oder Schaden senken</td><td>Backups, Updates, Verträge mit klarer Haftungsgrenze</td></tr>
+          <tr><td>Übertragen</td><td>auf andere abwälzen</td><td>Versicherung, Factoring, Subunternehmer</td></tr>
+          <tr><td>Tragen</td><td>bewusst akzeptieren</td><td>kleine Risiken, z. B. ein kaputter Monitor</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Klumpenrisiko: Abhängigkeit von Großkunden</h2>
+      <p>Wenn ein einzelner Kunde einen großen Teil deines Umsatzes bringt, ist das bequem – aber gefährlich. Springt er ab, bricht dein Umsatz ein. Faustregel: <strong>Mehr als ca. 30 % Umsatz mit einem Kunden ist ein Klumpenrisiko.</strong></p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Umsatzanteile nach Kunden" xmlns="http://www.w3.org/2000/svg">
+        <text x="160.0" y="90.0" class="dg-label" text-anchor="end">Kunde A (Agentur)</text>
+        <rect x="170.0" y="66.0" width="324.0" height="38.0" rx="3" class="dg-bar-total"/>
+        <text x="502.0" y="90.0" class="dg-text" text-anchor="start">45 % – Klumpenrisiko!</text>
+        <text x="160.0" y="142.0" class="dg-label" text-anchor="end">Kunde B</text>
+        <rect x="170.0" y="118.0" width="108.0" height="38.0" rx="3" class="dg-bar"/>
+        <text x="286.0" y="142.0" class="dg-text" text-anchor="start">15 %</text>
+        <text x="160.0" y="194.0" class="dg-label" text-anchor="end">Kunde C</text>
+        <rect x="170.0" y="170.0" width="72.0" height="38.0" rx="3" class="dg-bar"/>
+        <text x="250.0" y="194.0" class="dg-text" text-anchor="start">10 %</text>
+        <text x="160.0" y="246.0" class="dg-label" text-anchor="end">12 kleine Kunden</text>
+        <rect x="170.0" y="222.0" width="216.0" height="38.0" rx="3" class="dg-asset-2"/>
+        <text x="394.0" y="246.0" class="dg-text" text-anchor="start">30 %</text>
+        </svg>
+        <figcaption>Fast die Hälfte des Umsatzes hängt an einem Kunden. Verliert Max Kunde A, fehlen ihm 45 % – und es droht Scheinselbstständigkeit.</figcaption>
+      </figure>
+      <ul>
+        <li>Gegenmittel: aktiv Neukunden gewinnen, auch wenn gerade viel zu tun ist.</li>
+        <li>Wiederkehrende Umsätze mit vielen kleinen Kunden aufbauen.</li>
+        <li>Liquiditätsreserve für 3–6 Monate Fixkosten halten.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Datensicherung (3-2-1-Regel)</h2>
+      <p>Für digitale Unternehmen ist <strong>Datenverlust</strong> eines der größten Risiken: Festplatte defekt, Laptop gestohlen, Verschlüsselungstrojaner.</p>
+      <table class="info-table">
+        <thead><tr><th>Regel</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>3 Kopien</td><td>Original + 2 Backups</td><td>Laptop, externe SSD, Cloud</td></tr>
+          <tr><td>2 Medien</td><td>auf mindestens zwei verschiedenen Speicherarten</td><td>SSD und Cloud-Speicher</td></tr>
+          <tr><td>1 außer Haus</td><td>eine Kopie an einem anderen Ort</td><td>Cloud oder Festplatte bei Familie</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>Backups <strong>automatisch</strong> laufen lassen (täglich) und regelmäßig <strong>testen</strong>, ob die Wiederherstellung klappt.</li>
+        <li>Ein Backup sollte <strong>offline</strong> oder unveränderbar sein – sonst verschlüsselt ein Trojaner es mit.</li>
+        <li>Kunden-Websites: Backups beim Hoster UND eigene Sicherung; Code in einem Git-Repository.</li>
+        <li>Buchhaltungsdaten müssen ohnehin 8–10 Jahre aufbewahrt werden (GoBD).</li>
+      </ul>
+      <div class="note"><strong>Keine Rechts- oder Steuerberatung:</strong> Diese Seite erklärt die Grundlagen vereinfacht (Stand 2026). Bei konkreten Verträgen oder Streitfällen hilft eine Anwältin bzw. ein Anwalt oder die IHK/Handwerkskammer.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Einmal im Jahr eine Risikoliste schreiben: Was könnte mein Unternehmen ruinieren?</li>
+        <li>Für jedes große Risiko eine konkrete Maßnahme mit Termin festlegen.</li>
+        <li>Notfallplan: Wer hat Zugriff auf Passwörter und Kundendaten, wenn du krank bist? (Passwortmanager mit Notfallzugang)</li>
+        <li>Die Liquiditätsreserve ist die beste Versicherung gegen fast alle Risiken.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="versicherungen.html">Versicherungen</a>
+        <a class="chip" href="liquiditaet.html">Liquidität</a>
+        <a class="chip" href="datenschutz-impressum.html">Datenschutz &amp; Impressum</a>
+        <a class="chip" href="aufbewahrung-gobd.html">Aufbewahrung &amp; GoBD</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

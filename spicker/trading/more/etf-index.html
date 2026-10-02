@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: ETF &amp; Index – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Aktien & ETFs</p>
+    <h1>ETF, Index &amp; Sparplan</h1>
+    <p class="page-lead">Wie du mit einem einzigen Wertpapier hunderte Unternehmen kaufen kannst – und warum Kosten dabei so wichtig sind.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist ein Index?</h2>
+      <p>Ein <strong>Index</strong> ist eine Kennzahl, die zeigt, wie sich eine Gruppe von Aktien entwickelt – wie ein Fieberthermometer für einen Markt.</p>
+      <table class="info-table">
+        <thead><tr><th>Index</th><th>Enthält</th></tr></thead>
+        <tbody>
+          <tr><td>DAX</td><td>die 40 größten deutschen Unternehmen an der Börse</td></tr>
+          <tr><td>S&P 500</td><td>500 große US-Unternehmen</td></tr>
+          <tr><td>MSCI World</td><td>über 1.000 Unternehmen aus 23 Industrieländern (Stand 2026)</td></tr>
+          <tr><td>MSCI Emerging Markets</td><td>Unternehmen aus Schwellenländern wie China, Indien, Brasilien</td></tr>
+        </tbody>
+      </table>
+      <p>Die meisten Indizes sind nach <strong>Marktkapitalisierung</strong> gewichtet: Große Unternehmen haben einen größeren Anteil.</p>
+    </section>
+    <section>
+      <h2>Was ist ein ETF?</h2>
+      <p>Ein <strong>ETF</strong> (Exchange Traded Fund) ist ein börsengehandelter Fonds, der einen Index <strong>nachbildet</strong>. Kaufst du einen MSCI-World-ETF, besitzt du indirekt winzige Teile aller enthaltenen Unternehmen.</p>
+      <table class="info-table">
+        <thead><tr><th></th><th>Aktiver Fonds</th><th>Passiver Fonds (ETF)</th></tr></thead>
+        <tbody>
+          <tr><td>Wer entscheidet?</td><td>Fondsmanager wählt Aktien aus</td><td>der Index – automatisch</td></tr>
+          <tr><td>Kosten (TER)</td><td>oft 1–2 % pro Jahr</td><td>oft 0,1–0,3 % pro Jahr</td></tr>
+          <tr><td>Ergebnis</td><td>die meisten schlagen ihren Vergleichsindex langfristig nicht</td><td>genau Indexrendite minus kleine Kosten</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Woher kommt das?</strong> John Bogle startete 1976 den ersten Indexfonds für Privatanleger (Vanguard). Der erste ETF, der wie eine Aktie an der Börse gehandelt wird, kam 1993 in den USA auf den S&P 500.</p>
+    </section>
+    <section>
+      <h2>TER: Warum Kosten so viel ausmachen</h2>
+      <p>Die <strong>TER</strong> (Total Expense Ratio) sind die laufenden Kosten pro Jahr in Prozent. Sie werden automatisch aus dem Fonds entnommen.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Wirkung der TER über 30 Jahre" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="22.0" class="dg-label" text-anchor="middle">10.000 € nach 30 Jahren bei 6 % Rendite pro Jahr</text>
+        <line x1="20.0" y1="248.0" x2="620.0" y2="248.0" class="dg-axis"/>
+        <rect x="84.0" y="54.0" width="72.0" height="194.0" rx="2" class="dg-bar-total"/>
+        <text x="120.0" y="47.0" class="dg-small" text-anchor="middle">57.435 €</text>
+        <text x="120.0" y="270.0" class="dg-text" text-anchor="middle">ohne Kosten</text>
+        <rect x="284.0" y="64.7" width="72.0" height="183.3" rx="2" class="dg-bar"/>
+        <text x="320.0" y="57.7" class="dg-small" text-anchor="middle">54.271 €</text>
+        <text x="320.0" y="270.0" class="dg-text" text-anchor="middle">TER 0,2 %</text>
+        <rect x="484.0" y="131.9" width="72.0" height="116.1" rx="2" class="dg-bar-minus"/>
+        <text x="520.0" y="124.9" class="dg-small" text-anchor="middle">34.358 €</text>
+        <text x="520.0" y="270.0" class="dg-text" text-anchor="middle">TER 1,8 %</text>
+        </svg>
+        <figcaption>Klingt klein, ist aber riesig: 1,6 Prozentpunkte mehr Kosten pro Jahr bedeuten nach 30 Jahren rund 19.913 € weniger.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Thesaurierend oder ausschüttend?</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Thesaurierend (Acc)</th><th>Ausschüttend (Dist)</th></tr></thead>
+        <tbody>
+          <tr><td>Dividenden</td><td>werden automatisch wieder angelegt</td><td>werden auf dein Konto ausgezahlt</td></tr>
+          <tr><td>Gut für</td><td>Vermögensaufbau (Zinseszins ohne Aufwand)</td><td>regelmäßiges Einkommen</td></tr>
+          <tr><td>Steuer</td><td>Vorabpauschale jedes Jahr</td><td>Steuer auf die Ausschüttung</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Sparplan und Cost-Average-Effekt</h2>
+      <p>Bei einem <strong>Sparplan</strong> kaufst du automatisch jeden Monat für einen festen Betrag, z. B. 100 €. Ist der Kurs niedrig, bekommst du mehr Anteile, ist er hoch, weniger.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Sparplan kauft unterschiedlich viele Anteile" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">5</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">10</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">14</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">19</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">24</text>
+        <polyline points="52.0,82.3 165.6,136.6 279.2,218.1 392.8,190.9 506.4,136.6 620.0,82.3" class="dg-line" fill="none"/>
+        <circle cx="52.0" cy="82.3" r="4.5" class="dg-point"/>
+        <text x="52.0" y="70.3" class="dg-label" text-anchor="start">5,0 Stk.</text>
+        <circle cx="165.6" cy="136.6" r="4.5" class="dg-point"/>
+        <text x="165.6" y="158.6" class="dg-label" text-anchor="middle">6,2 Stk.</text>
+        <circle cx="279.2" cy="218.1" r="4.5" class="dg-point"/>
+        <text x="279.2" y="240.1" class="dg-label" text-anchor="middle">10,0 Stk.</text>
+        <circle cx="392.8" cy="190.9" r="4.5" class="dg-point"/>
+        <text x="392.8" y="212.9" class="dg-label" text-anchor="middle">8,3 Stk.</text>
+        <circle cx="506.4" cy="136.6" r="4.5" class="dg-point"/>
+        <text x="506.4" y="158.6" class="dg-label" text-anchor="middle">6,2 Stk.</text>
+        <circle cx="620.0" cy="82.3" r="4.5" class="dg-point"/>
+        <text x="620.0" y="70.3" class="dg-label" text-anchor="end">5,0 Stk.</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Monat 1 bis 6 (je 100 €)</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Für 600 € gibt es 40,8 Anteile. Durchschnittlicher Kaufpreis: 14,69 € – weniger als der Durchschnittskurs von 15,67 €.</figcaption>
+      </figure>
+      <div class="note">Der Cost-Average-Effekt ist keine Zauberei: In stetig steigenden Märkten war eine Einmalanlage in der Vergangenheit oft besser. Der große Vorteil des Sparplans ist die Disziplin.</div>
+    </section>
+    <section>
+      <h2>Rebalancing</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Rebalancing auf 70 zu 30" xmlns="http://www.w3.org/2000/svg">
+        <rect x="70.0" y="200.0" width="110.0" height="50.0" rx="0" class="dg-debt"/>
+        <rect x="70.0" y="83.3" width="110.0" height="116.7" rx="0" class="dg-asset"/>
+        <text x="125.0" y="146.7" class="dg-on-box" text-anchor="middle">Aktien 70 %</text>
+        <text x="125.0" y="230.0" class="dg-on-box" text-anchor="middle">Anl. 30 %</text>
+        <text x="125.0" y="75.3" class="dg-small" text-anchor="middle">10.000 €</text>
+        <text x="125.0" y="270.0" class="dg-label" text-anchor="middle">Start</text>
+        <rect x="260.0" y="200.0" width="110.0" height="50.0" rx="0" class="dg-debt"/>
+        <rect x="260.0" y="54.2" width="110.0" height="145.8" rx="0" class="dg-asset"/>
+        <text x="315.0" y="132.1" class="dg-on-box" text-anchor="middle">Aktien 74 %</text>
+        <text x="315.0" y="230.0" class="dg-on-box" text-anchor="middle">Anl. 26 %</text>
+        <text x="315.0" y="46.2" class="dg-small" text-anchor="middle">11.750 €</text>
+        <text x="315.0" y="270.0" class="dg-label" text-anchor="middle">nach 1 Jahr</text>
+        <rect x="450.0" y="191.2" width="110.0" height="58.8" rx="0" class="dg-debt"/>
+        <rect x="450.0" y="54.2" width="110.0" height="137.1" rx="0" class="dg-asset"/>
+        <text x="505.0" y="127.7" class="dg-on-box" text-anchor="middle">Aktien 70 %</text>
+        <text x="505.0" y="225.6" class="dg-on-box" text-anchor="middle">Anl. 30 %</text>
+        <text x="505.0" y="46.2" class="dg-small" text-anchor="middle">11.750 €</text>
+        <text x="505.0" y="270.0" class="dg-label" text-anchor="middle">nach Rebalancing</text>
+        <line x1="40.0" y1="250.0" x2="600.0" y2="250.0" class="dg-axis"/>
+        <text x="320.0" y="290.0" class="dg-text" text-anchor="middle">Aktien sind um 25 % gestiegen → Anteil zu hoch → zurück auf 70 / 30</text>
+        </svg>
+        <figcaption>Steigen Aktien stärker als Anleihen, wird das Depot riskanter als geplant. Rebalancing stellt die Aufteilung wieder her.</figcaption>
+      </figure>
+      <p>Beim <strong>Rebalancing</strong> verkaufst du etwas vom Gewinner und kaufst vom Verlierer nach – oder du lenkst einfach neue Sparraten in den zu kleinen Teil. Üblich: einmal im Jahr oder wenn ein Anteil mehr als ca. 5 Prozentpunkte abweicht.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei ETFs auf Index, TER, Fondsgröße und Replikationsart (physisch/synthetisch) achten.</li>
+        <li>Ein breiter Welt-ETF ist für viele schon allein gut gestreut.</li>
+        <li>Rebalancing durch Verkauf kann Steuern auslösen – Umlenken neuer Sparraten ist steuerfrei.</li>
+        <li>Diese Seite erklärt Begriffe und Zusammenhänge – sie ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="aktie-ipo.html">Aktie &amp; IPO</a>
+        <a class="chip" href="diversifikation.html">Diversifikation</a>
+        <a class="chip" href="steuern.html">Steuern</a>
+        <a class="chip" href="dividende.html">Dividende</a>
+        <a class="chip" href="rendite-zinseszins.html">Rendite &amp; Zinseszins</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Ableitungsregeln – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Analysis</p>
+    <h1>Ableitungsregeln</h1>
+    <p class="page-lead">Mit wenigen Regeln kann man fast jede Funktion ableiten – ohne Grenzwert-Rechnerei.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <strong>Ableitungsregeln</strong> sind Abkürzungen, die man einmal mit dem Differenzenquotienten bewiesen hat. Jetzt kann man sie einfach anwenden. Man nennt das Ableiten auch <strong>Differenzieren</strong>.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Funktion x² und ihre Ableitung 2x" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip14"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="36.0" y1="284.0" x2="36.0" y2="36.0" class="dg-grid"/>
+        <text x="36.0" y="200.8" class="dg-small" text-anchor="middle">-3</text>
+        <line x1="130.7" y1="284.0" x2="130.7" y2="36.0" class="dg-grid"/>
+        <text x="130.7" y="200.8" class="dg-small" text-anchor="middle">-2</text>
+        <line x1="225.3" y1="284.0" x2="225.3" y2="36.0" class="dg-grid"/>
+        <text x="225.3" y="200.8" class="dg-small" text-anchor="middle">-1</text>
+        <line x1="320.0" y1="284.0" x2="320.0" y2="36.0" class="dg-grid"/>
+        <line x1="414.7" y1="284.0" x2="414.7" y2="36.0" class="dg-grid"/>
+        <text x="414.7" y="200.8" class="dg-small" text-anchor="middle">1</text>
+        <line x1="509.3" y1="284.0" x2="509.3" y2="36.0" class="dg-grid"/>
+        <text x="509.3" y="200.8" class="dg-small" text-anchor="middle">2</text>
+        <line x1="604.0" y1="284.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="604.0" y="200.8" class="dg-small" text-anchor="middle">3</text>
+        <line x1="36.0" y1="284.0" x2="604.0" y2="284.0" class="dg-grid"/>
+        <text x="314.0" y="288.0" class="dg-small" text-anchor="end">-4</text>
+        <line x1="36.0" y1="259.2" x2="604.0" y2="259.2" class="dg-grid"/>
+        <text x="314.0" y="263.2" class="dg-small" text-anchor="end">-3</text>
+        <line x1="36.0" y1="234.4" x2="604.0" y2="234.4" class="dg-grid"/>
+        <text x="314.0" y="238.4" class="dg-small" text-anchor="end">-2</text>
+        <line x1="36.0" y1="209.6" x2="604.0" y2="209.6" class="dg-grid"/>
+        <text x="314.0" y="213.6" class="dg-small" text-anchor="end">-1</text>
+        <line x1="36.0" y1="184.8" x2="604.0" y2="184.8" class="dg-grid"/>
+        <line x1="36.0" y1="160.0" x2="604.0" y2="160.0" class="dg-grid"/>
+        <text x="314.0" y="164.0" class="dg-small" text-anchor="end">1</text>
+        <line x1="36.0" y1="135.2" x2="604.0" y2="135.2" class="dg-grid"/>
+        <text x="314.0" y="139.2" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="110.4" x2="604.0" y2="110.4" class="dg-grid"/>
+        <text x="314.0" y="114.4" class="dg-small" text-anchor="end">3</text>
+        <line x1="36.0" y1="85.6" x2="604.0" y2="85.6" class="dg-grid"/>
+        <text x="314.0" y="89.6" class="dg-small" text-anchor="end">4</text>
+        <line x1="36.0" y1="60.8" x2="604.0" y2="60.8" class="dg-grid"/>
+        <text x="314.0" y="64.8" class="dg-small" text-anchor="end">5</text>
+        <line x1="36.0" y1="36.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="314.0" y="40.0" class="dg-small" text-anchor="end">6</text>
+        <line x1="36.0" y1="184.8" x2="604.0" y2="184.8" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="320.0" y1="284.0" x2="320.0" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="176.8" class="dg-label" text-anchor="end">x</text>
+        <text x="328.0" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polyline points="36.0,-38.4 38.8,-34.0 41.7,-29.6 44.5,-25.2 47.4,-20.9 50.2,-16.6 53.0,-12.4 55.9,-8.2 58.7,-4.1 61.6,-0.0 64.4,4.0 67.2,8.0 70.1,12.0 72.9,15.9 75.8,19.7 78.6,23.5 81.4,27.3 84.3,31.0 87.1,34.7 90.0,38.4 92.8,42.0 95.6,45.5 98.5,49.0 101.3,52.5 104.2,55.9 107.0,59.2 109.8,62.6 112.7,65.9 115.5,69.1 118.4,72.3 121.2,75.4 124.0,78.5 126.9,81.6 129.7,84.6 132.6,87.6 135.4,90.5 138.2,93.4 141.1,96.2 143.9,99.0 146.8,101.7 149.6,104.4 152.4,107.1 155.3,109.7 158.1,112.3 161.0,114.8 163.8,117.3 166.6,119.7 169.5,122.1 172.3,124.4 175.2,126.7 178.0,129.0 180.8,131.2 183.7,133.4 186.5,135.5 189.4,137.6 192.2,139.6 195.0,141.6 197.9,143.5 200.7,145.4 203.6,147.3 206.4,149.1 209.2,150.9 212.1,152.6 214.9,154.2 217.8,155.9 220.6,157.5 223.4,159.0 226.3,160.5 229.1,161.9 232.0,163.4 234.8,164.7 237.6,166.0 240.5,167.3 243.3,168.5 246.2,169.7 249.0,170.9 251.8,171.9 254.7,173.0 257.5,174.0 260.4,175.0 263.2,175.9 266.0,176.7 268.9,177.6 271.7,178.3 274.6,179.1 277.4,179.8 280.2,180.4 283.1,181.0 285.9,181.6 288.8,182.1 291.6,182.6 294.4,183.0 297.3,183.4 300.1,183.7 303.0,184.0 305.8,184.2 308.6,184.4 311.5,184.6 314.3,184.7 317.2,184.8 320.0,184.8 322.8,184.8 325.7,184.7 328.5,184.6 331.4,184.4 334.2,184.2 337.0,184.0 339.9,183.7 342.7,183.4 345.6,183.0 348.4,182.6 351.2,182.1 354.1,181.6 356.9,181.0 359.8,180.4 362.6,179.8 365.4,179.1 368.3,178.3 371.1,177.6 374.0,176.7 376.8,175.9 379.6,175.0 382.5,174.0 385.3,173.0 388.2,171.9 391.0,170.9 393.8,169.7 396.7,168.5 399.5,167.3 402.4,166.0 405.2,164.7 408.0,163.4 410.9,161.9 413.7,160.5 416.6,159.0 419.4,157.5 422.2,155.9 425.1,154.2 427.9,152.6 430.8,150.9 433.6,149.1 436.4,147.3 439.3,145.4 442.1,143.5 445.0,141.6 447.8,139.6 450.6,137.6 453.5,135.5 456.3,133.4 459.2,131.2 462.0,129.0 464.8,126.7 467.7,124.4 470.5,122.1 473.4,119.7 476.2,117.3 479.0,114.8 481.9,112.3 484.7,109.7 487.6,107.1 490.4,104.4 493.2,101.7 496.1,99.0 498.9,96.2 501.8,93.4 504.6,90.5 507.4,87.6 510.3,84.6 513.1,81.6 516.0,78.5 518.8,75.4 521.6,72.3 524.5,69.1 527.3,65.9 530.2,62.6 533.0,59.2 535.8,55.9 538.7,52.5 541.5,49.0 544.4,45.5 547.2,42.0 550.0,38.4 552.9,34.7 555.7,31.0 558.6,27.3 561.4,23.5 564.2,19.7 567.1,15.9 569.9,12.0 572.8,8.0 575.6,4.0 578.4,-0.0 581.3,-4.1 584.1,-8.2 587.0,-12.4 589.8,-16.6 592.6,-20.9 595.5,-25.2 598.3,-29.6 601.2,-34.0 604.0,-38.4" class="dg-line" clip-path="url(#plotClip14)"/>
+        <polyline points="36.0,333.6 38.8,332.1 41.7,330.6 44.5,329.1 47.4,327.6 50.2,326.2 53.0,324.7 55.9,323.2 58.7,321.7 61.6,320.2 64.4,318.7 67.2,317.2 70.1,315.7 72.9,314.3 75.8,312.8 78.6,311.3 81.4,309.8 84.3,308.3 87.1,306.8 90.0,305.3 92.8,303.8 95.6,302.4 98.5,300.9 101.3,299.4 104.2,297.9 107.0,296.4 109.8,294.9 112.7,293.4 115.5,291.9 118.4,290.4 121.2,289.0 124.0,287.5 126.9,286.0 129.7,284.5 132.6,283.0 135.4,281.5 138.2,280.0 141.1,278.5 143.9,277.1 146.8,275.6 149.6,274.1 152.4,272.6 155.3,271.1 158.1,269.6 161.0,268.1 163.8,266.6 166.6,265.2 169.5,263.7 172.3,262.2 175.2,260.7 178.0,259.2 180.8,257.7 183.7,256.2 186.5,254.7 189.4,253.2 192.2,251.8 195.0,250.3 197.9,248.8 200.7,247.3 203.6,245.8 206.4,244.3 209.2,242.8 212.1,241.3 214.9,239.9 217.8,238.4 220.6,236.9 223.4,235.4 226.3,233.9 229.1,232.4 232.0,230.9 234.8,229.4 237.6,228.0 240.5,226.5 243.3,225.0 246.2,223.5 249.0,222.0 251.8,220.5 254.7,219.0 257.5,217.5 260.4,216.0 263.2,214.6 266.0,213.1 268.9,211.6 271.7,210.1 274.6,208.6 277.4,207.1 280.2,205.6 283.1,204.1 285.9,202.7 288.8,201.2 291.6,199.7 294.4,198.2 297.3,196.7 300.1,195.2 303.0,193.7 305.8,192.2 308.6,190.8 311.5,189.3 314.3,187.8 317.2,186.3 320.0,184.8 322.8,183.3 325.7,181.8 328.5,180.3 331.4,178.8 334.2,177.4 337.0,175.9 339.9,174.4 342.7,172.9 345.6,171.4 348.4,169.9 351.2,168.4 354.1,166.9 356.9,165.5 359.8,164.0 362.6,162.5 365.4,161.0 368.3,159.5 371.1,158.0 374.0,156.5 376.8,155.0 379.6,153.6 382.5,152.1 385.3,150.6 388.2,149.1 391.0,147.6 393.8,146.1 396.7,144.6 399.5,143.1 402.4,141.6 405.2,140.2 408.0,138.7 410.9,137.2 413.7,135.7 416.6,134.2 419.4,132.7 422.2,131.2 425.1,129.7 427.9,128.3 430.8,126.8 433.6,125.3 436.4,123.8 439.3,122.3 442.1,120.8 445.0,119.3 447.8,117.8 450.6,116.4 453.5,114.9 456.3,113.4 459.2,111.9 462.0,110.4 464.8,108.9 467.7,107.4 470.5,105.9 473.4,104.4 476.2,103.0 479.0,101.5 481.9,100.0 484.7,98.5 487.6,97.0 490.4,95.5 493.2,94.0 496.1,92.5 498.9,91.1 501.8,89.6 504.6,88.1 507.4,86.6 510.3,85.1 513.1,83.6 516.0,82.1 518.8,80.6 521.6,79.2 524.5,77.7 527.3,76.2 530.2,74.7 533.0,73.2 535.8,71.7 538.7,70.2 541.5,68.7 544.4,67.2 547.2,65.8 550.0,64.3 552.9,62.8 555.7,61.3 558.6,59.8 561.4,58.3 564.2,56.8 567.1,55.3 569.9,53.9 572.8,52.4 575.6,50.9 578.4,49.4 581.3,47.9 584.1,46.4 587.0,44.9 589.8,43.4 592.6,42.0 595.5,40.5 598.3,39.0 601.2,37.5 604.0,36.0" class="dg-line-2" clip-path="url(#plotClip14)"/>
+        <polyline points="301.1,219.5 302.3,218.9 303.5,218.2 304.8,217.6 306.0,216.9 307.2,216.3 308.5,215.7 309.7,215.0 310.9,214.4 312.1,213.7 313.4,213.1 314.6,212.4 315.8,211.8 317.1,211.1 318.3,210.5 319.5,209.8 320.8,209.2 322.0,208.6 323.2,207.9 324.4,207.3 325.7,206.6 326.9,206.0 328.1,205.3 329.4,204.7 330.6,204.0 331.8,203.4 333.1,202.8 334.3,202.1 335.5,201.5 336.8,200.8 338.0,200.2 339.2,199.5 340.4,198.9 341.7,198.2 342.9,197.6 344.1,197.0 345.4,196.3 346.6,195.7 347.8,195.0 349.1,194.4 350.3,193.7 351.5,193.1 352.8,192.4 354.0,191.8 355.2,191.1 356.4,190.5 357.7,189.9 358.9,189.2 360.1,188.6 361.4,187.9 362.6,187.3 363.8,186.6 365.1,186.0 366.3,185.3 367.5,184.7 368.8,184.1 370.0,183.4 371.2,182.8 372.4,182.1 373.7,181.5 374.9,180.8 376.1,180.2 377.4,179.5 378.6,178.9 379.8,178.3 381.1,177.6 382.3,177.0 383.5,176.3 384.8,175.7 386.0,175.0 387.2,174.4 388.4,173.7 389.7,173.1 390.9,172.4 392.1,171.8 393.4,171.2 394.6,170.5 395.8,169.9 397.1,169.2 398.3,168.6 399.5,167.9 400.8,167.3 402.0,166.6 403.2,166.0 404.4,165.4 405.7,164.7 406.9,164.1 408.1,163.4 409.4,162.8 410.6,162.1 411.8,161.5 413.1,160.8 414.3,160.2 415.5,159.6 416.7,158.9 418.0,158.3 419.2,157.6 420.4,157.0 421.7,156.3 422.9,155.7 424.1,155.0 425.4,154.4 426.6,153.8 427.8,153.1 429.1,152.5 430.3,151.8 431.5,151.2 432.7,150.5 434.0,149.9 435.2,149.2 436.4,148.6 437.7,147.9 438.9,147.3 440.1,146.7 441.4,146.0 442.6,145.4 443.8,144.7 445.1,144.1 446.3,143.4 447.5,142.8 448.7,142.1 450.0,141.5 451.2,140.9 452.4,140.2 453.7,139.6 454.9,138.9 456.1,138.3 457.4,137.6 458.6,137.0 459.8,136.3 461.1,135.7 462.3,135.1 463.5,134.4 464.7,133.8 466.0,133.1 467.2,132.5 468.4,131.8 469.7,131.2 470.9,130.5 472.1,129.9 473.4,129.2 474.6,128.6 475.8,128.0 477.1,127.3 478.3,126.7 479.5,126.0 480.7,125.4 482.0,124.7 483.2,124.1 484.4,123.4 485.7,122.8 486.9,122.2 488.1,121.5 489.4,120.9 490.6,120.2 491.8,119.6 493.1,118.9 494.3,118.3 495.5,117.6 496.7,117.0 498.0,116.4 499.2,115.7 500.4,115.1 501.7,114.4 502.9,113.8 504.1,113.1 505.4,112.5 506.6,111.8 507.8,111.2 509.0,110.5 510.3,109.9 511.5,109.3 512.7,108.6 514.0,108.0 515.2,107.3 516.4,106.7 517.7,106.0 518.9,105.4 520.1,104.7 521.4,104.1 522.6,103.5 523.8,102.8 525.0,102.2 526.3,101.5 527.5,100.9 528.7,100.2 530.0,99.6 531.2,98.9 532.4,98.3 533.7,97.7 534.9,97.0 536.1,96.4 537.4,95.7 538.6,95.1 539.8,94.4 541.0,93.8 542.3,93.1 543.5,92.5 544.7,91.8 546.0,91.2 547.2,90.6" class="dg-line-3" clip-path="url(#plotClip14)"/>
+        <circle cx="414.7" cy="160.0" r="4.5" class="dg-point"/><text x="424.7" y="180.0" class="dg-label" text-anchor="start">Steigung bei x = 1 ist 2</text>
+        <circle cx="414.7" cy="135.2" r="4.5" class="dg-point"/>
+        <text x="92.8" y="45.9" class="dg-accent-text" text-anchor="start">f(x) = x²</text>
+        <text x="45.5" y="264.2" class="dg-label" text-anchor="start">f&#x27;(x) = 2x</text>
+        <text x="424.7" y="129.2" class="dg-label" text-anchor="start">f&#x27;(1) = 2</text>
+        </svg>
+        <figcaption>Die Ableitung f'(x) = 2x zeigt an jeder Stelle die Steigung von f(x) = x²: bei x = 1 ist sie 2.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>f, g</code></td><td>Funktionen</td></tr>
+          <tr><td><code>u, v</code></td><td>die beiden Teil-Funktionen bei Produkt und Quotient</td></tr>
+          <tr><td><code>c</code></td><td>eine feste Zahl (Konstante)</td></tr>
+          <tr><td><code>n</code></td><td>Exponent (beliebige reelle Zahl)</td></tr>
+          <tr><td><code>'</code></td><td>Strich = „abgeleitet“</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Leibniz veröffentlichte 1684 die erste Arbeit mit Produkt- und Quotientenregel. Die Kettenregel steckt ebenfalls schon bei ihm. Heute nutzen Computer genau diese Regeln automatisch: Beim Training neuronaler Netze (KI) wird mit der Kettenregel abgeleitet („Backpropagation“).</p>
+    </section>
+    <section>
+      <h2>Grundregeln</h2>
+      <table class="info-table">
+        <thead><tr><th>Regel</th><th>Formel</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Konstante</td><td><code>(c)' = 0</code></td><td><code>(7)' = 0</code></td></tr>
+          <tr><td>Potenzregel</td><td><code>(xⁿ)' = n · xⁿ⁻¹</code></td><td><code>(x³)' = 3x²</code>, <code>(x)' = 1</code></td></tr>
+          <tr><td>Faktorregel</td><td><code>(c · f)' = c · f'</code></td><td><code>(5x²)' = 5 · 2x = 10x</code></td></tr>
+          <tr><td>Summenregel</td><td><code>(f + g)' = f' + g'</code></td><td><code>(x³ + x²)' = 3x² + 2x</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>f(x)  = 4x³ − 2x² + 7x − 5
+f'(x) = 12x² − 4x + 7
+f''(x)= 24x − 4
+
+Wurzeln und Brüche erst als Potenz schreiben:
+√x = x^(1/2)  →  (√x)' = ½ · x^(−1/2) = 1 / (2√x)
+1/x = x⁻¹     →  (1/x)' = −1 · x⁻² = −1/x²</code></pre>
+    </section>
+    <section>
+      <h2>Produkt-, Quotienten- und Kettenregel</h2>
+      <table class="info-table">
+        <thead><tr><th>Regel</th><th>Formel</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td>Produktregel</td><td><code>(u · v)' = u' · v + u · v'</code></td><td>zwei Funktionen malgenommen</td></tr>
+          <tr><td>Quotientenregel</td><td><code>(u / v)' = (u' · v − u · v') / v²</code></td><td>eine Funktion durch eine andere</td></tr>
+          <tr><td>Kettenregel</td><td><code>(f(g(x)))' = f'(g(x)) · g'(x)</code></td><td>eine Funktion steckt in einer anderen</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Produkt:  (x² · eˣ)' = 2x · eˣ + x² · eˣ = eˣ(2x + x²)
+
+Quotient: (x / (x + 1))' = (1 · (x + 1) − x · 1) / (x + 1)² = 1 / (x + 1)²
+
+Kette:    ((3x + 1)⁵)'   äußere: (…)⁵ → 5(…)⁴,  innere: 3x + 1 → 3
+                       = 5(3x + 1)⁴ · 3 = 15(3x + 1)⁴</code></pre>
+      <div class="note">Kettenregel-Merksatz: <strong>„äußere Ableitung mal innere Ableitung“</strong>. Die innere Funktion bleibt in der äußeren Ableitung unverändert stehen.</div>
+    </section>
+    <section>
+      <h2>Wichtige Ableitungen</h2>
+      <table class="info-table">
+        <thead><tr><th>f(x)</th><th>f'(x)</th></tr></thead>
+        <tbody>
+          <tr><td><code>eˣ</code></td><td><code>eˣ</code> (bleibt gleich!)</td></tr>
+          <tr><td><code>e^(kx)</code></td><td><code>k · e^(kx)</code> (Kettenregel)</td></tr>
+          <tr><td><code>ln x</code></td><td><code>1/x</code></td></tr>
+          <tr><td><code>sin x</code></td><td><code>cos x</code></td></tr>
+          <tr><td><code>cos x</code></td><td><code>−sin x</code></td></tr>
+          <tr><td><code>aˣ</code></td><td><code>ln(a) · aˣ</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei der Potenzregel: Exponent nach vorne, dann Exponent minus 1 – NICHT plus 1 (das ist Integrieren).</li>
+        <li>Eine allein stehende Zahl fällt beim Ableiten weg, eine Zahl als Faktor bleibt stehen.</li>
+        <li>Bei sin/cos immer im Bogenmaß rechnen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="ableitung.html">Ableitung</a>
+        <a class="chip" href="kurvendiskussion.html">Kurvendiskussion</a>
+        <a class="chip" href="exponentialfunktion.html">Exponentialfunktion</a>
+        <a class="chip" href="integral.html">Integral</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

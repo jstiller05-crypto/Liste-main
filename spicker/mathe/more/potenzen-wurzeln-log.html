@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Potenzen, Wurzeln, Log – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Algebra</p>
+    <h1>Potenzen, Wurzeln &amp; Logarithmus</h1>
+    <p class="page-lead">Potenz, Wurzel und Logarithmus gehören zusammen: Sie beantworten drei verschiedene Fragen zu derselben Gleichung bⁿ = x.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine <strong>Potenz</strong> ist eine Abkürzung für wiederholtes Malnehmen: 2⁵ = 2 · 2 · 2 · 2 · 2 = 32.</p>
+      <pre><code>  aⁿ     a = Basis (die Zahl, die malgenommen wird)
+         n = Exponent / Hochzahl (wie oft)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Frage zu 2³ = 8</th><th>Gesucht</th><th>Rechenart</th></tr></thead>
+        <tbody>
+          <tr><td>Was ist 2 hoch 3?</td><td>das Ergebnis 8</td><td>Potenz: <code>2³ = 8</code></td></tr>
+          <tr><td>Welche Zahl hoch 3 ergibt 8?</td><td>die Basis 2</td><td>Wurzel: <code>³√8 = 2</code></td></tr>
+          <tr><td>2 hoch wie viel ergibt 8?</td><td>den Exponenten 3</td><td>Logarithmus: <code>log₂(8) = 3</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Potenzen nutzte schon Archimedes, um riesige Zahlen auszudrücken. Das Wurzelzeichen √ entstand im 16. Jahrhundert aus einem kleinen „r“ für lateinisch <em>radix</em> = Wurzel. Den <strong>Logarithmus</strong> erfand John Napier 1614: Er machte aus schwierigen Multiplikationen einfache Additionen – Seefahrer und Astronomen rechneten jahrhundertelang mit Logarithmentafeln.</p>
+    </section>
+    <section>
+      <h2>Potenzgesetze</h2>
+      <table class="info-table">
+        <thead><tr><th>Gesetz</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>aⁿ · aᵐ = aⁿ⁺ᵐ</code></td><td><code>2³ · 2² = 2⁵ = 32</code></td></tr>
+          <tr><td><code>aⁿ : aᵐ = aⁿ⁻ᵐ</code></td><td><code>5⁴ : 5² = 5² = 25</code></td></tr>
+          <tr><td><code>(aⁿ)ᵐ = aⁿ·ᵐ</code></td><td><code>(3²)³ = 3⁶ = 729</code></td></tr>
+          <tr><td><code>aⁿ · bⁿ = (a·b)ⁿ</code></td><td><code>2³ · 5³ = 10³ = 1000</code></td></tr>
+          <tr><td><code>a⁰ = 1</code></td><td><code>7⁰ = 1</code> (für a ≠ 0)</td></tr>
+          <tr><td><code>a⁻ⁿ = 1/aⁿ</code></td><td><code>2⁻³ = 1/8</code></td></tr>
+          <tr><td><code>a^(1/n) = ⁿ√a</code></td><td><code>8^(1/3) = ³√8 = 2</code></td></tr>
+        </tbody>
+      </table>
+      <div class="note">Die Gesetze gelten nur bei <strong>gleicher Basis</strong> (oder gleichem Exponenten). <code>2³ + 2²</code> lässt sich NICHT zusammenfassen.</div>
+    </section>
+    <section>
+      <h2>Wurzeln</h2>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>√a</code></td><td>Quadratwurzel: die nicht-negative Zahl, die mit sich selbst malgenommen a ergibt. √25 = 5.</td></tr>
+          <tr><td><code>ⁿ√a</code></td><td>n-te Wurzel: die Zahl, die hoch n genau a ergibt. ³√27 = 3.</td></tr>
+          <tr><td><code>a (unter der Wurzel)</code></td><td>heißt <strong>Radikand</strong>. Bei der Quadratwurzel muss er ≥ 0 sein (sonst keine reelle Lösung).</td></tr>
+        </tbody>
+      </table>
+      <pre><code>√(a · b) = √a · √b        √(4 · 9) = 2 · 3 = 6
+√(a / b) = √a / √b        √(16/25) = 4/5
+ABER: √(a + b) ≠ √a + √b  √(9 + 16) = 5, nicht 3 + 4 = 7</code></pre>
+    </section>
+    <section>
+      <h2>Logarithmus</h2>
+      <pre><code>log_b(x) = y    bedeutet    bʸ = x
+
+log₂(32)  = 5     denn 2⁵ = 32
+log₁₀(1000) = 3   denn 10³ = 1000
+ln(e²)    = 2     ln = Logarithmus zur Basis e ≈ 2,718</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>b</code></td><td>Basis – die Zahl, die potenziert wird (b > 0, b ≠ 1)</td></tr>
+          <tr><td><code>x</code></td><td>das Ergebnis der Potenz (x > 0)</td></tr>
+          <tr><td><code>y</code></td><td>der gesuchte Exponent</td></tr>
+          <tr><td><code>lg / log</code></td><td>Logarithmus zur Basis 10</td></tr>
+          <tr><td><code>ln</code></td><td>natürlicher Logarithmus, Basis e</td></tr>
+        </tbody>
+      </table>
+      <table class="info-table">
+        <thead><tr><th>Logarithmusgesetz</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>log(a · b) = log a + log b</code></td><td>aus Mal wird Plus</td></tr>
+          <tr><td><code>log(a / b) = log a − log b</code></td><td>aus Geteilt wird Minus</td></tr>
+          <tr><td><code>log(aⁿ) = n · log a</code></td><td>Exponent wandert nach vorne – so löst man Gleichungen wie 2ˣ = 10</td></tr>
+        </tbody>
+      </table>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Exponentialfunktion und Logarithmus gespiegelt an y = x" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <defs><clipPath id="plotClip4"><rect x="36.0" y="36.0" width="568.0" height="248.0"/></clipPath></defs>
+        <line x1="36.0" y1="284.0" x2="36.0" y2="36.0" class="dg-grid"/>
+        <text x="36.0" y="193.7" class="dg-small" text-anchor="middle">-6</text>
+        <line x1="107.0" y1="284.0" x2="107.0" y2="36.0" class="dg-grid"/>
+        <text x="107.0" y="193.7" class="dg-small" text-anchor="middle">-4</text>
+        <line x1="178.0" y1="284.0" x2="178.0" y2="36.0" class="dg-grid"/>
+        <text x="178.0" y="193.7" class="dg-small" text-anchor="middle">-2</text>
+        <line x1="249.0" y1="284.0" x2="249.0" y2="36.0" class="dg-grid"/>
+        <line x1="320.0" y1="284.0" x2="320.0" y2="36.0" class="dg-grid"/>
+        <text x="320.0" y="193.7" class="dg-small" text-anchor="middle">2</text>
+        <line x1="391.0" y1="284.0" x2="391.0" y2="36.0" class="dg-grid"/>
+        <text x="391.0" y="193.7" class="dg-small" text-anchor="middle">4</text>
+        <line x1="462.0" y1="284.0" x2="462.0" y2="36.0" class="dg-grid"/>
+        <text x="462.0" y="193.7" class="dg-small" text-anchor="middle">6</text>
+        <line x1="533.0" y1="284.0" x2="533.0" y2="36.0" class="dg-grid"/>
+        <text x="533.0" y="193.7" class="dg-small" text-anchor="middle">8</text>
+        <line x1="604.0" y1="284.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="604.0" y="193.7" class="dg-small" text-anchor="middle">10</text>
+        <line x1="36.0" y1="248.6" x2="604.0" y2="248.6" class="dg-grid"/>
+        <text x="243.0" y="252.6" class="dg-small" text-anchor="end">-2</text>
+        <line x1="36.0" y1="177.7" x2="604.0" y2="177.7" class="dg-grid"/>
+        <line x1="36.0" y1="106.9" x2="604.0" y2="106.9" class="dg-grid"/>
+        <text x="243.0" y="110.9" class="dg-small" text-anchor="end">2</text>
+        <line x1="36.0" y1="36.0" x2="604.0" y2="36.0" class="dg-grid"/>
+        <text x="243.0" y="40.0" class="dg-small" text-anchor="end">4</text>
+        <line x1="36.0" y1="177.7" x2="604.0" y2="177.7" class="dg-axis" marker-end="url(#arrow)"/>
+        <line x1="249.0" y1="284.0" x2="249.0" y2="36.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <text x="600.0" y="169.7" class="dg-label" text-anchor="end">x</text>
+        <text x="257.0" y="48.0" class="dg-label" text-anchor="start">y</text>
+        <polyline points="36.0,390.3 38.8,387.5 41.7,384.6 44.5,381.8 47.4,378.9 50.2,376.1 53.0,373.3 55.9,370.4 58.7,367.6 61.6,364.8 64.4,361.9 67.2,359.1 70.1,356.3 72.9,353.4 75.8,350.6 78.6,347.8 81.4,344.9 84.3,342.1 87.1,339.3 90.0,336.4 92.8,333.6 95.6,330.8 98.5,327.9 101.3,325.1 104.2,322.3 107.0,319.4 109.8,316.6 112.7,313.8 115.5,310.9 118.4,308.1 121.2,305.3 124.0,302.4 126.9,299.6 129.7,296.8 132.6,293.9 135.4,291.1 138.2,288.3 141.1,285.4 143.9,282.6 146.8,279.7 149.6,276.9 152.4,274.1 155.3,271.2 158.1,268.4 161.0,265.6 163.8,262.7 166.6,259.9 169.5,257.1 172.3,254.2 175.2,251.4 178.0,248.6 180.8,245.7 183.7,242.9 186.5,240.1 189.4,237.2 192.2,234.4 195.0,231.6 197.9,228.7 200.7,225.9 203.6,223.1 206.4,220.2 209.2,217.4 212.1,214.6 214.9,211.7 217.8,208.9 220.6,206.1 223.4,203.2 226.3,200.4 229.1,197.6 232.0,194.7 234.8,191.9 237.6,189.1 240.5,186.2 243.3,183.4 246.2,180.5 249.0,177.7 251.8,174.9 254.7,172.0 257.5,169.2 260.4,166.4 263.2,163.5 266.0,160.7 268.9,157.9 271.7,155.0 274.6,152.2 277.4,149.4 280.2,146.5 283.1,143.7 285.9,140.9 288.8,138.0 291.6,135.2 294.4,132.4 297.3,129.5 300.1,126.7 303.0,123.9 305.8,121.0 308.6,118.2 311.5,115.4 314.3,112.5 317.2,109.7 320.0,106.9 322.8,104.0 325.7,101.2 328.5,98.4 331.4,95.5 334.2,92.7 337.0,89.9 339.9,87.0 342.7,84.2 345.6,81.3 348.4,78.5 351.2,75.7 354.1,72.8 356.9,70.0 359.8,67.2 362.6,64.3 365.4,61.5 368.3,58.7 371.1,55.8 374.0,53.0 376.8,50.2 379.6,47.3 382.5,44.5 385.3,41.7 388.2,38.8 391.0,36.0 393.8,33.2 396.7,30.3 399.5,27.5 402.4,24.7 405.2,21.8 408.0,19.0 410.9,16.2 413.7,13.3 416.6,10.5 419.4,7.7 422.2,4.8 425.1,2.0 427.9,-0.8 430.8,-3.7 433.6,-6.5 436.4,-9.3 439.3,-12.2 442.1,-15.0 445.0,-17.9 447.8,-20.7 450.6,-23.5 453.5,-26.4 456.3,-29.2 459.2,-32.0 462.0,-34.9 464.8,-37.7 467.7,-40.5 470.5,-43.4 473.4,-46.2 476.2,-49.0 479.0,-51.9 481.9,-54.7 484.7,-57.5 487.6,-60.4 490.4,-63.2 493.2,-66.0 496.1,-68.9 498.9,-71.7 501.8,-74.5 504.6,-77.4 507.4,-80.2 510.3,-83.0 513.1,-85.9 516.0,-88.7 518.8,-91.5 521.6,-94.4 524.5,-97.2 527.3,-100.0 530.2,-102.9 533.0,-105.7 535.8,-108.5 538.7,-111.4 541.5,-114.2 544.4,-117.1 547.2,-119.9 550.0,-122.7 552.9,-125.6 555.7,-128.4 558.6,-131.2 561.4,-134.1 564.2,-136.9 567.1,-139.7" class="dg-line-3" clip-path="url(#plotClip4)"/>
+        <polyline points="36.0,177.2 38.8,177.1 41.7,177.1 44.5,177.1 47.4,177.0 50.2,177.0 53.0,176.9 55.9,176.9 58.7,176.9 61.6,176.8 64.4,176.8 67.2,176.7 70.1,176.6 72.9,176.6 75.8,176.5 78.6,176.4 81.4,176.4 84.3,176.3 87.1,176.2 90.0,176.1 92.8,176.0 95.6,175.9 98.5,175.8 101.3,175.7 104.2,175.6 107.0,175.5 109.8,175.4 112.7,175.2 115.5,175.1 118.4,175.0 121.2,174.8 124.0,174.6 126.9,174.4 129.7,174.3 132.6,174.1 135.4,173.9 138.2,173.6 141.1,173.4 143.9,173.2 146.8,172.9 149.6,172.6 152.4,172.3 155.3,172.0 158.1,171.7 161.0,171.4 163.8,171.0 166.6,170.6 169.5,170.2 172.3,169.8 175.2,169.3 178.0,168.9 180.8,168.4 183.7,167.8 186.5,167.3 189.4,166.7 192.2,166.0 195.0,165.4 197.9,164.7 200.7,163.9 203.6,163.1 206.4,162.3 209.2,161.4 212.1,160.5 214.9,159.5 217.8,158.5 220.6,157.4 223.4,156.2 226.3,155.0 229.1,153.7 232.0,152.3 234.8,150.9 237.6,149.3 240.5,147.7 243.3,146.0 246.2,144.2 249.0,142.3 251.8,140.3 254.7,138.1 257.5,135.9 260.4,133.5 263.2,131.0 266.0,128.3 268.9,125.5 271.7,122.5 274.6,119.4 277.4,116.0 280.2,112.5 283.1,108.8 285.9,104.9 288.8,100.7 291.6,96.3 294.4,91.7 297.3,86.8 300.1,81.6 303.0,76.1 305.8,70.3 308.6,64.2 311.5,57.7 314.3,50.9 317.2,43.6 320.0,36.0 322.8,27.9 325.7,19.4 328.5,10.4 331.4,0.8 334.2,-9.3 337.0,-19.9 339.9,-31.2 342.7,-43.1 345.6,-55.7 348.4,-69.0 351.2,-83.1 354.1,-98.0 356.9,-113.7 359.8,-130.3" class="dg-line" clip-path="url(#plotClip4)"/>
+        <polyline points="253.6,282.0 255.4,265.5 257.1,253.1 258.9,243.1 260.6,234.8 262.4,227.6 264.1,221.3 265.9,215.7 267.6,210.7 269.4,206.1 271.1,201.9 272.9,198.0 274.6,194.3 276.4,191.0 278.1,187.8 279.9,184.8 281.6,182.0 283.4,179.3 285.1,176.8 286.9,174.4 288.7,172.1 290.4,169.8 292.2,167.7 293.9,165.7 295.7,163.7 297.4,161.9 299.2,160.0 300.9,158.3 302.7,156.6 304.4,154.9 306.2,153.4 307.9,151.8 309.7,150.3 311.4,148.9 313.2,147.4 314.9,146.1 316.7,144.7 318.4,143.4 320.2,142.2 321.9,140.9 323.7,139.7 325.4,138.5 327.2,137.4 328.9,136.2 330.7,135.1 332.5,134.0 334.2,133.0 336.0,131.9 337.7,130.9 339.5,129.9 341.2,128.9 343.0,128.0 344.7,127.0 346.5,126.1 348.2,125.2 350.0,124.3 351.7,123.4 353.5,122.5 355.2,121.7 357.0,120.9 358.7,120.0 360.5,119.2 362.2,118.4 364.0,117.6 365.7,116.9 367.5,116.1 369.2,115.4 371.0,114.6 372.7,113.9 374.5,113.2 376.2,112.5 378.0,111.8 379.8,111.1 381.5,110.4 383.3,109.7 385.0,109.1 386.8,108.4 388.5,107.8 390.3,107.1 392.0,106.5 393.8,105.9 395.5,105.3 397.3,104.6 399.0,104.0 400.8,103.5 402.5,102.9 404.3,102.3 406.0,101.7 407.8,101.1 409.5,100.6 411.3,100.0 413.0,99.5 414.8,98.9 416.5,98.4 418.3,97.9 420.0,97.3 421.8,96.8 423.6,96.3 425.3,95.8 427.1,95.3 428.8,94.8 430.6,94.3 432.3,93.8 434.1,93.3 435.8,92.8 437.6,92.4 439.3,91.9 441.1,91.4 442.8,91.0 444.6,90.5 446.3,90.0 448.1,89.6 449.8,89.1 451.6,88.7 453.3,88.3 455.1,87.8 456.8,87.4 458.6,87.0 460.3,86.5 462.1,86.1 463.8,85.7 465.6,85.3 467.3,84.9 469.1,84.5 470.9,84.1 472.6,83.6 474.4,83.3 476.1,82.9 477.9,82.5 479.6,82.1 481.4,81.7 483.1,81.3 484.9,80.9 486.6,80.5 488.4,80.2 490.1,79.8 491.9,79.4 493.6,79.1 495.4,78.7 497.1,78.3 498.9,78.0 500.6,77.6 502.4,77.3 504.1,76.9 505.9,76.6 507.6,76.2 509.4,75.9 511.1,75.5 512.9,75.2 514.7,74.8 516.4,74.5 518.2,74.2 519.9,73.8 521.7,73.5 523.4,73.2 525.2,72.9 526.9,72.5 528.7,72.2 530.4,71.9 532.2,71.6 533.9,71.3 535.7,70.9 537.4,70.6 539.2,70.3 540.9,70.0 542.7,69.7 544.4,69.4 546.2,69.1 547.9,68.8 549.7,68.5 551.4,68.2 553.2,67.9 554.9,67.6 556.7,67.3 558.4,67.0 560.2,66.8 562.0,66.5 563.7,66.2 565.5,65.9 567.2,65.6 569.0,65.3 570.7,65.1 572.5,64.8 574.2,64.5 576.0,64.2 577.7,64.0 579.5,63.7 581.2,63.4 583.0,63.1 584.7,62.9 586.5,62.6 588.2,62.3 590.0,62.1 591.7,61.8 593.5,61.6 595.2,61.3 597.0,61.0 598.7,60.8 600.5,60.5 602.2,60.3 604.0,60.0" class="dg-line-2" clip-path="url(#plotClip4)"/>
+        <text x="305.8" y="50.2" class="dg-accent-text" text-anchor="end">y = 2ˣ</text>
+        <text x="554.3" y="85.9" class="dg-label" text-anchor="middle">y = log₂(x)</text>
+        <text x="387.4" y="43.5" class="dg-small" text-anchor="start">y = x</text>
+        <circle cx="249.0" cy="142.3" r="4.5" class="dg-point"/><text x="195.0" y="136.3" class="dg-label" text-anchor="start">(0 | 1)</text>
+        <circle cx="284.5" cy="177.7" r="4.5" class="dg-point"/><text x="290.5" y="195.7" class="dg-label" text-anchor="start">(1 | 0)</text>
+        <circle cx="320.0" cy="36.0" r="4.5" class="dg-point"/><text x="328.0" y="40.0" class="dg-label" text-anchor="start">(2 | 4)</text>
+        <circle cx="391.0" cy="106.9" r="4.5" class="dg-point"/><text x="399.0" y="122.9" class="dg-label" text-anchor="start">(4 | 2)</text>
+        </svg>
+        <figcaption>y = 2ˣ und y = log₂(x) sind Umkehrfunktionen: Spiegelt man die eine an y = x, erhält man die andere.</figcaption>
+      </figure>
+      <pre><code>Gleichung lösen: 2ˣ = 10       | log auf beiden Seiten
+x · log(2) = log(10)
+x = log(10) / log(2) ≈ 3,32</code></pre>
+    </section>
+    <section>
+      <h2>Wissenschaftliche Schreibweise</h2>
+      <p>Sehr große oder sehr kleine Zahlen schreibt man als <strong>Zahl zwischen 1 und 10 mal Zehnerpotenz</strong>:</p>
+      <pre><code>a · 10ⁿ     mit 1 ≤ a &lt; 10
+
+300 000 000    = 3 · 10⁸      (Komma 8 Stellen nach links)
+0,00042        = 4,2 · 10⁻⁴   (Komma 4 Stellen nach rechts)
+Taschenrechner: 4.2E-4  bedeutet  4,2 · 10⁻⁴</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>a</code></td><td>Mantisse – eine Zahl von 1 bis unter 10</td></tr>
+          <tr><td><code>n</code></td><td>Exponent – positiv bei großen, negativ bei kleinen Zahlen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>(−2)² = 4</code>, aber <code>−2² = −4</code> – die Klammer entscheidet.</li>
+        <li><code>2³</code> ist nicht <code>2 · 3</code>, sondern <code>2 · 2 · 2 = 8</code>.</li>
+        <li>Logarithmen von 0 oder negativen Zahlen gibt es (reell) nicht.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="exponentialfunktion.html">Exponentialfunktion</a>
+        <a class="chip" href="zahlen.html">Zahlenmengen &amp; Rechenregeln</a>
+        <a class="chip" href="binomische-formeln.html">Binomische Formeln</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

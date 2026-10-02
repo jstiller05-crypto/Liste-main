@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Krypto – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Krypto</p>
+    <h1>Kryptowährungen, Blockchain &amp; Wallets</h1>
+    <p class="page-lead">Digitales Geld ohne Bank: wie es funktioniert, wo man es aufbewahrt, wie es besteuert wird – und welche Risiken es gibt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist eine Kryptowährung?</h2>
+      <p>Eine <strong>Kryptowährung</strong> ist digitales Geld, das ohne Bank oder Staat funktioniert. Wer wem wie viel gehört, steht in einer öffentlichen <strong>Blockchain</strong>, die tausende Computer gemeinsam führen. Bekannteste Beispiele: <strong>Bitcoin</strong> und <strong>Ether</strong>.</p>
+      <p><strong>Woher kommt das?</strong> 2008 veröffentlichte eine unbekannte Person (oder Gruppe) unter dem Namen <em>Satoshi Nakamoto</em> das Bitcoin-Whitepaper – mitten in der Finanzkrise. Im Januar 2009 startete das Bitcoin-Netzwerk. Ab 2015 kam Ethereum mit programmierbaren Verträgen (Smart Contracts) dazu.</p>
+    </section>
+    <section>
+      <h2>Blockchain</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Aufbau einer Blockchain" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="14.0" y="70.0" width="130.0" height="150.0" rx="8" class="dg-box"/>
+        <text x="79.0" y="94.0" class="dg-label" text-anchor="middle">Block 1</text>
+        <text x="24.0" y="124.0" class="dg-small" text-anchor="start">Vorher: 0000…</text>
+        <text x="24.0" y="148.0" class="dg-small" text-anchor="start">Daten: Überweis.</text>
+        <text x="24.0" y="172.0" class="dg-small" text-anchor="start">Hash: a41f…</text>
+        <rect x="20.0" y="160.0" width="118.0" height="18.0" rx="3" class="dg-fill"/>
+        <line x1="146.0" y1="168.0" x2="176.0" y2="120.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="170.0" y="70.0" width="130.0" height="150.0" rx="8" class="dg-box"/>
+        <text x="235.0" y="94.0" class="dg-label" text-anchor="middle">Block 2</text>
+        <text x="180.0" y="124.0" class="dg-small" text-anchor="start">Vorher: a41f…</text>
+        <text x="180.0" y="148.0" class="dg-small" text-anchor="start">Daten: Überweis.</text>
+        <text x="180.0" y="172.0" class="dg-small" text-anchor="start">Hash: 7c09…</text>
+        <rect x="176.0" y="160.0" width="118.0" height="18.0" rx="3" class="dg-fill"/>
+        <line x1="302.0" y1="168.0" x2="332.0" y2="120.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="326.0" y="70.0" width="130.0" height="150.0" rx="8" class="dg-box"/>
+        <text x="391.0" y="94.0" class="dg-label" text-anchor="middle">Block 3</text>
+        <text x="336.0" y="124.0" class="dg-small" text-anchor="start">Vorher: 7c09…</text>
+        <text x="336.0" y="148.0" class="dg-small" text-anchor="start">Daten: Überweis.</text>
+        <text x="336.0" y="172.0" class="dg-small" text-anchor="start">Hash: e5b2…</text>
+        <rect x="332.0" y="160.0" width="118.0" height="18.0" rx="3" class="dg-fill"/>
+        <line x1="458.0" y1="168.0" x2="488.0" y2="120.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="482.0" y="70.0" width="130.0" height="150.0" rx="8" class="dg-box"/>
+        <text x="547.0" y="94.0" class="dg-label" text-anchor="middle">Block 4</text>
+        <text x="492.0" y="124.0" class="dg-small" text-anchor="start">Vorher: e5b2…</text>
+        <text x="492.0" y="148.0" class="dg-small" text-anchor="start">Daten: Überweis.</text>
+        <text x="492.0" y="172.0" class="dg-small" text-anchor="start">Hash: 19d8…</text>
+        <rect x="488.0" y="160.0" width="118.0" height="18.0" rx="3" class="dg-fill"/>
+        <text x="320.0" y="40.0" class="dg-label" text-anchor="middle">Jeder Block enthält den „Fingerabdruck“ (Hash) des vorherigen</text>
+        <text x="320.0" y="256.0" class="dg-text" text-anchor="middle">Ändert jemand Block 2, ändert sich sein Hash – Block 3 passt nicht mehr dazu.</text>
+        <text x="320.0" y="278.0" class="dg-text" text-anchor="middle">Darum ist eine Blockchain nachträglich kaum zu fälschen.</text>
+        </svg>
+        <figcaption>Jeder Block speichert Transaktionen und den Hash des vorherigen Blocks – so entsteht eine Kette.</figcaption>
+      </figure>
+      <ul>
+        <li>Ein <strong>Hash</strong> ist ein digitaler Fingerabdruck: Ändert sich ein Zeichen, ändert sich der ganze Hash.</li>
+        <li>Neue Blöcke werden von vielen Teilnehmern geprüft (bei Bitcoin per <em>Proof of Work</em> / Mining).</li>
+        <li>Es gibt keine zentrale Stelle, die Transaktionen rückgängig machen kann – ein Fehler ist meist endgültig.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Wallet und Exchange</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Exchange (Krypto-Börse)</th><th>Eigene Wallet</th></tr></thead>
+        <tbody>
+          <tr><td>Wer hat die Schlüssel?</td><td>die Börse</td><td>du selbst</td></tr>
+          <tr><td>Bequem?</td><td>sehr – Kauf per App</td><td>mehr Aufwand</td></tr>
+          <tr><td>Risiko</td><td>Pleite oder Hack der Börse (z. B. FTX 2022)</td><td>Schlüssel verloren = Coins für immer weg</td></tr>
+        </tbody>
+      </table>
+      <p>Eine <strong>Wallet</strong> speichert nicht die Coins selbst, sondern den <strong>privaten Schlüssel</strong>, mit dem du über sie verfügen kannst. Spruch: <em>„Not your keys, not your coins.“</em></p>
+      <ul>
+        <li><strong>Hot Wallet</strong>: App/Software, mit dem Internet verbunden – praktisch, aber angreifbar.</li>
+        <li><strong>Cold Wallet</strong>: Hardware-Gerät oder Papier, offline – sicherer für größere Beträge.</li>
+        <li>Die <strong>Wiederherstellungswörter</strong> (Seed Phrase) nie digital speichern und niemandem zeigen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Stablecoins</h2>
+      <p>Ein <strong>Stablecoin</strong> ist an einen festen Wert gekoppelt, meist 1 US-Dollar (z. B. USDT, USDC) oder 1 Euro. Er soll die Schwankungen von Bitcoin & Co. vermeiden und dient oft als „Parkplatz“ auf Krypto-Börsen.</p>
+      <div class="note">Die Kopplung kann brechen: Der algorithmische Stablecoin TerraUSD fiel im Mai 2022 innerhalb weniger Tage fast auf 0.</div>
+    </section>
+    <section>
+      <h2>Steuern auf Krypto (privat, Deutschland)</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Zeitstrahl Krypto-Haltefrist" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="40.0" y1="170.0" x2="610.0" y2="170.0" class="dg-axis" marker-end="url(#arrow)"/>
+        <rect x="40.0" y="120.0" width="320.0" height="40.0" rx="4" class="dg-debt"/>
+        <rect x="360.0" y="120.0" width="240.0" height="40.0" rx="4" class="dg-fill"/>
+        <text x="200.0" y="145.0" class="dg-on-box" text-anchor="middle">Verkauf mit Gewinn: steuerpflichtig</text>
+        <text x="485.0" y="145.0" class="dg-on-box" text-anchor="middle">Verkauf: steuerfrei</text>
+        <line x1="40.0" y1="110.0" x2="40.0" y2="180.0" class="dg-note-line"/>
+        <text x="44.0" y="200.0" class="dg-label" text-anchor="start">Kauf</text>
+        <text x="44.0" y="216.0" class="dg-small" text-anchor="start">z. B. 10.03.2025</text>
+        <line x1="360.0" y1="110.0" x2="360.0" y2="180.0" class="dg-note-line"/>
+        <text x="364.0" y="200.0" class="dg-label" text-anchor="start">1 Jahr später</text>
+        <text x="364.0" y="216.0" class="dg-small" text-anchor="start">ab 11.03.2026</text>
+        <text x="320.0" y="50.0" class="dg-label" text-anchor="middle">Private Krypto-Verkäufe in Deutschland (Stand 2026)</text>
+        <text x="320.0" y="80.0" class="dg-text" text-anchor="middle">Haltedauer entscheidet: weniger als 1 Jahr oder mehr als 1 Jahr?</text>
+        <text x="40.0" y="256.0" class="dg-text" text-anchor="start">Innerhalb 1 Jahr: Einkommensteuer (persönlicher Satz),</text>
+        <text x="40.0" y="274.0" class="dg-text" text-anchor="start">Freigrenze 1.000 € pro Jahr – wird sie überschritten, ist ALLES steuerpflichtig.</text>
+        </svg>
+        <figcaption>Entscheidend ist die Haltedauer jedes einzelnen Kaufs.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Situation</th><th>Steuer (Stand 2026)</th></tr></thead>
+        <tbody>
+          <tr><td>Verkauf nach <strong>mehr als 1 Jahr</strong> Haltedauer</td><td>steuerfrei</td></tr>
+          <tr><td>Verkauf innerhalb von 1 Jahr</td><td>persönlicher Einkommensteuersatz (keine Abgeltungsteuer)</td></tr>
+          <tr><td>Gewinne aus solchen Verkäufen bis 1.000 € im Jahr</td><td>steuerfrei (Freigrenze)</td></tr>
+          <tr><td>Gewinne über 1.000 €</td><td><strong>komplett</strong> steuerpflichtig, nicht nur der Teil über 1.000 €</td></tr>
+        </tbody>
+      </table>
+      <p>Auch Tauschen (z. B. Bitcoin gegen Ether) gilt als Verkauf. Verluste innerhalb der Jahresfrist können mit solchen Gewinnen verrechnet werden.</p>
+    </section>
+    <section>
+      <h2>MiCA: Regeln in der EU</h2>
+      <p><strong>MiCA</strong> (Markets in Crypto-Assets) ist eine EU-Verordnung, die seit Ende 2024 vollständig gilt (Übergangsfristen bis spätestens Mitte 2026). Krypto-Anbieter brauchen eine Zulassung, müssen Kundengelder getrennt halten und Risiken offenlegen. In Deutschland ist die BaFin zuständig.</p>
+      <div class="note">MiCA macht Krypto nicht sicher: Kurse können weiterhin um 50 % und mehr fallen. Eine Einlagensicherung wie beim Bankkonto gibt es nicht.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nur Geld einsetzen, dessen Totalverlust du verkraften kannst.</li>
+        <li>Jeden Kauf mit Datum und Preis dokumentieren – das brauchst du für die Steuer.</li>
+        <li>Niemals Seed Phrase oder Schlüssel eingeben, weil ein „Support-Mitarbeiter“ danach fragt – das ist immer Betrug.</li>
+        <li>Diese Seite erklärt Begriffe und Zusammenhänge – sie ist keine Anlageberatung.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="steuern.html">Steuern</a>
+        <a class="chip" href="bollinger-atr.html">Volatilität &amp; Bollinger</a>
+        <a class="chip" href="broker-depot.html">Broker &amp; Depot</a>
+        <a class="chip" href="diversifikation.html">Diversifikation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

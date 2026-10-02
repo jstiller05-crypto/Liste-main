@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Dividende – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Aktien & ETFs</p>
+    <h1>Dividende, Dividendenrendite &amp; Ausschüttungsquote</h1>
+    <p class="page-lead">Wie Aktionäre am Gewinn beteiligt werden, wie man die Dividende vergleicht – und warum eine hohe Dividende nicht immer gut ist.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist eine Dividende?</h2>
+      <p>Die <strong>Dividende</strong> ist der Teil des Gewinns, den ein Unternehmen an seine Aktionäre auszahlt. In Deutschland meist einmal im Jahr nach der Hauptversammlung, in den USA oft vierteljährlich.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Aufteilung des Gewinns" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20.0" y1="260.0" x2="620.0" y2="260.0" class="dg-axis"/>
+        <rect x="30.0" y="30.0" width="64.0" height="230.0" rx="2" class="dg-bar"/>
+        <text x="62.0" y="24.0" class="dg-small" text-anchor="middle">6</text>
+        <text x="62.0" y="278.0" class="dg-text" text-anchor="middle">Gewinn</text>
+        <text x="62.0" y="292.0" class="dg-text" text-anchor="middle">je Aktie</text>
+        <rect x="288.0" y="30.0" width="64.0" height="115.0" rx="2" class="dg-bar-minus"/>
+        <text x="320.0" y="24.0" class="dg-small" text-anchor="middle">−3</text>
+        <text x="320.0" y="278.0" class="dg-text" text-anchor="middle">Dividende</text>
+        <rect x="546.0" y="145.0" width="64.0" height="115.0" rx="2" class="dg-bar-total"/>
+        <text x="578.0" y="139.0" class="dg-small" text-anchor="middle">3</text>
+        <text x="578.0" y="278.0" class="dg-text" text-anchor="middle">bleibt im</text>
+        <text x="578.0" y="292.0" class="dg-text" text-anchor="middle">Unternehmen</text>
+        </svg>
+        <figcaption>Die Beispiel AG verdient 6 € je Aktie. 3 € werden ausgeschüttet, 3 € bleiben im Unternehmen für Investitionen.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Die Niederländische Ostindien-Kompanie zahlte ab 1610 die ersten Dividenden – anfangs teils sogar in Gewürzen statt Geld. Das Wort kommt vom lateinischen <em>dividendum</em>: „das zu Teilende“.</p>
+    </section>
+    <section>
+      <h2>Dividendenrendite</h2>
+      <pre><code>Dividendenrendite = Dividende je Aktie / Aktienkurs · 100 %
+
+3 € / 75 € · 100 % = 4 %</code></pre>
+      <p>Sie zeigt, wie viel Prozent deines Einsatzes jedes Jahr als Dividende zurückkommt – vergleichbar mit einem Zinssatz.</p>
+      <div class="note">Fällt der Kurs stark, steigt die Dividendenrendite automatisch. Eine sehr hohe Rendite (z. B. 12 %) ist oft ein Warnsignal: Der Markt glaubt, dass die Dividende bald gekürzt wird.</div>
+    </section>
+    <section>
+      <h2>Ausschüttungsquote</h2>
+      <pre><code>Ausschüttungsquote = Dividende je Aktie / Gewinn je Aktie · 100 %
+
+3 € / 6 € · 100 % = 50 %</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Quote</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>0 %</td><td>keine Dividende – Gewinn wird komplett investiert (typisch für junge Wachstumsfirmen)</td></tr>
+          <tr><td>30–60 %</td><td>üblicher, gesunder Bereich</td></tr>
+          <tr><td>über 100 %</td><td>mehr ausgeschüttet als verdient – auf Dauer nicht haltbar</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Der Dividendenabschlag</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Dividendenabschlag" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="52.0" y1="286.0" x2="620.0" y2="286.0" class="dg-grid"/>
+        <text x="46.0" y="290.0" class="dg-small" text-anchor="end">72</text>
+        <line x1="52.0" y1="221.5" x2="620.0" y2="221.5" class="dg-grid"/>
+        <text x="46.0" y="225.5" class="dg-small" text-anchor="end">74</text>
+        <line x1="52.0" y1="157.0" x2="620.0" y2="157.0" class="dg-grid"/>
+        <text x="46.0" y="161.0" class="dg-small" text-anchor="end">76</text>
+        <line x1="52.0" y1="92.5" x2="620.0" y2="92.5" class="dg-grid"/>
+        <text x="46.0" y="96.5" class="dg-small" text-anchor="end">77</text>
+        <line x1="52.0" y1="28.0" x2="620.0" y2="28.0" class="dg-grid"/>
+        <text x="46.0" y="32.0" class="dg-small" text-anchor="end">79</text>
+        <polyline points="52.0,175.4 95.7,157.0 139.4,138.6 183.1,145.9 226.8,123.8 270.5,101.7 314.2,116.5 357.8,94.3 401.5,197.5 445.2,182.8 488.9,171.7 532.6,190.2 576.3,160.7 620.0,142.3" class="dg-line" fill="none"/>
+        <circle cx="401.5" cy="197.5" r="4.5" class="dg-point"/>
+        <text x="411.5" y="217.5" class="dg-label" text-anchor="start">Ex-Tag: Kurs ca. −3 €</text>
+        <text x="620.0" y="308.0" class="dg-small" text-anchor="end">Zeit</text>
+        <text x="8.0" y="16.0" class="dg-small" text-anchor="start">Kurs in €</text>
+        </svg>
+        <figcaption>Am Tag nach der Hauptversammlung (Ex-Tag) sinkt der Kurs ungefähr um die Dividende – das Geld hat das Unternehmen ja verlassen.</figcaption>
+      </figure>
+      <p>Die Dividende ist also kein „Geschenk“: Dein Vermögen ist direkt nach der Zahlung ungefähr gleich, nur ein Teil liegt jetzt als Geld auf dem Konto.</p>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Ex-Tag</td><td>ab diesem Tag wird die Aktie ohne Dividendenanspruch gehandelt</td></tr>
+          <tr><td>Record Date</td><td>Stichtag, an dem du im Depot stehen musst</td></tr>
+          <tr><td>Zahltag</td><td>Tag der Gutschrift auf deinem Konto</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Auf die Dividende fallen Steuern an (Abgeltungsteuer), bei ausländischen Aktien oft zusätzlich Quellensteuer.</li>
+        <li>Lieber stabile, langsam steigende Dividenden als eine einmalig hohe.</li>
+        <li>Nur wegen der Dividende kurz vor dem Ex-Tag kaufen bringt nichts – der Kurs fällt um denselben Betrag.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="aktie-ipo.html">Aktie &amp; IPO</a>
+        <a class="chip" href="aktien-kennzahlen.html">Kennzahlen</a>
+        <a class="chip" href="etf-index.html">ETF &amp; Index</a>
+        <a class="chip" href="steuern.html">Steuern</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

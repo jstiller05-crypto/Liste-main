@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Ähnlichkeit &amp; Strahlensätze – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Geometrie</p>
+    <h1>Kongruenz, Ähnlichkeit &amp; Strahlensätze</h1>
+    <p class="page-lead">Wann zwei Figuren gleich oder „gleich geformt“ sind – und wie man mit Verhältnissen unbekannte Längen berechnet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>kongruent (≅)</td><td>deckungsgleich: gleiche Form <strong>und</strong> gleiche Größe – man kann sie genau aufeinanderlegen</td><td>zwei gleiche Spielkarten</td></tr>
+          <tr><td>ähnlich (~)</td><td>gleiche Form, aber andere Größe: alle Winkel gleich, alle Seiten mit demselben Faktor vergrößert</td><td>Foto und vergrößerter Abzug</td></tr>
+        </tbody>
+      </table>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Zwei ähnliche Dreiecke mit Faktor 2" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="60.0,260.0 180.0,260.0 60.0,170.0" class="dg-fill dg-shape"/>
+        <polygon points="300.0,260.0 540.0,260.0 300.0,80.0" class="dg-fill dg-shape"/>
+        <text x="120.0" y="284.0" class="dg-label" text-anchor="middle">4</text>
+        <text x="48.0" y="220.0" class="dg-label" text-anchor="end">3</text>
+        <text x="132.0" y="206.0" class="dg-label" text-anchor="start">5</text>
+        <text x="420.0" y="284.0" class="dg-label" text-anchor="middle">8</text>
+        <text x="288.0" y="175.0" class="dg-label" text-anchor="end">6</text>
+        <text x="430.0" y="160.0" class="dg-label" text-anchor="start">10</text>
+        <polyline points="76.0,260.0 76.0,244.0 60.0,244.0" class="dg-right-angle"/>
+        <polyline points="316.0,260.0 316.0,244.0 300.0,244.0" class="dg-right-angle"/>
+        <text x="320.0" y="36.0" class="dg-accent-text" text-anchor="middle">ähnlich: gleiche Winkel, alle Seiten · 2</text>
+        </svg>
+        <figcaption>Das große Dreieck ist das kleine mal 2: gleiche Winkel, Seitenverhältnis 3 : 4 : 5 bleibt.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>≅</code></td><td>kongruent</td></tr>
+          <tr><td><code>~</code></td><td>ähnlich</td></tr>
+          <tr><td><code>k</code></td><td>Streckfaktor (Maßstab): neue Länge = k · alte Länge. Flächen ändern sich mit k², Volumen mit k³.</td></tr>
+          <tr><td><code>∥</code></td><td>parallel – zwei Geraden mit gleicher Richtung, die sich nie schneiden</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Thales von Milet soll um 600 v. Chr. die Höhe der Cheops-Pyramide über ihren Schatten gemessen haben: Er wartete, bis sein eigener Schatten so lang war wie er groß – dann war auch der Schatten der Pyramide so lang wie ihre Höhe. Das ist genau die Idee der Ähnlichkeit und der Strahlensätze.</p>
+    </section>
+    <section>
+      <h2>Kongruenzsätze für Dreiecke</h2>
+      <p>Zwei Dreiecke sind kongruent, wenn sie übereinstimmen in …</p>
+      <table class="info-table">
+        <thead><tr><th>Satz</th><th>… übereinstimmenden Stücken</th></tr></thead>
+        <tbody>
+          <tr><td>SSS</td><td>allen drei Seiten</td></tr>
+          <tr><td>SWS</td><td>zwei Seiten und dem Winkel <em>dazwischen</em></td></tr>
+          <tr><td>WSW</td><td>einer Seite und den beiden anliegenden Winkeln</td></tr>
+          <tr><td>SsW</td><td>zwei Seiten und dem Winkel gegenüber der <em>längeren</em> Seite</td></tr>
+        </tbody>
+      </table>
+      <p>Für Ähnlichkeit reicht schon: <strong>zwei gleiche Winkel</strong> (der dritte ergibt sich wegen 180°).</p>
+    </section>
+    <section>
+      <h2>Strahlensätze</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Strahlensatzfigur mit zwei parallelen Geraden" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50.0" y1="270.0" x2="610.0" y2="270.0" class="dg-line-2"/>
+        <line x1="50.0" y1="270.0" x2="590.0" y2="40.0" class="dg-line-2"/>
+        <line x1="250.0" y1="270.0" x2="250.0" y2="184.8" class="dg-line"/>
+        <line x1="450.0" y1="270.0" x2="450.0" y2="99.6" class="dg-line"/>
+        <circle cx="50.0" cy="270.0" r="4.0" class="dg-point"/>
+        <circle cx="250.0" cy="270.0" r="4.0" class="dg-point"/>
+        <circle cx="450.0" cy="270.0" r="4.0" class="dg-point"/>
+        <circle cx="250.0" cy="184.8" r="4.0" class="dg-point"/>
+        <circle cx="450.0" cy="99.6" r="4.0" class="dg-point"/>
+        <text x="44.0" y="290.0" class="dg-label" text-anchor="start">Z</text>
+        <text x="250.0" y="292.0" class="dg-label" text-anchor="middle">A</text>
+        <text x="450.0" y="292.0" class="dg-label" text-anchor="middle">A&#x27;</text>
+        <text x="240.0" y="176.8" class="dg-label" text-anchor="end">B</text>
+        <text x="440.0" y="91.6" class="dg-label" text-anchor="end">B&#x27;</text>
+        <text x="258.0" y="227.4" class="dg-small" text-anchor="start">AB</text>
+        <text x="458.0" y="184.8" class="dg-small" text-anchor="start">A&#x27;B&#x27;</text>
+        <text x="30.0" y="40.0" class="dg-label" text-anchor="start">AB ∥ A&#x27;B&#x27;  (parallel)</text>
+        <text x="30.0" y="68.0" class="dg-accent-text" text-anchor="start">ZA : ZA&#x27; = ZB : ZB&#x27;</text>
+        <text x="30.0" y="94.0" class="dg-accent-text" text-anchor="start">ZA : ZA&#x27; = AB : A&#x27;B&#x27;</text>
+        </svg>
+        <figcaption>Zwei Strahlen von Z werden von zwei Parallelen geschnitten.</figcaption>
+      </figure>
+      <pre><code>1. Strahlensatz:  ZA : ZA' = ZB : ZB'
+2. Strahlensatz:  ZA : ZA' = AB : A'B'
+
+Beispiel: ZA = 4 m, ZA' = 10 m, AB = 1,6 m (Stab). Wie hoch ist A'B' (Baum)?
+A'B' = AB · ZA' / ZA = 1,6 · 10 / 4 = 4 m</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>Z</code></td><td>Scheitel – der Punkt, an dem die beiden Strahlen beginnen</td></tr>
+          <tr><td><code>ZA</code></td><td>Länge der Strecke von Z bis A</td></tr>
+          <tr><td><code>AB, A'B'</code></td><td>die beiden parallelen Strecken</td></tr>
+          <tr><td><code>:</code></td><td>„verhält sich zu“ – ein Verhältnis ist einfach ein Bruch</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Die Strahlensätze gelten nur, wenn die beiden Strecken wirklich parallel sind.</li>
+        <li>Beim 2. Strahlensatz immer vom Scheitel Z aus messen: ZA, nicht AA'.</li>
+        <li>Doppelte Länge bedeutet vierfache Fläche – ein häufiger Fehler bei Maßstäben.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="flaechen.html">Flächen &amp; Winkel</a>
+        <a class="chip" href="trigonometrie.html">Trigonometrie</a>
+        <a class="chip" href="pythagoras.html">Pythagoras</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

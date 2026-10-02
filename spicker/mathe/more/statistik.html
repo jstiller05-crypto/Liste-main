@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Statistik – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Stochastik</p>
+    <h1>Statistik: Mittelwert, Median, Streuung</h1>
+    <p class="page-lead">Daten mit wenigen Zahlen beschreiben: Wo liegt die Mitte und wie weit streuen die Werte?</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <strong>beschreibende Statistik</strong> fasst viele Messwerte mit wenigen Kennzahlen zusammen. Es gibt zwei Fragen: <strong>Wo ist die Mitte?</strong> (Mittelwert, Median, Modus) und <strong>Wie stark streuen die Werte?</strong> (Spannweite, Varianz, Standardabweichung).</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Punktdiagramm mit Mittelwert und Median" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40.0" y1="240.0" x2="600.0" y2="240.0" class="dg-axis"/>
+        <line x1="40.0" y1="236.0" x2="40.0" y2="244.0" class="dg-axis"/>
+        <text x="40.0" y="260.0" class="dg-small" text-anchor="middle">0</text>
+        <line x1="90.9" y1="236.0" x2="90.9" y2="244.0" class="dg-axis"/>
+        <text x="90.9" y="260.0" class="dg-small" text-anchor="middle">1</text>
+        <line x1="141.8" y1="236.0" x2="141.8" y2="244.0" class="dg-axis"/>
+        <text x="141.8" y="260.0" class="dg-small" text-anchor="middle">2</text>
+        <line x1="192.7" y1="236.0" x2="192.7" y2="244.0" class="dg-axis"/>
+        <text x="192.7" y="260.0" class="dg-small" text-anchor="middle">3</text>
+        <line x1="243.6" y1="236.0" x2="243.6" y2="244.0" class="dg-axis"/>
+        <text x="243.6" y="260.0" class="dg-small" text-anchor="middle">4</text>
+        <line x1="294.5" y1="236.0" x2="294.5" y2="244.0" class="dg-axis"/>
+        <text x="294.5" y="260.0" class="dg-small" text-anchor="middle">5</text>
+        <line x1="345.5" y1="236.0" x2="345.5" y2="244.0" class="dg-axis"/>
+        <text x="345.5" y="260.0" class="dg-small" text-anchor="middle">6</text>
+        <line x1="396.4" y1="236.0" x2="396.4" y2="244.0" class="dg-axis"/>
+        <text x="396.4" y="260.0" class="dg-small" text-anchor="middle">7</text>
+        <line x1="447.3" y1="236.0" x2="447.3" y2="244.0" class="dg-axis"/>
+        <text x="447.3" y="260.0" class="dg-small" text-anchor="middle">8</text>
+        <line x1="498.2" y1="236.0" x2="498.2" y2="244.0" class="dg-axis"/>
+        <text x="498.2" y="260.0" class="dg-small" text-anchor="middle">9</text>
+        <line x1="549.1" y1="236.0" x2="549.1" y2="244.0" class="dg-axis"/>
+        <text x="549.1" y="260.0" class="dg-small" text-anchor="middle">10</text>
+        <line x1="600.0" y1="236.0" x2="600.0" y2="244.0" class="dg-axis"/>
+        <text x="600.0" y="260.0" class="dg-small" text-anchor="middle">11</text>
+        <circle cx="90.9" cy="222.0" r="10.0" class="dg-point"/>
+        <circle cx="141.8" cy="222.0" r="10.0" class="dg-point"/>
+        <circle cx="141.8" cy="198.0" r="10.0" class="dg-point"/>
+        <circle cx="192.7" cy="222.0" r="10.0" class="dg-point"/>
+        <circle cx="192.7" cy="198.0" r="10.0" class="dg-point"/>
+        <circle cx="192.7" cy="174.0" r="10.0" class="dg-point"/>
+        <circle cx="243.6" cy="222.0" r="10.0" class="dg-point"/>
+        <circle cx="549.1" cy="222.0" r="10.0" class="dg-point"/>
+        <line x1="218.2" y1="70.0" x2="218.2" y2="240.0" class="dg-line-3"/>
+        <text x="224.2" y="66.0" class="dg-accent-text" text-anchor="start">Mittelwert 3,5</text>
+        <line x1="192.7" y1="100.0" x2="192.7" y2="240.0" class="dg-line-2"/>
+        <text x="186.7" y="96.0" class="dg-label" text-anchor="end">Median 3</text>
+        <text x="192.7" y="140.0" class="dg-small" text-anchor="middle">Modus 3</text>
+        <text x="549.1" y="200.0" class="dg-small" text-anchor="middle">Ausreißer</text>
+        <text x="40.0" y="300.0" class="dg-text" text-anchor="start">Daten: 1, 2, 2, 3, 3, 3, 4, 10</text>
+        </svg>
+        <figcaption>Ein einziger Ausreißer (10) zieht den Mittelwert nach rechts – der Median bleibt stabil.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>x̄</code></td><td>arithmetisches Mittel („x quer“)</td></tr>
+          <tr><td><code>xᵢ</code></td><td>der i-te Messwert</td></tr>
+          <tr><td><code>n</code></td><td>Anzahl der Werte</td></tr>
+          <tr><td><code>s², σ²</code></td><td>Varianz</td></tr>
+          <tr><td><code>s, σ</code></td><td>Standardabweichung</td></tr>
+          <tr><td><code>Σ</code></td><td>Summe aller Werte</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Das Wort Statistik kommt von „Staat“: Im 18. Jahrhundert sammelten Staaten Zahlen über Bevölkerung und Steuern. Den Begriff „Standardabweichung“ prägte Karl Pearson 1894. Heute stecken diese Kennzahlen in jeder Umfrage, jedem Zeugnisdurchschnitt und jeder App-Statistik.</p>
+    </section>
+    <section>
+      <h2>Lagemaße: die Mitte</h2>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Berechnung</th><th>Beispiel 1, 2, 2, 3, 3, 3, 4, 10</th></tr></thead>
+        <tbody>
+          <tr><td>Mittelwert x̄</td><td>Summe aller Werte ÷ Anzahl</td><td>28 ÷ 8 = 3,5</td></tr>
+          <tr><td>Median</td><td>Werte sortieren, mittleren Wert nehmen (bei gerader Anzahl: Mittel der beiden mittleren)</td><td>(3 + 3) ÷ 2 = 3</td></tr>
+          <tr><td>Modus</td><td>häufigster Wert</td><td>3 (kommt dreimal vor)</td></tr>
+        </tbody>
+      </table>
+      <p>Bei Ausreißern (z. B. Einkommen mit wenigen Millionären) beschreibt der Median die „typische“ Mitte besser als der Mittelwert.</p>
+    </section>
+    <section>
+      <h2>Streumaße</h2>
+      <pre><code>Spannweite = größter Wert − kleinster Wert
+
+Varianz           s² = ( (x₁ − x̄)² + (x₂ − x̄)² + … + (xₙ − x̄)² ) / n
+Standardabweichung s = √s²</code></pre>
+      <pre><code>Werte: 2, 4, 4, 4, 5, 5, 7, 9      x̄ = 40 / 8 = 5
+Abweichungen:  −3, −1, −1, −1, 0, 0, 2, 4
+Quadrate:       9,  1,  1,  1, 0, 0, 4, 16   Summe = 32
+Varianz  s² = 32 / 8 = 4
+Std.-abw. s = √4 = 2</code></pre>
+      <p>Man quadriert die Abweichungen, damit sich positive und negative nicht gegenseitig aufheben. Die Wurzel am Ende bringt das Ergebnis wieder in die ursprüngliche Einheit (z. B. cm statt cm²).</p>
+      <div class="note">Bei einer <strong>Stichprobe</strong> teilt man oft durch n − 1 statt n (empirische Varianz). Taschenrechner zeigen dann σₙ und σₙ₋₁ (bzw. s).</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Vor dem Median immer sortieren!</li>
+        <li>Mittelwert und Standardabweichung haben dieselbe Einheit wie die Daten, die Varianz das Quadrat davon.</li>
+        <li>Zwei Datensätze können denselben Mittelwert, aber völlig verschiedene Streuung haben.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="verteilungen.html">Verteilungen</a>
+        <a class="chip" href="prozent.html">Prozent &amp; Dreisatz</a>
+        <a class="chip" href="wahrscheinlichkeit.html">Wahrscheinlichkeit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Wirtschaft: Vertriebskennzahlen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Wirtschaft · Marketing & Vertrieb</p>
+    <h1>Vertriebskennzahlen: Conversion, CAC &amp; CLV</h1>
+    <p class="page-lead">Wie viele Interessenten werden zu Kunden, was kostet ein neuer Kunde, und was bringt er über die Jahre?</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Vertriebskennzahlen zeigen, ob dein Marketing und Verkauf <strong>wirtschaftlich</strong> sind. Die drei wichtigsten:</p>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Formel</th><th>Frage</th></tr></thead>
+        <tbody>
+          <tr><td>Conversion Rate</td><td>Käufer / Besucher × 100 %</td><td>Wie viele Interessenten kaufen?</td></tr>
+          <tr><td>CAC (Customer Acquisition Cost)</td><td>Marketing- + Vertriebskosten / neue Kunden</td><td>Was kostet ein neuer Kunde?</td></tr>
+          <tr><td>CLV (Customer Lifetime Value)</td><td>Deckungsbeitrag eines Kunden über die ganze Kundenbeziehung</td><td>Was bringt ein Kunde insgesamt?</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Der <strong>Verkaufstrichter</strong> (Sales Funnel) baut auf dem AIDA-Modell von 1898 auf. Mit dem Online-Marketing der 2000er-Jahre wurden <strong>Conversion Rate</strong>, <strong>CAC</strong> und <strong>CLV</strong> zu Standardkennzahlen, weil man Klicks und Käufe plötzlich genau messen konnte. Wiederkehrende Umsätze (<strong>MRR</strong>) wurden mit Software-Abos (SaaS) populär.</p>
+    </section>
+    <section>
+      <h2>Conversion Rate und Verkaufstrichter</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Verkaufstrichter eines Webdesigners" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <polygon points="65.0,18.0 395.0,18.0 260.0,83.0 200.0,83.0" class="dg-asset-2"/>
+        <text x="230.0" y="55.5" class="dg-on-box" text-anchor="middle">Besucher: 2.000</text>
+        <polygon points="200.0,89.0 260.0,89.0 260.0,154.0 200.0,154.0" class="dg-asset-2"/>
+        <text x="230.0" y="126.5" class="dg-on-box" text-anchor="middle">Anfragen: 60</text>
+        <text x="420.0" y="126.5" class="dg-text" text-anchor="start">→ 3 % von Besucher</text>
+        <polygon points="200.0,160.0 260.0,160.0 260.0,225.0 200.0,225.0" class="dg-asset-2"/>
+        <text x="230.0" y="197.5" class="dg-on-box" text-anchor="middle">Angebote: 25</text>
+        <text x="420.0" y="197.5" class="dg-text" text-anchor="start">→ 42 % von Anfragen</text>
+        <polygon points="200.0,231.0 260.0,231.0 260.0,296.0 200.0,296.0" class="dg-asset"/>
+        <text x="230.0" y="268.5" class="dg-on-box" text-anchor="middle">Aufträge: 10</text>
+        <text x="420.0" y="268.5" class="dg-text" text-anchor="start">→ 40 % von Angebote</text>
+        <text x="420.0" y="32.0" class="dg-accent-text" text-anchor="start">Gesamt: 0,5 %</text>
+        </svg>
+        <figcaption>Von 2.000 Website-Besuchern im Quartal fragen 60 an, 25 bekommen ein Angebot, 10 kaufen. Gesamt-Conversion: 0,5 %.</figcaption>
+      </figure>
+      <pre><code>Conversion Rate (Besucher → Auftrag) = 10 / 2.000 × 100 % = 0,5 %
+Abschlussquote (Angebot → Auftrag)   = 10 / 25 × 100 %    = 40 %</code></pre>
+      <p>Jede Stufe kann man einzeln verbessern: mehr Besucher (Werbung), mehr Anfragen (bessere Website), mehr Abschlüsse (bessere Angebote).</p>
+    </section>
+    <section>
+      <h2>CAC und CLV</h2>
+      <pre><code>CAC = Marketing- und Vertriebskosten / neue Kunden
+    = (900 € Werbung + 600 € Messe/Fahrten) / 10 Kunden = 150 € pro Kunde
+
+CLV = Deckungsbeitrag aus dem Projekt + Deckungsbeitrag aus der Wartung
+    = 1.400 € (Website) + 30 € × 36 Monate (Wartung) = 2.480 €</code></pre>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="CAC und CLV im Vergleich" xmlns="http://www.w3.org/2000/svg">
+        <text x="210.0" y="116.0" class="dg-label" text-anchor="end">CAC (Kosten je Neukunde)</text>
+        <rect x="220.0" y="92.0" width="18.8" height="38.0" rx="3" class="dg-bar-minus"/>
+        <text x="246.8" y="116.0" class="dg-text" text-anchor="start">150 €</text>
+        <text x="210.0" y="168.0" class="dg-label" text-anchor="end">CLV nur Website</text>
+        <rect x="220.0" y="144.0" width="175.0" height="38.0" rx="3" class="dg-bar"/>
+        <text x="403.0" y="168.0" class="dg-text" text-anchor="start">1.400 €</text>
+        <text x="210.0" y="220.0" class="dg-label" text-anchor="end">CLV mit 3 Jahren Wartung</text>
+        <rect x="220.0" y="196.0" width="310.0" height="38.0" rx="3" class="dg-bar-total"/>
+        <text x="538.0" y="220.0" class="dg-text" text-anchor="start">2.480 €</text>
+        </svg>
+        <figcaption>Ein Kunde bringt deutlich mehr, als seine Gewinnung kostet. Faustregel: CLV mindestens 3-mal so groß wie CAC.</figcaption>
+      </figure>
+      <div class="note">Ist der CAC höher als der CLV, verlierst du mit jedem neuen Kunden Geld – egal wie viel Umsatz du machst.</div>
+    </section>
+    <section>
+      <h2>Wiederkehrende Umsätze</h2>
+      <p><strong>Wiederkehrende Umsätze</strong> (Abos, Wartungsverträge, Hosting) kommen jeden Monat automatisch – ohne neuen Verkauf. Das macht dein Einkommen planbar und erhöht den CLV.</p>
+      <pre><code>20 Wartungskunden × 49 € = 980 € MRR (Monthly Recurring Revenue)
+980 € × 12 = 11.760 € ARR (Annual Recurring Revenue)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Kennzahl</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>MRR</td><td>monatlich wiederkehrender Umsatz</td></tr>
+          <tr><td>ARR</td><td>jährlich wiederkehrender Umsatz</td></tr>
+          <tr><td>Churn Rate</td><td>Anteil der Kunden, die pro Monat/Jahr kündigen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Erst die Abschlussquote verbessern, dann mehr Werbung schalten – sonst bezahlst du für Besucher, die nicht kaufen.</li>
+        <li>Wartung direkt beim Website-Verkauf mit anbieten – später ist es viel schwerer.</li>
+        <li>Kennzahlen pro Kanal messen: Welcher Kanal bringt die günstigsten Kunden?</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="marketing.html">Marketing</a>
+        <a class="chip" href="kennzahlen.html">Kennzahlen</a>
+        <a class="chip" href="liquiditaet.html">Liquidität</a>
+        <a class="chip" href="controlling.html">Controlling</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

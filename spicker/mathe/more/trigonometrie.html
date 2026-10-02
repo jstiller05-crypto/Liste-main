@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Mathe: Trigonometrie – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Mathe · Trigonometrie</p>
+    <h1>Sinus, Kosinus, Tangens</h1>
+    <p class="page-lead">Mit Winkeln Längen berechnen (und umgekehrt) – im rechtwinkligen Dreieck und mit Sinus- und Kosinussatz in jedem Dreieck.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Im rechtwinkligen Dreieck hängt das <strong>Verhältnis</strong> zweier Seiten nur vom Winkel ab – nicht von der Größe des Dreiecks. Diese Verhältnisse haben Namen: Sinus, Kosinus und Tangens.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Rechtwinkliges Dreieck mit Ankathete, Gegenkathete und Hypotenuse" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="110.0,260.0 490.0,260.0 490.0,70.0" class="dg-fill dg-shape"/>
+        <polyline points="470.0,260.0 470.0,240.0 490.0,240.0" class="dg-right-angle"/>
+        <path d="M156.0,260.0 A46,46 0 0 0 151.1,239.4" class="dg-note-line" fill="none"/>
+        <text x="168.0" y="248.0" class="dg-label" text-anchor="start">α</text>
+        <text x="300.0" y="286.0" class="dg-label" text-anchor="middle">Ankathete (liegt am Winkel α)</text>
+        <text x="500.0" y="157.0" class="dg-label" text-anchor="start">Gegenkathete</text>
+        <text x="500.0" y="175.0" class="dg-small" text-anchor="start">(gegenüber α)</text>
+        <text x="270.0" y="150.0" class="dg-accent-text" text-anchor="end">Hypotenuse</text>
+        <text x="270.0" y="168.0" class="dg-small" text-anchor="end">(gegenüber 90°)</text>
+        </svg>
+        <figcaption>Welche Kathete „An-“ und welche „Gegen-“kathete ist, hängt davon ab, welchen Winkel man betrachtet.</figcaption>
+      </figure>
+      <pre><code>sin α = Gegenkathete / Hypotenuse
+cos α = Ankathete    / Hypotenuse
+tan α = Gegenkathete / Ankathete       (= sin α / cos α)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>α</code></td><td>der betrachtete Winkel (alpha)</td></tr>
+          <tr><td><code>Hypotenuse</code></td><td>längste Seite, liegt gegenüber dem rechten Winkel</td></tr>
+          <tr><td><code>Ankathete</code></td><td>Kathete, die am Winkel α anliegt</td></tr>
+          <tr><td><code>Gegenkathete</code></td><td>Kathete, die dem Winkel α gegenüberliegt</td></tr>
+          <tr><td><code>sin⁻¹ / arcsin</code></td><td>Umkehrung: aus einem Seitenverhältnis den Winkel berechnen (auf dem Taschenrechner SHIFT + sin)</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Merkspruch: <strong>GAGA HühnerHof AG</strong> – sin = G/H, cos = A/H, tan = G/A.</div>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Astronomen wie Hipparchos (um 150 v. Chr.) erstellten die ersten Tabellen, um Sternpositionen zu berechnen. Indische Mathematiker nannten den halben Bogen „jya“, daraus wurde arabisch „jiba“ und durch einen Übersetzungsfehler lateinisch <em>sinus</em> (= Bucht). Heute braucht man Trigonometrie in Vermessung, GPS, Physik, Spieleprogrammierung und 3D-Grafik.</p>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>Leiter: 5 m lang, lehnt im Winkel α = 70° an der Wand. Wie hoch reicht sie?
+sin 70° = Höhe / 5      →  Höhe = 5 · sin 70° ≈ 4,70 m
+
+Rampe: 12 m lang (waagrecht), 1 m hoch. Welcher Steigungswinkel?
+tan α = 1 / 12          →  α = tan⁻¹(1/12) ≈ 4,8°</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Winkel</th><th>0°</th><th>30°</th><th>45°</th><th>60°</th><th>90°</th></tr></thead>
+        <tbody>
+          <tr><td>sin</td><td>0</td><td>½</td><td>½√2 ≈ 0,71</td><td>½√3 ≈ 0,87</td><td>1</td></tr>
+          <tr><td>cos</td><td>1</td><td>½√3 ≈ 0,87</td><td>½√2 ≈ 0,71</td><td>½</td><td>0</td></tr>
+          <tr><td>tan</td><td>0</td><td>≈ 0,58</td><td>1</td><td>≈ 1,73</td><td>nicht definiert</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Sinussatz und Kosinussatz (jedes Dreieck)</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Allgemeines Dreieck mit Seiten a, b, c und Winkeln" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="90.0,260.0 560.0,260.0 230.0,60.0" class="dg-fill dg-shape"/>
+        <path d="M118.0,260.0 A28,28 0 0 0 106.1,237.1" class="dg-note-line" fill="none"/>
+        <path d="M536.1,245.5 A28,28 0 0 0 532.0,260.0" class="dg-note-line" fill="none"/>
+        <path d="M213.9,82.9 A28,28 0 0 0 253.9,74.5" class="dg-note-line" fill="none"/>
+        <text x="134.3" y="241.9" class="dg-label" text-anchor="middle">α</text>
+        <text x="511.8" y="251.5" class="dg-label" text-anchor="middle">β</text>
+        <text x="240.3" y="113.9" class="dg-label" text-anchor="middle">γ</text>
+        <text x="80.0" y="278.0" class="dg-label" text-anchor="end">A</text>
+        <text x="570.0" y="278.0" class="dg-label" text-anchor="start">B</text>
+        <text x="230.0" y="48.0" class="dg-label" text-anchor="middle">C</text>
+        <text x="325.0" y="286.0" class="dg-accent-text" text-anchor="middle">c (gegenüber C)</text>
+        <text x="409.0" y="154.0" class="dg-accent-text" text-anchor="start">a (gegenüber A)</text>
+        <text x="148.0" y="160.0" class="dg-accent-text" text-anchor="end">b</text>
+        </svg>
+        <figcaption>Jede Seite heißt wie der gegenüberliegende Eckpunkt, nur klein: a liegt gegenüber von A bzw. α.</figcaption>
+      </figure>
+      <pre><code>Sinussatz:    a / sin α = b / sin β = c / sin γ
+
+Kosinussatz:  c² = a² + b² − 2ab · cos γ
+              (für γ = 90° ist cos γ = 0 → Pythagoras!)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Gegeben</th><th>Nimm …</th></tr></thead>
+        <tbody>
+          <tr><td>zwei Winkel und eine Seite</td><td>Sinussatz</td></tr>
+          <tr><td>zwei Seiten und den Gegenwinkel einer davon</td><td>Sinussatz</td></tr>
+          <tr><td>zwei Seiten und den Winkel dazwischen</td><td>Kosinussatz</td></tr>
+          <tr><td>alle drei Seiten (Winkel gesucht)</td><td>Kosinussatz</td></tr>
+        </tbody>
+      </table>
+      <pre><code>Beispiel: a = 7, b = 5, γ = 60°
+c² = 49 + 25 − 2 · 7 · 5 · cos 60° = 74 − 35 = 39
+c  = √39 ≈ 6,24</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Taschenrechner auf <strong>DEG</strong> (Grad) stellen – im Modus RAD kommen falsche Werte heraus.</li>
+        <li>sin, cos, tan mit SOH-CAH-TOA nur im <strong>rechtwinkligen</strong> Dreieck; sonst Sinus-/Kosinussatz.</li>
+        <li>Sinus und Kosinus liegen immer zwischen −1 und 1.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="pythagoras.html">Pythagoras</a>
+        <a class="chip" href="einheitskreis.html">Einheitskreis &amp; Sinus</a>
+        <a class="chip" href="aehnlichkeit.html">Ähnlichkeit &amp; Strahlensätze</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
