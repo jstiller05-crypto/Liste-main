@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Funktionen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Grundlagen</p>
+    <h1>Funktionen</h1>
+    <p class="page-lead">Code in wiederverwendbare Bausteine packen – mit Parametern und Rückgabewert.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Drei Schreibweisen</h2>
+      <pre><code>// 1) Funktionsdeklaration
+function add(a, b) {
+  return a + b;
+}
+
+// 2) Funktionsausdruck
+const subtract = function (a, b) {
+  return a - b;
+};
+
+// 3) Pfeilfunktion (arrow function)
+const multiply = (a, b) =&gt; a * b;          // ein Ausdruck: return automatisch
+const greet = name =&gt; `Hallo ${name}`;     // ein Parameter: Klammern optional
+const log = () =&gt; { console.log("Hi"); };  // mehrere Zeilen: { } und return nötig
+
+console.log(add(2, 3));   // 5</code></pre>
+    </section>
+    <section>
+      <h2>Parameter &amp; Rückgabe</h2>
+      <pre><code>function createUser(name, role = "Gast") {   // Standardwert
+  return { name, role };                     // gibt ein Objekt zurück
+}
+
+createUser("Max");           // { name: "Max", role: "Gast" }
+createUser("Anna", "Admin"); // { name: "Anna", role: "Admin" }
+
+// Beliebig viele Argumente mit ...rest
+function sum(...numbers) {
+  return numbers.reduce((total, n) =&gt; total + n, 0);
+}
+sum(1, 2, 3);                // 6</code></pre>
+      <p>Ohne <code>return</code> gibt eine Funktion <code>undefined</code> zurück. Nach <code>return</code> wird nichts mehr ausgeführt.</p>
+    </section>
+    <section>
+      <h2>Funktionen als Werte (Callbacks)</h2>
+      <p>Funktionen kann man an andere Funktionen übergeben – so funktionieren Events und Array-Methoden:</p>
+      <pre><code>button.addEventListener("click", handleClick);   // ohne () übergeben!
+
+function handleClick() {
+  console.log("geklickt");
+}
+
+[3, 1, 2].sort((a, b) =&gt; a - b);   // Vergleichsfunktion als Callback</code></pre>
+    </section>
+    <section>
+      <h2>Wann welche Schreibweise?</h2>
+      <table class="info-table">
+        <thead><tr><th>Schreibweise</th><th>Besonderheit</th></tr></thead>
+        <tbody>
+          <tr><td><code>function name()</code></td><td>Kann schon vor der Zeile aufgerufen werden (Hoisting)</td></tr>
+          <tr><td><code>const name = () =&gt;</code></td><td>Kurz, ideal für Callbacks; hat kein eigenes <code>this</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Eine Funktion = eine Aufgabe. Wird sie lang, in mehrere kleine aufteilen.</li>
+        <li>Namen mit Verb: <code>calculateTotal</code>, <code>renderTable</code>, <code>isValid</code>.</li>
+        <li><code>handleClick</code> übergeben, nicht <code>handleClick()</code> – mit Klammern wird sie sofort ausgeführt.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-klammern.html">JS-Klammern</a>
+        <a class="chip" href="js-events.html">Events</a>
+        <a class="chip" href="js-arrays.html">Arrays</a>
+        <a class="chip" href="function.html">Funktionen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

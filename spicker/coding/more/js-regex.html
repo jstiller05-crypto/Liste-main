@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Regex – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Daten</p>
+    <h1>Reguläre Ausdrücke (Regex)</h1>
+    <p class="page-lead">Muster in Texten finden, prüfen und ersetzen – z. B. für E-Mail, PLZ oder Telefonnummern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundlagen</h2>
+      <pre><code>const plz = /^\d{5}$/;                 // genau 5 Ziffern
+
+plz.test("12345");                      // true
+plz.test("1234a");                      // false
+
+"Tel: 0170 1234567".match(/\d+/g);    // ["0170", "1234567"]  (g = alle Treffer)
+"a-b-c".replace(/-/g, " ");            // "a b c"
+"2026-09-30".split(/-/);                // ["2026", "09", "30"]</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Zeichen</h2>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>.</code></td><td>beliebiges Zeichen</td><td><code>a.c</code> → abc, a1c</td></tr>
+          <tr><td><code>\d</code> / <code>\w</code> / <code>\s</code></td><td>Ziffer / Buchstabe-Ziffer-_ / Leerzeichen</td><td><code>\d\d</code> → 42</td></tr>
+          <tr><td><code>\D</code> <code>\W</code> <code>\S</code></td><td>jeweils das Gegenteil</td><td></td></tr>
+          <tr><td><code>[abc]</code> / <code>[^abc]</code></td><td>eins davon / keins davon</td><td><code>[aeiou]</code></td></tr>
+          <tr><td><code>[a-z]</code> / <code>[0-9]</code></td><td>Bereich</td><td><code>[A-Za-zÄÖÜäöüß]</code></td></tr>
+          <tr><td><code>*</code> <code>+</code> <code>?</code></td><td>0+ / 1+ / 0 oder 1 mal</td><td><code>\d+</code></td></tr>
+          <tr><td><code>{3}</code> <code>{2,4}</code></td><td>genau 3 / 2 bis 4 mal</td><td><code>\d{5}</code></td></tr>
+          <tr><td><code>^</code> / <code>$</code></td><td>Anfang / Ende</td><td><code>^Hallo</code></td></tr>
+          <tr><td><code>( )</code></td><td>Gruppe (zum Auslesen)</td><td><code>(\d{2})\.(\d{2})</code></td></tr>
+          <tr><td><code>a|b</code></td><td>a oder b</td><td><code>jpg|png</code></td></tr>
+          <tr><td><code>\.</code></td><td>echter Punkt (Sonderzeichen escapen)</td><td></td></tr>
+        </tbody>
+      </table>
+      <table class="info-table">
+        <thead><tr><th>Flag</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>g</code></td><td>alle Treffer</td></tr>
+          <tr><td><code>i</code></td><td>Groß-/Kleinschreibung egal</td></tr>
+          <tr><td><code>m</code></td><td><code>^</code>/<code>$</code> pro Zeile</td></tr>
+          <tr><td><code>u</code></td><td>Unicode (z. B. Emojis, <code>\p{L}</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Gruppen auslesen</h2>
+      <pre><code>const date = "Termin am 30.09.2026";
+const match = date.match(/(\d{2})\.(\d{2})\.(\d{4})/);
+if (match) {
+  const [, day, month, year] = match;         // [0] = ganzer Treffer
+  console.log(day, month, year);              // "30" "09" "2026"
+}
+
+// benannte Gruppen
+const m = date.match(/(?&lt;day&gt;\d{2})\.(?&lt;month&gt;\d{2})/);
+console.log(m.groups.day);                    // "30"</code></pre>
+    </section>
+    <section>
+      <h2>Live ausprobieren</h2>
+      <div class="preview" aria-label="Vorschau">
+        <label>Muster <input id="rxPattern" value="\d+" style="padding:4px 8px;width:140px"></label> <label>Text <input id="rxText" value="Level 12, Leben 20" style="padding:4px 8px;width:220px"></label><p id="rxOut" style="margin-top:8px"></p><script>(function(){var p=document.getElementById("rxPattern"),t=document.getElementById("rxText"),o=document.getElementById("rxOut");if(!p)return;function run(){try{var r=new RegExp(p.value,"g");var m=t.value.match(r);o.textContent=m?"Treffer: "+m.join(" | "):"Kein Treffer";}catch(e){o.textContent="Ungültiges Muster: "+e.message;}}p.addEventListener("input",run);t.addEventListener("input",run);run();})();</script>
+      </div>
+    </section>
+    <section>
+      <h2>Nützliche Muster</h2>
+      <table class="info-table">
+        <thead><tr><th>Zweck</th><th>Muster</th></tr></thead>
+        <tbody>
+          <tr><td>Deutsche PLZ</td><td><code>^\d{5}$</code></td></tr>
+          <tr><td>Nur Buchstaben (mit Umlauten)</td><td><code>^[A-Za-zÄÖÜäöüß ]+$</code></td></tr>
+          <tr><td>Grobe E-Mail-Prüfung</td><td><code>^[^\s@]+@[^\s@]+\.[^\s@]+$</code></td></tr>
+          <tr><td>Hex-Farbe</td><td><code>^#([0-9a-f]{3}|[0-9a-f]{6})$</code> (mit Flag <code>i</code>)</td></tr>
+          <tr><td>Mehrfache Leerzeichen</td><td><code>\s{2,}</code> → durch <code>" "</code> ersetzen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Im String-Konstruktor müssen Backslashes doppelt: <code>new RegExp("\\d+")</code> entspricht <code>/\d+/</code>.</li>
+        <li>E-Mail-Adressen perfekt per Regex zu prüfen ist fast unmöglich – eine grobe Prüfung plus Bestätigungsmail ist üblich.</li>
+        <li>Regex-Tester wie regex101.com erklären jedes Zeichen eines Musters.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-strings.html">Strings</a>
+        <a class="chip" href="js-formulare.html">Formulare</a>
+        <a class="chip" href="lua-strings.html">Strings</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Fehler &amp; Exceptions – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Werkzeuge</p>
+    <h1>Exceptions &amp; Fehlersuche</h1>
+    <p class="page-lead">Fehler zur Laufzeit abfangen und typische Compiler-Fehlermeldungen verstehen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>try / catch / throw</h2>
+      <pre><code>#include &lt;stdexcept&gt;
+
+double divide(double a, double b) {
+    if (b == 0) {
+        throw std::invalid_argument("Division durch 0");   // Fehler auslösen
+    }
+    return a / b;
+}
+
+int main() {
+    try {
+        std::cout &lt;&lt; divide(10, 0) &lt;&lt; "\n";
+    } catch (const std::invalid_argument&amp; error) {
+        std::cerr &lt;&lt; "[Fehler] " &lt;&lt; error.what() &lt;&lt; "\n";   // what() = Fehlertext
+    } catch (const std::exception&amp; error) {                 // alle anderen Standard-Fehler
+        std::cerr &lt;&lt; "[Fehler] " &lt;&lt; error.what() &lt;&lt; "\n";
+    }
+    return 0;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Häufige Standard-Exceptions</h2>
+      <table class="info-table">
+        <thead><tr><th>Exception</th><th>Wird geworfen von …</th></tr></thead>
+        <tbody>
+          <tr><td><code>std::out_of_range</code></td><td><code>vector.at()</code>, <code>string.at()</code> mit falschem Index</td></tr>
+          <tr><td><code>std::invalid_argument</code></td><td><code>std::stoi("abc")</code></td></tr>
+          <tr><td><code>std::bad_alloc</code></td><td><code>new</code>, wenn kein Speicher mehr frei ist</td></tr>
+          <tr><td><code>std::runtime_error</code></td><td>Allgemeine Laufzeitfehler (auch selbst werfen)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Eingaben sicher einlesen</h2>
+      <pre><code>int number;
+while (!(std::cin &gt;&gt; number)) {                 // Eingabe war keine Zahl
+    std::cerr &lt;&lt; "Bitte eine Zahl eingeben: ";
+    std::cin.clear();                           // Fehlerzustand zurücksetzen
+    std::cin.ignore(10000, '\n');              // falsche Eingabe verwerfen
+}</code></pre>
+    </section>
+    <section>
+      <h2>Ausgaben zur Fehlersuche</h2>
+      <pre><code>std::cerr &lt;&lt; "[debug] score = " &lt;&lt; score &lt;&lt; "\n";   // cerr: Fehlerkanal, ungepuffert
+
+#include &lt;cassert&gt;
+assert(level &gt;= 1 &amp;&amp; "Level muss mindestens 1 sein");   // bricht im Debug-Build ab</code></pre>
+      <p>In Qt-Projekten entspricht das <code>qDebug() &lt;&lt; "score" &lt;&lt; score;</code> bzw. <code>qWarning()</code>.</p>
+    </section>
+    <section>
+      <h2>Typische Compiler-Fehler</h2>
+      <table class="info-table">
+        <thead><tr><th>Meldung (sinngemäß)</th><th>Ursache</th></tr></thead>
+        <tbody>
+          <tr><td><code>expected ';' before …</code></td><td>Semikolon fehlt (meist in der Zeile <em>davor</em>)</td></tr>
+          <tr><td><code>'x' was not declared in this scope</code></td><td>Tippfehler, fehlendes <code>#include</code> oder Variable außerhalb ihres Blocks</td></tr>
+          <tr><td><code>no matching function for call to …</code></td><td>Falsche Anzahl oder Typen der Argumente</td></tr>
+          <tr><td><code>undefined reference to …</code></td><td>Linker-Fehler: Definition fehlt oder .cpp nicht mitkompiliert</td></tr>
+          <tr><td><code>cannot convert 'A' to 'B'</code></td><td>Falscher Typ zugewiesen</td></tr>
+          <tr><td><code>segmentation fault</code> (zur Laufzeit)</td><td>Ungültiger Speicherzugriff: <code>nullptr</code>, falscher Index, gelöschtes Objekt</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer den <strong>ersten</strong> Fehler zuerst lesen und beheben – viele Folgefehler verschwinden dann von selbst.</li>
+        <li>Mit <code>-Wall -Wextra</code> kompilieren: Der Compiler warnt vor vielen Fehlern, bevor sie passieren.</li>
+        <li>Exceptions per <code>const&amp;</code> fangen: <code>catch (const std::exception&amp; e)</code>.</li>
+        <li>Debugger (z. B. in VS Code oder Qt Creator): Haltepunkt setzen und Schritt für Schritt Variablen ansehen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-kompilieren.html">Kompilieren</a>
+        <a class="chip" href="cpp-string.html">std::string</a>
+        <a class="chip" href="cout.html">std::cout</a>
+        <a class="chip" href="cin.html">std::cin</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Animationen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Browser</p>
+    <h1>Animationen mit JavaScript</h1>
+    <p class="page-lead">Wann CSS reicht, wie <code>requestAnimationFrame</code> funktioniert und was die Web Animations API kann.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. Weg: CSS-Klasse umschalten (meist die beste Wahl)</h2>
+      <pre><code>.panel        { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.panel.open   { max-height: 500px; }</code></pre>
+      <pre><code>button.addEventListener("click", () =&gt; {
+  panel.classList.toggle("open");          // JS schaltet nur um, CSS animiert
+});</code></pre>
+    </section>
+    <section>
+      <h2>2. Weg: Web Animations API</h2>
+      <pre><code>const animation = box.animate(
+  [
+    { transform: "translateX(0)",     opacity: 1 },
+    { transform: "translateX(200px)", opacity: 0.3 }
+  ],
+  { duration: 800, easing: "ease-in-out", iterations: 2, direction: "alternate" }
+);
+
+animation.onfinish = () =&gt; console.log("[anim] fertig");
+// animation.pause() / .play() / .reverse() / .cancel()</code></pre>
+      <p>Wie <code>@keyframes</code>, aber per JavaScript steuerbar – gut, wenn Werte erst zur Laufzeit feststehen.</p>
+    </section>
+    <section>
+      <h2>3. Weg: requestAnimationFrame (Spiele, Canvas)</h2>
+      <pre><code>let x = 0;
+let lastTime = performance.now();
+
+function frame(now) {
+  const delta = (now - lastTime) / 1000;   // Sekunden seit dem letzten Bild
+  lastTime = now;
+
+  x += 100 * delta;                        // 100 Pixel pro Sekunde – unabhängig von der Bildrate
+  box.style.transform = `translateX(${x}px)`;
+
+  if (x &lt; 300) requestAnimationFrame(frame);   // nächstes Bild anfordern
+}
+
+requestAnimationFrame(frame);</code></pre>
+      <p>Der Browser ruft die Funktion vor jedem Neuzeichnen auf (meist 60-mal pro Sekunde) und pausiert automatisch in Hintergrund-Tabs.</p>
+    </section>
+    <section>
+      <h2>Welcher Weg?</h2>
+      <table class="info-table">
+        <thead><tr><th>Situation</th><th>Empfehlung</th></tr></thead>
+        <tbody>
+          <tr><td>Hover, Aufklappen, Ein-/Ausblenden</td><td>CSS-Klasse umschalten</td></tr>
+          <tr><td>Animation mit berechneten Werten, steuerbar (Pause/Rückwärts)</td><td>Web Animations API</td></tr>
+          <tr><td>Spiele, Physik, Canvas, ständige Bewegung</td><td><code>requestAnimationFrame</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>transform</code> und <code>opacity</code> animieren – das ist flüssig. <code>left</code>, <code>width</code> oder <code>top</code> ruckeln eher.</li>
+        <li><code>setInterval</code> für Animationen vermeiden – es passt nicht zur Bildrate des Bildschirms.</li>
+        <li>Auf <code>prefers-reduced-motion</code> achten: <code>matchMedia("(prefers-reduced-motion: reduce)").matches</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-animation.html">Animationen</a>
+        <a class="chip" href="canvas.html">&lt;canvas&gt;</a>
+        <a class="chip" href="js-browser-apis.html">Browser-APIs</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

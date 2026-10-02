@@ -1,0 +1,14 @@
+/* =====================================================================
+   theme.css – Farben des Coding-Spickers
+   ---------------------------------------------------------------------
+   NUR Variablen aus shared/core.css überschreiben – kein Layout!
+   Wird nach core.css geladen und gewinnt darum.
+
+   Mögliche Variablen (Standardwerte stehen in core.css, Teil A):
+     --page-bg  --card-bg  --code-bg  --header-bg  --panel-bg
+     --chip-bg  --chip-hover  --border  --text-main  --text-muted
+     --accent   (die eine Akzentfarbe)
+   ===================================================================== */
+:root {
+  --accent: #4f8cff;   /* Blau – wie bisher */
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Container (&lt;div&gt; &amp; Co.) – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Struktur</p>
+    <h1>Container (&lt;div&gt; &amp; Co.)</h1>
+    <p class="page-lead">Container fassen andere Elemente zusammen – für Struktur, Layout und Styling.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein Container ist ein Element, das andere Elemente umschließt. Es gibt zwei Arten:</p>
+      <ul>
+        <li><strong>Semantische Container</strong> sagen, was drin ist: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>.</li>
+        <li><strong>Neutrale Container</strong> haben keine Bedeutung: <code>&lt;div&gt;</code> (Block) und <code>&lt;span&gt;</code> (im Text).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Neueste Einträge&lt;/h2&gt;
+    &lt;div class="card-grid"&gt;      &lt;!-- div nur fürs Layout --&gt;
+      &lt;div class="card"&gt;Karte 1&lt;/div&gt;
+      &lt;div class="card"&gt;Karte 2&lt;/div&gt;
+      &lt;div class="card"&gt;Karte 3&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+    </section>
+    <section>
+      <h2>&lt;section&gt; und &lt;span&gt;</h2>
+      <p><code>&lt;section&gt;</code> ist ein thematischer Abschnitt, der eine eigene Überschrift hat – wie ein Kapitel. <code>&lt;span&gt;</code> ist das Gegenstück zu <code>&lt;div&gt;</code> für einzelne Wörter im Text, z. B. um sie per CSS oder JavaScript anzusprechen.</p>
+      <pre><code>&lt;section&gt;
+  &lt;h2&gt;Kapitel 1: Grundlagen&lt;/h2&gt;
+  &lt;p&gt;Der Preis beträgt &lt;span class="price"&gt;19,99 €&lt;/span&gt;.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Layout mit CSS</h2>
+      <pre><code>/* Flexbox: Elemente in einer Reihe */
+.card-row {
+  display: flex;
+  gap: 16px;
+}
+
+/* Grid: Elemente in einem Raster */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 gleich breite Spalten */
+  gap: 16px;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Welcher Container?</h2>
+      <table class="info-table">
+        <thead><tr><th>Element</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;header&gt;</code> / <code>&lt;footer&gt;</code></td><td>Kopf- bzw. Fußbereich</td></tr>
+          <tr><td><code>&lt;main&gt;</code></td><td>Hauptinhalt (einmal pro Seite)</td></tr>
+          <tr><td><code>&lt;nav&gt;</code></td><td>Navigationslinks</td></tr>
+          <tr><td><code>&lt;article&gt;</code></td><td>Eigenständiger Inhalt</td></tr>
+          <tr><td><code>&lt;section&gt;</code></td><td>Thematischer Abschnitt mit Überschrift</td></tr>
+          <tr><td><code>&lt;aside&gt;</code></td><td>Randinfos</td></tr>
+          <tr><td><code>&lt;div&gt;</code></td><td>Nur Layout/Styling, wenn nichts anderes passt</td></tr>
+          <tr><td><code>&lt;span&gt;</code></td><td>Wie div, aber mitten im Text</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Erst überlegen, ob ein semantischer Container passt – <code>&lt;div&gt;</code> ist der letzte Ausweg.</li>
+        <li>Zu viele verschachtelte <code>&lt;div&gt;</code>s („div-Suppe“) machen den Code schwer lesbar.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="header.html">&lt;header&gt;</a>
+        <a class="chip" href="main.html">&lt;main&gt;</a>
+        <a class="chip" href="footer.html">&lt;footer&gt;</a>
+        <a class="chip" href="nav.html">&lt;nav&gt;</a>
+        <a class="chip" href="article.html">&lt;article&gt;</a>
+        <a class="chip" href="aside.html">&lt;aside&gt;</a>
+        <a class="chip" href="Class.html">CSS-Klassen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

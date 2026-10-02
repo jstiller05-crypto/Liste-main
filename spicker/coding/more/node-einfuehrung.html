@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Node.js – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Node.js · Grundlagen</p>
+    <h1>Node.js</h1>
+    <p class="page-lead">JavaScript außerhalb des Browsers – für Server, Kommandozeilen-Tools und Automatisierung.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Node.js ist eine Laufzeitumgebung, die JavaScript direkt auf dem Computer ausführt – ohne Browser. Damit baut man Webserver, APIs, Build-Tools oder kleine Skripte. Die Sprache ist dieselbe JavaScript, das du schon kennst.</p>
+    </section>
+    <section>
+      <h2>Browser-JS vs. Node.js</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Browser</th><th>Node.js</th></tr></thead>
+        <tbody>
+          <tr><td>Läuft …</td><td>in der Webseite</td><td>auf dem Computer/Server</td></tr>
+          <tr><td>Hat <code>document</code>, <code>window</code>, DOM</td><td>Ja</td><td>Nein</td></tr>
+          <tr><td>Dateien lesen/schreiben</td><td>Nein</td><td>Ja (<code>fs</code>)</td></tr>
+          <tr><td>Server starten</td><td>Nein</td><td>Ja (<code>http</code>, Express)</td></tr>
+          <tr><td>Pakete</td><td>per <code>&lt;script&gt;</code></td><td>per <code>npm</code></td></tr>
+          <tr><td>Globales Objekt</td><td><code>window</code></td><td><code>globalThis</code> / <code>process</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Installieren &amp; prüfen</h2>
+      <p>Die <strong>LTS</strong>-Version (Long Term Support) installieren. npm wird automatisch mitinstalliert.</p>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Installation</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td>Installer von nodejs.org oder <code>winget install OpenJS.NodeJS.LTS</code></td></tr>
+          <tr><td>Linux (Debian/Ubuntu)</td><td><code>sudo apt install nodejs npm</code> – oft ältere Version; aktueller über <strong>nvm</strong>: <code>nvm install --lts</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>node -v      # Version von Node.js anzeigen, z. B. v22.x
+npm -v       # Version von npm</code></pre>
+    </section>
+    <section>
+      <h2>Erstes Programm</h2>
+      <pre><code>// hello.js
+const name = "Welt";
+console.log(`Hallo ${name}!`);
+console.log("Node-Version:", process.version);</code></pre>
+      <pre><code>node hello.js          # ausführen
+node --watch hello.js  # bei jeder Änderung automatisch neu starten</code></pre>
+    </section>
+    <section>
+      <h2>REPL – Node interaktiv</h2>
+      <pre><code>node               # ohne Datei: interaktive Konsole
+&gt; 2 + 3
+5
+&gt; .exit            # beenden (oder zweimal Strg+C)</code></pre>
+    </section>
+    <section>
+      <h2>Wofür wird Node.js genutzt?</h2>
+      <ul>
+        <li>Webserver und REST-APIs (oft mit Express)</li>
+        <li>Echtzeit-Anwendungen wie Chats (WebSockets)</li>
+        <li>Build-Werkzeuge für Frontends (Vite, Webpack …)</li>
+        <li>Kommandozeilen-Tools und Automatisierung</li>
+        <li>Desktop-Apps mit Electron (z. B. VS Code)</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Alles, was du über JavaScript-Grundlagen weißt (Variablen, Arrays, Funktionen, async/await), gilt 1:1 in Node.</li>
+        <li>Fehler wie „document is not defined“ bedeuten: Browser-Code läuft in Node – dort gibt es kein DOM.</li>
+        <li>Im Terminal von VS Code (Strg+ö) kannst du Node-Befehle direkt ausführen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="node-npm.html">npm</a>
+        <a class="chip" href="node-module.html">Module</a>
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+        <a class="chip" href="js-async.html">async/await</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

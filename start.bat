@@ -2,7 +2,7 @@
 REM =====================================================================
 REM start.bat
 REM -----------------------------------------------------------------
-REM Oeffnet den Spicker im Browser. Kuemmert sich dabei selbst darum,
+REM Oeffnet die Spicker-Uebersicht im Browser. Kuemmert sich dabei selbst darum,
 REM dass der Server laeuft:
 REM   1. Erst pruefen, ob unter http://127.0.0.1:3000 schon ein Server
 REM      antwortet (z. B. weil der Autostart ihn beim Anmelden schon
@@ -20,7 +20,7 @@ REM =====================================================================
 cd /d "%~dp0"
 
 set "CHECK_URL=http://127.0.0.1:3000/api/progress"
-set "PAGE_URL=http://localhost:3000/Spicker.html"
+set "PAGE_URL=http://localhost:3000/"
 
 REM curl mit "-s" (still, keine Fortschrittsanzeige) und "-o nul"
 REM (Antwort-Inhalt verwerfen - uns interessiert nur, OB curl sich

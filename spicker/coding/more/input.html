@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;input&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Formulare</p>
+    <h1>&lt;input&gt;</h1>
+    <p class="page-lead">Das vielseitigste Formularelement: Textfeld, Checkbox, Datum, Farbe, Schieberegler und mehr – je nach <code>type</code>.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;input&gt;</code> ist ein leeres Element (kein End-Tag). Was es darstellt, bestimmt das Attribut <code>type</code>. Ohne <code>type</code> ist es ein normales Textfeld.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>&lt;input type="text" id="username" name="username" placeholder="Dein Name"&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Typen</h2>
+      <table class="info-table">
+        <thead><tr><th>type</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td><code>text</code></td><td>Einzeiliges Textfeld (Standard)</td></tr>
+          <tr><td><code>password</code></td><td>Text wird als Punkte angezeigt</td></tr>
+          <tr><td><code>email</code></td><td>Prüft auf gültige E-Mail, Handy zeigt @-Tastatur</td></tr>
+          <tr><td><code>number</code></td><td>Nur Zahlen, mit Pfeilen zum Hoch-/Runterzählen</td></tr>
+          <tr><td><code>checkbox</code></td><td>Häkchen – mehrere wählbar</td></tr>
+          <tr><td><code>radio</code></td><td>Auswahlpunkt – nur einer aus der Gruppe (gleicher <code>name</code>)</td></tr>
+          <tr><td><code>range</code></td><td>Schieberegler</td></tr>
+          <tr><td><code>date</code> / <code>time</code></td><td>Datums- bzw. Uhrzeitauswahl</td></tr>
+          <tr><td><code>color</code></td><td>Farbwähler</td></tr>
+          <tr><td><code>file</code></td><td>Datei hochladen</td></tr>
+          <tr><td><code>search</code></td><td>Suchfeld (mit Löschen-Kreuz)</td></tr>
+          <tr><td><code>submit</code></td><td>Absende-Button (besser: <code>&lt;button type="submit"&gt;</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;input type="text" placeholder="Suchen …"&gt;
+&lt;input type="number" min="1" max="10" value="5"&gt;
+&lt;input type="range" min="0" max="100" value="30"&gt;
+&lt;input type="color" value="#4f8cff"&gt;
+&lt;input type="date"&gt;
+
+&lt;label&gt;&lt;input type="checkbox" checked&gt; Newsletter&lt;/label&gt;
+
+&lt;label&gt;&lt;input type="radio" name="level" value="anfaenger" checked&gt; Anfänger&lt;/label&gt;
+&lt;label&gt;&lt;input type="radio" name="level" value="profi"&gt; Profi&lt;/label&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <input type="text" placeholder="Suchen …"> <input type="number" min="1" max="10" value="5"> <input type="range" min="0" max="100" value="30"> <input type="color" value="#4f8cff"> <input type="date"><br><label><input type="checkbox" checked> Newsletter</label> <label><input type="radio" name="level-demo" checked> Anfänger</label> <label><input type="radio" name="level-demo"> Profi</label>
+      </div>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>Name, unter dem der Wert abgeschickt wird</td></tr>
+          <tr><td><code>value</code></td><td>Aktueller bzw. Startwert</td></tr>
+          <tr><td><code>placeholder</code></td><td>Grauer Hinweistext, solange das Feld leer ist</td></tr>
+          <tr><td><code>required</code></td><td>Pflichtfeld – Formular geht ohne Eingabe nicht raus</td></tr>
+          <tr><td><code>disabled</code></td><td>Feld ist ausgegraut und wird nicht abgeschickt</td></tr>
+          <tr><td><code>readonly</code></td><td>Nur lesen, aber wird abgeschickt</td></tr>
+          <tr><td><code>min / max / step</code></td><td>Grenzen und Schrittweite bei Zahlen, Datum, Range</td></tr>
+          <tr><td><code>maxlength</code></td><td>Maximale Anzahl Zeichen</td></tr>
+          <tr><td><code>pattern</code></td><td>Regex, die die Eingabe erfüllen muss</td></tr>
+          <tr><td><code>autocomplete</code></td><td>Browser-Vorschläge, z. B. <code>off</code> oder <code>email</code></td></tr>
+          <tr><td><code>list</code></td><td>ID einer <code>&lt;datalist&gt;</code> mit Vorschlägen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Wert mit JavaScript lesen</h2>
+      <p>So reagierst du auf jede Eingabe, z. B. für eine Live-Suche:</p>
+      <pre><code>const input = document.getElementById("searchInput");
+
+input.addEventListener("input", () =&gt; {   // bei jedem Tastendruck
+  console.log("Eingabe:", input.value);
+});
+
+// Checkbox: nicht .value, sondern .checked
+const box = document.querySelector('input[type="checkbox"]');
+console.log("angehakt?", box.checked);    // true / false</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>placeholder</code> ersetzt kein <code>&lt;label&gt;</code> – der Hinweis verschwindet, sobald man tippt.</li>
+        <li>Radio-Buttons gehören nur dann zusammen, wenn sie denselben <code>name</code> haben.</li>
+        <li><code>input.value</code> ist immer ein <strong>Text</strong> (String) – auch bei <code>type="number"</code>. Zum Rechnen mit <code>Number(input.value)</code> umwandeln.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="label.html">&lt;label&gt;</a>
+        <a class="chip" href="form.html">&lt;form&gt;</a>
+        <a class="chip" href="datalist.html">&lt;datalist&gt;</a>
+        <a class="chip" href="button.html">&lt;button&gt;</a>
+        <a class="chip" href="fieldset.html">&lt;fieldset&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

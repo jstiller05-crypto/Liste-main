@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>CSS: Grid – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">CSS · Layout</p>
+    <h1>Grid</h1>
+    <p class="page-lead">Ein zweidimensionales Raster aus Zeilen und Spalten – für Seitenlayouts und Galerien.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Mit <code>display: grid</code> legst du Spalten (und Zeilen) fest, in die die Kinder automatisch einsortiert werden. Anders als Flexbox denkt Grid in <strong>zwei Richtungen</strong> gleichzeitig.</p>
+    </section>
+    <section>
+      <h2>Grundbeispiel</h2>
+      <pre><code>.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 gleich breite Spalten */
+  gap: 12px;
+}</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">1</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">2</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">3</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">4</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">5</div><div style="background:#4f8cff;color:#fff;padding:8px 12px;border-radius:6px">6</div></div>
+      </div>
+    </section>
+    <section>
+      <h2>Spalten festlegen</h2>
+      <pre><code>grid-template-columns: 200px 1fr;               /* feste Sidebar + Rest */
+grid-template-columns: 1fr 2fr 1fr;             /* Mitte doppelt so breit */
+grid-template-columns: repeat(4, 1fr);          /* 4 gleiche Spalten */
+
+/* Responsive ohne Media Query: so viele Spalten wie passen, jede mind. 200px */
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));</code></pre>
+    </section>
+    <section>
+      <h2>Elemente über mehrere Zellen</h2>
+      <pre><code>.featured {
+  grid-column: span 2;       /* über 2 Spalten */
+  grid-row: span 2;          /* über 2 Zeilen */
+}
+
+.full-width {
+  grid-column: 1 / -1;       /* von Linie 1 bis zur letzten Linie */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Seitenlayout mit Bereichsnamen</h2>
+      <pre><code>.page {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  min-height: 100vh;
+}
+
+header { grid-area: header; }
+aside  { grid-area: sidebar; }
+main   { grid-area: main; }
+footer { grid-area: footer; }</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Eigenschaften</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>grid-template-columns</code> / <code>-rows</code></td><td>Spalten / Zeilen definieren</td></tr>
+          <tr><td><code>gap</code></td><td>Abstand zwischen Zellen</td></tr>
+          <tr><td><code>grid-column</code> / <code>grid-row</code></td><td>Position/Spannweite eines Kindes</td></tr>
+          <tr><td><code>grid-template-areas</code></td><td>Layout mit Namen „zeichnen“</td></tr>
+          <tr><td><code>justify-items</code> / <code>align-items</code></td><td>Ausrichtung innerhalb der Zellen</td></tr>
+          <tr><td><code>place-items: center</code></td><td>Kurzform: alles zentrieren</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>fr</code> = Anteil am <em>freien</em> Platz – nur in Grid verfügbar.</li>
+        <li>F12 → beim Grid-Container auf das kleine „grid“-Symbol klicken, dann zeigt der Browser die Rasterlinien an.</li>
+        <li>Grid und Flexbox lassen sich kombinieren: Grid für das Seitenlayout, Flexbox innerhalb der Bereiche.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-flexbox.html">Flexbox</a>
+        <a class="chip" href="css-media-queries.html">Media Queries</a>
+        <a class="chip" href="css-einheiten.html">Einheiten &amp; calc()</a>
+        <a class="chip" href="container.html">Container</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

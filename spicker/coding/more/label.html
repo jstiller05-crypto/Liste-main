@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;label&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Formulare</p>
+    <h1>&lt;label&gt;</h1>
+    <p class="page-lead">Die Beschriftung für ein Formularfeld.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;label&gt;</code> verbindet einen Text mit einem Eingabefeld. Vorteile: Klickt man auf die Beschriftung, wird das Feld aktiviert (bei Checkboxen: angehakt). Und Screenreader lesen die Beschriftung vor.</p>
+    </section>
+    <section>
+      <h2>Zwei Schreibweisen</h2>
+      <pre><code>&lt;!-- 1) Mit for + id verknüpft --&gt;
+&lt;label for="email"&gt;E-Mail&lt;/label&gt;
+&lt;input type="email" id="email"&gt;
+
+&lt;!-- 2) Feld INNERHALB des Labels --&gt;
+&lt;label&gt;
+  &lt;input type="checkbox"&gt; Ich akzeptiere die Regeln
+&lt;/label&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <label><input type="checkbox"> Ich akzeptiere die Regeln (klick auf den Text)</label>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>for</code> muss exakt der <code>id</code> des Feldes entsprechen – Groß-/Kleinschreibung zählt.</li>
+        <li>Jedes Formularfeld sollte ein Label haben.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="input.html">&lt;input&gt;</a>
+        <a class="chip" href="form.html">&lt;form&gt;</a>
+        <a class="chip" href="fieldset.html">&lt;fieldset&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

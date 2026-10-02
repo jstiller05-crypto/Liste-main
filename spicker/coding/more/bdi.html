@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;bdi&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;bdi&gt;</h1>
+    <p class="page-lead">Isoliert Text mit unbekannter Schreibrichtung, damit er den umgebenden Text nicht durcheinanderbringt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Manche Sprachen (z. B. Arabisch, Hebräisch) werden von rechts nach links geschrieben. Kommt so ein Text – etwa ein Benutzername – mitten in einen deutschen Satz, kann der Browser Satzzeichen und Zahlen falsch anordnen. <code>&lt;bdi&gt;</code> (<em>bidirectional isolation</em>) schirmt den Text davon ab.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;Benutzer &lt;bdi&gt;Max&lt;/bdi&gt;: 12 Punkte&lt;/li&gt;
+  &lt;li&gt;Benutzer &lt;bdi&gt;إيان&lt;/bdi&gt;: 8 Punkte&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      <p>Ohne <code>&lt;bdi&gt;</code> könnte „: 8 Punkte“ im zweiten Eintrag an der falschen Stelle landen.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Typischer Einsatz: Namen oder Texte, die Nutzer selbst eingeben und deren Sprache du nicht kennst.</li>
+        <li>Wenn du die Richtung erzwingen willst statt sie zu isolieren, ist <code>&lt;bdo&gt;</code> das passende Element.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="bdo.html">&lt;bdo&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -77,7 +77,7 @@ echo.
 echo Fertig!
 echo   - Der Server startet ab jetzt bei JEDER Windows-Anmeldung
 echo     automatisch im Hintergrund (kein sichtbares Fenster).
-echo   - Testen: http://127.0.0.1:3000/Spicker.html im Browser oeffnen.
+echo   - Testen: http://127.0.0.1:3000/ im Browser oeffnen.
 echo   - Log-Datei: data\server.log
 echo   - Wieder entfernen: autostart-remove.bat ausfuehren.
 echo.

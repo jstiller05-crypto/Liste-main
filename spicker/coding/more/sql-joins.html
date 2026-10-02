@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>SQL: JOIN – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">SQL · Abfragen</p>
+    <h1>Beziehungen &amp; JOIN</h1>
+    <p class="page-lead">Tabellen über Fremdschlüssel verbinden und gemeinsam abfragen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Warum mehrere Tabellen?</h2>
+      <p>Statt den Namen eines Nutzers bei jeder Antwort erneut zu speichern, steht er einmal in <code>users</code>. Die Tabelle <code>answers</code> verweist nur über <code>user_id</code> darauf. Das spart Platz und verhindert Widersprüche.</p>
+    </section>
+    <section>
+      <h2>Fremdschlüssel</h2>
+      <pre><code>CREATE TABLE users (
+    id   INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE answers (
+    id       INTEGER PRIMARY KEY,
+    user_id  INTEGER NOT NULL,
+    task     TEXT,
+    correct  BOOLEAN,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);</code></pre>
+    </section>
+    <section>
+      <h2>INNER JOIN – nur passende Paare</h2>
+      <pre><code>SELECT users.name, answers.task, answers.correct
+FROM answers
+INNER JOIN users ON answers.user_id = users.id;
+
+-- kürzer mit Aliasen
+SELECT u.name, a.task
+FROM answers AS a
+JOIN users   AS u ON a.user_id = u.id
+WHERE a.correct = 1;</code></pre>
+    </section>
+    <section>
+      <h2>LEFT JOIN – alle links, auch ohne Partner</h2>
+      <pre><code>-- Alle Nutzer mit Anzahl ihrer Antworten – auch Nutzer ohne Antworten (dann 0)
+SELECT u.name, COUNT(a.id) AS antworten
+FROM users AS u
+LEFT JOIN answers AS a ON a.user_id = u.id
+GROUP BY u.id, u.name;</code></pre>
+    </section>
+    <section>
+      <h2>JOIN-Arten</h2>
+      <table class="info-table">
+        <thead><tr><th>JOIN</th><th>Liefert</th></tr></thead>
+        <tbody>
+          <tr><td><code>INNER JOIN</code></td><td>Nur Zeilen, die in beiden Tabellen einen Partner haben</td></tr>
+          <tr><td><code>LEFT JOIN</code></td><td>Alle Zeilen der linken Tabelle, rechts ggf. <code>NULL</code></td></tr>
+          <tr><td><code>RIGHT JOIN</code></td><td>Alle Zeilen der rechten Tabelle (selten, lässt sich als LEFT JOIN schreiben)</td></tr>
+          <tr><td><code>FULL OUTER JOIN</code></td><td>Alle Zeilen beider Seiten (nicht in jeder Datenbank)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beziehungsarten</h2>
+      <table class="info-table">
+        <thead><tr><th>Art</th><th>Beispiel</th><th>Umsetzung</th></tr></thead>
+        <tbody>
+          <tr><td>1 : n</td><td>Ein Nutzer hat viele Antworten</td><td>Fremdschlüssel in der „vielen“ Tabelle</td></tr>
+          <tr><td>n : m</td><td>Schüler ↔ Kurse</td><td>Zwischentabelle mit zwei Fremdschlüsseln</td></tr>
+          <tr><td>1 : 1</td><td>Nutzer ↔ Profil</td><td>Fremdschlüssel mit <code>UNIQUE</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei mehreren Tabellen Spalten immer mit Tabellenname oder Alias angeben (<code>u.name</code>) – sonst gibt es Fehler bei gleichnamigen Spalten.</li>
+        <li>Vergessene <code>ON</code>-Bedingung erzeugt jede mögliche Kombination (kartesisches Produkt) – sehr viele Zeilen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="sql-tabellen.html">Tabellen</a>
+        <a class="chip" href="sql-select.html">SELECT</a>
+        <a class="chip" href="sql-aggregat.html">GROUP BY</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

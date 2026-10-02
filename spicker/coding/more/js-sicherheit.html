@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Sicherheit – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Sicherheit</p>
+    <h1>Sicherheit im Frontend</h1>
+    <p class="page-lead">Die wichtigsten Regeln, damit deine Seite nicht zum Einfallstor wird – vor allem gegen XSS.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>XSS – Cross-Site-Scripting</h2>
+      <p>Gelangt fremder Text als HTML in die Seite, kann er <code>&lt;script&gt;</code> oder Event-Attribute enthalten – und dann läuft fremder Code mit allen Rechten deiner Seite (Cookies, Eingaben, Weiterleitungen).</p>
+      <pre><code>const comment = '&lt;img src="x" onerror="alert(\'gehackt\')"&gt;';   // z. B. aus einem Formular oder einer URL
+
+element.innerHTML = comment;     // GEFÄHRLICH: onerror wird ausgeführt
+element.textContent = comment;   // SICHER: wird als reiner Text angezeigt</code></pre>
+    </section>
+    <section>
+      <h2>Sichere und unsichere Wege</h2>
+      <table class="info-table">
+        <thead><tr><th>Unsicher mit fremden Daten</th><th>Sicher</th></tr></thead>
+        <tbody>
+          <tr><td><code>el.innerHTML = text</code></td><td><code>el.textContent = text</code></td></tr>
+          <tr><td><code>el.insertAdjacentHTML(…, text)</code></td><td><code>document.createElement</code> + <code>textContent</code></td></tr>
+          <tr><td><code>eval(text)</code>, <code>new Function(text)</code></td><td>gar nicht verwenden</td></tr>
+          <tr><td><code>setTimeout("code als Text")</code></td><td><code>setTimeout(() =&gt; …)</code></td></tr>
+          <tr><td><code>a.href = text</code> (könnte <code>javascript:</code> sein)</td><td>URL prüfen: nur <code>http:</code>/<code>https:</code> erlauben</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>URLs prüfen</h2>
+      <pre><code>function safeLink(url) {
+  try {
+    const parsed = new URL(url, location.href);
+    return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : "#";
+  } catch {
+    return "#";
+  }
+}</code></pre>
+    </section>
+    <section>
+      <h2>Weitere Regeln</h2>
+      <ul>
+        <li><strong>Keine Geheimnisse im Frontend:</strong> API-Schlüssel, Passwörter und Admin-Logik kann jeder im Browser lesen (F12).</li>
+        <li><strong>Nie nur im Browser prüfen:</strong> Jede Prüfung (Preise, Rechte, Eingaben) muss der Server wiederholen.</li>
+        <li><strong>Links mit <code>target="_blank"</code></strong> bekommen <code>rel="noopener"</code>.</li>
+        <li><strong>Fremde Skripte</strong> (CDNs, Tracking) nur von vertrauenswürdigen Quellen einbinden – sie haben volle Kontrolle über die Seite.</li>
+        <li><strong>npm-Pakete</strong> prüfen und mit <code>npm audit</code> auf bekannte Lücken testen.</li>
+        <li><strong>Content Security Policy (CSP)</strong> auf dem Server setzen – verbietet z. B. Inline-Skripte komplett.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Faustregel: Alles, was von außen kommt (Formular, URL, API, localStorage), ist unsicher, bis es geprüft ist.</li>
+        <li>Wer doch HTML von Nutzern anzeigen muss, verwendet eine Bibliothek wie DOMPurify zum Säubern.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-dom.html">DOM</a>
+        <a class="chip" href="sql-sicherheit.html">Sicherheit</a>
+        <a class="chip" href="php-formulare.html">Formulare</a>
+        <a class="chip" href="js-formulare.html">Formulare</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

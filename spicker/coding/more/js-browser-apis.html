@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Browser-APIs – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Browser</p>
+    <h1>Nützliche Browser-APIs</h1>
+    <p class="page-lead">Zwischenablage, Elemente beim Scrollen erkennen, Standort, Vollbild, Teilen und mehr.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Zwischenablage</h2>
+      <pre><code>async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    console.log("[clipboard] kopiert");
+  } catch (error) {
+    console.error("[clipboard] nicht erlaubt:", error);
+  }
+}</code></pre>
+    </section>
+    <section>
+      <h2>IntersectionObserver – beim Scrollen einblenden</h2>
+      <pre><code>const observer = new IntersectionObserver((entries) =&gt; {
+  entries.forEach(entry =&gt; {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");     // CSS übernimmt die Animation
+      observer.unobserve(entry.target);          // nur einmal
+    }
+  });
+}, { threshold: 0.2 });                          // 20 % sichtbar
+
+document.querySelectorAll(".fade-in").forEach(el =&gt; observer.observe(el));</code></pre>
+      <pre><code>.fade-in         { opacity: 0; transform: translateY(20px); transition: 0.5s; }
+.fade-in.visible { opacity: 1; transform: none; }</code></pre>
+      <p>Auch ideal für „Lazy Loading“ oder Endlos-Scrollen – viel effizienter als auf <code>scroll</code> zu hören.</p>
+    </section>
+    <section>
+      <h2>Weitere APIs</h2>
+      <table class="info-table">
+        <thead><tr><th>API</th><th>Beispiel</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>Teilen</td><td><code>navigator.share({ title, url })</code></td><td>Teilen-Menü des Handys öffnen</td></tr>
+          <tr><td>Vollbild</td><td><code>element.requestFullscreen()</code></td><td>Video, Spiel, Präsentation</td></tr>
+          <tr><td>Standort</td><td><code>navigator.geolocation.getCurrentPosition(ok, fehler)</code></td><td>Nutzer muss zustimmen</td></tr>
+          <tr><td>Online-Status</td><td><code>navigator.onLine</code> + Event <code>online</code>/<code>offline</code></td><td>Offline-Hinweis anzeigen</td></tr>
+          <tr><td>Sichtbarkeit</td><td><code>document.visibilityState</code> + Event <code>visibilitychange</code></td><td>Timer pausieren, wenn Tab im Hintergrund</td></tr>
+          <tr><td>Dark Mode erkennen</td><td><code>matchMedia("(prefers-color-scheme: dark)").matches</code></td><td>Theme anpassen</td></tr>
+          <tr><td>Größenänderung beobachten</td><td><code>new ResizeObserver(cb).observe(el)</code></td><td>Auf Größe eines Elements reagieren</td></tr>
+          <tr><td>Benachrichtigungen</td><td><code>Notification.requestPermission()</code></td><td>Systemmeldung anzeigen</td></tr>
+          <tr><td>URL lesen</td><td><code>new URL(location.href).searchParams.get("q")</code></td><td>Parameter aus der Adresse</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Vorher prüfen, ob es die API gibt</h2>
+      <pre><code>if ("share" in navigator) {
+  shareButton.hidden = false;
+} else {
+  console.info("[share] nicht unterstützt – Button bleibt versteckt");
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Viele APIs (Zwischenablage, Standort, Kamera) funktionieren nur über <code>https://</code> oder <code>localhost</code>.</li>
+        <li>Berechtigungen nur anfragen, wenn der Nutzer etwas angeklickt hat – nicht beim Laden der Seite.</li>
+        <li>Ob ein Browser eine API kann, steht auf caniuse.com.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-dom.html">DOM</a>
+        <a class="chip" href="js-events.html">Events</a>
+        <a class="chip" href="js-animation.html">Animationen</a>
+        <a class="chip" href="js-speicher.html">localStorage</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

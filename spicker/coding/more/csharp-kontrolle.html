@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C#: Kontrollstrukturen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C# · Kontrollstrukturen</p>
+    <h1>Bedingungen, Schleifen &amp; Methoden</h1>
+    <p class="page-lead"><code>if</code>, <code>switch</code>-Ausdrücke, Schleifen und eigene Methoden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>if &amp; switch</h2>
+      <pre><code>int points = 72;
+
+if (points &gt;= 90) {
+    Console.WriteLine("Sehr gut");
+} else if (points &gt;= 60) {
+    Console.WriteLine("Bestanden");
+} else {
+    Console.WriteLine("Nicht bestanden");
+}
+
+// switch-Ausdruck (modern, liefert einen Wert)
+string grade = points switch {
+    &gt;= 90 =&gt; "sehr gut",
+    &gt;= 60 =&gt; "bestanden",
+    _     =&gt; "nicht bestanden"      // _ = alles andere
+};</code></pre>
+    </section>
+    <section>
+      <h2>Schleifen</h2>
+      <pre><code>for (int i = 0; i &lt; 5; i++) {
+    Console.WriteLine(i);
+}
+
+var colors = new List&lt;string&gt; { "rot", "grün", "blau" };
+foreach (var color in colors) {
+    Console.WriteLine(color);
+}
+
+int tries = 0;
+while (tries &lt; 3) { tries++; }
+
+do {
+    // läuft mindestens einmal
+} while (false);</code></pre>
+      <p><code>break</code> und <code>continue</code> funktionieren wie in C++ und JavaScript.</p>
+    </section>
+    <section>
+      <h2>Methoden</h2>
+      <pre><code>static int Add(int a, int b) {
+    return a + b;
+}
+
+static string Greet(string name, string greeting = "Hallo") =&gt; $"{greeting}, {name}!";   // Kurzform
+
+// mehrere Rückgabewerte mit Tupel
+static (int min, int max) MinMax(List&lt;int&gt; values) =&gt; (values.Min(), values.Max());
+
+var (low, high) = MinMax(new List&lt;int&gt; { 4, 9, 1 });
+Console.WriteLine($"{low} – {high}");</code></pre>
+      <p>Methodennamen schreibt man in C# in <strong>PascalCase</strong>: <code>CalculateTotal</code>, nicht <code>calculateTotal</code>.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>=&gt;</code> bei Methoden ist eine Kurzschreibweise für <code>{ return …; }</code>.</li>
+        <li>Beim <code>switch</code>-Ausdruck muss jeder Fall abgedeckt sein – <code>_</code> fängt den Rest.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="csharp-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="csharp-collections.html">Collections &amp; LINQ</a>
+        <a class="chip" href="csharp-klassen.html">Klassen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

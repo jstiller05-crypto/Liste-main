@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>std::cin – Eingabe von Konsole</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++</p>
+    <h1>std::cin</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>std::cin</code> liest Daten von der Standardeingabe (normalerweise Tastatur) und speichert sie in Variablen.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>std::cin &gt;&gt; variable;
+std::cin &gt;&gt; var1 &gt;&gt; var2;</code></pre>
+      <p>Der `&gt;&gt;`-Operator (Extract-Operator) liest Daten aus dem Input-Stream.</p>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int alter;
+    string name;
+    
+    cout &lt;&lt; "Gib deinen Namen ein: ";
+    cin &gt;&gt; name;
+    
+    cout &lt;&lt; "Gib dein Alter ein: ";
+    cin &gt;&gt; alter;
+    
+    cout &lt;&lt; "Hallo " &lt;&lt; name &lt;&lt; ", du bist " &lt;&lt; alter &lt;&lt; " Jahre alt!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man es?</h2>
+      <p>Um Eingaben vom Benutzer zu lesen und in einem Programm zu verarbeiten.</p>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li>`cin &gt;&gt;` stoppt beim Lesen bei Whitespace (Leerzeichen, Tab, Newline)</li>
+        <li>Für ganze Zeilen: `getline(cin, string)` verwenden</li>
+        <li>Immer prüfen, ob die Eingabe erfolgreich war (`if(cin)` oder `cin.fail()`)</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cout.html">std::cout</a>
+        <a class="chip" href="cpp-string.html">std::string</a>
+        <a class="chip" href="cpp-fehler.html">Fehler &amp; Exceptions</a>
+        <a class="chip" href="cpp-dateien.html">Dateien</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Konstruktor &amp; Kapselung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · OOP</p>
+    <h1>Konstruktor, Destruktor &amp; Kapselung</h1>
+    <p class="page-lead">Wie Objekte entstehen und aufgeräumt werden – und wie man Daten mit private schützt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Konstruktor mit Initialisierungsliste</h2>
+      <pre><code>class Player {
+public:
+    // Konstruktor: gleicher Name wie die Klasse, kein Rückgabetyp
+    Player(const std::string&amp; name, int level)
+        : name(name), level(level), score(0)    // Initialisierungsliste
+    {
+        std::cout &lt;&lt; "[Player] " &lt;&lt; name &lt;&lt; " erstellt\n";
+    }
+
+    // Standard-Konstruktor
+    Player() : Player("Unbekannt", 1) {}          // ruft den anderen auf
+
+    // Destruktor: wird automatisch aufgerufen, wenn das Objekt verschwindet
+    ~Player() {
+        std::cout &lt;&lt; "[Player] " &lt;&lt; name &lt;&lt; " entfernt\n";
+    }
+
+private:
+    std::string name;
+    int level;
+    int score;
+};
+
+int main() {
+    Player p1("Max", 3);
+    Player p2;
+    return 0;
+}   // hier laufen die Destruktoren (erst p2, dann p1)</code></pre>
+    </section>
+    <section>
+      <h2>Kapselung: public, private, protected</h2>
+      <table class="info-table">
+        <thead><tr><th>Zugriff</th><th>Wer darf zugreifen?</th></tr></thead>
+        <tbody>
+          <tr><td><code>public</code></td><td>Alle</td></tr>
+          <tr><td><code>private</code></td><td>Nur die Klasse selbst (Standard bei <code>class</code>)</td></tr>
+          <tr><td><code>protected</code></td><td>Die Klasse und abgeleitete Klassen</td></tr>
+        </tbody>
+      </table>
+      <pre><code>class BankAccount {
+public:
+    void deposit(double amount) {
+        if (amount &lt;= 0) {
+            std::cerr &lt;&lt; "[BankAccount] Ungültiger Betrag\n";
+            return;
+        }
+        balance += amount;
+    }
+
+    double getBalance() const {   // Getter
+        return balance;
+    }
+
+private:
+    double balance = 0.0;         // von außen nicht direkt änderbar
+};</code></pre>
+      <p>Der Vorteil: Die Klasse kontrolliert, wie ihre Daten geändert werden – negative Einzahlungen sind unmöglich.</p>
+    </section>
+    <section>
+      <h2>this</h2>
+      <pre><code>void setLevel(int level) {
+    this-&gt;level = level;   // this zeigt auf das aktuelle Objekt
+}</code></pre>
+    </section>
+    <section>
+      <h2>Klasse auf Header und Quelldatei aufteilen</h2>
+      <pre><code>// Player.h
+#pragma once
+#include &lt;string&gt;
+
+class Player {
+public:
+    Player(const std::string&amp; name);
+    void addScore(int points);
+    int getScore() const;
+private:
+    std::string name;
+    int score = 0;
+};</code></pre>
+      <pre><code>// Player.cpp
+#include "Player.h"
+
+Player::Player(const std::string&amp; name) : name(name) {}
+
+void Player::addScore(int points) {
+    score += points;
+}
+
+int Player::getScore() const {
+    return score;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Initialisierungsliste statt Zuweisung im Rumpf – schneller und für <code>const</code>-Member Pflicht.</li>
+        <li>Einen Konstruktor mit einem Parameter mit <code>explicit</code> markieren, um versehentliche Umwandlungen zu verhindern.</li>
+        <li>Einen eigenen Destruktor braucht man meist nur, wenn die Klasse selbst Speicher mit <code>new</code> verwaltet – mit Smart Pointern fast nie.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-class.html">Klassen</a>
+        <a class="chip" href="cpp-vererbung.html">Vererbung</a>
+        <a class="chip" href="cpp-header.html">Header-Dateien</a>
+        <a class="chip" href="cpp-speicher.html">Speicher &amp; Smart Pointer</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C: printf &amp; scanf – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C · Grundlagen</p>
+    <h1>printf &amp; scanf</h1>
+    <p class="page-lead">Formatierte Ausgabe und Eingabe mit Platzhaltern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>printf – ausgeben</h2>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int age = 17;
+    double price = 9.5;
+    char grade = 'A';
+    const char *name = "Max";
+
+    printf("Name: %s\n", name);
+    printf("Alter: %d Jahre\n", age);
+    printf("Preis: %.2f Euro\n", price);       /* 2 Nachkommastellen */
+    printf("Note: %c\n", grade);
+    printf("%s ist %d und hat Note %c\n", name, age, grade);
+    return 0;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Platzhalter</h2>
+      <table class="info-table">
+        <thead><tr><th>Platzhalter</th><th>Typ</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>%d</code> / <code>%i</code></td><td><code>int</code></td><td><code>42</code></td></tr>
+          <tr><td><code>%ld</code></td><td><code>long</code></td><td></td></tr>
+          <tr><td><code>%u</code></td><td><code>unsigned int</code></td><td></td></tr>
+          <tr><td><code>%zu</code></td><td><code>size_t</code> (z. B. von <code>sizeof</code>)</td><td></td></tr>
+          <tr><td><code>%f</code> / <code>%.2f</code></td><td><code>double</code> / <code>float</code></td><td><code>3.14</code></td></tr>
+          <tr><td><code>%c</code></td><td><code>char</code></td><td><code>'A'</code></td></tr>
+          <tr><td><code>%s</code></td><td>String (<code>char *</code>)</td><td><code>"Max"</code></td></tr>
+          <tr><td><code>%p</code></td><td>Zeiger/Adresse</td><td><code>0x7ffd…</code></td></tr>
+          <tr><td><code>%x</code></td><td>Hexadezimal</td><td><code>ff</code></td></tr>
+          <tr><td><code>%%</code></td><td>Ein echtes Prozentzeichen</td><td></td></tr>
+          <tr><td><code>%5d</code> / <code>%-10s</code></td><td>Breite 5 rechtsbündig / 10 linksbündig</td><td>für Tabellen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>scanf – einlesen</h2>
+      <pre><code>int age;
+printf("Alter: ");
+if (scanf("%d", &amp;age) != 1) {          /* &amp; = Adresse der Variable übergeben! */
+    fprintf(stderr, "Ungültige Eingabe\n");
+    return 1;
+}
+
+char name[50];
+printf("Name: ");
+scanf("%49s", name);                   /* bei Arrays kein &amp; · 49 = max. Zeichen (Platz für \0) */</code></pre>
+      <p><code>scanf</code> gibt zurück, wie viele Werte erfolgreich gelesen wurden – immer prüfen.</p>
+    </section>
+    <section>
+      <h2>Ganze Zeile sicher lesen</h2>
+      <pre><code>char line[100];
+if (fgets(line, sizeof line, stdin) != NULL) {
+    line[strcspn(line, "\n")] = '\0';     /* Zeilenumbruch entfernen (string.h) */
+    printf("Gelesen: %s\n", line);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Falscher Platzhalter (<code>%d</code> für <code>double</code>) gibt Unsinn aus – der Compiler warnt mit <code>-Wall</code>.</li>
+        <li>Bei <code>scanf</code> das <code>&amp;</code> vor normalen Variablen nicht vergessen.</li>
+        <li>Fehlermeldungen mit <code>fprintf(stderr, …)</code> ausgeben – dem C-Gegenstück zu <code>std::cerr</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="c-einfuehrung.html">C</a>
+        <a class="chip" href="c-strings.html">Strings</a>
+        <a class="chip" href="cout.html">std::cout</a>
+        <a class="chip" href="cin.html">std::cin</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

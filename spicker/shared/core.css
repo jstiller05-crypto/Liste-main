@@ -1,0 +1,909 @@
+/* =====================================================================
+   core.css – gemeinsames Design ALLER Spicker
+   ---------------------------------------------------------------------
+   Schlicht gehalten: Grautöne + EINE Akzentfarbe. Die Farben stehen als
+   Variablen in :root (Teil A). Jeder Spicker hat eine eigene theme.css,
+   die NUR diese Variablen überschreibt – z. B. --accent. Layout-Regeln
+   gibt es ausschließlich hier.
+
+   Welche Regeln für welche Seite gelten, entscheidet die Klasse am <body>:
+     <body class="detail-page">          Detailseiten  (<spicker>/more/*.html)
+     <body class="list-page">            Listen        (<spicker>/index.html)
+     <body class="detail-page hub-page">  Übersicht     (spicker/index.html)
+   Darum steht vor fast jeder Regel ".detail-page " bzw. ".list-page ".
+   So kann z. B. "footer" auf der Liste anders aussehen als auf einer
+   Detailseite, ohne dass sich die Regeln gegenseitig stören.
+
+   Inhalt:
+   A.  Farben (Variablen) & Grundlagen
+   B.  Detailseiten        B2 Seitenkopf … B9 Handy
+   C.  Listen-Seiten       C1 Grundlagen & Tabelle, C2 Header,
+                           C3 Spicker-Wechsler
+   D.  Übersicht (Hub)     Kacheln
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   A. FARBEN & GRUNDLAGEN
+   ---------------------------------------------------------------------
+   Diese Variablen darf eine theme.css überschreiben.
+   --------------------------------------------------------------------- */
+:root {
+  --page-bg:    #333333;   /* Seitenhintergrund */
+  --card-bg:    #2b2b2b;   /* Abschnitte / Kacheln */
+  --code-bg:    #222222;   /* Codeblöcke */
+  --header-bg:  #222222;   /* Kopf der Liste (gleiche Farbe wie der Footer) */
+  --panel-bg:   #2b2b2b;   /* Filter-Dropdown */
+  --chip-bg:    #3a3a3a;   /* Filter-Button normal */
+  --chip-hover: #474747;   /* Filter-Button beim Drüberfahren */
+  --border:     #444444;
+  --text-main:  #f2f2f2;
+  --text-muted: #b5b5b5;
+  --accent:     #4f8cff;   /* die einzige Farbe – theme.css setzt sie pro Spicker */
+
+  /* Leichter Schein um das Suchfeld: die Akzentfarbe zu 25 % deckend.
+     color-mix() mischt zwei Farben; "transparent" = durchsichtig.
+     Weil hier var(--accent) benutzt wird, passt sich der Schein
+     automatisch an, wenn theme.css --accent ändert. */
+  --accent-glow: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+* {
+  box-sizing: border-box;  /* padding zählt zur Breite */
+}
+
+
+/* =====================================================================
+   B. DETAILSEITEN  (<body class="detail-page">)
+   ===================================================================== */
+
+.detail-page, .detail-page * {
+  box-sizing: border-box;  /* padding zählt zur Breite */
+}
+
+body.detail-page {
+  margin: 0;
+  background-color: var(--page-bg);
+  color: var(--text-main);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+
+/* Inhalt linksbündig über die volle Breite – kein Zentrieren,
+   damit kein Platz an den Rändern verschwendet wird */
+.detail-page .page-header,
+.detail-page main {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+
+/* ---------------------------------------------------------------------
+   B2. SEITENKOPF
+   --------------------------------------------------------------------- */
+.detail-page header,
+.detail-page .page-header {
+  padding-top: 28px;
+  padding-bottom: 8px;
+}
+
+/* kleine Zeile über dem Titel, z. B. "HTML · Formulare" */
+.detail-page .page-kicker {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.detail-page header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-family: Consolas, Monaco, monospace;  /* Tag-Namen wie Code */
+}
+
+.detail-page .page-lead {
+  margin: 10px 0 0;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------------------
+   B3. ABSCHNITTE
+   --------------------------------------------------------------------- */
+.detail-page main {
+  padding-bottom: 90px;   /* Platz für das Zurück-Icon unten rechts */
+}
+
+.detail-page section {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+
+.detail-page section h2 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+.detail-page section h3 {
+  margin: 18px 0 8px;
+  font-size: 1.05rem;
+}
+
+.detail-page section p,
+.detail-page section li {
+  color: var(--text-muted);
+}
+
+.detail-page section p {
+  margin: 0 0 12px;
+}
+
+.detail-page section p:last-child {
+  margin-bottom: 0;
+}
+
+.detail-page section ul,
+.detail-page section ol {
+  margin: 0 0 12px;
+  padding-left: 1.3rem;
+}
+
+.detail-page section li {
+  margin-bottom: 6px;
+}
+
+.detail-page strong {
+  color: var(--text-main);
+}
+
+
+/* ---------------------------------------------------------------------
+   B4. CODE & COPY-BUTTON
+   --------------------------------------------------------------------- */
+.detail-page code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.92em;
+}
+
+/* Code mitten im Text */
+.detail-page p code,
+.detail-page li code,
+.detail-page td code {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--text-main);
+}
+
+/* Codeblock */
+.detail-page pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 0 0 12px;
+  overflow-x: auto;       /* lange Zeilen: seitlich scrollen statt umbrechen */
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+/* Der Copy-Button wird von page.js direkt ÜBER jedem <pre> eingefügt */
+.detail-page .copy-button {
+  display: block;
+  margin: 0 0 6px auto;   /* margin-left: auto → rechtsbündig */
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.detail-page .copy-button:hover {
+  color: var(--text-main);
+  border-color: var(--accent);
+}
+
+
+/* ---------------------------------------------------------------------
+   B5. TABELLEN, HINWEISE, VORSCHAU
+   --------------------------------------------------------------------- */
+.detail-page .info-table {
+  width: 100%;
+  border-collapse: collapse;   /* keine doppelten Linien */
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+}
+
+.detail-page .info-table th,
+.detail-page .info-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-page .info-table th {
+  color: var(--text-main);
+  font-size: 0.85rem;
+}
+
+.detail-page .info-table td {
+  color: var(--text-muted);
+}
+
+.detail-page .info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.detail-page .note {
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  margin: 0 0 12px;
+  background-color: var(--code-bg);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-muted);
+}
+
+/* Live-Vorschau: zeigt, wie das Beispiel im Browser aussieht.
+   Hier bewusst wenig eigenes Styling, damit man das Browser-Standard-
+   aussehen der Elemente sieht. */
+.detail-page .preview {
+  position: relative;
+  margin: 0 0 12px;
+  padding: 30px 16px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-main);
+}
+
+.detail-page .preview::before {
+  content: "Vorschau";
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.detail-page .preview p,
+.detail-page .preview li {
+  color: var(--text-main);
+}
+
+.detail-page .preview table {
+  border-collapse: collapse;
+}
+
+.detail-page .preview th,
+.detail-page .preview td {
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+}
+
+
+/* ---------------------------------------------------------------------
+   B6. LINKS & CHIPS
+   --------------------------------------------------------------------- */
+.detail-page a {
+  color: var(--text-main);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.detail-page a:hover {
+  color: var(--accent);
+}
+
+/* automatische Links aus page.js – dezenter als normale Links */
+.detail-page .smart-link {
+  color: inherit;
+  text-decoration: underline dotted var(--accent);
+}
+
+.detail-page .chip-row {
+  display: flex;
+  flex-wrap: wrap;   /* umbrechen, wenn kein Platz mehr ist */
+  gap: 8px;
+}
+
+.detail-page .chip {
+  padding: 5px 12px;
+  font-size: 0.9rem;
+  font-family: Consolas, Monaco, monospace;
+  text-decoration: none;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 999px;   /* Pillenform */
+}
+
+.detail-page .chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ---------------------------------------------------------------------
+   B7. FOOTER (Zurück-Icon unten rechts)
+   --------------------------------------------------------------------- */
+.detail-page footer {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+
+.detail-page .back-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  opacity: 0.8;
+}
+
+.detail-page .back-icon:hover {
+  opacity: 1;
+}
+
+.detail-page .back-icon img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ---------------------------------------------------------------------
+   B8. VERSTÄNDNIS-BEWERTUNG (Button + Punkte-Lineal)
+   ---------------------------------------------------------------------
+   Wird von page.js in den vorhandenen <footer> eingefügt (Button über
+   dem Zurück-Pfeil). Nutzt bewusst nur die Farb-Variablen von oben –
+   keine neuen Farben, nichts zentriert.
+   --------------------------------------------------------------------- */
+
+/* Umhüllt Button + Lineal. "position: relative" ist der Ankerpunkt für
+   das Lineal (position: absolute), s. u. */
+.detail-page .progress-widget {
+  position: relative;
+}
+
+.detail-page .progress-button {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 0 8px;   /* Abstand zum Zurück-Pfeil darunter */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: Consolas, Monaco, monospace;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.detail-page .progress-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Das Lineal klappt ÜBER dem Button auf (bottom: 100%) und ist rechts-
+   bündig zum Button (right: 0) – dadurch wächst es nach links, weg vom
+   rechten Bildschirmrand, an dem der Footer klebt. */
+.detail-page .progress-ruler {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  min-width: 220px;
+  padding: 10px 12px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.detail-page .progress-ruler[hidden] {
+  display: none;
+}
+
+.detail-page .progress-ruler-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 16px;
+  margin: 0 0 6px;
+}
+
+.detail-page .progress-ruler-preview {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.detail-page .progress-ruler-reset {
+  padding: 0 2px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.detail-page .progress-ruler-reset:hover {
+  color: var(--accent);
+}
+
+.detail-page .progress-ruler-dots {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.detail-page .progress-dot {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.detail-page .progress-dot:hover,
+.detail-page .progress-dot:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.detail-page .progress-dot.is-filled {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.detail-page .progress-ruler-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------------------------------------------------------------------
+   B9. HANDY (schmale Bildschirme)
+   --------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .detail-page header h1 {
+    font-size: 1.7rem;
+  }
+
+  .detail-page section {
+    padding: 14px 16px;
+  }
+
+  .detail-page .info-table {
+    font-size: 0.88rem;
+  }
+
+  .detail-page .progress-ruler {
+    min-width: 200px;
+    max-width: calc(100vw - 32px);   /* nie über den Bildschirmrand hinaus */
+    padding: 8px 10px;
+  }
+
+  .detail-page .progress-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+
+/* =====================================================================
+   C. LISTEN-SEITEN  (<body class="list-page">)
+   ---------------------------------------------------------------------
+   Übernommen aus der früheren Spicker.css – sieht genauso aus wie vorher.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   C1. GRUNDLAGEN & TABELLE
+   --------------------------------------------------------------------- */
+.list-page, .list-page * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body.list-page {
+  background-color: #333333; /* dunkler Hintergrund für bessere Lesbarkeit */
+}
+
+.list-page main {
+  height: 90%;
+}
+
+.list-page #dynamicTable {
+  width:98.5%;
+  text-align: left;
+  border: 0px;
+  font-size: 30px;
+}
+
+.list-page table,
+.list-page th,
+.list-page td {
+  border:1px solid black;
+  color: black;
+}
+
+.list-page table,
+.list-page td,
+.list-page th {
+  color: #000000;
+}
+.list-page table,
+.list-page tr,
+.list-page td,
+.list-page a {
+  color: white;
+}
+
+.list-page footer {
+  background-color: #222;
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+
+.list-page .ersteller {
+  font-size:xx-large;
+}
+
+/* Falls nichts gefunden wurde */
+
+.list-page #noResultsOverlay {
+  /* position: fixed; fixiert über der Seite */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  background-color: #555; /* halbtransparentes Weiß */
+  display: none; /* erst unsichtbar */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.list-page #noResultsOverlay .overlay-content {
+  background: none;
+  padding: 30px 50px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------------------------------------------------------------------
+   C2. HEADER (Logo, Wechsler, Suche, Filter-Dropdown)
+   --------------------------------------------------------------------- */
+
+/* Der ganze Header bleibt beim Scrollen oben kleben (sticky) */
+.list-page .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;               /* liegt über der Tabelle */
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  margin: -8px -8px 16px;     /* gleicht den Standard-Rand vom body aus */
+}
+
+/* Innerer Bereich: Logo links, Suche rechts (Flexbox = nebeneinander) */
+.list-page .header-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 24px;
+}
+
+/* ----- Logo + Titel ----- */
+.list-page .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;             /* wird nie zusammengedrückt */
+}
+
+.list-page .brand-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.list-page .brand-title {
+  margin: 0;
+  font-size: 24px;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
+
+.list-page .brand-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ----- Suchbereich ----- */
+.list-page .search-area {
+  position: relative;         /* Bezugspunkt für das Dropdown (absolute) */
+  flex: 1;                    /* nimmt den restlichen Platz ein */
+}
+
+.list-page .search-box {
+  position: relative;         /* Bezugspunkt für die Lupe */
+}
+
+.list-page .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);/* vertikal genau mittig */
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;       /* Klicks gehen durch die Lupe ins Feld */
+}
+
+.list-page #myInput {
+  width: 100%;
+  box-sizing: border-box;     /* padding zählt zur Breite → kein Überstehen */
+  padding: 12px 16px 12px 42px; /* links Platz für die Lupe */
+  font-size: 16px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-page #myInput::placeholder {
+  color: var(--text-muted);
+}
+
+/* Wenn man ins Feld klickt: Rand in Akzentfarbe + leichter Schein */
+.list-page #myInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ----- Dropdown-Panel ----- */
+.list-page .class-dropdown {
+  position: absolute;         /* schwebt ÜBER der Tabelle, schiebt nichts weg */
+  top: calc(100% + 8px);      /* 8px unter dem Suchfeld */
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Sprache | Kategorie (breiter) | Sortierung */
+  gap: 20px;
+  padding: 18px 20px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  /* versteckt, bis das Suchfeld/ein Button Fokus hat */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+/* :focus-within = "irgendein Kind hat gerade Fokus" → Dropdown zeigen */
+.list-page .search-area:focus-within .class-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Eine Spalte im Dropdown */
+.list-page .filter-group {
+  display: flex;
+  flex-direction: column;     /* Titel über den Buttons */
+  gap: 10px;
+}
+
+.list-page .filter-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;  /* schreibt automatisch GROSS */
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+/* Buttons nebeneinander, brechen bei Platzmangel um */
+.list-page .chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ----- Filter-Buttons als "Chips" (Pillenform) ----- */
+.list-page .button {
+  all: unset;                 /* Browser-Standardstyles löschen */
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;       /* sehr großer Radius = Pillenform */
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.list-page .button:hover {
+  background-color: var(--chip-hover);
+}
+
+/* Tastatur-Fokus sichtbar machen (Tab-Taste) */
+.list-page .button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Aktiver Filter (Klasse wird per JS gesetzt) */
+.list-page .button.active {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* ----- Sortier-Auswahl ----- */
+.list-page #sortSelect {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.list-page #sortSelect:focus {
+  outline: 2px solid var(--accent);
+}
+
+/* ----- Link zur Anleitung (rechts neben der Suche) -----
+   Sieht aus wie ein Filter-Chip, damit keine neue Farbe dazukommt. */
+.list-page .help-link {
+  flex-shrink: 0;             /* wird nicht zusammengedrückt */
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--text-main);
+  text-decoration: none;
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.list-page .help-link:hover {
+  background-color: var(--chip-hover);
+  border-color: var(--accent);
+}
+
+.list-page .help-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ----- Kleine Bildschirme (Handy) ----- */
+/* @media = diese Regeln gelten nur, wenn das Fenster schmaler als 800px ist */
+@media (max-width: 800px) {
+  .list-page .header-inner {
+    flex-direction: column;   /* Logo über der Suche statt daneben */
+    align-items: stretch;
+  }
+
+  .list-page .class-dropdown {
+    grid-template-columns: 1fr; /* alle Gruppen untereinander */
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   C3. SPICKER-WECHSLER (Auswahl neben dem Logo)
+   ---------------------------------------------------------------------
+   Ein normales <select>, gestaltet wie die Sortier-Auswahl. list.js
+   füllt es aus shared/topics.js.
+   --------------------------------------------------------------------- */
+.list-page .topic-switcher {
+  padding: 6px 10px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.list-page .topic-switcher:focus {
+  outline: 2px solid var(--accent);
+}
+
+
+
+/* =====================================================================
+   D. ÜBERSICHT / HUB  (<body class="detail-page hub-page">)
+   ---------------------------------------------------------------------
+   Die Übersicht benutzt Seitenkopf und Abschnitte der Detailseiten
+   (Klasse detail-page) und ergänzt hier nur die Kacheln.
+   ===================================================================== */
+
+/* Kacheln nebeneinander; so viele pro Zeile, wie mit mind. 260px passen.
+   auto-fill + minmax = "fülle die Zeile mit Spalten von 260px bis 1fr" */
+.hub-page .topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+
+/* --tile-accent setzt hub.js pro Kachel auf die Farbe aus topics.js */
+.hub-page .topic-tile {
+  display: block;
+  padding: 16px 18px;
+  color: var(--text-main);
+  text-decoration: none;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--tile-accent, var(--accent));
+  border-radius: 10px;
+}
+
+.hub-page .topic-tile:hover,
+.hub-page .topic-tile:focus-visible {
+  border-color: var(--tile-accent, var(--accent));
+  outline: none;
+}
+
+.hub-page .topic-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.hub-page .topic-title {
+  margin: 8px 0 4px;
+  font-size: 1.25rem;
+}
+
+.hub-page .topic-subtitle,
+.hub-page .topic-count {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.hub-page .topic-count {
+  margin-top: 8px;
+  font-size: 0.85rem;
+}
+
+.hub-page .hub-credit {
+  color: var(--text-muted);
+}

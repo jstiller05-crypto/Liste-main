@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Module – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Fortgeschritten</p>
+    <h1>Module (import / export)</h1>
+    <p class="page-lead">Code auf mehrere Dateien verteilen und gezielt importieren.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Wird eine JS-Datei groß, teilt man sie auf. Mit <code>export</code> gibt eine Datei Funktionen oder Werte frei, mit <code>import</code> holt eine andere Datei sie sich.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>// mathUtils.js
+export function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+export const PI_ROUNDED = 3.14;
+
+// Standard-Export (einer pro Datei)
+export default function greet(name) {
+  return `Hallo ${name}`;
+}</code></pre>
+      <pre><code>// app.js
+import greet, { randomInt, PI_ROUNDED } from "./mathUtils.js";
+
+console.log(greet("Max"));
+console.log(randomInt(1, 6));</code></pre>
+    </section>
+    <section>
+      <h2>Im HTML einbinden</h2>
+      <pre><code>&lt;script type="module" src="app.js"&gt;&lt;/script&gt;</code></pre>
+      <p><code>type="module"</code> ist Pflicht. Module laden automatisch wie mit <code>defer</code>.</p>
+    </section>
+    <section>
+      <h2>Benannter oder Standard-Export?</h2>
+      <table class="info-table">
+        <thead><tr><th>Art</th><th>Export</th><th>Import</th></tr></thead>
+        <tbody>
+          <tr><td>Benannt</td><td><code>export function a() {}</code></td><td><code>import { a } from "./datei.js"</code></td></tr>
+          <tr><td>Standard</td><td><code>export default …</code></td><td><code>import beliebigerName from "./datei.js"</code></td></tr>
+          <tr><td>Alles</td><td>–</td><td><code>import * as utils from "./datei.js"</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Pfade brauchen <code>./</code> und die Endung <code>.js</code>: <code>"./utils.js"</code>.</li>
+        <li>Module funktionieren nicht über <code>file://</code> – einen lokalen Server verwenden (z. B. „Live Server“ in VS Code).</li>
+        <li>Variablen in Modulen sind nicht automatisch global – nur was exportiert wird, ist außen sichtbar.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="script.html">&lt;script&gt;</a>
+        <a class="chip" href="js-funktionen.html">Funktionen</a>
+        <a class="chip" href="js-async.html">async/await</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

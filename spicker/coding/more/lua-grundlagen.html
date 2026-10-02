@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Lua: Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Lua · Grundlagen</p>
+    <h1>Variablen, Typen &amp; Operatoren</h1>
+    <p class="page-lead"><code>local</code>, die acht Datentypen, Texte verbinden und rechnen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Variablen</h2>
+      <pre><code>local score = 0           -- lokal (immer so!)
+local name = "Max"
+local isActive = true
+local nothing = nil       -- nil = kein Wert
+
+globalValue = 5           -- OHNE local: global – vermeiden
+
+local a, b = 1, 2         -- mehrere auf einmal
+a, b = b, a               -- Werte tauschen</code></pre>
+    </section>
+    <section>
+      <h2>Datentypen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>nil</code></td><td><code>nil</code></td></tr>
+          <tr><td><code>boolean</code></td><td><code>true</code>, <code>false</code></td></tr>
+          <tr><td><code>number</code></td><td><code>42</code>, <code>3.14</code> (ab 5.3 intern: integer oder float)</td></tr>
+          <tr><td><code>string</code></td><td><code>"Hallo"</code>, <code>'Hallo'</code>, <code>[[mehrzeilig]]</code></td></tr>
+          <tr><td><code>table</code></td><td><code>{ 1, 2, 3 }</code>, <code>{ name = "Max" }</code></td></tr>
+          <tr><td><code>function</code></td><td><code>function() end</code></td></tr>
+          <tr><td><code>userdata</code> / <code>thread</code></td><td>Daten aus C / Koroutinen</td></tr>
+        </tbody>
+      </table>
+      <pre><code>print(type(42))        --&gt; number
+print(type("Hi"))      --&gt; string
+print(type(nil))       --&gt; nil</code></pre>
+    </section>
+    <section>
+      <h2>Rechnen &amp; Vergleichen</h2>
+      <table class="info-table">
+        <thead><tr><th>Operator</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>+ - * /</code></td><td>Rechnen – <code>/</code> liefert immer eine Kommazahl: <code>7 / 2</code> = <code>3.5</code></td></tr>
+          <tr><td><code>//</code></td><td>Ganzzahl-Division (Lua 5.3+): <code>7 // 2</code> = <code>3</code> · in 5.1: <code>math.floor(7 / 2)</code></td></tr>
+          <tr><td><code>%</code></td><td>Rest</td></tr>
+          <tr><td><code>^</code></td><td>Potenz: <code>2 ^ 3</code> = <code>8.0</code></td></tr>
+          <tr><td><code>== ~=</code></td><td>gleich / ungleich</td></tr>
+          <tr><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>Vergleiche</td></tr>
+          <tr><td><code>and or not</code></td><td>Logik (als Wörter!)</td></tr>
+          <tr><td><code>..</code></td><td>Texte verbinden</td></tr>
+          <tr><td><code>#</code></td><td>Länge von String oder Liste</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Wahr und falsch</h2>
+      <p>In Lua sind nur <code>false</code> und <code>nil</code> falsch. <strong><code>0</code> und <code>""</code> sind wahr!</strong></p>
+      <pre><code>if 0 then print("0 ist wahr") end          -- wird ausgegeben
+
+local name = input or "Gast"                -- or als Standardwert
+local label = (points &gt;= 60) and "bestanden" or "nicht bestanden"   -- wie ein Ternär</code></pre>
+    </section>
+    <section>
+      <h2>Ausgabe &amp; Umwandlung</h2>
+      <pre><code>print("Punkte:", 42)                     -- mehrere Werte, mit Tab getrennt
+print(string.format("%s hat %d Punkte", "Max", 42))
+
+tonumber("42")      --&gt; 42
+tonumber("abc")     --&gt; nil
+tostring(3.5)       --&gt; "3.5"</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>~=</code> statt <code>!=</code> – der häufigste Tippfehler beim Umstieg.</li>
+        <li><code>and</code>/<code>or</code> statt <code>&amp;&amp;</code>/<code>||</code>.</li>
+        <li>Kommentare über mehrere Zeilen: <code>--[[ … ]]</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="lua-einfuehrung.html">Lua</a>
+        <a class="chip" href="lua-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="lua-strings.html">Strings</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>#include – Bibliotheken einbinden</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++</p>
+    <h1>#include</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Die <code>#include</code>-Direktive bindet externe Header-Dateien oder Bibliotheken in dein C++-Programm ein.</p>
+    </section>
+
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>#include &lt;bibliothek&gt;    // Standardbibliothek
+#include "datei.h"         // Benutzerdefinierte Header</code></pre>
+    </section>
+
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>#include &lt;iostream&gt;      // Ein- und Ausgabe
+#include &lt;string&gt;         // String-Funktionalität
+#include "myHeader.h"      // Eigene Header-Datei</code></pre>
+      <p>Mit `&lt;&gt;` werden Standard-Bibliotheken gesucht. Mit `""` wird zuerst im aktuellen Verzeichnis gesucht.</p>
+    </section>
+
+    <section>
+      <h2>Wann nutzt man es?</h2>
+      <p>Immer, wenn du Funktionen oder Klassen aus anderen Dateien oder Bibliotheken benötigst. Typische Beispiele:</p>
+      <ul>
+        <li><code>&lt;iostream&gt;</code> für Eingabe/Ausgabe</li>
+        <li><code>&lt;string&gt;</code> für Strings</li>
+        <li><code>&lt;vector&gt;</code> für dynamische Arrays</li>
+        <li><code>&lt;cmath&gt;</code> für mathematische Funktionen</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Wichtige Hinweise</h2>
+      <ul>
+        <li><code>#include</code> muss am Anfang der Datei stehen</li>
+        <li>Es ist ein Präprozessor-Befehl (das # am Anfang ist wichtig)</li>
+        <li>Mehrfaches Einbinden desselben Headers kann zu Fehlern führen → nutze Include-Guards</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-header.html">Header-Dateien</a>
+        <a class="chip" href="using-namespace.html">using namespace</a>
+        <a class="chip" href="cpp-kompilieren.html">Kompilieren</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

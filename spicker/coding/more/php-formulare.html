@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>PHP: Formulare – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">PHP · Web</p>
+    <h1>Formulare verarbeiten ($_GET, $_POST)</h1>
+    <p class="page-lead">Eingaben aus HTML-Formularen empfangen, prüfen und sicher ausgeben.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Formular &amp; Verarbeitung in einer Datei</h2>
+      <pre><code>&lt;?php
+$errors = [];
+$name = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {          // wurde abgeschickt?
+    $name  = trim($_POST["name"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+
+    if ($name === "") {
+        $errors[] = "Bitte einen Namen eingeben.";
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Die E-Mail-Adresse ist ungültig.";
+    }
+
+    if (!$errors) {
+        // … speichern, E-Mail senden …
+        header("Location: danke.php");               // weiterleiten (verhindert doppeltes Absenden)
+        exit;
+    }
+}
+?&gt;
+&lt;form method="post"&gt;
+  &lt;?php foreach ($errors as $error): ?&gt;
+    &lt;p class="error"&gt;&lt;?= htmlspecialchars($error) ?&gt;&lt;/p&gt;
+  &lt;?php endforeach; ?&gt;
+
+  &lt;label&gt;Name &lt;input name="name" value="&lt;?= htmlspecialchars($name) ?&gt;"&gt;&lt;/label&gt;
+  &lt;label&gt;E-Mail &lt;input name="email" type="email"&gt;&lt;/label&gt;
+  &lt;button type="submit"&gt;Senden&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Superglobale Variablen</h2>
+      <table class="info-table">
+        <thead><tr><th>Variable</th><th>Enthält</th></tr></thead>
+        <tbody>
+          <tr><td><code>$_GET</code></td><td>Werte aus der URL: <code>seite.php?page=2</code> → <code>$_GET["page"]</code></td></tr>
+          <tr><td><code>$_POST</code></td><td>Werte aus einem Formular mit <code>method="post"</code></td></tr>
+          <tr><td><code>$_SERVER</code></td><td>Infos zur Anfrage, z. B. <code>REQUEST_METHOD</code></td></tr>
+          <tr><td><code>$_FILES</code></td><td>Hochgeladene Dateien</td></tr>
+          <tr><td><code>$_SESSION</code> / <code>$_COOKIE</code></td><td>Sitzungs- und Cookie-Daten</td></tr>
+        </tbody>
+      </table>
+      <p>Die Schlüssel entsprechen dem <code>name</code>-Attribut der Formularfelder.</p>
+    </section>
+    <section>
+      <h2>Sicher ausgeben: htmlspecialchars</h2>
+      <pre><code>echo $_GET["name"];                       // GEFÄHRLICH
+echo htmlspecialchars($_GET["name"]);     // sicher: &lt; wird zu &amp;lt; usw.</code></pre>
+      <p>Ohne <code>htmlspecialchars</code> kann jemand <code>&lt;script&gt;</code>-Code eingeben, der dann bei anderen Besuchern ausgeführt wird (<em>Cross-Site-Scripting</em>, XSS).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jede Nutzereingabe ist verdächtig: prüfen beim Empfangen, <code>htmlspecialchars</code> beim Ausgeben, Platzhalter beim Speichern in der Datenbank.</li>
+        <li><code>?? ""</code> verhindert Warnungen, wenn ein Feld fehlt.</li>
+        <li>Nach erfolgreichem POST weiterleiten (Post/Redirect/Get) – sonst sendet F5 das Formular erneut.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="form.html">&lt;form&gt;</a>
+        <a class="chip" href="input.html">&lt;input&gt;</a>
+        <a class="chip" href="php-sessions.html">Sessions</a>
+        <a class="chip" href="php-datenbank.html">PDO</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C#: Collections &amp; LINQ – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C# · Daten</p>
+    <h1>List, Dictionary &amp; LINQ</h1>
+    <p class="page-lead">Listen und Wörterbücher – und mit LINQ elegant filtern, sortieren und auswerten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Array &amp; List&lt;T&gt;</h2>
+      <pre><code>int[] fixedNumbers = { 3, 1, 4 };        // Array: feste Größe
+
+var numbers = new List&lt;int&gt; { 3, 1, 4 };  // List: wächst automatisch
+numbers.Add(9);
+numbers.Remove(1);                        // Wert entfernen
+numbers.RemoveAt(0);                      // Position entfernen
+numbers.Insert(0, 7);
+numbers.Contains(4);                      // true
+numbers.Count;                            // Anzahl
+numbers.Sort();</code></pre>
+    </section>
+    <section>
+      <h2>Dictionary&lt;TKey, TValue&gt;</h2>
+      <pre><code>var highscores = new Dictionary&lt;string, int&gt; {
+    ["Max"] = 120,
+    ["Anna"] = 150
+};
+
+highscores["Tom"] = 90;                   // hinzufügen / überschreiben
+
+if (highscores.TryGetValue("Lisa", out int score)) {
+    Console.WriteLine(score);
+} else {
+    Console.WriteLine("Lisa nicht gefunden");
+}
+
+foreach (var (name, points) in highscores) {
+    Console.WriteLine($"{name}: {points}");
+}</code></pre>
+    </section>
+    <section>
+      <h2>LINQ</h2>
+      <pre><code>using System.Linq;   // meist schon automatisch eingebunden
+
+var players = new List&lt;(string Name, int Score)&gt; {
+    ("Max", 120), ("Anna", 150), ("Tom", 90)
+};
+
+var top = players
+    .Where(p =&gt; p.Score &gt;= 100)           // filtern
+    .OrderByDescending(p =&gt; p.Score)      // sortieren
+    .Select(p =&gt; p.Name)                  // umwandeln
+    .ToList();
+
+Console.WriteLine(string.Join(", ", top));   // Anna, Max
+
+int total = players.Sum(p =&gt; p.Score);
+double average = players.Average(p =&gt; p.Score);
+bool anyLow = players.Any(p =&gt; p.Score &lt; 100);
+var first = players.FirstOrDefault(p =&gt; p.Name == "Tom");</code></pre>
+      <table class="info-table">
+        <thead><tr><th>LINQ</th><th>Entspricht in JS</th></tr></thead>
+        <tbody>
+          <tr><td><code>Where</code></td><td><code>filter</code></td></tr>
+          <tr><td><code>Select</code></td><td><code>map</code></td></tr>
+          <tr><td><code>OrderBy</code></td><td><code>sort</code></td></tr>
+          <tr><td><code>FirstOrDefault</code></td><td><code>find</code></td></tr>
+          <tr><td><code>Any</code> / <code>All</code></td><td><code>some</code> / <code>every</code></td></tr>
+          <tr><td><code>Sum</code>, <code>Count</code>, <code>Average</code></td><td><code>reduce</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Bei <code>highscores["Unbekannt"]</code> wirft ein Dictionary eine Exception – <code>TryGetValue</code> oder <code>ContainsKey</code> verwenden.</li>
+        <li>LINQ-Abfragen werden erst ausgeführt, wenn man das Ergebnis braucht – <code>.ToList()</code> erzwingt es.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="csharp-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="js-arrays.html">Arrays</a>
+        <a class="chip" href="cpp-vector.html">std::vector</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

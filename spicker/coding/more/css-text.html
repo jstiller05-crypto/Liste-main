@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>CSS: Schrift &amp; Text – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">CSS · Gestaltung</p>
+    <h1>Schrift &amp; Text</h1>
+    <p class="page-lead">Schriftart, Größe, Dicke, Zeilenabstand, Ausrichtung und mehr.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Schrift</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Beispiel</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>font-family</code></td><td><code>Arial, sans-serif</code></td><td>Schriftart (mit Ersatz-Schriften)</td></tr>
+          <tr><td><code>font-size</code></td><td><code>16px</code>, <code>1.2rem</code></td><td>Schriftgröße</td></tr>
+          <tr><td><code>font-weight</code></td><td><code>400</code>, <code>700</code>, <code>bold</code></td><td>Dicke (400 = normal, 700 = fett)</td></tr>
+          <tr><td><code>font-style</code></td><td><code>italic</code></td><td>Kursiv</td></tr>
+          <tr><td><code>line-height</code></td><td><code>1.6</code></td><td>Zeilenabstand (ohne Einheit = Faktor der Schriftgröße)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Text</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Beispiel</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>text-align</code></td><td><code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code></td><td>Ausrichtung</td></tr>
+          <tr><td><code>text-decoration</code></td><td><code>underline</code>, <code>none</code>, <code>line-through</code></td><td>Linien (z. B. Unterstrich bei Links entfernen)</td></tr>
+          <tr><td><code>text-transform</code></td><td><code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code></td><td>Groß-/Kleinschreibung</td></tr>
+          <tr><td><code>letter-spacing</code></td><td><code>1px</code></td><td>Abstand zwischen Buchstaben</td></tr>
+          <tr><td><code>word-spacing</code></td><td><code>4px</code></td><td>Abstand zwischen Wörtern</td></tr>
+          <tr><td><code>text-indent</code></td><td><code>2em</code></td><td>Einrückung der ersten Zeile</td></tr>
+          <tr><td><code>white-space</code></td><td><code>nowrap</code></td><td>Kein Zeilenumbruch</td></tr>
+          <tr><td><code>text-overflow</code></td><td><code>ellipsis</code></td><td>„…“ bei abgeschnittenem Text</td></tr>
+          <tr><td><code>text-shadow</code></td><td><code>1px 1px 2px black</code></td><td>Schatten hinter dem Text</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p style="font-size:1.6rem;font-weight:700;margin:0">Überschrift</p><p style="font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:#4f8cff;margin:4px 0">kleines label</p><p style="line-height:1.6;margin:0">Fließtext mit angenehmem Zeilenabstand.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Eigene Schriften einbinden</h2>
+      <pre><code>&lt;!-- Google Fonts im &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap"&gt;</code></pre>
+      <pre><code>/* oder eigene Datei */
+@font-face {
+  font-family: "MeineSchrift";
+  src: url("fonts/meineschrift.woff2") format("woff2");
+}
+
+body {
+  font-family: "MeineSchrift", Arial, sans-serif;   /* Arial als Ersatz */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Langen Text mit „…“ abschneiden</h2>
+      <pre><code>.one-line {
+  white-space: nowrap;      /* nicht umbrechen */
+  overflow: hidden;         /* Überstand verstecken */
+  text-overflow: ellipsis;  /* … anzeigen */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer eine Ersatz-Schrift angeben (<code>sans-serif</code>, <code>serif</code>, <code>monospace</code>), falls die gewünschte fehlt.</li>
+        <li>Schriftnamen mit Leerzeichen in Anführungszeichen: <code>"Segoe UI"</code>.</li>
+        <li><code>rem</code> statt <code>px</code> für Schriftgrößen – dann respektiert die Seite die Schriftgröße, die der Nutzer im Browser eingestellt hat.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-einheiten.html">Einheiten &amp; calc()</a>
+        <a class="chip" href="css-farben.html">Farben &amp; Hintergründe</a>
+        <a class="chip" href="text-format.html">Textformatierung</a>
+        <a class="chip" href="headings.html">&lt;h1&gt;–&lt;h6&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

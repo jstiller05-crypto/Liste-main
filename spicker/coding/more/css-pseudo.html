@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>CSS: Pseudoklassen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">CSS · Selektoren</p>
+    <h1>Pseudoklassen &amp; Pseudoelemente</h1>
+    <p class="page-lead">Elemente in einem bestimmten Zustand (<code>:hover</code>) oder unsichtbare Teile eines Elements (<code>::before</code>) gestalten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Unterschied</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Pseudoklasse</th><th>Pseudoelement</th></tr></thead>
+        <tbody>
+          <tr><td>Schreibweise</td><td>ein Doppelpunkt <code>:hover</code></td><td>zwei Doppelpunkte <code>::before</code></td></tr>
+          <tr><td>Bedeutung</td><td>Element in einem <strong>Zustand</strong></td><td>Ein <strong>Teil</strong> des Elements</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Zustände (Pseudoklassen)</h2>
+      <table class="info-table">
+        <thead><tr><th>Pseudoklasse</th><th>Trifft, wenn …</th></tr></thead>
+        <tbody>
+          <tr><td><code>:hover</code></td><td>die Maus darüber ist</td></tr>
+          <tr><td><code>:focus</code></td><td>das Element fokussiert ist (z. B. ins Feld geklickt)</td></tr>
+          <tr><td><code>:focus-visible</code></td><td>Fokus per Tastatur – für sichtbare Fokus-Rahmen</td></tr>
+          <tr><td><code>:active</code></td><td>gerade geklickt wird</td></tr>
+          <tr><td><code>:visited</code></td><td>der Link schon besucht wurde</td></tr>
+          <tr><td><code>:checked</code></td><td>Checkbox/Radio angehakt ist</td></tr>
+          <tr><td><code>:disabled</code></td><td>das Feld deaktiviert ist</td></tr>
+          <tr><td><code>:focus-within</code></td><td>irgendein Kind Fokus hat (z. B. für Dropdowns)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Position (Pseudoklassen)</h2>
+      <table class="info-table">
+        <thead><tr><th>Pseudoklasse</th><th>Trifft …</th></tr></thead>
+        <tbody>
+          <tr><td><code>:first-child</code> / <code>:last-child</code></td><td>das erste / letzte Kind</td></tr>
+          <tr><td><code>:nth-child(2)</code></td><td>das 2. Kind</td></tr>
+          <tr><td><code>:nth-child(even)</code> / <code>(odd)</code></td><td>jedes gerade / ungerade Kind</td></tr>
+          <tr><td><code>:nth-child(3n)</code></td><td>jedes dritte Kind</td></tr>
+          <tr><td><code>:not(.active)</code></td><td>alle, die NICHT die Klasse haben</td></tr>
+        </tbody>
+      </table>
+      <pre><code>li:not(:last-child) {
+  border-bottom: 1px solid #444;   /* Trennlinie außer beim letzten */
+}
+
+tr:nth-child(even) {
+  background: #2b2b2b;             /* Zebra-Streifen */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Pseudoelemente</h2>
+      <table class="info-table">
+        <thead><tr><th>Pseudoelement</th><th>Gestaltet …</th></tr></thead>
+        <tbody>
+          <tr><td><code>::before</code> / <code>::after</code></td><td>Einen eingefügten Inhalt vor / nach dem Element (braucht <code>content</code>)</td></tr>
+          <tr><td><code>::placeholder</code></td><td>Den Platzhaltertext eines Eingabefelds</td></tr>
+          <tr><td><code>::marker</code></td><td>Den Punkt/die Nummer einer Liste</td></tr>
+          <tr><td><code>::selection</code></td><td>Markierten Text</td></tr>
+          <tr><td><code>::first-letter</code></td><td>Den ersten Buchstaben</td></tr>
+        </tbody>
+      </table>
+      <pre><code>.required::after {
+  content: " *";          /* ohne content erscheint nichts! */
+  color: #ff5f5f;
+}
+
+input::placeholder {
+  color: #888;
+}</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <label>E-Mail<span style="color:#ff5f5f"> *</span></label>
+      </div>
+    </section>
+    <section>
+      <h2>Beispiel: Button mit allen Zuständen</h2>
+      <pre><code>.button              { background: #3a3a3a; }
+.button:hover        { background: #474747; }
+.button:active       { transform: scale(0.97); }
+.button:focus-visible{ outline: 2px solid #4f8cff; }
+.button:disabled     { opacity: 0.5; cursor: not-allowed; }</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Den Fokus-Rahmen nie ersatzlos entfernen (<code>outline: none</code>) – Tastatur-Nutzer sehen sonst nicht, wo sie sind.</li>
+        <li><code>::before</code>/<code>::after</code> funktionieren nicht bei leeren Elementen wie <code>&lt;img&gt;</code> oder <code>&lt;input&gt;</code>.</li>
+        <li>Zustände kannst du in den Entwicklertools (F12 → Elemente → „:hov“) erzwingen und testen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-selektoren.html">CSS-Selektoren</a>
+        <a class="chip" href="css-animation.html">Animationen</a>
+        <a class="chip" href="button.html">&lt;button&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

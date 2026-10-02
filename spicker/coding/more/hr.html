@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;hr&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;hr&gt;</h1>
+    <p class="page-lead">Trennt zwei inhaltliche Abschnitte – wird als waagerechte Linie dargestellt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;hr&gt;</code> steht für einen <strong>thematischen Wechsel</strong>, z. B. einen Szenenwechsel in einer Geschichte. Wie <code>&lt;br&gt;</code> ist es ein leeres Element ohne End-Tag.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;p&gt;Kapitel 1 endet hier.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Kapitel 2 beginnt.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Kapitel 1 endet hier.</p><hr><p>Kapitel 2 beginnt.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Linie mit CSS gestalten</h2>
+      <pre><code>hr {
+  border: none;
+  border-top: 1px solid #4a4a4a;
+  margin: 24px 0;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ist die Linie nur Dekoration ohne inhaltlichen Wechsel, reicht ein CSS-Rahmen (<code>border-bottom</code>).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="br.html">&lt;br&gt; / &lt;wbr&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

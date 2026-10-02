@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;form&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Formulare</p>
+    <h1>&lt;form&gt;</h1>
+    <p class="page-lead">Ein Formular sammelt Eingaben (Textfelder, Auswahlen, Checkboxen) und schickt sie ab.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;form&gt;</code> ist der Rahmen um zusammengehörige Eingabefelder. Beim Abschicken werden alle Felder mit einem <code>name</code> an die Adresse in <code>action</code> gesendet – oder du fängst das Abschicken mit JavaScript ab und verarbeitest die Daten selbst.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>&lt;form action="ziel" method="post"&gt;
+  &lt;!-- Eingabefelder --&gt;
+  &lt;button type="submit"&gt;Absenden&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Beispiel: Kontaktformular</h2>
+      <pre><code>&lt;form id="contactForm"&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" required&gt;
+
+  &lt;label for="email"&gt;E-Mail&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+
+  &lt;label for="topic"&gt;Thema&lt;/label&gt;
+  &lt;select id="topic" name="topic"&gt;
+    &lt;option value="frage"&gt;Frage&lt;/option&gt;
+    &lt;option value="feedback"&gt;Feedback&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label for="message"&gt;Nachricht&lt;/label&gt;
+  &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
+
+  &lt;label&gt;
+    &lt;input type="checkbox" name="newsletter"&gt; Newsletter abonnieren
+  &lt;/label&gt;
+
+  &lt;button type="submit"&gt;Senden&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>action</code></td><td>Adresse, an die die Daten geschickt werden</td></tr>
+          <tr><td><code>method</code></td><td><code>get</code> (Daten in der URL) oder <code>post</code> (Daten unsichtbar im Hintergrund)</td></tr>
+          <tr><td><code>novalidate</code></td><td>Schaltet die eingebaute Browser-Prüfung ab</td></tr>
+          <tr><td><code>autocomplete</code></td><td><code>on</code>/<code>off</code> – Browser-Vorschläge erlauben oder nicht</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Formular mit JavaScript verarbeiten</h2>
+      <pre><code>const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();               // Seite NICHT neu laden
+
+  const data = new FormData(form);      // alle Felder mit name einsammeln
+  console.log("Name:", data.get("name"));
+  console.log("E-Mail:", data.get("email"));
+});</code></pre>
+      <p><code>event.preventDefault()</code> verhindert das normale Abschicken. Ohne diese Zeile lädt die Seite neu und deine JavaScript-Ausgaben sind weg.</p>
+    </section>
+    <section>
+      <h2>GET oder POST?</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>GET</th><th>POST</th></tr></thead>
+        <tbody>
+          <tr><td>Daten stehen …</td><td>in der URL (<code>?name=Max</code>)</td><td>unsichtbar im Anfrage-Inhalt</td></tr>
+          <tr><td>Gut für …</td><td>Suchen, Filter</td><td>Logins, Nachrichten, Uploads</td></tr>
+          <tr><td>Lesezeichen möglich?</td><td>Ja</td><td>Nein</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jedes Feld braucht ein <code>name</code>-Attribut, sonst wird es nicht mitgeschickt.</li>
+        <li>Jedes Feld braucht ein <code>&lt;label&gt;</code> – für Übersicht und Barrierefreiheit.</li>
+        <li>Formulare dürfen nicht ineinander verschachtelt werden.</li>
+        <li>Browser-Prüfungen wie <code>required</code> oder <code>type="email"</code> ersetzen keine Prüfung auf dem Server.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="input.html">&lt;input&gt;</a>
+        <a class="chip" href="label.html">&lt;label&gt;</a>
+        <a class="chip" href="button.html">&lt;button&gt;</a>
+        <a class="chip" href="fieldset.html">&lt;fieldset&gt;</a>
+        <a class="chip" href="legend.html">&lt;legend&gt;</a>
+        <a class="chip" href="option.html">&lt;option&gt;</a>
+        <a class="chip" href="datalist.html">&lt;datalist&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

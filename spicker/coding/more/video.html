@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;video&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
+    <h1>&lt;video&gt;</h1>
+    <p class="page-lead">Spielt Videos direkt im Browser ab.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;video&gt;</code> funktioniert wie <code>&lt;audio&gt;</code>, nur mit Bild. Mit <code>controls</code> gibt es Play, Vollbild und Zeitleiste; <code>poster</code> zeigt ein Vorschaubild, bis das Video startet.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;video controls width="640" poster="vorschau.jpg"&gt;
+  &lt;source src="film.webm" type="video/webm"&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+  &lt;track src="untertitel-de.vtt" kind="subtitles" srclang="de" label="Deutsch"&gt;
+  Dein Browser unterstützt kein Video.
+&lt;/video&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>controls</code></td><td>Zeigt die Steuerung</td></tr>
+          <tr><td><code>width / height</code></td><td>Größe des Players</td></tr>
+          <tr><td><code>poster</code></td><td>Vorschaubild vor dem Start</td></tr>
+          <tr><td><code>autoplay + muted</code></td><td>Automatisch starten geht nur stumm</td></tr>
+          <tr><td><code>loop</code></td><td>Endlos wiederholen</td></tr>
+          <tr><td><code>playsinline</code></td><td>Auf dem Handy nicht automatisch Vollbild</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Hintergrundvideo</h2>
+      <pre><code>&lt;video autoplay muted loop playsinline src="hintergrund.mp4"&gt;&lt;/video&gt;</code></pre>
+    </section>
+    <section>
+      <h2>&lt;track&gt; – Untertitel</h2>
+      <p><code>&lt;track&gt;</code> steht im <code>&lt;video&gt;</code> und verweist auf eine Untertitel-Datei im WebVTT-Format (<code>.vtt</code>).</p>
+      <pre><code>WEBVTT
+
+00:00:01.000 --&gt; 00:00:04.000
+Hallo und willkommen!
+
+00:00:05.000 --&gt; 00:00:08.000
+Heute geht es um HTML.</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>src</code></td><td>Pfad zur .vtt-Datei</td></tr>
+          <tr><td><code>kind</code></td><td><code>subtitles</code>, <code>captions</code> (mit Geräuschen), <code>chapters</code>, <code>descriptions</code></td></tr>
+          <tr><td><code>srclang</code></td><td>Sprache, z. B. <code>de</code></td></tr>
+          <tr><td><code>label</code></td><td>Name im Untertitel-Menü</td></tr>
+          <tr><td><code>default</code></td><td>Diese Spur ist von Anfang an aktiv</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>YouTube-Videos?</h2>
+      <p>YouTube-Videos bindet man nicht mit <code>&lt;video&gt;</code> ein, sondern mit dem <code>&lt;iframe&gt;</code>-Code von YouTube („Teilen“ → „Einbetten“).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>MP4 (H.264) läuft überall.</li>
+        <li><code>&lt;track&gt;</code> mit Untertiteln macht Videos barrierefrei.</li>
+        <li>Große Videodateien lieber auf einer Plattform hosten und per <code>&lt;iframe&gt;</code> einbinden.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="audio.html">&lt;audio&gt;</a>
+        <a class="chip" href="iframe.html">&lt;iframe&gt;</a>
+        <a class="chip" href="picture.html">&lt;picture&gt;</a>
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Objekte &amp; JSON – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Daten</p>
+    <h1>Objekte &amp; JSON</h1>
+    <p class="page-lead">Zusammengehörige Daten als Schlüssel-Wert-Paare speichern – und als JSON austauschen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Objekt anlegen &amp; benutzen</h2>
+      <pre><code>const user = {
+  name: "Max",
+  age: 30,
+  skills: ["HTML", "CSS"],
+  greet() {                         // Methode = Funktion im Objekt
+    return `Hi, ich bin ${this.name}`;
+  }
+};
+
+user.name;             // "Max"   – Punkt-Schreibweise
+user["age"];           // 30      – Klammer-Schreibweise (für Variablen als Schlüssel)
+user.greet();          // "Hi, ich bin Max"
+
+user.age = 31;         // ändern
+user.city = "Berlin";  // neue Eigenschaft
+delete user.city;      // entfernen
+"name" in user;        // true – existiert der Schlüssel?</code></pre>
+    </section>
+    <section>
+      <h2>Nützliche Helfer</h2>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td><code>Object.keys(user)</code></td><td>Array aller Schlüssel: <code>["name", "age", …]</code></td></tr>
+          <tr><td><code>Object.values(user)</code></td><td>Array aller Werte</td></tr>
+          <tr><td><code>Object.entries(user)</code></td><td>Array aus <code>[schlüssel, wert]</code>-Paaren</td></tr>
+          <tr><td><code>{ ...user }</code></td><td>Kopie des Objekts</td></tr>
+          <tr><td><code>{ ...user, age: 40 }</code></td><td>Kopie mit geändertem Wert</td></tr>
+        </tbody>
+      </table>
+      <pre><code>for (const [key, value] of Object.entries(user)) {
+  console.log(key, "=", value);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Destructuring – Werte auspacken</h2>
+      <pre><code>const { name, age } = user;              // statt user.name, user.age
+const { name: userName } = user;         // umbenennen
+const [first, second] = ["a", "b"];      // funktioniert auch mit Arrays
+
+function show({ name, age }) {           // direkt in Parametern
+  console.log(name, age);
+}</code></pre>
+    </section>
+    <section>
+      <h2>JSON</h2>
+      <p>JSON ist ein Textformat für Daten – fast wie JavaScript-Objekte, aber Schlüssel stehen immer in doppelten Anführungszeichen. Man braucht es zum Speichern (localStorage) und zum Austausch mit Servern.</p>
+      <pre><code>const text = JSON.stringify(user);        // Objekt → Text
+// '{"name":"Max","age":30,"skills":["HTML","CSS"]}'
+
+const copy = JSON.parse(text);            // Text → Objekt
+
+JSON.stringify(user, null, 2);            // schön eingerückt</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>const</code> bei Objekten verhindert nur das Neu-Zuweisen – der Inhalt lässt sich trotzdem ändern.</li>
+        <li>Objekte werden als <strong>Referenz</strong> übergeben: <code>const b = a;</code> ist keine Kopie – ändert man b, ändert sich a.</li>
+        <li>In JSON gibt es keine Funktionen, keine Kommentare und kein Komma nach dem letzten Eintrag.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-arrays.html">Arrays</a>
+        <a class="chip" href="js-speicher.html">localStorage</a>
+        <a class="chip" href="js-klammern.html">JS-Klammern</a>
+        <a class="chip" href="js-async.html">async/await</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

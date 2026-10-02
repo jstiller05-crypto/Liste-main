@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Klammern in JavaScript – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Grundlagen</p>
+    <h1>Klammern in JavaScript</h1>
+    <p class="page-lead"><code>[]</code>, <code>()</code> und <code>{}</code> – drei Klammerarten mit jeweils eigenen Aufgaben.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Übersicht</h2>
+      <table class="info-table">
+        <thead><tr><th>Klammer</th><th>Name</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td><code>[ ]</code></td><td>eckige Klammern</td><td>Arrays (Listen) erstellen und auf Einträge zugreifen</td></tr>
+          <tr><td><code>( )</code></td><td>runde Klammern</td><td>Funktionen aufrufen/definieren, Bedingungen, Rechen-Reihenfolge</td></tr>
+          <tr><td><code>{ }</code></td><td>geschweifte Klammern</td><td>Objekte erstellen, Codeblöcke umschließen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>[ ] – Arrays</h2>
+      <pre><code>const colors = ["rot", "grün", "blau"];   // Array erstellen
+
+console.log(colors[0]);        // "rot"  – Zählung beginnt bei 0!
+console.log(colors.length);    // 3
+colors[1] = "gelb";            // Eintrag ändern
+
+const user = { name: "Max" };
+console.log(user["name"]);     // "Max" – auch für Objekt-Eigenschaften</code></pre>
+    </section>
+    <section>
+      <h2>( ) – Funktionen, Bedingungen, Gruppierung</h2>
+      <pre><code>function greet(name) {          // Parameter in ()
+  return "Hallo " + name;
+}
+greet("Max");                   // Funktion aufrufen: ()
+
+if (age &gt;= 18) { … }            // Bedingung in ()
+for (let i = 0; i &lt; 3; i++) { … }
+
+const result = (2 + 3) * 4;     // Gruppierung: 20 statt 14
+const add = (a, b) =&gt; a + b;    // Pfeilfunktion</code></pre>
+    </section>
+    <section>
+      <h2>{ } – Objekte und Blöcke</h2>
+      <pre><code>// Objekt: Schlüssel-Wert-Paare
+const user = {
+  name: "Max",
+  age: 30
+};
+console.log(user.name);          // "Max"
+
+// Block: gehört zu if, for, function …
+if (user.age &gt;= 18) {
+  console.log("volljährig");
+}
+
+// Destructuring: Werte auspacken
+const { name, age } = user;
+
+// Template-String: ${ } setzt Werte in Text ein
+console.log(`${name} ist ${age} Jahre alt`);</code></pre>
+    </section>
+    <section>
+      <h2>Kombiniert</h2>
+      <pre><code>const entries = [                     // [ ] Array …
+  { tag: "&lt;a&gt;", lang: "html" },       // { } … aus Objekten
+  { tag: "for", lang: "cpp" }
+];
+
+entries.forEach((entry) =&gt; {          // ( ) Parameter, { } Block
+  console.log(entry.tag);
+});</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jede öffnende Klammer braucht eine schließende. VS Code färbt zusammengehörige Klammern gleich ein.</li>
+        <li>Fehlermeldung „Unexpected token“ oder „missing ) after argument list“? Meist fehlt irgendwo eine Klammer.</li>
+        <li>Leere Klammern haben auch Bedeutung: <code>[]</code> = leeres Array, <code>{}</code> = leeres Objekt, <code>fn()</code> = Aufruf ohne Argumente.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

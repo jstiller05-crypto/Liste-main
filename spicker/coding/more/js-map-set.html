@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Map &amp; Set – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Daten</p>
+    <h1>Map &amp; Set</h1>
+    <p class="page-lead">Nachschlagetabellen mit beliebigen Schlüsseln und Mengen ohne doppelte Werte.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Map</h2>
+      <pre><code>const highscores = new Map();
+highscores.set("Max", 120);
+highscores.set("Anna", 150);
+
+highscores.get("Max");          // 120
+highscores.has("Tom");          // false
+highscores.delete("Anna");
+highscores.size;                // 1
+
+for (const [name, score] of highscores) {
+  console.log(name, score);
+}
+
+// Schlüssel dürfen beliebige Werte sein – auch Objekte oder Elemente
+const clicks = new Map();
+clicks.set(document.body, 0);</code></pre>
+    </section>
+    <section>
+      <h2>Set</h2>
+      <pre><code>const tags = new Set(["html", "css", "html"]);   // Duplikat fällt weg
+tags.add("js");
+tags.has("css");        // true
+tags.delete("html");
+tags.size;              // 2
+
+// Duplikate aus einem Array entfernen
+const unique = [...new Set([3, 1, 3, 2, 1])];   // [3, 1, 2]</code></pre>
+    </section>
+    <section>
+      <h2>Wann was?</h2>
+      <table class="info-table">
+        <thead><tr><th>Brauchst du …</th><th>Nimm</th></tr></thead>
+        <tbody>
+          <tr><td>eine geordnete Liste</td><td>Array</td></tr>
+          <tr><td>Daten mit festen Feldern (name, age)</td><td>Objekt</td></tr>
+          <tr><td>Nachschlagen mit dynamischen Schlüsseln, häufig hinzufügen/löschen</td><td>Map</td></tr>
+          <tr><td>eindeutige Werte / „kommt es vor?“ schnell prüfen</td><td>Set</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>map.size</code> statt <code>.length</code>.</li>
+        <li>Map und Set lassen sich nicht direkt mit <code>JSON.stringify</code> speichern – vorher mit <code>[...map]</code> bzw. <code>[...set]</code> in ein Array umwandeln.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-arrays.html">Arrays</a>
+        <a class="chip" href="js-objekte.html">Objekte &amp; JSON</a>
+        <a class="chip" href="cpp-map.html">map &amp; set</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

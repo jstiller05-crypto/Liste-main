@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: const &amp; auto – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Grundlagen</p>
+    <h1>const, constexpr &amp; auto</h1>
+    <p class="page-lead">Werte unveränderlich machen und den Compiler den Typ bestimmen lassen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>const – nicht veränderbar</h2>
+      <pre><code>const int MAX_LEVEL = 10;
+// MAX_LEVEL = 11;      // Fehler: assignment of read-only variable
+
+const double PI = 3.14159;</code></pre>
+      <p>Konstanten schützen vor versehentlichen Änderungen und machen klar, welche Werte fest sind.</p>
+    </section>
+    <section>
+      <h2>const bei Referenzen &amp; Methoden</h2>
+      <pre><code>// Parameter: nur lesen, keine Kopie
+void printName(const std::string&amp; name) {
+    std::cout &lt;&lt; name &lt;&lt; "\n";
+}
+
+class Player {
+public:
+    int getScore() const {   // const-Methode: ändert das Objekt nicht
+        return score;
+    }
+private:
+    int score = 0;
+};</code></pre>
+    </section>
+    <section>
+      <h2>constexpr – zur Compile-Zeit berechnet</h2>
+      <pre><code>constexpr int SECONDS_PER_DAY = 24 * 60 * 60;   // steht schon beim Kompilieren fest
+
+constexpr int square(int x) {
+    return x * x;
+}
+constexpr int area = square(5);   // 25, berechnet vom Compiler</code></pre>
+    </section>
+    <section>
+      <h2>auto – Typ automatisch</h2>
+      <pre><code>auto count = 5;              // int
+auto price = 9.99;           // double
+auto name = std::string("Max");
+auto it = numbers.begin();   // std::vector&lt;int&gt;::iterator – spart Tipparbeit
+
+for (const auto&amp; entry : entries) {   // häufigster Einsatz
+    // …
+}</code></pre>
+      <p>Der Typ steht trotzdem fest – <code>auto</code> heißt nur, dass der Compiler ihn aus dem Startwert ableitet.</p>
+    </section>
+    <section>
+      <h2>Typ-Aliase</h2>
+      <pre><code>using Score = int;
+using TaskList = std::vector&lt;std::pair&lt;std::string, int&gt;&gt;;
+
+TaskList tasks;   // statt des langen Typs</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Faustregel: Alles <code>const</code>, was sich nicht ändern muss.</li>
+        <li><code>auto</code> bei langen oder offensichtlichen Typen nutzen – bei einfachen Zahlen ist der ausgeschriebene Typ oft lesbarer.</li>
+        <li>Konstanten-Namen oft in GROSSBUCHSTABEN: <code>MAX_LEVEL</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="variable.html">Variablen</a>
+        <a class="chip" href="datatypes.html">Datentypen</a>
+        <a class="chip" href="reference.html">Referenzen</a>
+        <a class="chip" href="cpp-konstruktor.html">Konstruktor &amp; Kapselung</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

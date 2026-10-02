@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Arrays – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Daten</p>
+    <h1>Arrays (C-Array &amp; std::array)</h1>
+    <p class="page-lead">Mehrere Werte gleichen Typs mit fester Größe speichern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>C-Array</h2>
+      <pre><code>int scores[5] = {80, 95, 70, 60, 100};   // Größe fest: 5
+
+std::cout &lt;&lt; scores[0] &lt;&lt; "\n";         // 80 – Index beginnt bei 0
+scores[2] = 75;                          // ändern
+
+int size = sizeof(scores) / sizeof(scores[0]);   // 5 – umständlich!
+
+for (int i = 0; i &lt; size; ++i) {
+    std::cout &lt;&lt; scores[i] &lt;&lt; " ";
+}</code></pre>
+    </section>
+    <section>
+      <h2>std::array – die moderne Variante</h2>
+      <pre><code>#include &lt;array&gt;
+
+std::array&lt;int, 5&gt; scores = {80, 95, 70, 60, 100};
+
+std::cout &lt;&lt; scores.size() &lt;&lt; "\n";    // 5 – kennt seine Größe
+std::cout &lt;&lt; scores.at(1) &lt;&lt; "\n";     // 95 – mit Bereichsprüfung
+std::cout &lt;&lt; scores.front() &lt;&lt; " " &lt;&lt; scores.back() &lt;&lt; "\n";
+
+for (const auto&amp; score : scores) {
+    std::cout &lt;&lt; score &lt;&lt; " ";
+}</code></pre>
+      <table class="info-table">
+        <thead><tr><th></th><th>C-Array</th><th><code>std::array</code></th></tr></thead>
+        <tbody>
+          <tr><td>Größe abfragen</td><td><code>sizeof</code>-Trick</td><td><code>.size()</code></td></tr>
+          <tr><td>Sicherer Zugriff</td><td>Nein</td><td><code>.at(i)</code> wirft Fehler bei falschem Index</td></tr>
+          <tr><td>Kopieren/Vergleichen</td><td>Nicht direkt</td><td>Mit <code>=</code> und <code>==</code></td></tr>
+          <tr><td>An Funktionen übergeben</td><td>Verliert Größe</td><td>Behält Größe</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Zweidimensionales Array</h2>
+      <pre><code>int grid[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+for (int row = 0; row &lt; 3; ++row) {
+    for (int col = 0; col &lt; 3; ++col) {
+        std::cout &lt;&lt; grid[row][col] &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; "\n";
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Die Größe muss beim Kompilieren feststehen. Brauchst du eine veränderbare Größe, nimm <code>std::vector</code>.</li>
+        <li>Zugriff außerhalb der Grenzen (<code>scores[5]</code> bei Größe 5) stürzt nicht immer ab, sondern liest „Müll“ – schwer zu findender Fehler.</li>
+        <li><code>scores[i]</code> prüft nichts, <code>scores.at(i)</code> schon.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-vector.html">std::vector</a>
+        <a class="chip" href="for-loop.html">for-Schleife</a>
+        <a class="chip" href="cpp-algorithmen.html">Algorithmen &amp; Lambdas</a>
+        <a class="chip" href="pointer.html">Zeiger</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

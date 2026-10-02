@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Arrays – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Daten</p>
+    <h1>Arrays</h1>
+    <p class="page-lead">Listen von Werten – und die wichtigsten Methoden zum Suchen, Filtern, Umwandeln und Sortieren.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundlagen</h2>
+      <pre><code>const fruits = ["Apfel", "Birne", "Kiwi"];
+
+fruits[0];            // "Apfel" – Index beginnt bei 0
+fruits.length;        // 3
+fruits[fruits.length - 1];   // letztes Element: "Kiwi"
+fruits.at(-1);        // auch letztes Element</code></pre>
+    </section>
+    <section>
+      <h2>Hinzufügen &amp; Entfernen</h2>
+      <table class="info-table">
+        <thead><tr><th>Methode</th><th>Wirkung</th><th>Ändert das Original?</th></tr></thead>
+        <tbody>
+          <tr><td><code>push(x)</code></td><td>Hinten anhängen</td><td>Ja</td></tr>
+          <tr><td><code>pop()</code></td><td>Letztes entfernen (und zurückgeben)</td><td>Ja</td></tr>
+          <tr><td><code>unshift(x)</code></td><td>Vorne einfügen</td><td>Ja</td></tr>
+          <tr><td><code>shift()</code></td><td>Erstes entfernen</td><td>Ja</td></tr>
+          <tr><td><code>splice(i, n)</code></td><td>An Position i n Elemente entfernen</td><td>Ja</td></tr>
+          <tr><td><code>slice(a, b)</code></td><td>Kopie eines Ausschnitts</td><td>Nein</td></tr>
+          <tr><td><code>[...arr]</code></td><td>Komplette Kopie (Spread)</td><td>Nein</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Die wichtigsten Methoden</h2>
+      <table class="info-table">
+        <thead><tr><th>Methode</th><th>Gibt zurück</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>forEach(fn)</code></td><td>nichts – für jedes Element etwas tun</td><td><code>list.forEach(x =&gt; console.log(x))</code></td></tr>
+          <tr><td><code>map(fn)</code></td><td>neues Array, jedes Element umgewandelt</td><td><code>[1,2].map(x =&gt; x * 2)</code> → <code>[2,4]</code></td></tr>
+          <tr><td><code>filter(fn)</code></td><td>neues Array mit passenden Elementen</td><td><code>nums.filter(n =&gt; n &gt; 0)</code></td></tr>
+          <tr><td><code>find(fn)</code></td><td>erstes passendes Element (oder undefined)</td><td><code>users.find(u =&gt; u.id === 3)</code></td></tr>
+          <tr><td><code>findIndex(fn)</code></td><td>Position des ersten Treffers (oder -1)</td><td></td></tr>
+          <tr><td><code>some(fn)</code></td><td><code>true</code>, wenn mind. eins passt</td><td><code>nums.some(n =&gt; n &lt; 0)</code></td></tr>
+          <tr><td><code>every(fn)</code></td><td><code>true</code>, wenn alle passen</td><td><code>nums.every(n =&gt; n &gt; 0)</code></td></tr>
+          <tr><td><code>includes(x)</code></td><td><code>true</code>, wenn x enthalten ist</td><td><code>tags.includes("html")</code></td></tr>
+          <tr><td><code>indexOf(x)</code></td><td>Position von x (oder -1)</td><td></td></tr>
+          <tr><td><code>reduce(fn, start)</code></td><td>ein einzelner Wert</td><td>Summe, Zählen, Gruppieren</td></tr>
+          <tr><td><code>sort(fn)</code></td><td>sortiert <strong>das Original</strong></td><td><code>nums.sort((a, b) =&gt; a - b)</code></td></tr>
+          <tr><td><code>reverse()</code></td><td>dreht das Original um</td><td></td></tr>
+          <tr><td><code>join(", ")</code></td><td>String aus allen Elementen</td><td><code>["a","b"].join(", ")</code> → <code>"a, b"</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Methoden verketten</h2>
+      <pre><code>const entries = [
+  { tag: "&lt;a&gt;",    lang: "html", link: "a.html" },
+  { tag: "for",    lang: "cpp",  link: "" },
+  { tag: "&lt;img&gt;",  lang: "html", link: "img.html" }
+];
+
+const htmlTags = entries
+  .filter(e =&gt; e.lang === "html")                 // nur HTML
+  .map(e =&gt; e.tag)                                // nur die Namen
+  .sort((a, b) =&gt; a.localeCompare(b, "de"));      // alphabetisch
+
+console.log(htmlTags);   // ["&lt;a&gt;", "&lt;img&gt;"]</code></pre>
+    </section>
+    <section>
+      <h2>Sortieren richtig</h2>
+      <pre><code>[10, 9, 1].sort();                     // [1, 10, 9]  – sortiert als TEXT!
+[10, 9, 1].sort((a, b) =&gt; a - b);      // [1, 9, 10]  – Zahlen aufsteigend
+[10, 9, 1].sort((a, b) =&gt; b - a);      // [10, 9, 1]  – absteigend
+names.sort((a, b) =&gt; a.localeCompare(b, "de"));   // Texte mit Umlauten</code></pre>
+    </section>
+    <section>
+      <h2>reduce – alles zu einem Wert</h2>
+      <pre><code>const prices = [4.5, 10, 2];
+const total = prices.reduce((sum, price) =&gt; sum + price, 0);   // 16.5
+//                           ↑ Zwischenstand  ↑ aktuelles       ↑ Startwert</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>sort()</code> und <code>reverse()</code> verändern das Original – vorher mit <code>[...arr]</code> kopieren, wenn du es noch brauchst.</li>
+        <li><code>map</code> und <code>filter</code> geben immer ein <strong>neues</strong> Array zurück.</li>
+        <li><code>console.table(array)</code> zeigt Arrays von Objekten als übersichtliche Tabelle.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-objekte.html">Objekte &amp; JSON</a>
+        <a class="chip" href="js-schleifen.html">Schleifen</a>
+        <a class="chip" href="js-klammern.html">JS-Klammern</a>
+        <a class="chip" href="js-funktionen.html">Funktionen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

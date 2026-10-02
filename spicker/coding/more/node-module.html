@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Node.js: Module – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Node.js · Grundlagen</p>
+    <h1>Module in Node.js</h1>
+    <p class="page-lead">Code auf Dateien verteilen und eingebaute Module wie <code>fs</code>, <code>path</code> und <code>os</code> nutzen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Zwei Modulsysteme</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>ES Modules (modern)</th><th>CommonJS (älter)</th></tr></thead>
+        <tbody>
+          <tr><td>Importieren</td><td><code>import fs from "node:fs";</code></td><td><code>const fs = require("fs");</code></td></tr>
+          <tr><td>Exportieren</td><td><code>export function x() {}</code></td><td><code>module.exports = { x };</code></td></tr>
+          <tr><td>Aktivieren</td><td><code>"type": "module"</code> in package.json oder Endung <code>.mjs</code></td><td>Standard / Endung <code>.cjs</code></td></tr>
+        </tbody>
+      </table>
+      <p>Für neue Projekte ES Modules verwenden – so wie im Browser. CommonJS begegnet dir aber noch oft in Tutorials.</p>
+    </section>
+    <section>
+      <h2>Eigenes Modul</h2>
+      <pre><code>// mathUtils.js
+export function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}</code></pre>
+      <pre><code>// app.js
+import { randomInt } from "./mathUtils.js";   // Endung .js ist Pflicht
+console.log(randomInt(1, 6));</code></pre>
+    </section>
+    <section>
+      <h2>Eingebaute Module</h2>
+      <table class="info-table">
+        <thead><tr><th>Modul</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td><code>node:fs</code></td><td>Dateien lesen und schreiben</td></tr>
+          <tr><td><code>node:path</code></td><td>Pfade sicher zusammensetzen</td></tr>
+          <tr><td><code>node:http</code></td><td>Einfachen Webserver bauen</td></tr>
+          <tr><td><code>node:os</code></td><td>Infos zum Betriebssystem</td></tr>
+          <tr><td><code>node:events</code></td><td>Eigene Ereignisse</td></tr>
+          <tr><td><code>node:crypto</code></td><td>Zufällige IDs, Hashes</td></tr>
+        </tbody>
+      </table>
+      <pre><code>import os from "node:os";
+import path from "node:path";
+import { randomUUID } from "node:crypto";
+
+console.log("System:", os.platform());          // "win32", "linux" …
+console.log(path.join("daten", "scores.json")); // daten\scores.json bzw. daten/scores.json
+console.log("ID:", randomUUID());</code></pre>
+    </section>
+    <section>
+      <h2>__dirname in ES Modules</h2>
+      <pre><code>import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Node 20.11+: kürzer mit import.meta.dirname
+const dataFile = path.join(__dirname, "data.json");</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Das Präfix <code>node:</code> macht klar, dass es ein eingebautes Modul ist (und kein npm-Paket).</li>
+        <li><code>require</code> und <code>import</code> nicht in derselben Datei mischen.</li>
+        <li>Pfade immer mit <code>path.join</code> bauen – dann funktionieren sie auf Windows und Linux.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-module.html">Module</a>
+        <a class="chip" href="node-dateien.html">Dateien</a>
+        <a class="chip" href="node-npm.html">npm</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

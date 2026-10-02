@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Listen (&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;) – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Listen</p>
+    <h1>Listen (&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;)</h1>
+    <p class="page-lead">Aufzählungen mit Punkten oder Nummern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>HTML kennt drei Listenarten:</p>
+      <ul>
+        <li><code>&lt;ul&gt;</code> – <em>unordered list</em>: Aufzählung mit Punkten, Reihenfolge egal.</li>
+        <li><code>&lt;ol&gt;</code> – <em>ordered list</em>: nummerierte Liste, Reihenfolge wichtig (z. B. Anleitung).</li>
+        <li><code>&lt;dl&gt;</code> – Definitionsliste: Begriff und Beschreibung (eigene Seite).</li>
+      </ul>
+      <p>Jeder Eintrag in <code>&lt;ul&gt;</code> und <code>&lt;ol&gt;</code> steht in einem <code>&lt;li&gt;</code> (<em>list item</em>).</p>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Datei speichern&lt;/li&gt;
+  &lt;li&gt;Browser öffnen&lt;/li&gt;
+  &lt;li&gt;Seite neu laden (F5)&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul><ol><li>Datei speichern</li><li>Browser öffnen</li><li>Seite neu laden (F5)</li></ol>
+      </div>
+    </section>
+    <section>
+      <h2>Verschachtelte Liste</h2>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;Frontend
+    &lt;ul&gt;                 &lt;!-- neue Liste INNERHALB des li --&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Backend&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Attribute</h2>
+      <table class="info-table">
+        <thead><tr><th>Attribut</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>start</code></td><td><code>&lt;ol start="5"&gt;</code> beginnt bei 5</td></tr>
+          <tr><td><code>reversed</code></td><td><code>&lt;ol reversed&gt;</code> zählt rückwärts</td></tr>
+          <tr><td><code>type</code></td><td><code>&lt;ol type="a"&gt;</code> nummeriert mit a, b, c (auch <code>A</code>, <code>i</code>, <code>I</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Listen mit CSS gestalten</h2>
+      <pre><code>ul {
+  list-style: none;   /* Punkte entfernen – z. B. für Menüs */
+  padding-left: 0;    /* Standard-Einrückung entfernen */
+}
+
+ol {
+  list-style-type: upper-roman;   /* I, II, III … */
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Direkt in <code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code> dürfen nur <code>&lt;li&gt;</code> stehen – kein Text, kein <code>&lt;div&gt;</code>.</li>
+        <li>Menüs und Navigationen werden fast immer als <code>&lt;ul&gt;</code> gebaut.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="dl.html">&lt;dl&gt;</a>
+        <a class="chip" href="nav.html">&lt;nav&gt;</a>
+        <a class="chip" href="menu.html">&lt;menu&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

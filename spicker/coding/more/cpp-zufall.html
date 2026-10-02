@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Zufallszahlen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Werkzeuge</p>
+    <h1>Zufallszahlen</h1>
+    <p class="page-lead">Zufällige Zahlen modern mit <code>&lt;random&gt;</code> erzeugen – und warum man <code>rand()</code> meiden sollte.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Modern mit &lt;random&gt;</h2>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;random&gt;
+
+int main() {
+    std::random_device seed;                     // echter Zufall als Startwert
+    std::mt19937 generator(seed());              // schneller, guter Zufallsgenerator
+
+    std::uniform_int_distribution&lt;int&gt; dice(1, 6);   // gleichmäßig 1 bis 6 (inklusive)
+
+    for (int i = 0; i &lt; 5; ++i) {
+        std::cout &lt;&lt; dice(generator) &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; "\n";
+    return 0;
+}</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Baustein</th><th>Aufgabe</th></tr></thead>
+        <tbody>
+          <tr><td><code>std::random_device</code></td><td>Liefert einen unvorhersehbaren Startwert (Seed)</td></tr>
+          <tr><td><code>std::mt19937</code></td><td>Der eigentliche Generator (Mersenne Twister)</td></tr>
+          <tr><td><code>uniform_int_distribution&lt;int&gt;(a, b)</code></td><td>Ganze Zahlen von a bis b</td></tr>
+          <tr><td><code>uniform_real_distribution&lt;double&gt;(a, b)</code></td><td>Kommazahlen von a bis unter b</td></tr>
+          <tr><td><code>bernoulli_distribution(0.3)</code></td><td><code>true</code> mit 30 % Wahrscheinlichkeit</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Als Hilfsfunktion</h2>
+      <pre><code>int randomInt(int min, int max) {
+    static std::mt19937 generator(std::random_device{}());   // static: nur EINMAL anlegen
+    std::uniform_int_distribution&lt;int&gt; dist(min, max);
+    return dist(generator);
+}
+
+// Beispiel: zufällige Rechenaufgabe
+int a = randomInt(1, 10);
+int b = randomInt(1, 10);
+std::cout &lt;&lt; a &lt;&lt; " + " &lt;&lt; b &lt;&lt; " = ?\n";</code></pre>
+    </section>
+    <section>
+      <h2>Mischen &amp; zufällig auswählen</h2>
+      <pre><code>std::vector&lt;std::string&gt; tasks = {"A", "B", "C", "D"};
+
+static std::mt19937 generator(std::random_device{}());
+std::shuffle(tasks.begin(), tasks.end(), generator);   // &lt;algorithm&gt;
+
+std::uniform_int_distribution&lt;size_t&gt; pick(0, tasks.size() - 1);
+std::cout &lt;&lt; tasks[pick(generator)] &lt;&lt; "\n";</code></pre>
+    </section>
+    <section>
+      <h2>Der alte Weg: rand()</h2>
+      <pre><code>#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+std::srand(std::time(nullptr));      // Startwert einmal setzen
+int dice = std::rand() % 6 + 1;      // 1 bis 6 – ungleichmäßig verteilt</code></pre>
+      <p><code>rand()</code> findet man noch oft in Tutorials. Es ist aber ungenau verteilt und von schlechter Qualität – für neuen Code <code>&lt;random&gt;</code> verwenden.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Den Generator nicht bei jedem Aufruf neu erzeugen – sonst kommen oft dieselben Zahlen. Einmal anlegen (z. B. <code>static</code>) und wiederverwenden.</li>
+        <li>Für reproduzierbare Tests einen festen Seed verwenden: <code>std::mt19937 generator(42);</code> – dann kommen immer dieselben „Zufallszahlen“.</li>
+        <li>In Qt gibt es zusätzlich <code>QRandomGenerator::global()-&gt;bounded(1, 7)</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-algorithmen.html">Algorithmen &amp; Lambdas</a>
+        <a class="chip" href="cpp-vector.html">std::vector</a>
+        <a class="chip" href="cpp-operatoren.html">Operatoren</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

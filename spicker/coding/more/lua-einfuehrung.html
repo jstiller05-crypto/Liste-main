@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Lua – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Lua · Grundlagen</p>
+    <h1>Lua</h1>
+    <p class="page-lead">Eine kleine, schnelle Skriptsprache – beliebt zum Einbetten in Spiele und Programme.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Lua (portugiesisch für „Mond“) ist klein, leicht zu lernen und lässt sich gut in andere Programme einbauen. Deshalb wird sie oft als Skriptsprache für Spiele und Mods genutzt, z. B. in Luanti, Roblox (Luau), World of Warcraft-Addons, sowie in Neovim und im Netzwerk-Tool Wireshark.</p>
+    </section>
+    <section>
+      <h2>Installieren &amp; ausführen</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Installation</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td><code>scoop install lua</code> (mit Scoop) oder die fertigen „LuaBinaries“ von luabinaries.sourceforge.net</td></tr>
+          <tr><td>Linux (Debian/Ubuntu)</td><td><code>sudo apt install lua5.4</code> (oder <code>luajit</code>)</td></tr>
+        </tbody>
+      </table>
+      <pre><code>-- hello.lua
+local name = "Welt"
+print("Hallo " .. name .. "!")</code></pre>
+      <pre><code>lua hello.lua     # Skript ausführen
+lua               # interaktiv (Beenden mit os.exit() oder Strg+C)</code></pre>
+    </section>
+    <section>
+      <h2>Versionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Version</th><th>Wo?</th><th>Besonderheit</th></tr></thead>
+        <tbody>
+          <tr><td>Lua 5.4</td><td>Aktuelle Standard-Version</td><td>Ganzzahl-Division <code>//</code>, <code>&lt;const&gt;</code>-Variablen</td></tr>
+          <tr><td>Lua 5.1 / LuaJIT</td><td>Luanti, viele Spiele</td><td>Sehr schnell; kein <code>//</code>, keine Bit-Operatoren wie <code>&amp;</code></td></tr>
+          <tr><td>Luau</td><td>Roblox</td><td>Lua 5.1 mit Typangaben und Erweiterungen</td></tr>
+        </tbody>
+      </table>
+      <p>Die Grundlagen auf diesen Seiten funktionieren in allen Versionen. Besonderheiten sind gekennzeichnet.</p>
+    </section>
+    <section>
+      <h2>Auffälligkeiten gegenüber anderen Sprachen</h2>
+      <table class="info-table">
+        <thead><tr><th>Lua</th><th>Bedeutung</th><th>Anderswo</th></tr></thead>
+        <tbody>
+          <tr><td><code>--</code></td><td>Kommentar</td><td><code>//</code></td></tr>
+          <tr><td><code>~=</code></td><td>ungleich</td><td><code>!=</code></td></tr>
+          <tr><td><code>..</code></td><td>Texte verbinden</td><td><code>+</code> (JS) / <code>.</code> (PHP)</td></tr>
+          <tr><td><code>#liste</code></td><td>Länge</td><td><code>.length</code> / <code>size()</code></td></tr>
+          <tr><td><code>local</code></td><td>lokale Variable</td><td><code>let</code> / <code>const</code></td></tr>
+          <tr><td>Index ab <strong>1</strong></td><td><code>liste[1]</code> ist das erste Element</td><td>ab 0</td></tr>
+          <tr><td><code>nil</code></td><td>kein Wert</td><td><code>null</code> / <code>undefined</code></td></tr>
+          <tr><td><code>end</code></td><td>Blockende</td><td><code>}</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Fast alles ist in Lua eine <strong>Tabelle</strong> – Arrays, Objekte, Module. Die Tabellen-Seite ist die wichtigste.</li>
+        <li>Variablen ohne <code>local</code> sind global – ein häufiger Fehler. Immer <code>local</code> schreiben.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="lua-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="lua-tabellen.html">Tabellen</a>
+        <a class="chip" href="lua-luanti.html">Luanti-Mods</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

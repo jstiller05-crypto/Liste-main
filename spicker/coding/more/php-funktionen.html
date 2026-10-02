@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>PHP: Funktionen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">PHP · Grundlagen</p>
+    <h1>Funktionen &amp; include</h1>
+    <p class="page-lead">Eigene Funktionen schreiben und Code auf mehrere Dateien verteilen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Funktionen</h2>
+      <pre><code>&lt;?php
+function greet(string $name, string $greeting = "Hallo"): string {
+    return "$greeting, $name!";
+}
+
+echo greet("Max");               // Hallo, Max!
+echo greet("Anna", "Moin");      // Moin, Anna!
+
+// Pfeilfunktion (kurz)
+$double = fn($x) =&gt; $x * 2;
+echo $double(4);                 // 8</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Teil</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>string $name</code></td><td>Parameter mit Typangabe (optional, aber empfohlen)</td></tr>
+          <tr><td><code>= "Hallo"</code></td><td>Standardwert</td></tr>
+          <tr><td><code>: string</code></td><td>Rückgabetyp</td></tr>
+          <tr><td><code>?string</code></td><td>Typ oder <code>null</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Gültigkeitsbereich</h2>
+      <pre><code>$counter = 5;
+
+function show() {
+    // echo $counter;   // Fehler: Variablen von außen sind hier NICHT sichtbar
+}
+
+function showWith(int $counter) {   // besser: als Parameter übergeben
+    echo $counter;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Dateien einbinden</h2>
+      <pre><code>&lt;?php
+require_once "config.php";      // Pflicht – bricht ab, wenn die Datei fehlt
+require_once "functions.php";
+include "header.php";           // optional – nur Warnung, wenn sie fehlt
+?&gt;
+&lt;main&gt;…&lt;/main&gt;
+&lt;?php include "footer.php"; ?&gt;</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Wenn Datei fehlt</th><th>Mehrfach einbinden</th></tr></thead>
+        <tbody>
+          <tr><td><code>include</code></td><td>Warnung, läuft weiter</td><td>Ja</td></tr>
+          <tr><td><code>require</code></td><td>Fehler, Abbruch</td><td>Ja</td></tr>
+          <tr><td><code>include_once</code> / <code>require_once</code></td><td>wie oben</td><td>Nur einmal</td></tr>
+        </tbody>
+      </table>
+      <p>So muss ein gemeinsamer Kopf- und Fußbereich nur einmal geschrieben werden.</p>
+    </section>
+    <section>
+      <h2>Nützliche eingebaute Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Funktion</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>date("d.m.Y H:i")</code></td><td>Aktuelles Datum formatiert</td></tr>
+          <tr><td><code>rand(1, 6)</code> / <code>random_int(1, 6)</code></td><td>Zufallszahl (random_int ist sicherer)</td></tr>
+          <tr><td><code>round($x, 2)</code></td><td>Runden</td></tr>
+          <tr><td><code>number_format(1234.5, 2, ',', '.')</code></td><td>"1.234,50"</td></tr>
+          <tr><td><code>isset($x)</code> / <code>empty($x)</code></td><td>Existiert / ist leer?</td></tr>
+          <tr><td><code>json_encode($data)</code> / <code>json_decode($text, true)</code></td><td>Array ↔ JSON</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>require_once</code> für Dateien mit Funktionen oder Klassen – so werden sie nicht doppelt definiert.</li>
+        <li>Pfade sicher bauen: <code>require_once __DIR__ . "/config.php";</code> – <code>__DIR__</code> ist der Ordner der aktuellen Datei.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="php-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="php-oop.html">Klassen</a>
+        <a class="chip" href="js-funktionen.html">Funktionen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

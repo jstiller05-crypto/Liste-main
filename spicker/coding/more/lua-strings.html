@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Lua: Strings – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Lua · Daten</p>
+    <h1>Strings &amp; Patterns</h1>
+    <p class="page-lead">Texte bearbeiten, formatieren und mit Lua-Patterns durchsuchen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grundlagen</h2>
+      <pre><code>local text = "Hallo Welt"
+
+#text                       --&gt; 10
+text:upper()                --&gt; "HALLO WELT"   (: ruft die Methode auf dem String auf)
+text:lower()
+text:sub(1, 5)              --&gt; "Hallo"        (Positionen ab 1, Ende inklusive)
+text:rep(2)                 --&gt; "Hallo WeltHallo Welt"
+text:len()                  --&gt; 10
+"a" .. "b"                  --&gt; "ab"</code></pre>
+      <p><code>text:upper()</code> ist die Kurzform für <code>string.upper(text)</code>.</p>
+    </section>
+    <section>
+      <h2>Formatieren</h2>
+      <pre><code>string.format("%s hat %d Punkte", "Max", 42)   --&gt; "Max hat 42 Punkte"
+string.format("%.2f", 3.14159)                  --&gt; "3.14"
+string.format("%05d", 42)                       --&gt; "00042"</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Platzhalter</th><th>Für</th></tr></thead>
+        <tbody>
+          <tr><td><code>%s</code></td><td>Text</td></tr>
+          <tr><td><code>%d</code></td><td>Ganze Zahl</td></tr>
+          <tr><td><code>%f</code> / <code>%.2f</code></td><td>Kommazahl</td></tr>
+          <tr><td><code>%x</code></td><td>Hexadezimal</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Suchen &amp; ersetzen</h2>
+      <pre><code>local s = "Level 12, Leben 20"
+
+s:find("Leben")                     --&gt; 11  15  (Start- und Endposition)
+s:match("%d+")                      --&gt; "12"   (erste Zahl)
+s:gsub("Leben", "HP")               --&gt; "Level 12, HP 20"  1
+
+for number in s:gmatch("%d+") do    -- alle Zahlen
+    print(number)                    --&gt; 12, 20
+end</code></pre>
+    </section>
+    <section>
+      <h2>Pattern-Zeichen</h2>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Passt auf</th></tr></thead>
+        <tbody>
+          <tr><td><code>%d</code></td><td>Ziffer</td></tr>
+          <tr><td><code>%a</code></td><td>Buchstabe</td></tr>
+          <tr><td><code>%w</code></td><td>Buchstabe oder Ziffer</td></tr>
+          <tr><td><code>%s</code></td><td>Leerzeichen/Tab</td></tr>
+          <tr><td><code>.</code></td><td>beliebiges Zeichen</td></tr>
+          <tr><td><code>+</code></td><td>1 oder mehr</td></tr>
+          <tr><td><code>*</code></td><td>0 oder mehr</td></tr>
+          <tr><td><code>?</code></td><td>optional</td></tr>
+          <tr><td><code>^</code> / <code>$</code></td><td>Anfang / Ende</td></tr>
+          <tr><td><code>%</code></td><td>Escape: <code>%.</code> = echter Punkt</td></tr>
+        </tbody>
+      </table>
+      <p>Lua-Patterns ähneln regulären Ausdrücken, sind aber einfacher (z. B. kein <code>|</code> für „oder“).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Strings sind unveränderlich – <code>s:upper()</code> gibt einen neuen String zurück.</li>
+        <li>Sonderzeichen in Patterns mit <code>%</code> escapen, nicht mit <code>\</code>. Mit <code>s:find("a.b", 1, true)</code> wird ohne Pattern gesucht.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="lua-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="lua-tabellen.html">Tabellen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

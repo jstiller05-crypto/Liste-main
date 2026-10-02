@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Dateien – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Werkzeuge</p>
+    <h1>Dateien lesen &amp; schreiben</h1>
+    <p class="page-lead">Mit <code>&lt;fstream&gt;</code> Text in Dateien speichern und wieder laden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Schreiben</h2>
+      <pre><code>#include &lt;fstream&gt;
+
+std::ofstream file("scores.txt");          // öffnet (bzw. erstellt) die Datei, überschreibt sie
+if (!file) {
+    std::cerr &lt;&lt; "[Datei] Konnte scores.txt nicht öffnen\n";
+    return 1;
+}
+file &lt;&lt; "Max 120\n";                       // wie cout, nur in die Datei
+file &lt;&lt; "Anna 150\n";
+// Datei wird am Ende des Blocks automatisch geschlossen
+
+std::ofstream log("log.txt", std::ios::app);   // app = anhängen statt überschreiben
+log &lt;&lt; "Programm gestartet\n";</code></pre>
+    </section>
+    <section>
+      <h2>Lesen</h2>
+      <pre><code>std::ifstream file("scores.txt");
+if (!file) {
+    std::cerr &lt;&lt; "[Datei] scores.txt nicht gefunden\n";
+    return 1;
+}
+
+// Zeile für Zeile
+std::string line;
+while (std::getline(file, line)) {
+    std::cout &lt;&lt; "Gelesen: " &lt;&lt; line &lt;&lt; "\n";
+}</code></pre>
+      <pre><code>// Werte direkt einlesen (durch Leerzeichen getrennt)
+std::ifstream file("scores.txt");
+std::string name;
+int score;
+while (file &gt;&gt; name &gt;&gt; score) {
+    std::cout &lt;&lt; name &lt;&lt; " hat " &lt;&lt; score &lt;&lt; " Punkte\n";
+}</code></pre>
+    </section>
+    <section>
+      <h2>Die drei Stream-Typen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td><code>std::ifstream</code></td><td>Lesen (<em>input</em>)</td></tr>
+          <tr><td><code>std::ofstream</code></td><td>Schreiben (<em>output</em>)</td></tr>
+          <tr><td><code>std::fstream</code></td><td>Beides</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Pfade (C++17)</h2>
+      <pre><code>#include &lt;filesystem&gt;
+namespace fs = std::filesystem;
+
+if (fs::exists("scores.txt")) { … }
+fs::create_directories("data/saves");
+std::cout &lt;&lt; fs::current_path() &lt;&lt; "\n";   // wo sucht das Programm gerade?</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer prüfen, ob die Datei geöffnet werden konnte (<code>if (!file)</code>) – sonst passiert still nichts.</li>
+        <li>Relative Pfade gelten vom <em>Arbeitsverzeichnis</em> aus, nicht vom Ordner der .cpp-Datei. In IDEs ist das oft der Build-Ordner.</li>
+        <li>Auf Windows in Pfaden <code>/</code> oder doppelte Backslashes verwenden: <code>"data/scores.txt"</code> oder <code>"data\\scores.txt"</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cout.html">std::cout</a>
+        <a class="chip" href="cin.html">std::cin</a>
+        <a class="chip" href="cpp-string.html">std::string</a>
+        <a class="chip" href="cpp-fehler.html">Fehler &amp; Exceptions</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

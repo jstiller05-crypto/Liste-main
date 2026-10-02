@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>HTML-Elemente – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Grundlagen</p>
+    <h1>Aufbau eines Elements</h1>
+    <p class="page-lead">Wie ein HTML-Element aufgebaut ist: Start-Tag, Inhalt, End-Tag und Attribute.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>HTML besteht aus <strong>Elementen</strong>. Die meisten haben ein Start-Tag <code>&lt;name&gt;</code> und ein End-Tag <code>&lt;/name&gt;</code> – der Schrägstrich macht den Unterschied. Dazwischen steht der Inhalt.</p>
+    </section>
+    <section>
+      <h2>Aufbau</h2>
+      <pre><code>&lt;a href="seite.html" class="link"&gt;Klick mich&lt;/a&gt;
+│  └───── Attribute ─────┘│ └ Inhalt ┘│
+│                         │           └─ End-Tag
+└──────── Start-Tag ──────┘</code></pre>
+    </section>
+    <section>
+      <h2>Begriffe</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Beispiel</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Tag</td><td><code>&lt;p&gt;</code>, <code>&lt;/p&gt;</code></td><td>Die Markierung in spitzen Klammern</td></tr>
+          <tr><td>Element</td><td><code>&lt;p&gt;Text&lt;/p&gt;</code></td><td>Start-Tag + Inhalt + End-Tag zusammen</td></tr>
+          <tr><td>Attribut</td><td><code>href="…"</code></td><td>Zusatzinfo im Start-Tag: <code>name="wert"</code></td></tr>
+          <tr><td>Leeres Element</td><td><code>&lt;br&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code></td><td>Hat keinen Inhalt und kein End-Tag</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Verschachteln</h2>
+      <p>Elemente dürfen in anderen Elementen stehen. Wichtig: Was zuletzt geöffnet wurde, wird zuerst geschlossen.</p>
+      <pre><code>&lt;!-- richtig --&gt;
+&lt;p&gt;Das ist &lt;strong&gt;wichtig&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;!-- falsch: überkreuzt --&gt;
+&lt;p&gt;Das ist &lt;strong&gt;wichtig.&lt;/p&gt;&lt;/strong&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Block- und Inline-Elemente</h2>
+      <table class="info-table">
+        <thead><tr><th>Art</th><th>Verhalten</th><th>Beispiele</th></tr></thead>
+        <tbody>
+          <tr><td>Block</td><td>Beginnt in neuer Zeile, nimmt die volle Breite ein</td><td><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;ul&gt;</code></td></tr>
+          <tr><td>Inline</td><td>Fließt im Text mit</td><td><code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;img&gt;</code></td></tr>
+        </tbody>
+      </table>
+      <p>Mit CSS (<code>display: block</code>, <code>display: inline</code>) lässt sich das Verhalten ändern.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Tag-Namen klein schreiben – das ist üblich und besser lesbar.</li>
+        <li>Attributwerte immer in Anführungszeichen setzen.</li>
+        <li>Vergessene End-Tags sind der häufigste Anfängerfehler. VS Code zeigt zusammengehörige Tags farbig an.</li>
+        <li>HTML-Kommentare: <code>&lt;!-- Text --&gt;</code> – sie werden nicht angezeigt.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="html-sprache.html">HTML</a>
+        <a class="chip" href="html.html">&lt;html&gt;</a>
+        <a class="chip" href="container.html">Container</a>
+        <a class="chip" href="Class.html">CSS-Klassen</a>
+        <a class="chip" href="id.html">ID-Attribut</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

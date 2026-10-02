@@ -1,15 +1,20 @@
 /* =====================================================================
-   server.js – Lokaler Server für den Spicker
+   server.js – Lokaler Server für die Spicker-Sammlung
    ---------------------------------------------------------------------
-   Macht zwei Dinge:
+   Macht drei Dinge:
 
-   1. Liefert den Ordner "liste/" als Webseite aus (statische Dateien:
+   1. Liefert den Ordner "spicker/" als Webseite aus (statische Dateien:
       HTML, CSS, JS, Icons). Aufruf im Browser z. B.:
-        http://localhost:3000/Spicker.html
+        http://localhost:3000/          → Übersicht aller Spicker
+        http://localhost:3000/coding/   → der Coding-Spicker
+      Alte Adressen (/Spicker.html, /more/...) werden auf die neuen
+      umgeleitet (siehe Abschnitt 3, "Alte Lesezeichen").
 
-   2. Stellt eine kleine JSON-API bereit, über die more.js speichert,
-      wie gut man ein Thema verstanden hat (0–10 Punkte). Die Werte
-      landen in einer SQLite-Datenbank unter data/progress.db.
+   2. Stellt eine kleine JSON-API bereit, über die shared/page.js
+      speichert, wie gut man ein Thema verstanden hat (0–10 Punkte).
+      Die Werte landen in einer SQLite-Datenbank unter data/progress.db.
+      Schlüssel ist "<spicker>/<datei>", z. B. "coding/cpp-vector.html"
+      (siehe Abschnitt 2a, einmalige Umstellung alter Schlüssel).
 
    3. Schreibt zusätzlich eine Kopie aller Bewertungen nach
       data/progress.json (siehe Abschnitt 2b). Die kann eine andere
@@ -78,10 +83,11 @@ const HOST = "127.0.0.1";
 
 // __dirname = der Ordner, in dem diese Datei liegt (Repo-Root).
 const ROOT_DIR = __dirname;
-const STATIC_ROOT = path.join(ROOT_DIR, "liste");   // hier liegen die Webseiten
+const STATIC_ROOT = path.join(ROOT_DIR, "spicker"); // hier liegen die Webseiten
 const DATA_DIR = path.join(ROOT_DIR, "data");        // hier liegt Datenbank, Log, PID
 const DB_PATH = path.join(DATA_DIR, "progress.db");
 const PID_PATH = path.join(DATA_DIR, "server.pid");
+const BACKUP_PATH = path.join(DATA_DIR, "progress.db.bak"); // Sicherung vor der Umstellung (2a)
 const EXPORT_PATH = path.join(DATA_DIR, "progress.json");  // JSON-Kopie für andere Programme
 
 // data/-Ordner anlegen, falls er noch nicht existiert.
@@ -149,6 +155,110 @@ const statements = {
 
 
 /* =====================================================================
+   2a. EINMALIGE UMSTELLUNG DER SCHLÜSSEL  ("a.html" → "coding/a.html")
+   ---------------------------------------------------------------------
+   Früher gab es nur EINEN Spicker, der Schlüssel war nur der Dateiname.
+   Jetzt gibt es mehrere Spicker (coding, mathe, …) – zwei Seiten könnten
+   gleich heißen. Deshalb steht der Spicker jetzt davor.
+
+   Ablauf beim Serverstart:
+     1. Gibt es Zeilen OHNE "/" im Schlüssel? Nein → nichts tun.
+        (Darum passiert beim zweiten Start nichts mehr.)
+     2. Ja → ZUERST eine Sicherung der Datenbank anlegen
+        (data/progress.db.bak). Geht das schief, wird NICHT umgestellt.
+     3. Jede alte Zeile bekommt das Präfix "coding/" (es gab ja nur
+        den Coding-Spicker). Jede Änderung wird geloggt.
+     4. Alles in EINER Transaktion: entweder klappen alle Änderungen,
+        oder keine (bei einem Fehler wird alles zurückgerollt).
+   ===================================================================== */
+const LEGACY_TOPIC_ID = "coding";
+
+// ---------------------------------------------------------------------
+// Sicherung anlegen. Gibt den Pfad der Sicherung zurück.
+// Eine schon vorhandene progress.db.bak wird NICHT überschrieben –
+// dann bekommt die neue Sicherung einen Zeitstempel im Namen.
+//
+// "VACUUM INTO" ist ein SQLite-Befehl, der eine vollständige, saubere
+// Kopie der geöffneten Datenbank in eine neue Datei schreibt. Das ist
+// sicherer als die Datei einfach zu kopieren, während sie offen ist.
+// ---------------------------------------------------------------------
+function createDatabaseBackup() {
+  let backupPath = BACKUP_PATH;
+  if (fs.existsSync(backupPath)) {
+    // Doppelpunkte sind in Windows-Dateinamen verboten → durch "-" ersetzen
+    const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+    backupPath = path.join(DATA_DIR, "progress.db." + stamp + ".bak");
+    console.log("[migration] progress.db.bak gibt es schon – neue Sicherung heißt:", path.basename(backupPath));
+  }
+
+  // Den Pfad als Wert übergeben ("?"), nicht in den SQL-Text einbauen
+  // (siehe PREPARED STATEMENTS oben).
+  db.prepare("VACUUM INTO ?").run(backupPath);
+  console.log("[migration] Sicherung angelegt:", backupPath);
+  return backupPath;
+}
+
+function migrateLegacyPageKeys() {
+  // instr(page, '/') = Position von "/" im Text, 0 = kommt nicht vor
+  const legacyRows = db.prepare("SELECT page, level, updated FROM progress WHERE instr(page, '/') = 0").all();
+
+  if (legacyRows.length === 0) {
+    console.log("[migration] keine alten Schlüssel ohne Spicker – nichts zu tun");
+    return;
+  }
+
+  console.log("[migration] " + legacyRows.length + " alte Schlüssel gefunden → bekommen \"" + LEGACY_TOPIC_ID + "/\"");
+
+  try {
+    createDatabaseBackup();
+  } catch (error) {
+    // Ohne Sicherung lieber gar nichts ändern – der Server läuft trotzdem.
+    console.error("[migration] Sicherung fehlgeschlagen – Umstellung wird übersprungen:", error.message);
+    return;
+  }
+
+  const rename = db.prepare("UPDATE progress SET page = ? WHERE page = ?");
+  const removeOld = db.prepare("DELETE FROM progress WHERE page = ?");
+
+  db.exec("BEGIN");   // Transaktion starten
+  try {
+    for (const row of legacyRows) {
+      const newKey = LEGACY_TOPIC_ID + "/" + row.page;
+      const existing = statements.getOne.get(newKey);
+
+      if (existing) {
+        // Gibt es den neuen Schlüssel schon, gewinnt der NEUERE Eintrag.
+        // ISO-Zeitstempel kann man direkt als Text vergleichen.
+        if (row.updated > existing.updated) {
+          statements.upsert.run(newKey, row.level, row.updated);
+          console.log("[migration]   " + row.page + " → " + newKey + " (überschreibt älteren Wert " + existing.level + " mit " + row.level + ")");
+        } else {
+          console.log("[migration]   " + row.page + " → verworfen, " + newKey + " ist neuer (" + existing.level + ")");
+        }
+        removeOld.run(row.page);
+      } else {
+        rename.run(newKey, row.page);
+        console.log("[migration]   " + row.page + " → " + newKey + " = " + row.level);
+      }
+    }
+    db.exec("COMMIT");   // alle Änderungen dauerhaft speichern
+    console.log("[migration] fertig:", legacyRows.length, "Schlüssel umgestellt");
+  } catch (error) {
+    db.exec("ROLLBACK"); // alles rückgängig machen
+    console.error("[migration] Fehler – alle Änderungen zurückgenommen:", error.message);
+  }
+}
+
+// Läuft einmal beim Start, VOR dem ersten JSON-Export (2b).
+// Eigener try/catch: Ein Fehler hier darf den Server nicht stoppen.
+try {
+  migrateLegacyPageKeys();
+} catch (error) {
+  console.error("[migration] unerwarteter Fehler:", error);
+}
+
+
+/* =====================================================================
    2b. JSON-EXPORT  (data/progress.json)
    ---------------------------------------------------------------------
    Die SQLite-Datei progress.db ist eine Binärdatei – ein anderes
@@ -161,7 +271,8 @@ const statements = {
      {
        "exported_at": "2026-09-30T18:04:12.345Z",
        "entries": [
-         { "page": "pointer.html", "level": 3, "updated": "2026-09-30T..." }
+         { "page": "coding/pointer.html", "topic": "coding", "file": "pointer.html",
+           "level": 3, "updated": "2026-09-30T..." }
        ]
      }
 
@@ -195,10 +306,22 @@ function exportProgressJson() {
     const rows = statements.getAll.all();
 
     // Neue, "saubere" Objekte bauen, statt die Zeilen direkt zu benutzen:
-    // So stehen in der Datei garantiert GENAU diese drei Felder in GENAU
+    // So stehen in der Datei garantiert GENAU diese Felder in GENAU
     // dieser Reihenfolge – auch falls die Tabelle später mehr Spalten bekommt.
+    //
+    // "page" ist der volle Schlüssel ("coding/pointer.html"). Zusätzlich
+    // stehen Spicker ("topic") und Dateiname ("file") getrennt darin,
+    // damit das lesende Programm den Text nicht selbst zerlegen muss.
+    // indexOf("/") = Position des ersten "/", -1 = keins vorhanden.
     const entries = rows.map(function toExportEntry(row) {
-      return { page: row.page, level: row.level, updated: row.updated };
+      const slash = row.page.indexOf("/");
+      return {
+        page: row.page,
+        topic: slash >= 0 ? row.page.slice(0, slash) : "",
+        file: slash >= 0 ? row.page.slice(slash + 1) : row.page,
+        level: row.level,
+        updated: row.updated
+      };
     });
 
     const exportData = {
@@ -260,7 +383,7 @@ exportProgressJson();
 
 
 /* =====================================================================
-   3. STATISCHE DATEIEN (liste/ ausliefern)
+   3. STATISCHE DATEIEN (spicker/ ausliefern)
    ===================================================================== */
 
 // Datei-Endung → Content-Type. Ohne den richtigen Content-Type zeigt
@@ -297,8 +420,9 @@ function getContentType(filePath) {
 // Pfad wirklich noch INNERHALB von STATIC_ROOT?
 // ---------------------------------------------------------------------
 function resolveStaticFilePath(urlPathname) {
-  // "/" → Startseite des Spickers
-  const relativePath = urlPathname === "/" ? "/Spicker.html" : urlPathname;
+  // Endet die Adresse auf "/" (z. B. "/" oder "/coding/"), ist ein
+  // Ordner gemeint → dessen index.html ausliefern.
+  const relativePath = urlPathname.endsWith("/") ? urlPathname + "index.html" : urlPathname;
 
   // %20 usw. wieder in normale Zeichen umwandeln (z. B. "area%20&%20map.html")
   const decodedPath = decodeURIComponent(relativePath);
@@ -317,7 +441,40 @@ function resolveStaticFilePath(urlPathname) {
   return isInsideRoot ? resolvedPath : null;
 }
 
+// ---------------------------------------------------------------------
+// ALTE LESEZEICHEN: alte Adressen auf die neuen umleiten
+// ---------------------------------------------------------------------
+// Vor dem Umbau lag alles direkt in liste/:
+//   /Spicker.html        → jetzt /coding/
+//   /more/<seite>.html   → jetzt /coding/more/<seite>.html
+// Gibt null zurück, wenn die Adresse keine alte ist.
+//
+// 301 = "Moved Permanently" (dauerhaft umgezogen). Der Browser merkt
+// sich das und fragt beim nächsten Mal direkt die neue Adresse an.
+// ---------------------------------------------------------------------
+function getLegacyRedirect(urlPathname) {
+  if (urlPathname === "/Spicker.html" || urlPathname === "/spicker.html") {
+    return "/coding/";
+  }
+  if (urlPathname.startsWith("/more/")) {
+    return "/coding" + urlPathname;
+  }
+  return null;
+}
+
+function sendRedirect(res, location) {
+  res.writeHead(301, { "Location": location, "Content-Type": "text/plain; charset=utf-8" });
+  res.end("301 – umgezogen nach " + location);
+}
+
 function serveStaticFile(req, res, urlPathname) {
+  const legacyTarget = getLegacyRedirect(urlPathname);
+  if (legacyTarget) {
+    console.log("[server] alte Adresse umgeleitet (301):", urlPathname, "→", legacyTarget);
+    sendRedirect(res, legacyTarget);
+    return;
+  }
+
   const filePath = resolveStaticFilePath(urlPathname);
 
   if (!filePath) {
@@ -327,6 +484,15 @@ function serveStaticFile(req, res, urlPathname) {
   }
 
   fs.stat(filePath, function handleStat(statError, stats) {
+    // Ordner OHNE "/" am Ende (z. B. "/coding"): auf "/coding/" umleiten.
+    // Wichtig, weil die Seite relative Pfade benutzt ("entries.js",
+    // "../shared/list.js") – die stimmen nur mit "/" am Ende.
+    if (!statError && stats.isDirectory()) {
+      console.log("[server] Ordner ohne / am Ende → umleiten:", urlPathname + "/");
+      sendRedirect(res, urlPathname + "/");
+      return;
+    }
+
     if (statError || !stats.isFile()) {
       send404(res);
       return;
@@ -400,10 +566,13 @@ function readRequestBody(req, maxBytes) {
   });
 }
 
-// Prüft, ob "page" ein gültiger Dateiname ist: endet auf ".html",
-// enthält keine Pfad-Trenner (kein Ordnerwechsel möglich).
+// Prüft, ob "page" ein gültiger Schlüssel ist: "<spicker>/<datei>.html"
+//   ^[a-z0-9_-]+   Spicker-ID: nur Buchstaben, Ziffern, "_" und "-" ("i" = groß/klein egal)
+//   \/             genau EIN "/" als Trenner
+//   [^/\\]+\.html$  Dateiname ohne weitere "/" oder "\", endet auf .html
+// So kann niemand über "../" o. ä. aus dem Schema ausbrechen.
 function isValidPageName(page) {
-  return typeof page === "string" && /^[^/\\]+\.html$/i.test(page);
+  return typeof page === "string" && /^[a-z0-9_-]+\/[^/\\]+\.html$/i.test(page);
 }
 
 // Prüft, ob "level" eine ganze Zahl zwischen 0 und 10 ist.
@@ -426,12 +595,14 @@ async function handleApiRequest(req, res, urlPathname) {
     return;
   }
 
-  // Fall B: /api/progress/<page>
+  // Fall B: /api/progress/<spicker>/<datei>  (z. B. /api/progress/coding/a.html)
+  // page.js schickt den Schlüssel mit encodeURIComponent, also als
+  // "coding%2Fa.html" – decodeURIComponent macht daraus wieder "coding/a.html".
   const rawPage = urlPathname.slice((API_PREFIX + "/").length);
   const page = decodeURIComponent(rawPage);
 
   if (!isValidPageName(page)) {
-    sendJson(res, 400, { error: "Ungültiger Seitenname (muss auf .html enden)" });
+    sendJson(res, 400, { error: "Ungültiger Schlüssel (Form: <spicker>/<datei>.html, z. B. coding/a.html)" });
     return;
   }
 
@@ -573,7 +744,7 @@ server.listen(PORT, HOST, function handleListening() {
     console.error("[server] PID-Datei konnte nicht geschrieben werden:", error);
   }
 
-  console.log("[server] läuft auf http://" + HOST + ":" + PORT + "/Spicker.html", "(PID " + process.pid + ")");
+  console.log("[server] läuft auf http://" + HOST + ":" + PORT + "/", "(PID " + process.pid + ")");
 });
 
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Xcode – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Swift · Apple-Apps</p>
+    <h1>Xcode</h1>
+    <p class="page-lead">Apples Entwicklungsumgebung für alle Apple-Plattformen – Editor, Vorschau, Simulator und App-Store-Upload in einem.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Xcode ist die offizielle IDE von Apple, kostenlos im Mac App Store. Man braucht sie, um Apps für iPhone, iPad, Mac, Apple Watch und Apple TV zu bauen, zu testen und zu veröffentlichen.</p>
+      <div class="note"><strong>Nur auf macOS:</strong> Xcode, SwiftUI-Vorschau und der iPhone-Simulator gibt es ausschließlich auf einem Mac. Die Sprache Swift selbst läuft auch auf Windows und Linux.</div>
+    </section>
+    <section>
+      <h2>Die wichtigsten Bereiche</h2>
+      <table class="info-table">
+        <thead><tr><th>Bereich</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>Navigator (links)</td><td>Dateien, Suche, Fehler, Haltepunkte</td></tr>
+          <tr><td>Editor (Mitte)</td><td>Code schreiben</td></tr>
+          <tr><td>Canvas / Preview</td><td>Live-Vorschau der SwiftUI-Ansicht neben dem Code</td></tr>
+          <tr><td>Inspector (rechts)</td><td>Eigenschaften des gewählten Elements</td></tr>
+          <tr><td>Debug-Bereich (unten)</td><td>Konsole (<code>print</code>-Ausgaben), Variablen beim Debuggen</td></tr>
+          <tr><td>Toolbar (oben)</td><td>Zielgerät wählen, Starten (▶), Stoppen (■)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Neues Projekt</h2>
+      <ol>
+        <li>File → New → Project</li>
+        <li>Plattform wählen (z. B. iOS) → „App“</li>
+        <li>Product Name eingeben, Interface: <strong>SwiftUI</strong>, Language: <strong>Swift</strong></li>
+        <li>Ordner wählen – Git-Repository anlegen lassen</li>
+        <li>Oben ein Simulator-Gerät wählen (z. B. iPhone) und ▶ drücken (⌘R)</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Wichtige Tastenkürzel</h2>
+      <table class="info-table">
+        <thead><tr><th>Kürzel</th><th>Aktion</th></tr></thead>
+        <tbody>
+          <tr><td>⌘R</td><td>Bauen und starten</td></tr>
+          <tr><td>⌘B</td><td>Nur bauen</td></tr>
+          <tr><td>⌘.</td><td>Stoppen</td></tr>
+          <tr><td>⌘⇧K</td><td>Build-Ordner leeren (hilft bei seltsamen Fehlern)</td></tr>
+          <tr><td>⌥⌘P</td><td>Vorschau aktualisieren</td></tr>
+          <tr><td>⌘⇧O</td><td>Datei schnell öffnen</td></tr>
+          <tr><td>⌃I</td><td>Code neu einrücken</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Auf ein echtes Gerät / in den App Store</h2>
+      <table class="info-table">
+        <thead><tr><th>Ziel</th><th>Voraussetzung</th></tr></thead>
+        <tbody>
+          <tr><td>Simulator</td><td>Nichts weiter – kostenlos</td></tr>
+          <tr><td>Eigenes iPhone</td><td>Kostenlose Apple-ID genügt (App läuft 7 Tage)</td></tr>
+          <tr><td>App Store / TestFlight</td><td>Apple Developer Program (kostenpflichtig, jährlich)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Ohne Mac?</h2>
+      <ul>
+        <li>Die Sprache Swift auf Windows/Linux lernen (siehe Swift-Seiten).</li>
+        <li>Mac mieten in der Cloud (z. B. MacinCloud) – eher für einzelne Builds.</li>
+        <li>Plattformübergreifend entwickeln mit Flutter, React Native oder .NET MAUI – für das finale iOS-Build braucht man aber trotzdem irgendwo einen Mac.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Xcode ist sehr groß (viele GB) – genug Speicherplatz einplanen.</li>
+        <li>Fehler direkt im Editor anklicken – oft schlägt Xcode eine automatische Korrektur („Fix“) vor.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="swiftui.html">SwiftUI</a>
+        <a class="chip" href="swift-einfuehrung.html">Swift</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

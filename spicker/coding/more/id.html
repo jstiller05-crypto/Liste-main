@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>ID-Attribut (id) – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Attribute</p>
+    <h1>ID-Attribut (id)</h1>
+    <p class="page-lead">Gibt einem Element einen eindeutigen Namen – für JavaScript, Sprungmarken, Labels und CSS.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine <code>id</code> darf auf einer Seite nur <strong>ein einziges Mal</strong> vorkommen – wie ein Personalausweis für das Element. Im CSS sprichst du sie mit <code>#</code> an.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>&lt;!-- HTML --&gt;
+&lt;table id="dynamicTable"&gt;…&lt;/table&gt;
+
+/* CSS */
+#dataTable {
+  width: 100%;
+}</code></pre>
+    </section>
+    <section>
+      <h2>Wofür man IDs braucht</h2>
+      <pre><code>&lt;!-- 1) JavaScript: Element finden --&gt;
+&lt;input id="searchInput"&gt;
+&lt;script&gt;
+  const input = document.getElementById("searchInput");
+&lt;/script&gt;
+
+&lt;!-- 2) Sprungmarke: Link springt zum Element --&gt;
+&lt;a href="#kontakt"&gt;Zum Kontakt&lt;/a&gt;
+&lt;section id="kontakt"&gt;…&lt;/section&gt;
+
+&lt;!-- 3) Label mit Feld verbinden --&gt;
+&lt;label for="email"&gt;E-Mail&lt;/label&gt;
+&lt;input id="email" type="email"&gt;
+
+&lt;!-- 4) Andere Seite an bestimmter Stelle öffnen --&gt;
+&lt;a href="anleitung.html#schritt-2"&gt;Anleitung, Schritt 2&lt;/a&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jede ID nur einmal pro Seite – sonst findet <code>getElementById</code> nur das erste Element.</li>
+        <li>Keine Leerzeichen, nicht mit einer Ziffer beginnen: <code>id="sort-select"</code> statt <code>id="1 select"</code>.</li>
+        <li>Fürs Styling lieber Klassen verwenden: ID-Regeln sind sehr „stark“ und schwer zu überschreiben.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="Class.html">CSS-Klassen</a>
+        <a class="chip" href="a.html">&lt;a&gt;</a>
+        <a class="chip" href="label.html">&lt;label&gt;</a>
+        <a class="chip" href="style.html">&lt;style&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>CSS-Variablen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">CSS · Grundlagen</p>
+    <h1>CSS-Variablen</h1>
+    <p class="page-lead">Werte wie Farben oder Abstände einmal festlegen und überall wiederverwenden.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>CSS-Variablen (<em>Custom Properties</em>) beginnen mit zwei Bindestrichen. Mit <code>var()</code> setzt du sie ein. Änderst du den Wert an einer Stelle, ändert er sich überall.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>:root {                      /* :root = das &lt;html&gt;-Element → gilt überall */
+  --accent: #4f8cff;
+  --bg: #333333;
+  --radius: 8px;
+  --space: 16px;
+}
+
+.button {
+  background: var(--accent);
+  border-radius: var(--radius);
+  padding: calc(var(--space) / 2) var(--space);
+}
+
+.card {
+  background: var(--bg);
+  border-radius: var(--radius);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Ersatzwert</h2>
+      <pre><code>color: var(--text-color, white);   /* white, falls --text-color nicht existiert */</code></pre>
+    </section>
+    <section>
+      <h2>Themes (z. B. Hell/Dunkel)</h2>
+      <pre><code>:root {
+  --bg: #ffffff;
+  --text: #222222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #222222;
+    --text: #f2f2f2;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Mit JavaScript ändern</h2>
+      <pre><code>// lesen
+const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent");
+
+// setzen – ändert sofort alle Stellen, die var(--accent) nutzen
+document.documentElement.style.setProperty("--accent", "#ff5f8c");</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Namen beschreiben den Zweck (<code>--accent</code>, <code>--card-bg</code>), nicht die Farbe (<code>--blau</code>).</li>
+        <li>Groß-/Kleinschreibung zählt: <code>--Accent</code> und <code>--accent</code> sind verschieden.</li>
+        <li>Variablen werden vererbt – du kannst sie auch nur für einen Bereich überschreiben: <code>.dark-box { --bg: #000; }</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-farben.html">Farben &amp; Hintergründe</a>
+        <a class="chip" href="css-media-queries.html">Media Queries</a>
+        <a class="chip" href="css-grundlagen.html">CSS-Grundlagen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

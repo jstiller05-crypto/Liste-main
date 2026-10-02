@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>SQL: Tabellen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">SQL · Struktur</p>
+    <h1>Tabellen anlegen (CREATE TABLE)</h1>
+    <p class="page-lead">Tabellen mit Spalten, Datentypen und Regeln erstellen, ändern und löschen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>CREATE TABLE</h2>
+      <pre><code>CREATE TABLE users (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,   -- SQLite
+ -- id         INT PRIMARY KEY AUTO_INCREMENT,      -- MySQL
+    name       VARCHAR(100) NOT NULL,
+    email      VARCHAR(255) NOT NULL UNIQUE,
+    points     INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS users ( … );   -- kein Fehler, wenn es sie schon gibt</code></pre>
+    </section>
+    <section>
+      <h2>Wichtige Datentypen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Speichert</th></tr></thead>
+        <tbody>
+          <tr><td><code>INT</code> / <code>INTEGER</code></td><td>Ganze Zahlen</td></tr>
+          <tr><td><code>DECIMAL(10,2)</code></td><td>Exakte Kommazahlen (Geldbeträge)</td></tr>
+          <tr><td><code>FLOAT</code> / <code>REAL</code></td><td>Ungefähre Kommazahlen</td></tr>
+          <tr><td><code>VARCHAR(n)</code></td><td>Text bis n Zeichen</td></tr>
+          <tr><td><code>TEXT</code></td><td>Langer Text</td></tr>
+          <tr><td><code>BOOLEAN</code></td><td>wahr/falsch (intern oft 0/1)</td></tr>
+          <tr><td><code>DATE</code> / <code>DATETIME</code> / <code>TIMESTAMP</code></td><td>Datum / Datum+Uhrzeit</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Regeln (Constraints)</h2>
+      <table class="info-table">
+        <thead><tr><th>Regel</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>PRIMARY KEY</code></td><td>Eindeutige ID der Zeile, nie leer</td></tr>
+          <tr><td><code>AUTO_INCREMENT</code> / <code>AUTOINCREMENT</code></td><td>ID wird automatisch hochgezählt</td></tr>
+          <tr><td><code>NOT NULL</code></td><td>Feld darf nicht leer sein</td></tr>
+          <tr><td><code>UNIQUE</code></td><td>Wert darf nur einmal vorkommen (z. B. E-Mail)</td></tr>
+          <tr><td><code>DEFAULT wert</code></td><td>Standardwert, wenn nichts angegeben wird</td></tr>
+          <tr><td><code>FOREIGN KEY … REFERENCES</code></td><td>Verweis auf eine andere Tabelle</td></tr>
+          <tr><td><code>CHECK (points &gt;= 0)</code></td><td>Eigene Bedingung</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tabellen ändern &amp; löschen</h2>
+      <pre><code>ALTER TABLE users ADD COLUMN level INT DEFAULT 1;      -- Spalte hinzufügen
+ALTER TABLE users RENAME COLUMN points TO score;        -- umbenennen
+ALTER TABLE users DROP COLUMN level;                    -- Spalte entfernen
+
+DROP TABLE users;                -- Tabelle samt Daten löschen – endgültig!
+DROP TABLE IF EXISTS users;</code></pre>
+      <p><code>DROP</code> und <code>DELETE</code> lassen sich nicht rückgängig machen. Vorher eine Sicherung (Backup) machen.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Tabellennamen im Plural und klein (<code>users</code>, <code>tasks</code>), Spalten im Singular (<code>name</code>, <code>email</code>).</li>
+        <li>Für Geld nie <code>FLOAT</code> verwenden – Rundungsfehler. Besser <code>DECIMAL</code> oder in Cent als <code>INT</code>.</li>
+        <li>Jede Tabelle bekommt einen Primärschlüssel.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="sql-einfuehrung.html">SQL</a>
+        <a class="chip" href="sql-joins.html">JOIN</a>
+        <a class="chip" href="sql-daten-aendern.html">INSERT/UPDATE/DELETE</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

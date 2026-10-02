@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Generatoren – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Fortgeschritten</p>
+    <h1>Iteratoren &amp; Generatoren</h1>
+    <p class="page-lead">Wie <code>for…of</code> unter der Haube funktioniert – und Funktionen, die Werte nach und nach liefern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Generator-Funktion</h2>
+      <pre><code>function* countTo(max) {          // * = Generator
+  for (let i = 1; i &lt;= max; i++) {
+    yield i;                          // Wert liefern und pausieren
+  }
+}
+
+for (const n of countTo(3)) {
+  console.log(n);                     // 1, 2, 3
+}
+
+const gen = countTo(2);
+gen.next();   // { value: 1, done: false }
+gen.next();   // { value: 2, done: false }
+gen.next();   // { value: undefined, done: true }</code></pre>
+    </section>
+    <section>
+      <h2>Endlose Folgen</h2>
+      <pre><code>function* idGenerator() {
+  let id = 1;
+  while (true) yield id++;            // läuft nie "zu Ende" – nur so weit, wie abgefragt wird
+}
+
+const ids = idGenerator();
+ids.next().value;   // 1
+ids.next().value;   // 2</code></pre>
+    </section>
+    <section>
+      <h2>Eigene Objekte durchlaufbar machen</h2>
+      <pre><code>class TaskList {
+  #tasks = [];
+  add(task) { this.#tasks.push(task); }
+
+  *[Symbol.iterator]() {              // macht die Klasse "for…of"-fähig
+    yield* this.#tasks;               // yield* gibt alle Werte eines anderen Iterierbaren weiter
+  }
+}
+
+const list = new TaskList();
+list.add("HTML"); list.add("CSS");
+for (const task of list) console.log(task);
+console.log([...list]);               // ["HTML", "CSS"]</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Alles, was <code>for…of</code> versteht (Arrays, Strings, Map, Set, NodeList), ist ein <em>Iterable</em>.</li>
+        <li>Generatoren sind praktisch für große oder unendliche Datenmengen, die man Stück für Stück verarbeitet.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-schleifen.html">Schleifen</a>
+        <a class="chip" href="js-klassen.html">Klassen</a>
+        <a class="chip" href="js-map-set.html">Map &amp; Set</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

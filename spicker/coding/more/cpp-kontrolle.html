@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: switch &amp; do-while – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Kontrollstrukturen</p>
+    <h1>switch, do-while, break &amp; continue</h1>
+    <p class="page-lead">Weitere Kontrollstrukturen neben <code>if</code>, <code>for</code> und <code>while</code>.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>switch – viele feste Werte</h2>
+      <pre><code>int choice = 2;
+
+switch (choice) {
+    case 1:
+        std::cout &lt;&lt; "Addition\n";
+        break;                        // ohne break läuft es in den nächsten case!
+    case 2:
+        std::cout &lt;&lt; "Subtraktion\n";
+        break;
+    case 3:
+    case 4:                           // mehrere Fälle, gleicher Code
+        std::cout &lt;&lt; "Multiplikation oder Division\n";
+        break;
+    default:                          // wenn kein case passt
+        std::cout &lt;&lt; "Ungültige Auswahl\n";
+}</code></pre>
+      <p><code>switch</code> funktioniert nur mit ganzen Zahlen, <code>char</code> und <code>enum</code> – <strong>nicht</strong> mit <code>std::string</code>.</p>
+    </section>
+    <section>
+      <h2>do-while – mindestens einmal</h2>
+      <pre><code>int number;
+
+do {
+    std::cout &lt;&lt; "Zahl zwischen 1 und 10: ";
+    std::cin &gt;&gt; number;
+} while (number &lt; 1 || number &gt; 10);   // wiederholen, solange ungültig
+
+std::cout &lt;&lt; "Danke, " &lt;&lt; number &lt;&lt; "\n";</code></pre>
+      <p>Anders als <code>while</code> prüft <code>do-while</code> die Bedingung erst <em>nach</em> dem ersten Durchlauf – ideal für Eingabe-Prüfungen und Menüs.</p>
+    </section>
+    <section>
+      <h2>break &amp; continue</h2>
+      <pre><code>for (int i = 1; i &lt;= 10; ++i) {
+    if (i % 2 == 0) continue;    // gerade Zahlen überspringen
+    if (i &gt; 7) break;            // Schleife ganz beenden
+    std::cout &lt;&lt; i &lt;&lt; " ";       // 1 3 5 7
+}</code></pre>
+    </section>
+    <section>
+      <h2>Bereichsbasierte for-Schleife</h2>
+      <pre><code>std::vector&lt;int&gt; scores = {80, 95, 70};
+
+for (int score : scores) {              // Kopie jedes Elements
+    std::cout &lt;&lt; score &lt;&lt; "\n";
+}
+
+for (int&amp; score : scores) {             // Referenz: Elemente ändern
+    score += 5;
+}
+
+for (const auto&amp; score : scores) {      // nur lesen, ohne Kopie – empfohlen
+    std::cout &lt;&lt; score &lt;&lt; "\n";
+}</code></pre>
+    </section>
+    <section>
+      <h2>Menü-Schleife (typisches Muster)</h2>
+      <pre><code>bool running = true;
+
+while (running) {
+    std::cout &lt;&lt; "1) Spielen  2) Statistik  0) Beenden\n";
+    int choice;
+    std::cin &gt;&gt; choice;
+
+    switch (choice) {
+        case 1: startGame();      break;
+        case 2: showStatistics(); break;
+        case 0: running = false;  break;
+        default: std::cout &lt;&lt; "Unbekannt\n";
+    }
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Fehlendes <code>break</code> im <code>switch</code> ist einer der häufigsten Fehler – der Compiler warnt mit <code>-Wimplicit-fallthrough</code>.</li>
+        <li>Variablen innerhalb eines <code>case</code> in <code>{ }</code> setzen, sonst meckert der Compiler („jump to case label“).</li>
+        <li><code>break</code> beendet nur die <em>innerste</em> Schleife.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="if-else.html">if-else</a>
+        <a class="chip" href="for-loop.html">for-Schleife</a>
+        <a class="chip" href="while-loop.html">while-Schleife</a>
+        <a class="chip" href="cpp-operatoren.html">Operatoren</a>
+        <a class="chip" href="cpp-struct-enum.html">struct &amp; enum</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

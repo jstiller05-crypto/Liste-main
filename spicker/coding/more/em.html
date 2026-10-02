@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;em&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;em&gt;</h1>
+    <p class="page-lead">Betont ein Wort so, wie man es beim Sprechen betonen würde.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;em&gt;</code> (<em>emphasis</em>) verändert die Betonung eines Satzes. Browser zeigen es kursiv, Screenreader betonen es hörbar.</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;p&gt;Ich habe das &lt;em&gt;nicht&lt;/em&gt; gesagt.&lt;/p&gt;
+&lt;p&gt;Ich habe &lt;em&gt;das&lt;/em&gt; nicht gesagt.&lt;/p&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Ich habe das <em>nicht</em> gesagt.</p><p>Ich habe <em>das</em> nicht gesagt.</p>
+      </div>
+      <p>Gleiche Wörter, andere Betonung – andere Bedeutung.</p>
+    </section>
+    <section>
+      <h2>Unterschied zu ähnlichen Tags</h2>
+      <table class="info-table">
+        <thead><tr><th>Tag</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;em&gt;</code></td><td>Betonung beim Sprechen</td></tr>
+          <tr><td><code>&lt;strong&gt;</code></td><td>Wichtig, dringend, ernst</td></tr>
+          <tr><td><code>&lt;i&gt;</code></td><td>Anders gemeint (Fachbegriff, Gedanke, Fremdwort) – ohne Betonung</td></tr>
+          <tr><td><code>&lt;b&gt;</code></td><td>Nur optisch hervorheben, ohne Bedeutung</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nicht für reine Optik nutzen – dafür ist CSS (<code>font-style: italic</code>) da.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="i.html">&lt;i&gt;</a>
+        <a class="chip" href="mark.html">&lt;mark&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

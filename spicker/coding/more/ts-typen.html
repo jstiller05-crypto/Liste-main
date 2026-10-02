@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>TypeScript: Typen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">TypeScript · Grundlagen</p>
+    <h1>Grundtypen</h1>
+    <p class="page-lead">Welche Typen es gibt, wie man sie schreibt – und wann TypeScript sie von allein errät.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Einfache Typen</h2>
+      <pre><code>let title: string = "Spicker";
+let count: number = 42;          // ganze Zahlen UND Kommazahlen
+let isOpen: boolean = true;
+let nothing: null = null;
+let notSet: undefined = undefined;</code></pre>
+      <p>Die Typen werden klein geschrieben: <code>string</code>, nicht <code>String</code>.</p>
+    </section>
+    <section>
+      <h2>Typen erraten lassen (Inferenz)</h2>
+      <p>Weist du sofort einen Wert zu, erkennt TypeScript den Typ selbst. Die Angabe ist dann überflüssig.</p>
+      <pre><code>let city = "Musterstadt";   // TS weiß: string
+city = 5;                   // Fehler: number passt nicht zu string
+
+const max = 10;             // Typ ist sogar genau 10 (weil const)</code></pre>
+      <div class="note">Faustregel: Bei Variablen mit Startwert den Typ weglassen, bei Funktions-Parametern immer angeben.</div>
+    </section>
+    <section>
+      <h2>Arrays und Tupel</h2>
+      <pre><code>const scores: number[] = [3, 7, 9];
+const names: Array&lt;string&gt; = ["Anna", "Ben"];   // gleiche Bedeutung
+
+scores.push("zehn");   // Fehler: string ist keine number
+
+// Tupel: feste Länge, feste Typen pro Position
+const point: [number, number] = [10, 20];
+const entry: [string, number] = ["Äpfel", 3];</code></pre>
+    </section>
+    <section>
+      <h2>Funktionen</h2>
+      <pre><code>// Parameter-Typen und Rückgabetyp
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// optionaler Parameter (?) und Standardwert
+function greet(name: string, greeting?: string): string {
+  return `${greeting ?? "Hallo"} ${name}`;
+}
+
+// Pfeilfunktion
+const square = (x: number): number =&gt; x * x;
+
+// void = gibt nichts zurück
+function log(message: string): void {
+  console.log("[log]", message);
+}</code></pre>
+    </section>
+    <section>
+      <h2>Union-Typen: das eine ODER das andere</h2>
+      <pre><code>let id: number | string;
+id = 17;        // ok
+id = "A-17";    // ok
+id = true;      // Fehler
+
+function formatId(id: number | string): string {
+  // Typ eingrenzen ("narrowing"): danach weiß TS genau, was id ist
+  if (typeof id === "number") {
+    return id.toFixed(0);       // hier ist id eine number
+  }
+  return id.toUpperCase();      // hier ist id ein string
+}</code></pre>
+    </section>
+    <section>
+      <h2>Literal-Typen: nur ganz bestimmte Werte</h2>
+      <pre><code>let theme: "hell" | "dunkel" = "hell";
+theme = "dunkel";   // ok
+theme = "blau";     // Fehler
+
+function move(direction: "oben" | "unten" | "links" | "rechts") {
+  console.log("Bewege nach", direction);
+}</code></pre>
+    </section>
+    <section>
+      <h2>any, unknown und never</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Bedeutung</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><code>any</code></td><td>Schaltet die Prüfung aus – alles ist erlaubt</td><td>Möglichst nie; nur als Notlösung</td></tr>
+          <tr><td><code>unknown</code></td><td>Irgendein Wert, aber erst prüfen, dann benutzen</td><td>Daten von außen (JSON, API, Eingaben)</td></tr>
+          <tr><td><code>never</code></td><td>Kann nie vorkommen</td><td>Funktionen, die immer einen Fehler werfen</td></tr>
+        </tbody>
+      </table>
+      <pre><code>const data: unknown = JSON.parse('{"name":"Max"}');
+
+// data.name;   // Fehler: erst prüfen!
+if (typeof data === "object" &amp;&amp; data !== null &amp;&amp; "name" in data) {
+  console.log(data.name);   // jetzt erlaubt
+}</code></pre>
+    </section>
+    <section>
+      <h2>Typen einen Namen geben</h2>
+      <pre><code>type Id = number | string;
+type Theme = "hell" | "dunkel";
+
+let currentTheme: Theme = "hell";
+function load(id: Id) { /* ... */ }</code></pre>
+      <p>Für Objekte gibt es zusätzlich <code>interface</code> – mehr dazu auf der Seite „Interfaces & Objekttypen“.</p>
+    </section>
+    <section>
+      <h2>Type Assertion (as)</h2>
+      <pre><code>// TS kennt nur "HTMLElement | null" – du weißt es besser
+const input = document.getElementById("email") as HTMLInputElement;
+console.log(input.value);
+
+// Kurzform "!" = "ist sicher nicht null" (nur wenn du es wirklich weißt)
+const button = document.querySelector("button")!;</code></pre>
+      <div class="note"><code>as</code> prüft nichts zur Laufzeit. Ist das Element doch nicht da, gibt es trotzdem einen Fehler im Browser.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>number</code> statt <code>Number</code>, <code>string</code> statt <code>String</code> – die Großbuchstaben-Varianten sind etwas anderes.</li>
+        <li>Lieber <code>unknown</code> als <code>any</code>: <code>unknown</code> zwingt dich zum Prüfen, <code>any</code> versteckt Fehler.</li>
+        <li>Mit <code>typeof</code>, <code>in</code> und <code>Array.isArray()</code> grenzt du Union-Typen ein – TS merkt sich das Ergebnis im jeweiligen <code>if</code>-Zweig.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="ts-einfuehrung.html">Einführung</a>
+        <a class="chip" href="ts-interfaces.html">Interfaces</a>
+        <a class="chip" href="js-variablen.html">Variablen &amp; Datentypen</a>
+        <a class="chip" href="js-funktionen.html">Funktionen</a>
+        <a class="chip" href="js-operatoren.html">Operatoren</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

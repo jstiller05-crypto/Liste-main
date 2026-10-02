@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;figure&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
+    <h1>&lt;figure&gt;</h1>
+    <p class="page-lead">Fasst ein Bild, Diagramm, Code-Beispiel oder Zitat mit seiner Beschriftung zusammen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;figure&gt;</code> ist ein Container für eigenständige Inhalte, auf die der Text verweist („siehe Abbildung 1“). Die Beschriftung steht in <code>&lt;figcaption&gt;</code>.</p>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;!-- Bild mit Bildunterschrift --&gt;
+&lt;figure&gt;
+  &lt;img src="setup.jpg" alt="Schreibtisch mit Laptop und Monitor"&gt;
+  &lt;figcaption&gt;Abb. 1: Mein Programmier-Setup&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- Code mit Beschriftung --&gt;
+&lt;figure&gt;
+  &lt;pre&gt;&lt;code&gt;console.log("Hallo");&lt;/code&gt;&lt;/pre&gt;
+  &lt;figcaption&gt;Ausgabe in der Browser-Konsole&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <figure style="margin:0"><pre><code>console.log("Hallo");</code></pre><figcaption>Ausgabe in der Browser-Konsole</figcaption></figure>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Browser geben <code>&lt;figure&gt;</code> einen Außenabstand (<code>margin: 40px</code>). Mit <code>figure { margin: 0; }</code> entfernst du ihn.</li>
+        <li>Bilder ohne Beschriftung brauchen kein <code>&lt;figure&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="figcaption.html">&lt;figcaption&gt;</a>
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+        <a class="chip" href="blockquote.html">&lt;blockquote&gt; / &lt;q&gt;</a>
+        <a class="chip" href="caption.html">&lt;caption&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

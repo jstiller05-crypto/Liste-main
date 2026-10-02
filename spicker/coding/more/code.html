@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;code&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Text</p>
+    <h1>&lt;code&gt;</h1>
+    <p class="page-lead">Stellt Programmcode, Befehle oder Dateinamen im Text in Festbreitenschrift dar.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;code&gt;</code> zeigt dem Browser (und dem Leser): Das hier ist Code. Für einzelne Wörter im Fließtext reicht <code>&lt;code&gt;</code> allein. Für mehrzeilige Codeblöcke kombiniert man es mit <code>&lt;pre&gt;</code>, damit Einrückungen und Zeilenumbrüche erhalten bleiben.</p>
+    </section>
+    <section>
+      <h2>Beispiele</h2>
+      <pre><code>&lt;!-- im Fließtext --&gt;
+&lt;p&gt;Mit &lt;code&gt;console.log()&lt;/code&gt; gibst du etwas in der Konsole aus.&lt;/p&gt;
+
+&lt;!-- als Block --&gt;
+&lt;pre&gt;&lt;code&gt;for (let i = 0; i &amp;lt; 3; i++) {
+  console.log(i);
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <p>Mit <code>console.log()</code> gibst du etwas in der Konsole aus.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Innerhalb von <code>&lt;code&gt;</code> musst du <code>&lt;</code> als <code>&amp;lt;</code> und <code>&gt;</code> als <code>&amp;gt;</code> schreiben, sonst hält der Browser es für echtes HTML.</li>
+        <li>Tastatureingaben zeichnet man mit <code>&lt;kbd&gt;</code> aus, Programmausgaben mit <code>&lt;samp&gt;</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="kbd.html">&lt;kbd&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

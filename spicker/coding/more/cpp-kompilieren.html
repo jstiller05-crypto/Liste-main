@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Kompilieren – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Werkzeuge</p>
+    <h1>Kompilieren &amp; Build</h1>
+    <p class="page-lead">Wie aus <code>.cpp</code>-Dateien ein Programm wird – mit g++, Compiler-Warnungen und CMake.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Vom Code zum Programm</h2>
+      <pre><code>main.cpp ──┐
+           ├─► Präprozessor (#include, #define)
+           ├─► Compiler  → main.o   (Maschinencode je Datei)
+utils.cpp ─┘              utils.o
+                             │
+                             ▼
+                          Linker  → programm.exe</code></pre>
+    </section>
+    <section>
+      <h2>Compiler installieren</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Installation</th><th>Prüfen</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td><strong>MSYS2</strong> installieren, dann darin <code>pacman -S mingw-w64-ucrt-x86_64-gcc</code> – oder Visual Studio mit „Desktopentwicklung mit C++“ (Compiler MSVC)</td><td><code>g++ --version</code></td></tr>
+          <tr><td>Linux (Debian/Ubuntu)</td><td><code>sudo apt install build-essential cmake gdb</code></td><td><code>g++ --version</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Mit g++ auf der Kommandozeile</h2>
+      <pre><code># eine Datei
+g++ main.cpp -o programm
+
+# mehrere Dateien, moderner Standard, Warnungen an
+g++ -std=c++17 -Wall -Wextra main.cpp utils.cpp -o programm
+
+# ausführen
+./programm          # Linux
+.\programm.exe      # Windows (PowerShell)</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Option</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>-o name</code></td><td>Name der fertigen Programmdatei</td></tr>
+          <tr><td><code>-std=c++17</code> / <code>-std=c++20</code></td><td>C++-Version</td></tr>
+          <tr><td><code>-Wall -Wextra</code></td><td>Viele nützliche Warnungen einschalten</td></tr>
+          <tr><td><code>-g</code></td><td>Debug-Informationen (für den Debugger)</td></tr>
+          <tr><td><code>-O2</code></td><td>Optimieren (schnelleres Programm)</td></tr>
+          <tr><td><code>-I include</code></td><td>Zusätzlicher Ordner für Header</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>CMake</h2>
+      <p>Bei mehreren Dateien schreibt man die Befehle nicht mehr von Hand, sondern beschreibt das Projekt in einer <code>CMakeLists.txt</code>. IDEs wie VS Code, CLion oder Qt Creator lesen diese Datei direkt.</p>
+      <pre><code>cmake_minimum_required(VERSION 3.16)
+project(MeinProjekt LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(MeinProjekt
+    src/main.cpp
+    src/Player.cpp
+)
+
+target_include_directories(MeinProjekt PRIVATE include)</code></pre>
+      <pre><code># bauen
+cmake -S . -B build
+cmake --build build</code></pre>
+    </section>
+    <section>
+      <h2>Debug oder Release?</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Debug</th><th>Release</th></tr></thead>
+        <tbody>
+          <tr><td>Zweck</td><td>Entwickeln, Fehler suchen</td><td>Fertiges Programm weitergeben</td></tr>
+          <tr><td>Geschwindigkeit</td><td>Langsamer</td><td>Schnell (optimiert)</td></tr>
+          <tr><td>Debugger</td><td>Funktioniert voll</td><td>Eingeschränkt</td></tr>
+          <tr><td><code>assert</code></td><td>Aktiv</td><td>Abgeschaltet</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Warnungen ernst nehmen – sie zeigen oft echte Fehler.</li>
+        <li>Nach Änderungen an <code>CMakeLists.txt</code> das Projekt neu konfigurieren.</li>
+        <li>Linux-Test: Viele Unterschiede zwischen Windows und Linux zeigen sich erst beim Kompilieren mit einem anderen Compiler (MSVC vs. GCC) – früh auf beiden testen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-header.html">Header-Dateien</a>
+        <a class="chip" href="cpp-fehler.html">Fehler &amp; Exceptions</a>
+        <a class="chip" href="include.html">#include</a>
+        <a class="chip" href="cpp-main.html">int main()</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

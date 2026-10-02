@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C#: async &amp; Dateien – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C# · Fortgeschritten</p>
+    <h1>async/await &amp; Dateien</h1>
+    <p class="page-lead">Asynchrone Methoden, Dateien lesen/schreiben und JSON in C#.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>async &amp; await</h2>
+      <pre><code>static async Task&lt;string&gt; LoadAsync(string url) {
+    using var client = new HttpClient();
+    return await client.GetStringAsync(url);    // wartet, ohne das Programm zu blockieren
+}
+
+string html = await LoadAsync("https://example.com");
+Console.WriteLine(html.Length);</code></pre>
+      <p>Wie in JavaScript: <code>async</code> markiert die Methode, <code>await</code> wartet auf das Ergebnis. Rückgabetyp ist <code>Task</code> bzw. <code>Task&lt;T&gt;</code>.</p>
+    </section>
+    <section>
+      <h2>Dateien</h2>
+      <pre><code>File.WriteAllText("notes.txt", "Erste Zeile\n");
+File.AppendAllText("notes.txt", "Zweite Zeile\n");
+
+if (File.Exists("notes.txt")) {
+    string content = File.ReadAllText("notes.txt");
+    string[] lines = File.ReadAllLines("notes.txt");
+    Console.WriteLine($"{lines.Length} Zeilen");
+}
+
+Directory.CreateDirectory("data/saves");
+string path = Path.Combine("data", "scores.json");   // plattformunabhängig</code></pre>
+    </section>
+    <section>
+      <h2>JSON</h2>
+      <pre><code>using System.Text.Json;
+
+var list = new List&lt;Score&gt; { new("Max", 120) };
+string json = JsonSerializer.Serialize(list, new JsonSerializerOptions { WriteIndented = true });
+File.WriteAllText(path, json);
+
+var loaded = JsonSerializer.Deserialize&lt;List&lt;Score&gt;&gt;(File.ReadAllText(path));
+
+// Typ-Deklarationen stehen bei Top-level statements am Ende der Datei
+record Score(string Name, int Points);</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Methoden, die <code>await</code> benutzen, müssen <code>async</code> sein und heißen üblicherweise <code>…Async</code>.</li>
+        <li><code>Path.Combine</code> statt Strings mit <code>\</code> oder <code>/</code> – dann funktioniert es auf Windows und Linux.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="csharp-klassen.html">Klassen</a>
+        <a class="chip" href="js-async.html">async/await</a>
+        <a class="chip" href="cpp-dateien.html">Dateien</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

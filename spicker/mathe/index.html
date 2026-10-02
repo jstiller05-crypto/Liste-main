@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+      Reihenfolge ist wichtig:
+        1. core.css  = gemeinsames Layout aller Spicker
+        2. theme.css = nur die Farben DIESES Spickers (überschreibt core.css)
+      onerror = Datei fehlt → in der Konsole melden statt still zu scheitern
+    -->
+    <link rel="stylesheet" href="../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+    <link rel="stylesheet" href="theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+    <!--
+      "defer" = erst nach dem HTML ausführen, aber IN DIESER REIHENFOLGE:
+        topics.js  (alle Spicker, für den Wechsler)
+        entries.js (Daten + Konfiguration dieses Spickers)
+        list.js    (Logik – braucht die beiden anderen)
+    -->
+    <script defer src="../shared/topics.js" onerror="console.error('[hub] topics.js konnte nicht geladen werden:', this.src)"></script>
+    <script defer src="entries.js" onerror="console.error('[entries] entries.js konnte nicht geladen werden:', this.src)"></script>
+    <script defer src="../shared/list.js" onerror="console.error('[entries] list.js konnte nicht geladen werden:', this.src)"></script>
+    <link rel="icon" type="image/x-icon" href="../shared/icons/S logo.ico">
+    <title>Mathe – Spicker</title>
+</head>
+<!-- data-topic = ID aus shared/topics.js; list.js liest damit die richtigen Daten -->
+<body class="list-page" data-topic="mathe">
+    <!-- =====================================================
+         HEADER
+         Links: Logo + Titel + Spicker-Wechsler | Rechts: Suche mit Filter-Dropdown
+         Das Dropdown öffnet sich, solange etwas in .search-area
+         fokussiert ist (CSS :focus-within).
+         ===================================================== -->
+    <header class="site-header">
+        <div class="header-inner">
+
+            <!-- ----- Logo + Titel + Wechsler ----- -->
+            <div class="brand">
+                <!-- onerror: Falls das Icon nicht lädt → ausblenden + in der Konsole melden -->
+                <img class="brand-logo" src="../shared/icons/S logo.ico" alt=""
+                     onerror="console.warn('[header] Logo konnte nicht geladen werden:', this.src); this.style.display='none';">
+                <div>
+                    <h1 class="brand-title">Spicker</h1>
+                    <span class="brand-subtitle">Alles, was ich gelernt habe</span>
+                </div>
+                <!-- wird von list.js aus shared/topics.js gefüllt -->
+                <select id="topicSwitcher" class="topic-switcher" aria-label="Spicker wechseln"></select>
+            </div>
+
+            <!-- ----- Suche + Dropdown ----- -->
+            <div class="search-area">
+                <div class="search-box">
+                    <!-- Lupen-Symbol als SVG (braucht keine Datei) -->
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+                    </svg>
+                    <input type="text" id="myInput" placeholder="Suchen …" autocomplete="off" title="if you read this, you are an GitHub user">
+                </div>
+
+                <!-- Filtergruppen + Sortierung baut list.js aus entries.js (config.filterGroups) -->
+                <div class="class-dropdown"></div>
+            </div>
+
+        </div>
+    </header>
+    <main>
+        <table id="dynamicTable">
+        <thead>
+            <!-- Spaltenüberschriften baut list.js aus entries.js (config.columns) -->
+            <tr></tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <div id="noResultsOverlay">
+        <div class="overlay-content">
+        Keine Ergebnisse gefunden!
+        </div>
+    </div>
+    </main>
+    <footer>
+        <div class="ersteller">
+            <p>Erstellt von:</p><a href="https://github.com/jstiller05-crypto">Julian Stiller</a>
+        </div>
+    </footer>
+</body>
+</html>

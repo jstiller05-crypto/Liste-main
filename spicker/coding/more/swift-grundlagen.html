@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Swift: Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Swift · Grundlagen</p>
+    <h1>let, var &amp; Datentypen</h1>
+    <p class="page-lead">Konstanten und Variablen, Typen, Strings und Operatoren.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>let &amp; var</h2>
+      <pre><code>let maxLevel = 10          // Konstante – nicht änderbar (bevorzugen!)
+var score = 0             // Variable – änderbar
+score += 10
+
+let price: Double = 9.99  // Typ ausdrücklich angeben
+var name: String = "Max"</code></pre>
+      <p>Wie <code>const</code>/<code>let</code> in JavaScript: Standardmäßig <code>let</code>, nur wenn sich der Wert ändert <code>var</code>.</p>
+    </section>
+    <section>
+      <h2>Datentypen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>Int</code></td><td><code>42</code></td></tr>
+          <tr><td><code>Double</code> / <code>Float</code></td><td><code>3.14</code></td></tr>
+          <tr><td><code>Bool</code></td><td><code>true</code>, <code>false</code></td></tr>
+          <tr><td><code>String</code></td><td><code>"Hallo"</code></td></tr>
+          <tr><td><code>Character</code></td><td><code>"A"</code></td></tr>
+          <tr><td><code>[Int]</code></td><td>Array: <code>[1, 2, 3]</code></td></tr>
+          <tr><td><code>[String: Int]</code></td><td>Dictionary: <code>["Max": 120]</code></td></tr>
+          <tr><td><code>Int?</code></td><td>Optional: Zahl oder <code>nil</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Strings</h2>
+      <pre><code>let name = "Max"
+let points = 42
+
+print("\(name) hat \(points) Punkte")      // Interpolation
+let greeting = "Hallo " + name              // verbinden
+
+name.count                 // 3
+name.uppercased()          // "MAX"
+name.contains("a")         // true
+name.isEmpty               // false
+"a,b,c".split(separator: ",")               // ["a", "b", "c"]
+
+let multi = """
+Mehrzeiliger
+Text
+"""</code></pre>
+    </section>
+    <section>
+      <h2>Operatoren &amp; Umwandlung</h2>
+      <pre><code>let a = 7, b = 2
+a / b            // 3   (Int / Int)
+Double(a) / Double(b)   // 3.5
+a % b            // 1
+
+let number = Int("42")      // Int? – kann nil sein, wenn der Text keine Zahl ist
+let text = String(42)
+
+let label = score &gt;= 60 ? "bestanden" : "nicht bestanden"</code></pre>
+      <p>Swift wandelt Typen nie automatisch um: <code>Int + Double</code> ist ein Fehler, man muss ausdrücklich <code>Double(x)</code> schreiben.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>let</code> wo möglich – Xcode schlägt es sogar selbst vor.</li>
+        <li>Es gibt kein <code>i++</code> – stattdessen <code>i += 1</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="swift-einfuehrung.html">Swift</a>
+        <a class="chip" href="swift-optionals.html">Optionals</a>
+        <a class="chip" href="swift-kontrolle.html">Kontrollstrukturen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

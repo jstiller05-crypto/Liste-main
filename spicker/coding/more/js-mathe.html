@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Zahlen &amp; Math – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Daten</p>
+    <h1>Zahlen, Math &amp; Datum</h1>
+    <p class="page-lead">Runden, Zufallszahlen, Zahlen formatieren und mit Datum und Uhrzeit arbeiten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Math – eingebaute Rechenfunktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td><code>Math.round(2.5)</code></td><td><code>3</code> – kaufmännisch runden</td></tr>
+          <tr><td><code>Math.floor(2.9)</code></td><td><code>2</code> – abrunden</td></tr>
+          <tr><td><code>Math.ceil(2.1)</code></td><td><code>3</code> – aufrunden</td></tr>
+          <tr><td><code>Math.trunc(-2.7)</code></td><td><code>-2</code> – Nachkommastellen abschneiden</td></tr>
+          <tr><td><code>Math.abs(-5)</code></td><td><code>5</code> – Betrag</td></tr>
+          <tr><td><code>Math.max(1, 7, 3)</code> / <code>Math.min(…)</code></td><td><code>7</code> / <code>1</code></td></tr>
+          <tr><td><code>Math.sqrt(16)</code></td><td><code>4</code> – Wurzel</td></tr>
+          <tr><td><code>Math.pow(2, 3)</code> oder <code>2 ** 3</code></td><td><code>8</code></td></tr>
+          <tr><td><code>Math.PI</code></td><td><code>3.14159…</code></td></tr>
+          <tr><td><code>Math.random()</code></td><td>Zufallszahl von 0 (inkl.) bis 1 (exkl.)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Zufallszahlen</h2>
+      <pre><code>// Ganze Zahl von min bis max (beide inklusive)
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+randomInt(1, 6);     // Würfel: 1–6
+
+// Zufälliges Element aus einem Array
+const colors = ["rot", "grün", "blau"];
+const pick = colors[Math.floor(Math.random() * colors.length)];</code></pre>
+    </section>
+    <section>
+      <h2>Zahlen umwandeln &amp; formatieren</h2>
+      <pre><code>Number("3.5");            // 3.5
+parseFloat("3.5 kg");     // 3.5
+parseInt("08", 10);       // 8
+Number.isNaN(Number("x"));   // true – ungültige Zahl erkennen
+
+(3.14159).toFixed(2);     // "3.14"  – Achtung: Ergebnis ist Text
+
+// Nach deutschem Format
+(1234.5).toLocaleString("de-DE");                                   // "1.234,5"
+(19.9).toLocaleString("de-DE", { style: "currency", currency: "EUR" });   // "19,90 €"</code></pre>
+    </section>
+    <section>
+      <h2>Kommazahlen-Falle</h2>
+      <pre><code>0.1 + 0.2;                        // 0.30000000000000004 !
+Math.round((0.1 + 0.2) * 100) / 100;   // 0.3 – auf 2 Stellen runden</code></pre>
+    </section>
+    <section>
+      <h2>Datum &amp; Uhrzeit</h2>
+      <pre><code>const now = new Date();
+
+now.getFullYear();     // 2026
+now.getMonth();        // 0–11  (Januar = 0!)
+now.getDate();         // Tag im Monat 1–31
+now.getDay();          // Wochentag 0–6 (Sonntag = 0)
+now.getHours();        // 0–23
+
+now.toLocaleDateString("de-DE");   // "28.9.2026"
+now.toLocaleTimeString("de-DE");   // "14:05:33"
+
+const birthday = new Date(2026, 11, 24);   // 24. Dezember 2026 (Monat 11!)
+const diffMs = birthday - now;              // Differenz in Millisekunden
+const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Monate zählen bei <code>Date</code> ab 0 – eine der bekanntesten JavaScript-Fallen.</li>
+        <li><code>toFixed</code> liefert einen String. Zum Weiterrechnen wieder <code>Number()</code> drumherum.</li>
+        <li>Division durch 0 ergibt <code>Infinity</code>, keinen Fehler.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-variablen.html">Variablen &amp; Datentypen</a>
+        <a class="chip" href="js-operatoren.html">Operatoren</a>
+        <a class="chip" href="js-strings.html">Strings</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

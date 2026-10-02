@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C#: Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C# · Grundlagen</p>
+    <h1>Variablen, Typen &amp; Strings</h1>
+    <p class="page-lead">Datentypen, <code>var</code>, String-Interpolation und Eingaben umwandeln.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Variablen &amp; Typen</h2>
+      <pre><code>int score = 0;
+double price = 9.99;
+decimal money = 19.99m;       // exakt – für Geld (m am Ende)
+bool isActive = true;
+char grade = 'A';
+string name = "Max";
+
+var level = 3;                // Typ wird erkannt (int)
+const int MaxLevel = 10;      // Konstante</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Speichert</th></tr></thead>
+        <tbody>
+          <tr><td><code>int</code> / <code>long</code></td><td>Ganze Zahlen</td></tr>
+          <tr><td><code>double</code> / <code>float</code></td><td>Kommazahlen</td></tr>
+          <tr><td><code>decimal</code></td><td>Exakte Kommazahlen (Geld)</td></tr>
+          <tr><td><code>bool</code></td><td><code>true</code> / <code>false</code></td></tr>
+          <tr><td><code>char</code></td><td>Einzelnes Zeichen</td></tr>
+          <tr><td><code>string</code></td><td>Text</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Strings</h2>
+      <pre><code>string name = "Max";
+int points = 42;
+
+Console.WriteLine($"{name} hat {points} Punkte");          // Interpolation mit $
+Console.WriteLine($"Preis: {9.5:F2} €");                   // Format: 9.50
+Console.WriteLine(@"C:\Ordner\Datei.txt");               // @ = Backslash wörtlich
+
+name.Length;                   // 3
+name.ToUpper();                // "MAX"
+name.Contains("a");            // true
+name.Substring(0, 2);          // "Ma"
+"a,b,c".Split(',');            // ["a", "b", "c"]
+string.Join(", ", list);       // Liste zu Text
+string.IsNullOrWhiteSpace(s);  // leer?</code></pre>
+    </section>
+    <section>
+      <h2>Eingaben umwandeln</h2>
+      <pre><code>Console.Write("Zahl: ");
+string? input = Console.ReadLine();
+
+if (int.TryParse(input, out int number)) {     // sicher: kein Absturz bei Unsinn
+    Console.WriteLine($"Das Doppelte: {number * 2}");
+} else {
+    Console.WriteLine("Keine gültige Zahl");
+}
+
+int direct = int.Parse("42");                  // wirft Exception bei ungültigem Text
+string text = 42.ToString();</code></pre>
+    </section>
+    <section>
+      <h2>Operatoren (Auswahl)</h2>
+      <table class="info-table">
+        <thead><tr><th>Operator</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>== != &lt; &gt; &amp;&amp; || !</code></td><td>wie in C++/JS</td></tr>
+          <tr><td><code>? :</code></td><td>Ternär</td></tr>
+          <tr><td><code>??</code></td><td>Ersatzwert bei null: <code>name ?? "Gast"</code></td></tr>
+          <tr><td><code>?.</code></td><td>Nur zugreifen, wenn nicht null: <code>user?.Name</code></td></tr>
+          <tr><td><code>is</code></td><td>Typprüfung: <code>if (obj is string s)</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>int.TryParse</code> statt <code>int.Parse</code> bei Nutzereingaben.</li>
+        <li>Wie in C++ gilt: <code>7 / 2</code> ist bei zwei <code>int</code> gleich <code>3</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="csharp-einfuehrung.html">C#</a>
+        <a class="chip" href="csharp-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="csharp-collections.html">Collections &amp; LINQ</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

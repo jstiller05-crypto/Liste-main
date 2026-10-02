@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>SQL: INSERT/UPDATE/DELETE – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">SQL · Daten</p>
+    <h1>INSERT, UPDATE &amp; DELETE</h1>
+    <p class="page-lead">Datensätze einfügen, ändern und löschen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>INSERT – einfügen</h2>
+      <pre><code>INSERT INTO users (name, email, points)
+VALUES ('Max', 'max@example.com', 120);
+
+-- mehrere auf einmal
+INSERT INTO users (name, email) VALUES
+    ('Anna', 'anna@example.com'),
+    ('Tom',  'tom@example.com');     -- points bekommt den DEFAULT-Wert</code></pre>
+    </section>
+    <section>
+      <h2>UPDATE – ändern</h2>
+      <pre><code>UPDATE users
+SET points = points + 10,           -- relativ zum alten Wert
+    level  = 2
+WHERE id = 1;</code></pre>
+      <div class="note"><strong>Ohne <code>WHERE</code> werden ALLE Zeilen geändert.</strong> Tipp: Erst mit <code>SELECT … WHERE …</code> prüfen, welche Zeilen getroffen werden, dann dieselbe Bedingung beim <code>UPDATE</code> verwenden.</div>
+    </section>
+    <section>
+      <h2>DELETE – löschen</h2>
+      <pre><code>DELETE FROM users WHERE id = 3;
+
+DELETE FROM users WHERE points = 0 AND created_at &lt; '2025-01-01';</code></pre>
+      <div class="note"><strong><code>DELETE FROM users;</code> ohne <code>WHERE</code> leert die ganze Tabelle.</strong></div>
+    </section>
+    <section>
+      <h2>Transaktionen – alles oder nichts</h2>
+      <pre><code>BEGIN;                                          -- Transaktion starten
+UPDATE accounts SET balance = balance - 50 WHERE id = 1;
+UPDATE accounts SET balance = balance + 50 WHERE id = 2;
+COMMIT;                                         -- beide Änderungen übernehmen
+-- ROLLBACK;                                    -- oder: alles zurücknehmen</code></pre>
+      <p>Geht zwischendurch etwas schief, sorgt <code>ROLLBACK</code> dafür, dass kein halber Zustand gespeichert wird.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Viele Tools (z. B. MySQL Workbench) haben einen „Safe Update Mode“, der <code>UPDATE</code>/<code>DELETE</code> ohne <code>WHERE</code> blockiert.</li>
+        <li>Statt Datensätze wirklich zu löschen, markiert man sie oft nur (<code>deleted_at</code> setzen) – „Soft Delete“.</li>
+        <li>Werte aus Formularen nie direkt in den SQL-Text einbauen, sondern mit Platzhaltern (siehe Sicherheit).</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="sql-select.html">SELECT</a>
+        <a class="chip" href="sql-sicherheit.html">Sicherheit</a>
+        <a class="chip" href="sql-tabellen.html">Tabellen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

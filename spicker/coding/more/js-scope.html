@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Scope &amp; this – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Grundlagen</p>
+    <h1>Scope, Closures, Hoisting &amp; this</h1>
+    <p class="page-lead">Wo eine Variable sichtbar ist, warum Funktionen sich Werte „merken“ – und was <code>this</code> gerade bedeutet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Scope – Sichtbarkeit</h2>
+      <pre><code>const globalValue = "überall sichtbar";
+
+function outer() {
+  const outerValue = "in outer";
+
+  if (true) {
+    const blockValue = "nur in diesem Block";   // let/const: Block-Scope
+    var oldStyle = "ganze Funktion";            // var: Funktions-Scope (verwirrend)
+    console.log(globalValue, outerValue, blockValue);
+  }
+
+  console.log(oldStyle);        // funktioniert (var)
+  // console.log(blockValue);   // ReferenceError
+}</code></pre>
+    </section>
+    <section>
+      <h2>Closures</h2>
+      <p>Eine Funktion „merkt“ sich die Variablen der Umgebung, in der sie erzeugt wurde – auch wenn diese Umgebung längst vorbei ist.</p>
+      <pre><code>function createCounter() {
+  let count = 0;                 // von außen nicht erreichbar
+  return {
+    increase: () =&gt; ++count,
+    reset: () =&gt; { count = 0; }
+  };
+}
+
+const counter = createCounter();
+counter.increase();   // 1
+counter.increase();   // 2
+// count selbst ist privat – nur über die Funktionen änderbar</code></pre>
+      <p>Closures stecken hinter vielen Mustern: private Daten, Debounce, Event-Handler, die sich Werte merken.</p>
+    </section>
+    <section>
+      <h2>Hoisting</h2>
+      <pre><code>sayHello();                  // funktioniert! Funktionsdeklarationen werden "nach oben gezogen"
+function sayHello() { console.log("Hallo"); }
+
+console.log(a);              // undefined (var wird hochgezogen, aber ohne Wert)
+var a = 5;
+
+// console.log(b);           // ReferenceError – let/const erst ab ihrer Zeile nutzbar
+let b = 5;</code></pre>
+    </section>
+    <section>
+      <h2>this</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufruf</th><th><code>this</code> ist …</th></tr></thead>
+        <tbody>
+          <tr><td><code>obj.methode()</code></td><td><code>obj</code></td></tr>
+          <tr><td>Normale Funktion <code>f()</code></td><td><code>undefined</code> (im strict mode / Modulen)</td></tr>
+          <tr><td>Pfeilfunktion</td><td>das <code>this</code> der Umgebung, in der sie steht</td></tr>
+          <tr><td>Event-Handler mit <code>function</code></td><td>das Element, an dem der Listener hängt</td></tr>
+          <tr><td><code>new Klasse()</code></td><td>das neue Objekt</td></tr>
+        </tbody>
+      </table>
+      <pre><code>class Timer {
+  seconds = 0;
+
+  start() {
+    // FALSCH: setInterval(function () { this.seconds++; }, 1000);  → this ist nicht der Timer
+    setInterval(() =&gt; {            // Pfeilfunktion übernimmt this von start()
+      this.seconds++;
+      console.log(this.seconds);
+    }, 1000);
+  }
+}</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer <code>let</code>/<code>const</code>, nie <code>var</code> – dann gibt es keine Hoisting-Überraschungen.</li>
+        <li>Verlierst du <code>this</code> in einem Callback: Pfeilfunktion verwenden oder <code>.bind(this)</code>.</li>
+        <li>Eine Schleife mit <code>let i</code> erzeugt für jeden Durchlauf ein eigenes <code>i</code> – mit <code>var</code> teilen sich alle Callbacks dasselbe.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-funktionen.html">Funktionen</a>
+        <a class="chip" href="js-klassen.html">Klassen</a>
+        <a class="chip" href="js-variablen.html">Variablen &amp; Datentypen</a>
+        <a class="chip" href="js-debounce.html">Debounce &amp; Throttle</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

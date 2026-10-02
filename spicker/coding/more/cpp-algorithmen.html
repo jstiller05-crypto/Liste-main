@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>C++: Algorithmen &amp; Lambdas – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">C++ · Daten</p>
+    <h1>&lt;algorithm&gt; &amp; Lambdas</h1>
+    <p class="page-lead">Fertige Funktionen zum Sortieren, Suchen, Zählen – und kleine Funktionen direkt im Code.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Lambdas</h2>
+      <pre><code>auto square = [](int x) { return x * x; };
+std::cout &lt;&lt; square(4) &lt;&lt; "\n";   // 16
+
+int bonus = 5;
+auto addBonus = [bonus](int x) { return x + bonus; };   // [bonus] = Variable "einfangen"
+auto increase = [&amp;bonus]() { bonus++; };                // [&amp;bonus] = per Referenz</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Capture</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>[]</code></td><td>Nichts von außen verwenden</td></tr>
+          <tr><td><code>[x]</code></td><td>x als Kopie</td></tr>
+          <tr><td><code>[&amp;x]</code></td><td>x als Referenz (Änderungen wirken außen)</td></tr>
+          <tr><td><code>[=]</code> / <code>[&amp;]</code></td><td>Alles als Kopie / alles als Referenz</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Die wichtigsten Algorithmen</h2>
+      <pre><code>#include &lt;algorithm&gt;
+#include &lt;numeric&gt;
+
+std::vector&lt;int&gt; v = {5, 2, 8, 1, 9};
+
+std::sort(v.begin(), v.end());                          // 1 2 5 8 9
+std::sort(v.begin(), v.end(), std::greater&lt;int&gt;());     // 9 8 5 2 1
+std::reverse(v.begin(), v.end());
+
+auto it = std::find(v.begin(), v.end(), 8);             // suchen
+if (it != v.end()) { /* gefunden */ }
+
+int count = std::count(v.begin(), v.end(), 5);          // wie oft 5?
+int bigOnes = std::count_if(v.begin(), v.end(),
+                            [](int x) { return x &gt; 4; });
+
+int maxValue = *std::max_element(v.begin(), v.end());
+int sum = std::accumulate(v.begin(), v.end(), 0);       // &lt;numeric&gt;
+
+bool allPositive = std::all_of(v.begin(), v.end(), [](int x) { return x &gt; 0; });</code></pre>
+    </section>
+    <section>
+      <h2>Objekte sortieren</h2>
+      <pre><code>struct Player { std::string name; int score; };
+std::vector&lt;Player&gt; players = {{"Max", 120}, {"Anna", 150}, {"Tom", 90}};
+
+std::sort(players.begin(), players.end(),
+          [](const Player&amp; a, const Player&amp; b) {
+              return a.score &gt; b.score;         // höchster Score zuerst
+          });</code></pre>
+    </section>
+    <section>
+      <h2>Elemente entfernen (erase-remove)</h2>
+      <pre><code>// alle negativen Zahlen entfernen
+v.erase(std::remove_if(v.begin(), v.end(), [](int x) { return x &lt; 0; }),
+        v.end());
+
+// C++20 kürzer:
+std::erase_if(v, [](int x) { return x &lt; 0; });</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>begin()</code> und <code>end()</code> markieren den Bereich – <code>end()</code> zeigt <em>hinter</em> das letzte Element.</li>
+        <li>Eigene Schleife geschrieben, die sortiert oder zählt? Oft gibt es dafür schon einen Algorithmus.</li>
+        <li><code>std::shuffle</code> (mit einem Zufallsgenerator) mischt einen Vector – z. B. Aufgaben in zufälliger Reihenfolge.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cpp-vector.html">std::vector</a>
+        <a class="chip" href="function.html">Funktionen</a>
+        <a class="chip" href="cpp-zufall.html">Zufallszahlen</a>
+        <a class="chip" href="cpp-map.html">map &amp; set</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

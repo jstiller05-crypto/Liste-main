@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>CSS: Einheiten &amp; calc() – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">CSS · Grundlagen</p>
+    <h1>Einheiten &amp; calc()</h1>
+    <p class="page-lead"><code>px</code>, <code>%</code>, <code>em</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>, <code>fr</code> – und wie man mit <code>calc()</code> rechnet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Übersicht</h2>
+      <table class="info-table">
+        <thead><tr><th>Einheit</th><th>Bedeutet</th><th>Gut für</th></tr></thead>
+        <tbody>
+          <tr><td><code>px</code></td><td>Pixel – feste Größe</td><td>Rahmen, kleine Abstände, Schatten</td></tr>
+          <tr><td><code>%</code></td><td>Prozent vom Eltern-Element</td><td>Breiten in Layouts</td></tr>
+          <tr><td><code>em</code></td><td>Vielfaches der Schriftgröße <em>des Elements</em></td><td>Abstände, die mit der Schrift mitwachsen</td></tr>
+          <tr><td><code>rem</code></td><td>Vielfaches der Schriftgröße von <code>&lt;html&gt;</code> (meist 16px)</td><td>Schriftgrößen, Abstände – überall gleich</td></tr>
+          <tr><td><code>vw</code> / <code>vh</code></td><td>1 % der Fensterbreite / -höhe</td><td>Vollbild-Bereiche (<code>height: 100vh</code>)</td></tr>
+          <tr><td><code>fr</code></td><td>Anteil am freien Platz (nur in Grid)</td><td>Grid-Spalten</td></tr>
+          <tr><td><code>ch</code></td><td>Breite des Zeichens „0“</td><td>Lesefreundliche Textbreite (<code>max-width: 65ch</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>html { font-size: 16px; }        /* 1rem = 16px */
+
+h1 { font-size: 2rem; }          /* 32px */
+p  { margin-bottom: 1rem; }      /* 16px */
+
+.button {
+  font-size: 0.9rem;
+  padding: 0.5em 1em;            /* wächst mit der Button-Schrift mit */
+}
+
+.sidebar { width: 25%; }         /* ein Viertel des Eltern-Elements */
+.hero    { height: 100vh; }      /* ganze Fensterhöhe */</code></pre>
+    </section>
+    <section>
+      <h2>Rechnen mit calc()</h2>
+      <pre><code>.content {
+  width: calc(100% - 250px);           /* ganze Breite minus Sidebar */
+  height: calc(100vh - 60px);          /* Fenster minus Header */
+  padding: calc(1rem + 2px);
+}</code></pre>
+      <p>Um <code>+</code> und <code>-</code> müssen Leerzeichen stehen: <code>calc(100% - 20px)</code>, nicht <code>calc(100%-20px)</code>.</p>
+    </section>
+    <section>
+      <h2>min(), max(), clamp()</h2>
+      <pre><code>width: min(100%, 800px);             /* nimmt den kleineren Wert */
+font-size: clamp(1.5rem, 4vw, 3rem); /* mindestens 1.5rem, höchstens 3rem, dazwischen fließend */</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>em</code> kann sich verschachtelt aufschaukeln (1.2em in 1.2em …) – <code>rem</code> ist berechenbarer.</li>
+        <li>Bei <code>0</code> braucht man keine Einheit: <code>margin: 0;</code>.</li>
+        <li><code>100vh</code> kann auf Handys wegen der Adressleiste zu hoch sein – dort hilft <code>100dvh</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="css-boxmodell.html">Box-Modell</a>
+        <a class="chip" href="css-text.html">Schrift &amp; Text</a>
+        <a class="chip" href="css-grid.html">Grid</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

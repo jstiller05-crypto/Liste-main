@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Node.js: Datenbank – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Node.js · Server</p>
+    <h1>Datenbank mit Node.js</h1>
+    <p class="page-lead">SQL-Datenbanken aus Node.js ansprechen – sicher mit Platzhaltern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>SQLite (eingebaut, ab Node 22.13 / 23.4)</h2>
+      <pre><code>import { DatabaseSync } from "node:sqlite";
+
+const db = new DatabaseSync("app.db");   // Datei wird angelegt, falls nicht vorhanden
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS scores (
+    id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    name   TEXT NOT NULL,
+    points INTEGER NOT NULL
+  )
+`);
+
+// Einfügen – mit ? als Platzhalter
+const insert = db.prepare("INSERT INTO scores (name, points) VALUES (?, ?)");
+insert.run("Max", 120);
+insert.run("Anna", 150);
+
+// Abfragen
+const top = db.prepare("SELECT name, points FROM scores ORDER BY points DESC LIMIT ?").all(3);
+console.table(top);</code></pre>
+      <p>Für ältere Node-Versionen gibt es das Paket <code>better-sqlite3</code> mit fast gleicher Schreibweise.</p>
+    </section>
+    <section>
+      <h2>MySQL / MariaDB (Paket mysql2)</h2>
+      <pre><code>import mysql from "mysql2/promise";
+
+const db = await mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: process.env.DB_PASSWORD,   // Passwort aus der .env
+  database: "app"
+});
+
+const [rows] = await db.execute(
+  "SELECT * FROM users WHERE email = ?",
+  [email]                              // Wert getrennt übergeben
+);
+console.log(rows);</code></pre>
+    </section>
+    <section>
+      <h2>Mit Express kombinieren</h2>
+      <pre><code>app.get("/api/scores", (req, res) =&gt; {
+  const rows = db.prepare("SELECT * FROM scores ORDER BY points DESC").all();
+  res.json(rows);
+});</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><strong>Nie</strong> Werte direkt in den SQL-Text einbauen (<code>"… WHERE name = '" + name + "'"</code>) – das ermöglicht SQL-Injection. Immer <code>?</code>-Platzhalter verwenden.</li>
+        <li>Zugangsdaten gehören in die <code>.env</code>, nicht in den Code.</li>
+        <li>SQLite braucht keinen eigenen Server – ideal zum Lernen und für kleine Projekte.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="sql-einfuehrung.html">SQL</a>
+        <a class="chip" href="sql-sicherheit.html">Sicherheit</a>
+        <a class="chip" href="node-express.html">Express</a>
+        <a class="chip" href="node-process.html">process &amp; .env</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

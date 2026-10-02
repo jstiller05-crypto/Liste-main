@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;canvas&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Medien</p>
+    <h1>&lt;canvas&gt;</h1>
+    <p class="page-lead">Eine Zeichenfläche, auf der du mit JavaScript Grafiken, Diagramme oder Spiele zeichnest.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;canvas&gt;</code> ist zuerst leer. Mit JavaScript holst du dir einen <em>Kontext</em> (den „Pinsel“) und zeichnest damit Pixel für Pixel: Rechtecke, Linien, Kreise, Text, Bilder. Viele Browser-Spiele laufen so.</p>
+    </section>
+    <section>
+      <h2>Syntax</h2>
+      <pre><code>&lt;canvas id="myCanvas" width="300" height="150"&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+  const canvas = document.getElementById("myCanvas");
+  const ctx = canvas.getContext("2d");   // 2D-Pinsel holen
+&lt;/script&gt;</code></pre>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+// gefülltes Rechteck: x, y, Breite, Höhe
+ctx.fillStyle = "#4f8cff";
+ctx.fillRect(20, 20, 100, 60);
+
+// Kreis: Mittelpunkt x, y, Radius, Startwinkel, Endwinkel
+ctx.beginPath();
+ctx.arc(200, 75, 40, 0, Math.PI * 2);
+ctx.fillStyle = "#f2f2f2";
+ctx.fill();
+
+// Linie
+ctx.beginPath();
+ctx.moveTo(20, 130);     // Stift ansetzen
+ctx.lineTo(280, 130);    // Linie ziehen
+ctx.strokeStyle = "#a8a8a8";
+ctx.stroke();
+
+// Text
+ctx.font = "16px Arial";
+ctx.fillText("Hallo Canvas", 20, 110);</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <canvas width="300" height="150" style="background:#222;border-radius:6px" id="canvasDemo"></canvas><script>(function(){var c=document.getElementById("canvasDemo");if(!c)return;var x=c.getContext("2d");x.fillStyle="#4f8cff";x.fillRect(20,20,100,60);x.beginPath();x.arc(200,75,40,0,Math.PI*2);x.fillStyle="#f2f2f2";x.fill();x.beginPath();x.moveTo(20,130);x.lineTo(280,130);x.strokeStyle="#a8a8a8";x.stroke();x.font="16px Arial";x.fillStyle="#f2f2f2";x.fillText("Hallo Canvas",20,110);})();</script>
+      </div>
+    </section>
+    <section>
+      <h2>Wichtige Befehle</h2>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>fillRect(x, y, b, h)</code></td><td>Gefülltes Rechteck</td></tr>
+          <tr><td><code>strokeRect(x, y, b, h)</code></td><td>Nur Rahmen</td></tr>
+          <tr><td><code>clearRect(x, y, b, h)</code></td><td>Bereich löschen</td></tr>
+          <tr><td><code>beginPath()</code> … <code>fill()</code> / <code>stroke()</code></td><td>Eigene Form zeichnen</td></tr>
+          <tr><td><code>arc(x, y, r, start, ende)</code></td><td>Kreis/Bogen (Winkel im Bogenmaß)</td></tr>
+          <tr><td><code>fillText(text, x, y)</code></td><td>Text schreiben</td></tr>
+          <tr><td><code>drawImage(bild, x, y)</code></td><td>Bild einfügen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Animation</h2>
+      <pre><code>let x = 0;
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // alles löschen
+  ctx.fillRect(x, 50, 30, 30);                      // Quadrat zeichnen
+  x = (x + 2) % canvas.width;                       // nach rechts, am Ende von vorn
+  requestAnimationFrame(draw);                      // nächstes Bild
+}
+draw();</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Größe mit den Attributen <code>width</code>/<code>height</code> setzen, nicht nur mit CSS – sonst wird die Zeichnung verzerrt.</li>
+        <li>Der Ursprung (0,0) ist <strong>oben links</strong>; y wächst nach unten.</li>
+        <li>Was einmal gezeichnet ist, sind nur noch Pixel – zum Bewegen alles löschen und neu zeichnen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="img.html">&lt;img&gt;</a>
+        <a class="chip" href="script.html">&lt;script&gt;</a>
+        <a class="chip" href="area &amp; map.html">&lt;map&gt; &amp; &lt;area&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

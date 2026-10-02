@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JS: Operatoren – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JavaScript · Grundlagen</p>
+    <h1>Operatoren</h1>
+    <p class="page-lead">Rechnen, vergleichen, logisch verknüpfen und Kurzschreibweisen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Rechnen</h2>
+      <table class="info-table">
+        <thead><tr><th>Operator</th><th>Beispiel</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td><code>+ - * /</code></td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+          <tr><td><code>%</code> (Rest)</td><td><code>7 % 2</code></td><td><code>1</code> – praktisch für gerade/ungerade</td></tr>
+          <tr><td><code>**</code> (Potenz)</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr>
+          <tr><td><code>++</code> / <code>--</code></td><td><code>i++</code></td><td>um 1 erhöhen / verringern</td></tr>
+          <tr><td><code>+= -= *= /=</code></td><td><code>score += 10</code></td><td>Kurzform für <code>score = score + 10</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Vergleichen</h2>
+      <table class="info-table">
+        <thead><tr><th>Operator</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>===</code></td><td>gleich (Wert <strong>und</strong> Typ)</td><td><code>5 === 5</code> → true, <code>5 === "5"</code> → false</td></tr>
+          <tr><td><code>!==</code></td><td>ungleich</td><td><code>5 !== 3</code> → true</td></tr>
+          <tr><td><code>==</code></td><td>gleich, wandelt Typen um</td><td><code>5 == "5"</code> → true – verwirrend, vermeiden</td></tr>
+          <tr><td><code>&gt; &lt; &gt;= &lt;=</code></td><td>größer / kleiner</td><td><code>age &gt;= 18</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Logisch verknüpfen</h2>
+      <table class="info-table">
+        <thead><tr><th>Operator</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>&amp;&amp;</code></td><td>UND – beide müssen stimmen</td><td><code>age &gt;= 18 &amp;&amp; hasTicket</code></td></tr>
+          <tr><td><code>||</code></td><td>ODER – eins reicht</td><td><code>isAdmin || isOwner</code></td></tr>
+          <tr><td><code>!</code></td><td>NICHT – dreht um</td><td><code>!isLoggedIn</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Praktische Kurzformen</h2>
+      <pre><code>// Ternärer Operator: kurzes if/else
+const label = age &gt;= 18 ? "volljährig" : "minderjährig";
+
+// || – Ersatzwert, wenn links falsy ist
+const name = input.value || "Gast";
+
+// ?? – Ersatzwert nur bei null/undefined (0 und "" bleiben erhalten)
+const count = savedCount ?? 0;
+
+// ?. – optional chaining: kein Fehler, wenn etwas fehlt
+const city = user?.address?.city;   // undefined statt Absturz</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer <code>===</code> statt <code>==</code> verwenden.</li>
+        <li><code>=</code> weist zu, <code>===</code> vergleicht. <code>if (x = 5)</code> ist ein klassischer Fehler.</li>
+        <li>Punkt vor Strich gilt auch hier – im Zweifel Klammern setzen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-bedingungen.html">if / else</a>
+        <a class="chip" href="js-variablen.html">Variablen &amp; Datentypen</a>
+        <a class="chip" href="js-mathe.html">Zahlen &amp; Math</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

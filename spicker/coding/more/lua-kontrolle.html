@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Lua: Kontrollstrukturen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Lua · Kontrollstrukturen</p>
+    <h1>Bedingungen &amp; Schleifen</h1>
+    <p class="page-lead"><code>if</code>, <code>for</code>, <code>while</code>, <code>repeat</code> – und wie man in Lua eine Schleife überspringt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>if / elseif / else</h2>
+      <pre><code>local points = 72
+
+if points &gt;= 90 then
+    print("Sehr gut")
+elseif points &gt;= 60 then        -- elseif in einem Wort
+    print("Bestanden")
+else
+    print("Nicht bestanden")
+end</code></pre>
+    </section>
+    <section>
+      <h2>Zahlen-for</h2>
+      <pre><code>for i = 1, 5 do              -- 1 bis 5 (inklusive)
+    print(i)
+end
+
+for i = 10, 1, -2 do         -- Start, Ende, Schritt: 10 8 6 4 2
+    print(i)
+end</code></pre>
+    </section>
+    <section>
+      <h2>for über Tabellen</h2>
+      <pre><code>local colors = { "rot", "grün", "blau" }
+for index, color in ipairs(colors) do     -- Listen: der Reihe nach
+    print(index, color)
+end
+
+local player = { name = "Max", level = 3 }
+for key, value in pairs(player) do        -- alle Schlüssel (Reihenfolge nicht garantiert)
+    print(key, value)
+end</code></pre>
+    </section>
+    <section>
+      <h2>while &amp; repeat</h2>
+      <pre><code>local tries = 0
+while tries &lt; 3 do
+    tries = tries + 1          -- kein tries++ oder += in Lua!
+end
+
+local input
+repeat                          -- läuft mindestens einmal
+    input = io.read()
+until input == "ende"</code></pre>
+    </section>
+    <section>
+      <h2>break &amp; continue</h2>
+      <pre><code>for i = 1, 10 do
+    if i &gt; 5 then break end     -- Schleife beenden
+    if i % 2 == 0 then goto continue end   -- "continue" gibt es nicht → goto (ab 5.2 / LuaJIT)
+    print(i)                    -- 1 3 5
+    ::continue::
+end</code></pre>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Jeder Block endet mit <code>end</code> – <code>then</code> nach <code>if</code>, <code>do</code> nach <code>for</code>/<code>while</code>.</li>
+        <li><code>x = x + 1</code> statt <code>x++</code> oder <code>x += 1</code> – die Kurzformen gibt es in Standard-Lua nicht (in Luau schon).</li>
+        <li><code>ipairs</code> stoppt beim ersten <code>nil</code> in der Liste.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="lua-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="lua-tabellen.html">Tabellen</a>
+        <a class="chip" href="lua-funktionen.html">Funktionen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

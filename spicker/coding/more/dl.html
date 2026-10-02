@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>&lt;dl&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Listen</p>
+    <h1>&lt;dl&gt;</h1>
+    <p class="page-lead">Eine Beschreibungsliste: Begriffe und ihre Erklärungen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><code>&lt;dl&gt;</code> (<em>description list</em>) ist ideal für Glossare, FAQs oder Schlüssel-Wert-Paare. Sie besteht aus <code>&lt;dt&gt;</code> (Begriff) und <code>&lt;dd&gt;</code> (Beschreibung).</p>
+    </section>
+    <section>
+      <h2>Beispiel</h2>
+      <pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Beschreibt die Struktur einer Webseite.&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Bestimmt das Aussehen.&lt;/dd&gt;
+
+  &lt;dt&gt;JavaScript&lt;/dt&gt;
+  &lt;dt&gt;JS&lt;/dt&gt;                      &lt;!-- mehrere Begriffe … --&gt;
+  &lt;dd&gt;Macht die Seite interaktiv.&lt;/dd&gt;  &lt;!-- … eine Beschreibung --&gt;
+&lt;/dl&gt;</code></pre>
+      <div class="preview" aria-label="Vorschau">
+        <dl><dt>HTML</dt><dd>Beschreibt die Struktur einer Webseite.</dd><dt>CSS</dt><dd>Bestimmt das Aussehen.</dd></dl>
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Einem Begriff dürfen mehrere Beschreibungen folgen – und mehrere Begriffe einer Beschreibung.</li>
+        <li>Die Einrückung der <code>&lt;dd&gt;</code> kommt vom Browser und lässt sich mit <code>margin-left</code> ändern.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="dt.html">&lt;dt&gt;</a>
+        <a class="chip" href="dd.html">&lt;dd&gt;</a>
+        <a class="chip" href="liste.html">Listen</a>
+        <a class="chip" href="dfn.html">&lt;dfn&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

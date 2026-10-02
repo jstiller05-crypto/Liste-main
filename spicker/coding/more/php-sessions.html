@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>PHP: Sessions – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">PHP · Web</p>
+    <h1>Sessions &amp; Cookies</h1>
+    <p class="page-lead">Daten über mehrere Seitenaufrufe hinweg merken – z. B. für Logins oder Warenkörbe.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Sessions</h2>
+      <pre><code>&lt;?php
+session_start();                        // GANZ OBEN, vor jeder Ausgabe
+
+$_SESSION["user"] = "Max";              // speichern
+$_SESSION["visits"] = ($_SESSION["visits"] ?? 0) + 1;
+
+echo "Hallo {$_SESSION['user']}, Besuch Nr. {$_SESSION['visits']}";
+
+// Abmelden
+session_unset();
+session_destroy();</code></pre>
+      <p>Die Daten liegen auf dem Server. Der Browser bekommt nur eine zufällige Session-ID als Cookie.</p>
+    </section>
+    <section>
+      <h2>Einfacher Login-Schutz</h2>
+      <pre><code>&lt;?php
+// geschützte Seite
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}</code></pre>
+      <pre><code>&lt;?php
+// login.php (Ausschnitt)
+if (password_verify($_POST["password"], $userFromDb["password_hash"])) {
+    session_regenerate_id(true);        // neue Session-ID gegen Session-Diebstahl
+    $_SESSION["user_id"] = $userFromDb["id"];
+}</code></pre>
+    </section>
+    <section>
+      <h2>Cookies</h2>
+      <pre><code>setcookie("theme", "dark", [
+    "expires"  =&gt; time() + 60 * 60 * 24 * 30,   // 30 Tage
+    "path"     =&gt; "/",
+    "httponly" =&gt; true,                         // nicht per JavaScript lesbar
+    "samesite" =&gt; "Lax"
+]);
+
+$theme = $_COOKIE["theme"] ?? "light";</code></pre>
+    </section>
+    <section>
+      <h2>Session oder Cookie?</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Session</th><th>Cookie</th></tr></thead>
+        <tbody>
+          <tr><td>Gespeichert auf</td><td>Server</td><td>Browser des Nutzers</td></tr>
+          <tr><td>Vom Nutzer änderbar</td><td>Nein</td><td>Ja</td></tr>
+          <tr><td>Gut für</td><td>Login-Status, Warenkorb</td><td>Einstellungen wie Theme, Sprache</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>session_start()</code> und <code>setcookie()</code> müssen vor jeder HTML-Ausgabe stehen – sonst „headers already sent“.</li>
+        <li>Passwörter mit <code>password_hash()</code> speichern und mit <code>password_verify()</code> prüfen – nie im Klartext.</li>
+        <li>Keine sensiblen Daten in Cookies ablegen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="php-formulare.html">Formulare</a>
+        <a class="chip" href="php-datenbank.html">PDO</a>
+        <a class="chip" href="js-speicher.html">localStorage</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

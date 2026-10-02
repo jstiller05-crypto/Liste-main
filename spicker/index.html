@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <!-- topics.js = Liste aller Spicker, hub.js baut daraus die Kacheln -->
+  <script defer src="shared/topics.js" onerror="console.error('[hub] topics.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="shared/hub.js" onerror="console.error('[hub] hub.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="shared/icons/S logo.ico">
+  <title>Spicker – Übersicht</title>
+</head>
+<!-- detail-page = Seitenkopf und Abschnitte wie auf den Detailseiten,
+     hub-page    = zusätzlich die Kacheln (core.css, Teil D) -->
+<body class="detail-page hub-page">
+  <header class="page-header">
+    <p class="page-kicker">Übersicht</p>
+    <h1>Spicker</h1>
+    <p class="page-lead">Alles, was ich gelernt habe – nach Themen sortiert.</p>
+  </header>
+
+  <main>
+    <!-- Kacheln baut hub.js aus shared/topics.js -->
+    <div id="topicGrid" class="topic-grid"></div>
+
+    <p class="hub-credit">Erstellt von: <a href="https://github.com/jstiller05-crypto">Julian Stiller</a></p>
+  </main>
+</body>
+</html>
