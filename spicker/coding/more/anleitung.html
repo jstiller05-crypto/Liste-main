@@ -34,9 +34,9 @@
         <tbody>
           <tr><td>Kopf (oben)</td><td>Logo, Titel und das Suchfeld. Bleibt beim Scrollen immer sichtbar.</td></tr>
           <tr><td>Auswahl neben dem Logo</td><td>Wechselt zu einem anderen Spicker (z. B. Mathe) oder zur Übersicht aller Spicker.</td></tr>
-          <tr><td>Suchfeld</td><td>Durchsucht Tag, Beschreibung und Sprache gleichzeitig. Groß-/Kleinschreibung ist egal.</td></tr>
+          <tr><td>Suchfeld</td><td>Durchsucht Begriff, Beschreibung und Sprache/Bereich gleichzeitig. Groß-/Kleinschreibung ist egal.</td></tr>
           <tr><td>Filter-Menü</td><td>Öffnet sich, sobald du ins Suchfeld klickst: Sprache, Kategorie und Sortierung.</td></tr>
-          <tr><td>Tabelle</td><td>Eine Zeile pro Eintrag: <strong>Tag</strong> (der Befehl), <strong>Beschreibung</strong>, <strong>Sprache</strong> und der Link <strong>mehr</strong> zur Detailseite.</td></tr>
+          <tr><td>Tabelle</td><td>Eine Zeile pro Eintrag: <strong>Begriff</strong> (Befehl oder Fachbegriff), <strong>Beschreibung</strong>, <strong>Sprache/Bereich</strong> und der Link <strong>mehr</strong> zur Detailseite.</td></tr>
           <tr><td>„Keine Ergebnisse gefunden!“</td><td>Erscheint, wenn Suche und Filter zusammen nichts übrig lassen.</td></tr>
         </tbody>
       </table>
@@ -48,9 +48,10 @@
         <li>Einen Suchbegriff tippen, z. B. <code>schleife</code>, <code>fetch</code> oder <code>flex</code>.</li>
         <li>Optional eine <strong>Sprache</strong> wählen (z. B. nur JavaScript).</li>
         <li>Optional eine <strong>Kategorie</strong> wählen (z. B. Layout, OOP, Daten).</li>
-        <li>Unter <strong>Sortieren nach</strong> A – Z, Z – A oder nach Sprache wählen.</li>
+        <li>Unter <strong>Sortieren nach</strong> „Empfohlen“, A – Z, Z – A oder nach Sprache/Bereich wählen.</li>
       </ol>
       <p>Alle Filter wirken <strong>zusammen</strong>: Suche „schleife“ + Sprache „C++“ zeigt nur die C++-Schleifen. Mit „Alle“ setzt du eine Gruppe wieder zurück. Das Menü schließt sich, sobald du woanders hinklickst.</p>
+      <p><strong>Empfohlen</strong> ist die Sortierung beim Öffnen der Seite und bringt eine Lernreihenfolge: erst die IT-Grundbegriffe, dann die Sprachen, danach der Rest A – Z. So siehst du zuerst die Grundlagen, bevor Detail-Befehle kommen.</p>
       <div class="note">Tipp: Die Suche findet auch Teile von Wörtern. <code>arr</code> findet also Array, Arrays und <code>arr.map</code>.</div>
     </section>
     <section>
@@ -205,7 +206,7 @@ node server.js          # Server starten, Strg + C beendet ihn
       <table class="info-table">
         <thead><tr><th>Du willst …</th><th>dann …</th></tr></thead>
         <tbody>
-          <tr><td>einen neuen Eintrag in die Tabelle</td><td>in <code>entries.js</code> einen Block mit Tag, Beschreibung, Sprache, Link und class ergänzen</td></tr>
+          <tr><td>einen neuen Eintrag in die Tabelle</td><td>in <code>entries.js</code> einen Block mit Begriff, Beschreibung, Sprache, Link und class ergänzen (optional dazu eine „Stufe“ für die Sortierung „Empfohlen“)</td></tr>
           <tr><td>eine neue Detailseite</td><td><code>template.html</code> kopieren, ausfüllen und in <code>entries.js</code> verlinken</td></tr>
           <tr><td>ein neues Wort als Smart-Link</td><td>in <code>links.js</code> eine Regel <code>{ words: [...], links: {...} }</code> ergänzen</td></tr>
           <tr><td>einen neuen Filter-Button</td><td>in <code>entries.js</code> unter <code>config.filterGroups</code> eine Zeile <code>{ label, value }</code> ergänzen</td></tr>

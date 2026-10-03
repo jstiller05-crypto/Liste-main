@@ -647,6 +647,20 @@ body.list-page {
   color: black;
 }
 
+/* Spaltenköpfe dürfen nie umbrechen (z. B. "Sprache/Bereich" soll in
+   einer Zeile stehen). Lange Begriffe in den Zellen dürfen weiterhin
+   umbrechen – nowrap gilt hier bewusst nur für th, nicht für td. */
+.list-page th {
+  white-space: nowrap;
+}
+
+/* Wird die Tabelle durch die nowrap-Köpfe zu breit, soll die erste
+   Spalte (Begriff) schmaler werden statt dass ein Kopf umbricht. */
+.list-page th:first-child,
+.list-page td:first-child {
+  width: 18%;
+}
+
 .list-page table,
 .list-page td,
 .list-page th {

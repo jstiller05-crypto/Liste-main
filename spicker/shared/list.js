@@ -392,14 +392,43 @@ function setActiveFilterButton(allButtons, clickedButton) {
 }
 
 // ---------------------------------------------------------------------
+// Liefert die Lernstufe eines Eintrags als Zahl (für sortOptions-Wert
+// "level", siehe "Empfohlen"). Das Feld "Stufe" ist OPTIONAL – so muss
+// nicht jeder der 400+ Einträge eine Stufe bekommen.
+//   Stufe fehlt ODER ist keine gültige Zahl → Infinity, damit der
+//   Eintrag beim Sortieren ganz ans Ende rutscht (jede echte Zahl ist
+//   kleiner als Infinity).
+//   Ist "Stufe" zwar gesetzt, aber kein gültiger Zahlenwert (z. B. ein
+//   Tippfehler wie "abc"), zusätzlich eine Warnung in die Konsole –
+//   so fallen Tippfehler in entries.js auf, statt den Eintrag einfach
+//   still ans Ende zu schieben.
+// ---------------------------------------------------------------------
+function getEntryLevel(entry) {
+  if (entry.Stufe === undefined) {
+    return Infinity;
+  }
+
+  const level = Number(entry.Stufe);
+  if (Number.isNaN(level)) {
+    console.warn("[sort] ungültige Stufe, Eintrag wird ans Ende sortiert:", entry);
+    return Infinity;
+  }
+
+  return level;
+}
+
+// ---------------------------------------------------------------------
 // Sortiert eine Liste je nach filterState.sort.
 // Gibt eine SORTIERTE KOPIE zurück – die Originalliste bleibt unverändert.
 //
 // Mögliche Werte (aus config.sortOptions):
-//   "az"           → nach der ERSTEN Spalte A–Z (bei Coding: Tag)
+//   "az"           → nach der ERSTEN Spalte A–Z (bei Coding: Begriff)
 //   "za"           → nach der ersten Spalte Z–A
 //   "field:<Feld>" → erst nach diesem Feld, bei Gleichstand nach der
 //                    ersten Spalte (z. B. "field:Sprache")
+//   "level"        → nach entry.Stufe aufsteigend (siehe getEntryLevel),
+//                    bei Gleichstand (auch wenn BEIDE keine Stufe haben)
+//                    nach der ersten Spalte A–Z
 // ---------------------------------------------------------------------
 function sortEntriesBySelectedOrder(list) {
   const copy = [...list]; // [...x] = Kopie (Spread-Operator)
@@ -430,6 +459,24 @@ function sortEntriesBySelectedOrder(list) {
       return getFieldText(firstEntry, sortField).localeCompare(getFieldText(secondEntry, sortField), "de") ||
         getFieldText(firstEntry, mainField).localeCompare(getFieldText(secondEntry, mainField), "de");
     });
+  } else if (filterState.sort === "level") {
+    copy.sort(function compareEntriesByLevelThenMain(firstEntry, secondEntry) {
+      const firstLevel = getEntryLevel(firstEntry);
+      const secondLevel = getEntryLevel(secondEntry);
+
+      // Gleiche Stufe → nach der ersten Spalte sortieren. WICHTIG: erst
+      // auf Gleichheit prüfen, NICHT gleich "firstLevel - secondLevel"
+      // bilden – Infinity - Infinity ergibt NaN, nicht 0. Zwei Einträge
+      // OHNE Stufe (beide Infinity) würden über die Differenz also nicht
+      // als "gleich" erkannt und nicht alphabetisch sortiert.
+      if (firstLevel === secondLevel) {
+        return getFieldText(firstEntry, mainField).localeCompare(getFieldText(secondEntry, mainField), "de");
+      }
+      return firstLevel - secondLevel;
+    });
+
+    const withLevel = copy.filter(entry => getEntryLevel(entry) !== Infinity).length;
+    console.log("[sort] Empfohlen: " + withLevel + " mit Stufe, " + (copy.length - withLevel) + " ohne Stufe");
   } else {
     // Unbekannter Wert → nichts sortieren, aber in der Konsole melden
     console.warn("[sort] unbekannte Sortierung:", filterState.sort);

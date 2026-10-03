@@ -33,23 +33,27 @@ window.SpickerData["coding"] = {
                      "class"  → Wert muss im class-Array stehen (Kategorie)
                      sonst    → Feld klein geschrieben == value
                    value "" = "Alle" (kein Filter)
-     sortOptions   "az", "za" (nach der ersten Spalte) oder
-                   "field:<Feld>" (erst nach diesem Feld, dann A–Z)
+     sortOptions   "az", "za" (nach der ersten Spalte), "field:<Feld>"
+                   (erst nach diesem Feld, dann A–Z) oder "level"
+                   (nach dem optionalen Feld "Stufe" aufsteigend, dann
+                   A–Z – siehe getEntryLevel() in shared/list.js).
+                   Die ERSTE sortOption ist die Standard-Sortierung
+                   beim Laden der Seite.
      =================================================================== */
   config: {
-    searchPlaceholder: "Tags, Beschreibungen oder Sprachen suchen …",
+    searchPlaceholder: "Begriffe, Beschreibungen oder Sprachen suchen …",
 
     columns: [
-      { title: "Tag",          field: "Tag" },
-      { title: "Beschreibung", field: "Beschreibung" },
-      { title: "Sprache",      field: "Sprache" },
-      { title: "Link",         field: "Link", type: "link", linkText: "mehr" }
+      { title: "Begriff",         field: "Begriff" },
+      { title: "Beschreibung",    field: "Beschreibung" },
+      { title: "Sprache/Bereich", field: "Sprache" },
+      { title: "Link",            field: "Link", type: "link", linkText: "mehr" }
     ],
 
     filterGroups: [
       {
         id: "language",
-        title: "Sprache",
+        title: "Sprache/Bereich",
         field: "Sprache",
         buttons: [
         { label: "Alle", value: "" },
@@ -97,9 +101,10 @@ window.SpickerData["coding"] = {
     ],
 
     sortOptions: [
+      { label: "Empfohlen", value: "level" },
       { label: "A – Z",   value: "az" },
       { label: "Z – A",   value: "za" },
-      { label: "Sprache", value: "field:Sprache" }
+      { label: "Sprache/Bereich", value: "field:Sprache" }
     ]
   },
 
@@ -107,55 +112,81 @@ window.SpickerData["coding"] = {
      2. DATEN
      -------------------------------------------------------------------
      Jeder Eintrag ist ein Objekt { ... } mit diesen Feldern:
-       "Tag"          → Spalte 1
+       "Begriff"      → Spalte 1 (Befehl, Tag, Methode ODER Fachbegriff wie
+                        Binärsystem, CPU, DNS – nicht mehr nur HTML-Tags)
        "Beschreibung" → Spalte 2
-       "Sprache"      → Spalte 3 (+ Sprach-Filter, klein geschrieben verglichen)
+       "Sprache"      → Spalte 3 (+ Sprach-Filter, klein geschrieben verglichen).
+                        Trotz des Feldnamens dürfen hier auch Bereiche wie
+                        "Hardware" oder "Netzwerk" stehen, nicht nur Sprachen –
+                        das field bleibt "Sprache", damit nicht alle Einträge
+                        geändert werden müssen; die Spalte heißt daher
+                        "Sprache/Bereich".
        "Link"         → Spalte 4 ("mehr"-Link), leer lassen = kein Link.
                         Relativ zu coding/index.html, also "more/xyz.html".
        "class"        → Array mit Schlagwörtern für den Kategorie-Filter UND die Suche
+       "Stufe"        → OPTIONAL, nur für die Sortierung "Empfohlen" (value
+                        "level", Lernreihenfolge). Zahl in 10er-Schritten,
+                        damit später etwas dazwischen passt. Einträge OHNE
+                        "Stufe" landen bei "Empfohlen" ganz hinten (A–Z) –
+                        es muss also NICHT jeder Eintrag eine Stufe haben.
+                        Bisher vergebene Stufen:
+                          0  Spicker selbst (Anleitung, später Übersicht)
+                          10 IT-Grundbegriffe        20 Daten & Zahlensysteme
+                          30 Hardware                40 Betriebssystem
+                          50 Netzwerk                60 Protokolle
+                          70 Programmier-Grundlagen  80 Sprachen (HTML,
+                             CSS, JavaScript, C++, Node.js, SQL, PHP, Lua,
+                             C, C#, Swift, TypeScript)
+                          ohne Stufe = alles andere
+                        Stand jetzt sind nur Stufe 0 (Anleitung) und
+                        Stufe 80 (die zwölf Sprach-Überblicke oben) vergeben;
+                        10–70 kommen später als eigene Schritte dazu.
      Neuer Eintrag: einfach einen { ... }-Block kopieren und anpassen.
      Die Reihenfolge hier ist egal – list.js sortiert beim Anzeigen.
+     Hinweis: mathe/entries.js nutzt bereits "Begriff" als Spalte 1 –
+     die Coding-Liste ist damit einheitlich mit der Mathe-Liste.
      =================================================================== */
   oTableEntries: { "List": [
     // Spicker selbst
     {
-      "Tag": "Anleitung",
+      "Begriff": "Anleitung",
       "Beschreibung": "Aufbau, Funktionen und Lerntipps",
       "Sprache": "Spicker",
       "Link": "more/anleitung.html",
-      "class": ["spicker","hilfe","anleitung","bedienung","funktionen","lernen","lerntipps","verständnis","bewertung","speichern","suche","filter","aufbau"]
+      "class": ["spicker","hilfe","anleitung","bedienung","funktionen","lernen","lerntipps","verständnis","bewertung","speichern","suche","filter","aufbau"],
+      "Stufe": 0
     },
     // Sonderzeichen
     {
-      "Tag": "[]",
+      "Begriff": "[]",
       "Beschreibung": "zum Definieren von Listen und Arrays",
       "Sprache": "JS",
       "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
-      "Tag": "()",
+      "Begriff": "()",
       "Beschreibung": "Funktionsaufrufe und Gruppierung",
       "Sprache": "JS",
       "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
-      "Tag": "{}",
+      "Begriff": "{}",
       "Beschreibung": "Objekte und Codeblöcke",
       "Sprache": "JS",
       "Link": "more/js-klammern.html",
       "class": ["zeichen","javascript","js"]
     },
     {
-      "Tag": "<element>",
+      "Begriff": "<element>",
       "Beschreibung": "Platzhalter für ein beliebiges HTML-Element",
       "Sprache": "html",
       "Link": "more/elements.html",
       "class": ["zeichen","html"]
     },
     {
-      "Tag": "</element>",
+      "Begriff": "</element>",
       "Beschreibung": "Schließt ein HTML-Element",
       "Sprache": "html",
       "Link": "more/elements.html",
@@ -163,49 +194,49 @@ window.SpickerData["coding"] = {
     },
     // A
     {
-      "Tag": "<a>",
+      "Begriff": "<a>",
       "Beschreibung": "Hyperlink zu einer URL oder Seite",
       "Sprache": "html",
       "Link": "more/a.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<abbr>",
+      "Begriff": "<abbr>",
       "Beschreibung": "Abkürzung mit erklärtem Text",
       "Sprache": "html",
       "Link": "more/abbr.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<address>",
+      "Begriff": "<address>",
       "Beschreibung": "Adressblock für Kontaktinformationen",
       "Sprache": "html",
       "Link": "more/address.html",
       "class": ["html","container","semantik"]
     },
     {
-      "Tag": "<area>",
+      "Begriff": "<area>",
       "Beschreibung": "Interaktive Fläche in einer Bild-Map",
       "Sprache": "html",
       "Link": "more/area & map.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<article>",
+      "Begriff": "<article>",
       "Beschreibung": "Eigenständiger Inhaltsbereich",
       "Sprache": "html",
       "Link": "more/article.html",
       "class": ["html","container","semantik"]
     },
     {
-      "Tag": "<aside>",
+      "Begriff": "<aside>",
       "Beschreibung": "Inhalt neben dem Hauptinhalt",
       "Sprache": "html",
       "Link": "more/aside.html",
       "class": ["html","container","semantik"]
     },
     {
-      "Tag": "<audio>",
+      "Begriff": "<audio>",
       "Beschreibung": "Einbettung von Audiodateien",
       "Sprache": "html",
       "Link": "more/audio.html",
@@ -213,56 +244,56 @@ window.SpickerData["coding"] = {
     },
     // B
     {
-      "Tag": "<b>",
+      "Begriff": "<b>",
       "Beschreibung": "Fetter Text ohne zusätzliche Semantik",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<base>",
+      "Begriff": "<base>",
       "Beschreibung": "Basis-URL für relative Links",
       "Sprache": "html",
       "Link": "more/base.html",
       "class": ["html","metadata"]
     },
     {
-      "Tag": "<bdi>",
+      "Begriff": "<bdi>",
       "Beschreibung": "Steuert die Schreibrichtung für Textblöcke",
       "Sprache": "html",
       "Link": "more/bdi.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<bdo>",
+      "Begriff": "<bdo>",
       "Beschreibung": "Überschreibt die Schreibrichtung des Textes",
       "Sprache": "html",
       "Link": "more/bdo.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<blockquote>",
+      "Begriff": "<blockquote>",
       "Beschreibung": "Blockzitat für längere Zitate",
       "Sprache": "html",
       "Link": "more/blockquote.html",
       "class": ["html","container","text"]
     },
     {
-      "Tag": "<body>",
+      "Begriff": "<body>",
       "Beschreibung": "Hauptkörper des Dokuments",
       "Sprache": "html",
       "Link": "more/body.html",
       "class": ["basis","html","container"]
     },
     {
-      "Tag": "<br>",
+      "Begriff": "<br>",
       "Beschreibung": "Zeilenumbruch im Text",
       "Sprache": "html",
       "Link": "more/br.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<button>",
+      "Begriff": "<button>",
       "Beschreibung": "Schaltfläche für Benutzerinteraktionen",
       "Sprache": "html",
       "Link": "more/button.html",
@@ -270,126 +301,126 @@ window.SpickerData["coding"] = {
     },
     // C
     {
-      "Tag": "<canvas>",
+      "Begriff": "<canvas>",
       "Beschreibung": "Grafikfläche für dynamische Zeichnungen",
       "Sprache": "html",
       "Link": "more/canvas.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<caption>",
+      "Begriff": "<caption>",
       "Beschreibung": "Beschriftung einer Tabelle",
       "Sprache": "html",
       "Link": "more/caption.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<cite>",
+      "Begriff": "<cite>",
       "Beschreibung": "Quellenangabe für ein Werk oder Zitat",
       "Sprache": "html",
       "Link": "more/cite.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<code>",
+      "Begriff": "<code>",
       "Beschreibung": "Code oder Programmtext",
       "Sprache": "html",
       "Link": "more/code.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<col>",
+      "Begriff": "<col>",
       "Beschreibung": "Definiert eine Tabelle-Spalte",
       "Sprache": "html",
       "Link": "more/col.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<colgroup>",
+      "Begriff": "<colgroup>",
       "Beschreibung": "Gruppierung von Tabellenspalten",
       "Sprache": "html",
       "Link": "more/colgroup.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<data>",
+      "Begriff": "<data>",
       "Beschreibung": "Maschinenlesbarer Wert mit sichtbarem Text",
       "Sprache": "html",
       "Link": "more/data.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<datalist>",
+      "Begriff": "<datalist>",
       "Beschreibung": "Liste von Vorschlägen für ein Eingabefeld",
       "Sprache": "html",
       "Link": "more/datalist.html",
       "class": ["html","form"]
     },
     {
-      "Tag": "<dd>",
+      "Begriff": "<dd>",
       "Beschreibung": "Beschreibung in einer Definitionsliste",
       "Sprache": "html",
       "Link": "more/dd.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<del>",
+      "Begriff": "<del>",
       "Beschreibung": "Durchgestrichener Text",
       "Sprache": "html",
       "Link": "more/del.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<details>",
+      "Begriff": "<details>",
       "Beschreibung": "Ein- und ausklappbarer Bereich",
       "Sprache": "html",
       "Link": "more/details.html",
       "class": ["html","interactive","container"]
     },
     {
-      "Tag": "<dfn>",
+      "Begriff": "<dfn>",
       "Beschreibung": "Definition eines Begriffs",
       "Sprache": "html",
       "Link": "more/dfn.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<dialog>",
+      "Begriff": "<dialog>",
       "Beschreibung": "Dialogfenster für Nachrichten oder Aktionen",
       "Sprache": "html",
       "Link": "more/dialog.html",
       "class": ["html","interactive","container"]
     },
     {
-      "Tag": "<div>",
+      "Begriff": "<div>",
       "Beschreibung": "Allzweck-Container für Layout und Struktur",
       "Sprache": "html",
       "Link": "more/container.html",
       "class": ["html","container"]
     },
     {
-      "Tag": "<dl>",
+      "Begriff": "<dl>",
       "Beschreibung": "Liste aus Begriffen und Erklärungen",
       "Sprache": "html",
       "Link": "more/dl.html",
       "class": ["html","liste"]
     },
     {
-      "Tag": "<dt>",
+      "Begriff": "<dt>",
       "Beschreibung": "Begriff in einer Definitionsliste",
       "Sprache": "html",
       "Link": "more/dt.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<em>",
+      "Begriff": "<em>",
       "Beschreibung": "Hervorgehobener Text mit Betonung",
       "Sprache": "html",
       "Link": "more/em.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<embed>",
+      "Begriff": "<embed>",
       "Beschreibung": "Eingebetteter externer Inhalt",
       "Sprache": "html",
       "Link": "more/embed.html",
@@ -397,35 +428,35 @@ window.SpickerData["coding"] = {
     },
     // F
     {
-      "Tag": "<fieldset>",
+      "Begriff": "<fieldset>",
       "Beschreibung": "Gruppiert Formularfelder",
       "Sprache": "html",
       "Link": "more/fieldset.html",
       "class": ["html","form","container"]
     },
     {
-      "Tag": "<figcaption>",
+      "Begriff": "<figcaption>",
       "Beschreibung": "Beschriftung für ein Figure-Element",
       "Sprache": "html",
       "Link": "more/figcaption.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<figure>",
+      "Begriff": "<figure>",
       "Beschreibung": "Medieninhalt mit Beschreibung",
       "Sprache": "html",
       "Link": "more/figure.html",
       "class": ["html","container","media"]
     },
     {
-      "Tag": "<footer>",
+      "Begriff": "<footer>",
       "Beschreibung": "Fußbereich eines Dokuments oder Abschnitts",
       "Sprache": "html",
       "Link": "more/container.html",
       "class": ["html","container"]
     },
     {
-      "Tag": "<form>",
+      "Begriff": "<form>",
       "Beschreibung": "Formular zur Eingabe von Daten",
       "Sprache": "html",
       "Link": "more/form.html",
@@ -433,7 +464,7 @@ window.SpickerData["coding"] = {
     },
     // G
     {
-      "Tag": "<g>",
+      "Begriff": "<g>",
       "Beschreibung": "Gruppiert SVG-Elemente",
       "Sprache": "html",
       "Link": "more/svg.html",
@@ -441,70 +472,70 @@ window.SpickerData["coding"] = {
     },
     // H
     {
-      "Tag": "<h1>",
+      "Begriff": "<h1>",
       "Beschreibung": "Wichtigste Überschrift",
       "Sprache": "html",
       "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
-      "Tag": "<h2>",
+      "Begriff": "<h2>",
       "Beschreibung": "Zweite Überschriftenebene",
       "Sprache": "html",
       "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
-      "Tag": "<h3>",
+      "Begriff": "<h3>",
       "Beschreibung": "Dritte Überschriftenebene",
       "Sprache": "html",
       "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
-      "Tag": "<h4>",
+      "Begriff": "<h4>",
       "Beschreibung": "Vierte Überschriftenebene",
       "Sprache": "html",
       "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
-      "Tag": "<h5>",
+      "Begriff": "<h5>",
       "Beschreibung": "Fünfte Überschriftenebene",
       "Sprache": "html",
       "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
-      "Tag": "<h6>",
+      "Begriff": "<h6>",
       "Beschreibung": "Sechste Überschriftenebene",
       "Sprache": "html",
       "Link": "more/headings.html",
       "class": ["basis","html","text","container"]
     },
     {
-      "Tag": "<head>",
+      "Begriff": "<head>",
       "Beschreibung": "Metadaten und Verweise des Dokuments",
       "Sprache": "html",
       "Link": "more/head.html",
       "class": ["basis","html","metadata","einbinden"]
     },
     {
-      "Tag": "<header>",
+      "Begriff": "<header>",
       "Beschreibung": "Kopfbereich einer Seite oder Sektion",
       "Sprache": "html",
       "Link": "more/header.html",
       "class": ["html","container"]
     },
     {
-      "Tag": "<hr>",
+      "Begriff": "<hr>",
       "Beschreibung": "Horizontale Trennlinie",
       "Sprache": "html",
       "Link": "more/hr.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<html>",
+      "Begriff": "<html>",
       "Beschreibung": "Wurzelelement des HTML-Dokuments",
       "Sprache": "html",
       "Link": "more/html.html",
@@ -512,42 +543,42 @@ window.SpickerData["coding"] = {
     },
     // I
     {
-      "Tag": "<i>",
+      "Begriff": "<i>",
       "Beschreibung": "Kursiver Text ohne zusätzliche Semantik",
       "Sprache": "html",
       "Link": "more/i.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<iframe>",
+      "Begriff": "<iframe>",
       "Beschreibung": "Eingebettete externe Webseite",
       "Sprache": "html",
       "Link": "more/iframe.html",
       "class": ["html","embed","media"]
     },
     {
-      "Tag": "<img>",
+      "Begriff": "<img>",
       "Beschreibung": "Bild einfügen",
       "Sprache": "html",
       "Link": "more/img.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<input>",
+      "Begriff": "<input>",
       "Beschreibung": "Eingabefeld für Formulare",
       "Sprache": "html",
       "Link": "more/input.html",
       "class": ["html","form","interactive"]
     },
     {
-      "Tag": "<ins>",
+      "Begriff": "<ins>",
       "Beschreibung": "Eingefügter Text",
       "Sprache": "html",
       "Link": "more/ins.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<kbd>",
+      "Begriff": "<kbd>",
       "Beschreibung": "Tastatureingabe darstellen",
       "Sprache": "html",
       "Link":"more/kbd.html",
@@ -555,140 +586,140 @@ window.SpickerData["coding"] = {
     },
     // K
     {
-      "Tag": "<label>",
+      "Begriff": "<label>",
       "Beschreibung": "Beschriftung für ein Formularfeld",
       "Sprache": "html",
       "Link": "more/label.html",
       "class": ["html","form","text"]
     },
     {
-      "Tag": "<legend>",
+      "Begriff": "<legend>",
       "Beschreibung": "Beschriftung für ein Fieldset",
       "Sprache": "html",
       "Link": "more/legend.html",
       "class": ["html","form","text"]
     },
     {
-      "Tag": "<li>",
+      "Begriff": "<li>",
       "Beschreibung": "Eintrag in einer Liste",
       "Sprache": "html",
       "Link": "more/liste.html",
       "class": ["html","liste"]
     },
     {
-      "Tag": "<link>",
+      "Begriff": "<link>",
       "Beschreibung": "Verknüpft externe Ressourcen oder Stile",
       "Sprache": "html",
       "Link": "more/link.html",
       "class": ["html","metadata","einbinden"]
     },
     {
-      "Tag": "<main>",
+      "Begriff": "<main>",
       "Beschreibung": "Hauptinhalt der Seite",
       "Sprache": "html",
       "Link": "more/main.html",
       "class": ["html","container"]
     },
     {
-      "Tag": "<map>",
+      "Begriff": "<map>",
       "Beschreibung": "Bild mit klickbaren Bereichen",
       "Sprache": "html",
       "Link": "more/area & map.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<mark>",
+      "Begriff": "<mark>",
       "Beschreibung": "Hervorhebung von Text",
       "Sprache": "html",
       "Link": "more/mark.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<menu>",
+      "Begriff": "<menu>",
       "Beschreibung": "Menü für Befehle oder Navigation",
       "Sprache": "html",
       "Link": "more/menu.html",
       "class": ["html","container"]
     },
     {
-      "Tag": "<meta>",
+      "Begriff": "<meta>",
       "Beschreibung": "Metadaten wie Zeichensatz oder Beschreibung",
       "Sprache": "html",
       "Link": "more/meta.html",
       "class": ["html","metadata"]
     },
     {
-      "Tag": "<meter>",
+      "Begriff": "<meter>",
       "Beschreibung": "Messwert in einem Bereich anzeigen",
       "Sprache": "html",
       "Link": "more/meter.html",
       "class": ["html","form"]
     },
     {
-      "Tag": "<nav>",
+      "Begriff": "<nav>",
       "Beschreibung": "Navigationsbereich mit Links",
       "Sprache": "html",
       "Link": "more/nav.html",
       "class": ["html","container","semantik"]
     },
     {
-      "Tag": "<noscript>",
+      "Begriff": "<noscript>",
       "Beschreibung": "Inhalt, wenn JavaScript deaktiviert ist",
       "Sprache": "html",
       "Link": "more/noscript.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<object>",
+      "Begriff": "<object>",
       "Beschreibung": "Eingebetteter Inhalt oder Multimedia",
       "Sprache": "html",
       "Link": "more/object.html",
       "class": ["html","embed"]
     },
     {
-      "Tag": "<ol>",
+      "Begriff": "<ol>",
       "Beschreibung": "Nummerierte Liste",
       "Sprache": "html",
       "Link": "more/liste.html",
       "class": ["html","liste","container"]
     },
     {
-      "Tag": "<optgroup>",
+      "Begriff": "<optgroup>",
       "Beschreibung": "Gruppierung von Optionen in einem Select",
       "Sprache": "html",
       "Link": "more/optgroup.html",
       "class": ["html","form"]
     },
     {
-      "Tag": "<option>",
+      "Begriff": "<option>",
       "Beschreibung": "Auswahloption in einem Select-Feld",
       "Sprache": "html",
       "Link": "more/option.html",
       "class": ["html","form","text"]
     },
     {
-      "Tag": "<output>",
+      "Begriff": "<output>",
       "Beschreibung": "Ausgabe eines Formulars oder Skripts",
       "Sprache": "html",
       "Link": "more/output.html",
       "class": ["html","form","text"]
     },
     {
-      "Tag": "<picture>",
+      "Begriff": "<picture>",
       "Beschreibung": "Responsive Bildquelle mit mehreren Quellen",
       "Sprache": "html",
       "Link": "more/picture.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<pre>",
+      "Begriff": "<pre>",
       "Beschreibung": "Vorformatierter Text mit festen Abständen",
       "Sprache": "html",
       "Link": "more/computer-text.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<progress>",
+      "Begriff": "<progress>",
       "Beschreibung": "Fortschrittsanzeige",
       "Sprache": "html",
       "Link": "more/meter.html",
@@ -696,245 +727,245 @@ window.SpickerData["coding"] = {
     },
     // Q
     {
-      "Tag": "<q>",
+      "Begriff": "<q>",
       "Beschreibung": "Kurz-Zitat innerhalb eines Textes",
       "Sprache": "html",
       "Link": "more/blockquote.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<ruby>",
+      "Begriff": "<ruby>",
       "Beschreibung": "Text mit Aussprachehilfe",
       "Sprache": "html",
       "Link": "more/ruby.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<rp>",
+      "Begriff": "<rp>",
       "Beschreibung": "Text für Browser ohne Ruby-Unterstützung",
       "Sprache": "html",
       "Link": "more/ruby.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<rt>",
+      "Begriff": "<rt>",
       "Beschreibung": "Ruby-Text zur Aussprache",
       "Sprache": "html",
       "Link": "more/ruby.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<s>",
+      "Begriff": "<s>",
       "Beschreibung": "Durchgestrichener Text",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<samp>",
+      "Begriff": "<samp>",
       "Beschreibung": "Beispielausgabe eines Programms",
       "Sprache": "html",
       "Link": "more/computer-text.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<script>",
+      "Begriff": "<script>",
       "Beschreibung": "JavaScript oder andere Skripte einbinden",
       "Sprache": "html",
       "Link": "more/script.html",
       "class": ["html","einbinden"]
     },
     {
-      "Tag": "<section>",
+      "Begriff": "<section>",
       "Beschreibung": "Thematischer Abschnitt einer Seite",
       "Sprache": "html",
       "Link": "more/container.html",
       "class": ["html","container","semantik"]
     },
     {
-      "Tag": "<select>",
+      "Begriff": "<select>",
       "Beschreibung": "Auswahlmenü im Formular",
       "Sprache": "html",
       "Link": "more/select.html",
       "class": ["html","form","interactive"]
     },
     {
-      "Tag": "<small>",
+      "Begriff": "<small>",
       "Beschreibung": "Kleinerer Nebentext",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<source>",
+      "Begriff": "<source>",
       "Beschreibung": "Quelle für Audio, Video oder Bild",
       "Sprache": "html",
       "Link": "more/picture.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<span>",
+      "Begriff": "<span>",
       "Beschreibung": "Inline-Container für Styling oder Text",
       "Sprache": "html",
       "Link": "more/container.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<strong>",
+      "Begriff": "<strong>",
       "Beschreibung": "Wichtig hervorgehobener Text",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<style>",
+      "Begriff": "<style>",
       "Beschreibung": "CSS direkt im Dokument",
       "Sprache": "html",
       "Link": "more/style.html",
       "class": ["html","css","einbinden"]
     },
     {
-      "Tag": "<sub>",
+      "Begriff": "<sub>",
       "Beschreibung": "Tiefgestellter Text",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<summary>",
+      "Begriff": "<summary>",
       "Beschreibung": "Zusammenfassung für details",
       "Sprache": "html",
       "Link": "more/details.html",
       "class": ["html","interactive","text"]
     },
     {
-      "Tag": "<sup>",
+      "Begriff": "<sup>",
       "Beschreibung": "Hochgestellter Text",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<svg>",
+      "Begriff": "<svg>",
       "Beschreibung": "Vektorgrafik im HTML-Dokument",
       "Sprache": "html",
       "Link": "more/svg.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<table>",
+      "Begriff": "<table>",
       "Beschreibung": "Tabelle mit Zeilen und Spalten",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle","container"]
     },
     {
-      "Tag": "<tbody>",
+      "Begriff": "<tbody>",
       "Beschreibung": "Hauptbereich einer Tabelle",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<td>",
+      "Begriff": "<td>",
       "Beschreibung": "Zelle in einer Tabellenzeile",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<template>",
+      "Begriff": "<template>",
       "Beschreibung": "Vorlage für wiederverwendbaren HTML-Code",
       "Sprache": "html",
       "Link": "more/template-tag.html",
       "class": ["html","container"]
     },
     {
-      "Tag": "<textarea>",
+      "Begriff": "<textarea>",
       "Beschreibung": "Mehrzeiliges Texteingabefeld",
       "Sprache": "html",
       "Link": "more/textarea.html",
       "class": ["html","form","interactive"]
     },
     {
-      "Tag": "<tfoot>",
+      "Begriff": "<tfoot>",
       "Beschreibung": "Fußbereich einer Tabelle",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<th>",
+      "Begriff": "<th>",
       "Beschreibung": "Kopfzelle einer Tabelle",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<thead>",
+      "Begriff": "<thead>",
       "Beschreibung": "Kopfbereich einer Tabelle",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<time>",
+      "Begriff": "<time>",
       "Beschreibung": "Datum oder Uhrzeit markieren",
       "Sprache": "html",
       "Link": "more/time.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<title>",
+      "Begriff": "<title>",
       "Beschreibung": "Titel des Dokuments im Browser-Tab",
       "Sprache": "html",
       "Link": "more/head.html",
       "class": ["html","metadata"]
     },
     {
-      "Tag": "<tr>",
+      "Begriff": "<tr>",
       "Beschreibung": "Zeile in einer Tabelle",
       "Sprache": "html",
       "Link": "more/table.html",
       "class": ["html","tabelle"]
     },
     {
-      "Tag": "<track>",
+      "Begriff": "<track>",
       "Beschreibung": "Untertitel oder Textspur für Video/Audio",
       "Sprache": "html",
       "Link": "more/video.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<u>",
+      "Begriff": "<u>",
       "Beschreibung": "Unterstrichener Text",
       "Sprache": "html",
       "Link": "more/text-format.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<ul>",
+      "Begriff": "<ul>",
       "Beschreibung": "Ungeordnete Liste mit Punkten",
       "Sprache": "html",
       "Link": "more/liste.html",
       "class": ["html","liste","container"]
     },
     {
-      "Tag": "<var>",
+      "Begriff": "<var>",
       "Beschreibung": "Variable oder Ausdruck im Text",
       "Sprache": "html",
       "Link": "more/computer-text.html",
       "class": ["html","text"]
     },
     {
-      "Tag": "<video>",
+      "Begriff": "<video>",
       "Beschreibung": "Einbettung von Videodateien",
       "Sprache": "html",
       "Link": "more/video.html",
       "class": ["html","media"]
     },
     {
-      "Tag": "<wbr>",
+      "Begriff": "<wbr>",
       "Beschreibung": "Optionale Zeilenumbruchstelle",
       "Sprache": "html",
       "Link": "more/br.html",
@@ -942,91 +973,95 @@ window.SpickerData["coding"] = {
     },
     // CSS
     {
-      "Tag": "HTML",
+      "Begriff": "HTML",
       "Beschreibung": "Struktur und Inhalt von Webseiten",
       "Sprache": "html",
       "Link": "more/html-sprache.html",
-      "class": ["html","sprache","grundlagen"]
+      "class": ["html","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "CSS",
+      "Begriff": "CSS",
       "Beschreibung": "Aussehen und Layout von Webseiten",
       "Sprache": "CSS",
       "Link": "more/css-sprache.html",
-      "class": ["css","sprache","grundlagen"]
+      "class": ["css","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "JavaScript",
+      "Begriff": "JavaScript",
       "Beschreibung": "Macht Webseiten interaktiv",
       "Sprache": "JS",
       "Link": "more/javascript-sprache.html",
-      "class": ["javascript","js","sprache","grundlagen"]
+      "class": ["javascript","js","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "C++",
+      "Begriff": "C++",
       "Beschreibung": "Schnelle Sprache für Programme und Spiele",
       "Sprache": "C++",
       "Link": "more/cpp-sprache.html",
-      "class": ["cpp","sprache","grundlagen"]
+      "class": ["cpp","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "Typselektor",
+      "Begriff": "Typselektor",
       "Beschreibung": "Wählt alle Elemente des angegebenen Typs aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Klassenselektor",
+      "Begriff": "Klassenselektor",
       "Beschreibung": "Wählt Elemente nach ihrer CSS-Klasse aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "ID-Selektor",
+      "Begriff": "ID-Selektor",
       "Beschreibung": "Wählt Elemente anhand ihres id-Attributs aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Universalselektor",
+      "Begriff": "Universalselektor",
       "Beschreibung": "Wählt alle Elemente auf der Seite aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Kindselektoren",
+      "Begriff": "Kindselektoren",
       "Beschreibung": "Wählt direkte Kinder eines Elements aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Nachfahrensselektoren",
+      "Begriff": "Nachfahrensselektoren",
       "Beschreibung": "Wählt Nachfahren eines Elements aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Allgemeine Geschwisterselektoren",
+      "Begriff": "Allgemeine Geschwisterselektoren",
       "Beschreibung": "Wählt nachfolgende Geschwisterelemente aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Angrenzende Geschwisterselektoren",
+      "Begriff": "Angrenzende Geschwisterselektoren",
       "Beschreibung": "Direkt folgendes Geschwisterelement (+)",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "Attributselektor",
+      "Begriff": "Attributselektor",
       "Beschreibung": "Wählt Elemente nach Attributwert aus",
       "Sprache": "CSS",
       "Link": "more/css-selektoren.html",
@@ -1034,98 +1069,98 @@ window.SpickerData["coding"] = {
     },
     // C++
     {
-      "Tag": "#include",
+      "Begriff": "#include",
       "Beschreibung": "Bibliotheken und Header einbinden",
       "Sprache": "C++",
       "Link": "more/include.html",
       "class": ["cpp","praeprozessor"]
     },
     {
-      "Tag": "using namespace",
+      "Begriff": "using namespace",
       "Beschreibung": "Namespace ohne std:: benutzen",
       "Sprache": "C++",
       "Link": "more/using-namespace.html",
       "class": ["cpp","namespace"]
     },
     {
-      "Tag": "int main()",
+      "Begriff": "int main()",
       "Beschreibung": "Startpunkt jedes C++-Programms",
       "Sprache": "C++",
       "Link": "more/cpp-main.html",
       "class": ["cpp","funktion","basis"]
     },
     {
-      "Tag": "std::cout",
+      "Begriff": "std::cout",
       "Beschreibung": "Text in der Konsole ausgeben",
       "Sprache": "C++",
       "Link": "more/cout.html",
       "class": ["cpp","io","ausgabe"]
     },
     {
-      "Tag": "std::cin",
+      "Begriff": "std::cin",
       "Beschreibung": "Eingabe von der Tastatur lesen",
       "Sprache": "C++",
       "Link": "more/cin.html",
       "class": ["cpp","io","eingabe"]
     },
     {
-      "Tag": "int, float, string, bool",
+      "Begriff": "int, float, string, bool",
       "Beschreibung": "Grundlegende Datentypen in C++",
       "Sprache": "C++",
       "Link": "more/datatypes.html",
       "class": ["cpp","datentyp","basis"]
     },
     {
-      "Tag": "Variablen",
+      "Begriff": "Variablen",
       "Beschreibung": "Werte mit Typ und Namen speichern",
       "Sprache": "C++",
       "Link": "more/variable.html",
       "class": ["cpp","variable"]
     },
     {
-      "Tag": "for-Schleife",
+      "Begriff": "for-Schleife",
       "Beschreibung": "Code feste Anzahl Male wiederholen",
       "Sprache": "C++",
       "Link": "more/for-loop.html",
       "class": ["cpp","schleife","kontrolle"]
     },
     {
-      "Tag": "while-Schleife",
+      "Begriff": "while-Schleife",
       "Beschreibung": "Wiederholen, solange Bedingung gilt",
       "Sprache": "C++",
       "Link": "more/while-loop.html",
       "class": ["cpp","schleife","kontrolle"]
     },
     {
-      "Tag": "if-else",
+      "Begriff": "if-else",
       "Beschreibung": "Code nur unter einer Bedingung ausführen",
       "Sprache": "C++",
       "Link": "more/if-else.html",
       "class": ["cpp","bedingung","kontrolle"]
     },
     {
-      "Tag": "Funktionen",
+      "Begriff": "Funktionen",
       "Beschreibung": "Wiederverwendbare Codeblöcke",
       "Sprache": "C++",
       "Link": "more/function.html",
       "class": ["cpp","funktion"]
     },
     {
-      "Tag": "Zeiger (*)",
+      "Begriff": "Zeiger (*)",
       "Beschreibung": "Speichert die Adresse einer Variable",
       "Sprache": "C++",
       "Link": "more/pointer.html",
       "class": ["cpp","zeiger","speicher"]
     },
     {
-      "Tag": "Referenzen (&)",
+      "Begriff": "Referenzen (&)",
       "Beschreibung": "Zweiter Name für eine Variable",
       "Sprache": "C++",
       "Link": "more/reference.html",
       "class": ["cpp","referenz","speicher"]
     },
     {
-      "Tag": "Klasse",
+      "Begriff": "Klasse",
       "Beschreibung": "Bauplan für Objekte",
       "Sprache": "C++",
       "Link": "more/cpp-class.html",
@@ -1133,301 +1168,301 @@ window.SpickerData["coding"] = {
     },
     // CSS – Eigenschaften & Konzepte
     {
-      "Tag": "CSS-Regel",
+      "Begriff": "CSS-Regel",
       "Beschreibung": "Selektor { Eigenschaft: Wert; }",
       "Sprache": "CSS",
       "Link": "more/css-grundlagen.html",
       "class": ["css","grundlagen"]
     },
     {
-      "Tag": "Kaskade & Spezifität",
+      "Begriff": "Kaskade & Spezifität",
       "Beschreibung": "Welche CSS-Regel gewinnt, wenn mehrere gelten",
       "Sprache": "CSS",
       "Link": "more/css-grundlagen.html",
       "class": ["css","grundlagen"]
     },
     {
-      "Tag": "Vererbung (inherit)",
+      "Begriff": "Vererbung (inherit)",
       "Beschreibung": "Eigenschaften, die Kind-Elemente übernehmen",
       "Sprache": "CSS",
       "Link": "more/css-grundlagen.html",
       "class": ["css","grundlagen"]
     },
     {
-      "Tag": "color",
+      "Begriff": "color",
       "Beschreibung": "Textfarbe",
       "Sprache": "CSS",
       "Link": "more/css-farben.html",
       "class": ["css","gestaltung","farben"]
     },
     {
-      "Tag": "background",
+      "Begriff": "background",
       "Beschreibung": "Hintergrundfarbe, -bild und Farbverläufe",
       "Sprache": "CSS",
       "Link": "more/css-farben.html",
       "class": ["css","gestaltung","farben"]
     },
     {
-      "Tag": "Farbformate (hex, rgb, hsl)",
+      "Begriff": "Farbformate (hex, rgb, hsl)",
       "Beschreibung": "Schreibweisen für Farben",
       "Sprache": "CSS",
       "Link": "more/css-farben.html",
       "class": ["css","gestaltung","farben"]
     },
     {
-      "Tag": "opacity",
+      "Begriff": "opacity",
       "Beschreibung": "Durchsichtigkeit eines Elements",
       "Sprache": "CSS",
       "Link": "more/css-farben.html",
       "class": ["css","gestaltung","farben"]
     },
     {
-      "Tag": "font-family / font-size",
+      "Begriff": "font-family / font-size",
       "Beschreibung": "Schriftart und Schriftgröße",
       "Sprache": "CSS",
       "Link": "more/css-text.html",
       "class": ["css","gestaltung","text"]
     },
     {
-      "Tag": "font-weight",
+      "Begriff": "font-weight",
       "Beschreibung": "Schriftdicke (normal, fett)",
       "Sprache": "CSS",
       "Link": "more/css-text.html",
       "class": ["css","gestaltung","text"]
     },
     {
-      "Tag": "line-height",
+      "Begriff": "line-height",
       "Beschreibung": "Zeilenabstand",
       "Sprache": "CSS",
       "Link": "more/css-text.html",
       "class": ["css","gestaltung","text"]
     },
     {
-      "Tag": "text-align",
+      "Begriff": "text-align",
       "Beschreibung": "Textausrichtung (links, zentriert, rechts)",
       "Sprache": "CSS",
       "Link": "more/css-text.html",
       "class": ["css","gestaltung","text"]
     },
     {
-      "Tag": "text-decoration / text-transform",
+      "Begriff": "text-decoration / text-transform",
       "Beschreibung": "Unterstreichen, Großbuchstaben usw.",
       "Sprache": "CSS",
       "Link": "more/css-text.html",
       "class": ["css","gestaltung","text"]
     },
     {
-      "Tag": "@font-face",
+      "Begriff": "@font-face",
       "Beschreibung": "Eigene Schriftarten einbinden",
       "Sprache": "CSS",
       "Link": "more/css-text.html",
       "class": ["css","gestaltung","text"]
     },
     {
-      "Tag": "Box-Modell",
+      "Begriff": "Box-Modell",
       "Beschreibung": "Inhalt, padding, border und margin einer Box",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "margin",
+      "Begriff": "margin",
       "Beschreibung": "Außenabstand eines Elements",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "padding",
+      "Begriff": "padding",
       "Beschreibung": "Innenabstand eines Elements",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "border / border-radius",
+      "Begriff": "border / border-radius",
       "Beschreibung": "Rahmen und abgerundete Ecken",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout","gestaltung"]
     },
     {
-      "Tag": "width / height",
+      "Begriff": "width / height",
       "Beschreibung": "Breite und Höhe (auch min-/max-)",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "box-sizing",
+      "Begriff": "box-sizing",
       "Beschreibung": "Ob padding und border zur Breite zählen",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "box-shadow",
+      "Begriff": "box-shadow",
       "Beschreibung": "Schatten um eine Box",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","gestaltung"]
     },
     {
-      "Tag": "overflow",
+      "Begriff": "overflow",
       "Beschreibung": "Umgang mit überstehendem Inhalt",
       "Sprache": "CSS",
       "Link": "more/css-boxmodell.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "Einheiten (px, rem, %, vw)",
+      "Begriff": "Einheiten (px, rem, %, vw)",
       "Beschreibung": "Größenangaben in CSS",
       "Sprache": "CSS",
       "Link": "more/css-einheiten.html",
       "class": ["css","grundlagen"]
     },
     {
-      "Tag": "calc() / clamp()",
+      "Begriff": "calc() / clamp()",
       "Beschreibung": "Mit Werten rechnen und begrenzen",
       "Sprache": "CSS",
       "Link": "more/css-einheiten.html",
       "class": ["css","grundlagen"]
     },
     {
-      "Tag": "display",
+      "Begriff": "display",
       "Beschreibung": "block, inline, inline-block, none",
       "Sprache": "CSS",
       "Link": "more/css-display.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "visibility",
+      "Begriff": "visibility",
       "Beschreibung": "Element unsichtbar machen, Platz bleibt",
       "Sprache": "CSS",
       "Link": "more/css-display.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "Flexbox",
+      "Begriff": "Flexbox",
       "Beschreibung": "Elemente in Reihe oder Spalte anordnen",
       "Sprache": "CSS",
       "Link": "more/css-flexbox.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "justify-content / align-items",
+      "Begriff": "justify-content / align-items",
       "Beschreibung": "Ausrichtung in Flexbox und Grid",
       "Sprache": "CSS",
       "Link": "more/css-flexbox.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "gap",
+      "Begriff": "gap",
       "Beschreibung": "Abstand zwischen Flex- und Grid-Elementen",
       "Sprache": "CSS",
       "Link": "more/css-flexbox.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "Grid",
+      "Begriff": "Grid",
       "Beschreibung": "Zweidimensionales Raster-Layout",
       "Sprache": "CSS",
       "Link": "more/css-grid.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "grid-template-columns",
+      "Begriff": "grid-template-columns",
       "Beschreibung": "Spalten eines Grids festlegen",
       "Sprache": "CSS",
       "Link": "more/css-grid.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "position",
+      "Begriff": "position",
       "Beschreibung": "static, relative, absolute, fixed, sticky",
       "Sprache": "CSS",
       "Link": "more/css-position.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "z-index",
+      "Begriff": "z-index",
       "Beschreibung": "Stapelreihenfolge überlappender Elemente",
       "Sprache": "CSS",
       "Link": "more/css-position.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": ":hover / :focus",
+      "Begriff": ":hover / :focus",
       "Beschreibung": "Pseudoklassen für Zustände",
       "Sprache": "CSS",
       "Link": "more/css-pseudo.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": ":nth-child()",
+      "Begriff": ":nth-child()",
       "Beschreibung": "Elemente nach Position auswählen",
       "Sprache": "CSS",
       "Link": "more/css-pseudo.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "::before / ::after",
+      "Begriff": "::before / ::after",
       "Beschreibung": "Pseudoelemente: Inhalt vor/nach einem Element",
       "Sprache": "CSS",
       "Link": "more/css-pseudo.html",
       "class": ["css","selektoren"]
     },
     {
-      "Tag": "@media",
+      "Begriff": "@media",
       "Beschreibung": "Media Queries für Responsive Design",
       "Sprache": "CSS",
       "Link": "more/css-media-queries.html",
       "class": ["css","layout"]
     },
     {
-      "Tag": "CSS-Variablen (--name)",
+      "Begriff": "CSS-Variablen (--name)",
       "Beschreibung": "Wiederverwendbare Werte mit var()",
       "Sprache": "CSS",
       "Link": "more/css-variablen.html",
       "class": ["css","grundlagen"]
     },
     {
-      "Tag": "transition",
+      "Begriff": "transition",
       "Beschreibung": "Weicher Übergang zwischen zwei Zuständen",
       "Sprache": "CSS",
       "Link": "more/css-animation.html",
       "class": ["css","effekte"]
     },
     {
-      "Tag": "transform",
+      "Begriff": "transform",
       "Beschreibung": "Verschieben, drehen, skalieren",
       "Sprache": "CSS",
       "Link": "more/css-animation.html",
       "class": ["css","effekte"]
     },
     {
-      "Tag": "@keyframes / animation",
+      "Begriff": "@keyframes / animation",
       "Beschreibung": "Eigene Animationen definieren",
       "Sprache": "CSS",
       "Link": "more/css-animation.html",
       "class": ["css","effekte"]
     },
     {
-      "Tag": "cursor",
+      "Begriff": "cursor",
       "Beschreibung": "Mauszeiger über einem Element",
       "Sprache": "CSS",
       "Link": "more/css-sonstiges.html",
       "class": ["css","gestaltung"]
     },
     {
-      "Tag": "list-style",
+      "Begriff": "list-style",
       "Beschreibung": "Aufzählungszeichen von Listen",
       "Sprache": "CSS",
       "Link": "more/css-sonstiges.html",
       "class": ["css","gestaltung"]
     },
     {
-      "Tag": "object-fit / aspect-ratio",
+      "Begriff": "object-fit / aspect-ratio",
       "Beschreibung": "Bilder in Boxen einpassen, Seitenverhältnis",
       "Sprache": "CSS",
       "Link": "more/css-sonstiges.html",
@@ -1435,329 +1470,329 @@ window.SpickerData["coding"] = {
     },
     // JavaScript – Grundlagen, Daten, DOM
     {
-      "Tag": "let / const",
+      "Begriff": "let / const",
       "Beschreibung": "Variablen anlegen",
       "Sprache": "JS",
       "Link": "more/js-variablen.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Datentypen (string, number, boolean)",
+      "Begriff": "Datentypen (string, number, boolean)",
       "Beschreibung": "Grundtypen in JavaScript",
       "Sprache": "JS",
       "Link": "more/js-variablen.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "typeof",
+      "Begriff": "typeof",
       "Beschreibung": "Datentyp eines Werts prüfen",
       "Sprache": "JS",
       "Link": "more/js-variablen.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Operatoren (+ - * / %)",
+      "Begriff": "Operatoren (+ - * / %)",
       "Beschreibung": "Rechnen in JavaScript",
       "Sprache": "JS",
       "Link": "more/js-operatoren.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "=== / !==",
+      "Begriff": "=== / !==",
       "Beschreibung": "Streng vergleichen (Wert und Typ)",
       "Sprache": "JS",
       "Link": "more/js-operatoren.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "&& / || / !",
+      "Begriff": "&& / || / !",
       "Beschreibung": "Logisches UND, ODER, NICHT",
       "Sprache": "JS",
       "Link": "more/js-operatoren.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "? : (Ternär)",
+      "Begriff": "? : (Ternär)",
       "Beschreibung": "Kurzes if/else in einer Zeile",
       "Sprache": "JS",
       "Link": "more/js-operatoren.html",
       "class": ["javascript","js","grundlagen","kontrolle"]
     },
     {
-      "Tag": "if / else",
+      "Begriff": "if / else",
       "Beschreibung": "Code nur unter einer Bedingung ausführen",
       "Sprache": "JS",
       "Link": "more/js-bedingungen.html",
       "class": ["javascript","js","kontrolle"]
     },
     {
-      "Tag": "switch",
+      "Begriff": "switch",
       "Beschreibung": "Mehrere feste Fälle unterscheiden",
       "Sprache": "JS",
       "Link": "more/js-bedingungen.html",
       "class": ["javascript","js","kontrolle"]
     },
     {
-      "Tag": "for",
+      "Begriff": "for",
       "Beschreibung": "Schleife mit Zähler",
       "Sprache": "JS",
       "Link": "more/js-schleifen.html",
       "class": ["javascript","js","kontrolle"]
     },
     {
-      "Tag": "while / do…while",
+      "Begriff": "while / do…while",
       "Beschreibung": "Schleife solange eine Bedingung gilt",
       "Sprache": "JS",
       "Link": "more/js-schleifen.html",
       "class": ["javascript","js","kontrolle"]
     },
     {
-      "Tag": "for…of / for…in",
+      "Begriff": "for…of / for…in",
       "Beschreibung": "Über Arrays bzw. Objekt-Schlüssel laufen",
       "Sprache": "JS",
       "Link": "more/js-schleifen.html",
       "class": ["javascript","js","kontrolle"]
     },
     {
-      "Tag": "break / continue",
+      "Begriff": "break / continue",
       "Beschreibung": "Schleife abbrechen / Runde überspringen",
       "Sprache": "JS",
       "Link": "more/js-schleifen.html",
       "class": ["javascript","js","kontrolle"]
     },
     {
-      "Tag": "function",
+      "Begriff": "function",
       "Beschreibung": "Funktion deklarieren",
       "Sprache": "JS",
       "Link": "more/js-funktionen.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "=> (Pfeilfunktion)",
+      "Begriff": "=> (Pfeilfunktion)",
       "Beschreibung": "Kurze Schreibweise für Funktionen",
       "Sprache": "JS",
       "Link": "more/js-funktionen.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "return",
+      "Begriff": "return",
       "Beschreibung": "Wert aus einer Funktion zurückgeben",
       "Sprache": "JS",
       "Link": "more/js-funktionen.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Array",
+      "Begriff": "Array",
       "Beschreibung": "Liste von Werten",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "push / pop",
+      "Begriff": "push / pop",
       "Beschreibung": "Elemente hinten anfügen / entfernen",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "forEach",
+      "Begriff": "forEach",
       "Beschreibung": "Für jedes Array-Element etwas ausführen",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "map",
+      "Begriff": "map",
       "Beschreibung": "Jedes Element umwandeln → neues Array",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "filter",
+      "Begriff": "filter",
       "Beschreibung": "Passende Elemente auswählen → neues Array",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "find / includes",
+      "Begriff": "find / includes",
       "Beschreibung": "Element suchen / Enthaltensein prüfen",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "sort",
+      "Begriff": "sort",
       "Beschreibung": "Array sortieren",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "reduce",
+      "Begriff": "reduce",
       "Beschreibung": "Array zu einem Wert zusammenfassen",
       "Sprache": "JS",
       "Link": "more/js-arrays.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Objekt",
+      "Begriff": "Objekt",
       "Beschreibung": "Daten als Schlüssel-Wert-Paare",
       "Sprache": "JS",
       "Link": "more/js-objekte.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Destructuring",
+      "Begriff": "Destructuring",
       "Beschreibung": "Werte aus Objekten/Arrays auspacken",
       "Sprache": "JS",
       "Link": "more/js-objekte.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "... (Spread)",
+      "Begriff": "... (Spread)",
       "Beschreibung": "Arrays/Objekte kopieren und zusammenführen",
       "Sprache": "JS",
       "Link": "more/js-objekte.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "JSON",
+      "Begriff": "JSON",
       "Beschreibung": "JSON.stringify / JSON.parse",
       "Sprache": "JS",
       "Link": "more/js-objekte.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Template-String",
+      "Begriff": "Template-String",
       "Beschreibung": "Text mit ${Variablen} in Backticks",
       "Sprache": "JS",
       "Link": "more/js-strings.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "String-Methoden",
+      "Begriff": "String-Methoden",
       "Beschreibung": "toUpperCase, trim, includes, split, slice …",
       "Sprache": "JS",
       "Link": "more/js-strings.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "document.querySelector",
+      "Begriff": "document.querySelector",
       "Beschreibung": "Element per CSS-Selektor finden",
       "Sprache": "JS",
       "Link": "more/js-dom.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "getElementById",
+      "Begriff": "getElementById",
       "Beschreibung": "Element über seine ID finden",
       "Sprache": "JS",
       "Link": "more/js-dom.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "textContent / innerHTML",
+      "Begriff": "textContent / innerHTML",
       "Beschreibung": "Inhalt eines Elements lesen/ändern",
       "Sprache": "JS",
       "Link": "more/js-dom.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "classList",
+      "Begriff": "classList",
       "Beschreibung": "CSS-Klassen hinzufügen, entfernen, umschalten",
       "Sprache": "JS",
       "Link": "more/js-dom.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "createElement / appendChild",
+      "Begriff": "createElement / appendChild",
       "Beschreibung": "Neue Elemente erzeugen und einfügen",
       "Sprache": "JS",
       "Link": "more/js-dom.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "dataset",
+      "Begriff": "dataset",
       "Beschreibung": "data-*-Attribute auslesen",
       "Sprache": "JS",
       "Link": "more/js-dom.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "addEventListener",
+      "Begriff": "addEventListener",
       "Beschreibung": "Auf Ereignisse wie Klicks reagieren",
       "Sprache": "JS",
       "Link": "more/js-events.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "event.preventDefault()",
+      "Begriff": "event.preventDefault()",
       "Beschreibung": "Standardverhalten des Browsers verhindern",
       "Sprache": "JS",
       "Link": "more/js-events.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "console.log",
+      "Begriff": "console.log",
       "Beschreibung": "Ausgabe in der Browser-Konsole",
       "Sprache": "JS",
       "Link": "more/js-konsole.html",
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Tag": "try / catch",
+      "Begriff": "try / catch",
       "Beschreibung": "Fehler abfangen",
       "Sprache": "JS",
       "Link": "more/js-konsole.html",
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Tag": "setTimeout / setInterval",
+      "Begriff": "setTimeout / setInterval",
       "Beschreibung": "Code verzögert oder wiederholt ausführen",
       "Sprache": "JS",
       "Link": "more/js-async.html",
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Tag": "async / await",
+      "Begriff": "async / await",
       "Beschreibung": "Auf asynchrone Vorgänge warten",
       "Sprache": "JS",
       "Link": "more/js-async.html",
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Tag": "fetch",
+      "Begriff": "fetch",
       "Beschreibung": "Daten aus dem Netz laden",
       "Sprache": "JS",
       "Link": "more/js-async.html",
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Tag": "localStorage",
+      "Begriff": "localStorage",
       "Beschreibung": "Daten im Browser speichern",
       "Sprache": "JS",
       "Link": "more/js-speicher.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Math",
+      "Begriff": "Math",
       "Beschreibung": "Runden, Zufallszahlen, Wurzel …",
       "Sprache": "JS",
       "Link": "more/js-mathe.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Date",
+      "Begriff": "Date",
       "Beschreibung": "Datum und Uhrzeit",
       "Sprache": "JS",
       "Link": "more/js-mathe.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "import / export",
+      "Begriff": "import / export",
       "Beschreibung": "Code auf Module verteilen",
       "Sprache": "JS",
       "Link": "more/js-module.html",
@@ -1765,287 +1800,287 @@ window.SpickerData["coding"] = {
     },
     // C++ – weiterführende Themen
     {
-      "Tag": "Operatoren (+ - * / %)",
+      "Begriff": "Operatoren (+ - * / %)",
       "Beschreibung": "Rechnen, Rest, Kurzformen wie +=",
       "Sprache": "C++",
       "Link": "more/cpp-operatoren.html",
       "class": ["cpp","grundlagen"]
     },
     {
-      "Tag": "== / != / && / ||",
+      "Begriff": "== / != / && / ||",
       "Beschreibung": "Vergleichen und logisch verknüpfen",
       "Sprache": "C++",
       "Link": "more/cpp-operatoren.html",
       "class": ["cpp","grundlagen"]
     },
     {
-      "Tag": "static_cast",
+      "Begriff": "static_cast",
       "Beschreibung": "Datentypen sicher umwandeln",
       "Sprache": "C++",
       "Link": "more/cpp-operatoren.html",
       "class": ["cpp","grundlagen"]
     },
     {
-      "Tag": "stoi / to_string",
+      "Begriff": "stoi / to_string",
       "Beschreibung": "Text in Zahl umwandeln und zurück",
       "Sprache": "C++",
       "Link": "more/cpp-string.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "switch",
+      "Begriff": "switch",
       "Beschreibung": "Mehrere feste Fälle unterscheiden",
       "Sprache": "C++",
       "Link": "more/cpp-kontrolle.html",
       "class": ["cpp","kontrolle"]
     },
     {
-      "Tag": "do-while-Schleife",
+      "Begriff": "do-while-Schleife",
       "Beschreibung": "Schleife, die mindestens einmal läuft",
       "Sprache": "C++",
       "Link": "more/cpp-kontrolle.html",
       "class": ["cpp","schleife","kontrolle"]
     },
     {
-      "Tag": "break / continue",
+      "Begriff": "break / continue",
       "Beschreibung": "Schleife abbrechen / Runde überspringen",
       "Sprache": "C++",
       "Link": "more/cpp-kontrolle.html",
       "class": ["cpp","kontrolle"]
     },
     {
-      "Tag": "Bereichsbasierte for-Schleife",
+      "Begriff": "Bereichsbasierte for-Schleife",
       "Beschreibung": "for (auto& x : container)",
       "Sprache": "C++",
       "Link": "more/cpp-kontrolle.html",
       "class": ["cpp","schleife","kontrolle"]
     },
     {
-      "Tag": "Array (C-Array)",
+      "Begriff": "Array (C-Array)",
       "Beschreibung": "Feste Anzahl Werte gleichen Typs",
       "Sprache": "C++",
       "Link": "more/cpp-arrays.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "std::array",
+      "Begriff": "std::array",
       "Beschreibung": "Modernes Array mit fester Größe",
       "Sprache": "C++",
       "Link": "more/cpp-arrays.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "std::vector",
+      "Begriff": "std::vector",
       "Beschreibung": "Dynamische Liste, wächst automatisch",
       "Sprache": "C++",
       "Link": "more/cpp-vector.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "push_back / size",
+      "Begriff": "push_back / size",
       "Beschreibung": "Element anhängen, Anzahl abfragen",
       "Sprache": "C++",
       "Link": "more/cpp-vector.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "std::string",
+      "Begriff": "std::string",
       "Beschreibung": "Text speichern und bearbeiten",
       "Sprache": "C++",
       "Link": "more/cpp-string.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "getline",
+      "Begriff": "getline",
       "Beschreibung": "Ganze Zeile mit Leerzeichen einlesen",
       "Sprache": "C++",
       "Link": "more/cpp-string.html",
       "class": ["cpp","io","eingabe"]
     },
     {
-      "Tag": "const",
+      "Begriff": "const",
       "Beschreibung": "Unveränderliche Werte",
       "Sprache": "C++",
       "Link": "more/cpp-const-auto.html",
       "class": ["cpp","grundlagen"]
     },
     {
-      "Tag": "constexpr",
+      "Begriff": "constexpr",
       "Beschreibung": "Zur Compile-Zeit berechnete Konstanten",
       "Sprache": "C++",
       "Link": "more/cpp-const-auto.html",
       "class": ["cpp","grundlagen"]
     },
     {
-      "Tag": "auto",
+      "Begriff": "auto",
       "Beschreibung": "Typ vom Compiler bestimmen lassen",
       "Sprache": "C++",
       "Link": "more/cpp-const-auto.html",
       "class": ["cpp","grundlagen"]
     },
     {
-      "Tag": "struct",
+      "Begriff": "struct",
       "Beschreibung": "Eigener Datentyp aus mehreren Werten",
       "Sprache": "C++",
       "Link": "more/cpp-struct-enum.html",
       "class": ["cpp","daten","oop"]
     },
     {
-      "Tag": "enum class",
+      "Begriff": "enum class",
       "Beschreibung": "Benannte feste Auswahlmöglichkeiten",
       "Sprache": "C++",
       "Link": "more/cpp-struct-enum.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "Konstruktor / Destruktor",
+      "Begriff": "Konstruktor / Destruktor",
       "Beschreibung": "Objekt erzeugen und aufräumen",
       "Sprache": "C++",
       "Link": "more/cpp-konstruktor.html",
       "class": ["cpp","oop","klasse"]
     },
     {
-      "Tag": "public / private / protected",
+      "Begriff": "public / private / protected",
       "Beschreibung": "Zugriffsrechte in Klassen (Kapselung)",
       "Sprache": "C++",
       "Link": "more/cpp-konstruktor.html",
       "class": ["cpp","oop","klasse"]
     },
     {
-      "Tag": "this",
+      "Begriff": "this",
       "Beschreibung": "Zeiger auf das aktuelle Objekt",
       "Sprache": "C++",
       "Link": "more/cpp-konstruktor.html",
       "class": ["cpp","oop","klasse"]
     },
     {
-      "Tag": "Vererbung",
+      "Begriff": "Vererbung",
       "Beschreibung": "Klasse von einer Basisklasse ableiten",
       "Sprache": "C++",
       "Link": "more/cpp-vererbung.html",
       "class": ["cpp","oop"]
     },
     {
-      "Tag": "virtual / override",
+      "Begriff": "virtual / override",
       "Beschreibung": "Methoden überschreiben, Polymorphie",
       "Sprache": "C++",
       "Link": "more/cpp-vererbung.html",
       "class": ["cpp","oop"]
     },
     {
-      "Tag": "new / delete",
+      "Begriff": "new / delete",
       "Beschreibung": "Speicher auf dem Heap anlegen und freigeben",
       "Sprache": "C++",
       "Link": "more/cpp-speicher.html",
       "class": ["cpp","speicher"]
     },
     {
-      "Tag": "Smart Pointer (unique_ptr)",
+      "Begriff": "Smart Pointer (unique_ptr)",
       "Beschreibung": "Automatische Speicherverwaltung",
       "Sprache": "C++",
       "Link": "more/cpp-speicher.html",
       "class": ["cpp","speicher"]
     },
     {
-      "Tag": "std::map",
+      "Begriff": "std::map",
       "Beschreibung": "Werte über Schlüssel nachschlagen",
       "Sprache": "C++",
       "Link": "more/cpp-map.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "std::set",
+      "Begriff": "std::set",
       "Beschreibung": "Menge ohne doppelte Werte",
       "Sprache": "C++",
       "Link": "more/cpp-map.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "std::pair",
+      "Begriff": "std::pair",
       "Beschreibung": "Zwei Werte als Paar",
       "Sprache": "C++",
       "Link": "more/cpp-map.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "Lambda",
+      "Begriff": "Lambda",
       "Beschreibung": "Kleine Funktion direkt im Code",
       "Sprache": "C++",
       "Link": "more/cpp-algorithmen.html",
       "class": ["cpp","funktion"]
     },
     {
-      "Tag": "std::sort",
+      "Begriff": "std::sort",
       "Beschreibung": "Container sortieren",
       "Sprache": "C++",
       "Link": "more/cpp-algorithmen.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "std::find / std::count",
+      "Begriff": "std::find / std::count",
       "Beschreibung": "Suchen und Zählen in Containern",
       "Sprache": "C++",
       "Link": "more/cpp-algorithmen.html",
       "class": ["cpp","daten"]
     },
     {
-      "Tag": "Zufallszahlen (<random>)",
+      "Begriff": "Zufallszahlen (<random>)",
       "Beschreibung": "mt19937 und uniform_int_distribution",
       "Sprache": "C++",
       "Link": "more/cpp-zufall.html",
       "class": ["cpp","werkzeuge"]
     },
     {
-      "Tag": "Header-Dateien (.h)",
+      "Begriff": "Header-Dateien (.h)",
       "Beschreibung": "Code auf mehrere Dateien verteilen",
       "Sprache": "C++",
       "Link": "more/cpp-header.html",
       "class": ["cpp","werkzeuge","praeprozessor"]
     },
     {
-      "Tag": "#pragma once",
+      "Begriff": "#pragma once",
       "Beschreibung": "Header nur einmal einbinden",
       "Sprache": "C++",
       "Link": "more/cpp-header.html",
       "class": ["cpp","werkzeuge","praeprozessor"]
     },
     {
-      "Tag": "try / catch / throw",
+      "Begriff": "try / catch / throw",
       "Beschreibung": "Exceptions werfen und abfangen",
       "Sprache": "C++",
       "Link": "more/cpp-fehler.html",
       "class": ["cpp","werkzeuge"]
     },
     {
-      "Tag": "std::cerr",
+      "Begriff": "std::cerr",
       "Beschreibung": "Ausgabe auf dem Fehlerkanal",
       "Sprache": "C++",
       "Link": "more/cpp-fehler.html",
       "class": ["cpp","io","ausgabe"]
     },
     {
-      "Tag": "fstream",
+      "Begriff": "fstream",
       "Beschreibung": "Dateien lesen und schreiben",
       "Sprache": "C++",
       "Link": "more/cpp-dateien.html",
       "class": ["cpp","io","werkzeuge"]
     },
     {
-      "Tag": "template",
+      "Begriff": "template",
       "Beschreibung": "Funktionen/Klassen für beliebige Typen",
       "Sprache": "C++",
       "Link": "more/cpp-templates.html",
       "class": ["cpp","funktion"]
     },
     {
-      "Tag": "g++ / Kompilieren",
+      "Begriff": "g++ / Kompilieren",
       "Beschreibung": "Vom Quellcode zum Programm",
       "Sprache": "C++",
       "Link": "more/cpp-kompilieren.html",
       "class": ["cpp","werkzeuge"]
     },
     {
-      "Tag": "CMake",
+      "Begriff": "CMake",
       "Beschreibung": "Build-System für C++-Projekte",
       "Sprache": "C++",
       "Link": "more/cpp-kompilieren.html",
@@ -2053,105 +2088,106 @@ window.SpickerData["coding"] = {
     },
     // Node.js
     {
-      "Tag": "Node.js",
+      "Begriff": "Node.js",
       "Beschreibung": "JavaScript außerhalb des Browsers",
       "Sprache": "Node.js",
       "Link": "more/node-einfuehrung.html",
-      "class": ["node.js","sprache","grundlagen"]
+      "class": ["node.js","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "node datei.js",
+      "Begriff": "node datei.js",
       "Beschreibung": "Ein Skript mit Node.js ausführen",
       "Sprache": "Node.js",
       "Link": "more/node-einfuehrung.html",
       "class": ["node.js","grundlagen","werkzeuge"]
     },
     {
-      "Tag": "npm install",
+      "Begriff": "npm install",
       "Beschreibung": "Pakete installieren",
       "Sprache": "Node.js",
       "Link": "more/node-npm.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "package.json",
+      "Begriff": "package.json",
       "Beschreibung": "Projektdatei mit Skripten und Paketen",
       "Sprache": "Node.js",
       "Link": "more/node-npm.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "npm run",
+      "Begriff": "npm run",
       "Beschreibung": "Skripte aus package.json starten",
       "Sprache": "Node.js",
       "Link": "more/node-npm.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "import / require",
+      "Begriff": "import / require",
       "Beschreibung": "Module in Node.js laden (ESM / CommonJS)",
       "Sprache": "Node.js",
       "Link": "more/node-module.html",
       "class": ["node.js","grundlagen"]
     },
     {
-      "Tag": "path",
+      "Begriff": "path",
       "Beschreibung": "Pfade sicher zusammensetzen",
       "Sprache": "Node.js",
       "Link": "more/node-module.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "fs (readFile / writeFile)",
+      "Begriff": "fs (readFile / writeFile)",
       "Beschreibung": "Dateien lesen und schreiben",
       "Sprache": "Node.js",
       "Link": "more/node-dateien.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "http.createServer",
+      "Begriff": "http.createServer",
       "Beschreibung": "Einfachen Webserver starten",
       "Sprache": "Node.js",
       "Link": "more/node-http.html",
       "class": ["node.js","server"]
     },
     {
-      "Tag": "Express",
+      "Begriff": "Express",
       "Beschreibung": "Framework für Webserver und APIs",
       "Sprache": "Node.js",
       "Link": "more/node-express.html",
       "class": ["node.js","server"]
     },
     {
-      "Tag": "app.get / app.post",
+      "Begriff": "app.get / app.post",
       "Beschreibung": "Routen in Express definieren",
       "Sprache": "Node.js",
       "Link": "more/node-express.html",
       "class": ["node.js","server"]
     },
     {
-      "Tag": "req / res",
+      "Begriff": "req / res",
       "Beschreibung": "Anfrage und Antwort im Server",
       "Sprache": "Node.js",
       "Link": "more/node-express.html",
       "class": ["node.js","server"]
     },
     {
-      "Tag": "process.argv",
+      "Begriff": "process.argv",
       "Beschreibung": "Kommandozeilen-Argumente lesen",
       "Sprache": "Node.js",
       "Link": "more/node-process.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "process.env / .env",
+      "Begriff": "process.env / .env",
       "Beschreibung": "Umgebungsvariablen und Geheimnisse",
       "Sprache": "Node.js",
       "Link": "more/node-process.html",
       "class": ["node.js","werkzeuge"]
     },
     {
-      "Tag": "node:sqlite / mysql2",
+      "Begriff": "node:sqlite / mysql2",
       "Beschreibung": "Datenbank aus Node.js ansprechen",
       "Sprache": "Node.js",
       "Link": "more/node-datenbank.html",
@@ -2159,119 +2195,120 @@ window.SpickerData["coding"] = {
     },
     // SQL
     {
-      "Tag": "SQL",
+      "Begriff": "SQL",
       "Beschreibung": "Sprache für relationale Datenbanken",
       "Sprache": "SQL",
       "Link": "more/sql-einfuehrung.html",
-      "class": ["sql","sprache","grundlagen"]
+      "class": ["sql","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "CREATE TABLE",
+      "Begriff": "CREATE TABLE",
       "Beschreibung": "Tabelle mit Spalten und Datentypen anlegen",
       "Sprache": "SQL",
       "Link": "more/sql-tabellen.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "PRIMARY KEY",
+      "Begriff": "PRIMARY KEY",
       "Beschreibung": "Eindeutige ID einer Zeile",
       "Sprache": "SQL",
       "Link": "more/sql-tabellen.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "ALTER / DROP TABLE",
+      "Begriff": "ALTER / DROP TABLE",
       "Beschreibung": "Tabelle ändern oder löschen",
       "Sprache": "SQL",
       "Link": "more/sql-tabellen.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "SELECT",
+      "Begriff": "SELECT",
       "Beschreibung": "Daten abfragen",
       "Sprache": "SQL",
       "Link": "more/sql-select.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "WHERE",
+      "Begriff": "WHERE",
       "Beschreibung": "Zeilen filtern",
       "Sprache": "SQL",
       "Link": "more/sql-select.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "ORDER BY / LIMIT",
+      "Begriff": "ORDER BY / LIMIT",
       "Beschreibung": "Sortieren und begrenzen",
       "Sprache": "SQL",
       "Link": "more/sql-select.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "LIKE / IN / BETWEEN",
+      "Begriff": "LIKE / IN / BETWEEN",
       "Beschreibung": "Muster, Listen und Bereiche prüfen",
       "Sprache": "SQL",
       "Link": "more/sql-select.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "INSERT INTO",
+      "Begriff": "INSERT INTO",
       "Beschreibung": "Datensatz einfügen",
       "Sprache": "SQL",
       "Link": "more/sql-daten-aendern.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "UPDATE",
+      "Begriff": "UPDATE",
       "Beschreibung": "Datensätze ändern",
       "Sprache": "SQL",
       "Link": "more/sql-daten-aendern.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "DELETE",
+      "Begriff": "DELETE",
       "Beschreibung": "Datensätze löschen",
       "Sprache": "SQL",
       "Link": "more/sql-daten-aendern.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "Transaktion (BEGIN / COMMIT)",
+      "Begriff": "Transaktion (BEGIN / COMMIT)",
       "Beschreibung": "Mehrere Änderungen ganz oder gar nicht",
       "Sprache": "SQL",
       "Link": "more/sql-daten-aendern.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "COUNT / SUM / AVG",
+      "Begriff": "COUNT / SUM / AVG",
       "Beschreibung": "Zählen, summieren, Durchschnitt",
       "Sprache": "SQL",
       "Link": "more/sql-aggregat.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "GROUP BY / HAVING",
+      "Begriff": "GROUP BY / HAVING",
       "Beschreibung": "Ergebnisse gruppieren und Gruppen filtern",
       "Sprache": "SQL",
       "Link": "more/sql-aggregat.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "JOIN",
+      "Begriff": "JOIN",
       "Beschreibung": "Tabellen verbinden",
       "Sprache": "SQL",
       "Link": "more/sql-joins.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "FOREIGN KEY",
+      "Begriff": "FOREIGN KEY",
       "Beschreibung": "Verweis auf eine andere Tabelle",
       "Sprache": "SQL",
       "Link": "more/sql-joins.html",
       "class": ["sql","daten"]
     },
     {
-      "Tag": "SQL-Injection",
+      "Begriff": "SQL-Injection",
       "Beschreibung": "Sicherheitslücke und wie Platzhalter schützen",
       "Sprache": "SQL",
       "Link": "more/sql-sicherheit.html",
@@ -2279,126 +2316,127 @@ window.SpickerData["coding"] = {
     },
     // PHP
     {
-      "Tag": "PHP",
+      "Begriff": "PHP",
       "Beschreibung": "Server-Sprache, die HTML-Seiten erzeugt",
       "Sprache": "PHP",
       "Link": "more/php-einfuehrung.html",
-      "class": ["php","sprache","grundlagen"]
+      "class": ["php","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "<?php ?> / echo",
+      "Begriff": "<?php ?> / echo",
       "Beschreibung": "PHP-Code einbetten und ausgeben",
       "Sprache": "PHP",
       "Link": "more/php-einfuehrung.html",
       "class": ["php","grundlagen"]
     },
     {
-      "Tag": "$variable",
+      "Begriff": "$variable",
       "Beschreibung": "Variablen in PHP",
       "Sprache": "PHP",
       "Link": "more/php-grundlagen.html",
       "class": ["php","grundlagen"]
     },
     {
-      "Tag": ". (Verkettung)",
+      "Begriff": ". (Verkettung)",
       "Beschreibung": "Texte in PHP verbinden",
       "Sprache": "PHP",
       "Link": "more/php-grundlagen.html",
       "class": ["php","grundlagen"]
     },
     {
-      "Tag": "var_dump / print_r",
+      "Begriff": "var_dump / print_r",
       "Beschreibung": "Werte zum Debuggen ausgeben",
       "Sprache": "PHP",
       "Link": "more/php-grundlagen.html",
       "class": ["php","werkzeuge"]
     },
     {
-      "Tag": "if / elseif / match",
+      "Begriff": "if / elseif / match",
       "Beschreibung": "Bedingungen in PHP",
       "Sprache": "PHP",
       "Link": "more/php-kontrolle.html",
       "class": ["php","kontrolle"]
     },
     {
-      "Tag": "foreach",
+      "Begriff": "foreach",
       "Beschreibung": "Über Arrays laufen",
       "Sprache": "PHP",
       "Link": "more/php-kontrolle.html",
       "class": ["php","kontrolle"]
     },
     {
-      "Tag": "function (PHP)",
+      "Begriff": "function (PHP)",
       "Beschreibung": "Eigene Funktionen mit Typangaben",
       "Sprache": "PHP",
       "Link": "more/php-funktionen.html",
       "class": ["php","funktion"]
     },
     {
-      "Tag": "include / require",
+      "Begriff": "include / require",
       "Beschreibung": "Andere PHP-Dateien einbinden",
       "Sprache": "PHP",
       "Link": "more/php-funktionen.html",
       "class": ["php","einbinden"]
     },
     {
-      "Tag": "Array (PHP)",
+      "Begriff": "Array (PHP)",
       "Beschreibung": "Indizierte und assoziative Arrays",
       "Sprache": "PHP",
       "Link": "more/php-arrays.html",
       "class": ["php","daten"]
     },
     {
-      "Tag": "array_map / array_filter",
+      "Begriff": "array_map / array_filter",
       "Beschreibung": "Arrays umwandeln und filtern",
       "Sprache": "PHP",
       "Link": "more/php-arrays.html",
       "class": ["php","daten"]
     },
     {
-      "Tag": "$_GET / $_POST",
+      "Begriff": "$_GET / $_POST",
       "Beschreibung": "Formulardaten empfangen",
       "Sprache": "PHP",
       "Link": "more/php-formulare.html",
       "class": ["php","form","server"]
     },
     {
-      "Tag": "htmlspecialchars",
+      "Begriff": "htmlspecialchars",
       "Beschreibung": "Ausgaben gegen XSS absichern",
       "Sprache": "PHP",
       "Link": "more/php-formulare.html",
       "class": ["php","form","werkzeuge"]
     },
     {
-      "Tag": "session_start / $_SESSION",
+      "Begriff": "session_start / $_SESSION",
       "Beschreibung": "Daten über mehrere Seiten merken",
       "Sprache": "PHP",
       "Link": "more/php-sessions.html",
       "class": ["php","server"]
     },
     {
-      "Tag": "setcookie",
+      "Begriff": "setcookie",
       "Beschreibung": "Cookies setzen",
       "Sprache": "PHP",
       "Link": "more/php-sessions.html",
       "class": ["php","server"]
     },
     {
-      "Tag": "password_hash",
+      "Begriff": "password_hash",
       "Beschreibung": "Passwörter sicher speichern",
       "Sprache": "PHP",
       "Link": "more/php-sessions.html",
       "class": ["php","werkzeuge"]
     },
     {
-      "Tag": "PDO",
+      "Begriff": "PDO",
       "Beschreibung": "Datenbankzugriff mit Prepared Statements",
       "Sprache": "PHP",
       "Link": "more/php-datenbank.html",
       "class": ["php","server","daten"]
     },
     {
-      "Tag": "class (PHP)",
+      "Begriff": "class (PHP)",
       "Beschreibung": "Klassen und Objekte in PHP",
       "Sprache": "PHP",
       "Link": "more/php-oop.html",
@@ -2406,28 +2444,28 @@ window.SpickerData["coding"] = {
     },
     // Terminal
     {
-      "Tag": "Terminal (Windows vs. Linux)",
+      "Begriff": "Terminal (Windows vs. Linux)",
       "Beschreibung": "Befehle für PowerShell und Bash",
       "Sprache": "Terminal",
       "Link": "more/terminal.html",
       "class": ["terminal","werkzeuge"]
     },
     {
-      "Tag": "cd / ls / mkdir",
+      "Begriff": "cd / ls / mkdir",
       "Beschreibung": "Im Terminal navigieren und Ordner anlegen",
       "Sprache": "Terminal",
       "Link": "more/terminal.html",
       "class": ["terminal","werkzeuge"]
     },
     {
-      "Tag": "winget / apt",
+      "Begriff": "winget / apt",
       "Beschreibung": "Software über die Kommandozeile installieren",
       "Sprache": "Terminal",
       "Link": "more/terminal.html",
       "class": ["terminal","werkzeuge"]
     },
     {
-      "Tag": "Umgebungsvariablen ($env / export)",
+      "Begriff": "Umgebungsvariablen ($env / export)",
       "Beschreibung": "Variablen im Terminal setzen",
       "Sprache": "Terminal",
       "Link": "more/terminal.html",
@@ -2435,105 +2473,106 @@ window.SpickerData["coding"] = {
     },
     // Lua
     {
-      "Tag": "Lua",
+      "Begriff": "Lua",
       "Beschreibung": "Kleine Skriptsprache für Spiele und Mods",
       "Sprache": "Lua",
       "Link": "more/lua-einfuehrung.html",
-      "class": ["lua","sprache","grundlagen"]
+      "class": ["lua","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "local",
+      "Begriff": "local",
       "Beschreibung": "Lokale Variable anlegen",
       "Sprache": "Lua",
       "Link": "more/lua-grundlagen.html",
       "class": ["lua","grundlagen"]
     },
     {
-      "Tag": "nil / type()",
+      "Begriff": "nil / type()",
       "Beschreibung": "Kein Wert / Datentyp prüfen",
       "Sprache": "Lua",
       "Link": "more/lua-grundlagen.html",
       "class": ["lua","grundlagen"]
     },
     {
-      "Tag": ".. (Verkettung)",
+      "Begriff": ".. (Verkettung)",
       "Beschreibung": "Texte in Lua verbinden",
       "Sprache": "Lua",
       "Link": "more/lua-grundlagen.html",
       "class": ["lua","grundlagen"]
     },
     {
-      "Tag": "if … then … end",
+      "Begriff": "if … then … end",
       "Beschreibung": "Bedingungen in Lua",
       "Sprache": "Lua",
       "Link": "more/lua-kontrolle.html",
       "class": ["lua","kontrolle"]
     },
     {
-      "Tag": "for / while / repeat",
+      "Begriff": "for / while / repeat",
       "Beschreibung": "Schleifen in Lua",
       "Sprache": "Lua",
       "Link": "more/lua-kontrolle.html",
       "class": ["lua","kontrolle","schleife"]
     },
     {
-      "Tag": "function (Lua)",
+      "Begriff": "function (Lua)",
       "Beschreibung": "Funktionen, mehrere Rückgabewerte, Closures",
       "Sprache": "Lua",
       "Link": "more/lua-funktionen.html",
       "class": ["lua","funktion"]
     },
     {
-      "Tag": "Tabelle (table)",
+      "Begriff": "Tabelle (table)",
       "Beschreibung": "Liste, Wörterbuch und Objekt in einem",
       "Sprache": "Lua",
       "Link": "more/lua-tabellen.html",
       "class": ["lua","daten"]
     },
     {
-      "Tag": "ipairs / pairs",
+      "Begriff": "ipairs / pairs",
       "Beschreibung": "Über Tabellen laufen",
       "Sprache": "Lua",
       "Link": "more/lua-tabellen.html",
       "class": ["lua","daten","kontrolle"]
     },
     {
-      "Tag": "table.insert / table.sort",
+      "Begriff": "table.insert / table.sort",
       "Beschreibung": "Tabellen bearbeiten",
       "Sprache": "Lua",
       "Link": "more/lua-tabellen.html",
       "class": ["lua","daten"]
     },
     {
-      "Tag": "string.format / Patterns",
+      "Begriff": "string.format / Patterns",
       "Beschreibung": "Texte formatieren und durchsuchen",
       "Sprache": "Lua",
       "Link": "more/lua-strings.html",
       "class": ["lua","daten"]
     },
     {
-      "Tag": "require",
+      "Begriff": "require",
       "Beschreibung": "Module laden",
       "Sprache": "Lua",
       "Link": "more/lua-module.html",
       "class": ["lua","werkzeuge"]
     },
     {
-      "Tag": "setmetatable",
+      "Begriff": "setmetatable",
       "Beschreibung": "Klassen mit Metatabellen",
       "Sprache": "Lua",
       "Link": "more/lua-module.html",
       "class": ["lua","oop"]
     },
     {
-      "Tag": "pcall / error",
+      "Begriff": "pcall / error",
       "Beschreibung": "Fehler abfangen und auslösen",
       "Sprache": "Lua",
       "Link": "more/lua-module.html",
       "class": ["lua","werkzeuge"]
     },
     {
-      "Tag": "core.register_node",
+      "Begriff": "core.register_node",
       "Beschreibung": "Block in einem Luanti-Mod registrieren",
       "Sprache": "Lua",
       "Link": "more/lua-luanti.html",
@@ -2541,70 +2580,71 @@ window.SpickerData["coding"] = {
     },
     // C
     {
-      "Tag": "C",
+      "Begriff": "C",
       "Beschreibung": "Systemnahe Sprache, Vorgängerin von C++",
       "Sprache": "C",
       "Link": "more/c-einfuehrung.html",
-      "class": ["c","sprache","grundlagen"]
+      "class": ["c","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "printf",
+      "Begriff": "printf",
       "Beschreibung": "Formatierte Ausgabe",
       "Sprache": "C",
       "Link": "more/c-ein-ausgabe.html",
       "class": ["c","io","ausgabe"]
     },
     {
-      "Tag": "scanf / fgets",
+      "Begriff": "scanf / fgets",
       "Beschreibung": "Eingaben einlesen",
       "Sprache": "C",
       "Link": "more/c-ein-ausgabe.html",
       "class": ["c","io","eingabe"]
     },
     {
-      "Tag": "char-Array (String)",
+      "Begriff": "char-Array (String)",
       "Beschreibung": "Texte in C mit \\0 am Ende",
       "Sprache": "C",
       "Link": "more/c-strings.html",
       "class": ["c","daten"]
     },
     {
-      "Tag": "strlen / strcmp / snprintf",
+      "Begriff": "strlen / strcmp / snprintf",
       "Beschreibung": "Funktionen aus string.h",
       "Sprache": "C",
       "Link": "more/c-strings.html",
       "class": ["c","daten"]
     },
     {
-      "Tag": "Zeiger (C)",
+      "Begriff": "Zeiger (C)",
       "Beschreibung": "Adressen und Zeiger-Arithmetik",
       "Sprache": "C",
       "Link": "more/c-zeiger.html",
       "class": ["c","speicher"]
     },
     {
-      "Tag": "malloc / free",
+      "Begriff": "malloc / free",
       "Beschreibung": "Speicher anfordern und freigeben",
       "Sprache": "C",
       "Link": "more/c-speicher.html",
       "class": ["c","speicher"]
     },
     {
-      "Tag": "struct / typedef (C)",
+      "Begriff": "struct / typedef (C)",
       "Beschreibung": "Eigene Datentypen in C",
       "Sprache": "C",
       "Link": "more/c-structs.html",
       "class": ["c","daten"]
     },
     {
-      "Tag": "#define",
+      "Begriff": "#define",
       "Beschreibung": "Konstanten und Makros",
       "Sprache": "C",
       "Link": "more/c-praeprozessor.html",
       "class": ["c","praeprozessor"]
     },
     {
-      "Tag": "fopen / fclose",
+      "Begriff": "fopen / fclose",
       "Beschreibung": "Dateien in C",
       "Sprache": "C",
       "Link": "more/c-praeprozessor.html",
@@ -2612,105 +2652,106 @@ window.SpickerData["coding"] = {
     },
     // C#
     {
-      "Tag": "C#",
+      "Begriff": "C#",
       "Beschreibung": "Sprache von .NET für Apps, Web und Spiele",
       "Sprache": "C#",
       "Link": "more/csharp-einfuehrung.html",
-      "class": ["c#","sprache","grundlagen"]
+      "class": ["c#","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "dotnet new / run",
+      "Begriff": "dotnet new / run",
       "Beschreibung": "Projekt anlegen und starten",
       "Sprache": "C#",
       "Link": "more/csharp-einfuehrung.html",
       "class": ["c#","werkzeuge"]
     },
     {
-      "Tag": "Console.WriteLine",
+      "Begriff": "Console.WriteLine",
       "Beschreibung": "Ausgabe in der Konsole",
       "Sprache": "C#",
       "Link": "more/csharp-einfuehrung.html",
       "class": ["c#","io","ausgabe"]
     },
     {
-      "Tag": "var / int / string",
+      "Begriff": "var / int / string",
       "Beschreibung": "Variablen und Datentypen",
       "Sprache": "C#",
       "Link": "more/csharp-grundlagen.html",
       "class": ["c#","grundlagen"]
     },
     {
-      "Tag": "$\"…{x}…\"",
+      "Begriff": "$\"…{x}…\"",
       "Beschreibung": "String-Interpolation",
       "Sprache": "C#",
       "Link": "more/csharp-grundlagen.html",
       "class": ["c#","grundlagen"]
     },
     {
-      "Tag": "int.TryParse",
+      "Begriff": "int.TryParse",
       "Beschreibung": "Text sicher in Zahl umwandeln",
       "Sprache": "C#",
       "Link": "more/csharp-grundlagen.html",
       "class": ["c#","grundlagen"]
     },
     {
-      "Tag": "switch-Ausdruck",
+      "Begriff": "switch-Ausdruck",
       "Beschreibung": "Werte je nach Fall zuordnen",
       "Sprache": "C#",
       "Link": "more/csharp-kontrolle.html",
       "class": ["c#","kontrolle"]
     },
     {
-      "Tag": "foreach (C#)",
+      "Begriff": "foreach (C#)",
       "Beschreibung": "Über Listen laufen",
       "Sprache": "C#",
       "Link": "more/csharp-kontrolle.html",
       "class": ["c#","kontrolle","schleife"]
     },
     {
-      "Tag": "List<T>",
+      "Begriff": "List<T>",
       "Beschreibung": "Dynamische Liste",
       "Sprache": "C#",
       "Link": "more/csharp-collections.html",
       "class": ["c#","daten"]
     },
     {
-      "Tag": "Dictionary",
+      "Begriff": "Dictionary",
       "Beschreibung": "Schlüssel-Wert-Paare",
       "Sprache": "C#",
       "Link": "more/csharp-collections.html",
       "class": ["c#","daten"]
     },
     {
-      "Tag": "LINQ (Where / Select)",
+      "Begriff": "LINQ (Where / Select)",
       "Beschreibung": "Daten filtern, sortieren, auswerten",
       "Sprache": "C#",
       "Link": "more/csharp-collections.html",
       "class": ["c#","daten"]
     },
     {
-      "Tag": "class / Properties",
+      "Begriff": "class / Properties",
       "Beschreibung": "Klassen mit get/set",
       "Sprache": "C#",
       "Link": "more/csharp-klassen.html",
       "class": ["c#","oop"]
     },
     {
-      "Tag": "interface",
+      "Begriff": "interface",
       "Beschreibung": "Vorgabe, welche Methoden eine Klasse hat",
       "Sprache": "C#",
       "Link": "more/csharp-klassen.html",
       "class": ["c#","oop"]
     },
     {
-      "Tag": "async / await (C#)",
+      "Begriff": "async / await (C#)",
       "Beschreibung": "Asynchrone Methoden",
       "Sprache": "C#",
       "Link": "more/csharp-async.html",
       "class": ["c#","werkzeuge"]
     },
     {
-      "Tag": "File.ReadAllText",
+      "Begriff": "File.ReadAllText",
       "Beschreibung": "Dateien lesen und schreiben",
       "Sprache": "C#",
       "Link": "more/csharp-async.html",
@@ -2718,112 +2759,113 @@ window.SpickerData["coding"] = {
     },
     // Swift
     {
-      "Tag": "Swift",
+      "Begriff": "Swift",
       "Beschreibung": "Apples Sprache für iOS und macOS",
       "Sprache": "Swift",
       "Link": "more/swift-einfuehrung.html",
-      "class": ["swift","sprache","grundlagen"]
+      "class": ["swift","sprache","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "let / var (Swift)",
+      "Begriff": "let / var (Swift)",
       "Beschreibung": "Konstanten und Variablen",
       "Sprache": "Swift",
       "Link": "more/swift-grundlagen.html",
       "class": ["swift","grundlagen"]
     },
     {
-      "Tag": "\\(…) Interpolation",
+      "Begriff": "\\(…) Interpolation",
       "Beschreibung": "Werte in Text einsetzen",
       "Sprache": "Swift",
       "Link": "more/swift-grundlagen.html",
       "class": ["swift","grundlagen"]
     },
     {
-      "Tag": "Optional (?)",
+      "Begriff": "Optional (?)",
       "Beschreibung": "Werte, die fehlen dürfen",
       "Sprache": "Swift",
       "Link": "more/swift-optionals.html",
       "class": ["swift","grundlagen"]
     },
     {
-      "Tag": "if let / guard let",
+      "Begriff": "if let / guard let",
       "Beschreibung": "Optionals sicher auspacken",
       "Sprache": "Swift",
       "Link": "more/swift-optionals.html",
       "class": ["swift","kontrolle"]
     },
     {
-      "Tag": "switch (Swift)",
+      "Begriff": "switch (Swift)",
       "Beschreibung": "Fallunterscheidung mit Bereichen",
       "Sprache": "Swift",
       "Link": "more/swift-kontrolle.html",
       "class": ["swift","kontrolle"]
     },
     {
-      "Tag": "for-in / Bereiche (1...5)",
+      "Begriff": "for-in / Bereiche (1...5)",
       "Beschreibung": "Schleifen in Swift",
       "Sprache": "Swift",
       "Link": "more/swift-kontrolle.html",
       "class": ["swift","kontrolle","schleife"]
     },
     {
-      "Tag": "func",
+      "Begriff": "func",
       "Beschreibung": "Funktionen mit Argument-Labels",
       "Sprache": "Swift",
       "Link": "more/swift-kontrolle.html",
       "class": ["swift","funktion"]
     },
     {
-      "Tag": "Closure ($0)",
+      "Begriff": "Closure ($0)",
       "Beschreibung": "Kurze Funktionen, z. B. für map/filter",
       "Sprache": "Swift",
       "Link": "more/swift-kontrolle.html",
       "class": ["swift","funktion"]
     },
     {
-      "Tag": "struct / class (Swift)",
+      "Begriff": "struct / class (Swift)",
       "Beschreibung": "Wert- und Referenztypen",
       "Sprache": "Swift",
       "Link": "more/swift-typen.html",
       "class": ["swift","oop"]
     },
     {
-      "Tag": "enum (Swift)",
+      "Begriff": "enum (Swift)",
       "Beschreibung": "Aufzählungen mit angehängten Werten",
       "Sprache": "Swift",
       "Link": "more/swift-typen.html",
       "class": ["swift","daten"]
     },
     {
-      "Tag": "protocol",
+      "Begriff": "protocol",
       "Beschreibung": "Vorgabe für Typen (wie Interface)",
       "Sprache": "Swift",
       "Link": "more/swift-typen.html",
       "class": ["swift","oop"]
     },
     {
-      "Tag": "SwiftUI",
+      "Begriff": "SwiftUI",
       "Beschreibung": "Oberflächen für Apple-Apps (nur macOS)",
       "Sprache": "Swift",
       "Link": "more/swiftui.html",
       "class": ["swift","gestaltung"]
     },
     {
-      "Tag": "@State",
+      "Begriff": "@State",
       "Beschreibung": "Zustand einer SwiftUI-Ansicht",
       "Sprache": "Swift",
       "Link": "more/swiftui.html",
       "class": ["swift","gestaltung"]
     },
     {
-      "Tag": "VStack / HStack",
+      "Begriff": "VStack / HStack",
       "Beschreibung": "Ansichten stapeln",
       "Sprache": "Swift",
       "Link": "more/swiftui.html",
       "class": ["swift","layout"]
     },
     {
-      "Tag": "Xcode",
+      "Begriff": "Xcode",
       "Beschreibung": "Apples Entwicklungsumgebung (nur macOS)",
       "Sprache": "Swift",
       "Link": "more/xcode.html",
@@ -2831,245 +2873,245 @@ window.SpickerData["coding"] = {
     },
     // JavaScript (Erweiterung)
     {
-      "Tag": "class",
+      "Begriff": "class",
       "Beschreibung": "Klassen, Konstruktor und Vererbung",
       "Sprache": "JS",
       "Link": "more/js-klassen.html",
       "class": ["javascript","js","oop"]
     },
     {
-      "Tag": "extends / super",
+      "Begriff": "extends / super",
       "Beschreibung": "Eine Klasse von einer anderen erben lassen",
       "Sprache": "JS",
       "Link": "more/js-klassen.html",
       "class": ["javascript","js","oop"]
     },
     {
-      "Tag": "get / set",
+      "Begriff": "get / set",
       "Beschreibung": "Getter und Setter in Klassen",
       "Sprache": "JS",
       "Link": "more/js-klassen.html",
       "class": ["javascript","js","oop"]
     },
     {
-      "Tag": "#privat",
+      "Begriff": "#privat",
       "Beschreibung": "Private Felder in Klassen",
       "Sprache": "JS",
       "Link": "more/js-klassen.html",
       "class": ["javascript","js","oop"]
     },
     {
-      "Tag": "Scope",
+      "Begriff": "Scope",
       "Beschreibung": "Wo eine Variable sichtbar ist",
       "Sprache": "JS",
       "Link": "more/js-scope.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Closure",
+      "Begriff": "Closure",
       "Beschreibung": "Funktion, die sich Variablen von außen merkt",
       "Sprache": "JS",
       "Link": "more/js-scope.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "this",
+      "Begriff": "this",
       "Beschreibung": "Worauf this zeigt",
       "Sprache": "JS",
       "Link": "more/js-scope.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Hoisting",
+      "Begriff": "Hoisting",
       "Beschreibung": "Funktionen vor ihrer Definition nutzen",
       "Sprache": "JS",
       "Link": "more/js-scope.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Map",
+      "Begriff": "Map",
       "Beschreibung": "Schlüssel-Wert-Speicher",
       "Sprache": "JS",
       "Link": "more/js-map-set.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Set",
+      "Begriff": "Set",
       "Beschreibung": "Liste ohne doppelte Werte",
       "Sprache": "JS",
       "Link": "more/js-map-set.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "FormData",
+      "Begriff": "FormData",
       "Beschreibung": "Formularwerte auf einmal auslesen",
       "Sprache": "JS",
       "Link": "more/js-formulare.html",
       "class": ["javascript","js","form"]
     },
     {
-      "Tag": "Formular prüfen",
+      "Begriff": "Formular prüfen",
       "Beschreibung": "Eingaben mit JavaScript validieren",
       "Sprache": "JS",
       "Link": "more/js-formulare.html",
       "class": ["javascript","js","form"]
     },
     {
-      "Tag": "preventDefault",
+      "Begriff": "preventDefault",
       "Beschreibung": "Absenden eines Formulars verhindern",
       "Sprache": "JS",
       "Link": "more/js-formulare.html",
       "class": ["javascript","js","form"]
     },
     {
-      "Tag": "fetch",
+      "Begriff": "fetch",
       "Beschreibung": "Daten von einem Server oder einer API laden",
       "Sprache": "JS",
       "Link": "more/js-fetch.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "POST mit fetch",
+      "Begriff": "POST mit fetch",
       "Beschreibung": "Daten als JSON an einen Server senden",
       "Sprache": "JS",
       "Link": "more/js-fetch.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "AbortController",
+      "Begriff": "AbortController",
       "Beschreibung": "Anfragen abbrechen und Timeouts setzen",
       "Sprache": "JS",
       "Link": "more/js-fetch.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Zwischenablage",
+      "Begriff": "Zwischenablage",
       "Beschreibung": "Text kopieren mit navigator.clipboard",
       "Sprache": "JS",
       "Link": "more/js-browser-apis.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "IntersectionObserver",
+      "Begriff": "IntersectionObserver",
       "Beschreibung": "Erkennen, wann ein Element sichtbar wird",
       "Sprache": "JS",
       "Link": "more/js-browser-apis.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "URLSearchParams",
+      "Begriff": "URLSearchParams",
       "Beschreibung": "Parameter aus der Adresszeile lesen",
       "Sprache": "JS",
       "Link": "more/js-browser-apis.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "Debounce",
+      "Begriff": "Debounce",
       "Beschreibung": "Funktion erst nach einer Pause ausführen",
       "Sprache": "JS",
       "Link": "more/js-debounce.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "Throttle",
+      "Begriff": "Throttle",
       "Beschreibung": "Funktion höchstens alle X ms ausführen",
       "Sprache": "JS",
       "Link": "more/js-debounce.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "requestAnimationFrame",
+      "Begriff": "requestAnimationFrame",
       "Beschreibung": "Flüssige Animationen im Takt des Bildschirms",
       "Sprache": "JS",
       "Link": "more/js-animation.html",
       "class": ["javascript","js","gestaltung"]
     },
     {
-      "Tag": "element.animate",
+      "Begriff": "element.animate",
       "Beschreibung": "Web Animations API",
       "Sprache": "JS",
       "Link": "more/js-animation.html",
       "class": ["javascript","js","gestaltung"]
     },
     {
-      "Tag": "XSS",
+      "Begriff": "XSS",
       "Beschreibung": "Sicherheit: innerHTML vs. textContent",
       "Sprache": "JS",
       "Link": "more/js-sicherheit.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "ARIA",
+      "Begriff": "ARIA",
       "Beschreibung": "Barrierefreiheit für eigene Bedienelemente",
       "Sprache": "JS",
       "Link": "more/js-barrierefreiheit.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "Fokus steuern",
+      "Begriff": "Fokus steuern",
       "Beschreibung": "Tastaturbedienung mit focus() und tabindex",
       "Sprache": "JS",
       "Link": "more/js-barrierefreiheit.html",
       "class": ["javascript","js","dom"]
     },
     {
-      "Tag": "RegExp",
+      "Begriff": "RegExp",
       "Beschreibung": "Reguläre Ausdrücke: Muster in Texten finden",
       "Sprache": "JS",
       "Link": "more/js-regex.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "replace / match",
+      "Begriff": "replace / match",
       "Beschreibung": "Text mit Regex ersetzen und suchen",
       "Sprache": "JS",
       "Link": "more/js-regex.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Event Loop",
+      "Begriff": "Event Loop",
       "Beschreibung": "Wie JS Aufgaben der Reihe nach abarbeitet",
       "Sprache": "JS",
       "Link": "more/js-event-loop.html",
       "class": ["javascript","js","grundlagen"]
     },
     {
-      "Tag": "Intl.NumberFormat",
+      "Begriff": "Intl.NumberFormat",
       "Beschreibung": "Zahlen und Währungen formatieren",
       "Sprache": "JS",
       "Link": "more/js-intl.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Intl.DateTimeFormat",
+      "Begriff": "Intl.DateTimeFormat",
       "Beschreibung": "Datum und Uhrzeit formatieren",
       "Sprache": "JS",
       "Link": "more/js-intl.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "function*",
+      "Begriff": "function*",
       "Beschreibung": "Generatoren und yield",
       "Sprache": "JS",
       "Link": "more/js-generatoren.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Symbol.iterator",
+      "Begriff": "Symbol.iterator",
       "Beschreibung": "Eigene Objekte mit for...of durchlaufen",
       "Sprache": "JS",
       "Link": "more/js-generatoren.html",
       "class": ["javascript","js","daten"]
     },
     {
-      "Tag": "Vite",
+      "Begriff": "Vite",
       "Beschreibung": "Entwicklungsserver und Build-Tool",
       "Sprache": "JS",
       "Link": "more/js-vite.html",
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Tag": "Vitest",
+      "Begriff": "Vitest",
       "Beschreibung": "Automatische Tests schreiben",
       "Sprache": "JS",
       "Link": "more/js-testen.html",
@@ -3077,105 +3119,106 @@ window.SpickerData["coding"] = {
     },
     // TypeScript
     {
-      "Tag": "TypeScript",
+      "Begriff": "TypeScript",
       "Beschreibung": "JavaScript mit Typen",
       "Sprache": "TypeScript",
       "Link": "more/ts-einfuehrung.html",
-      "class": ["typescript","grundlagen"]
+      "class": ["typescript","grundlagen"],
+      "Stufe": 80
     },
     {
-      "Tag": "tsc",
+      "Begriff": "tsc",
       "Beschreibung": "Der TypeScript-Compiler",
       "Sprache": "TypeScript",
       "Link": "more/ts-einfuehrung.html",
       "class": ["typescript","werkzeuge"]
     },
     {
-      "Tag": "string / number / boolean",
+      "Begriff": "string / number / boolean",
       "Beschreibung": "Grundtypen und Typangaben",
       "Sprache": "TypeScript",
       "Link": "more/ts-typen.html",
       "class": ["typescript","grundlagen"]
     },
     {
-      "Tag": "Union-Typ",
+      "Begriff": "Union-Typ",
       "Beschreibung": "Wert kann das eine ODER das andere sein",
       "Sprache": "TypeScript",
       "Link": "more/ts-typen.html",
       "class": ["typescript","grundlagen"]
     },
     {
-      "Tag": "any / unknown",
+      "Begriff": "any / unknown",
       "Beschreibung": "Unbekannte Werte sicher behandeln",
       "Sprache": "TypeScript",
       "Link": "more/ts-typen.html",
       "class": ["typescript","grundlagen"]
     },
     {
-      "Tag": "type",
+      "Begriff": "type",
       "Beschreibung": "Einem Typ einen Namen geben",
       "Sprache": "TypeScript",
       "Link": "more/ts-typen.html",
       "class": ["typescript","grundlagen"]
     },
     {
-      "Tag": "as",
+      "Begriff": "as",
       "Beschreibung": "Type Assertion – TS einen Typ mitteilen",
       "Sprache": "TypeScript",
       "Link": "more/ts-typen.html",
       "class": ["typescript","grundlagen"]
     },
     {
-      "Tag": "interface",
+      "Begriff": "interface",
       "Beschreibung": "Aufbau eines Objekts beschreiben",
       "Sprache": "TypeScript",
       "Link": "more/ts-interfaces.html",
       "class": ["typescript","oop"]
     },
     {
-      "Tag": "optional ?",
+      "Begriff": "optional ?",
       "Beschreibung": "Optionale und readonly Eigenschaften",
       "Sprache": "TypeScript",
       "Link": "more/ts-interfaces.html",
       "class": ["typescript","oop"]
     },
     {
-      "Tag": "Partial / Pick / Omit",
+      "Begriff": "Partial / Pick / Omit",
       "Beschreibung": "Hilfstypen zum Umbauen von Typen",
       "Sprache": "TypeScript",
       "Link": "more/ts-interfaces.html",
       "class": ["typescript","daten"]
     },
     {
-      "Tag": "Record",
+      "Begriff": "Record",
       "Beschreibung": "Objekt mit beliebigen Schlüsseln",
       "Sprache": "TypeScript",
       "Link": "more/ts-interfaces.html",
       "class": ["typescript","daten"]
     },
     {
-      "Tag": "private / public",
+      "Begriff": "private / public",
       "Beschreibung": "Sichtbarkeit in Klassen",
       "Sprache": "TypeScript",
       "Link": "more/ts-klassen-generics.html",
       "class": ["typescript","oop"]
     },
     {
-      "Tag": "implements",
+      "Begriff": "implements",
       "Beschreibung": "Klasse erfüllt ein Interface",
       "Sprache": "TypeScript",
       "Link": "more/ts-klassen-generics.html",
       "class": ["typescript","oop"]
     },
     {
-      "Tag": "Generics <T>",
+      "Begriff": "Generics <T>",
       "Beschreibung": "Typen als Platzhalter",
       "Sprache": "TypeScript",
       "Link": "more/ts-klassen-generics.html",
       "class": ["typescript","oop"]
     },
     {
-      "Tag": "tsconfig.json",
+      "Begriff": "tsconfig.json",
       "Beschreibung": "Projekt-Einstellungen für TypeScript",
       "Sprache": "TypeScript",
       "Link": "more/ts-projekt.html",
