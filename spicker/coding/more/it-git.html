@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Git – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Programmieren · Git</p>
+    <h1>Git: Commits, Branches &amp; GitHub</h1>
+    <p class="page-lead">Wie Code-Änderungen nachvollziehbar werden – und wie der eigene Rechner mit GitHub zusammenspielt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#git">Git</a></td><td>Verteiltes Versionskontrollsystem</td></tr>
+          <tr><td><a href="#repository">Repository</a></td><td>Der Projektordner samt kompletter Historie</td></tr>
+          <tr><td><a href="#commit">Commit</a></td><td>Ein gespeicherter Schnappschuss</td></tr>
+          <tr><td><a href="#branch">Branch</a></td><td>Ein paralleler Entwicklungsstrang</td></tr>
+          <tr><td><a href="#merge">Merge</a></td><td>Zwei Branches wieder zusammenführen</td></tr>
+          <tr><td><a href="#push-pull">push / pull</a></td><td>Hoch- bzw. herunterladen zum/vom Remote</td></tr>
+          <tr><td><a href="#github">GitHub</a></td><td>Ein Online-Dienst zum Hosten von Repositories</td></tr>
+          <tr><td><a href="#gitignore">.gitignore</a></td><td>Legt fest, was Git bewusst NICHT verfolgt</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="git">
+      <h2>Git</h2>
+      <p><strong>Git</strong> ist ein verteiltes Versionskontrollsystem: Es verfolgt Änderungen am Code über die Zeit, erlaubt es, zu jedem früheren Stand zurückzukehren, und macht paralleles Arbeiten an verschiedenen Varianten möglich.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Vom Arbeitsverzeichnis über Staging und lokales Repository bis zum Remote-Repository" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="10.0" y="76.0" width="115.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="67.5" y="64.0" class="dg-accent-text" text-anchor="middle">1</text>
+        <text x="67.5" y="110.0" class="dg-label" text-anchor="middle">Arbeits-</text>
+        <text x="67.5" y="126.0" class="dg-label" text-anchor="middle">verzeichnis</text>
+        <line x1="128.0" y1="115.0" x2="172.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="150.0" y="105.0" class="dg-small" text-anchor="middle">add</text>
+        <rect x="175.0" y="76.0" width="115.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="232.5" y="64.0" class="dg-accent-text" text-anchor="middle">2</text>
+        <text x="232.5" y="118.0" class="dg-label" text-anchor="middle">Staging</text>
+        <line x1="293.0" y1="115.0" x2="337.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="315.0" y="105.0" class="dg-small" text-anchor="middle">commit</text>
+        <rect x="340.0" y="76.0" width="115.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="397.5" y="64.0" class="dg-accent-text" text-anchor="middle">3</text>
+        <text x="397.5" y="110.0" class="dg-label" text-anchor="middle">Repository</text>
+        <text x="397.5" y="130.0" class="dg-small" text-anchor="middle">(lokal)</text>
+        <line x1="458.0" y1="115.0" x2="502.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="480.0" y="105.0" class="dg-small" text-anchor="middle">push</text>
+        <rect x="505.0" y="76.0" width="115.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="562.5" y="64.0" class="dg-accent-text" text-anchor="middle">4</text>
+        <text x="562.5" y="110.0" class="dg-label" text-anchor="middle">Remote</text>
+        <text x="562.5" y="130.0" class="dg-small" text-anchor="middle">(GitHub)</text>
+        <text x="320.0" y="196.0" class="dg-small" text-anchor="middle">pull holt umgekehrt Änderungen vom Remote zurück ins lokale Repository.</text>
+        </svg>
+        <figcaption>git add bringt Änderungen ins Staging, git commit speichert sie lokal, git push lädt sie zu GitHub hoch.</figcaption>
+      </figure>
+    </section>
+
+    <section id="repository">
+      <h2>Repository</h2>
+      <p>Ein <strong>Repository</strong> (kurz „Repo“) ist der Projektordner samt dem versteckten <code>.git</code>-Unterordner, in dem Git die komplette Änderungshistorie verwaltet.</p>
+    </section>
+
+    <section id="commit">
+      <h2>Commit</h2>
+      <p>Ein <strong>Commit</strong> ist ein gespeicherter Schnappschuss des Projekts zu einem bestimmten Zeitpunkt, zusammen mit einer Beschreibung (Commit-Message), was sich geändert hat und warum.</p>
+    </section>
+
+    <section id="branch">
+      <h2>Branch</h2>
+      <p>Ein <strong>Branch</strong> ist ein paralleler, unabhängiger Entwicklungsstrang. Änderungen auf einem Branch wirken sich zunächst NICHT auf andere Branches aus – bis man sie per Merge zusammenführt.</p>
+    </section>
+
+    <section id="merge">
+      <h2>Merge</h2>
+      <p>Ein <strong>Merge</strong> führt die Änderungen eines Branches wieder in einen anderen zusammen – zum Beispiel eine fertige Funktion zurück in den Hauptbranch.</p>
+    </section>
+
+    <section id="push-pull">
+      <h2>push / pull</h2>
+      <p><strong>push</strong> lädt eigene, lokale Commits zu einem Remote-Repository hoch. <strong>pull</strong> macht das Umgekehrte: fremde Commits vom Remote herunterladen und mit dem eigenen Stand zusammenführen.</p>
+    </section>
+
+    <section id="github">
+      <h2>GitHub</h2>
+      <p><strong>GitHub</strong> ist ein Online-Dienst, der Git-Repositories hostet und zusätzliche Werkzeuge bietet – Pull Requests, Issues, Actions. Git selbst funktioniert komplett unabhängig davon; GitHub ist nur einer von mehreren möglichen Orten, ein Remote-Repository zu betreiben.</p>
+    </section>
+
+    <section id="gitignore">
+      <h2>.gitignore</h2>
+      <p>Die <strong>.gitignore</strong>-Datei legt fest, welche Dateien und Ordner Git bewusst NICHT verfolgen soll – typisch z. B. <code>node_modules/</code> (lässt sich jederzeit neu installieren) oder eine <code>.env</code>-Datei mit Geheimnissen, die NIEMALS ins Repository gehört.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein Commit mit Message „fix“ oder „asdf“ hilft dem zukünftigen Ich nicht weiter – eine kurze, klare Beschreibung spart später viel Zeit.</li>
+        <li>Einmal gepushte Geheimnisse (Passwörter, API-Keys) in der Historie gelten als kompromittiert, selbst nach dem Löschen aus der aktuellen Datei – deshalb gehört Geheimes von Anfang an in <code>.gitignore</code>.</li>
+        <li>„git“ und „GitHub“ werden oft gleichgesetzt – Git ist die Technik, GitHub nur einer von mehreren Anbietern, die diese Technik online hosten.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-algorithmen.html">IT: Algorithmen</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

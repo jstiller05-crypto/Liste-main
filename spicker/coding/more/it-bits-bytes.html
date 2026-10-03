@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Bits &amp; Bytes – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Daten · Bits &amp; Bytes</p>
+    <h1>Bits, Bytes &amp; Speichereinheiten</h1>
+    <p class="page-lead">Die kleinsten Bausteine aller Daten – und warum eine „1-TB“-Festplatte im Explorer als 931 GB angezeigt wird.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#bit">Bit</a></td><td>Kleinste Einheit: 0 oder 1</td></tr>
+          <tr><td><a href="#byte">Byte</a></td><td>8 Bit, meist die kleinste ADRESSIERBARE Einheit</td></tr>
+          <tr><td><a href="#nibble">Nibble</a></td><td>4 Bit, ein halbes Byte, eine Hex-Ziffer</td></tr>
+          <tr><td><a href="#dezimal-einheiten">KB / MB / GB / TB</a></td><td>1000er-Schritte (SI, Hersteller-Angaben)</td></tr>
+          <tr><td><a href="#binaer-einheiten">KiB / MiB / GiB</a></td><td>1024er-Schritte (Betriebssystem, RAM)</td></tr>
+          <tr><td><a href="#mbit-mb">Mbit/s vs. MB/s</a></td><td>Internet in Bit, Dateien in Byte – Faktor 8</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="bit">
+      <h2>Bit</h2>
+      <p>Ein <strong>Bit</strong> (<em>binary digit</em>) ist die kleinste Speichereinheit eines Computers und kann genau einen von zwei Zuständen annehmen: <code>0</code> oder <code>1</code>. Elektrisch steckt dahinter meist einfach „Spannung aus“ oder „Spannung an“.</p>
+    </section>
+
+    <section id="byte">
+      <h2>Byte</h2>
+      <p>Ein <strong>Byte</strong> besteht aus <strong>8 Bit</strong> und kann damit 2⁸ = 256 verschiedene Werte annehmen (0 bis 255). Fast alles, was ein Computer speichert oder überträgt, wird in Byte gemessen – es ist die kleinste Einheit, die ein Programm normalerweise einzeln ansprechen kann.</p>
+    </section>
+
+    <section id="nibble">
+      <h2>Nibble</h2>
+      <p>Ein <strong>Nibble</strong> ist ein halbes Byte, also <strong>4 Bit</strong> (2⁴ = 16 mögliche Werte). Praktisch daran: Ein Nibble entspricht GENAU einer Ziffer im Hexadezimalsystem (0–F) – ein Byte lässt sich darum immer als zwei Hex-Ziffern schreiben, z. B. <code>01001101</code> → <code>0100</code> <code>1101</code> → <code>4D</code>.</p>
+    </section>
+
+    <section id="dezimal-einheiten">
+      <h2>KB, MB, GB, TB (dezimal, 1000er-Schritte)</h2>
+      <p>Die „offiziellen“ SI-Präfixe rechnen in Zehnerpotenzen, genau wie bei Metern oder Gramm. So geben Festplatten- und SSD-Hersteller ihre Kapazität an.</p>
+      <table class="info-table">
+        <thead><tr><th>Einheit</th><th>Byte</th></tr></thead>
+        <tbody>
+          <tr><td>1 KB (Kilobyte)</td><td>1.000 Byte</td></tr>
+          <tr><td>1 MB (Megabyte)</td><td>1.000 KB = 1.000.000 Byte</td></tr>
+          <tr><td>1 GB (Gigabyte)</td><td>1.000 MB = 1.000.000.000 Byte</td></tr>
+          <tr><td>1 TB (Terabyte)</td><td>1.000 GB = 1.000.000.000.000 Byte</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="binaer-einheiten">
+      <h2>KiB, MiB, GiB (binär, 1024er-Schritte)</h2>
+      <p>Computer rechnen intern in Zweierpotenzen, deshalb gibt es daneben die <strong>IEC-Präfixe</strong> KiB, MiB, GiB – sie rechnen in Schritten von 1024 = 2¹⁰ statt 1000. Betriebssysteme wie Windows zeigen Dateigrößen meist SO an, beschriften sie aber (historisch falsch) trotzdem mit „KB“, „MB“, „GB“.</p>
+      <table class="info-table">
+        <thead><tr><th>Einheit</th><th>Byte</th></tr></thead>
+        <tbody>
+          <tr><td>1 KiB (Kibibyte)</td><td>1.024 Byte (2¹⁰)</td></tr>
+          <tr><td>1 MiB (Mebibyte)</td><td>1.024 KiB = 1.048.576 Byte (2²⁰)</td></tr>
+          <tr><td>1 GiB (Gibibyte)</td><td>1.024 MiB = 1.073.741.824 Byte (2³⁰)</td></tr>
+        </tbody>
+      </table>
+      <p>Genau DAS ist der Grund, warum eine als „1 TB“ verkaufte Festplatte im Explorer kleiner wirkt:</p>
+      <pre><code>Hersteller:  1 TB     = 1.000.000.000.000 Byte            (dezimal)
+Windows:     1.000.000.000.000 Byte ÷ 1024 ÷ 1024 ÷ 1024
+             = 931,32 GiB  → angezeigt als "931 GB"</code></pre>
+      <div class="note">Die Festplatte „verliert“ dabei keinen Speicher – es wird nur mit einem anderen Maßstab gemessen und trotzdem gleich beschriftet.</div>
+    </section>
+
+    <section id="mbit-mb">
+      <h2>Mbit/s vs. MB/s</h2>
+      <p>Internet-Tarife werden in <strong>Megabit pro Sekunde</strong> (Mbit/s oder Mbps) angegeben, Dateigrößen dagegen in <strong>Megabyte</strong> (MB). Weil 1 Byte = 8 Bit sind, muss man durch 8 teilen, um von Bit auf Byte zu kommen:</p>
+      <pre><code>100 Mbit/s Anschluss
+→ 100 ÷ 8 = 12,5 MB/s   (bestenfalls, ohne jeden Overhead)</code></pre>
+      <div class="note">Wer einen „100er“-Anschluss hat und beim Download nur ca. 12 MB/s sieht, hat KEIN langsames Internet – das ist genau die erwartete Rechnung.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„GB“ ist im Alltag mehrdeutig: mal dezimal (Hersteller), mal eigentlich GiB gemeint (Betriebssystem). Bei genauen Rechnungen immer die Basis (1000 oder 1024) dazuschreiben.</li>
+        <li>Download-Geschwindigkeit wird in Bit, Dateigröße in Byte angegeben – beim Vergleichen immer durch 8 teilen (oder mit 8 multiplizieren), nicht einfach die Zahlen gegenüberstellen.</li>
+        <li>1 Byte = 8 Bit ist so gut wie überall Standard – „historische“ Systeme mit anderer Bitzahl pro Byte spielen heute praktisch keine Rolle mehr.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-dateien.html">IT: Dateien &amp; Pfade</a>
+        <a class="chip" href="it-zahlensysteme.html">IT: Zahlensysteme</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

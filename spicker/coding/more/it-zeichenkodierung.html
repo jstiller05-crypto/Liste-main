@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Zeichenkodierung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Daten · Zeichenkodierung</p>
+    <h1>Zeichenkodierung: ASCII, Unicode &amp; UTF-8</h1>
+    <p class="page-lead">Computer kennen nur Bits – Zeichenkodierungen legen fest, welche Zahl welchen Buchstaben bedeutet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#zeichenkodierung">Zeichenkodierung</a></td><td>Abbildung Zeichen ↔ Zahl</td></tr>
+          <tr><td><a href="#ascii">ASCII</a></td><td>7 Bit, 128 Zeichen, Englisch/Grundzeichen</td></tr>
+          <tr><td><a href="#unicode">Unicode</a></td><td>Ein Standard für (fast) alle Zeichen der Welt</td></tr>
+          <tr><td><a href="#codepoint">Codepoint</a></td><td>Die Nummer eines Zeichens in Unicode</td></tr>
+          <tr><td><a href="#utf-8">UTF-8</a></td><td>1–4 Byte pro Zeichen, ASCII-kompatibel</td></tr>
+          <tr><td><a href="#mojibake">Umlaut-Salat / Mojibake</a></td><td>Falsche Kodierung beim Lesen angenommen</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="zeichenkodierung">
+      <h2>Zeichenkodierung</h2>
+      <p>Ein Computer kann nur Zahlen (letztlich Bits) speichern – keine Buchstaben. Eine <strong>Zeichenkodierung</strong> (<em>character encoding</em>) legt fest, welche Zahl für welches Zeichen steht, und wie diese Zahl als Bytes abgelegt wird.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 200" role="img" aria-label="Das Zeichen A wird zum Codepoint 65 und dann zu den Bits 01000001" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="20.0" y="60.0" width="150.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="95.0" y="95.0" class="dg-big" text-anchor="middle">"A"</text>
+        <text x="95.0" y="118.0" class="dg-small" text-anchor="middle">Zeichen</text>
+        <line x1="173.0" y1="100.0" x2="233.0" y2="100.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="203.0" y="88.0" class="dg-small" text-anchor="middle">Unicode</text>
+        <rect x="237.0" y="60.0" width="166.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="320.0" y="95.0" class="dg-big" text-anchor="middle">U+0041 = 65</text>
+        <text x="320.0" y="118.0" class="dg-small" text-anchor="middle">Codepoint</text>
+        <line x1="406.0" y1="100.0" x2="466.0" y2="100.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="436.0" y="88.0" class="dg-small" text-anchor="middle">UTF-8</text>
+        <rect x="470.0" y="60.0" width="150.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="545.0" y="95.0" class="dg-big" text-anchor="middle">0100 0001</text>
+        <text x="545.0" y="118.0" class="dg-small" text-anchor="middle">1 Byte im Speicher</text>
+        </svg>
+        <figcaption>Jedes Zeichen hat einen Codepoint (eine Zahl); die Kodierung (hier UTF-8) legt fest, wie dieser Codepoint als Bytes gespeichert wird.</figcaption>
+      </figure>
+    </section>
+
+    <section id="ascii">
+      <h2>ASCII</h2>
+      <p><strong>ASCII</strong> (<em>American Standard Code for Information Interchange</em>) ist eine der ältesten Zeichenkodierungen: 7 Bit, also genau 128 mögliche Zeichen – englische Buchstaben, Ziffern, Satz- und Steuerzeichen. Für Umlaute, Emoji oder andere Schriftsysteme reicht das bei Weitem nicht.</p>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>ASCII-Wert</th></tr></thead>
+        <tbody>
+          <tr><td><code>A</code></td><td>65</td></tr>
+          <tr><td><code>a</code></td><td>97</td></tr>
+          <tr><td><code>0</code></td><td>48</td></tr>
+          <tr><td>Leerzeichen</td><td>32</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="unicode">
+      <h2>Unicode</h2>
+      <p><strong>Unicode</strong> ist der moderne Standard, der (fast) jedem Zeichen jeder Sprache der Welt – und auch Emoji – eine feste Nummer zuweist. Die ersten 128 Unicode-Codepoints sind bewusst identisch mit ASCII, damit alter ASCII-Text automatisch gültiger Unicode-Text bleibt.</p>
+    </section>
+
+    <section id="codepoint">
+      <h2>Codepoint</h2>
+      <p>Ein <strong>Codepoint</strong> ist die Nummer, die Unicode einem Zeichen zuweist – geschrieben als <code>U+</code> gefolgt von einer Hexadezimalzahl. „A“ ist z. B. <code>U+0041</code>, also dezimal 65 (siehe Zahlensysteme).</p>
+    </section>
+
+    <section id="utf-8">
+      <h2>UTF-8</h2>
+      <p><strong>UTF-8</strong> ist die mit Abstand verbreitetste Kodierung für Unicode im Web. Sie speichert jeden Codepoint in <strong>1 bis 4 Byte</strong> – je nachdem, wie groß die Zahl ist:</p>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Codepoint</th><th>Byte in UTF-8</th></tr></thead>
+        <tbody>
+          <tr><td><code>A</code></td><td>U+0041</td><td>1 Byte</td></tr>
+          <tr><td><code>ü</code></td><td>U+00FC</td><td>2 Byte</td></tr>
+          <tr><td><code>€</code></td><td>U+20AC</td><td>3 Byte</td></tr>
+          <tr><td>😀</td><td>U+1F600</td><td>4 Byte</td></tr>
+        </tbody>
+      </table>
+      <p>Wichtig: Die ersten 128 Codepoints (= klassisches ASCII) belegen in UTF-8 immer genau 1 Byte – deshalb ist jede reine ASCII-Datei automatisch schon gültiges UTF-8.</p>
+    </section>
+
+    <section id="mojibake">
+      <h2>Umlaut-Salat / Mojibake</h2>
+      <p>„Umlaut-Salat“ oder <strong>Mojibake</strong> entsteht, wenn Bytes mit der FALSCHEN Kodierung gelesen werden – z. B. UTF-8-Bytes für „ü“ (2 Byte), die ein Programm fälschlich als zwei einzelne Latin-1-Zeichen interpretiert. Das Ergebnis sind Zeichen wie <code>Ã¼</code> statt <code>ü</code>.</p>
+      <div class="note">Die zuverlässigste Vorbeugung: überall konsequent UTF-8 verwenden und das auch explizit sagen – in HTML ganz am Anfang von <code>&lt;head&gt;</code> mit <code>&lt;meta charset="utf-8"&gt;</code>, bei Dateien über die passende Editor-/Server-Einstellung.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>&lt;meta charset="utf-8"&gt;</code> muss so WEIT OBEN wie möglich im <code>&lt;head&gt;</code> stehen – Browser lesen dafür nur die ersten paar hundert Bytes der Seite.</li>
+        <li>„Zeichen“ und „Byte“ sind bei UTF-8 NICHT dasselbe: <code>"ü".length</code> ist in JavaScript zwar 1, aber im Speicher sind es 2 Byte.</li>
+        <li>Beim Öffnen einer Datei immer dieselbe Kodierung verwenden, mit der sie gespeichert wurde – sonst entsteht genau der Umlaut-Salat von oben.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-binaer-rechnen.html">IT: Binär rechnen</a>
+        <a class="chip" href="it-daten-im-speicher.html">IT: Daten im Speicher</a>
+        <a class="chip" href="it-zahlensysteme.html">IT: Zahlensysteme</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

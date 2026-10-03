@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Zahlensysteme – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Daten · Zahlensysteme</p>
+    <h1>Zahlensysteme: Dezimal, Binär, Hex</h1>
+    <p class="page-lead">Warum Computer nur in Nullen und Einsen rechnen – und wie man zwischen Dezimal-, Binär- und Hexadezimalzahlen umrechnet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#stellenwertsystem">Stellenwertsystem</a></td><td>Jede Ziffernposition hat ihr eigenes Gewicht</td></tr>
+          <tr><td><a href="#dezimalsystem">Dezimalsystem</a></td><td>Basis 10, unsere Alltagszahlen</td></tr>
+          <tr><td><a href="#binaersystem">Binärsystem (Dualsystem)</a></td><td>Basis 2, nur 0 und 1</td></tr>
+          <tr><td><a href="#hexadezimalsystem">Hexadezimalsystem</a></td><td>Basis 16, 0–9 und A–F</td></tr>
+          <tr><td><a href="#oktalsystem">Oktalsystem</a></td><td>Basis 8, 0–7 (historisch, z. B. Unix-Rechte)</td></tr>
+          <tr><td><a href="#umrechnen">Umrechnen</a></td><td>Dezimal ↔ Binär ↔ Hex, Schritt für Schritt</td></tr>
+          <tr><td><a href="#praefixe">Präfixe 0b / 0x</a></td><td>So schreibt man Binär-/Hexzahlen im Code</td></tr>
+          <tr><td><a href="#farbcodes">Farbcodes</a></td><td><code>#ff8800</code> ist auch nur Hexadezimal</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="stellenwertsystem">
+      <h2>Stellenwertsystem</h2>
+      <p>In einem <strong>Stellenwertsystem</strong> hat jede Ziffernposition ein eigenes Gewicht: den Stellenwert hoch die Position, gezählt von rechts ab 0. Der Wert einer Zahl ist die Summe aus Ziffer × Stellenwert:</p>
+      <pre><code>Dezimalzahl 274:
+  2·10² + 7·10¹ + 4·10⁰  =  200 + 70 + 4  =  274</code></pre>
+      <p>Das Binär- und das Hexadezimalsystem funktionieren nach genau demselben Prinzip – nur mit der Basis 2 bzw. 16 statt 10.</p>
+    </section>
+
+    <section id="dezimalsystem">
+      <h2>Dezimalsystem</h2>
+      <p>Das <strong>Dezimalsystem</strong> (Basis 10) ist unser alltägliches Zahlensystem mit den zehn Ziffern 0–9 – vermutlich, weil Menschen zehn Finger haben. Für Computer ist es eher unpraktisch, weil sich zehn unterschiedliche Spannungszustände elektrisch viel schlechter unterscheiden lassen als nur zwei.</p>
+    </section>
+
+    <section id="binaersystem">
+      <h2>Binärsystem (Dualsystem)</h2>
+      <p>Das <strong>Binärsystem</strong> oder <strong>Dualsystem</strong> (<em>binary</em>) nutzt nur die Basis 2 mit den Ziffern 0 und 1 – das passt exakt zu den zwei Zuständen eines Bits (siehe Bits &amp; Bytes). Jede Zahl, jeder Buchstabe, jedes Bild ist im Computer letztlich eine Folge aus Nullen und Einsen.</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 640 265" role="img" aria-label="Acht klickbare Bit-Schalter mit Live-Anzeige von Dezimal-, Hex- und Binärwert, vorbelegt mit dem Beispiel 77" xmlns="http://www.w3.org/2000/svg">
+        <text x="38.0" y="30.0" class="dg-small" text-anchor="start">Stellenwert (2ⁿ):</text>
+        <text x="68.0" y="55.0" class="dg-small" text-anchor="middle">128</text>
+        <rect x="38.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle" tabindex="0" role="button" aria-label="Bit 7, Stellenwert 128, aktuell 0" id="bitRect7"/>
+        <text x="68.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText7">0</text>
+        <text x="68.0" y="155.0" class="dg-small" text-anchor="middle">Bit 7</text>
+        <text x="140.0" y="55.0" class="dg-small" text-anchor="middle">64</text>
+        <rect x="110.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle is-on" tabindex="0" role="button" aria-label="Bit 6, Stellenwert 64, aktuell 1" id="bitRect6"/>
+        <text x="140.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText6">1</text>
+        <text x="140.0" y="155.0" class="dg-small" text-anchor="middle">Bit 6</text>
+        <text x="212.0" y="55.0" class="dg-small" text-anchor="middle">32</text>
+        <rect x="182.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle" tabindex="0" role="button" aria-label="Bit 5, Stellenwert 32, aktuell 0" id="bitRect5"/>
+        <text x="212.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText5">0</text>
+        <text x="212.0" y="155.0" class="dg-small" text-anchor="middle">Bit 5</text>
+        <text x="284.0" y="55.0" class="dg-small" text-anchor="middle">16</text>
+        <rect x="254.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle" tabindex="0" role="button" aria-label="Bit 4, Stellenwert 16, aktuell 0" id="bitRect4"/>
+        <text x="284.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText4">0</text>
+        <text x="284.0" y="155.0" class="dg-small" text-anchor="middle">Bit 4</text>
+        <text x="356.0" y="55.0" class="dg-small" text-anchor="middle">8</text>
+        <rect x="326.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle is-on" tabindex="0" role="button" aria-label="Bit 3, Stellenwert 8, aktuell 1" id="bitRect3"/>
+        <text x="356.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText3">1</text>
+        <text x="356.0" y="155.0" class="dg-small" text-anchor="middle">Bit 3</text>
+        <text x="428.0" y="55.0" class="dg-small" text-anchor="middle">4</text>
+        <rect x="398.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle is-on" tabindex="0" role="button" aria-label="Bit 2, Stellenwert 4, aktuell 1" id="bitRect2"/>
+        <text x="428.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText2">1</text>
+        <text x="428.0" y="155.0" class="dg-small" text-anchor="middle">Bit 2</text>
+        <text x="500.0" y="55.0" class="dg-small" text-anchor="middle">2</text>
+        <rect x="470.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle" tabindex="0" role="button" aria-label="Bit 1, Stellenwert 2, aktuell 0" id="bitRect1"/>
+        <text x="500.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText1">0</text>
+        <text x="500.0" y="155.0" class="dg-small" text-anchor="middle">Bit 1</text>
+        <text x="572.0" y="55.0" class="dg-small" text-anchor="middle">1</text>
+        <rect x="542.0" y="70.0" width="60.0" height="70.0" rx="8" class="dg-toggle is-on" tabindex="0" role="button" aria-label="Bit 0, Stellenwert 1, aktuell 1" id="bitRect0"/>
+        <text x="572.0" y="112.0" class="dg-big" text-anchor="middle" style="pointer-events:none" id="bitText0">1</text>
+        <text x="572.0" y="155.0" class="dg-small" text-anchor="middle">Bit 0</text>
+        <text x="320.0" y="200.0" class="dg-big" text-anchor="middle" id="binReadout">Binär: 0100 1101</text>
+        <text x="320.0" y="228.0" class="dg-accent-text" text-anchor="middle" id="decReadout">Dezimal: 77</text>
+        <text x="320.0" y="252.0" class="dg-accent-text" text-anchor="middle" id="hexReadout">Hex: 0x4D</text>
+        </svg>
+        <script>
+          // Acht Bit-Schalter: Klick, Leertaste oder Enter schaltet ein Bit
+          // um. Danach wird aus allen acht Bits neu berechnet: Dezimalwert,
+          // Hexwert und die lesbare Binär-Anzeige (in zwei 4er-Gruppen =
+          // Nibbles, siehe Abschnitt "Umrechnen" weiter unten).
+          (function setupBitSwitches() {
+            const POWERS = [7, 6, 5, 4, 3, 2, 1, 0];
+            // Start-Beispiel: 77 = 0100 1101 (muss zu den is-on-Klassen
+            // und den Bit-Texten oben im SVG passen)
+            const bits = { 7: 0, 6: 1, 5: 0, 4: 0, 3: 1, 2: 1, 1: 0, 0: 1 };
+
+            const rects = {};
+            const texts = {};
+            let allFound = true;
+            POWERS.forEach(function collectElements(p) {
+              rects[p] = document.getElementById("bitRect" + p);
+              texts[p] = document.getElementById("bitText" + p);
+              if (!rects[p] || !texts[p]) allFound = false;
+            });
+            const binReadout = document.getElementById("binReadout");
+            const decReadout = document.getElementById("decReadout");
+            const hexReadout = document.getElementById("hexReadout");
+            if (!allFound || !binReadout || !decReadout || !hexReadout) {
+              console.warn("[bits] Elemente für die Bit-Schalter nicht gefunden – Demo wird übersprungen");
+              return;
+            }
+
+            // Stellenwert-Summe: jedes Bit mal 2 hoch seiner Position
+            function currentValue() {
+              return POWERS.reduce((sum, p) => sum + bits[p] * (2 ** p), 0);
+            }
+
+            function redraw() {
+              const value = currentValue();
+              POWERS.forEach(function updateBit(p) {
+                const isOn = bits[p] === 1;
+                texts[p].textContent = String(bits[p]);
+                rects[p].classList.toggle("is-on", isOn);
+                rects[p].setAttribute("aria-label", "Bit " + p + ", Stellenwert " + (2 ** p) + ", aktuell " + bits[p]);
+              });
+              // führende Nullen bewusst NICHT weglassen – zeigt gerade,
+              // dass 1 Byte immer 8 Stellen breit ist
+              const binText = POWERS.map(p => bits[p]).join("");
+              binReadout.textContent = "Binär: " + binText.slice(0, 4) + " " + binText.slice(4);
+              decReadout.textContent = "Dezimal: " + value;
+              hexReadout.textContent = "Hex: 0x" + value.toString(16).toUpperCase().padStart(2, "0");
+            }
+
+            POWERS.forEach(function addHandlers(p) {
+              function toggleBit() {
+                bits[p] = bits[p] ? 0 : 1;
+                redraw();
+                console.log("[bits] Bit " + p + " → " + bits[p] + ", Wert = " + currentValue());
+              }
+              rects[p].addEventListener("click", toggleBit);
+              rects[p].addEventListener("keydown", function handleBitKeydown(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault(); // Leertaste soll die Seite nicht scrollen
+                  toggleBit();
+                }
+              });
+            });
+
+            redraw();
+          })();
+        </script>
+        <figcaption>Klicke auf die Kästen (oder Tab + Enter/Leertaste), um einzelne Bits umzuschalten, und beobachte Dezimal- und Hexwert.</figcaption>
+      </figure>
+    </section>
+
+    <section id="hexadezimalsystem">
+      <h2>Hexadezimalsystem</h2>
+      <p>Das <strong>Hexadezimalsystem</strong> (Basis 16, kurz „Hex“) nutzt die Ziffern 0–9 und dann A–F für die Werte 10–15. Es ist für Menschen praktisch, weil sich GENAU zwei Hex-Ziffern immer als ein Byte lesen lassen (ein Nibble pro Ziffer) – deutlich kompakter und übersichtlicher als eine lange Kette aus Nullen und Einsen.</p>
+      <table class="info-table">
+        <thead><tr><th>Dezimal</th><th>Hex</th><th>Dezimal</th><th>Hex</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>9</td><td>13</td><td>D</td></tr>
+          <tr><td>10</td><td>A</td><td>14</td><td>E</td></tr>
+          <tr><td>11</td><td>B</td><td>15</td><td>F</td></tr>
+          <tr><td>12</td><td>C</td><td>16</td><td>10</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="oktalsystem">
+      <h2>Oktalsystem</h2>
+      <p>Das <strong>Oktalsystem</strong> (Basis 8, Ziffern 0–7) spielt heute kaum noch eine Rolle, taucht aber gelegentlich noch auf – z. B. bei Unix-Dateirechten wie <code>chmod 755</code>, wobei jede Ziffer drei Rechte-Bits (lesen/schreiben/ausführen) zusammenfasst.</p>
+    </section>
+
+    <section id="umrechnen">
+      <h2>Umrechnen</h2>
+      <p><strong>Dezimal → Binär</strong> (Restwert-Methode): immer wieder durch 2 teilen, die Reste von unten nach oben gelesen ergeben die Binärzahl.</p>
+      <pre><code>77 ÷ 2 = 38 Rest 1
+38 ÷ 2 = 19 Rest 0
+19 ÷ 2 =  9 Rest 1
+ 9 ÷ 2 =  4 Rest 1
+ 4 ÷ 2 =  2 Rest 0
+ 2 ÷ 2 =  1 Rest 0
+ 1 ÷ 2 =  0 Rest 1
+→ von unten nach oben gelesen: 1001101  (= 77)</code></pre>
+      <p><strong>Binär → Dezimal</strong> (Stellenwert-Methode): jede 1 mit ihrem Stellenwert multiplizieren und aufsummieren (0en tragen nichts bei).</p>
+      <pre><code>1011
+= 1·2³ + 0·2² + 1·2¹ + 1·2⁰
+= 8 + 0 + 2 + 1
+= 11</code></pre>
+      <p><strong>Binär ↔ Hex</strong> (über Nibbles): von rechts in 4er-Gruppen teilen, jede Gruppe einzeln als Hex-Ziffer lesen (oder umgekehrt).</p>
+      <pre><code>0100 1101   (zwei Nibbles)
+  4    D    (je Nibble eine Hex-Ziffer)
+→ 0x4D</code></pre>
+    </section>
+
+    <section id="praefixe">
+      <h2>Präfixe 0b / 0x</h2>
+      <p>Damit man im Code sofort sieht, in welchem Zahlensystem eine Zahl gemeint ist, gibt es feste Präfixe: <code>0b</code> für Binär, <code>0x</code> für Hexadezimal. Ohne Präfix wird eine Zahl immer als Dezimalzahl gelesen.</p>
+      <table class="info-table">
+        <thead><tr><th>Sprache</th><th>Binär</th><th>Hex</th></tr></thead>
+        <tbody>
+          <tr><td>C++ (ab C++14)</td><td><code>int x = 0b1010;</code></td><td><code>int y = 0x1A;</code></td></tr>
+          <tr><td>JavaScript</td><td><code>let x = 0b1010;</code></td><td><code>let y = 0x1A;</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>console.log(0b1010); // 10
+console.log(0x1A);   // 26</code></pre>
+    </section>
+
+    <section id="farbcodes">
+      <h2>Farbcodes als Hex-Beispiel</h2>
+      <p>CSS-Farben wie <code>#ff8800</code> sind nichts anderes als drei Hex-Bytes hintereinander: <code>ff</code> = 255 (Rot), <code>88</code> = 136 (Grün), <code>00</code> = 0 (Blau) – zusammen ein kräftiges Orange. Mehr dazu im CSS-Teil des Spickers.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Führende Nullen nicht weglassen, wenn eine feste Bitbreite gemeint ist – <code>01</code> (8 Bit) ist etwas anderes als „nur eine 1“, auch wenn der Zahlenwert gleich bleibt.</li>
+        <li><code>0x</code> und <code>0b</code> gehören zur Schreibweise im Quellcode, NICHT zum gespeicherten Wert selbst – im Speicher steht am Ende immer nur die Bitfolge.</li>
+        <li>Bei der Restwert-Methode die Reste unbedingt von UNTEN nach OBEN lesen – ein häufiger Flüchtigkeitsfehler ist, sie in Rechenreihenfolge (oben nach unten) abzuschreiben.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-bits-bytes.html">IT: Bits &amp; Bytes</a>
+        <a class="chip" href="it-binaer-rechnen.html">IT: Binär rechnen</a>
+        <a class="chip" href="css-farben.html">CSS: Farben</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

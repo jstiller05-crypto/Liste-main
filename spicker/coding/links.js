@@ -29,13 +29,14 @@
 // verlinkt: "Schleife" auf einer C++-Seite → C++-Erklärung,
 //           "Schleife" auf einer JS-Seite  → JS-Erklärung.
 //
-// Sprach-Kürzel:  "html"  "css"  "js"  "cpp"
+// Sprach-Kürzel:  "html"  "css"  "js"  "cpp"  …  "it" (IT-Grundlagen –
+//                 KEINE Programmiersprache, siehe PAGE_PREFIX_LANGUAGES)
 //
 // Die Sprache wird in dieser Reihenfolge bestimmt:
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
 //   3. Dateiname beginnt mit "css-", "js-", "cpp-", "node-", "sql-", "php-",
-//      "lua-", "c-", "csharp-", "swift-", "ts-"
+//      "lua-", "c-", "csharp-", "swift-", "ts-", "it-"
 //   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
@@ -92,12 +93,23 @@ const PAGE_PREFIX_LANGUAGES = [
   ["lua-", "lua"],
   ["csharp-", "csharp"],
   ["swift-", "swift"],
+  ["it-", "it"],    // IT-Grundlagen – vor den kurzen Präfixen "c-"/"ts-",
+                     // auch wenn es hier keine Namenskollision gibt
+                     // (kein anderes Präfix beginnt mit "i")
   ["c-", "c"],
   ["ts-", "ts"]
 ];
 
 // Hat eine Regel für eine Sprache kein eigenes Ziel, wird diese Sprache probiert.
 // Node.js IST JavaScript – dort sollen also die JS-Seiten verlinkt werden.
+//
+// "it" steht ABSICHTLICH NICHT hier drin: IT-Grundlagen-Seiten sind keine
+// Programmiersprache und keiner anderen Sprache "ähnlich" – es gibt keine
+// sinnvolle fallback-Sprache. Smart-Link-Regeln ohne eigenes "it"-Ziel
+// greifen auf solchen Seiten trotzdem automatisch über rule.links.all
+// (siehe buildWordLookup() in shared/page.js: explicit bleibt undefined,
+// LANGUAGE_FALLBACK["it"] ist ebenfalls undefined, also wird direkt
+// rule.links.all genommen – kein Extra-Eintrag hier nötig).
 const LANGUAGE_FALLBACK = {
   node: "js",
   c: "cpp",         // C-Grundlagen (Schleifen, if, Zeiger …) sind wie in C++
@@ -140,7 +152,13 @@ const smartLinkRules = [
   { words: ["SwiftUI"],          links: { all: "swiftui.html" } },
   { words: ["Xcode"],            links: { all: "xcode.html" } },
   { words: ["Luanti", "Mod", "Mods"], links: { all: "lua-luanti.html" } },
-  { words: ["Terminal", "Kommandozeile", "PowerShell", "Bash", "WSL"], links: { all: "terminal.html" } },
+  { words: ["Terminal", "Kommandozeile", "PowerShell", "Bash"], links: { all: "terminal.html" } },
+  // "WSL" stand früher mit in der Terminal-Zeile oben (→ terminal.html,
+  // dort nur ein einzelner Stichpunkt). Jetzt gibt es eine eigene,
+  // ausführliche Erklärung bei der IT-Virtualisierung – siehe Block J,
+  // Konfliktliste: bewusste Umsortierung, keine andere Terminal-Regel
+  // (Terminal/Kommandozeile/PowerShell/Bash) ist davon betroffen.
+  { words: ["WSL"], links: { all: "it-virtualisierung.html#wsl" } },
 
   // ===== Lua / C / C# / Swift =====
   { words: ["Metatabelle", "Metatabellen", "require"],    links: { lua: "lua-module.html" } },
@@ -320,6 +338,64 @@ const smartLinkRules = [
   { words: ["Interface", "Interfaces", "Record", "Partial"], links: { ts: "ts-interfaces.html" } },
   { words: ["Generic", "Generics", "private", "public", "protected", "implements"],
                                                           links: { ts: "ts-klassen-generics.html" } },
+
+  // ===== IT-Grundlagen =====
+  // Verlinkt auf ALLEN Detailseiten (value "all"), weil die Begriffe
+  // keiner Programmiersprache gehören. Nur die WICHTIGSTEN neuen
+  // Begriffe aus Block B–I, keine 220 Einzel-Regeln für jeden Eintrag.
+  //
+  // BEWUSST NICHT aufgenommen (zu allgemein / schon anderswo belegt –
+  // siehe Konfliktliste im Bericht zu Block J):
+  //   Server, Speicher, Datei, Prozess, Daten, Programm  (zu allgemein,
+  //     laut Auftrag ausdrücklich ausgeschlossen)
+  //   Variable, Funktion, Datentyp, Schleife, Array, Stack, Algorithmus,
+  //     Datenbank  (haben schon vollständige Pro-Sprache-Regeln weiter
+  //     oben – eine neue "all"-Regel hier würde über den Fallback-
+  //     Mechanismus z. B. "c" → cpp oder "ts"/"node" → js deren
+  //     SPEZIFISCHERE Ziele überschreiben, siehe buildWordLookup() in
+  //     shared/page.js)
+  { words: ["Binärsystem", "Dualsystem"],      links: { all: "it-zahlensysteme.html#binaersystem" } },
+  { words: ["Hexadezimalsystem", "Hexadezimal"], links: { all: "it-zahlensysteme.html#hexadezimalsystem" } },
+  { words: ["Byte"],                           links: { all: "it-bits-bytes.html#byte" } },
+  { words: ["Bit"],                            links: { all: "it-bits-bytes.html#bit" } },
+  { words: ["UTF-8"],                          links: { all: "it-zeichenkodierung.html#utf-8" } },
+  { words: ["ASCII"],                          links: { all: "it-zeichenkodierung.html#ascii" } },
+  { words: ["Unicode"],                        links: { all: "it-zeichenkodierung.html#unicode" } },
+  { words: ["CPU", "Prozessor"],               links: { all: "it-cpu.html#cpu" } },
+  { words: ["Cache"],                          links: { all: "it-cpu.html#cache" } },
+  { words: ["RAM"],                            links: { all: "it-speicher.html#ram" } },
+  { words: ["Kernel"],                         links: { all: "it-betriebssystem.html#kernel" } },
+  { words: ["Betriebssystem"],                 links: { all: "it-betriebssystem.html#betriebssystem" } },
+  { words: ["IP-Adresse"],                     links: { all: "it-ip-adressen.html#ip-adresse" } },
+  { words: ["DNS"],                            links: { all: "it-dns-dhcp.html#dns" } },
+  { words: ["Router"],                         links: { all: "it-netzwerk-geraete.html#router" } },
+  { words: ["Port", "Ports"],                  links: { all: "it-ports.html#port" } },
+  { words: ["HTTPS"],                          links: { all: "it-http.html#https" } },
+  { words: ["HTTP"],                           links: { all: "it-http.html#http" } },
+  { words: ["TCP"],                            links: { all: "it-tcp-udp.html#tcp" } },
+  { words: ["UDP"],                            links: { all: "it-tcp-udp.html#udp" } },
+  { words: ["Protokoll", "Protokolle"],         links: { all: "it-osi-modell.html#protokoll" } },
+  { words: ["Verschlüsselung"],                links: { all: "it-verschluesselung.html#verschluesselung" } },
+  { words: ["Firewall"],                       links: { all: "it-sicherheit-grundlagen.html#firewall" } },
+  // "Compiler" hat oben schon eine cpp/c-Regel (cpp-kompilieren.html /
+  // c-einfuehrung.html) – die bleibt unverändert (explizite Ziele
+  // gewinnen immer). Diese Regel füllt nur die LÜCKE für alle anderen
+  // Sprachen (inkl. it) mit der sprachunabhängigen Erklärung.
+  { words: ["Compiler"],                       links: { all: "it-programmieren.html#compiler" } },
+  { words: ["Interpreter"],                    links: { all: "it-programmieren.html#interpreter" } },
+  { words: ["Git"],                            links: { all: "it-git.html#git" } },
+
+  // Aus Block B bekannter Konflikt (siehe Bericht): "Eingabe" hat oben
+  // schon all:"input.html" (HTML-Eingabefeld), "Ausgabe" gehört zu
+  // cout/std::cout (nur cpp). NUR für it-Seiten soll stattdessen das
+  // EVA-Prinzip gemeint sein – darum HIER ein explizites "it"-Ziel in
+  // EIGENEN, neuen Regeln (keine bestehende Regel wird verändert).
+  // Explizite Ziele gewinnen immer gegen "all"/Fallback-Ziele, siehe
+  // buildWordLookup() in shared/page.js – auf cpp-/php-/HTML-Seiten
+  // bleibt darum alles genau wie vorher.
+  { words: ["Eingabe", "Eingaben"], links: { it: "it-grundbegriffe.html#eva-prinzip" } },
+  { words: ["Ausgabe"],  links: { it: "it-grundbegriffe.html#eva-prinzip" } },
+  { words: ["Verarbeitung"], links: { it: "it-grundbegriffe.html#eva-prinzip" } },
 ];
 
 

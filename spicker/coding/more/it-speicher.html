@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Speicher – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Hardware · Speicher</p>
+    <h1>RAM, SSD &amp; die Speicherpyramide</h1>
+    <p class="page-lead">Warum ein Computer mehrere ganz unterschiedliche Speicher gleichzeitig braucht – und keinen einzigen, der alles kann.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#ram">RAM</a></td><td>Schneller Arbeitsspeicher, flüchtig</td></tr>
+          <tr><td><a href="#rom">ROM</a></td><td>Nicht-flüchtiger Speicher, kaum/nicht beschreibbar</td></tr>
+          <tr><td><a href="#speicherhierarchie">Speicherhierarchie</a></td><td>Näher an der CPU = schneller, kleiner, teurer</td></tr>
+          <tr><td><a href="#ssd">SSD</a></td><td>Flash-Speicher ohne bewegliche Teile</td></tr>
+          <tr><td><a href="#nvme">NVMe</a></td><td>Schnelle SSD-Anbindung direkt über PCIe</td></tr>
+          <tr><td><a href="#hdd">HDD</a></td><td>Festplatte mit rotierenden Magnetscheiben</td></tr>
+          <tr><td><a href="#fluechtig">flüchtig vs. nicht-flüchtig</a></td><td>Daten weg oder erhalten ohne Strom?</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="speicherhierarchie">
+      <h2>Speicherhierarchie</h2>
+      <p>Computer nutzen bewusst MEHRERE Speicherarten gleichzeitig: Je näher ein Speicher am Prozessor sitzt, desto schneller, aber auch desto kleiner und teurer ist er. Je weiter „unten“ (weiter weg von der CPU), desto langsamer, aber auch desto größer und günstiger.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 340" role="img" aria-label="Speicherpyramide von Register (klein, schnell, teuer) oben bis HDD (groß, langsam, günstig) unten" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="24.0" class="dg-small" text-anchor="middle">schnell · klein · teuer</text>
+        <rect x="270.0" y="40.0" width="100.0" height="50.0" class="dg-box"/>
+        <text x="320.0" y="70.0" class="dg-label" text-anchor="middle">Register</text>
+        <rect x="230.0" y="90.0" width="180.0" height="50.0" class="dg-box"/>
+        <text x="320.0" y="120.0" class="dg-label" text-anchor="middle">Cache</text>
+        <rect x="180.0" y="140.0" width="280.0" height="50.0" class="dg-box"/>
+        <text x="320.0" y="170.0" class="dg-label" text-anchor="middle">RAM</text>
+        <rect x="120.0" y="190.0" width="400.0" height="50.0" class="dg-box"/>
+        <text x="320.0" y="220.0" class="dg-label" text-anchor="middle">SSD</text>
+        <rect x="40.0" y="240.0" width="560.0" height="50.0" class="dg-box"/>
+        <text x="320.0" y="270.0" class="dg-label" text-anchor="middle">HDD</text>
+        <text x="320.0" y="312.0" class="dg-small" text-anchor="middle">langsam · groß · günstig</text>
+        </svg>
+        <figcaption>Jede Stufe puffert die darunterliegende, langsamere Stufe – deshalb funktioniert z. B. der Cache überhaupt erst sinnvoll.</figcaption>
+      </figure>
+    </section>
+
+    <section id="ram">
+      <h2>RAM</h2>
+      <p><strong>RAM</strong> (<em>Random Access Memory</em>, Arbeitsspeicher) ist der Hauptspeicher, in dem laufende Programme und ihre Daten liegen. „Random Access“ heißt: Jede Speicherzelle ist direkt und gleich schnell erreichbar, ohne sich erst durch alles davor zu „wühlen“.</p>
+    </section>
+
+    <section id="rom">
+      <h2>ROM</h2>
+      <p><strong>ROM</strong> (<em>Read-Only Memory</em>) ist nicht-flüchtiger Speicher, der (ursprünglich) nur gelesen, nicht beschrieben werden kann – typisch für grundlegenden Startcode wie die Firmware. Moderne Varianten (Flash/EEPROM) lassen sich speziell doch neu beschreiben (z. B. ein BIOS-Update), bleiben im Alltag aber „quasi nur lesbar“.</p>
+    </section>
+
+    <section id="ssd">
+      <h2>SSD</h2>
+      <p>Eine <strong>SSD</strong> (<em>Solid State Drive</em>) speichert Daten in Flash-Speicherchips, ganz OHNE bewegliche Teile. Dadurch ist sie deutlich schneller und unempfindlicher als eine HDD – pro Gigabyte aber meist teurer.</p>
+    </section>
+
+    <section id="nvme">
+      <h2>NVMe</h2>
+      <p><strong>NVMe</strong> ist ein modernes Zugriffsprotokoll für SSDs, das direkt über den PCIe-Bus läuft statt über das ältere, langsamere SATA – dadurch sind NVMe-SSDs noch einmal deutlich schneller als SATA-SSDs.</p>
+    </section>
+
+    <section id="hdd">
+      <h2>HDD</h2>
+      <p>Eine <strong>HDD</strong> (<em>Hard Disk Drive</em>, Festplatte) speichert Daten magnetisch auf rotierenden Scheiben, die ein beweglicher Schreib-/Lesekopf abtastet. Durch die mechanischen Teile ist sie langsamer und empfindlicher als eine SSD – dafür bei großen Kapazitäten oft günstiger pro Gigabyte.</p>
+    </section>
+
+    <section id="fluechtig">
+      <h2>flüchtig vs. nicht-flüchtig</h2>
+      <p><strong>Flüchtig</strong> (<em>volatile</em>, z. B. RAM) heißt: Die Daten sind weg, sobald der Strom fehlt. <strong>Nicht-flüchtig</strong> (<em>non-volatile</em>, z. B. SSD, HDD, ROM) heißt: Die Daten bleiben auch ohne Strom erhalten – deshalb speichert man Dateien auf einer SSD/HDD und nicht im RAM.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Speicher“ ist umgangssprachlich mehrdeutig: RAM („Wie viel Speicher hat der Laptop?“ für Arbeitstempo) und SSD/HDD („Wie viel Speicher ist noch frei?“ für Dateien) sind ZWEI verschiedene Dinge.</li>
+        <li>Mehr RAM macht einen Rechner nicht automatisch schneller, wenn er ohnehin schon genug für die laufenden Programme hat – der Engpass liegt dann woanders.</li>
+        <li>Ohne Speichern (z. B. <code>Strg+S</code>) gehen ungesicherte Änderungen bei einem Absturz verloren – sie lagen bis dahin nur im flüchtigen RAM.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-cpu.html">IT: CPU</a>
+        <a class="chip" href="it-komponenten.html">IT: Komponenten &amp; Schnittstellen</a>
+        <a class="chip" href="it-dateien.html">IT: Dateien &amp; Pfade</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

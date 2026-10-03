@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Datenstrukturen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Programmieren · Datenstrukturen</p>
+    <h1>Array, Stack, Queue &amp; Co.</h1>
+    <p class="page-lead">Verschiedene Wege, mehrere Werte zu organisieren – jede Struktur mit ihren eigenen Stärken.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#array">Array</a></td><td>Liste, direkt über einen Index erreichbar</td></tr>
+          <tr><td><a href="#verkettete-liste">Verkettete Liste</a></td><td>Knoten, die auf den jeweils nächsten zeigen</td></tr>
+          <tr><td><a href="#stack">Stack</a></td><td>LIFO – zuletzt rein, zuerst raus</td></tr>
+          <tr><td><a href="#queue">Queue</a></td><td>FIFO – zuerst rein, zuerst raus</td></tr>
+          <tr><td><a href="#baum">Baum</a></td><td>Hierarchie aus Eltern- und Kindknoten</td></tr>
+          <tr><td><a href="#hash-tabelle">Hash-Tabelle</a></td><td>Schlüssel-Wert-Paare, sehr schneller Zugriff</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="array">
+      <h2>Array</h2>
+      <p>Ein <strong>Array</strong> speichert mehrere Werte hintereinander, jeder direkt über seinen Index (0, 1, 2 …) erreichbar – dadurch sehr schneller Zugriff auf ein bestimmtes Element.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::vector&lt;int&gt; v;</code></td><td><code>let arr = [];</code></td><td><code>local t = {}</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="verkettete-liste">
+      <h2>Verkettete Liste</h2>
+      <p>Eine <strong>verkettete Liste</strong> besteht aus Knoten, die jeweils einen Verweis auf den NÄCHSTEN Knoten halten, statt wie ein Array zusammenhängend im Speicher zu liegen. Einfügen/Löschen mitten in der Liste ist dadurch günstig – dafür ist der direkte Zugriff per Index langsamer, weil man sich erst Knoten für Knoten durchhangeln muss.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::list&lt;int&gt;</code> (eingebaut)</td><td>nicht eingebaut – selbst bauen oder Array nutzen</td><td>nicht eingebaut – selbst bauen oder Table nutzen</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="stack">
+      <h2>Stack</h2>
+      <p>Ein <strong>Stack</strong> funktioniert nach dem Prinzip <strong>LIFO</strong> (<em>Last In, First Out</em>) – wie ein Stapel Teller: Man legt oben drauf und nimmt auch wieder von oben.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::stack&lt;int&gt;</code></td><td>Array: <code>push()</code> / <code>pop()</code></td><td>Table: <code>table.insert</code>/<code>table.remove</code> am Ende</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="queue">
+      <h2>Queue</h2>
+      <p>Eine <strong>Queue</strong> (Warteschlange) funktioniert nach <strong>FIFO</strong> (<em>First In, First Out</em>) – wer zuerst kommt, wird zuerst bedient.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::queue&lt;int&gt;</code></td><td>Array: <code>push()</code> / <code>shift()</code></td><td>Table: <code>table.insert</code>/<code>table.remove(t,1)</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="baum">
+      <h2>Baum</h2>
+      <p>Ein <strong>Baum</strong> ist eine hierarchische Struktur aus Knoten: ein Wurzelknoten ganz oben, jeder Knoten kann beliebig viele Kindknoten haben (bei einem <em>Binärbaum</em> maximal zwei). Praktisch überall, wo Dinge natürlich verschachtelt sind – von Dateisystemen bis zu HTML-Elementen im DOM.</p>
+    </section>
+
+    <section id="hash-tabelle">
+      <h2>Hash-Tabelle</h2>
+      <p>Eine <strong>Hash-Tabelle</strong> speichert Schlüssel-Wert-Paare und berechnet aus dem Schlüssel per Hash-Funktion (siehe Sicherheits-Teil des Spickers) direkt eine Speicherposition – dadurch im Schnitt SEHR schneller Zugriff, ohne alles durchsuchen zu müssen.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::map</code> / <code>std::unordered_map</code></td><td><code>Map</code></td><td>Table – ist in Lua direkt eine Hash-Tabelle!</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Es gibt keine „beste“ Datenstruktur – die Wahl hängt davon ab, was man am häufigsten tut: schneller Index-Zugriff (Array), oft Einfügen/Löschen (verkettete Liste), Verarbeitung in fester Reihenfolge (Stack/Queue) oder schnelles Nachschlagen (Hash-Tabelle).</li>
+        <li>Eine Lua-Table ist ungewöhnlich flexibel: Sie kann gleichzeitig wie ein Array UND wie eine Hash-Tabelle benutzt werden – praktisch, aber auch leicht verwirrend für Einsteiger.</li>
+        <li>Einen Stack mit einer Queue zu verwechseln führt zu Daten in GENAU umgekehrter Reihenfolge – ein klassischer, aber tückischer Logikfehler.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-programm-bausteine.html">IT: Programm-Bausteine</a>
+        <a class="chip" href="it-algorithmen.html">IT: Algorithmen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

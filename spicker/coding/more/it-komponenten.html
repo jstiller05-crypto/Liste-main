@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Komponenten &amp; Schnittstellen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Hardware · Komponenten</p>
+    <h1>GPU, BIOS/UEFI &amp; Schnittstellen</h1>
+    <p class="page-lead">Weitere wichtige Bauteile – und die Anschlüsse, über die alles miteinander spricht.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#gpu">GPU / Grafikkarte</a></td><td>Spezialisiert auf massiv parallele Berechnungen</td></tr>
+          <tr><td><a href="#bios-uefi">BIOS / UEFI</a></td><td>Startet die Hardware, bevor das Betriebssystem läuft</td></tr>
+          <tr><td><a href="#schnittstellen">Schnittstellen</a></td><td>USB, HDMI, PCIe, SATA, M.2 im Überblick</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="gpu">
+      <h2>GPU / Grafikkarte</h2>
+      <p>Die <strong>GPU</strong> (<em>Graphics Processing Unit</em>) ist ein Prozessor mit sehr vielen, dafür einfacheren Rechenkernen als eine CPU – optimiert darauf, dieselbe Operation auf riesige Mengen an Daten GLEICHZEITIG anzuwenden (massiv parallel). Ursprünglich für Grafik gedacht (jeder Bildpunkt lässt sich unabhängig berechnen), wird dieselbe Stärke heute auch für KI-Training und wissenschaftliches Rechnen genutzt. Man unterscheidet <strong>integrierte</strong> GPUs (im CPU-Chip eingebaut) und <strong>dedizierte</strong> GPUs (eigene Grafikkarte mit eigenem Speicher, VRAM).</p>
+    </section>
+
+    <section id="bios-uefi">
+      <h2>BIOS / UEFI</h2>
+      <p><strong>BIOS</strong> bzw. <strong>UEFI</strong> ist die Firmware, die als Allererstes startet, wenn man den Rechner einschaltet: Sie prüft und initialisiert die Hardware und übergibt dann an den Bootloader des Betriebssystems. <strong>UEFI</strong> ist der moderne Nachfolger des klassischen <strong>BIOS</strong> – grafischer, schneller, und es unterstützt größere Festplatten (GPT statt MBR) sowie Sicherheitsfunktionen wie Secure Boot.</p>
+    </section>
+
+    <section id="schnittstellen">
+      <h2>Schnittstellen</h2>
+      <p>Schnittstellen verbinden Bauteile körperlich miteinander. Je nach Zweck gibt es ganz unterschiedliche Standards:</p>
+      <table class="info-table">
+        <thead><tr><th>Schnittstelle</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>USB</td><td>universelle externe Peripherie (Tastatur, Maus, Sticks, Handys …)</td></tr>
+          <tr><td>HDMI</td><td>Bild UND Ton digital zu einem Monitor/Fernseher</td></tr>
+          <tr><td>DisplayPort</td><td>ähnlich HDMI, bei PCs/Monitoren verbreitet, oft hohe Bildwiederholraten</td></tr>
+          <tr><td>PCIe</td><td>interner Steckplatz für Grafikkarten, schnelle SSDs</td></tr>
+          <tr><td>SATA</td><td>ältere interne Schnittstelle für Festplatten/SSDs</td></tr>
+          <tr><td>M.2</td><td>kompakter Steckplatz für SSDs – intern oft über NVMe/PCIe, manchmal auch SATA</td></tr>
+        </tbody>
+      </table>
+      <div class="note">M.2 ist nur die STECKFORM – welches Protokoll (SATA oder NVMe/PCIe) dahintersteckt und wie schnell die SSD damit wirklich ist, steht meist extra auf der Verpackung.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Eine integrierte GPU reicht für normale Büroarbeit meist locker – für Spiele oder GPU-lastige Software (Videoschnitt, KI) braucht es oft eine dedizierte Grafikkarte.</li>
+        <li>Ins BIOS/UEFI-Menü kommt man meist über eine Taste direkt beim Einschalten (oft Entf, F2 oder F10) – je nach Hersteller unterschiedlich.</li>
+        <li>„M.2-SSD“ sagt allein noch nicht, ob sie das schnelle NVMe- oder das langsamere SATA-Protokoll nutzt – beides passt mechanisch in denselben Steckplatz.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-speicher.html">IT: Speicher</a>
+        <a class="chip" href="it-betriebssystem.html">IT: Betriebssystem</a>
+        <a class="chip" href="it-hardware-aufbau.html">IT: Hardware-Aufbau</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

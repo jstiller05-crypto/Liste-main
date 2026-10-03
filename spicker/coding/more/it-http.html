@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: HTTP – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Protokolle · HTTP</p>
+    <h1>HTTP: Request, Response &amp; Statuscodes</h1>
+    <p class="page-lead">Das Protokoll, über das fast jede Webseite und jede <code>fetch</code>-Anfrage im Spicker tatsächlich läuft.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#http">HTTP</a></td><td>Das Protokoll des Webs</td></tr>
+          <tr><td><a href="#https">HTTPS</a></td><td>HTTP, zusätzlich verschlüsselt</td></tr>
+          <tr><td><a href="#request-response">Request &amp; Response</a></td><td>Anfrage hin, Antwort zurück</td></tr>
+          <tr><td><a href="#http-methoden">HTTP-Methoden</a></td><td>GET, POST, PUT, PATCH, DELETE</td></tr>
+          <tr><td><a href="#statuscodes">Statuscodes</a></td><td>200, 404, 500 … drei Ziffern, klare Bedeutung</td></tr>
+          <tr><td><a href="#header">Header</a></td><td>Zusatzinfos vor dem eigentlichen Inhalt</td></tr>
+          <tr><td><a href="#cookie">Cookie</a></td><td>Kleine Daten, die der Server beim Client ablegt</td></tr>
+          <tr><td><a href="#rest-api">REST-API</a></td><td>Eine gängige Bauweise für Web-Schnittstellen</td></tr>
+          <tr><td><a href="#json-ueber-http">JSON über HTTP</a></td><td>Das übliche Datenformat für APIs</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="http">
+      <h2>HTTP</h2>
+      <p><strong>HTTP</strong> (<em>HyperText Transfer Protocol</em>) ist das Protokoll, über das Browser und Server im Web kommunizieren: Der Browser schickt eine <strong>Request</strong> (Anfrage), der Server antwortet mit einer <strong>Response</strong>.</p>
+    </section>
+
+    <section id="https">
+      <h2>HTTPS</h2>
+      <p><strong>HTTPS</strong> ist HTTP, zusätzlich verschlüsselt über TLS/SSL (siehe Verschlüsselung im Sicherheits-Teil des Spickers). Inhalt und Adresse der Anfrage sind dadurch unterwegs nicht im Klartext mitlesbar. Heute ist HTTPS praktisch Standard, selbst für Seiten ohne Login.</p>
+    </section>
+
+    <section id="request-response">
+      <h2>Request &amp; Response</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 170" role="img" aria-label="Browser schickt eine Request an den Server, der Server antwortet mit einer Response" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="40.0" y="45.0" width="160.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="120.0" y="80.0" class="dg-label" text-anchor="middle">Browser</text>
+        <text x="120.0" y="102.0" class="dg-small" text-anchor="middle">Client</text>
+        <line x1="210.0" y1="75.0" x2="430.0" y2="75.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="320.0" y="65.0" class="dg-small" text-anchor="middle">Request (GET /seite)</text>
+        <line x1="430.0" y1="105.0" x2="210.0" y2="105.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="320.0" y="125.0" class="dg-small" text-anchor="middle">Response (200 OK + HTML)</text>
+        <rect x="440.0" y="45.0" width="160.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="520.0" y="80.0" class="dg-label" text-anchor="middle">Server</text>
+        <text x="520.0" y="102.0" class="dg-small" text-anchor="middle">liefert die Antwort</text>
+        </svg>
+        <figcaption>Jede Anfrage bekommt genau EINE Antwort – der Server startet niemals von sich aus eine Verbindung zum Browser.</figcaption>
+      </figure>
+      <p>Eine Request besteht aus Methode + Pfad, Headern und optional einem Body (z. B. Formulardaten). Eine Response besteht aus Statuscode, Headern und optional einem Body (z. B. HTML oder JSON). Im Spicker selbst nutzt <code>fetch</code> genau dieses Muster, um mit dem Node-Server zu sprechen.</p>
+    </section>
+
+    <section id="http-methoden">
+      <h2>HTTP-Methoden</h2>
+      <table class="info-table">
+        <thead><tr><th>Methode</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>GET</td><td>Daten abrufen, OHNE etwas zu verändern</td></tr>
+          <tr><td>POST</td><td>neue Daten anlegen</td></tr>
+          <tr><td>PUT</td><td>eine Ressource komplett ersetzen</td></tr>
+          <tr><td>PATCH</td><td>eine Ressource teilweise ändern</td></tr>
+          <tr><td>DELETE</td><td>eine Ressource löschen</td></tr>
+        </tbody>
+      </table>
+      <p>Wie man GET und POST konkret mit <code>fetch</code> in JavaScript auslöst und wie <code>app.get</code>/<code>app.post</code> sie in Express entgegennehmen, steht bereits bei Node.js im Spicker.</p>
+    </section>
+
+    <section id="statuscodes">
+      <h2>Statuscodes</h2>
+      <p>Jede Response trägt einen dreistelligen <strong>Statuscode</strong>, der auf einen Blick zeigt, wie die Anfrage gelaufen ist:</p>
+      <table class="info-table">
+        <thead><tr><th>Code</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>200</td><td>OK – alles erfolgreich</td></tr>
+          <tr><td>201</td><td>Created – erfolgreich neu angelegt</td></tr>
+          <tr><td>204</td><td>No Content – erfolgreich, aber kein Inhalt in der Antwort</td></tr>
+          <tr><td>301</td><td>Moved Permanently – dauerhaft umgezogen</td></tr>
+          <tr><td>302</td><td>Found – vorübergehend woanders</td></tr>
+          <tr><td>304</td><td>Not Modified – unverändert, Browser-Cache nutzen</td></tr>
+          <tr><td>400</td><td>Bad Request – Anfrage fehlerhaft</td></tr>
+          <tr><td>401</td><td>Unauthorized – Anmeldung fehlt</td></tr>
+          <tr><td>403</td><td>Forbidden – Zugriff verboten (auch angemeldet)</td></tr>
+          <tr><td>404</td><td>Not Found – nichts unter dieser Adresse</td></tr>
+          <tr><td>500</td><td>Internal Server Error – Fehler beim Server selbst</td></tr>
+          <tr><td>502</td><td>Bad Gateway – Server hat vom Vorgelagerten ungültige Antwort bekommen</td></tr>
+          <tr><td>503</td><td>Service Unavailable – Server gerade überlastet/nicht bereit</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Grobe Faustregel an der ersten Ziffer: 2xx = erfolgreich, 3xx = Weiterleitung, 4xx = Fehler beim Client, 5xx = Fehler beim Server. Der eigene Node-Server dieses Spickers (<code>server.js</code>) nutzt genau diese Codes: 301 für alte Adressen, 404 für unbekannte Dateien, 500 bei internen Fehlern.</div>
+    </section>
+
+    <section id="header">
+      <h2>Header</h2>
+      <p><strong>Header</strong> sind Zusatzinformationen VOR dem eigentlichen Inhalt einer Request oder Response – als Schlüssel-Wert-Paare, z. B. <code>Content-Type: application/json</code> (welches Format der Body hat) oder <code>Content-Length</code> (wie groß der Body ist).</p>
+    </section>
+
+    <section id="cookie">
+      <h2>Cookie</h2>
+      <p>Ein <strong>Cookie</strong> ist ein kleines Stück Daten, das der Server per Header beim Browser ablegt und das der Browser bei weiteren Anfragen an DENSELBEN Server automatisch mitschickt. Damit „erinnert“ sich der Server über mehrere Anfragen hinweg an denselben Client – z. B. für einen Login-Zustand, obwohl HTTP selbst eigentlich zustandslos ist.</p>
+    </section>
+
+    <section id="rest-api">
+      <h2>REST-API</h2>
+      <p>Eine <strong>REST-API</strong> ist eine gängige Bauweise für Web-Schnittstellen: Jede Ressource bekommt eine eigene Adresse (URL), und HTTP-Methoden bestimmen die Aktion darauf – z. B. <code>GET /api/progress</code> zum Abrufen, <code>PUT /api/progress/coding/a.html</code> zum Ändern, genau wie es die eigene API dieses Spickers macht.</p>
+    </section>
+
+    <section id="json-ueber-http">
+      <h2>JSON über HTTP</h2>
+      <p>Für den Datenaustausch zwischen Client und Server hat sich <strong>JSON</strong> (siehe JS-Teil des Spickers) als Standardformat durchgesetzt: kompakt, von praktisch jeder Sprache lesbar. Der Header <code>Content-Type: application/json</code> sagt dem Empfänger, dass der Body im JSON-Format vorliegt.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>GET-Anfragen sollten NIE Daten verändern – Browser, Proxys und Suchmaschinen gehen bei GET grundsätzlich davon aus, dass es gefahrlos wiederholbar ist.</li>
+        <li>401 (nicht angemeldet) und 403 (angemeldet, aber nicht erlaubt) werden oft verwechselt – es sind zwei unterschiedliche Situationen.</li>
+        <li>„Es kommt nichts zurück“ bei <code>fetch</code> ist fast immer im Network-Tab der Browser-Entwicklertools sichtbar – Statuscode und Response dort zuerst prüfen, bevor man im Code sucht.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-tcp-udp.html">IT: TCP &amp; UDP</a>
+        <a class="chip" href="it-protokolle-weitere.html">IT: Weitere Protokolle</a>
+        <a class="chip" href="js-fetch.html">JS: fetch</a>
+        <a class="chip" href="js-sicherheit.html">JS: Sicherheit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

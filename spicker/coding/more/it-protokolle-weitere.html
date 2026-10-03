@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Weitere Protokolle – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Protokolle · Weitere</p>
+    <h1>SSH, FTP, E-Mail &amp; mehr</h1>
+    <p class="page-lead">Nicht alles im Netz läuft über HTTP – ein Schnelldurchlauf durch weitere wichtige Protokolle.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#ssh">SSH</a></td><td>Verschlüsselter Fernzugriff auf einen Rechner</td></tr>
+          <tr><td><a href="#ftp-sftp">FTP / SFTP</a></td><td>Dateien übertragen – unverschlüsselt oder sicher</td></tr>
+          <tr><td><a href="#smtp-imap-pop3">SMTP / IMAP / POP3</a></td><td>E-Mail senden, synchronisieren, abholen</td></tr>
+          <tr><td><a href="#icmp">ICMP (ping)</a></td><td>Status- und Fehlermeldungen im Netzwerk</td></tr>
+          <tr><td><a href="#arp">ARP</a></td><td>Übersetzt IP-Adresse in MAC-Adresse</td></tr>
+          <tr><td><a href="#websocket">WebSocket</a></td><td>Dauerhafte Verbindung in beide Richtungen</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="ssh">
+      <h2>SSH</h2>
+      <p><strong>SSH</strong> (<em>Secure Shell</em>, Port 22) ermöglicht verschlüsselten Fernzugriff auf einen anderen Rechner – meist auf ein Terminal, um dort Befehle auszuführen, als säße man direkt davor.</p>
+    </section>
+
+    <section id="ftp-sftp">
+      <h2>FTP / SFTP</h2>
+      <p><strong>FTP</strong> (<em>File Transfer Protocol</em>, Port 20/21) überträgt Dateien zwischen zwei Rechnern – unverschlüsselt und darum heute veraltet. <strong>SFTP</strong> (<em>SSH File Transfer Protocol</em>) macht dasselbe, aber verschlüsselt über SSH (Port 22) – die heute übliche Wahl.</p>
+    </section>
+
+    <section id="smtp-imap-pop3">
+      <h2>SMTP / IMAP / POP3</h2>
+      <table class="info-table">
+        <thead><tr><th>Protokoll</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>SMTP</td><td>E-Mails VERSENDEN (auch zwischen Mailservern)</td></tr>
+          <tr><td>IMAP</td><td>E-Mails auf dem Server verwalten – mehrere Geräte sehen denselben Stand</td></tr>
+          <tr><td>POP3</td><td>E-Mails herunterladen, klassisch danach vom Server löschen</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="icmp">
+      <h2>ICMP (ping)</h2>
+      <p><strong>ICMP</strong> (<em>Internet Control Message Protocol</em>) überträgt Status- und Fehlermeldungen zwischen Netzwerkgeräten – anders als TCP/UDP transportiert es keine „Nutzdaten“ für Anwendungen. Das bekannte Werkzeug <code>ping</code> nutzt ICMP, um zu prüfen, ob ein Ziel erreichbar ist, und misst dabei genau die Latenz (siehe Netzwerk-Grundlagen im Spicker).</p>
+    </section>
+
+    <section id="arp">
+      <h2>ARP</h2>
+      <p><strong>ARP</strong> (<em>Address Resolution Protocol</em>) übersetzt innerhalb eines lokalen Netzes eine IP-Adresse in die passende MAC-Adresse (siehe Netzwerk-Geräte im Spicker) – nötig, weil Switches Pakete anhand der MAC-Adresse weiterleiten, nicht anhand der IP.</p>
+    </section>
+
+    <section id="websocket">
+      <h2>WebSocket</h2>
+      <p>Ein <strong>WebSocket</strong> baut – anders als klassisches HTTP mit jeweils neuer kurzer Verbindung pro Anfrage – EINE dauerhafte Verbindung auf, über die Browser UND Server jederzeit in BEIDE Richtungen Nachrichten schicken können. Praktisch für Echtzeit-Anwendungen wie Chats oder Live-Updates, bei denen der Server auch von sich aus etwas mitteilen muss.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>SFTP hat trotz des Namens NICHTS mit FTPS (FTP über TLS) zu tun – zwei unterschiedliche Wege, Dateiübertragung abzusichern.</li>
+        <li>Ein blockiertes ICMP (z. B. per Firewall) lässt ein Gerät für <code>ping</code> „unerreichbar“ wirken, obwohl andere Dienste (z. B. eine Webseite darauf) einwandfrei funktionieren.</li>
+        <li>WebSocket startet technisch als normale HTTP-Anfrage, die dann auf eine dauerhafte Verbindung „hochgestuft“ wird (<em>Upgrade</em>) – kein komplett eigenständiges, unabhängiges Protokoll von Grund auf.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-http.html">IT: HTTP</a>
+        <a class="chip" href="it-verschluesselung.html">IT: Verschlüsselung</a>
+        <a class="chip" href="it-netzwerk-geraete.html">IT: Netzwerk-Geräte</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

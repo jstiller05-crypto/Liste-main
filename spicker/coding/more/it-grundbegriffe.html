@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Grundbegriffe – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">IT · Grundbegriffe</p>
+    <h1>IT-Grundbegriffe</h1>
+    <p class="page-lead">Die Wörter, die in jeder IT-Erklärung vorausgesetzt werden – von „Computer“ bis „Algorithmus“ – kurz und sauber erklärt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <!-- Kurzreferenz zuerst, wie in Abschnitt 1 der Aufgabe gefordert:
+           erst schnell nachschlagen können, DANACH die ausführliche Erklärung
+           weiter unten. Die erste Spalte springt per #id zum Abschnitt. -->
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#informatik">Informatik / IT</a></td><td>Wissenschaft und Praxis der Datenverarbeitung</td></tr>
+          <tr><td><a href="#computer">Computer</a></td><td>Gerät, das Daten nach einem Programm verarbeitet</td></tr>
+          <tr><td><a href="#eva-prinzip">EVA-Prinzip</a></td><td>Eingabe → Verarbeitung → Ausgabe, mit Speicher</td></tr>
+          <tr><td><a href="#hardware">Hardware</a></td><td>Die anfassbaren Teile eines Computers</td></tr>
+          <tr><td><a href="#software">Software</a></td><td>Programme und Daten, die die Hardware ausführt</td></tr>
+          <tr><td><a href="#programm">Programm / App</a></td><td>Eine feste Folge von Anweisungen</td></tr>
+          <tr><td><a href="#firmware">Firmware</a></td><td>Software, fest in der Hardware eingebaut</td></tr>
+          <tr><td><a href="#daten-information">Daten vs. Information</a></td><td>roh vs. eingeordnet und verständlich</td></tr>
+          <tr><td><a href="#algorithmus">Algorithmus</a></td><td>Eindeutige Schritt-für-Schritt-Anleitung</td></tr>
+          <tr><td><a href="#cloud">Cloud</a></td><td>Rechenleistung und Speicher übers Internet gemietet</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="informatik">
+      <h2>Informatik / IT</h2>
+      <p><strong>Informatik</strong> (englisch <em>computer science</em>) ist die Wissenschaft, die sich mit der automatischen Verarbeitung von Daten beschäftigt – wie man Probleme so formuliert, dass ein Computer sie lösen kann. <strong>IT</strong> (<em>Information Technology</em>, „Informationstechnik“) meint eher die PRAKTISCHE Seite: Geräte, Netzwerke und Software im Einsatz, z. B. in einer Firma.</p>
+      <div class="note">Die beiden Begriffe werden im Alltag oft munter vermischt – auch dieser Spicker nennt den ganzen Bereich hier locker „IT“.</div>
+    </section>
+
+    <section id="computer">
+      <h2>Computer</h2>
+      <p>Ein <strong>Computer</strong> ist ein Gerät, das Daten nach einem <strong>Programm</strong> automatisch verarbeitet: Eingaben entgegennehmen, nach festen Regeln umformen, Ergebnisse ausgeben. Das gilt für einen Laptop genauso wie für ein Smartphone, einen Server im Keller eines Rechenzentrums oder den winzigen Chip in einer Waschmaschine.</p>
+    </section>
+
+    <section id="eva-prinzip">
+      <h2>EVA-Prinzip</h2>
+      <p>Fast jede Datenverarbeitung lässt sich auf drei Schritte zurückführen: <strong>E</strong>ingabe, <strong>V</strong>erarbeitung, <strong>A</strong>usgabe. Dazu kommt der <strong>Speicher</strong>, aus dem die Verarbeitung lesen und in den sie schreiben kann.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="EVA-Prinzip: Eingabe fließt in die Verarbeitung, die Verarbeitung tauscht Daten mit dem Speicher aus und erzeugt die Ausgabe" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="15.0" y="40.0" width="150.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="90.0" y="75.0" class="dg-label" text-anchor="middle">Eingabe</text>
+        <text x="90.0" y="100.0" class="dg-small" text-anchor="middle">Tastatur, Maus,</text>
+        <text x="90.0" y="115.0" class="dg-small" text-anchor="middle">Sensor, Datei</text>
+        <line x1="165.0" y1="90.0" x2="240.0" y2="90.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="202.5" y="78.0" class="dg-small" text-anchor="middle">Daten</text>
+        <rect x="245.0" y="40.0" width="150.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="320.0" y="75.0" class="dg-label" text-anchor="middle">Verarbeitung</text>
+        <text x="320.0" y="100.0" class="dg-small" text-anchor="middle">CPU führt das</text>
+        <text x="320.0" y="115.0" class="dg-small" text-anchor="middle">Programm aus</text>
+        <line x1="395.0" y1="90.0" x2="470.0" y2="90.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="432.5" y="78.0" class="dg-small" text-anchor="middle">Ergebnis</text>
+        <rect x="475.0" y="40.0" width="150.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="550.0" y="75.0" class="dg-label" text-anchor="middle">Ausgabe</text>
+        <text x="550.0" y="100.0" class="dg-small" text-anchor="middle">Bildschirm,</text>
+        <text x="550.0" y="115.0" class="dg-small" text-anchor="middle">Lautsprecher, Drucker</text>
+        <line x1="320.0" y1="145.0" x2="320.0" y2="210.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <text x="332.0" y="182.0" class="dg-small" text-anchor="start">lesen &amp; schreiben</text>
+        <rect x="245.0" y="215.0" width="150.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="320.0" y="248.0" class="dg-label" text-anchor="middle">Speicher</text>
+        <text x="320.0" y="270.0" class="dg-small" text-anchor="middle">RAM, SSD/HDD</text>
+        </svg>
+        <figcaption>Eingabe → Verarbeitung → Ausgabe. Der Speicher steht dabei und liest/schreibt während der Verarbeitung.</figcaption>
+      </figure>
+    </section>
+
+    <section id="hardware">
+      <h2>Hardware</h2>
+      <p>Die <strong>Hardware</strong> sind alle anfassbaren Teile eines Computers: Prozessor, Arbeitsspeicher, Festplatte, Bildschirm, Tastatur, Kabel. Ohne Software kann Hardware allein nichts Sinnvolles tun – und umgekehrt braucht Software immer Hardware, auf der sie läuft.</p>
+    </section>
+
+    <section id="software">
+      <h2>Software</h2>
+      <p><strong>Software</strong> ist alles, was auf der Hardware läuft, aber selbst nicht anfassbar ist: Betriebssysteme, Programme, Apps und auch die Daten, mit denen sie arbeiten. „Software installieren“ heißt: Dateien auf die Festplatte kopieren, nicht neue Hardware einbauen.</p>
+    </section>
+
+    <section id="programm">
+      <h2>Programm / App</h2>
+      <p>Ein <strong>Programm</strong> ist eine feste Folge von Anweisungen, die der Computer Schritt für Schritt ausführt. <strong>App</strong> (<em>Application</em>, „Anwendung“) ist einfach ein moderneres Wort dafür – meist für Programme auf Smartphones oder im Browser, inhaltlich aber dasselbe.</p>
+    </section>
+
+    <section id="firmware">
+      <h2>Firmware</h2>
+      <p><strong>Firmware</strong> ist Software, die fest in ein Hardware-Gerät eingebaut ist und meist nicht ohne Weiteres sichtbar oder austauschbar ist – zum Beispiel das BIOS/UEFI eines Mainboards oder die Steuerungssoftware in einem Router oder einer Waschmaschine. Sie startet das Gerät und bringt ihm die grundlegendsten Handgriffe bei, noch bevor ein „richtiges“ Betriebssystem läuft.</p>
+    </section>
+
+    <section id="daten-information">
+      <h2>Daten vs. Information</h2>
+      <p><strong>Daten</strong> sind rohe, noch nicht eingeordnete Werte – zum Beispiel die Zahl <code>21</code>. Erst wenn sie einen Zusammenhang bekommen, werden sie zu <strong>Information</strong>: „Die Kundin ist 21 Jahre alt.“ Derselbe Datensatz kann unterschiedliche Information liefern, je nachdem, wie man ihn liest.</p>
+    </section>
+
+    <section id="algorithmus">
+      <h2>Algorithmus</h2>
+      <p>Ein <strong>Algorithmus</strong> ist eine eindeutige, endliche Schritt-für-Schritt-Anleitung, um ein Problem zu lösen – unabhängig von einer bestimmten Programmiersprache. Ein Kochrezept ist im Grunde auch ein Algorithmus:</p>
+      <pre><code>1. Wasser in einen Topf füllen
+2. Topf auf den Herd stellen und erhitzen
+3. SOLANGE das Wasser nicht kocht: warten
+4. Nudeln hineingeben
+5. 9 Minuten warten
+6. Wasser abgießen</code></pre>
+      <p>In Pseudocode (einer vereinfachten, sprachunabhängigen Schreibweise) sieht ein kleiner Algorithmus – die größte Zahl aus drei Zahlen finden – so aus:</p>
+      <pre><code>FUNKTION maximum(a, b, c)
+  größtes ← a
+  WENN b > größtes DANN größtes ← b
+  WENN c > größtes DANN größtes ← c
+  RÜCKGABE größtes</code></pre>
+    </section>
+
+    <section id="cloud">
+      <h2>Cloud</h2>
+      <p>„Die <strong>Cloud</strong>“ ist kein eigener, geheimnisvoller Ort – sondern einfach Computer (meist in riesigen Rechenzentren), deren Rechenleistung und Speicher man über das Internet mietet, statt sie selbst zu kaufen und zu betreiben. Wer z. B. Fotos „in der Cloud“ speichert, legt sie auf einer fremden Festplatte in einem Rechenzentrum ab.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Mein Computer ist die Software kaputt“ ist ein Widerspruch in sich – gemeint ist fast immer ein <em>Software</em>-Problem, die Hardware läuft ja noch.</li>
+        <li>Nicht jedes Programm braucht einen komplizierten Algorithmus – aber jeder Algorithmus lässt sich als Programm umsetzen.</li>
+        <li>„In der Cloud“ heißt nicht „nirgendwo“ – die Daten liegen ganz konkret auf Festplatten in einem Rechenzentrum, nur eben nicht bei einem selbst zu Hause.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-dateien.html">IT: Dateien &amp; Pfade</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

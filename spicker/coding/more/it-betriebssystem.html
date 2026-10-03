@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Betriebssystem – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">System · Betriebssystem</p>
+    <h1>Das Betriebssystem</h1>
+    <p class="page-lead">Die Software-Schicht zwischen roher Hardware und den Programmen, die wir täglich benutzen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#betriebssystem">Betriebssystem</a></td><td>Verwaltet Hardware, bietet Programmen eine Schnittstelle</td></tr>
+          <tr><td><a href="#kernel">Kernel</a></td><td>Der Kern des Betriebssystems</td></tr>
+          <tr><td><a href="#treiber">Treiber</a></td><td>Vermittler zu einer konkreten Hardware-Komponente</td></tr>
+          <tr><td><a href="#windows-linux-macos">Windows / Linux / macOS</a></td><td>Die drei großen Desktop-Betriebssysteme</td></tr>
+          <tr><td><a href="#linux-distribution">Linux-Distribution</a></td><td>Kernel + Programme + Paketverwaltung fertig gebündelt</td></tr>
+          <tr><td><a href="#bootvorgang">Bootvorgang</a></td><td>UEFI → Bootloader → Kernel → Login</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="betriebssystem">
+      <h2>Betriebssystem</h2>
+      <p>Ein <strong>Betriebssystem</strong> (<em>Operating System</em>, OS) sitzt zwischen der rohen Hardware und den Anwendungsprogrammen. Es verwaltet geteilte Ressourcen (Prozessorzeit, Speicher, Dateien, Geräte) und gibt Programmen eine einheitliche Schnittstelle – ohne OS müsste jedes Programm selbst wissen, wie genau die Festplatte oder der Bildschirm im jeweiligen Rechner angesprochen wird.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Schichten eines Computers von Hardware ganz unten bis Nutzer ganz oben: Hardware, Kernel, Treiber, Programme, Nutzer" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="24.0" class="dg-small" text-anchor="middle">näher am Menschen</text>
+        <rect x="70.0" y="35.0" width="500.0" height="45.0" class="dg-box"/>
+        <text x="320.0" y="63.0" class="dg-label" text-anchor="middle">Nutzer</text>
+        <rect x="70.0" y="80.0" width="500.0" height="45.0" class="dg-box"/>
+        <text x="320.0" y="108.0" class="dg-label" text-anchor="middle">Programme</text>
+        <rect x="70.0" y="125.0" width="500.0" height="45.0" class="dg-box"/>
+        <text x="320.0" y="153.0" class="dg-label" text-anchor="middle">Treiber</text>
+        <rect x="70.0" y="170.0" width="500.0" height="45.0" class="dg-box"/>
+        <text x="320.0" y="198.0" class="dg-label" text-anchor="middle">Kernel</text>
+        <rect x="70.0" y="215.0" width="500.0" height="45.0" class="dg-box"/>
+        <text x="320.0" y="243.0" class="dg-label" text-anchor="middle">Hardware</text>
+        <text x="320.0" y="276.0" class="dg-small" text-anchor="middle">näher an der Hardware</text>
+        </svg>
+        <figcaption>Jede Schicht nutzt nur die direkt darunterliegende – Programme sprechen normalerweise nicht die Hardware selbst an, sondern den Kernel.</figcaption>
+      </figure>
+    </section>
+
+    <section id="kernel">
+      <h2>Kernel</h2>
+      <p>Der <strong>Kernel</strong> ist der Kern des Betriebssystems: Er läuft mit den höchsten Rechten direkt auf der Hardware und verwaltet zentral Prozesse, Speicher und den Zugriff auf Geräte. Alles andere im Betriebssystem baut auf dem Kernel auf.</p>
+    </section>
+
+    <section id="treiber">
+      <h2>Treiber</h2>
+      <p>Ein <strong>Treiber</strong> (<em>Driver</em>) ist kleine Software, die dem Kernel erklärt, wie genau eine KONKRETE Hardware-Komponente anzusprechen ist – etwa eine bestimmte Grafikkarte oder ein bestimmter Drucker. Der Kernel selbst kennt nur allgemeine Konzepte wie „eine Grafikkarte“; die Feinheiten eines bestimmten Modells übernimmt der passende Treiber.</p>
+    </section>
+
+    <section id="windows-linux-macos">
+      <h2>Windows / Linux / macOS</h2>
+      <table class="info-table">
+        <thead><tr><th>System</th><th>Hersteller</th><th>Typisch verbreitet auf</th></tr></thead>
+        <tbody>
+          <tr><td>Windows</td><td>Microsoft</td><td>Desktop-PCs, Gaming, Büro</td></tr>
+          <tr><td>macOS</td><td>Apple</td><td>nur auf Apple-eigener Hardware (Mac)</td></tr>
+          <tr><td>Linux</td><td>Open Source, viele Beteiligte</td><td>Server, Cloud, eingebettete Geräte, teils Desktop</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="linux-distribution">
+      <h2>Linux-Distribution</h2>
+      <p>„Linux“ ist genau genommen nur der <strong>Kernel</strong>. Eine <strong>Linux-Distribution</strong> (Ubuntu, Debian, Fedora, Arch …) bündelt diesen Kernel zusammen mit Systemprogrammen, einer Paketverwaltung und Standardeinstellungen zu einem fertig nutzbaren Betriebssystem. Deshalb sehen und bedienen sich verschiedene Distributionen oft recht unterschiedlich, obwohl „derselbe“ Linux-Kernel darunter läuft.</p>
+    </section>
+
+    <section id="bootvorgang">
+      <h2>Bootvorgang</h2>
+      <p>Beim Einschalten durchläuft der Computer eine feste Reihenfolge, bis er einsatzbereit ist:</p>
+      <pre><code>1. UEFI/BIOS   – Firmware startet, prüft und initialisiert die Hardware
+2. Bootloader  – kleines Programm, lädt den eigentlichen Kernel von der Platte
+3. Kernel      – startet, übernimmt die Kontrolle, initialisiert Treiber &amp; Dienste
+4. Login       – Benutzeranmeldung, danach ist das System einsatzbereit</code></pre>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein Programm stürzt meist ab, OHNE dass das ganze System mit runterreißt – weil der Kernel jeden Prozess voneinander isoliert.</li>
+        <li>„Mein Linux“ gibt es nicht als EINE feste Sache – je nach Distribution unterscheiden sich Paketverwaltung, Standardprogramme und Konfigurationsorte.</li>
+        <li>Ein fehlender oder veralteter Treiber ist eine häufige Ursache für Probleme mit neuer Hardware, selbst wenn das Betriebssystem an sich einwandfrei läuft.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-komponenten.html">IT: Komponenten &amp; Schnittstellen</a>
+        <a class="chip" href="it-prozesse.html">IT: Prozesse</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

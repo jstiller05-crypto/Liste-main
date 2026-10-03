@@ -69,7 +69,16 @@ window.SpickerData["coding"] = {
         { label: "C#", value: "c#" },
         { label: "Swift", value: "swift" },
         { label: "Terminal", value: "terminal" },
-        { label: "TypeScript", value: "typescript" }
+        { label: "TypeScript", value: "typescript" },
+        // ----- ab hier: Bereiche (IT-Grundlagen) statt Sprachen, in Lernreihenfolge -----
+        { label: "IT", value: "it" },
+        { label: "Daten", value: "daten" },
+        { label: "Hardware", value: "hardware" },
+        { label: "System", value: "system" },
+        { label: "Netzwerk", value: "netzwerk" },
+        { label: "Protokolle", value: "protokolle" },
+        { label: "Sicherheit", value: "sicherheit" },
+        { label: "Programmieren", value: "programmieren" }
         ]
       },
       {
@@ -125,22 +134,34 @@ window.SpickerData["coding"] = {
                         Relativ zu coding/index.html, also "more/xyz.html".
        "class"        → Array mit Schlagwörtern für den Kategorie-Filter UND die Suche
        "Stufe"        → OPTIONAL, nur für die Sortierung "Empfohlen" (value
-                        "level", Lernreihenfolge). Zahl in 10er-Schritten,
-                        damit später etwas dazwischen passt. Einträge OHNE
-                        "Stufe" landen bei "Empfohlen" ganz hinten (A–Z) –
-                        es muss also NICHT jeder Eintrag eine Stufe haben.
-                        Bisher vergebene Stufen:
-                          0  Spicker selbst (Anleitung, später Übersicht)
-                          10 IT-Grundbegriffe        20 Daten & Zahlensysteme
-                          30 Hardware                40 Betriebssystem
-                          50 Netzwerk                60 Protokolle
-                          70 Programmier-Grundlagen  80 Sprachen (HTML,
-                             CSS, JavaScript, C++, Node.js, SQL, PHP, Lua,
-                             C, C#, Swift, TypeScript)
+                        "level", Lernreihenfolge). Einträge OHNE "Stufe"
+                        landen bei "Empfohlen" ganz hinten (A–Z) – es muss
+                        also NICHT jeder Eintrag eine Stufe haben.
+
+                        BLOCK-STUFEN (10er-Schritte, Lernreihenfolge):
+                          0  Spicker selbst          10 IT-Grundbegriffe
+                          20 Daten & Zahlensysteme   30 Hardware
+                          40 Betriebssystem          50 Netzwerk
+                          60 Protokolle              70 IT-Sicherheit
+                          80 Programmier-Grundlagen  90 Sprachen
                           ohne Stufe = alles andere
-                        Stand jetzt sind nur Stufe 0 (Anleitung) und
-                        Stufe 80 (die zwölf Sprach-Überblicke oben) vergeben;
-                        10–70 kommen später als eigene Schritte dazu.
+
+                        UNTERSTUFEN-REGEL: Jeder Block hat eine 10er-Stufe
+                        (siehe oben). Jede eigene Detailseite INNERHALB
+                        eines Blocks bekommt eine eigene Unterstufe in
+                        Lernreihenfolge – Block 20 (Daten & Zahlensysteme):
+                        Seite 1 → Stufe 20, Seite 2 → Stufe 21, Seite 3 →
+                        Stufe 22 usw. Alle Einträge EINER Seite tragen
+                        dieselbe Stufe und stehen bei "Empfohlen" darum
+                        zusammen (innerhalb der Gruppe dann A–Z). Maximal
+                        9 Detailseiten pro Block (Unterstufen 0–9 Abstand
+                        bis zum nächsten Block).
+
+                        Stand jetzt vergeben: Stufe 0 (Anleitung) und
+                        Stufe 90 (die zwölf Sprach-Überblicke, siehe unten
+                        bei HTML/CSS/JavaScript/C++ usw.). Die Blöcke
+                        10–80 (IT-Grundlagen) kommen als eigene Schritte
+                        dazu.
      Neuer Eintrag: einfach einen { ... }-Block kopieren und anpassen.
      Die Reihenfolge hier ist egal – list.js sortiert beim Anzeigen.
      Hinweis: mathe/entries.js nutzt bereits "Begriff" als Spalte 1 –
@@ -978,7 +999,7 @@ window.SpickerData["coding"] = {
       "Sprache": "html",
       "Link": "more/html-sprache.html",
       "class": ["html","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "CSS",
@@ -986,7 +1007,7 @@ window.SpickerData["coding"] = {
       "Sprache": "CSS",
       "Link": "more/css-sprache.html",
       "class": ["css","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "JavaScript",
@@ -994,7 +1015,7 @@ window.SpickerData["coding"] = {
       "Sprache": "JS",
       "Link": "more/javascript-sprache.html",
       "class": ["javascript","js","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "C++",
@@ -1002,7 +1023,7 @@ window.SpickerData["coding"] = {
       "Sprache": "C++",
       "Link": "more/cpp-sprache.html",
       "class": ["cpp","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "Typselektor",
@@ -2093,7 +2114,7 @@ window.SpickerData["coding"] = {
       "Sprache": "Node.js",
       "Link": "more/node-einfuehrung.html",
       "class": ["node.js","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "node datei.js",
@@ -2200,7 +2221,7 @@ window.SpickerData["coding"] = {
       "Sprache": "SQL",
       "Link": "more/sql-einfuehrung.html",
       "class": ["sql","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "CREATE TABLE",
@@ -2321,7 +2342,7 @@ window.SpickerData["coding"] = {
       "Sprache": "PHP",
       "Link": "more/php-einfuehrung.html",
       "class": ["php","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "<?php ?> / echo",
@@ -2478,7 +2499,7 @@ window.SpickerData["coding"] = {
       "Sprache": "Lua",
       "Link": "more/lua-einfuehrung.html",
       "class": ["lua","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "local",
@@ -2585,7 +2606,7 @@ window.SpickerData["coding"] = {
       "Sprache": "C",
       "Link": "more/c-einfuehrung.html",
       "class": ["c","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "printf",
@@ -2657,7 +2678,7 @@ window.SpickerData["coding"] = {
       "Sprache": "C#",
       "Link": "more/csharp-einfuehrung.html",
       "class": ["c#","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "dotnet new / run",
@@ -2764,7 +2785,7 @@ window.SpickerData["coding"] = {
       "Sprache": "Swift",
       "Link": "more/swift-einfuehrung.html",
       "class": ["swift","sprache","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "let / var (Swift)",
@@ -3124,7 +3145,7 @@ window.SpickerData["coding"] = {
       "Sprache": "TypeScript",
       "Link": "more/ts-einfuehrung.html",
       "class": ["typescript","grundlagen"],
-      "Stufe": 80
+      "Stufe": 90
     },
     {
       "Begriff": "tsc",
@@ -3223,6 +3244,1613 @@ window.SpickerData["coding"] = {
       "Sprache": "TypeScript",
       "Link": "more/ts-projekt.html",
       "class": ["typescript","werkzeuge"]
+    },
+
+    // ===== IT-GRUNDLAGEN: 10 IT-Grundbegriffe (more/it-grundbegriffe.html) =====
+    // Unterstufe 10 = einzige Detailseite dieses Blocks (siehe Unterstufen-Regel oben).
+    {
+      "Begriff": "Informatik / IT",
+      "Beschreibung": "Wissenschaft und Praxis der Datenverarbeitung",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#informatik",
+      "class": ["grundlagen","it","computer science","informationstechnik"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Computer",
+      "Beschreibung": "Gerät, das Daten nach einem Programm verarbeitet",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#computer",
+      "class": ["grundlagen","it","rechner","pc"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "EVA-Prinzip",
+      "Beschreibung": "Eingabe → Verarbeitung → Ausgabe, mit Speicher",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#eva-prinzip",
+      "class": ["grundlagen","it","eingabe","verarbeitung","ausgabe","input","output"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Hardware",
+      "Beschreibung": "Die anfassbaren Teile eines Computers",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#hardware",
+      "class": ["grundlagen","it","geräte","device"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Software",
+      "Beschreibung": "Programme und Daten, die die Hardware ausführt",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#software",
+      "class": ["grundlagen","it","programme"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Programm / App",
+      "Beschreibung": "Eine feste Folge von Anweisungen für den Computer",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#programm",
+      "class": ["grundlagen","it","app","anwendung","application"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Firmware",
+      "Beschreibung": "Fest in Hardware eingebaute Software (z. B. BIOS)",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#firmware",
+      "class": ["grundlagen","it","eingebettet","embedded"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Daten vs. Information",
+      "Beschreibung": "Daten sind roh, Information ist eingeordnet",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#daten-information",
+      "class": ["grundlagen","it","data","information"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Algorithmus",
+      "Beschreibung": "Eindeutige Schritt-für-Schritt-Anleitung zum Lösen",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#algorithmus",
+      "class": ["grundlagen","it","algorithm","pseudocode"],
+      "Stufe": 10
+    },
+    {
+      "Begriff": "Cloud",
+      "Beschreibung": "Rechenleistung und Speicher über das Internet gemietet",
+      "Sprache": "IT",
+      "Link": "more/it-grundbegriffe.html#cloud",
+      "class": ["grundlagen","it","cloud computing"],
+      "Stufe": 10
+    },
+
+    // ===== IT-GRUNDLAGEN: 11 Dateien & Pfade (more/it-dateien.html) =====
+    // Unterstufe 11 = zweite Detailseite dieses Blocks (siehe Unterstufen-Regel oben).
+    {
+      "Begriff": "Datei",
+      "Beschreibung": "Benannte, gespeicherte Daten auf einem Datenträger",
+      "Sprache": "IT",
+      "Link": "more/it-dateien.html#datei",
+      "class": ["grundlagen","it","file"],
+      "Stufe": 11
+    },
+    {
+      "Begriff": "Dateiendung",
+      "Beschreibung": "Kürzel nach dem Punkt zeigt das Dateiformat",
+      "Sprache": "IT",
+      "Link": "more/it-dateien.html#dateiendung",
+      "class": ["grundlagen","it","extension","dateityp"],
+      "Stufe": 11
+    },
+    {
+      "Begriff": "Ordner / Verzeichnis",
+      "Beschreibung": "Container, der Dateien und weitere Ordner enthält",
+      "Sprache": "IT",
+      "Link": "more/it-dateien.html#ordner",
+      "class": ["grundlagen","it","folder","directory","verzeichnis"],
+      "Stufe": 11
+    },
+    {
+      "Begriff": "Pfad",
+      "Beschreibung": "Adresse einer Datei, absolut oder relativ",
+      "Sprache": "IT",
+      "Link": "more/it-dateien.html#pfad",
+      "class": ["grundlagen","it","path","relativ","absolut"],
+      "Stufe": 11
+    },
+    {
+      "Begriff": "Textdatei vs. Binärdatei",
+      "Beschreibung": "lesbarer Text oder rohe Bytes ohne Kodierung",
+      "Sprache": "IT",
+      "Link": "more/it-dateien.html#textdatei-binaerdatei",
+      "class": ["grundlagen","it","text file","binary file"],
+      "Stufe": 11
+    },
+    {
+      "Begriff": "Dateigröße",
+      "Beschreibung": "Speicherbedarf einer Datei in Byte, KB, MB …",
+      "Sprache": "IT",
+      "Link": "more/it-dateien.html#dateigroesse",
+      "class": ["grundlagen","it","filesize","bytes"],
+      "Stufe": 11
+    },
+
+    // ===== IT-GRUNDLAGEN: 20 Bits & Bytes (more/it-bits-bytes.html) =====
+    // Unterstufe 20 = erste Detailseite des Blocks "Daten & Zahlensysteme".
+    {
+      "Begriff": "Bit",
+      "Beschreibung": "Kleinste Speichereinheit: 0 oder 1",
+      "Sprache": "Daten",
+      "Link": "more/it-bits-bytes.html#bit",
+      "class": ["grundlagen","it","daten","binary digit"],
+      "Stufe": 20
+    },
+    {
+      "Begriff": "Byte",
+      "Beschreibung": "8 Bit, meist kleinste adressierbare Einheit",
+      "Sprache": "Daten",
+      "Link": "more/it-bits-bytes.html#byte",
+      "class": ["grundlagen","it","daten"],
+      "Stufe": 20
+    },
+    {
+      "Begriff": "Nibble",
+      "Beschreibung": "4 Bit, ein halbes Byte, eine Hex-Ziffer",
+      "Sprache": "Daten",
+      "Link": "more/it-bits-bytes.html#nibble",
+      "class": ["grundlagen","it","daten","halbbyte"],
+      "Stufe": 20
+    },
+    {
+      "Begriff": "KB / MB / GB / TB",
+      "Beschreibung": "1000er-Schritte, so geben Hersteller die Größe an",
+      "Sprache": "Daten",
+      "Link": "more/it-bits-bytes.html#dezimal-einheiten",
+      "class": ["grundlagen","it","daten","kilobyte","megabyte","gigabyte","terabyte"],
+      "Stufe": 20
+    },
+    {
+      "Begriff": "KiB / MiB / GiB",
+      "Beschreibung": "1024er-Schritte, so rechnet der Computer intern",
+      "Sprache": "Daten",
+      "Link": "more/it-bits-bytes.html#binaer-einheiten",
+      "class": ["grundlagen","it","daten","kibibyte","mebibyte","gibibyte"],
+      "Stufe": 20
+    },
+    {
+      "Begriff": "Mbit/s vs. MB/s",
+      "Beschreibung": "Internet in Bit, Dateien in Byte – Faktor 8",
+      "Sprache": "Daten",
+      "Link": "more/it-bits-bytes.html#mbit-mb",
+      "class": ["grundlagen","it","daten","bandbreite","geschwindigkeit"],
+      "Stufe": 20
+    },
+
+    // ===== IT-GRUNDLAGEN: 21 Zahlensysteme (more/it-zahlensysteme.html) =====
+    {
+      "Begriff": "Stellenwertsystem",
+      "Beschreibung": "Jede Ziffernposition hat ihr eigenes Gewicht",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#stellenwertsystem",
+      "class": ["grundlagen","it","daten","zahlensystem","place value"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Dezimalsystem",
+      "Beschreibung": "Basis 10, unsere Alltagszahlen",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#dezimalsystem",
+      "class": ["grundlagen","it","daten","decimal","zahlensystem"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Binärsystem (Dualsystem)",
+      "Beschreibung": "Basis 2, nur die Ziffern 0 und 1",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#binaersystem",
+      "class": ["grundlagen","it","daten","binary","dual","zahlensystem"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Hexadezimalsystem",
+      "Beschreibung": "Basis 16, Ziffern 0–9 und A–F",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#hexadezimalsystem",
+      "class": ["grundlagen","it","daten","hex","hexadecimal","zahlensystem"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Oktalsystem",
+      "Beschreibung": "Basis 8, Ziffern 0–7 (historisch, z. B. Unix-Rechte)",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#oktalsystem",
+      "class": ["grundlagen","it","daten","octal","zahlensystem"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Umrechnen (Zahlensysteme)",
+      "Beschreibung": "Dezimal ↔ Binär ↔ Hex, Schritt für Schritt",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#umrechnen",
+      "class": ["grundlagen","it","daten","restwertmethode","nibble"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Präfixe 0b / 0x",
+      "Beschreibung": "So schreibt man Binär-/Hexzahlen im Code",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#praefixe",
+      "class": ["grundlagen","it","daten","c++","javascript"],
+      "Stufe": 21
+    },
+    {
+      "Begriff": "Farbcodes (Hex)",
+      "Beschreibung": "z. B. #ff8800 ist nichts als Hexadezimal",
+      "Sprache": "Daten",
+      "Link": "more/it-zahlensysteme.html#farbcodes",
+      "class": ["grundlagen","it","daten","css","farben","color"],
+      "Stufe": 21
+    },
+
+    // ===== IT-GRUNDLAGEN: 22 Binär rechnen (more/it-binaer-rechnen.html) =====
+    {
+      "Begriff": "Binäre Addition",
+      "Beschreibung": "Wie Dezimal-Addition, Übertrag schon ab 2",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#binaere-addition",
+      "class": ["grundlagen","it","daten","addition"],
+      "Stufe": 22
+    },
+    {
+      "Begriff": "Zweierkomplement",
+      "Beschreibung": "So stellt man negative Zahlen binär dar",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#zweierkomplement",
+      "class": ["grundlagen","it","daten","two's complement","negative zahlen"],
+      "Stufe": 22
+    },
+    {
+      "Begriff": "signed / unsigned",
+      "Beschreibung": "mit oder ohne Vorzeichen-Bit",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#signed-unsigned",
+      "class": ["grundlagen","it","daten","vorzeichen"],
+      "Stufe": 22
+    },
+    {
+      "Begriff": "Überlauf (Overflow)",
+      "Beschreibung": "Ergebnis passt nicht mehr in die Bitbreite",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#overflow",
+      "class": ["grundlagen","it","daten","overflow","c++"],
+      "Stufe": 22
+    },
+    {
+      "Begriff": "Bitoperatoren AND/OR/XOR/NOT",
+      "Beschreibung": "Logik, bitweise auf jedes Bit angewendet",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#bitoperatoren",
+      "class": ["grundlagen","it","daten","and","or","xor","not","bitwise"],
+      "Stufe": 22
+    },
+    {
+      "Begriff": "Bitshift << >>",
+      "Beschreibung": "Bits verschieben: entspricht ×2 bzw. ÷2",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#bitshift",
+      "class": ["grundlagen","it","daten","shift","bitwise"],
+      "Stufe": 22
+    },
+    {
+      "Begriff": "Boolesche Logik & Wahrheitstabelle",
+      "Beschreibung": "Dieselbe Logik, jetzt bitweise angewendet",
+      "Sprache": "Daten",
+      "Link": "more/it-binaer-rechnen.html#boolesche-logik",
+      "class": ["grundlagen","it","daten","boolean","truth table"],
+      "Stufe": 22
+    },
+
+    // ===== IT-GRUNDLAGEN: 23 Zeichenkodierung (more/it-zeichenkodierung.html) =====
+    {
+      "Begriff": "Zeichenkodierung",
+      "Beschreibung": "Abbildung von Zeichen auf Zahlen",
+      "Sprache": "Daten",
+      "Link": "more/it-zeichenkodierung.html#zeichenkodierung",
+      "class": ["grundlagen","it","daten","character encoding"],
+      "Stufe": 23
+    },
+    {
+      "Begriff": "ASCII",
+      "Beschreibung": "7 Bit, 128 Zeichen, nur Englisch/Grundzeichen",
+      "Sprache": "Daten",
+      "Link": "more/it-zeichenkodierung.html#ascii",
+      "class": ["grundlagen","it","daten"],
+      "Stufe": 23
+    },
+    {
+      "Begriff": "Unicode",
+      "Beschreibung": "Ein Standard für (fast) alle Zeichen der Welt",
+      "Sprache": "Daten",
+      "Link": "more/it-zeichenkodierung.html#unicode",
+      "class": ["grundlagen","it","daten"],
+      "Stufe": 23
+    },
+    {
+      "Begriff": "Codepoint",
+      "Beschreibung": "Die Nummer eines Zeichens in Unicode",
+      "Sprache": "Daten",
+      "Link": "more/it-zeichenkodierung.html#codepoint",
+      "class": ["grundlagen","it","daten","code point"],
+      "Stufe": 23
+    },
+    {
+      "Begriff": "UTF-8",
+      "Beschreibung": "1–4 Byte pro Zeichen, ASCII-kompatibel",
+      "Sprache": "Daten",
+      "Link": "more/it-zeichenkodierung.html#utf-8",
+      "class": ["grundlagen","it","daten","unicode transformation format"],
+      "Stufe": 23
+    },
+    {
+      "Begriff": "Umlaut-Salat / Mojibake",
+      "Beschreibung": "Falsche Kodierung beim Lesen angenommen",
+      "Sprache": "Daten",
+      "Link": "more/it-zeichenkodierung.html#mojibake",
+      "class": ["grundlagen","it","daten","encoding fehler"],
+      "Stufe": 23
+    },
+
+    // ===== IT-GRUNDLAGEN: 24 Daten im Speicher (more/it-daten-im-speicher.html) =====
+    {
+      "Begriff": "Ganzzahl-Größen",
+      "Beschreibung": "8/16/32/64 Bit, jeweils fester Wertebereich",
+      "Sprache": "Daten",
+      "Link": "more/it-daten-im-speicher.html#ganzzahl-groessen",
+      "class": ["grundlagen","it","daten","integer","wertebereich"],
+      "Stufe": 24
+    },
+    {
+      "Begriff": "Gleitkommazahl (IEEE 754)",
+      "Beschreibung": "Warum 0.1 + 0.2 nicht genau 0.3 ergibt",
+      "Sprache": "Daten",
+      "Link": "more/it-daten-im-speicher.html#ieee-754",
+      "class": ["grundlagen","it","daten","floating point","float","double"],
+      "Stufe": 24
+    },
+    {
+      "Begriff": "Endianness",
+      "Beschreibung": "Byte-Reihenfolge einer Zahl im Speicher",
+      "Sprache": "Daten",
+      "Link": "more/it-daten-im-speicher.html#endianness",
+      "class": ["grundlagen","it","daten","big endian","little endian"],
+      "Stufe": 24
+    },
+    {
+      "Begriff": "Speicheradresse",
+      "Beschreibung": "Jedes Byte im RAM hat eine eigene Nummer",
+      "Sprache": "Daten",
+      "Link": "more/it-daten-im-speicher.html#speicheradresse",
+      "class": ["grundlagen","it","daten","memory address","zeiger"],
+      "Stufe": 24
+    },
+
+    // ===== IT-GRUNDLAGEN: 30 Hardware-Aufbau (more/it-hardware-aufbau.html) =====
+    // Unterstufe 30 = erste Detailseite des Blocks "Hardware".
+    {
+      "Begriff": "Von-Neumann-Architektur",
+      "Beschreibung": "CPU, Speicher und E/A teilen sich einen Bus",
+      "Sprache": "Hardware",
+      "Link": "more/it-hardware-aufbau.html#von-neumann",
+      "class": ["grundlagen","it","hardware","architektur"],
+      "Stufe": 30
+    },
+    {
+      "Begriff": "Mainboard",
+      "Beschreibung": "Die Platine, die alles miteinander verbindet",
+      "Sprache": "Hardware",
+      "Link": "more/it-hardware-aufbau.html#mainboard",
+      "class": ["grundlagen","it","hardware","hauptplatine","motherboard"],
+      "Stufe": 30
+    },
+    {
+      "Begriff": "Chipsatz",
+      "Beschreibung": "Steuert den Datenverkehr auf dem Mainboard",
+      "Sprache": "Hardware",
+      "Link": "more/it-hardware-aufbau.html#chipsatz",
+      "class": ["grundlagen","it","hardware","chipset"],
+      "Stufe": 30
+    },
+    {
+      "Begriff": "Bus",
+      "Beschreibung": "Gemeinsamer Datenweg zwischen Bauteilen",
+      "Sprache": "Hardware",
+      "Link": "more/it-hardware-aufbau.html#bus",
+      "class": ["grundlagen","it","hardware","pcie","sata"],
+      "Stufe": 30
+    },
+    {
+      "Begriff": "Netzteil",
+      "Beschreibung": "Wandelt Netzstrom in die Spannungen der Bauteile",
+      "Sprache": "Hardware",
+      "Link": "more/it-hardware-aufbau.html#netzteil",
+      "class": ["grundlagen","it","hardware","psu","power supply"],
+      "Stufe": 30
+    },
+    {
+      "Begriff": "Peripherie",
+      "Beschreibung": "Eingabe- und Ausgabegeräte von außen",
+      "Sprache": "Hardware",
+      "Link": "more/it-hardware-aufbau.html#peripherie",
+      "class": ["grundlagen","it","hardware","eingabegerät","ausgabegerät"],
+      "Stufe": 30
+    },
+
+    // ===== IT-GRUNDLAGEN: 31 CPU (more/it-cpu.html) =====
+    {
+      "Begriff": "CPU / Prozessor",
+      "Beschreibung": "Führt Befehle aus: fetch – decode – execute",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#cpu",
+      "class": ["grundlagen","it","hardware","processor"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Kern & Thread",
+      "Beschreibung": "Physischer Rechenkern vs. Ausführungsstrang",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#kern-thread",
+      "class": ["grundlagen","it","hardware","core","thread","multicore"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Taktfrequenz (GHz)",
+      "Beschreibung": "Zyklen pro Sekunde – nicht alles entscheidend",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#taktfrequenz",
+      "class": ["grundlagen","it","hardware","clock speed"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Cache (L1/L2/L3)",
+      "Beschreibung": "Schneller Zwischenspeicher direkt am Kern",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#cache",
+      "class": ["grundlagen","it","hardware","zwischenspeicher"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Register (CPU)",
+      "Beschreibung": "Die schnellsten Speicherzellen überhaupt",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#register",
+      "class": ["grundlagen","it","hardware"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Befehlssatz (x86-64, ARM)",
+      "Beschreibung": "Welche Maschinenbefehle die CPU versteht",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#befehlssatz",
+      "class": ["grundlagen","it","hardware","instruction set architecture"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "32 vs. 64 Bit",
+      "Beschreibung": "Breite von Registern und Adressen",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#32-64-bit",
+      "class": ["grundlagen","it","hardware"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Maschinencode & Assembler",
+      "Beschreibung": "Was die CPU wirklich direkt ausführt",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#maschinencode-assembler",
+      "class": ["grundlagen","it","hardware","machine code"],
+      "Stufe": 31
+    },
+    {
+      "Begriff": "Logikgatter",
+      "Beschreibung": "Aus diesen Bauteilen besteht jede CPU",
+      "Sprache": "Hardware",
+      "Link": "more/it-cpu.html#logikgatter",
+      "class": ["grundlagen","it","hardware","logic gate","and","or","not"],
+      "Stufe": 31
+    },
+
+    // ===== IT-GRUNDLAGEN: 32 Speicher (more/it-speicher.html) =====
+    {
+      "Begriff": "RAM",
+      "Beschreibung": "Schneller Arbeitsspeicher, flüchtig",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#ram",
+      "class": ["grundlagen","it","hardware","arbeitsspeicher"],
+      "Stufe": 32
+    },
+    {
+      "Begriff": "ROM",
+      "Beschreibung": "Nicht-flüchtiger, kaum beschreibbarer Speicher",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#rom",
+      "class": ["grundlagen","it","hardware","read-only memory"],
+      "Stufe": 32
+    },
+    {
+      "Begriff": "Speicherhierarchie",
+      "Beschreibung": "Näher an der CPU = schneller, kleiner, teurer",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#speicherhierarchie",
+      "class": ["grundlagen","it","hardware","memory hierarchy"],
+      "Stufe": 32
+    },
+    {
+      "Begriff": "SSD",
+      "Beschreibung": "Flash-Speicher ohne bewegliche Teile",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#ssd",
+      "class": ["grundlagen","it","hardware","solid state drive"],
+      "Stufe": 32
+    },
+    {
+      "Begriff": "NVMe",
+      "Beschreibung": "Schnelle SSD-Anbindung direkt über PCIe",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#nvme",
+      "class": ["grundlagen","it","hardware","ssd"],
+      "Stufe": 32
+    },
+    {
+      "Begriff": "HDD",
+      "Beschreibung": "Festplatte mit rotierenden Magnetscheiben",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#hdd",
+      "class": ["grundlagen","it","hardware","hard disk drive","festplatte"],
+      "Stufe": 32
+    },
+    {
+      "Begriff": "flüchtig vs. nicht-flüchtig",
+      "Beschreibung": "Daten weg oder erhalten ohne Strom?",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#fluechtig",
+      "class": ["grundlagen","it","hardware","volatile","non-volatile"],
+      "Stufe": 32
+    },
+
+    // ===== IT-GRUNDLAGEN: 33 Komponenten & Schnittstellen (more/it-komponenten.html) =====
+    {
+      "Begriff": "GPU / Grafikkarte",
+      "Beschreibung": "Spezialisiert auf massiv parallele Berechnungen",
+      "Sprache": "Hardware",
+      "Link": "more/it-komponenten.html#gpu",
+      "class": ["grundlagen","it","hardware","graphics card"],
+      "Stufe": 33
+    },
+    {
+      "Begriff": "BIOS / UEFI",
+      "Beschreibung": "Startet die Hardware vor dem Betriebssystem",
+      "Sprache": "Hardware",
+      "Link": "more/it-komponenten.html#bios-uefi",
+      "class": ["grundlagen","it","hardware","firmware"],
+      "Stufe": 33
+    },
+    {
+      "Begriff": "Schnittstellen",
+      "Beschreibung": "USB, HDMI, PCIe, SATA, M.2 im Überblick",
+      "Sprache": "Hardware",
+      "Link": "more/it-komponenten.html#schnittstellen",
+      "class": ["grundlagen","it","hardware","usb","hdmi","displayport","interface"],
+      "Stufe": 33
+    },
+
+    // ===== IT-GRUNDLAGEN: 40 Betriebssystem (more/it-betriebssystem.html) =====
+    // Unterstufe 40 = erste Detailseite des Blocks "Betriebssystem".
+    {
+      "Begriff": "Betriebssystem",
+      "Beschreibung": "Verwaltet Hardware, bietet Programmen eine Schnittstelle",
+      "Sprache": "System",
+      "Link": "more/it-betriebssystem.html#betriebssystem",
+      "class": ["grundlagen","it","system","operating system","os"],
+      "Stufe": 40
+    },
+    {
+      "Begriff": "Kernel",
+      "Beschreibung": "Der Kern des Betriebssystems",
+      "Sprache": "System",
+      "Link": "more/it-betriebssystem.html#kernel",
+      "class": ["grundlagen","it","system"],
+      "Stufe": 40
+    },
+    {
+      "Begriff": "Treiber",
+      "Beschreibung": "Vermittler zu einer konkreten Hardware-Komponente",
+      "Sprache": "System",
+      "Link": "more/it-betriebssystem.html#treiber",
+      "class": ["grundlagen","it","system","driver"],
+      "Stufe": 40
+    },
+    {
+      "Begriff": "Windows / Linux / macOS",
+      "Beschreibung": "Die drei großen Desktop-Betriebssysteme",
+      "Sprache": "System",
+      "Link": "more/it-betriebssystem.html#windows-linux-macos",
+      "class": ["grundlagen","it","system"],
+      "Stufe": 40
+    },
+    {
+      "Begriff": "Linux-Distribution",
+      "Beschreibung": "Kernel + Programme + Paketverwaltung gebündelt",
+      "Sprache": "System",
+      "Link": "more/it-betriebssystem.html#linux-distribution",
+      "class": ["grundlagen","it","system","distro","ubuntu","debian"],
+      "Stufe": 40
+    },
+    {
+      "Begriff": "Bootvorgang",
+      "Beschreibung": "UEFI → Bootloader → Kernel → Login",
+      "Sprache": "System",
+      "Link": "more/it-betriebssystem.html#bootvorgang",
+      "class": ["grundlagen","it","system","booting","startvorgang"],
+      "Stufe": 40
+    },
+
+    // ===== IT-GRUNDLAGEN: 41 Prozesse (more/it-prozesse.html) =====
+    {
+      "Begriff": "Prozess (vs. Programm)",
+      "Beschreibung": "Die LAUFENDE Instanz eines Programms",
+      "Sprache": "System",
+      "Link": "more/it-prozesse.html#prozess",
+      "class": ["grundlagen","it","system","process"],
+      "Stufe": 41
+    },
+    {
+      "Begriff": "Thread (OS)",
+      "Beschreibung": "Ausführungsstrang innerhalb eines Prozesses",
+      "Sprache": "System",
+      "Link": "more/it-prozesse.html#thread",
+      "class": ["grundlagen","it","system"],
+      "Stufe": 41
+    },
+    {
+      "Begriff": "Multitasking & Scheduler",
+      "Beschreibung": "Abwechselnd kurze Zeitscheiben pro Prozess",
+      "Sprache": "System",
+      "Link": "more/it-prozesse.html#multitasking-scheduler",
+      "class": ["grundlagen","it","system","zeitscheibe"],
+      "Stufe": 41
+    },
+    {
+      "Begriff": "PID",
+      "Beschreibung": "Eindeutige Nummer eines laufenden Prozesses",
+      "Sprache": "System",
+      "Link": "more/it-prozesse.html#pid",
+      "class": ["grundlagen","it","system","process id"],
+      "Stufe": 41
+    },
+    {
+      "Begriff": "Dienst / Daemon",
+      "Beschreibung": "Läuft dauerhaft im Hintergrund, ohne eigene UI",
+      "Sprache": "System",
+      "Link": "more/it-prozesse.html#dienst-daemon",
+      "class": ["grundlagen","it","system","service"],
+      "Stufe": 41
+    },
+    {
+      "Begriff": "Task-Manager / top / htop",
+      "Beschreibung": "Laufende Prozesse ansehen und verwalten",
+      "Sprache": "System",
+      "Link": "more/it-prozesse.html#task-manager",
+      "class": ["grundlagen","it","system","taskmanager"],
+      "Stufe": 41
+    },
+
+    // ===== IT-GRUNDLAGEN: 42 Dateisystem (more/it-dateisystem.html) =====
+    {
+      "Begriff": "Dateisystem",
+      "Beschreibung": "NTFS, ext4, FAT32, exFAT …",
+      "Sprache": "System",
+      "Link": "more/it-dateisystem.html#dateisystem",
+      "class": ["grundlagen","it","system","filesystem","ntfs","ext4"],
+      "Stufe": 42
+    },
+    {
+      "Begriff": "Partition",
+      "Beschreibung": "Abgegrenzter Bereich einer Festplatte/SSD",
+      "Sprache": "System",
+      "Link": "more/it-dateisystem.html#partition",
+      "class": ["grundlagen","it","system"],
+      "Stufe": 42
+    },
+    {
+      "Begriff": "Verzeichnisbaum",
+      "Beschreibung": "C:\\ (mehrere Wurzeln) vs. / (eine Wurzel)",
+      "Sprache": "System",
+      "Link": "more/it-dateisystem.html#verzeichnisbaum",
+      "class": ["grundlagen","it","system","directory tree"],
+      "Stufe": 42
+    },
+    {
+      "Begriff": "Benutzer & Admin / root",
+      "Beschreibung": "Normale Rechte vs. erweiterte Systemrechte",
+      "Sprache": "System",
+      "Link": "more/it-dateisystem.html#benutzer-admin-root",
+      "class": ["grundlagen","it","system","administrator"],
+      "Stufe": 42
+    },
+    {
+      "Begriff": "Dateirechte",
+      "Beschreibung": "rwx für Eigentümer, Gruppe, Andere",
+      "Sprache": "System",
+      "Link": "more/it-dateisystem.html#dateirechte",
+      "class": ["grundlagen","it","system","chmod","permissions"],
+      "Stufe": 42
+    },
+
+    // ===== IT-GRUNDLAGEN: 43 Virtualisierung (more/it-virtualisierung.html) =====
+    {
+      "Begriff": "Virtuelle Maschine",
+      "Beschreibung": "Simuliert einen kompletten eigenen Computer",
+      "Sprache": "System",
+      "Link": "more/it-virtualisierung.html#virtuelle-maschine",
+      "class": ["grundlagen","it","system","vm","virtual machine"],
+      "Stufe": 43
+    },
+    {
+      "Begriff": "Container / Docker",
+      "Beschreibung": "Leichtgewichtig, teilt sich den Host-Kernel",
+      "Sprache": "System",
+      "Link": "more/it-virtualisierung.html#container-docker",
+      "class": ["grundlagen","it","system","docker"],
+      "Stufe": 43
+    },
+    {
+      "Begriff": "WSL",
+      "Beschreibung": "Echtes Linux direkt unter Windows",
+      "Sprache": "System",
+      "Link": "more/it-virtualisierung.html#wsl",
+      "class": ["grundlagen","it","system","windows subsystem for linux"],
+      "Stufe": 43
+    },
+
+    // ===== IT-GRUNDLAGEN: 50 Netzwerk-Grundlagen (more/it-netzwerk-grundlagen.html) =====
+    // Unterstufe 50 = erste Detailseite des Blocks "Netzwerk".
+    {
+      "Begriff": "Netzwerk",
+      "Beschreibung": "Geräte, die Daten miteinander austauschen können",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-grundlagen.html#netzwerk",
+      "class": ["grundlagen","it","netzwerk","network"],
+      "Stufe": 50
+    },
+    {
+      "Begriff": "LAN / WLAN / WAN",
+      "Beschreibung": "Räumliche Reichweite eines Netzwerks",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-grundlagen.html#lan-wlan-wan",
+      "class": ["grundlagen","it","netzwerk","wifi"],
+      "Stufe": 50
+    },
+    {
+      "Begriff": "Internet vs. WWW",
+      "Beschreibung": "Infrastruktur vs. EIN Dienst darauf",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-grundlagen.html#internet-www",
+      "class": ["grundlagen","it","netzwerk","world wide web"],
+      "Stufe": 50
+    },
+    {
+      "Begriff": "Client & Server",
+      "Beschreibung": "Wer eine Anfrage stellt, wer sie beantwortet",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-grundlagen.html#client-server",
+      "class": ["grundlagen","it","netzwerk","client-server"],
+      "Stufe": 50
+    },
+    {
+      "Begriff": "Bandbreite",
+      "Beschreibung": "Maximale Datenmenge pro Zeiteinheit",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-grundlagen.html#bandbreite",
+      "class": ["grundlagen","it","netzwerk","bandwidth"],
+      "Stufe": 50
+    },
+    {
+      "Begriff": "Latenz / Ping",
+      "Beschreibung": "Laufzeit eines Datenpakets hin und zurück",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-grundlagen.html#latenz-ping",
+      "class": ["grundlagen","it","netzwerk","latency","round-trip-time"],
+      "Stufe": 50
+    },
+
+    // ===== IT-GRUNDLAGEN: 51 Netzwerk-Geräte (more/it-netzwerk-geraete.html) =====
+    {
+      "Begriff": "MAC-Adresse",
+      "Beschreibung": "Feste Hardware-Adresse jeder Netzwerkkarte",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-geraete.html#mac-adresse",
+      "class": ["grundlagen","it","netzwerk","media access control"],
+      "Stufe": 51
+    },
+    {
+      "Begriff": "Switch",
+      "Beschreibung": "Verbindet Geräte im selben lokalen Netz",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-geraete.html#switch",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 51
+    },
+    {
+      "Begriff": "Router",
+      "Beschreibung": "Verbindet verschiedene Netzwerke miteinander",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-geraete.html#router",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 51
+    },
+    {
+      "Begriff": "Modem",
+      "Beschreibung": "Wandelt zum Signal des Internetanbieters um",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-geraete.html#modem",
+      "class": ["grundlagen","it","netzwerk","dsl","kabel"],
+      "Stufe": 51
+    },
+    {
+      "Begriff": "Access Point",
+      "Beschreibung": "Stellt WLAN für kabellose Geräte bereit",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-geraete.html#access-point",
+      "class": ["grundlagen","it","netzwerk","wlan-ap"],
+      "Stufe": 51
+    },
+    {
+      "Begriff": "Gateway",
+      "Beschreibung": "Der Weg nach draußen aus dem lokalen Netz",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-netzwerk-geraete.html#gateway",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 51
+    },
+
+    // ===== IT-GRUNDLAGEN: 52 IP-Adressen (more/it-ip-adressen.html) =====
+    {
+      "Begriff": "IP-Adresse",
+      "Beschreibung": "Eindeutige Adresse eines Geräts im Netzwerk",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#ip-adresse",
+      "class": ["grundlagen","it","netzwerk","ip address"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "IPv4",
+      "Beschreibung": "32 Bit, vier Dezimalzahlen 0–255",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#ipv4",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "IPv6",
+      "Beschreibung": "128 Bit, riesig mehr Adressen als IPv4",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#ipv6",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "Subnetzmaske",
+      "Beschreibung": "Trennt Netz-Teil von Geräte-Teil einer IP",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#subnetzmaske",
+      "class": ["grundlagen","it","netzwerk","subnet mask"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "CIDR (/24)",
+      "Beschreibung": "Kurzschreibweise für die Subnetzmaske",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#cidr",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "private vs. öffentliche IP",
+      "Beschreibung": "Nur im Heimnetz gültig vs. weltweit eindeutig",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#private-oeffentliche-ip",
+      "class": ["grundlagen","it","netzwerk","private ip","public ip"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "localhost / 127.0.0.1",
+      "Beschreibung": "Zeigt immer auf den eigenen Rechner",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#localhost",
+      "class": ["grundlagen","it","netzwerk","loopback"],
+      "Stufe": 52
+    },
+    {
+      "Begriff": "NAT",
+      "Beschreibung": "Viele private IPs hinter einer öffentlichen bündeln",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ip-adressen.html#nat",
+      "class": ["grundlagen","it","netzwerk","network address translation"],
+      "Stufe": 52
+    },
+
+    // ===== IT-GRUNDLAGEN: 53 DNS & DHCP (more/it-dns-dhcp.html) =====
+    {
+      "Begriff": "DNS",
+      "Beschreibung": "Übersetzt Domainnamen in IP-Adressen",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-dns-dhcp.html#dns",
+      "class": ["grundlagen","it","netzwerk","domain name system"],
+      "Stufe": 53
+    },
+    {
+      "Begriff": "Domain",
+      "Beschreibung": "Aufbau: Subdomain.Domain.TLD",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-dns-dhcp.html#domain",
+      "class": ["grundlagen","it","netzwerk","tld"],
+      "Stufe": 53
+    },
+    {
+      "Begriff": "URL-Aufbau",
+      "Beschreibung": "Protokoll, Host, Port, Pfad, Query, Fragment",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-dns-dhcp.html#url-aufbau",
+      "class": ["grundlagen","it","netzwerk","url"],
+      "Stufe": 53
+    },
+    {
+      "Begriff": "DHCP",
+      "Beschreibung": "Vergibt automatisch eine IP-Adresse",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-dns-dhcp.html#dhcp",
+      "class": ["grundlagen","it","netzwerk","dynamic host configuration protocol"],
+      "Stufe": 53
+    },
+    {
+      "Begriff": "hosts-Datei",
+      "Beschreibung": "Lokale, manuelle Domain-zu-IP-Zuordnung",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-dns-dhcp.html#hosts-datei",
+      "class": ["grundlagen","it","netzwerk","hosts file"],
+      "Stufe": 53
+    },
+
+    // ===== IT-GRUNDLAGEN: 54 Ports (more/it-ports.html) =====
+    {
+      "Begriff": "Port",
+      "Beschreibung": "Nummer für EINEN Dienst auf einem Gerät",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ports.html#port",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 54
+    },
+    {
+      "Begriff": "Socket",
+      "Beschreibung": "IP-Adresse + Port zusammen",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ports.html#socket",
+      "class": ["grundlagen","it","netzwerk"],
+      "Stufe": 54
+    },
+    {
+      "Begriff": "Wichtige Ports",
+      "Beschreibung": "80, 443, 22, 53 … und was dahintersteckt",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ports.html#wichtige-ports",
+      "class": ["grundlagen","it","netzwerk","http","https","ssh"],
+      "Stufe": 54
+    },
+    {
+      "Begriff": "localhost:3000",
+      "Beschreibung": "Der typische lokale Dev-Server-Port",
+      "Sprache": "Netzwerk",
+      "Link": "more/it-ports.html#localhost-3000",
+      "class": ["grundlagen","it","netzwerk","node.js","vite","dev server"],
+      "Stufe": 54
+    },
+
+    // ===== IT-GRUNDLAGEN: 60 OSI-Modell (more/it-osi-modell.html) =====
+    // Unterstufe 60 = erste Detailseite des Blocks "Protokolle".
+    {
+      "Begriff": "Protokoll",
+      "Beschreibung": "Feste Regeln für den Datenaustausch",
+      "Sprache": "Protokolle",
+      "Link": "more/it-osi-modell.html#protokoll",
+      "class": ["grundlagen","it","protokolle","protocol"],
+      "Stufe": 60
+    },
+    {
+      "Begriff": "OSI-Modell",
+      "Beschreibung": "7 Schichten, eher zum Lernen/Erklären",
+      "Sprache": "Protokolle",
+      "Link": "more/it-osi-modell.html#osi-modell",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 60
+    },
+    {
+      "Begriff": "TCP/IP-Modell",
+      "Beschreibung": "4 Schichten, so ist das Internet real gebaut",
+      "Sprache": "Protokolle",
+      "Link": "more/it-osi-modell.html#tcp-ip-modell",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 60
+    },
+    {
+      "Begriff": "Kapselung",
+      "Beschreibung": "Jede Schicht verpackt die Daten der nächsten",
+      "Sprache": "Protokolle",
+      "Link": "more/it-osi-modell.html#kapselung",
+      "class": ["grundlagen","it","protokolle","encapsulation"],
+      "Stufe": 60
+    },
+    {
+      "Begriff": "Paket (Netzwerk)",
+      "Beschreibung": "Ein Daten-Häppchen auf dem Weg durchs Netz",
+      "Sprache": "Protokolle",
+      "Link": "more/it-osi-modell.html#paket",
+      "class": ["grundlagen","it","protokolle","packet"],
+      "Stufe": 60
+    },
+
+    // ===== IT-GRUNDLAGEN: 61 TCP & UDP (more/it-tcp-udp.html) =====
+    {
+      "Begriff": "TCP",
+      "Beschreibung": "Zuverlässig, mit Verbindungsaufbau",
+      "Sprache": "Protokolle",
+      "Link": "more/it-tcp-udp.html#tcp",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 61
+    },
+    {
+      "Begriff": "UDP",
+      "Beschreibung": "Schnell, aber ohne Zustellgarantie",
+      "Sprache": "Protokolle",
+      "Link": "more/it-tcp-udp.html#udp",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 61
+    },
+    {
+      "Begriff": "3-Wege-Handshake",
+      "Beschreibung": "SYN, SYN-ACK, ACK",
+      "Sprache": "Protokolle",
+      "Link": "more/it-tcp-udp.html#handshake",
+      "class": ["grundlagen","it","protokolle","three-way handshake"],
+      "Stufe": 61
+    },
+    {
+      "Begriff": "TCP vs. UDP",
+      "Beschreibung": "Wann man welches Protokoll nimmt",
+      "Sprache": "Protokolle",
+      "Link": "more/it-tcp-udp.html#tcp-vs-udp",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 61
+    },
+
+    // ===== IT-GRUNDLAGEN: 62 HTTP (more/it-http.html) =====
+    {
+      "Begriff": "HTTP",
+      "Beschreibung": "Das Protokoll des Webs",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#http",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "HTTPS",
+      "Beschreibung": "HTTP, zusätzlich verschlüsselt",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#https",
+      "class": ["grundlagen","it","protokolle","tls","ssl"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "Request & Response",
+      "Beschreibung": "Anfrage hin, Antwort zurück",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#request-response",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "HTTP-Methoden",
+      "Beschreibung": "GET, POST, PUT, PATCH, DELETE",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#http-methoden",
+      "class": ["grundlagen","it","protokolle","verbs"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "Statuscodes",
+      "Beschreibung": "200, 404, 500 … drei Ziffern, klare Bedeutung",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#statuscodes",
+      "class": ["grundlagen","it","protokolle","status code"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "Header (HTTP)",
+      "Beschreibung": "Zusatzinfos vor dem eigentlichen Inhalt",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#header",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "Cookie",
+      "Beschreibung": "Kleine Daten, die der Server beim Client ablegt",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#cookie",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "REST-API",
+      "Beschreibung": "Ressourcen über URLs und HTTP-Methoden",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#rest-api",
+      "class": ["grundlagen","it","protokolle","rest"],
+      "Stufe": 62
+    },
+    {
+      "Begriff": "JSON über HTTP",
+      "Beschreibung": "Das übliche Datenformat für Web-APIs",
+      "Sprache": "Protokolle",
+      "Link": "more/it-http.html#json-ueber-http",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 62
+    },
+
+    // ===== IT-GRUNDLAGEN: 63 Weitere Protokolle (more/it-protokolle-weitere.html) =====
+    {
+      "Begriff": "SSH",
+      "Beschreibung": "Verschlüsselter Fernzugriff auf einen Rechner",
+      "Sprache": "Protokolle",
+      "Link": "more/it-protokolle-weitere.html#ssh",
+      "class": ["grundlagen","it","protokolle","secure shell"],
+      "Stufe": 63
+    },
+    {
+      "Begriff": "FTP / SFTP",
+      "Beschreibung": "Dateien übertragen – unverschlüsselt oder sicher",
+      "Sprache": "Protokolle",
+      "Link": "more/it-protokolle-weitere.html#ftp-sftp",
+      "class": ["grundlagen","it","protokolle","file transfer"],
+      "Stufe": 63
+    },
+    {
+      "Begriff": "SMTP / IMAP / POP3",
+      "Beschreibung": "E-Mail senden, synchronisieren, abholen",
+      "Sprache": "Protokolle",
+      "Link": "more/it-protokolle-weitere.html#smtp-imap-pop3",
+      "class": ["grundlagen","it","protokolle","email"],
+      "Stufe": 63
+    },
+    {
+      "Begriff": "ICMP (ping)",
+      "Beschreibung": "Status- und Fehlermeldungen im Netzwerk",
+      "Sprache": "Protokolle",
+      "Link": "more/it-protokolle-weitere.html#icmp",
+      "class": ["grundlagen","it","protokolle"],
+      "Stufe": 63
+    },
+    {
+      "Begriff": "ARP",
+      "Beschreibung": "Übersetzt eine IP-Adresse in die MAC-Adresse",
+      "Sprache": "Protokolle",
+      "Link": "more/it-protokolle-weitere.html#arp",
+      "class": ["grundlagen","it","protokolle","address resolution protocol"],
+      "Stufe": 63
+    },
+    {
+      "Begriff": "WebSocket",
+      "Beschreibung": "Dauerhafte Verbindung in beide Richtungen",
+      "Sprache": "Protokolle",
+      "Link": "more/it-protokolle-weitere.html#websocket",
+      "class": ["grundlagen","it","protokolle","websockets"],
+      "Stufe": 63
+    },
+
+    // ===== IT-GRUNDLAGEN: 70 Verschlüsselung (more/it-verschluesselung.html) =====
+    // Unterstufe 70 = erste Detailseite des Blocks "IT-Sicherheit".
+    {
+      "Begriff": "Verschlüsselung",
+      "Beschreibung": "Daten unlesbar machen, außer mit Schlüssel",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-verschluesselung.html#verschluesselung",
+      "class": ["grundlagen","it","sicherheit","encryption"],
+      "Stufe": 70
+    },
+    {
+      "Begriff": "symmetrisch",
+      "Beschreibung": "EIN Schlüssel für beide Richtungen",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-verschluesselung.html#symmetrisch",
+      "class": ["grundlagen","it","sicherheit","symmetric"],
+      "Stufe": 70
+    },
+    {
+      "Begriff": "asymmetrisch",
+      "Beschreibung": "Public Key + Private Key",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-verschluesselung.html#asymmetrisch",
+      "class": ["grundlagen","it","sicherheit","asymmetric","public key"],
+      "Stufe": 70
+    },
+    {
+      "Begriff": "Hash-Funktion",
+      "Beschreibung": "Einweg – NICHT dasselbe wie Verschlüsselung",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-verschluesselung.html#hash-funktion",
+      "class": ["grundlagen","it","sicherheit","hash"],
+      "Stufe": 70
+    },
+    {
+      "Begriff": "TLS / SSL",
+      "Beschreibung": "Das Protokoll hinter HTTPS",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-verschluesselung.html#tls-ssl",
+      "class": ["grundlagen","it","sicherheit","transport layer security"],
+      "Stufe": 70
+    },
+    {
+      "Begriff": "Zertifikat",
+      "Beschreibung": "Bestätigt: Dieser Public Key gehört wirklich dazu",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-verschluesselung.html#zertifikat",
+      "class": ["grundlagen","it","sicherheit","certificate"],
+      "Stufe": 70
+    },
+
+    // ===== IT-GRUNDLAGEN: 71 Sicherheit-Grundlagen (more/it-sicherheit-grundlagen.html) =====
+    {
+      "Begriff": "Passwort-Sicherheit & Hashing",
+      "Beschreibung": "Lang, einzigartig – und beim Server nur als Hash",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-sicherheit-grundlagen.html#passwort-sicherheit",
+      "class": ["grundlagen","it","sicherheit","password"],
+      "Stufe": 71
+    },
+    {
+      "Begriff": "2FA",
+      "Beschreibung": "Zweiter Faktor zusätzlich zum Passwort",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-sicherheit-grundlagen.html#2fa",
+      "class": ["grundlagen","it","sicherheit","zwei-faktor","two-factor"],
+      "Stufe": 71
+    },
+    {
+      "Begriff": "Phishing",
+      "Beschreibung": "Gefälschte Nachrichten, die Zugangsdaten abgreifen",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-sicherheit-grundlagen.html#phishing",
+      "class": ["grundlagen","it","sicherheit"],
+      "Stufe": 71
+    },
+    {
+      "Begriff": "Malware",
+      "Beschreibung": "Oberbegriff für schädliche Software",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-sicherheit-grundlagen.html#malware",
+      "class": ["grundlagen","it","sicherheit","virus","trojaner","ransomware"],
+      "Stufe": 71
+    },
+    {
+      "Begriff": "Firewall",
+      "Beschreibung": "Filtert Netzwerkverkehr nach festen Regeln",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-sicherheit-grundlagen.html#firewall",
+      "class": ["grundlagen","it","sicherheit"],
+      "Stufe": 71
+    },
+    {
+      "Begriff": "Backup",
+      "Beschreibung": "Sicherheitskopie nach der 3-2-1-Regel",
+      "Sprache": "Sicherheit",
+      "Link": "more/it-sicherheit-grundlagen.html#backup",
+      "class": ["grundlagen","it","sicherheit","datensicherung"],
+      "Stufe": 71
+    },
+
+    // ===== IT-GRUNDLAGEN: 80 Programmieren (more/it-programmieren.html) =====
+    // Unterstufe 80 = erste Detailseite des Blocks "Programmier-Grundlagen".
+    {
+      "Begriff": "Quellcode",
+      "Beschreibung": "Der von Menschen geschriebene Programmtext",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#quellcode",
+      "class": ["grundlagen","it","programmieren","source code"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "Syntax vs. Semantik",
+      "Beschreibung": "Grammatik-Regeln vs. tatsächliche Bedeutung",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#syntax-semantik",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "Compiler",
+      "Beschreibung": "Übersetzt alles VORAB in Maschinencode",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#compiler",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "Interpreter",
+      "Beschreibung": "Führt Code direkt zur Laufzeit aus",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#interpreter",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "JIT",
+      "Beschreibung": "Übersetzt erst zur Laufzeit, aber in Maschinencode",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#jit",
+      "class": ["grundlagen","it","programmieren","just-in-time"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "Hochsprache vs. Maschinensprache",
+      "Beschreibung": "Menschenlesbar vs. rohe CPU-Bytes",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#hochsprache",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "statisch vs. dynamisch typisiert",
+      "Beschreibung": "Typ-Prüfung vorab oder erst zur Laufzeit",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#typisierung",
+      "class": ["grundlagen","it","programmieren","static typing","dynamic typing"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "Bibliothek vs. Framework",
+      "Beschreibung": "Wer ruft wen auf?",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#bibliothek-framework",
+      "class": ["grundlagen","it","programmieren","library"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "API (Programmierung)",
+      "Beschreibung": "Kontrollierte Schnittstelle nach außen",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#api",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "IDE",
+      "Beschreibung": "Editor, Compiler, Debugger – alles in einem",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#ide",
+      "class": ["grundlagen","it","programmieren","integrated development environment"],
+      "Stufe": 80
+    },
+    {
+      "Begriff": "Debugging",
+      "Beschreibung": "Fehler gezielt suchen und beheben",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programmieren.html#debugging",
+      "class": ["grundlagen","it","programmieren","bug","breakpoint"],
+      "Stufe": 80
+    },
+
+    // ===== IT-GRUNDLAGEN: 81 Programm-Bausteine (more/it-programm-bausteine.html) =====
+    {
+      "Begriff": "Variable (IT)",
+      "Beschreibung": "Ein benannter Speicherplatz für einen Wert",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programm-bausteine.html#variable",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 81
+    },
+    {
+      "Begriff": "Datentyp (IT)",
+      "Beschreibung": "Welche Art Wert eine Variable speichert",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programm-bausteine.html#datentyp",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 81
+    },
+    {
+      "Begriff": "Kontrollstruktur",
+      "Beschreibung": "if und Schleifen steuern den Ablauf",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programm-bausteine.html#kontrollstruktur",
+      "class": ["grundlagen","it","programmieren","if","schleife"],
+      "Stufe": 81
+    },
+    {
+      "Begriff": "Funktion (IT)",
+      "Beschreibung": "Ein wiederverwendbarer, benannter Codeblock",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programm-bausteine.html#funktion",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 81
+    },
+    {
+      "Begriff": "Rekursion",
+      "Beschreibung": "Eine Funktion ruft sich selbst auf",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programm-bausteine.html#rekursion",
+      "class": ["grundlagen","it","programmieren","recursion"],
+      "Stufe": 81
+    },
+    {
+      "Begriff": "Kommentar (IT)",
+      "Beschreibung": "Text im Code, den der Computer ignoriert",
+      "Sprache": "Programmieren",
+      "Link": "more/it-programm-bausteine.html#kommentar",
+      "class": ["grundlagen","it","programmieren","comment"],
+      "Stufe": 81
+    },
+
+    // ===== IT-GRUNDLAGEN: 82 Datenstrukturen (more/it-datenstrukturen.html) =====
+    {
+      "Begriff": "Array (IT)",
+      "Beschreibung": "Liste, direkt über einen Index erreichbar",
+      "Sprache": "Programmieren",
+      "Link": "more/it-datenstrukturen.html#array",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 82
+    },
+    {
+      "Begriff": "Verkettete Liste",
+      "Beschreibung": "Knoten, die auf den jeweils nächsten zeigen",
+      "Sprache": "Programmieren",
+      "Link": "more/it-datenstrukturen.html#verkettete-liste",
+      "class": ["grundlagen","it","programmieren","linked list"],
+      "Stufe": 82
+    },
+    {
+      "Begriff": "Stack",
+      "Beschreibung": "LIFO – zuletzt rein, zuerst raus",
+      "Sprache": "Programmieren",
+      "Link": "more/it-datenstrukturen.html#stack",
+      "class": ["grundlagen","it","programmieren","lifo"],
+      "Stufe": 82
+    },
+    {
+      "Begriff": "Queue",
+      "Beschreibung": "FIFO – zuerst rein, zuerst raus",
+      "Sprache": "Programmieren",
+      "Link": "more/it-datenstrukturen.html#queue",
+      "class": ["grundlagen","it","programmieren","fifo","warteschlange"],
+      "Stufe": 82
+    },
+    {
+      "Begriff": "Baum (Datenstruktur)",
+      "Beschreibung": "Hierarchie aus Eltern- und Kindknoten",
+      "Sprache": "Programmieren",
+      "Link": "more/it-datenstrukturen.html#baum",
+      "class": ["grundlagen","it","programmieren","tree","binärbaum"],
+      "Stufe": 82
+    },
+    {
+      "Begriff": "Hash-Tabelle",
+      "Beschreibung": "Schlüssel-Wert-Paare, sehr schneller Zugriff",
+      "Sprache": "Programmieren",
+      "Link": "more/it-datenstrukturen.html#hash-tabelle",
+      "class": ["grundlagen","it","programmieren","hash table","hash map"],
+      "Stufe": 82
+    },
+
+    // ===== IT-GRUNDLAGEN: 83 Algorithmen (more/it-algorithmen.html) =====
+    {
+      "Begriff": "Lineare Suche",
+      "Beschreibung": "Element für Element durchgehen",
+      "Sprache": "Programmieren",
+      "Link": "more/it-algorithmen.html#lineare-suche",
+      "class": ["grundlagen","it","programmieren","linear search"],
+      "Stufe": 83
+    },
+    {
+      "Begriff": "Binäre Suche",
+      "Beschreibung": "Nur bei sortierten Daten, immer in der Mitte teilen",
+      "Sprache": "Programmieren",
+      "Link": "more/it-algorithmen.html#binaere-suche",
+      "class": ["grundlagen","it","programmieren","binary search"],
+      "Stufe": 83
+    },
+    {
+      "Begriff": "Sortieralgorithmen",
+      "Beschreibung": "Bubble Sort, Quicksort, Mergesort",
+      "Sprache": "Programmieren",
+      "Link": "more/it-algorithmen.html#sortieralgorithmen",
+      "class": ["grundlagen","it","programmieren","sorting"],
+      "Stufe": 83
+    },
+    {
+      "Begriff": "O-Notation",
+      "Beschreibung": "Wie die Laufzeit mit der Datenmenge wächst",
+      "Sprache": "Programmieren",
+      "Link": "more/it-algorithmen.html#o-notation",
+      "class": ["grundlagen","it","programmieren","big o","komplexität"],
+      "Stufe": 83
+    },
+
+    // ===== IT-GRUNDLAGEN: 84 Git (more/it-git.html) =====
+    {
+      "Begriff": "Git",
+      "Beschreibung": "Verteiltes Versionskontrollsystem",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#git",
+      "class": ["grundlagen","it","programmieren","version control"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": "Repository",
+      "Beschreibung": "Der Projektordner samt kompletter Historie",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#repository",
+      "class": ["grundlagen","it","programmieren","repo"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": "Commit",
+      "Beschreibung": "Ein gespeicherter Schnappschuss",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#commit",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": "Branch",
+      "Beschreibung": "Ein paralleler Entwicklungsstrang",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#branch",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": "Merge",
+      "Beschreibung": "Zwei Branches wieder zusammenführen",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#merge",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": "push / pull",
+      "Beschreibung": "Hoch- bzw. herunterladen zum/vom Remote",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#push-pull",
+      "class": ["grundlagen","it","programmieren","remote"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": "GitHub",
+      "Beschreibung": "Ein Online-Dienst zum Hosten von Repositories",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#github",
+      "class": ["grundlagen","it","programmieren"],
+      "Stufe": 84
+    },
+    {
+      "Begriff": ".gitignore",
+      "Beschreibung": "Legt fest, was Git bewusst NICHT verfolgt",
+      "Sprache": "Programmieren",
+      "Link": "more/it-git.html#gitignore",
+      "class": ["grundlagen","it","programmieren","gitignore"],
+      "Stufe": 84
     }
   ]}
 };

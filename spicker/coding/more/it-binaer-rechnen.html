@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Binär rechnen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Daten · Binär rechnen</p>
+    <h1>Mit Bits rechnen</h1>
+    <p class="page-lead">Addition, negative Zahlen und Bitoperatoren – was Prozessoren mit Bits tatsächlich anstellen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#binaere-addition">Binäre Addition</a></td><td>Wie Dezimal-Addition, Übertrag ab 2 statt 10</td></tr>
+          <tr><td><a href="#zweierkomplement">Zweierkomplement</a></td><td>So stellt man negative Zahlen binär dar</td></tr>
+          <tr><td><a href="#signed-unsigned">signed / unsigned</a></td><td>mit oder ohne Vorzeichen</td></tr>
+          <tr><td><a href="#overflow">Überlauf (Overflow)</a></td><td>Wenn das Ergebnis nicht mehr in die Bitbreite passt</td></tr>
+          <tr><td><a href="#bitoperatoren">Bitoperatoren AND/OR/XOR/NOT</a></td><td>Logik, bitweise auf jedes einzelne Bit angewendet</td></tr>
+          <tr><td><a href="#bitshift">Bitshift &lt;&lt; &gt;&gt;</a></td><td>Bits nach links/rechts schieben = ×2 / ÷2</td></tr>
+          <tr><td><a href="#boolesche-logik">Boolesche Logik &amp; Wahrheitstabelle</a></td><td>Dieselbe Logik, jetzt bitweise statt mengenweise</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="binaere-addition">
+      <h2>Binäre Addition</h2>
+      <p>Binär addiert man genauso wie dezimal schriftlich – nur dass ein Übertrag schon ab einer Summe von 2 entsteht (nicht erst ab 10):</p>
+      <pre><code>   0101   (5)
+ + 0011   (3)
+ ------
+   1000   (8)
+
+Stellenweise von rechts: 1+1=10 → 0 schreiben, 1 übertragen
+                          0+1+Übertrag 1 = 10 → 0 schreiben, 1 übertragen
+                          1+0+Übertrag 1 = 10 → 0 schreiben, 1 übertragen
+                          0+0+Übertrag 1 = 1</code></pre>
+    </section>
+
+    <section id="zweierkomplement">
+      <h2>Zweierkomplement</h2>
+      <p>Das <strong>Zweierkomplement</strong> (<em>two's complement</em>) ist die Standard-Methode, um negative Zahlen binär darzustellen – fast jeder Prozessor rechnet intern so. Rezept: alle Bits invertieren (0↔1), dann 1 addieren.</p>
+      <pre><code>  5 (8 Bit):  0000 0101
+invertieren:   1111 1010
+        + 1:   1111 1011   = −5 (im Zweierkomplement)</code></pre>
+      <div class="note">Der große Vorteil: Addition funktioniert mit positiven UND negativen Zahlen über dieselbe Schaltung, ohne Sonderfall für das Minuszeichen.</div>
+    </section>
+
+    <section id="signed-unsigned">
+      <h2>signed / unsigned</h2>
+      <p>Bei <strong>unsigned</strong> (vorzeichenlos) stellen alle Bits den Betrag dar – nur Werte ≥ 0. Bei <strong>signed</strong> (mit Vorzeichen) ist das höchstwertige Bit (MSB) das Vorzeichenbit (Zweierkomplement): 0 = positiv, 1 = negativ. Dieselbe Bitbreite deckt dadurch bei signed einen anderen Bereich ab als bei unsigned:</p>
+      <table class="info-table">
+        <thead><tr><th>8 Bit</th><th>Wertebereich</th></tr></thead>
+        <tbody>
+          <tr><td>unsigned</td><td>0 bis 255</td></tr>
+          <tr><td>signed</td><td>−128 bis 127</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="overflow">
+      <h2>Überlauf (Overflow)</h2>
+      <p>Ein <strong>Überlauf</strong> passiert, wenn das Rechenergebnis nicht mehr in die verfügbare Bitbreite passt.</p>
+      <pre><code>#include &lt;cstdint&gt;
+
+uint8_t a = 255;   // größter unsigned 8-Bit-Wert
+a = a + 1;         // Überlauf: wird DEFINIERT zu 0 (wrap-around, 256 mod 256)
+
+int8_t b = 127;    // größter signed 8-Bit-Wert
+b = b + 1;         // Überlauf bei SIGNED ist in C++ UNDEFINIERTES Verhalten –
+                    // in der Praxis meist (aber nicht garantiert!) −128</code></pre>
+      <div class="note">Wichtiger Unterschied: Überlauf bei <code>unsigned</code> ist in C++ klar definiert (Rechnen „modulo“ der Bitbreite). Überlauf bei <code>signed</code> ist <strong>undefiniertes Verhalten</strong> – der Compiler darf dabei theoretisch irgendetwas tun, auch wenn er in der Praxis meist einfach umklappt.</div>
+    </section>
+
+    <section id="bitoperatoren">
+      <h2>Bitoperatoren AND / OR / XOR / NOT</h2>
+      <p>Bitoperatoren wenden eine logische Operation auf JEDES Bitpaar einzeln an – nicht auf die ganze Zahl als Wahrheitswert (das wäre <code>&amp;&amp;</code>/<code>||</code>, siehe <a href="#boolesche-logik">unten</a>).</p>
+      <table class="info-table">
+        <thead><tr><th>A</th><th>B</th><th>AND (A &amp; B)</th><th>OR (A | B)</th><th>XOR (A ^ B)</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+          <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+          <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+        </tbody>
+      </table>
+      <p><strong>NOT</strong> (<code>~A</code>) kippt jedes einzelne Bit: aus 0 wird 1 und umgekehrt.</p>
+      <pre><code>  1100
+&amp; 1010
+------
+  1000      (AND: nur dort 1, wo BEIDE 1 sind)
+
+  1100
+| 1010
+------
+  1110      (OR: dort 1, wo MINDESTENS EINES 1 ist)
+
+  1100
+^ 1010
+------
+  0110      (XOR: dort 1, wo sich die Bits UNTERSCHEIDEN)</code></pre>
+      <p>In C++ und JavaScript sehen die Operatoren identisch aus: <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>.</p>
+    </section>
+
+    <section id="bitshift">
+      <h2>Bitshift &lt;&lt; &gt;&gt;</h2>
+      <p>Ein <strong>Bitshift</strong> schiebt alle Bits um eine feste Anzahl Stellen nach links oder rechts – rechnerisch entspricht das einer Multiplikation bzw. Division durch eine Zweierpotenz.</p>
+      <pre><code>0000 0011  (3)
+&lt;&lt; 2     →  0000 1100  (12)   // 3 · 2² = 12
+
+0000 1100  (12)
+&gt;&gt; 2     →  0000 0011  (3)    // 12 ÷ 2² = 3 (abgerundet)</code></pre>
+      <div class="note">Bei NEGATIVEN signed-Zahlen ist <code>&gt;&gt;</code> in C++ implementierungsabhängig (meist ein arithmetischer Shift, der das Vorzeichenbit erhält). JavaScript unterscheidet das sogar explizit mit zwei Operatoren: <code>&gt;&gt;</code> (Vorzeichen bleibt erhalten) und <code>&gt;&gt;&gt;</code> (füllt immer mit Nullen auf).</div>
+    </section>
+
+    <section id="boolesche-logik">
+      <h2>Boolesche Logik &amp; Wahrheitstabelle</h2>
+      <p>Die Bitoperatoren AND/OR/XOR/NOT von oben sind GENAU dieselbe Logik wie die boolesche Und/Oder/Nicht-Verknüpfung aus der Mathematik – nur dass hier jedes einzelne Bit einer Zahl als eigener Wahrheitswert behandelt wird, statt nur EIN true/false für die ganze Zahl. Die ausführliche Herleitung samt Wahrheitstabellen steht im Mathe-Teil dieses Spickers.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>&amp;</code>/<code>|</code> (bitweise) NICHT mit <code>&amp;&amp;</code>/<code>||</code> (logisch, auf ganze Wahrheitswerte) verwechseln – <code>2 &amp; 1</code> ist <code>0</code>, aber <code>2 &amp;&amp; 1</code> ist <code>true</code>.</li>
+        <li>Signed Overflow in C++ ist undefiniertes Verhalten – sich beim Rechnen darauf zu verlassen, dass er „schon umklappt“, ist ein klassischer, schwer zu findender Bug.</li>
+        <li>Ein Linksshift kann selbst überlaufen, wenn die Bitbreite nicht reicht – <code>&lt;&lt;</code> prüft das nicht automatisch.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-zahlensysteme.html">IT: Zahlensysteme</a>
+        <a class="chip" href="it-zeichenkodierung.html">IT: Zeichenkodierung</a>
+        <a class="chip" href="../../mathe/more/mengen-logik.html">Mathe: Mengen &amp; Logik</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

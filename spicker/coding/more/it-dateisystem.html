@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Dateisystem – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">System · Dateisystem</p>
+    <h1>Dateisystem, Partitionen &amp; Rechte</h1>
+    <p class="page-lead">Wie ein Datenträger organisiert ist – und warum <code>chmod 755</code> genau das bedeutet, was es bedeutet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#dateisystem">Dateisystem</a></td><td>NTFS, ext4, FAT32, exFAT …</td></tr>
+          <tr><td><a href="#partition">Partition</a></td><td>Abgegrenzter Bereich einer Festplatte/SSD</td></tr>
+          <tr><td><a href="#verzeichnisbaum">Verzeichnisbaum</a></td><td><code>C:\</code> (mehrere Wurzeln) vs. <code>/</code> (eine Wurzel)</td></tr>
+          <tr><td><a href="#benutzer-admin-root">Benutzer &amp; Admin / root</a></td><td>Normale Rechte vs. erweiterte Systemrechte</td></tr>
+          <tr><td><a href="#dateirechte">Dateirechte</a></td><td>rwx für Eigentümer, Gruppe, Andere</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dateisystem">
+      <h2>Dateisystem</h2>
+      <p>Ein <strong>Dateisystem</strong> legt fest, WIE ein Datenträger Dateien und Ordner organisiert – wo welche Daten liegen und welche Zusatzinfos (Name, Größe, Rechte, Änderungsdatum) dazu gespeichert werden.</p>
+      <table class="info-table">
+        <thead><tr><th>Dateisystem</th><th>Typisch bei</th><th>Besonderheit</th></tr></thead>
+        <tbody>
+          <tr><td>NTFS</td><td>Windows (Standard)</td><td>Dateirechte, Komprimierung, sehr große Dateien</td></tr>
+          <tr><td>ext4</td><td>Linux (Standard)</td><td>robust, Unix-Dateirechte (rwx)</td></tr>
+          <tr><td>FAT32</td><td>alte/kleine USB-Sticks</td><td>plattformübergreifend, aber max. 4 GB pro Datei</td></tr>
+          <tr><td>exFAT</td><td>moderne USB-Sticks/SD-Karten</td><td>plattformübergreifend, KEIN 4-GB-Limit</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="partition">
+      <h2>Partition</h2>
+      <p>Eine <strong>Partition</strong> ist ein abgegrenzter Bereich einer physischen Festplatte oder SSD, der wie ein eigenständiges Laufwerk behandelt wird. Eine einzige Platte kann mehrere Partitionen haben – z. B. eine für das Betriebssystem und eine zweite nur für Daten.</p>
+    </section>
+
+    <section id="verzeichnisbaum">
+      <h2>Verzeichnisbaum</h2>
+      <p>Windows kennt mehrere getrennte Wurzeln – einen Laufwerksbuchstaben pro Partition/Laufwerk (<code>C:\</code>, <code>D:\</code> …). Linux und macOS haben dagegen GENAU EINE Wurzel (<code>/</code>); weitere Laufwerke werden irgendwo in diesen einen Baum „eingehängt“ (<em>mount</em>), statt einen eigenen Buchstaben zu bekommen.</p>
+    </section>
+
+    <section id="benutzer-admin-root">
+      <h2>Benutzer &amp; Admin / root</h2>
+      <p>Jedes moderne Betriebssystem unterscheidet normale <strong>Benutzerkonten</strong> von einem Konto mit erweiterten Rechten: unter Windows der <strong>Administrator</strong>, unter Linux/macOS <strong>root</strong>. Nur damit lassen sich systemweite Änderungen vornehmen, die normale Benutzer NICHT dürfen – ein wichtiger Schutz gegen versehentliche oder böswillige Systemschäden.</p>
+    </section>
+
+    <section id="dateirechte">
+      <h2>Dateirechte</h2>
+      <p>Unter Linux/macOS hat jede Datei <strong>rwx</strong>-Rechte (read/write/execute = lesen/schreiben/ausführen) für DREI Gruppen: Eigentümer, Gruppe, Andere. <code>chmod</code> setzt diese Rechte – oft als dreistellige Oktalzahl (siehe Oktalsystem im Daten-Teil des Spickers), wobei jede Ziffer EIN Rechte-Trio zusammenfasst:</p>
+      <pre><code>chmod 755 skript.sh
+
+7 = rwx  (Eigentümer: lesen + schreiben + ausführen = 4+2+1)
+5 = r-x  (Gruppe:      lesen            + ausführen = 4  +1)
+5 = r-x  (Andere:      lesen            + ausführen = 4  +1)</code></pre>
+      <div class="note">Jede Ziffer ist eine Summe aus r=4, w=2, x=1 – 7 (4+2+1) heißt „alles darf“, 5 (4+1) heißt „lesen und ausführen, aber nicht schreiben“.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>chmod 777</code> (alle Rechte für alle) wirkt oft wie eine schnelle Lösung bei Rechteproblemen – ist aber meist unsicher und sollte gezielt vermieden werden.</li>
+        <li>FAT32 scheitert kommentarlos beim Kopieren von Dateien über 4 GB – ein klassischer, verwirrender Stolperstein bei alten USB-Sticks.</li>
+        <li>Als root/Administrator angemeldet zu arbeiten „weil es bequemer ist“ erhöht das Risiko, versehentlich Systemdateien zu beschädigen – im Alltag lieber mit einem normalen Konto arbeiten.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-prozesse.html">IT: Prozesse</a>
+        <a class="chip" href="it-virtualisierung.html">IT: Virtualisierung</a>
+        <a class="chip" href="it-zahlensysteme.html">IT: Zahlensysteme</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

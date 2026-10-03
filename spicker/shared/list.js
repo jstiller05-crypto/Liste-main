@@ -16,9 +16,13 @@
    3. WERKZEUGE        class TableSearcher (suchen + Tabelle zeichnen)
    4. AUFBAU           Tabellenkopf, Filter-Buttons, Sortier-Auswahl und
                        Spicker-Wechsler aus der Konfiguration bauen
-   5. HILFSFUNKTIONEN  setActiveFilterButton(), sortEntriesBySelectedOrder()
+   5. HILFSFUNKTIONEN  syncFilterButtons(), toggleFilterValue(),
+                       sortEntriesBySelectedOrder()
    6. HERZSTÜCK        applyEntryFilters()  (alle Filter nacheinander)
    7. EVENTS           setup...()-Funktionen (Klicks, Tippen, Auswahl)
+   7b. MERKEN          Filter + Scroll-Position im Browser speichern
+                       (localStorage), damit nach dem Zurückkommen alles
+                       wieder so ist wie vorher
    8. START            DOMContentLoaded (setzt alles in Gang)
    ===================================================================== */
 
@@ -76,12 +80,19 @@ let searcher = null;     // das TableSearcher-Objekt
    ---------------------------------------------------------------------
    Das "Gedächtnis" der Seite. Hier steht, was gerade eingestellt ist.
    Regel: Events ändern NUR dieses Objekt und rufen dann applyEntryFilters().
-   "" (leerer Text) bedeutet immer: kein Filter aktiv.
+   Leere Liste [] in einer Filtergruppe = nichts ausgewählt = kein Filter,
+   es wird also ALLES gezeigt (einen "Alle"-Button gibt es nicht mehr).
    ===================================================================== */
 const filterState = {
   search: "",    // Text aus dem Suchfeld
-  filters: {},   // pro Filtergruppe der gewählte Wert, z. B. { language: "js", category: "" }
-  sort: "az"     // Wert aus config.sortOptions, z. B. "az", "za", "field:Sprache"
+  // pro Filtergruppe eine LISTE der gewählten Werte (Mehrfachauswahl),
+  // z. B. { language: ["html", "css", "js"], category: [] }
+  filters: {},
+  sort: "az",    // Wert aus config.sortOptions, z. B. "level", "az", "za", "field:Sprache"
+  // Merkt sich die Sortierung, die VOR dem Suchen eingestellt war, wenn
+  // beim Suchen automatisch von "Empfohlen" auf A–Z umgeschaltet wurde.
+  // "" = es wurde nicht automatisch umgeschaltet.
+  sortBeforeSearch: ""
 };
 
 // CSS-Selektor für den Tabellenkörper – einmal festgelegt, überall benutzt.
@@ -230,8 +241,11 @@ function buildTableHead(config) {
 //   <div class="filter-group">
 //     <p class="filter-title">Sprache</p>
 //     <div class="chip-row">
-//       <button class="button filter-btn active" data-group="language" data-value="">Alle</button>
+//       <button class="button filter-btn" data-group="language" data-value="html">HTML</button>
 //       ...
+// Buttons mit value "" ("Alle") werden NICHT mehr gebaut: Ist in einer
+// Gruppe nichts ausgewählt, wird automatisch alles gezeigt. So können
+// alte entries.js-Dateien ihren "Alle"-Eintrag behalten, ohne zu stören.
 // und am Ende die Sortier-Auswahl (<select id="sortSelect">).
 function buildFilterDropdown(config) {
   const dropdown = document.querySelector(".class-dropdown");
@@ -253,8 +267,8 @@ function buildFilterDropdown(config) {
   }
 
   config.filterGroups.forEach(function appendFilterGroup(group) {
-    // Startwert: "" = nichts gefiltert
-    filterState.filters[group.id] = "";
+    // Startwert: leere Liste = nichts ausgewählt = alles zeigen
+    filterState.filters[group.id] = [];
 
     const groupElement = document.createElement("div");
     groupElement.className = "filter-group";
@@ -266,7 +280,14 @@ function buildFilterDropdown(config) {
     const row = document.createElement("div");
     row.className = "chip-row";
 
+    let builtButtons = 0;
     group.buttons.forEach(function appendFilterButton(buttonConfig) {
+      // "Alle"-Button (value "") überspringen – siehe Kommentar oben
+      if (buttonConfig.value === "") {
+        console.log("[setup] '" + buttonConfig.label + "'-Button in '" + group.title + "' übersprungen (nichts ausgewählt = alles)");
+        return;
+      }
+
       const button = document.createElement("button");
       button.type = "button";
       button.className = "button filter-btn";
@@ -274,15 +295,15 @@ function buildFilterDropdown(config) {
       button.dataset.group = group.id;
       button.dataset.value = buttonConfig.value;
       button.textContent = buttonConfig.label;
-      if (buttonConfig.value === "") {
-        button.classList.add("active"); // "Alle" ist am Anfang ausgewählt
-      }
+      // aria-pressed sagt Screenreadern: das ist ein An/Aus-Schalter
+      button.setAttribute("aria-pressed", "false");
       row.appendChild(button);
+      builtButtons++;
     });
 
     groupElement.append(title, row);
     dropdown.appendChild(groupElement);
-    console.log("[setup] Filtergruppe '" + group.title + "':", group.buttons.length, "Buttons (Feld:", group.field + ")");
+    console.log("[setup] Filtergruppe '" + group.title + "':", builtButtons, "Buttons (Feld:", group.field + ")");
   });
 
   // --- Sortierung ---
@@ -378,17 +399,37 @@ function applyTopicSubtitle(currentTopicId) {
    ===================================================================== */
 
 // ---------------------------------------------------------------------
-// Markiert in einer Button-Gruppe genau EINEN Button als aktiv.
-// allButtons    = alle Buttons der Gruppe (z. B. alle Sprach-Buttons)
-// clickedButton = der Button, der gerade geklickt wurde
+// Färbt die Buttons einer Gruppe passend zu filterState ein:
+// Jeder Button, dessen Wert in der Auswahl-Liste steht, bekommt "active".
+// Wird nach jedem Klick UND nach dem Laden gespeicherter Filter benutzt,
+// damit Anzeige und Zustand immer zusammenpassen.
+// classList.toggle(name, true/false) = Klasse setzen bzw. entfernen
 // ---------------------------------------------------------------------
-function setActiveFilterButton(allButtons, clickedButton) {
-  // Schritt 1: bei ALLEN die Markierung entfernen
-  allButtons.forEach(function clearActiveButtonState(button) {
-    button.classList.remove("active");
-  });
+function syncFilterButtons(groupId) {
+  const selectedValues = filterState.filters[groupId] || [];
+  const buttons = document.querySelectorAll('.filter-btn[data-group="' + groupId + '"]');
 
-  clickedButton.classList.add("active"); // CSS-Klasse "active" setzen → .button.active greift
+  buttons.forEach(function updateButtonState(button) {
+    const isSelected = selectedValues.includes(button.dataset.value);
+    button.classList.toggle("active", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
+  });
+}
+
+// ---------------------------------------------------------------------
+// Schaltet einen Wert in einer Filtergruppe an oder aus (Mehrfachauswahl).
+//   Wert schon ausgewählt → rausnehmen
+//   Wert noch nicht drin  → dazunehmen
+// ---------------------------------------------------------------------
+function toggleFilterValue(groupId, value) {
+  const selectedValues = filterState.filters[groupId];
+  const position = selectedValues.indexOf(value); // -1 = nicht gefunden
+
+  if (position === -1) {
+    selectedValues.push(value);
+  } else {
+    selectedValues.splice(position, 1); // splice(stelle, 1) = 1 Element an dieser Stelle löschen
+  }
 }
 
 // ---------------------------------------------------------------------
@@ -518,12 +559,18 @@ function applyEntryFilters() {
   console.log("[filter] nach Suche:", result.length);
 
   // --- Schritt 2: alle Filtergruppen nacheinander ---
+  // INNERHALB einer Gruppe gilt ODER: HTML + CSS + JS gewählt → Eintrag
+  // passt, wenn er zu IRGENDEINEM davon gehört (.some()).
+  // ZWISCHEN den Gruppen gilt UND: Sprache UND Kategorie müssen passen,
+  // weil die Gruppen nacheinander filtern.
   listConfig.filterGroups.forEach(function applyFilterGroup(group) {
-    const selectedValue = filterState.filters[group.id];
-    if (!selectedValue) return; // "" = "Alle" → diese Gruppe filtert nicht
+    const selectedValues = filterState.filters[group.id] || [];
+    if (selectedValues.length === 0) return; // nichts ausgewählt → diese Gruppe filtert nicht
 
-    result = result.filter(entry => entryMatchesFilter(entry, group, selectedValue));
-    console.log("[filter] nach " + group.title + " (" + selectedValue + "):", result.length);
+    result = result.filter(function matchesAnySelectedValue(entry) {
+      return selectedValues.some(value => entryMatchesFilter(entry, group, value));
+    });
+    console.log("[filter] nach " + group.title + " (" + selectedValues.join(" oder ") + "):", result.length);
   });
 
   // --- Schritt 3: Sortieren ---
@@ -531,6 +578,9 @@ function applyEntryFilters() {
 
   // --- Schritt 4: Anzeigen ---
   searcher.renderEntriesInTable(TABLE_BODY_SELECTOR, result);
+
+  // --- Schritt 5: Einstellung im Browser merken (siehe 7b) ---
+  saveFilterState();
 }
 
 
@@ -555,13 +605,45 @@ function setupTextSearch() {
   input.addEventListener("input", function handleSearchInput() {
     filterState.search = input.value.trim(); // trim() = Leerzeichen außen weg
     console.log("[event] Suche:", filterState.search);
+    updateSortForSearch();
     applyEntryFilters();
   });
 }
 
+// ---------------------------------------------------------------------
+// "Empfohlen" ist eine Lern-Reihenfolge. Wer etwas SUCHT, will aber
+// gezielt einen Begriff finden – da ist A–Z praktischer. Deshalb:
+//   Suche beginnt + Sortierung ist "Empfohlen" → auf A–Z umschalten
+//                                                und "level" merken
+//   Suchfeld wieder leer                       → gemerkte Sortierung
+//                                                zurückholen
+// Wählt man WÄHREND der Suche selbst eine Sortierung, gilt die (siehe
+// setupSortSelector) und es wird nichts mehr zurückgestellt.
+// ---------------------------------------------------------------------
+function updateSortForSearch() {
+  const select = document.getElementById("sortSelect");
+  const isSearching = filterState.search !== "";
+
+  if (isSearching && filterState.sort === "level") {
+    filterState.sortBeforeSearch = "level";
+    filterState.sort = "az";
+    console.log("[sort] Suche aktiv → automatisch von 'Empfohlen' auf A–Z");
+  } else if (!isSearching && filterState.sortBeforeSearch) {
+    filterState.sort = filterState.sortBeforeSearch;
+    filterState.sortBeforeSearch = "";
+    console.log("[sort] Suche leer → zurück zu:", filterState.sort);
+  } else {
+    return; // nichts geändert
+  }
+
+  // Auswahlfeld anpassen, damit man sieht, wie gerade sortiert wird
+  if (select) select.value = filterState.sort;
+}
+
 // --- Filter-Buttons (alle Gruppen) ------------------------------------
-// Jede Gruppe wird einzeln behandelt, damit ein Klick nur die Buttons
-// DER EIGENEN Gruppe umschaltet (Sprache und Kategorie unabhängig).
+// Jeder Klick schaltet EINEN Button an oder aus. Mehrere Buttons pro
+// Gruppe dürfen gleichzeitig an sein (z. B. HTML + CSS + JS).
+// Sind alle aus, wird wieder alles gezeigt.
 function setupFilterButtons() {
   listConfig.filterGroups.forEach(function setupFilterGroup(group) {
     // [data-group="language"] = nur Buttons mit genau diesem Attribut
@@ -569,13 +651,14 @@ function setupFilterButtons() {
     console.log("[setup] Buttons für '" + group.title + "' gefunden:", buttons.length);
 
     buttons.forEach(function setupFilterButton(button) {
-      button.addEventListener("click", function selectFilterValue() {
+      button.addEventListener("click", function toggleFilterButton() {
         // dataset.value liest data-value="..." aus dem HTML
-        filterState.filters[group.id] = button.dataset.value;
-        console.log("[event] " + group.title + ":", button.dataset.value || "(alle)");
+        toggleFilterValue(group.id, button.dataset.value);
+        const selected = filterState.filters[group.id];
+        console.log("[event] " + group.title + ":", selected.length ? selected.join(", ") : "(nichts ausgewählt = alles)");
 
-        setActiveFilterButton(buttons, button); // diesen Button hervorheben
-        applyEntryFilters();                    // Tabelle neu berechnen
+        syncFilterButtons(group.id); // Buttons passend einfärben
+        applyEntryFilters();         // Tabelle neu berechnen
       });
     });
   });
@@ -592,9 +675,153 @@ function setupSortSelector() {
   // "change" reicht hier: ein <select> ändert sich nur beim Auswählen
   select.addEventListener("change", function handleSortSelectionChange() {
     filterState.sort = select.value;
+    // Selbst gewählt → nach der Suche NICHT automatisch zurückstellen
+    filterState.sortBeforeSearch = "";
     console.log("[event] Sortierung:", filterState.sort);
     applyEntryFilters();
   });
+}
+
+
+/* =====================================================================
+   7b. MERKEN (localStorage)
+   ---------------------------------------------------------------------
+   localStorage ist ein kleiner Speicher im Browser, der auch nach dem
+   Schließen der Seite erhalten bleibt (pro Browser, nicht auf dem Server).
+   Er speichert nur Text → Objekte werden mit JSON.stringify zu Text und
+   mit JSON.parse wieder zu Objekten.
+
+   Pro Spicker gibt es zwei Schlüssel, damit sich Coding und Mathe nicht
+   gegenseitig überschreiben:
+     spicker-list-<topic>    Suche, Filter, Sortierung
+     spicker-scroll-<topic>  wie weit nach unten gescrollt wurde (Pixel)
+
+   try/catch, weil localStorage in manchen Fällen einen Fehler wirft
+   (z. B. privates Fenster, Speicher voll, Cookies blockiert). Dann
+   funktioniert die Seite trotzdem – sie merkt sich nur nichts.
+   ===================================================================== */
+let currentTopicId = "";      // wird in initializeListPage() gesetzt
+let scrollRestoreDone = false; // erst NACH dem Wiederherstellen speichern
+
+function getFilterStorageKey() { return "spicker-list-" + currentTopicId; }
+function getScrollStorageKey() { return "spicker-scroll-" + currentTopicId; }
+
+// --- Filter speichern (nach jeder Änderung, siehe applyEntryFilters) --
+function saveFilterState() {
+  if (!currentTopicId) return;
+  try {
+    localStorage.setItem(getFilterStorageKey(), JSON.stringify(filterState));
+  } catch (error) {
+    console.warn("[storage] Filter konnten nicht gespeichert werden:", error);
+  }
+}
+
+// ---------------------------------------------------------------------
+// Gespeicherte Filter laden und in filterState übernehmen.
+// Alles wird GEPRÜFT, bevor es übernommen wird: Hat sich entries.js
+// inzwischen geändert (Button gelöscht, Sortierung umbenannt), werden
+// unbekannte Werte einfach ignoriert statt Fehler zu verursachen.
+// ---------------------------------------------------------------------
+function loadFilterState() {
+  let saved = null;
+  try {
+    const text = localStorage.getItem(getFilterStorageKey());
+    if (!text) {
+      console.log("[storage] keine gespeicherten Filter – Standard wird benutzt");
+      return;
+    }
+    saved = JSON.parse(text);
+  } catch (error) {
+    console.warn("[storage] gespeicherte Filter unlesbar – Standard wird benutzt:", error);
+    return;
+  }
+  if (!saved || typeof saved !== "object") return;
+
+  // Suche
+  if (typeof saved.search === "string") {
+    filterState.search = saved.search;
+  }
+
+  // Filter: nur Werte übernehmen, für die es noch einen Button gibt
+  listConfig.filterGroups.forEach(function restoreGroup(group) {
+    const savedValues = saved.filters && saved.filters[group.id];
+    // Alte Version hat einen einzelnen Text gespeichert → in Liste umwandeln
+    const valueList = Array.isArray(savedValues) ? savedValues : (savedValues ? [savedValues] : []);
+    const knownValues = group.buttons.map(button => button.value).filter(value => value !== "");
+    filterState.filters[group.id] = valueList.filter(value => knownValues.includes(value));
+  });
+
+  // Sortierung: nur übernehmen, wenn es die Option noch gibt
+  const knownSorts = listConfig.sortOptions.map(option => option.value);
+  if (knownSorts.includes(saved.sort)) {
+    filterState.sort = saved.sort;
+  }
+  filterState.sortBeforeSearch = knownSorts.includes(saved.sortBeforeSearch) ? saved.sortBeforeSearch : "";
+
+  console.log("[storage] gespeicherte Filter geladen:", JSON.stringify(filterState));
+}
+
+// ---------------------------------------------------------------------
+// Bringt Suchfeld, Buttons und Sortier-Auswahl auf den Stand von
+// filterState (nach dem Laden gespeicherter Filter).
+// ---------------------------------------------------------------------
+function applyFilterStateToControls() {
+  const input = document.getElementById("myInput");
+  if (input) input.value = filterState.search;
+
+  const select = document.getElementById("sortSelect");
+  if (select) select.value = filterState.sort;
+
+  listConfig.filterGroups.forEach(group => syncFilterButtons(group.id));
+}
+
+// --- Scroll-Position --------------------------------------------------
+// Beim Scrollen wird gespeichert – aber höchstens alle 200 ms, sonst
+// würde bei jedem Pixel geschrieben (setTimeout bündelt das).
+// "pagehide" feuert beim Verlassen der Seite (Link, Zurück-Pfeil, Tab
+// schließen) und speichert sicherheitshalber noch einmal.
+function saveScrollPosition() {
+  if (!scrollRestoreDone || !currentTopicId) return;
+  try {
+    localStorage.setItem(getScrollStorageKey(), String(Math.round(window.scrollY)));
+  } catch (error) {
+    console.warn("[scroll] Position konnte nicht gespeichert werden:", error);
+  }
+}
+
+function setupScrollMemory() {
+  // Der Browser soll NICHT selbst scrollen – das übernehmen wir, damit es
+  // auch beim Zurück-Pfeil (normaler Link, kein "Zurück") klappt.
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  let saveTimer = null;
+  window.addEventListener("scroll", function handleScroll() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveScrollPosition, 200);
+  }, { passive: true }); // passive = blockiert das Scrollen nicht
+
+  window.addEventListener("pagehide", saveScrollPosition);
+}
+
+// Springt zur gespeicherten Stelle. Wird nach dem ersten Zeichnen der
+// Tabelle aufgerufen, weil die Seite vorher noch gar nicht so lang ist.
+function restoreScrollPosition() {
+  let savedY = 0;
+  try {
+    savedY = Number(localStorage.getItem(getScrollStorageKey())) || 0;
+  } catch (error) {
+    console.warn("[scroll] gespeicherte Position unlesbar:", error);
+  }
+
+  if (savedY > 0) {
+    window.scrollTo(0, savedY);
+    console.log("[scroll] zurück zu Position", savedY, "px (erreicht:", Math.round(window.scrollY) + " px)");
+  } else {
+    console.log("[scroll] keine gespeicherte Position – Seite startet oben");
+  }
+  scrollRestoreDone = true;
 }
 
 
@@ -610,6 +837,7 @@ document.addEventListener("DOMContentLoaded", function initializeListPage() {
   console.log("[start] Listen-Seite geladen");
 
   const topicId = getTopicId();
+  currentTopicId = topicId;
   console.log("[start] Spicker:", topicId);
 
   // Der Wechsler funktioniert auch ohne Daten – deshalb zuerst.
@@ -640,6 +868,14 @@ document.addEventListener("DOMContentLoaded", function initializeListPage() {
   setupFilterButtons();
   setupSortSelector();
 
+  // Gespeicherte Einstellung laden und Buttons/Suchfeld/Auswahl anpassen
+  loadFilterState();
+  applyFilterStateToControls();
+
   applyEntryFilters(); // einmal alles anzeigen
+
+  // Erst jetzt ist die Tabelle lang genug, um dorthin zu scrollen
+  setupScrollMemory();
+  restoreScrollPosition();
   console.log("[start] fertig");
 });

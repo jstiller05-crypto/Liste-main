@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: DNS &amp; DHCP – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Netzwerk · DNS &amp; DHCP</p>
+    <h1>DNS, Domains &amp; der Aufbau einer URL</h1>
+    <p class="page-lead">Wie aus <code>www.beispiel.de</code> eine IP-Adresse wird, bevor der Browser überhaupt irgendetwas laden kann.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#dns">DNS</a></td><td>Übersetzt Domainnamen in IP-Adressen</td></tr>
+          <tr><td><a href="#domain">Domain</a></td><td>Aufbau sub.domain.tld</td></tr>
+          <tr><td><a href="#url-aufbau">URL-Aufbau</a></td><td>Protokoll, Host, Port, Pfad, Query, Fragment</td></tr>
+          <tr><td><a href="#dhcp">DHCP</a></td><td>Vergibt automatisch eine IP-Adresse</td></tr>
+          <tr><td><a href="#hosts-datei">hosts-Datei</a></td><td>Lokale, manuelle Domain-zu-IP-Zuordnung</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dns">
+      <h2>DNS</h2>
+      <p><strong>DNS</strong> (<em>Domain Name System</em>) übersetzt für Menschen lesbare Domainnamen wie <code>beispiel.de</code> in die IP-Adresse, die der Computer für die eigentliche Verbindung braucht – wie ein Telefonbuch des Internets.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 260" role="img" aria-label="Browser fragt den DNS-Server nach der Domain, bekommt die IP-Adresse zurück und verbindet sich damit zum Webserver" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="40.0" y="30.0" width="160.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="120.0" y="65.0" class="dg-label" text-anchor="middle">DNS-Server</text>
+        <text x="120.0" y="87.0" class="dg-small" text-anchor="middle">kennt Domain → IP</text>
+        <line x1="120.0" y1="110.0" x2="120.0" y2="160.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <text x="132.0" y="130.0" class="dg-small" text-anchor="start">1. "beispiel.de"?</text>
+        <text x="132.0" y="148.0" class="dg-small" text-anchor="start">2. "93.184.216.34"</text>
+        <rect x="40.0" y="160.0" width="160.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="120.0" y="195.0" class="dg-label" text-anchor="middle">Browser</text>
+        <text x="120.0" y="217.0" class="dg-small" text-anchor="middle">Client</text>
+        <line x1="200.0" y1="200.0" x2="436.0" y2="200.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="318.0" y="188.0" class="dg-small" text-anchor="middle">3. Verbindung zu 93.184.216.34</text>
+        <rect x="440.0" y="160.0" width="160.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="520.0" y="195.0" class="dg-label" text-anchor="middle">Webserver</text>
+        <text x="520.0" y="217.0" class="dg-small" text-anchor="middle">liefert die Seite</text>
+        </svg>
+        <figcaption>Erst fragt der Browser den DNS-Server nach der IP, dann verbindet er sich DAMIT zum eigentlichen Webserver.</figcaption>
+      </figure>
+    </section>
+
+    <section id="domain">
+      <h2>Domain</h2>
+      <p>Eine <strong>Domain</strong> ist nach dem Schema <code>sub.domain.tld</code> aufgebaut:</p>
+      <pre><code>      www.beispiel.de
+        │      │     │
+        │      │     └─ TLD (Top-Level-Domain): .de, .com, .org …
+        │      └─────── Domain: der eigentliche Name
+        └────────────── Subdomain: oft "www", manchmal weggelassen</code></pre>
+    </section>
+
+    <section id="url-aufbau">
+      <h2>URL-Aufbau</h2>
+      <p>Eine vollständige <strong>URL</strong> setzt sich aus mehreren Teilen zusammen:</p>
+      <pre><code>https://www.beispiel.de:443/suche?q=katze#ergebnisse
+└─┬──┘  └──────┬───────┘└┬┘└──┬──┘└───┬───┘└───┬────┘
+Protokoll     Host      Port  Pfad   Query   Fragment</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Teil</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Protokoll</td><td><code>https://</code> – wie verbunden wird</td></tr>
+          <tr><td>Host</td><td>die Domain des Servers</td></tr>
+          <tr><td>Port</td><td>optional, oft weggelassen (dann Standardport)</td></tr>
+          <tr><td>Pfad</td><td>welche Seite/Ressource auf dem Server</td></tr>
+          <tr><td>Query</td><td>Parameter nach <code>?</code> – lesbar über URLSearchParams im Spicker</td></tr>
+          <tr><td>Fragment</td><td>Sprungmarke nach <code>#</code>, bleibt im Browser (geht nicht an den Server)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dhcp">
+      <h2>DHCP</h2>
+      <p><strong>DHCP</strong> (<em>Dynamic Host Configuration Protocol</em>) vergibt beim Verbinden mit einem Netzwerk automatisch eine passende IP-Adresse (und weitere Einstellungen wie den DNS-Server) an ein Gerät – ohne DHCP müsste man all das von Hand eintragen.</p>
+    </section>
+
+    <section id="hosts-datei">
+      <h2>hosts-Datei</h2>
+      <p>Die <strong>hosts-Datei</strong> ist eine lokale Textdatei auf jedem Rechner, in der man Domainnamen manuell fest einer IP-Adresse zuordnen kann. Sie wird VOR einer echten DNS-Anfrage geprüft – praktisch z. B., um eine Domain lokal zu Testzwecken auf den eigenen Rechner umzuleiten.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Nach einem DNS-Eintrags-Wechsel kann es eine Weile dauern, bis überall die neue IP ankommt – DNS-Antworten werden zwischengespeichert (Caching) und laufen erst nach einer Weile ab.</li>
+        <li>Das Fragment (<code>#…</code>) einer URL erreicht den Server NIE – es bleibt komplett im Browser.</li>
+        <li>Ein fehlerhafter hosts-Eintrag kann eine Domain dauerhaft „falsch“ auflösen lassen, selbst wenn DNS eigentlich korrekt wäre – ein klassischer, leicht übersehener Stolperstein.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-ip-adressen.html">IT: IP-Adressen</a>
+        <a class="chip" href="it-ports.html">IT: Ports</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

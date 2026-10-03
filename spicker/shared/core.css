@@ -555,6 +555,14 @@ body.detail-page {
 .detail-page .dg-shape      { stroke: var(--accent); stroke-width: 3; }
 .detail-page .dg-box        { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.5; }
 .detail-page .dg-point      { fill: var(--accent); stroke: var(--code-bg); stroke-width: 2; }
+
+/* Klickbare Kästen in interaktiven Diagrammen (z. B. Bit-Schalter) –
+   gleiche Hover/Fokus-Sprache wie .progress-dot, damit Maus UND
+   Tastatur (Tab + Enter/Leertaste) erkennbar sind. */
+.detail-page .dg-toggle      { fill: var(--card-bg); stroke: var(--border); stroke-width: 1.5; cursor: pointer; }
+.detail-page .dg-toggle:hover,
+.detail-page .dg-toggle:focus-visible { stroke: var(--accent); outline: none; }
+.detail-page .dg-toggle.is-on { fill: var(--accent); fill-opacity: 0.25; stroke: var(--accent); }
 .detail-page .dg-right-angle { fill: none; stroke: var(--text-muted); stroke-width: 1.5; }
 
 /* Balken (Bilanz, GuV) */

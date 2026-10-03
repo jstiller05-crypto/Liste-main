@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: CPU – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Hardware · CPU</p>
+    <h1>CPU: Kerne, Takt &amp; Cache</h1>
+    <p class="page-lead">Was in dem kleinen Chip steckt, der buchstäblich jeden Befehl deines Programms ausführt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#cpu">CPU / Prozessor</a></td><td>Führt Befehle aus (fetch – decode – execute)</td></tr>
+          <tr><td><a href="#kern-thread">Kern &amp; Thread</a></td><td>Physischer Rechenkern vs. Ausführungsstrang</td></tr>
+          <tr><td><a href="#taktfrequenz">Taktfrequenz (GHz)</a></td><td>Zyklen pro Sekunde – nicht alles</td></tr>
+          <tr><td><a href="#cache">Cache (L1/L2/L3)</a></td><td>Schneller Zwischenspeicher nahe am Kern</td></tr>
+          <tr><td><a href="#register">Register</a></td><td>Die schnellsten Speicherzellen überhaupt</td></tr>
+          <tr><td><a href="#befehlssatz">Befehlssatz (x86-64 vs. ARM)</a></td><td>Welche Maschinenbefehle die CPU versteht</td></tr>
+          <tr><td><a href="#32-64-bit">32 vs. 64 Bit</a></td><td>Breite von Registern und Adressen</td></tr>
+          <tr><td><a href="#maschinencode-assembler">Maschinencode &amp; Assembler</a></td><td>Was die CPU wirklich ausführt</td></tr>
+          <tr><td><a href="#logikgatter">Logikgatter</a></td><td>Aus diesen Bauteilen besteht die CPU</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cpu">
+      <h2>CPU / Prozessor</h2>
+      <p>Die <strong>CPU</strong> (<em>Central Processing Unit</em>, Prozessor) führt die eigentlichen Berechnungen aus. Im Kern läuft dabei immer derselbe Zyklus: <strong>Fetch</strong> (Befehl aus dem Speicher holen), <strong>Decode</strong> (Befehl entschlüsseln) und <strong>Execute</strong> (Befehl ausführen) – und dann von vorn.</p>
+    </section>
+
+    <section id="kern-thread">
+      <h2>Kern &amp; Thread</h2>
+      <p>Ein <strong>Kern</strong> (<em>Core</em>) ist eine eigenständige Recheneinheit innerhalb der CPU – moderne Prozessoren haben meist mehrere Kerne, die unabhängig voneinander arbeiten können. Ein <strong>Thread</strong> ist ein Ausführungsstrang: Mit „Hyper-Threading“/SMT kann EIN physischer Kern wie zwei logische Kerne wirken, indem er sich bestimmte interne Ressourcen teilt – das bringt etwas, ist aber NICHT dieselbe Leistung wie zwei echte physische Kerne.</p>
+    </section>
+
+    <section id="taktfrequenz">
+      <h2>Taktfrequenz (GHz)</h2>
+      <p>Die <strong>Taktfrequenz</strong> gibt an, wie viele Grundzyklen die CPU pro Sekunde durchläuft – 1 GHz = eine Milliarde Zyklen pro Sekunde. Mehr GHz bedeutet NICHT automatisch mehr Leistung: Wie viel eine CPU pro Takt tatsächlich erledigt (IPC, „Instructions per Cycle“), hängt stark von der Architektur ab. Taktfrequenzen sind darum nur innerhalb derselben CPU-Generation gut vergleichbar.</p>
+    </section>
+
+    <section id="cache">
+      <h2>Cache (L1/L2/L3)</h2>
+      <p>Der <strong>Cache</strong> ist ein kleiner, sehr schneller Zwischenspeicher direkt am Prozessor, der häufig gebrauchte Daten und Befehle vorhält – damit die CPU nicht bei jedem Zugriff auf das deutlich langsamere RAM warten muss.</p>
+      <table class="info-table">
+        <thead><tr><th>Stufe</th><th>Größe</th><th>Geschwindigkeit</th><th>Geteilt?</th></tr></thead>
+        <tbody>
+          <tr><td>L1</td><td>sehr klein</td><td>am schnellsten</td><td>pro Kern</td></tr>
+          <tr><td>L2</td><td>klein–mittel</td><td>schnell</td><td>meist pro Kern</td></tr>
+          <tr><td>L3</td><td>am größten</td><td>langsamer als L1/L2, aber schneller als RAM</td><td>meist von allen Kernen geteilt</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="register">
+      <h2>Register</h2>
+      <p><strong>Register</strong> sind winzige Speicherzellen direkt in der CPU – schneller als jeder Cache, aber auch extrem knapp (meist nur eine Handvoll). In ihnen liegen die Werte, mit denen die CPU GERADE JETZT rechnet.</p>
+    </section>
+
+    <section id="befehlssatz">
+      <h2>Befehlssatz (x86-64 vs. ARM)</h2>
+      <p>Der <strong>Befehlssatz</strong> (<em>Instruction Set Architecture</em>, ISA) legt fest, welche Maschinenbefehle eine CPU überhaupt versteht. Programme für einen Befehlssatz laufen ohne Übersetzung/Emulation NICHT auf einem anderen.</p>
+      <table class="info-table">
+        <thead><tr><th>Befehlssatz</th><th>Typisch verbaut in</th></tr></thead>
+        <tbody>
+          <tr><td>x86-64</td><td>die meisten Desktop-PCs, Laptops, Server (Intel, AMD)</td></tr>
+          <tr><td>ARM</td><td>Smartphones, viele Laptops (z. B. Apple Silicon) – sehr energieeffizient</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="32-64-bit">
+      <h2>32 vs. 64 Bit</h2>
+      <p>„32-Bit“ bzw. „64-Bit“ beschreibt u. a. die Breite der Register und Adressen, mit denen eine CPU arbeitet. Eine 32-Bit-Adresse kann maximal 2³² Byte = 4 GiB Arbeitsspeicher ansprechen – 64-Bit-Systeme adressieren theoretisch enorm viel mehr und sind heute praktisch Standard.</p>
+    </section>
+
+    <section id="maschinencode-assembler">
+      <h2>Maschinencode &amp; Assembler</h2>
+      <p><strong>Maschinencode</strong> sind die rohen Bytes, die die CPU direkt ausführt. <strong>Assembler</strong> ist eine für Menschen lesbare 1:1-Textdarstellung davon – ein Befehl im Assembler entspricht (fast) genau einem Maschinenbefehl, ganz anders als z. B. eine Zeile C++ oder JavaScript.</p>
+      <pre><code>; Assembler (vereinfacht, x86-artig)
+MOV AX, 5     ; Register AX = 5
+ADD AX, 3     ; AX = AX + 3  (jetzt 8)</code></pre>
+    </section>
+
+    <section id="logikgatter">
+      <h2>Logikgatter</h2>
+      <p>Ganz unten besteht eine CPU aus Millionen winziger <strong>Logikgatter</strong> – elektronische Bauteile, die AND, OR, XOR und NOT auf einzelne Bits anwenden (siehe Bitoperatoren im Daten-Teil des Spickers). Aus genau diesen einfachen Bausteinen wird Schicht für Schicht alles zusammengesetzt, bis am Ende eine komplette CPU entsteht.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Mehr Kerne“ hilft nur, wenn ein Programm die Arbeit auch wirklich auf mehrere Kerne aufteilen kann – viele Alltagsaufgaben laufen weiterhin größtenteils auf einem Kern.</li>
+        <li>GHz-Zahlen verschiedener CPU-Generationen oder -Hersteller direkt zu vergleichen, führt leicht in die Irre – die Architektur zählt mindestens genauso viel.</li>
+        <li>„64-Bit-System“ und „64-Bit-Programm“ sind zwei verschiedene Dinge: Ein 64-Bit-Betriebssystem kann durchaus noch 32-Bit-Programme ausführen.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-hardware-aufbau.html">IT: Hardware-Aufbau</a>
+        <a class="chip" href="it-speicher.html">IT: Speicher</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

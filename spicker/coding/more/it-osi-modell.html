@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: OSI-Modell – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Protokolle · OSI-Modell</p>
+    <h1>OSI-Modell &amp; TCP/IP-Modell</h1>
+    <p class="page-lead">Zwei Landkarten für dieselbe Idee: Netzwerk-Kommunikation in klar getrennte Schichten aufteilen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#protokoll">Protokoll</a></td><td>Feste Regeln für den Datenaustausch</td></tr>
+          <tr><td><a href="#osi-modell">OSI-Modell</a></td><td>7 Schichten, eher zum Lernen/Erklären</td></tr>
+          <tr><td><a href="#tcp-ip-modell">TCP/IP-Modell</a></td><td>4 Schichten, so ist das Internet real gebaut</td></tr>
+          <tr><td><a href="#kapselung">Kapselung</a></td><td>Jede Schicht verpackt die Daten der nächsten</td></tr>
+          <tr><td><a href="#paket">Paket</a></td><td>Ein Daten-„Häppchen“ auf dem Weg durchs Netz</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="protokoll">
+      <h2>Protokoll</h2>
+      <p>Ein <strong>Protokoll</strong> ist eine feste Vereinbarung, WIE zwei Geräte miteinander „sprechen“ – welches Format Nachrichten haben, in welcher Reihenfolge sie geschickt werden, wie Fehler behandelt werden. Ohne gemeinsames Protokoll können zwei Geräte zwar Daten senden, aber nicht sinnvoll verstehen, was die Daten bedeuten.</p>
+    </section>
+
+    <section id="osi-modell">
+      <h2>OSI-Modell</h2>
+      <p>Das <strong>OSI-Modell</strong> teilt Netzwerk-Kommunikation in <strong>7 Schichten</strong> auf – von der reinen Bitübertragung über ein Kabel (Schicht 1) bis zur fertigen Anwendung (Schicht 7). Es ist vor allem ein theoretisches Referenzmodell, um Netzwerkthemen sauber einzuordnen und zu erklären.</p>
+    </section>
+
+    <section id="tcp-ip-modell">
+      <h2>TCP/IP-Modell</h2>
+      <p>Das <strong>TCP/IP-Modell</strong> ist einfacher und beschreibt, wie das echte Internet tatsächlich aufgebaut ist: nur <strong>4 Schichten</strong> statt 7. Mehrere OSI-Schichten fallen hier jeweils zu einer gemeinsamen Schicht zusammen.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 340" role="img" aria-label="OSI-Modell mit 7 Schichten neben dem TCP/IP-Modell mit 4 Schichten" xmlns="http://www.w3.org/2000/svg">
+        <text x="140.0" y="22.0" class="dg-small" text-anchor="middle">OSI-Modell (7 Schichten)</text>
+        <text x="500.0" y="22.0" class="dg-small" text-anchor="middle">TCP/IP-Modell (4 Schichten)</text>
+        <rect x="40.0" y="30.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="55.0" class="dg-accent-text" text-anchor="start">7</text>
+        <text x="140.0" y="55.0" class="dg-label" text-anchor="middle">Anwendung</text>
+        <rect x="40.0" y="70.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="95.0" class="dg-accent-text" text-anchor="start">6</text>
+        <text x="140.0" y="95.0" class="dg-label" text-anchor="middle">Darstellung</text>
+        <rect x="40.0" y="110.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="135.0" class="dg-accent-text" text-anchor="start">5</text>
+        <text x="140.0" y="135.0" class="dg-label" text-anchor="middle">Sitzung</text>
+        <rect x="40.0" y="150.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="175.0" class="dg-accent-text" text-anchor="start">4</text>
+        <text x="140.0" y="175.0" class="dg-label" text-anchor="middle">Transport</text>
+        <rect x="40.0" y="190.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="215.0" class="dg-accent-text" text-anchor="start">3</text>
+        <text x="140.0" y="215.0" class="dg-label" text-anchor="middle">Vermittlung</text>
+        <rect x="40.0" y="230.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="255.0" class="dg-accent-text" text-anchor="start">2</text>
+        <text x="140.0" y="255.0" class="dg-label" text-anchor="middle">Sicherung</text>
+        <rect x="40.0" y="270.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="55.0" y="295.0" class="dg-accent-text" text-anchor="start">1</text>
+        <text x="140.0" y="295.0" class="dg-label" text-anchor="middle">Bitübertragung</text>
+        <rect x="400.0" y="30.0" width="200.0" height="120.0" class="dg-box"/>
+        <text x="500.0" y="94.0" class="dg-label" text-anchor="middle">Anwendung</text>
+        <rect x="400.0" y="150.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="500.0" y="175.0" class="dg-label" text-anchor="middle">Transport</text>
+        <rect x="400.0" y="190.0" width="200.0" height="40.0" class="dg-box"/>
+        <text x="500.0" y="215.0" class="dg-label" text-anchor="middle">Internet</text>
+        <rect x="400.0" y="230.0" width="200.0" height="80.0" class="dg-box"/>
+        <text x="500.0" y="274.0" class="dg-label" text-anchor="middle">Netzzugang</text>
+        </svg>
+        <figcaption>Anwendung, Darstellung und Sitzung (OSI 7–5) fallen im TCP/IP-Modell zu einer Schicht „Anwendung“ zusammen – ebenso Sicherung und Bitübertragung (OSI 2–1) zu „Netzzugang“.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Beispiel-Protokolle je Schicht</h2>
+      <table class="info-table">
+        <thead><tr><th>TCP/IP-Schicht</th><th>Typische Protokolle</th></tr></thead>
+        <tbody>
+          <tr><td>Anwendung</td><td>HTTP, DNS, SMTP</td></tr>
+          <tr><td>Transport</td><td>TCP, UDP</td></tr>
+          <tr><td>Internet</td><td>IP</td></tr>
+          <tr><td>Netzzugang</td><td>Ethernet, WLAN</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="kapselung">
+      <h2>Kapselung</h2>
+      <p><strong>Kapselung</strong> (<em>Encapsulation</em>) heißt: Jede Schicht verpackt die Daten der darüberliegenden Schicht in ihre eigene „Hülle“ mit zusätzlichen Infos (z. B. Absender- und Ziel-Adresse). Beim Empfänger passiert das Ganze umgekehrt – Schicht für Schicht wird wieder ausgepackt, bis die ursprünglichen Daten übrig bleiben.</p>
+    </section>
+
+    <section id="paket">
+      <h2>Paket</h2>
+      <p>Ein <strong>Paket</strong> ist ein einzelnes Daten-„Häppchen“, in das größere Datenmengen für die Übertragung aufgeteilt werden. Jedes Paket findet dank Kapselung und Adressinformationen seinen eigenen Weg durchs Netz – sie können sogar unterschiedliche Wege nehmen und kommen am Ziel wieder in der richtigen Reihenfolge zusammen.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Das OSI-Modell wird in der Praxis selten 1:1 „benutzt“ – es dient vor allem als gemeinsame Sprache, um Netzwerkprobleme einer bestimmten Schicht zuzuordnen.</li>
+        <li>„Kein Internet“ kann auf JEDER Schicht die Ursache haben – vom losen Kabel (Schicht 1) bis zu einem falsch konfigurierten DNS-Eintrag (Anwendungsschicht).</li>
+        <li>Mehrere OSI-Schichten in EINE TCP/IP-Schicht zusammenzufassen heißt nicht, dass diese Aufgaben wegfallen – sie passieren nur nicht mehr strikt getrennt.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-ports.html">IT: Ports</a>
+        <a class="chip" href="it-tcp-udp.html">IT: TCP &amp; UDP</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Daten im Speicher – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Daten · Daten im Speicher</p>
+    <h1>Zahlen im Speicher</h1>
+    <p class="page-lead">Warum <code>0.1 + 0.2</code> in fast jeder Sprache nicht genau <code>0.3</code> ergibt – und was Ganzzahl-Grenzen damit zu tun haben.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#ganzzahl-groessen">Ganzzahl-Größen</a></td><td>8/16/32/64 Bit, feste Wertebereiche</td></tr>
+          <tr><td><a href="#ieee-754">Gleitkommazahl / IEEE 754</a></td><td>Warum Dezimalbrüche ungenau werden</td></tr>
+          <tr><td><a href="#endianness">Endianness</a></td><td>Byte-Reihenfolge einer Zahl im Speicher</td></tr>
+          <tr><td><a href="#speicheradresse">Speicheradresse</a></td><td>Jedes Byte im RAM hat eine eigene Nummer</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="ganzzahl-groessen">
+      <h2>Ganzzahl-Größen</h2>
+      <p>Jede Ganzzahl-Variable hat eine feste Bitbreite – und damit einen festen Wertebereich. Mehr Bits bedeuten einen größeren Bereich, aber auch mehr Speicherverbrauch.</p>
+      <table class="info-table">
+        <thead><tr><th>Bits</th><th>unsigned</th><th>signed</th></tr></thead>
+        <tbody>
+          <tr><td>8</td><td>0 … 255</td><td>−128 … 127</td></tr>
+          <tr><td>16</td><td>0 … 65.535</td><td>−32.768 … 32.767</td></tr>
+          <tr><td>32</td><td>0 … 4.294.967.295</td><td>−2.147.483.648 … 2.147.483.647</td></tr>
+          <tr><td>64</td><td>0 … 18.446.744.073.709.551.615</td><td>−9.223.372.036.854.775.808 … 9.223.372.036.854.775.807</td></tr>
+        </tbody>
+      </table>
+      <p>Wie diese Größen konkret in C++ heißen (<code>int</code>, <code>long</code>, <code>int32_t</code> …) steht bei den Datentypen des Spickers.</p>
+    </section>
+
+    <section id="ieee-754">
+      <h2>Gleitkommazahl / IEEE 754</h2>
+      <p>Dezimalzahlen mit Nachkommastellen (<code>float</code>, <code>double</code>) werden fast überall nach dem Standard <strong>IEEE 754</strong> gespeichert: ein Vorzeichen-Bit, ein Exponent und eine Mantisse – ähnlich wie die wissenschaftliche Schreibweise <code>1,23 · 10⁴</code>, nur binär. Manche Dezimalbrüche lassen sich darin NICHT exakt darstellen, genau wie sich 1⁄3 im Dezimalsystem nicht exakt als endliche Dezimalzahl schreiben lässt.</p>
+      <pre><code>console.log(0.1 + 0.2);
+// 0.30000000000000004   – NICHT genau 0.3!</code></pre>
+      <div class="note">Das ist kein Bug von JavaScript, sondern betrifft praktisch jede Sprache mit IEEE-754-Gleitkommazahlen (C++, Python, Java …). Für exakte Beträge (z. B. Geld) nutzt man darum ganze Zahlen (Cent statt Euro) oder spezielle Dezimaltypen statt <code>float</code>/<code>double</code>.</div>
+    </section>
+
+    <section id="endianness">
+      <h2>Endianness</h2>
+      <p>Eine Mehr-Byte-Zahl kann auf zwei Arten im Speicher abgelegt werden: <strong>Big Endian</strong> speichert das höchstwertige Byte zuerst, <strong>Little Endian</strong> das niedrigstwertige zuerst.</p>
+      <pre><code>Zahl 0x1A2B (2 Byte)
+
+Big Endian:    Adresse 0: 1A   Adresse 1: 2B
+Little Endian: Adresse 0: 2B   Adresse 1: 1A</code></pre>
+      <p>Gängige PC- und Smartphone-Prozessoren (x86, die meisten ARM-Konfigurationen) sind Little Endian. Viele Netzwerkprotokolle definieren dagegen Big Endian als „Network Byte Order“ – weshalb Netzwerk-Code manchmal extra umwandeln muss.</p>
+    </section>
+
+    <section id="speicheradresse">
+      <h2>Speicheradresse</h2>
+      <p>Jedes Byte im Arbeitsspeicher (RAM) hat eine eigene, fortlaufende <strong>Adresse</strong> – wie eine Hausnummer. Ein <strong>Zeiger</strong> (<em>Pointer</em>) ist eine Variable, die genau so eine Adresse speichert, statt eines „normalen“ Werts. Wie das konkret in C++ aussieht, steht bei den Zeigern im Spicker.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Gleitkommazahlen NIE mit <code>==</code> auf exakte Gleichheit prüfen – stattdessen die Differenz mit einer kleinen Toleranz vergleichen.</li>
+        <li>Bei Geldbeträgen lieber in der kleinsten Einheit rechnen (Cent als Ganzzahl) statt in Euro als <code>float</code>/<code>double</code>.</li>
+        <li>Endianness spielt nur beim Austausch von Rohdaten zwischen Systemen eine Rolle (Netzwerk, Dateiformate) – innerhalb EINER laufenden Sprache merkt man normalerweise nichts davon.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-zeichenkodierung.html">IT: Zeichenkodierung</a>
+        <a class="chip" href="it-hardware-aufbau.html">IT: Hardware-Aufbau</a>
+        <a class="chip" href="datatypes.html">C++: Datentypen</a>
+        <a class="chip" href="pointer.html">C++: Zeiger (*)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

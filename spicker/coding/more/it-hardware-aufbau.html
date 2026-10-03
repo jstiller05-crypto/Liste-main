@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Hardware-Aufbau – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Hardware · Aufbau</p>
+    <h1>Wie ein PC aufgebaut ist</h1>
+    <p class="page-lead">Mainboard, Bus und Netzteil – wie die Bauteile im Rechner zusammenspielen, und das Grundprinzip dahinter seit 80 Jahren.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#von-neumann">Von-Neumann-Architektur</a></td><td>CPU, Speicher und E/A teilen sich einen Bus</td></tr>
+          <tr><td><a href="#mainboard">Mainboard</a></td><td>Die Platine, die alles verbindet</td></tr>
+          <tr><td><a href="#chipsatz">Chipsatz</a></td><td>Steuert den Datenverkehr auf dem Mainboard</td></tr>
+          <tr><td><a href="#bus">Bus</a></td><td>Gemeinsamer Datenweg zwischen Bauteilen</td></tr>
+          <tr><td><a href="#netzteil">Netzteil</a></td><td>Wandelt Netzstrom in die Spannungen der Bauteile</td></tr>
+          <tr><td><a href="#peripherie">Peripherie</a></td><td>Eingabe- und Ausgabegeräte von außen</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="von-neumann">
+      <h2>Von-Neumann-Architektur</h2>
+      <p>Die <strong>Von-Neumann-Architektur</strong> ist das Grundmodell, nach dem fast jeder heutige Computer aufgebaut ist: Prozessor (CPU), Speicher und Ein-/Ausgabe teilen sich EINEN gemeinsamen Bus für Befehle UND Daten. Das erinnert an das EVA-Prinzip – nur als konkrete Bauteil-Architektur statt als Ablaufschema.</p>
+      <div class="note">Weil Befehle und Daten sich denselben Bus teilen, kann die CPU nicht beides gleichzeitig abholen – dieser Engpass heißt „Von-Neumann-Flaschenhals“ und ist einer der Gründe für Caches (siehe nächste Seite: CPU).</div>
+    </section>
+
+    <section id="mainboard">
+      <h2>Mainboard</h2>
+      <p>Das <strong>Mainboard</strong> (Hauptplatine) ist die Platine, auf der CPU, Arbeitsspeicher, Chipsatz und alle Steckplätze sitzen – und über die alle anderen Bauteile miteinander verbunden sind.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="CPU, RAM und GPU sitzen oben auf dem Mainboard, SSD und Netzteil sind unten angeschlossen" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="90.0" y="30.0" width="110.0" height="70.0" rx="8" class="dg-box"/>
+        <text x="145.0" y="60.0" class="dg-label" text-anchor="middle">CPU</text>
+        <text x="145.0" y="82.0" class="dg-small" text-anchor="middle">Prozessor</text>
+        <rect x="265.0" y="30.0" width="110.0" height="70.0" rx="8" class="dg-box"/>
+        <text x="320.0" y="60.0" class="dg-label" text-anchor="middle">RAM</text>
+        <text x="320.0" y="82.0" class="dg-small" text-anchor="middle">Arbeitsspeicher</text>
+        <rect x="440.0" y="30.0" width="110.0" height="70.0" rx="8" class="dg-box"/>
+        <text x="495.0" y="60.0" class="dg-label" text-anchor="middle">GPU</text>
+        <text x="495.0" y="82.0" class="dg-small" text-anchor="middle">Grafikkarte</text>
+        <line x1="145.0" y1="100.0" x2="145.0" y2="125.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <line x1="320.0" y1="100.0" x2="320.0" y2="125.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <line x1="495.0" y1="100.0" x2="495.0" y2="125.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <rect x="70.0" y="125.0" width="500.0" height="80.0" rx="8" class="dg-box"/>
+        <text x="320.0" y="160.0" class="dg-label" text-anchor="middle">Mainboard</text>
+        <text x="320.0" y="182.0" class="dg-small" text-anchor="middle">verbindet alles über Busse (PCIe, SATA, USB …)</text>
+        <line x1="160.0" y1="205.0" x2="160.0" y2="225.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <line x1="370.0" y1="205.0" x2="370.0" y2="225.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <rect x="105.0" y="225.0" width="110.0" height="70.0" rx="8" class="dg-box"/>
+        <text x="160.0" y="255.0" class="dg-label" text-anchor="middle">SSD</text>
+        <text x="160.0" y="277.0" class="dg-small" text-anchor="middle">Speicher</text>
+        <rect x="315.0" y="225.0" width="110.0" height="70.0" rx="8" class="dg-box"/>
+        <text x="370.0" y="255.0" class="dg-label" text-anchor="middle">Netzteil</text>
+        <text x="370.0" y="277.0" class="dg-small" text-anchor="middle">Strom für alles</text>
+        </svg>
+        <figcaption>CPU, RAM und GPU stecken auf dem Mainboard, SSD und Netzteil sind darüber angeschlossen – alle Pfeile stehen für Busse bzw. Stromleitungen.</figcaption>
+      </figure>
+    </section>
+
+    <section id="chipsatz">
+      <h2>Chipsatz</h2>
+      <p>Der <strong>Chipsatz</strong> ist ein Chip (früher oft zwei: „Nordbrücke“ für schnelle Bauteile wie RAM/GPU, „Südbrücke“ für langsamere wie USB) auf dem Mainboard, der den Datenverkehr zwischen CPU und den restlichen Bauteilen steuert. Moderne CPUs haben den Speicher-Controller und die schnellsten PCIe-Lanes bereits eingebaut – der verbleibende Chipsatz kümmert sich vor allem um langsamere Anschlüsse wie USB oder SATA.</p>
+    </section>
+
+    <section id="bus">
+      <h2>Bus</h2>
+      <p>Ein <strong>Bus</strong> ist ein gemeinsamer Datenweg, über den mehrere Bauteile Daten austauschen. Die wichtigsten Busse in einem PC:</p>
+      <table class="info-table">
+        <thead><tr><th>Bus</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>PCIe</td><td>Grafikkarten, schnelle (NVMe-)SSDs</td></tr>
+          <tr><td>SATA</td><td>ältere Festplatten/SSDs</td></tr>
+          <tr><td>USB</td><td>externe Peripherie (Tastatur, Maus, Sticks …)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="netzteil">
+      <h2>Netzteil</h2>
+      <p>Das <strong>Netzteil</strong> (<em>PSU</em>, Power Supply Unit) wandelt die Netzspannung aus der Steckdose (230 V Wechselstrom in Europa) in die verschiedenen Gleichspannungen um, die die Bauteile brauchen (üblich: +12 V, +5 V, +3,3 V). Seine Kapazität wird in Watt angegeben – sie muss zur Gesamtleistung aller verbauten Komponenten passen, besonders bei leistungshungrigen Grafikkarten.</p>
+    </section>
+
+    <section id="peripherie">
+      <h2>Peripherie</h2>
+      <p><strong>Peripherie</strong> sind alle Geräte außerhalb des eigentlichen Rechners – im Sinn des EVA-Prinzips unterscheidet man:</p>
+      <ul>
+        <li><strong>Eingabegeräte:</strong> Tastatur, Maus, Scanner, Mikrofon</li>
+        <li><strong>Ausgabegeräte:</strong> Monitor, Drucker, Lautsprecher</li>
+      </ul>
+      <p>Manche Geräte sind beides zugleich, z. B. ein Touchscreen (Eingabe per Berührung UND Ausgabe per Bild).</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Der Computer“ und „das Gehäuse“ werden umgangssprachlich oft gleichgesetzt – eigentlich ist das Gehäuse nur die Hülle um Mainboard, Netzteil &amp; Co.</li>
+        <li>Nicht jeder Bus ist gleich schnell: PCIe-Generationen und -Lanes (×1, ×4, ×16 …) machen einen großen Unterschied, besonders bei Grafikkarten.</li>
+        <li>Ein zu schwaches Netzteil zeigt sich oft erst unter Volllast (z. B. beim Spielen) durch Abstürze – nicht sofort beim normalen Start.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-daten-im-speicher.html">IT: Daten im Speicher</a>
+        <a class="chip" href="it-cpu.html">IT: CPU</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Ports – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Netzwerk · Ports</p>
+    <h1>Ports &amp; Sockets</h1>
+    <p class="page-lead">Warum <code>localhost:3000</code> eine andere Adresse ist als nur <code>localhost</code> – und was hinter den bekannten Portnummern steckt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#port">Port</a></td><td>Nummer für EINEN Dienst auf einem Gerät</td></tr>
+          <tr><td><a href="#socket">Socket</a></td><td>IP-Adresse + Port zusammen</td></tr>
+          <tr><td><a href="#wichtige-ports">Wichtige Ports</a></td><td>80, 443, 22, 53 … und was dahintersteckt</td></tr>
+          <tr><td><a href="#localhost-3000">localhost:3000</a></td><td>Der typische lokale Dev-Server-Port</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="port">
+      <h2>Port</h2>
+      <p>Eine IP-Adresse identifiziert ein GERÄT im Netzwerk – ein <strong>Port</strong> (eine Zahl von 0 bis 65.535) identifiziert zusätzlich, für WELCHEN Dienst AUF diesem Gerät eine Nachricht bestimmt ist. Ein Server kann so gleichzeitig mehrere Dienste auf verschiedenen Ports anbieten, ohne dass sie sich in die Quere kommen.</p>
+    </section>
+
+    <section id="socket">
+      <h2>Socket</h2>
+      <p>Ein <strong>Socket</strong> ist die Kombination aus IP-Adresse UND Port, z. B. <code>192.168.1.20:443</code> – zusammen bezeichnet das eine ganz konkrete Verbindung zu einem bestimmten Dienst auf einem bestimmten Gerät.</p>
+    </section>
+
+    <section id="wichtige-ports">
+      <h2>Wichtige Ports</h2>
+      <table class="info-table">
+        <thead><tr><th>Port</th><th>Dienst</th></tr></thead>
+        <tbody>
+          <tr><td>20 / 21</td><td>FTP (Datei-Übertragung)</td></tr>
+          <tr><td>22</td><td>SSH (sichere Fernsteuerung)</td></tr>
+          <tr><td>25</td><td>SMTP (E-Mail versenden)</td></tr>
+          <tr><td>53</td><td>DNS</td></tr>
+          <tr><td>80</td><td>HTTP</td></tr>
+          <tr><td>443</td><td>HTTPS</td></tr>
+          <tr><td>3306</td><td>MySQL</td></tr>
+          <tr><td>5432</td><td>PostgreSQL</td></tr>
+          <tr><td>3000 / 5173</td><td>typische lokale Dev-Server (Node/Express bzw. Vite)</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Ports unter 1024 gelten als „bekannte“ Ports für Standarddienste (HTTP, HTTPS, SSH …) – eigene Server und Entwicklungs-Tools nutzen deshalb meist höhere, freie Ports wie 3000.</div>
+    </section>
+
+    <section id="localhost-3000">
+      <h2>localhost:3000</h2>
+      <p><code>localhost:3000</code> heißt: Port 3000 auf dem eigenen Rechner (<code>127.0.0.1</code>). Genau das nutzt der Node-Server dieses Spickers (siehe <code>server.js</code>), und auch viele andere Entwicklungs-Server laufen standardmäßig auf einem solchen hohen Port – zum Beispiel Vite häufig auf Port 5173.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Port schon belegt“ (<code>EADDRINUSE</code>) bedeutet meist: Ein anderer Prozess lauscht bereits auf genau diesem Port – entweder den alten Prozess beenden oder einen anderen Port wählen.</li>
+        <li>Fehlt die Portangabe in einer URL, wird automatisch der Standardport der jeweiligen Protokolls verwendet (80 bei HTTP, 443 bei HTTPS) – unsichtbar, aber trotzdem da.</li>
+        <li>Ein offener Port ist kein automatisches Sicherheitsrisiko an sich – entscheidend ist, WELCHER Dienst dahinter läuft und wie gut er abgesichert ist.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-dns-dhcp.html">IT: DNS &amp; DHCP</a>
+        <a class="chip" href="it-osi-modell.html">IT: OSI-Modell</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

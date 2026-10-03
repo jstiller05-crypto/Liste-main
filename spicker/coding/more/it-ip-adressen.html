@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: IP-Adressen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Netzwerk · IP-Adressen</p>
+    <h1>IP-Adressen, Subnetze &amp; NAT</h1>
+    <p class="page-lead">Warum <code>192.168.1.20</code> eigentlich nur vier Bytes in Dezimalschreibweise sind.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#ip-adresse">IP-Adresse</a></td><td>Eindeutige Adresse eines Geräts im Netzwerk</td></tr>
+          <tr><td><a href="#ipv4">IPv4</a></td><td>32 Bit, vier Zahlen 0–255</td></tr>
+          <tr><td><a href="#ipv6">IPv6</a></td><td>128 Bit, der Nachfolger mit riesig mehr Adressen</td></tr>
+          <tr><td><a href="#subnetzmaske">Subnetzmaske</a></td><td>Trennt Netz-Teil von Geräte-Teil einer IP</td></tr>
+          <tr><td><a href="#cidr">CIDR (/24)</a></td><td>Kurzschreibweise für die Subnetzmaske</td></tr>
+          <tr><td><a href="#private-oeffentliche-ip">private vs. öffentliche IP</a></td><td>Nur im Heimnetz gültig vs. weltweit eindeutig</td></tr>
+          <tr><td><a href="#localhost">localhost / 127.0.0.1</a></td><td>Zeigt immer auf den eigenen Rechner</td></tr>
+          <tr><td><a href="#nat">NAT</a></td><td>Viele private IPs hinter einer öffentlichen verstecken</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="ip-adresse">
+      <h2>IP-Adresse</h2>
+      <p>Eine <strong>IP-Adresse</strong> (<em>Internet Protocol</em>-Adresse) identifiziert ein Gerät eindeutig in einem Netzwerk – vergleichbar mit einer Postadresse, nur für Datenpakete.</p>
+    </section>
+
+    <section id="ipv4">
+      <h2>IPv4</h2>
+      <p><strong>IPv4</strong>-Adressen sind 32 Bit lang – geschrieben als vier Dezimalzahlen von 0 bis 255, getrennt durch Punkte. Jede dieser vier Zahlen ist schlicht EIN Byte:</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 170" role="img" aria-label="Die IPv4-Adresse 192.168.1.20 aufgeteilt in vier Bytes mit Dezimal- und Binärwert" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20.0" y="40.0" width="130.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="85.0" y="80.0" class="dg-big" text-anchor="middle">192</text>
+        <text x="85.0" y="110.0" class="dg-small" text-anchor="middle">1100 0000</text>
+        <text x="162.5" y="98.0" class="dg-label" text-anchor="middle">.</text>
+        <rect x="175.0" y="40.0" width="130.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="240.0" y="80.0" class="dg-big" text-anchor="middle">168</text>
+        <text x="240.0" y="110.0" class="dg-small" text-anchor="middle">1010 1000</text>
+        <text x="317.5" y="98.0" class="dg-label" text-anchor="middle">.</text>
+        <rect x="330.0" y="40.0" width="130.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="395.0" y="80.0" class="dg-big" text-anchor="middle">1</text>
+        <text x="395.0" y="110.0" class="dg-small" text-anchor="middle">0000 0001</text>
+        <text x="472.5" y="98.0" class="dg-label" text-anchor="middle">.</text>
+        <rect x="485.0" y="40.0" width="130.0" height="100.0" rx="8" class="dg-box"/>
+        <text x="550.0" y="80.0" class="dg-big" text-anchor="middle">20</text>
+        <text x="550.0" y="110.0" class="dg-small" text-anchor="middle">0001 0100</text>
+        </svg>
+        <figcaption>Vier Byte = 32 Bit. Wie man dezimal in binär umrechnet, steht bei den Zahlensystemen im Daten-Teil des Spickers.</figcaption>
+      </figure>
+      <p>Mit 32 Bit sind theoretisch 2³² ≈ 4,3 Milliarden Adressen möglich – für das heutige Internet längst zu wenig, einer der Hauptgründe für IPv6.</p>
+    </section>
+
+    <section id="ipv6">
+      <h2>IPv6</h2>
+      <p><strong>IPv6</strong> ist der Nachfolger von IPv4: 128 Bit statt 32, geschrieben als acht Gruppen Hex-Ziffern, getrennt durch Doppelpunkte (z. B. <code>2001:0db8::1</code>). Das ergibt astronomisch mehr mögliche Adressen (2¹²⁸) – praktisch genug für jedes denkbare Gerät der Zukunft.</p>
+    </section>
+
+    <section id="subnetzmaske">
+      <h2>Subnetzmaske</h2>
+      <p>Die <strong>Subnetzmaske</strong> legt fest, welcher Teil einer IP-Adresse das Netzwerk bezeichnet und welcher Teil das einzelne Gerät darin. Eine übliche Maske wie <code>255.255.255.0</code> bedeutet: Die ersten drei Byte sind das Netz, nur das letzte Byte unterscheidet die Geräte darin.</p>
+    </section>
+
+    <section id="cidr">
+      <h2>CIDR (/24)</h2>
+      <p><strong>CIDR</strong>-Schreibweise gibt die Subnetzmaske kompakt als Anzahl der „Netzwerk-Bits“ an. <code>/24</code> heißt: die ersten 24 Bit (= 3 Byte) sind das Netz, das identisch zu <code>255.255.255.0</code>. Die restlichen 8 Bit (1 Byte) bleiben für Geräte – also bis zu 2⁸ = 256 Adressen in diesem Netz.</p>
+    </section>
+
+    <section id="private-oeffentliche-ip">
+      <h2>private vs. öffentliche IP</h2>
+      <p>Bestimmte Adressbereiche sind für PRIVATE Netze reserviert und werden im öffentlichen Internet nicht weitergeleitet (geroutet):</p>
+      <table class="info-table">
+        <thead><tr><th>Privater Bereich</th></tr></thead>
+        <tbody>
+          <tr><td>10.0.0.0 – 10.255.255.255</td></tr>
+          <tr><td>172.16.0.0 – 172.31.255.255</td></tr>
+          <tr><td>192.168.0.0 – 192.168.255.255</td></tr>
+        </tbody>
+      </table>
+      <p>Eine ÖFFENTLICHE IP-Adresse ist dagegen weltweit eindeutig und direkt aus dem Internet erreichbar.</p>
+    </section>
+
+    <section id="localhost">
+      <h2>localhost / 127.0.0.1</h2>
+      <p><strong>localhost</strong> (bzw. die IP <code>127.0.0.1</code>) zeigt IMMER auf den eigenen Rechner selbst – egal, mit welchem Netzwerk er gerade verbunden ist. Genau darauf lauscht z. B. der Node-Server dieses Spickers (<code>127.0.0.1:3000</code>), damit er bewusst nur vom eigenen Rechner aus erreichbar ist.</p>
+    </section>
+
+    <section id="nat">
+      <h2>NAT</h2>
+      <p><strong>NAT</strong> (<em>Network Address Translation</em>) erlaubt es einem Router, viele Geräte mit privaten IPs im Heimnetz hinter EINER einzigen öffentlichen IP zu „verstecken“. Der Router schreibt dafür bei jeder Anfrage und Antwort die Adressen passend um – nach außen sieht es so aus, als käme alles von nur einem einzigen Gerät.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Eine IP wie <code>192.168.x.x</code> zu sehen heißt NICHT automatisch „das Internet funktioniert nicht“ – es ist ganz normal die private Adresse im Heimnetz.</li>
+        <li><code>127.0.0.1</code> ist NICHT dasselbe wie die eigene IP im Heimnetz (z. B. <code>192.168.1.20</code>) – Ersteres erreicht man nur vom selben Gerät aus.</li>
+        <li>IPv4-Adressen „gehen aus“ ist real – deshalb laufen NAT und IPv6-Umstieg seit Jahren parallel als zwei verschiedene Lösungsansätze.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-netzwerk-geraete.html">IT: Netzwerk-Geräte</a>
+        <a class="chip" href="it-dns-dhcp.html">IT: DNS &amp; DHCP</a>
+        <a class="chip" href="it-zahlensysteme.html">IT: Zahlensysteme</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

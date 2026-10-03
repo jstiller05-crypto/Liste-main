@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Netzwerk-Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Netzwerk · Grundlagen</p>
+    <h1>Netzwerk-Grundlagen</h1>
+    <p class="page-lead">Client, Server, LAN, WAN – die Wörter, die hinter fast jeder Internet-Erklärung stecken.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#netzwerk">Netzwerk</a></td><td>Geräte, die Daten austauschen können</td></tr>
+          <tr><td><a href="#lan-wlan-wan">LAN / WLAN / WAN</a></td><td>Räumliche Reichweite eines Netzwerks</td></tr>
+          <tr><td><a href="#internet-www">Internet vs. WWW</a></td><td>Infrastruktur vs. EIN Dienst darauf</td></tr>
+          <tr><td><a href="#client-server">Client &amp; Server</a></td><td>Wer fragt, wer antwortet</td></tr>
+          <tr><td><a href="#bandbreite">Bandbreite</a></td><td>Maximale Datenmenge pro Zeit</td></tr>
+          <tr><td><a href="#latenz-ping">Latenz / Ping</a></td><td>Laufzeit eines Datenpakets hin und zurück</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="netzwerk">
+      <h2>Netzwerk</h2>
+      <p>Ein <strong>Netzwerk</strong> ist ein Verbund von Geräten, die miteinander Daten austauschen können – von zwei verkabelten Rechnern bis zum gesamten Internet.</p>
+    </section>
+
+    <section id="lan-wlan-wan">
+      <h2>LAN / WLAN / WAN</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th><th>Typische Reichweite</th></tr></thead>
+        <tbody>
+          <tr><td>LAN</td><td>Local Area Network</td><td>Zuhause, Büro – meist per Kabel</td></tr>
+          <tr><td>WLAN</td><td>kabelloses LAN (WiFi)</td><td>wie LAN, nur ohne Kabel</td></tr>
+          <tr><td>WAN</td><td>Wide Area Network</td><td>verbindet LANs über große Entfernungen</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Das Internet selbst ist im Grunde das größte WAN der Welt – ein Netzwerk aus unzähligen miteinander verbundenen LANs.</div>
+    </section>
+
+    <section id="internet-www">
+      <h2>Internet vs. WWW</h2>
+      <p>Das <strong>Internet</strong> ist die technische Infrastruktur – Kabel, Router, Protokolle wie TCP/IP – über die Geräte weltweit Daten austauschen. Das <strong>WWW</strong> (<em>World Wide Web</em>) ist NUR EINER der Dienste, die darüber laufen: Webseiten, verlinkt über Hyperlinks, abgerufen per HTTP. E-Mail oder Online-Spiele laufen ZWAR auch über das Internet, gehören aber nicht zum WWW.</p>
+    </section>
+
+    <section id="client-server">
+      <h2>Client &amp; Server</h2>
+      <p>Ein <strong>Client</strong> fragt einen Dienst an (z. B. ein Browser), ein <strong>Server</strong> beantwortet diese Anfrage (z. B. liefert eine Webseite zurück). Dieser Spicker selbst läuft genau nach diesem Muster: Ein Node-Server beantwortet auf <code>localhost</code> die Anfragen des Browsers – nachzulesen bei Node.js im Spicker.</p>
+    </section>
+
+    <section id="bandbreite">
+      <h2>Bandbreite</h2>
+      <p>Die <strong>Bandbreite</strong> gibt an, wie viele Daten eine Verbindung maximal pro Zeiteinheit übertragen kann – meist in Mbit/s angegeben (siehe Bits &amp; Bytes im Daten-Teil des Spickers).</p>
+    </section>
+
+    <section id="latenz-ping">
+      <h2>Latenz / Ping</h2>
+      <p>Die <strong>Latenz</strong> ist die Zeit, die ein Datenpaket braucht, um zum Ziel UND wieder zurück zu kommen (<em>Round-Trip-Time</em>), gemessen in Millisekunden. <strong>Ping</strong> ist sowohl der Name des Werkzeugs, das diese Zeit misst, als auch umgangssprachlich die gemessene Latenz selbst („mein Ping ist hoch“).</p>
+      <div class="note">Hohe Bandbreite heißt nicht automatisch niedrige Latenz – ein Datenpaket kann schnell UND trotzdem mit spürbarer Verzögerung ankommen, z. B. über eine sehr weite Satellitenverbindung.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Internet ist langsam“ kann an der Bandbreite ODER an der Latenz liegen – zwei verschiedene Probleme mit unterschiedlichen Ursachen.</li>
+        <li>Online-Spiele reagieren empfindlich auf hohe Latenz, selbst bei großer Bandbreite – kurze Reaktionszeit zählt mehr als die reine Datenmenge.</li>
+        <li>„Ich bin im Internet“ und „ich bin im WWW“ werden oft gleichgesetzt, meinen aber nicht automatisch dasselbe.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-virtualisierung.html">IT: Virtualisierung</a>
+        <a class="chip" href="it-netzwerk-geraete.html">IT: Netzwerk-Geräte</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

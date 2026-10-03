@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Programmieren – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Programmieren · Grundlagen</p>
+    <h1>Was heißt eigentlich „programmieren“?</h1>
+    <p class="page-lead">Sprachunabhängige Grundbegriffe – mit kurzem Vergleich, wie sich das Konkrete in C++, JavaScript und Lua unterscheidet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#quellcode">Quellcode</a></td><td>Der von Menschen geschriebene Programmtext</td></tr>
+          <tr><td><a href="#syntax-semantik">Syntax vs. Semantik</a></td><td>Grammatik-Regeln vs. tatsächliche Bedeutung</td></tr>
+          <tr><td><a href="#compiler">Compiler</a></td><td>Übersetzt alles VORAB in Maschinencode</td></tr>
+          <tr><td><a href="#interpreter">Interpreter</a></td><td>Führt Code direkt zur Laufzeit aus</td></tr>
+          <tr><td><a href="#jit">JIT</a></td><td>Übersetzt erst zur Laufzeit, aber in Maschinencode</td></tr>
+          <tr><td><a href="#hochsprache">Hochsprache vs. Maschinensprache</a></td><td>Menschenlesbar vs. rohe CPU-Bytes</td></tr>
+          <tr><td><a href="#typisierung">statisch vs. dynamisch typisiert</a></td><td>Typ-Prüfung vorab oder erst zur Laufzeit</td></tr>
+          <tr><td><a href="#bibliothek-framework">Bibliothek vs. Framework</a></td><td>Wer ruft wen auf?</td></tr>
+          <tr><td><a href="#api">API</a></td><td>Kontrollierte Schnittstelle nach außen</td></tr>
+          <tr><td><a href="#ide">IDE</a></td><td>Editor, Compiler, Debugger – alles in einem</td></tr>
+          <tr><td><a href="#debugging">Debugging</a></td><td>Fehler gezielt suchen und beheben</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="quellcode">
+      <h2>Quellcode</h2>
+      <p>Der <strong>Quellcode</strong> ist der von Menschen geschriebene, lesbare Programmtext in einer Programmiersprache – bevor er in irgendeiner Form ausgeführt wird.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>.cpp</code></td><td><code>.js</code></td><td><code>.lua</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="syntax-semantik">
+      <h2>Syntax vs. Semantik</h2>
+      <p><strong>Syntax</strong> sind die formalen Regeln, WIE Code geschrieben werden muss (die „Grammatik“ einer Sprache). <strong>Semantik</strong> ist, WAS der Code tatsächlich bedeutet bzw. bewirkt. Syntaktisch fehlerfreier Code kann trotzdem die falsche Semantik haben – er tut dann einfach nicht das Gewollte, ohne dass die Sprache sich beschwert.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>fehlt <code>;</code> → Syntaxfehler</td><td>fehlt <code>)</code> → Syntaxfehler</td><td>fehlt <code>then</code> → Syntaxfehler</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="compiler">
+      <h2>Compiler</h2>
+      <p>Ein <strong>Compiler</strong> übersetzt den GESAMTEN Quellcode EINMAL VOR der Ausführung komplett in Maschinencode (siehe Maschinencode &amp; Assembler im Hardware-Teil des Spickers).</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 220" role="img" aria-label="Quellcode wird vom Compiler vorab in Maschinencode übersetzt, oder vom Interpreter direkt zur Laufzeit ausgeführt" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="20.0" y="20.0" width="140.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="90.0" y="53.0" class="dg-label" text-anchor="middle">Quellcode</text>
+        <line x1="163.0" y1="47.0" x2="243.0" y2="47.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="247.0" y="20.0" width="140.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="317.0" y="53.0" class="dg-label" text-anchor="middle">Compiler</text>
+        <line x1="390.0" y1="47.0" x2="470.0" y2="47.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="474.0" y="20.0" width="140.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="544.0" y="53.0" class="dg-label" text-anchor="middle">Maschinencode</text>
+        <text x="90.0" y="117.0" class="dg-small" text-anchor="middle">(nochmal)</text>
+        <rect x="20.0" y="130.0" width="140.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="90.0" y="163.0" class="dg-label" text-anchor="middle">Quellcode</text>
+        <line x1="163.0" y1="157.0" x2="243.0" y2="157.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="247.0" y="130.0" width="140.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="317.0" y="163.0" class="dg-label" text-anchor="middle">Interpreter</text>
+        <line x1="390.0" y1="157.0" x2="470.0" y2="157.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="474.0" y="130.0" width="140.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="544.0" y="157.0" class="dg-label" text-anchor="middle">Ausgabe</text>
+        <text x="544.0" y="179.0" class="dg-small" text-anchor="middle">direkt zur Laufzeit</text>
+        </svg>
+        <figcaption>Oben: Compiler übersetzt einmal komplett vorab. Unten: Interpreter führt Schritt für Schritt direkt zur Laufzeit aus, ohne eigenen Zwischenschritt „fertiges Maschinencode-Programm“.</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>g++/clang kompiliert vorab</td><td>kein separater Compiler-Schritt nötig</td><td>wird intern zu Bytecode übersetzt</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="interpreter">
+      <h2>Interpreter</h2>
+      <p>Ein <strong>Interpreter</strong> führt Quellcode (oder eine Zwischenform davon) Stück für Stück direkt zur Laufzeit aus, OHNE vorher alles komplett in eigenständigen Maschinencode zu übersetzen (siehe Diagramm oben).</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>kein Interpreter nötig</td><td>Engine (z. B. V8) führt aus</td><td>Lua-Interpreter führt Bytecode aus</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="jit">
+      <h2>JIT</h2>
+      <p>Ein <strong>JIT-Compiler</strong> (<em>Just-In-Time</em>) übersetzt Code ERST zur Laufzeit – aber, anders als ein reiner Interpreter, in ECHTEN Maschinencode, meist nur für die Teile, die wirklich oft durchlaufen werden („hot code“). Das ist ein Kompromiss zwischen schnellem Start und schneller Ausführung.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>kein JIT nötig (fertig kompiliert)</td><td>ja (V8, SpiderMonkey …)</td><td>Standard-Lua: nein · LuaJIT: ja</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="hochsprache">
+      <h2>Hochsprache vs. Maschinensprache</h2>
+      <p>Die <strong>Maschinensprache</strong> sind die rohen Bytes, die eine CPU direkt versteht. Eine <strong>Hochsprache</strong> ist für Menschen lesbar und deutlich abstrakter – sie muss erst (per Compiler, Interpreter oder JIT) in Maschinensprache überführt werden, bevor die CPU etwas damit anfangen kann.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td colspan="3">alle drei sind Hochsprachen – der Unterschied liegt nur im WANN/WIE der Übersetzung (siehe oben)</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="typisierung">
+      <h2>statisch vs. dynamisch typisiert</h2>
+      <p>Bei <strong>statischer</strong> Typisierung steht der Typ einer Variable schon beim Schreiben/Kompilieren fest und wird VOR der Ausführung geprüft – Typfehler fallen früh auf. Bei <strong>dynamischer</strong> Typisierung wird der Typ erst zur Laufzeit anhand des aktuellen Werts bestimmt.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>statisch (<code>int x = 5;</code>)</td><td>dynamisch</td><td>dynamisch</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="bibliothek-framework">
+      <h2>Bibliothek vs. Framework</h2>
+      <p>Eine <strong>Bibliothek</strong> ist eine Sammlung fertiger Funktionen, die DU in deinem Code aufrufst – du behältst die Kontrolle über den Ablauf. Ein <strong>Framework</strong> gibt die Grundstruktur des Programms vor und ruft stattdessen DEINEN Code auf („Inversion of Control“).</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>&lt;string&gt;</code> (Bibliothek)</td><td>Express im Spicker (Framework)</td><td>string-Bibliothek (Standard)</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="api">
+      <h2>API</h2>
+      <p>Eine <strong>API</strong> (<em>Application Programming Interface</em>) ist eine Schnittstelle, über die ein Programm, eine Bibliothek oder ein Dienst kontrolliert genutzt werden kann, ohne die inneren Details zu kennen – von einzelnen Funktionen einer Bibliothek bis zur Web-API dieses Spickers (siehe REST-API im Protokolle-Teil).</p>
+    </section>
+
+    <section id="ide">
+      <h2>IDE</h2>
+      <p>Eine <strong>IDE</strong> (<em>Integrated Development Environment</em>) bündelt Editor, Compiler-/Interpreter-Anbindung, Debugger und mehr in EINER Oberfläche.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>Visual Studio, CLion</td><td>VS Code</td><td>ZeroBrane Studio</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="debugging">
+      <h2>Debugging</h2>
+      <p><strong>Debugging</strong> ist das gezielte Suchen und Beheben von Fehlern (<em>Bugs</em>) – z. B. mit Breakpoints (Programm an einer Stelle anhalten) und Schritt-für-Schritt-Ausführung.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td>gdb / Debugger der IDE</td><td>Browser-Entwicklertools</td><td>print-Debugging / IDE-Debugger</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Mein Code läuft nicht, aber es gibt keinen Fehler“ ist oft ein Semantik-Problem – syntaktisch korrekt, aber nicht das Gewollte.</li>
+        <li>Dynamisch typisierte Sprachen fangen Typfehler oft erst zur Laufzeit ab, mitten in der Ausführung – gründliches Testen wird dadurch wichtiger.</li>
+        <li>„Bibliothek einbinden“ reicht oft nicht – manche brauchen zusätzlich einen Paketmanager-Befehl (z. B. <code>npm install</code>), um überhaupt vorhanden zu sein.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-sicherheit-grundlagen.html">IT: Sicherheit-Grundlagen</a>
+        <a class="chip" href="it-programm-bausteine.html">IT: Programm-Bausteine</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

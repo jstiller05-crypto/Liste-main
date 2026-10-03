@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Virtualisierung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">System · Virtualisierung</p>
+    <h1>VMs, Container &amp; WSL</h1>
+    <p class="page-lead">Mehrere „Computer“ oder isolierte Umgebungen auf EINEM echten Rechner laufen lassen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#virtuelle-maschine">Virtuelle Maschine</a></td><td>Simuliert einen kompletten eigenen Computer</td></tr>
+          <tr><td><a href="#container-docker">Container / Docker</a></td><td>Leichtgewichtig, teilt sich den Host-Kernel</td></tr>
+          <tr><td><a href="#wsl">WSL</a></td><td>Echtes Linux direkt unter Windows</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="virtuelle-maschine">
+      <h2>Virtuelle Maschine</h2>
+      <p>Eine <strong>virtuelle Maschine</strong> (VM) ist Software, die einen kompletten Computer samt eigener (virtueller) Hardware simuliert. Darin läuft ein VOLLSTÄNDIGES, eigenes Betriebssystem – isoliert vom Host-System, als wäre es ein ganz eigener Rechner.</p>
+    </section>
+
+    <section id="container-docker">
+      <h2>Container / Docker</h2>
+      <p>Ein <strong>Container</strong> ist leichtgewichtiger als eine VM: Container teilen sich den Kernel des Host-Betriebssystems, isolieren aber Prozesse, Dateisystem und Netzwerk voneinander. Dadurch brauchen sie KEIN eigenes komplettes Betriebssystem, starten viel schneller und verbrauchen weniger Ressourcen als eine VM. <strong>Docker</strong> ist das verbreitetste Werkzeug dafür.</p>
+      <table class="info-table">
+        <thead><tr><th></th><th>Virtuelle Maschine</th><th>Container</th></tr></thead>
+        <tbody>
+          <tr><td>Eigener Kernel?</td><td>ja, komplett eigenes OS</td><td>nein, teilt sich den Host-Kernel</td></tr>
+          <tr><td>Startzeit</td><td>eher langsam (Sekunden bis Minuten)</td><td>sehr schnell (oft unter 1 Sekunde)</td></tr>
+          <tr><td>Ressourcenbedarf</td><td>hoch</td><td>gering</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="wsl">
+      <h2>WSL</h2>
+      <p><strong>WSL</strong> (<em>Windows Subsystem for Linux</em>) lässt eine echte Linux-Umgebung direkt unter Windows laufen, ohne eine separate VM von Hand einzurichten. Die aktuelle Version WSL2 nutzt dafür intern eine schlanke, schnell startende virtuelle Maschine – praktisch für alle, die unter Windows mit Linux-Werkzeugen entwickeln wollen.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Virtualisierung“ und „Emulation“ werden oft verwechselt: Eine VM läuft meist auf DERSELBEN Prozessor-Architektur (schnell), ein Emulator bildet eine ANDERE Architektur komplett in Software nach (deutlich langsamer).</li>
+        <li>Container isolieren Prozesse und Dateien, aber NICHT die Hardware wie eine VM – ein Kernel-Sicherheitsproblem im Host kann theoretisch alle Container darauf betreffen.</li>
+        <li>WSL2 ist KEIN „Linux-Modus“ von Windows, sondern technisch eine eigene, nur sehr eng integrierte virtuelle Maschine.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-dateisystem.html">IT: Dateisystem</a>
+        <a class="chip" href="it-netzwerk-grundlagen.html">IT: Netzwerk-Grundlagen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Prozesse – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">System · Prozesse</p>
+    <h1>Prozesse, Threads &amp; der Scheduler</h1>
+    <p class="page-lead">Wie ein Betriebssystem dafür sorgt, dass gefühlt alles gleichzeitig läuft – obwohl ein Prozessorkern immer nur EINE Sache auf einmal tut.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#prozess">Prozess (vs. Programm)</a></td><td>Die LAUFENDE Instanz eines Programms</td></tr>
+          <tr><td><a href="#thread">Thread</a></td><td>Ein Ausführungsstrang innerhalb eines Prozesses</td></tr>
+          <tr><td><a href="#multitasking-scheduler">Multitasking &amp; Scheduler</a></td><td>Abwechselnd kurze Zeitscheiben pro Prozess</td></tr>
+          <tr><td><a href="#pid">PID</a></td><td>Eindeutige Nummer eines laufenden Prozesses</td></tr>
+          <tr><td><a href="#dienst-daemon">Dienst / Daemon</a></td><td>Läuft dauerhaft im Hintergrund, ohne UI</td></tr>
+          <tr><td><a href="#task-manager">Task-Manager / top / htop</a></td><td>Laufende Prozesse ansehen und verwalten</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="prozess">
+      <h2>Prozess (vs. Programm)</h2>
+      <p>Ein <strong>Programm</strong> ist die ruhende Datei auf der Festplatte (z. B. <code>browser.exe</code>). Ein <strong>Prozess</strong> ist eine LAUFENDE Instanz davon im Arbeitsspeicher – mit eigenem Zustand, eigenem Speicherbereich und eigenen offenen Dateien. Startet man dasselbe Programm zweimal, entstehen daraus zwei getrennte Prozesse.</p>
+    </section>
+
+    <section id="thread">
+      <h2>Thread</h2>
+      <p>Ein <strong>Thread</strong> ist ein Ausführungsstrang innerhalb EINES Prozesses. Ein Prozess kann mehrere Threads haben, die sich den Speicher des Prozesses TEILEN, aber unabhängig voneinander arbeiten – z. B. ein Thread, der auf Benutzereingaben wartet, während ein anderer im Hintergrund rechnet. Wie Threads auf die physischen CPU-Kerne verteilt werden, steht beim Thema CPU im Hardware-Teil des Spickers.</p>
+    </section>
+
+    <section id="multitasking-scheduler">
+      <h2>Multitasking &amp; Scheduler</h2>
+      <p>Ein Prozessorkern kann zu jedem Zeitpunkt nur EINEN Befehl ausführen. Damit trotzdem viele Programme gleichzeitig zu laufen SCHEINEN (<strong>Multitasking</strong>), teilt der <strong>Scheduler</strong> (ein Teil des Kernels) jedem Prozess abwechselnd kurze Zeitscheiben zu – im Millisekundenbereich und damit viel zu schnell, um es als Mensch zu bemerken.</p>
+    </section>
+
+    <section id="pid">
+      <h2>PID</h2>
+      <p>Die <strong>PID</strong> (<em>Process ID</em>) ist eine eindeutige Nummer, die das Betriebssystem jedem laufenden Prozess vergibt. Darüber lässt sich ein Prozess eindeutig ansprechen – etwa um gezielt GENAU diesen einen Prozess zu beenden.</p>
+    </section>
+
+    <section id="dienst-daemon">
+      <h2>Dienst / Daemon</h2>
+      <p>Ein <strong>Dienst</strong> (Windows) bzw. <strong>Daemon</strong> (Linux/macOS/Unix) ist ein Prozess, der dauerhaft im Hintergrund läuft, OHNE eigene Benutzeroberfläche – oft schon seit dem Systemstart. Ein laufender Webserver ist ein typisches Beispiel. Unter Linux enden Daemon-Namen oft auf ein „d“, z. B. <code>sshd</code> für den SSH-Dienst.</p>
+    </section>
+
+    <section id="task-manager">
+      <h2>Task-Manager / top / htop</h2>
+      <p>Um laufende Prozesse anzusehen und bei Bedarf zu beenden, gibt es passende Werkzeuge: unter Windows den grafischen <strong>Task-Manager</strong>, unter Linux/macOS im Terminal <code>top</code> (einfache, laufend aktualisierte Liste) oder das komfortablere, interaktive <code>htop</code>.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Einen „hängenden“ Prozess per Task-Manager/<code>top</code> zu beenden ist meist sicherer als den ganzen Rechner neu zu starten – andere Prozesse laufen dabei normal weiter.</li>
+        <li>Viele Threads bringen nur dann etwas, wenn die Aufgabe sich wirklich aufteilen lässt – sonst wartet ein Thread doch nur auf den anderen.</li>
+        <li>PIDs werden nach Beenden eines Prozesses irgendwann wiederverwendet – sich eine PID langfristig zu „merken“, ist keine gute Idee.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-betriebssystem.html">IT: Betriebssystem</a>
+        <a class="chip" href="it-dateisystem.html">IT: Dateisystem</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

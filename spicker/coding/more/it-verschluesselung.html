@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Verschlüsselung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Sicherheit · Verschlüsselung</p>
+    <h1>Verschlüsselung, Hashes &amp; TLS</h1>
+    <p class="page-lead">Ein Schlüssel oder zwei – und warum ein Hash etwas GANZ anderes ist als Verschlüsselung.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#verschluesselung">Verschlüsselung</a></td><td>Daten unlesbar machen, außer mit Schlüssel</td></tr>
+          <tr><td><a href="#symmetrisch">symmetrisch</a></td><td>EIN Schlüssel für beide Richtungen</td></tr>
+          <tr><td><a href="#asymmetrisch">asymmetrisch</a></td><td>Public Key + Private Key</td></tr>
+          <tr><td><a href="#hash-funktion">Hash-Funktion</a></td><td>Einweg – NICHT dasselbe wie Verschlüsselung!</td></tr>
+          <tr><td><a href="#tls-ssl">TLS / SSL</a></td><td>Das Protokoll hinter HTTPS</td></tr>
+          <tr><td><a href="#zertifikat">Zertifikat</a></td><td>Bestätigt: Dieser Public Key gehört wirklich dazu</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="verschluesselung">
+      <h2>Verschlüsselung</h2>
+      <p><strong>Verschlüsselung</strong> wandelt Daten so um, dass sie nur mit dem passenden Schlüssel wieder lesbar (entschlüsselt) werden – ohne Schlüssel bleiben sie für Dritte unverständlich.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 270" role="img" aria-label="Symmetrische Verschlüsselung nutzt denselben Schlüssel zum Ver- und Entschlüsseln, asymmetrische Verschlüsselung nutzt Public und Private Key getrennt" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <text x="320.0" y="18.0" class="dg-small" text-anchor="middle">Symmetrisch – EIN gemeinsamer Schlüssel</text>
+        <rect x="20.0" y="30.0" width="130.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="85.0" y="63.0" class="dg-label" text-anchor="middle">Sender</text>
+        <line x1="153.0" y1="57.0" x2="233.0" y2="57.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="193.0" y="47.0" class="dg-small" text-anchor="middle">Schlüssel A</text>
+        <rect x="237.0" y="30.0" width="130.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="302.0" y="58.0" class="dg-label" text-anchor="middle">Daten</text>
+        <text x="302.0" y="74.0" class="dg-small" text-anchor="middle">verschlüsselt</text>
+        <line x1="370.0" y1="57.0" x2="450.0" y2="57.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="410.0" y="47.0" class="dg-small" text-anchor="middle">Schlüssel A</text>
+        <rect x="454.0" y="30.0" width="130.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="519.0" y="63.0" class="dg-label" text-anchor="middle">Empfänger</text>
+        <text x="320.0" y="128.0" class="dg-small" text-anchor="middle">Asymmetrisch – Public Key UND Private Key getrennt</text>
+        <rect x="20.0" y="140.0" width="130.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="85.0" y="173.0" class="dg-label" text-anchor="middle">Sender</text>
+        <line x1="153.0" y1="167.0" x2="233.0" y2="167.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="193.0" y="157.0" class="dg-small" text-anchor="middle">Public Key</text>
+        <rect x="237.0" y="140.0" width="130.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="302.0" y="168.0" class="dg-label" text-anchor="middle">Daten</text>
+        <text x="302.0" y="184.0" class="dg-small" text-anchor="middle">verschlüsselt</text>
+        <line x1="370.0" y1="167.0" x2="450.0" y2="167.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="410.0" y="157.0" class="dg-small" text-anchor="middle">Private Key</text>
+        <rect x="454.0" y="140.0" width="130.0" height="55.0" rx="8" class="dg-box"/>
+        <text x="519.0" y="173.0" class="dg-label" text-anchor="middle">Empfänger</text>
+        <text x="320.0" y="235.0" class="dg-small" text-anchor="middle">Asymmetrisch löst, WIE beide Seiten vorher an denselben Schlüssel kommen –</text>
+        <text x="320.0" y="252.0" class="dg-small" text-anchor="middle">der Private Key verlässt dabei NIE den Empfänger.</text>
+        </svg>
+        <figcaption>Bei symmetrisch brauchen beide denselben Schlüssel VORHER – bei asymmetrisch verschlüsselt jeder mit dem öffentlichen Key des Empfängers, nur dessen privater Key kann es wieder entschlüsseln.</figcaption>
+      </figure>
+    </section>
+
+    <section id="symmetrisch">
+      <h2>symmetrisch</h2>
+      <p>Bei <strong>symmetrischer</strong> Verschlüsselung verwenden Sender und Empfänger DENSELBEN Schlüssel zum Ver- UND Entschlüsseln. Das ist schnell – aber beide Seiten müssen sich VORHER sicher auf diesen einen Schlüssel einigen, was bei einer ersten Verbindung über ein unsicheres Netz selbst zum Problem wird.</p>
+    </section>
+
+    <section id="asymmetrisch">
+      <h2>asymmetrisch</h2>
+      <p>Bei <strong>asymmetrischer</strong> Verschlüsselung gehören IMMER zwei zusammenpassende Schlüssel zusammen: ein öffentlicher <strong>Public Key</strong> (den jeder kennen darf, zum Verschlüsseln) und ein geheimer <strong>Private Key</strong> (nur beim Empfänger, zum Entschlüsseln). Das löst das Schlüsselaustausch-Problem der symmetrischen Verschlüsselung – ist dafür aber deutlich langsamer.</p>
+    </section>
+
+    <section id="hash-funktion">
+      <h2>Hash-Funktion (vs. Verschlüsselung!)</h2>
+      <p>Eine <strong>Hash-Funktion</strong> wandelt beliebig große Daten in eine Prüfsumme fester Länge um – aber als EINWEG-Funktion: Es gibt KEINEN Weg zurück zu den Originaldaten, man kann nur prüfen, ob zwei Eingaben denselben Hash ergeben. Das ist der entscheidende Unterschied zur Verschlüsselung, die man mit dem richtigen Schlüssel absichtlich rückgängig machen kann. Genau deshalb werden Passwörter gehasht statt verschlüsselt (siehe <code>password_hash</code> im PHP-Teil des Spickers) – selbst der Server muss das Original-Passwort nie wieder im Klartext kennen.</p>
+    </section>
+
+    <section id="tls-ssl">
+      <h2>TLS / SSL</h2>
+      <p><strong>TLS</strong> (<em>Transport Layer Security</em>) ist das Protokoll hinter HTTPS. <strong>SSL</strong> ist sein veralteter Vorgänger – umgangssprachlich wird „SSL“ aber bis heute oft für das aktuelle TLS verwendet. TLS kombiniert beide Welten geschickt: asymmetrische Verschlüsselung für den anfänglichen Schlüsselaustausch, danach schnellere symmetrische Verschlüsselung für die eigentlichen Daten.</p>
+    </section>
+
+    <section id="zertifikat">
+      <h2>Zertifikat</h2>
+      <p>Ein <strong>Zertifikat</strong> bestätigt – digital signiert von einer vertrauenswürdigen Zertifizierungsstelle – dass ein bestimmter Public Key WIRKLICH zu einer bestimmten Domain gehört. Ohne diese Prüfung könnte sich jemand als der echte Server ausgeben und so Verschlüsselung vortäuschen, während er in Wahrheit mitliest.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Verschlüsselt“ und „gehasht“ werden oft durcheinandergebracht – ein Hash lässt sich grundsätzlich NICHT entschlüsseln, auch nicht vom Betreiber selbst.</li>
+        <li>Ein Schloss-Symbol im Browser zeigt nur: Die Verbindung ist verschlüsselt. Es sagt NICHTS darüber aus, ob die Webseite selbst vertrauenswürdig ist.</li>
+        <li>Ein abgelaufenes oder falsches Zertifikat bedeutet nicht automatisch „gehackt“ – oft ist es einfach eine technische Nachlässigkeit des Betreibers.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-protokolle-weitere.html">IT: Weitere Protokolle</a>
+        <a class="chip" href="it-sicherheit-grundlagen.html">IT: Sicherheit-Grundlagen</a>
+        <a class="chip" href="php-sessions.html">PHP: password_hash</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

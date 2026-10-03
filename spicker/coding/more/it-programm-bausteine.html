@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Programm-Bausteine – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Programmieren · Bausteine</p>
+    <h1>Variable, Schleife, Funktion &amp; Co.</h1>
+    <p class="page-lead">Die immer gleichen Grundbausteine, aus denen sich JEDES Programm zusammensetzt – egal in welcher Sprache.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#variable">Variable</a></td><td>Ein benannter Speicherplatz für einen Wert</td></tr>
+          <tr><td><a href="#datentyp">Datentyp</a></td><td>Welche Art Wert eine Variable speichert</td></tr>
+          <tr><td><a href="#kontrollstruktur">Kontrollstruktur</a></td><td>if und Schleifen steuern den Ablauf</td></tr>
+          <tr><td><a href="#funktion">Funktion</a></td><td>Ein wiederverwendbarer, benannter Codeblock</td></tr>
+          <tr><td><a href="#rekursion">Rekursion</a></td><td>Eine Funktion ruft sich selbst auf</td></tr>
+          <tr><td><a href="#kommentar">Kommentar</a></td><td>Text im Code, den der Computer ignoriert</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="variable">
+      <h2>Variable</h2>
+      <p>Eine <strong>Variable</strong> ist ein benannter Speicherplatz für einen Wert, der sich im Lauf des Programms ändern kann. Die ausführliche Erklärung je Sprache steht bereits bei den Sprachseiten des Spickers – hier nur der direkte Vergleich:</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>int x = 5;</code></td><td><code>let x = 5;</code></td><td><code>local x = 5</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="datentyp">
+      <h2>Datentyp</h2>
+      <p>Der <strong>Datentyp</strong> legt fest, welche Art Wert eine Variable speichert (Zahl, Text, Wahrheitswert …) und bestimmt, welche Operationen damit erlaubt sind.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>int</code>, <code>double</code>, <code>bool</code>, <code>string</code> – fest deklariert</td><td><code>number</code>, <code>string</code>, <code>boolean</code> – dynamisch</td><td><code>number</code>, <code>string</code>, <code>boolean</code> – dynamisch</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="kontrollstruktur">
+      <h2>Kontrollstruktur (if / Schleife)</h2>
+      <p>Eine <strong>Kontrollstruktur</strong> steuert, OB und WIE OFT ein Codeblock ausgeführt wird – die zwei wichtigsten sind Bedingungen (<code>if</code>) und Schleifen.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody>
+          <tr><td><code>if (x &gt; 0) { } else { }</code></td><td><code>if (x &gt; 0) { } else { }</code></td><td><code>if x &gt; 0 then … else … end</code></td></tr>
+          <tr><td><code>for (int i=0; i&lt;5; i++) { }</code></td><td><code>for (let i=0; i&lt;5; i++) { }</code></td><td><code>for i=1,5 do … end</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="funktion">
+      <h2>Funktion</h2>
+      <p>Eine <strong>Funktion</strong> ist ein benannter, wiederverwendbarer Codeblock, den man mit unterschiedlichen Eingabewerten (Parametern) aufrufen kann, statt denselben Code immer wieder abzuschreiben.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>int add(int a, int b) { return a+b; }</code></td><td><code>function add(a, b) { return a+b; }</code></td><td><code>function add(a, b) return a+b end</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="rekursion">
+      <h2>Rekursion</h2>
+      <p><strong>Rekursion</strong> heißt: Eine Funktion ruft SICH SELBST auf, um ein Problem in kleinere, gleichartige Teilprobleme zu zerlegen – bis ein „Basisfall“ erreicht ist, der ohne weiteren Aufruf direkt beantwortet werden kann. Am Beispiel Fakultät (<code>5! = 5·4·3·2·1</code>):</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr>
+          <td><code>int f(int n){ return n&lt;=1 ? 1 : n*f(n-1); }</code></td>
+          <td><code>function f(n){ return n&lt;=1 ? 1 : n*f(n-1); }</code></td>
+          <td><code>function f(n) if n&lt;=1 then return 1 else return n*f(n-1) end end</code></td>
+        </tr></tbody>
+      </table>
+      <div class="note">Ohne Basisfall (hier <code>n &lt;= 1</code>) ruft sich eine rekursive Funktion unendlich oft selbst auf – das Programm stürzt irgendwann mit einem „Stack Overflow“ ab.</div>
+    </section>
+
+    <section id="kommentar">
+      <h2>Kommentar</h2>
+      <p>Ein <strong>Kommentar</strong> ist Text im Quellcode, den der Compiler/Interpreter komplett ignoriert – gedacht für Erklärungen an andere Menschen (oder das eigene zukünftige Ich).</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>// Kommentar</code></td><td><code>// Kommentar</code></td><td><code>-- Kommentar</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Diese Seite erklärt die GEMEINSAMEN Konzepte – wie genau Variablen, Schleifen, Funktionen in C++, JavaScript oder Lua im Detail funktionieren, steht bereits ausführlich bei den jeweiligen Sprachseiten des Spickers.</li>
+        <li>Ein Kommentar, der nicht mehr zum Code passt (weil der Code sich geändert hat, der Kommentar aber nicht), ist schlimmer als gar kein Kommentar – er führt in die Irre.</li>
+        <li>Rekursion ist elegant, aber nicht immer die schnellste Lösung – manchmal ist eine Schleife mit derselben Wirkung einfacher nachzuvollziehen und sparsamer im Speicher.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-programmieren.html">IT: Programmieren</a>
+        <a class="chip" href="it-datenstrukturen.html">IT: Datenstrukturen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

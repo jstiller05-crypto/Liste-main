@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: TCP &amp; UDP – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Protokolle · TCP &amp; UDP</p>
+    <h1>TCP &amp; UDP</h1>
+    <p class="page-lead">Zuverlässig, aber mit Handschlag (TCP) – oder schnell und ohne Umwege (UDP).</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#tcp">TCP</a></td><td>Zuverlässig, mit Verbindungsaufbau</td></tr>
+          <tr><td><a href="#udp">UDP</a></td><td>Schnell, ohne Garantie</td></tr>
+          <tr><td><a href="#handshake">3-Wege-Handshake</a></td><td>SYN, SYN-ACK, ACK</td></tr>
+          <tr><td><a href="#tcp-vs-udp">TCP vs. UDP</a></td><td>Wann man welches nimmt</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="tcp">
+      <h2>TCP</h2>
+      <p><strong>TCP</strong> (<em>Transmission Control Protocol</em>) baut vor der eigentlichen Datenübertragung eine Verbindung auf (siehe 3-Wege-Handshake), nummeriert Pakete durch und fordert verlorene Pakete erneut an. Dadurch kommen Daten GARANTIERT vollständig und in der richtigen Reihenfolge an – auf Kosten von etwas Geschwindigkeit und Overhead.</p>
+    </section>
+
+    <section id="udp">
+      <h2>UDP</h2>
+      <p><strong>UDP</strong> (<em>User Datagram Protocol</em>) verschickt Pakete einfach los, OHNE vorherigen Verbindungsaufbau und OHNE Garantie, dass sie ankommen oder in der richtigen Reihenfolge eintreffen. Dafür ist es deutlich schneller und schlanker als TCP.</p>
+    </section>
+
+    <section id="handshake">
+      <h2>3-Wege-Handshake</h2>
+      <p>Bevor TCP Daten überträgt, einigen sich Client und Server in genau drei Schritten auf eine Verbindung:</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 260" role="img" aria-label="TCP-3-Wege-Handshake: SYN vom Client, SYN-ACK vom Server, ACK vom Client" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="60.0" y="20.0" width="140.0" height="50.0" rx="8" class="dg-box"/>
+        <text x="130.0" y="50.0" class="dg-label" text-anchor="middle">Client</text>
+        <rect x="440.0" y="20.0" width="140.0" height="50.0" rx="8" class="dg-box"/>
+        <text x="510.0" y="50.0" class="dg-label" text-anchor="middle">Server</text>
+        <line x1="130.0" y1="70.0" x2="130.0" y2="230.0" class="dg-note-line"/>
+        <line x1="510.0" y1="70.0" x2="510.0" y2="230.0" class="dg-note-line"/>
+        <line x1="130.0" y1="110.0" x2="510.0" y2="110.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="320.0" y="100.0" class="dg-small" text-anchor="middle">1. SYN ("Verbindung?")</text>
+        <line x1="510.0" y1="160.0" x2="130.0" y2="160.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="320.0" y="150.0" class="dg-small" text-anchor="middle">2. SYN-ACK ("Ja, und du?")</text>
+        <line x1="130.0" y1="210.0" x2="510.0" y2="210.0" class="dg-line" marker-end="url(#arrow)"/>
+        <text x="320.0" y="200.0" class="dg-small" text-anchor="middle">3. ACK ("Bestätigt")</text>
+        </svg>
+        <figcaption>Erst nach allen drei Schritten gilt die TCP-Verbindung als aufgebaut und die eigentlichen Daten können fließen.</figcaption>
+      </figure>
+    </section>
+
+    <section id="tcp-vs-udp">
+      <h2>TCP vs. UDP</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>TCP</th><th>UDP</th></tr></thead>
+        <tbody>
+          <tr><td>Verbindung</td><td>wird vorher aufgebaut</td><td>keine, Pakete einfach losschicken</td></tr>
+          <tr><td>Zuverlässigkeit</td><td>garantiert vollständig &amp; in Reihenfolge</td><td>keine Garantie</td></tr>
+          <tr><td>Geschwindigkeit</td><td>langsamer (mehr Overhead)</td><td>schneller</td></tr>
+          <tr><td>Typisch für</td><td>Webseiten, Datei-Downloads, E-Mail</td><td>Video-Streaming, Online-Spiele, DNS</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Bei Video-Streaming oder Spielen ist ein verlorenes, kurz altes Paket oft egal – neu anzufordern würde nur zusätzlich verzögern. Deshalb reicht dort UDP, obwohl es „unzuverlässiger“ klingt.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„UDP ist schlechter als TCP“ ist ein Missverständnis – beide sind für unterschiedliche Zwecke gemacht, keines ist grundsätzlich „besser“.</li>
+        <li>DNS (siehe Netzwerk-Teil des Spickers) nutzt meist UDP, weil eine einzelne kurze Anfrage/Antwort schneller ohne Verbindungsaufbau funktioniert.</li>
+        <li>Ein fehlgeschlagener Handshake (z. B. durch eine Firewall) äußert sich oft als „Verbindung kommt gar nicht erst zustande“, nicht als langsame Verbindung.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-osi-modell.html">IT: OSI-Modell</a>
+        <a class="chip" href="it-http.html">IT: HTTP</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

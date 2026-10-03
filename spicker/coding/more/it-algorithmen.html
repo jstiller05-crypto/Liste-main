@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Algorithmen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Programmieren · Algorithmen</p>
+    <h1>Suchen, Sortieren &amp; die O-Notation</h1>
+    <p class="page-lead">Warum manche Lösungen bei 10 Elementen gleich schnell sind wie bei 10 Millionen – und andere nicht.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#lineare-suche">Lineare Suche</a></td><td>Element für Element durchgehen</td></tr>
+          <tr><td><a href="#binaere-suche">Binäre Suche</a></td><td>Nur bei sortierten Daten, immer in der Mitte teilen</td></tr>
+          <tr><td><a href="#sortieralgorithmen">Sortieralgorithmen</a></td><td>Bubble Sort, Quicksort, Mergesort</td></tr>
+          <tr><td><a href="#o-notation">O-Notation</a></td><td>Wie die Laufzeit mit der Datenmenge wächst</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="lineare-suche">
+      <h2>Lineare Suche</h2>
+      <p>Die <strong>lineare Suche</strong> geht jedes Element der Reihe nach durch, bis das Gesuchte gefunden ist oder die Liste zu Ende ist. Sie funktioniert IMMER, auch bei unsortierten Daten – ist bei großen Listen aber langsam.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::find</code></td><td><code>Array.includes()</code> / <code>indexOf()</code></td><td>Schleife mit <code>for</code> + Vergleich</td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="binaere-suche">
+      <h2>Binäre Suche</h2>
+      <p>Die <strong>binäre Suche</strong> funktioniert NUR bei bereits sortierten Daten: Man vergleicht immer mit dem Element in der Mitte und sucht danach nur noch in der jeweils passenden Hälfte weiter – dadurch deutlich schneller als lineare Suche (siehe O-Notation unten).</p>
+      <pre><code>Gesucht: 42 in [3, 8, 15, 23, 29, 38, 42, 56, 71]
+
+Mitte = 29  → 42 > 29  → nur rechts weitersuchen: [38, 42, 56, 71]
+Mitte = 42  → gefunden!</code></pre>
+    </section>
+
+    <section id="sortieralgorithmen">
+      <h2>Sortieralgorithmen</h2>
+      <p><strong>Bubble Sort</strong> ist der einfachste Sortieralgorithmus: Er vergleicht immer zwei benachbarte Elemente und tauscht sie bei Bedarf, und wiederholt das so lange, bis nichts mehr getauscht werden muss. Leicht zu verstehen – aber langsam bei großen Listen.</p>
+      <pre><code>[5, 2, 4, 1]
+Durchlauf 1: [2, 4, 1, 5]   (5 „blubbert“ nach rechts)
+Durchlauf 2: [2, 1, 4, 5]
+Durchlauf 3: [1, 2, 4, 5]   fertig sortiert</code></pre>
+      <p><strong>Quicksort</strong> und <strong>Mergesort</strong> sind deutlich schneller bei großen Datenmengen: Beide nutzen „Teile und herrsche“ – sie zerlegen das Problem in kleinere Teile, lösen diese, und setzen das Ergebnis wieder zusammen.</p>
+      <table class="info-table">
+        <thead><tr><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody><tr><td><code>std::sort</code> (sehr schnell, eingebaut)</td><td><code>Array.sort()</code></td><td><code>table.sort(t)</code></td></tr></tbody>
+      </table>
+    </section>
+
+    <section id="o-notation">
+      <h2>O-Notation</h2>
+      <p>Die <strong>O-Notation</strong> beschreibt, wie die Laufzeit (oder der Speicherbedarf) eines Algorithmus mit wachsender Eingabegröße <code>n</code> zunimmt – NICHT die exakte Zeit in Sekunden, sondern das grobe Wachstumsmuster.</p>
+      <table class="info-table">
+        <thead><tr><th>Notation</th><th>Name</th><th>Alltagsbeispiel</th></tr></thead>
+        <tbody>
+          <tr><td>O(1)</td><td>konstant</td><td>die erste Seite eines Buches aufschlagen – egal wie dick es ist</td></tr>
+          <tr><td>O(log n)</td><td>logarithmisch</td><td>ein Wort im sortierten Wörterbuch suchen (binäre Suche)</td></tr>
+          <tr><td>O(n)</td><td>linear</td><td>jede Seite eines Buches einzeln durchblättern</td></tr>
+          <tr><td>O(n²)</td><td>quadratisch</td><td>jede Person im Raum mit JEDER anderen vergleichen (Bubble Sort)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Binäre Suche auf UNSORTIERTEN Daten anzuwenden liefert falsche oder zufällige Ergebnisse – sie setzt sortierte Daten zwingend voraus.</li>
+        <li>In der Praxis nutzt man fast nie den eigenen Bubble Sort – <code>std::sort</code>, <code>Array.sort()</code> und <code>table.sort()</code> sind längst hochoptimiert eingebaut.</li>
+        <li>O(n²) wirkt bei kleinen Testdaten (n = 10) harmlos schnell – bei echten Datenmengen (n = 1.000.000) kann derselbe Algorithmus plötzlich spürbar langsam werden.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-datenstrukturen.html">IT: Datenstrukturen</a>
+        <a class="chip" href="it-git.html">IT: Git</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

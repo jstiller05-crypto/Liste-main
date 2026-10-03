@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Dateien &amp; Pfade – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">IT · Dateien &amp; Pfade</p>
+    <h1>Dateien, Ordner &amp; Pfade</h1>
+    <p class="page-lead">Wie Computer Daten dauerhaft ablegen – und wie man eine Datei eindeutig findet, egal auf welchem Betriebssystem.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#datei">Datei</a></td><td>Benannte, gespeicherte Daten</td></tr>
+          <tr><td><a href="#dateiendung">Dateiendung</a></td><td>Kürzel nach dem Punkt zeigt das Format</td></tr>
+          <tr><td><a href="#ordner">Ordner / Verzeichnis</a></td><td>Container für Dateien und weitere Ordner</td></tr>
+          <tr><td><a href="#pfad">Pfad</a></td><td>Die Adresse einer Datei, absolut oder relativ</td></tr>
+          <tr><td><a href="#textdatei-binaerdatei">Textdatei vs. Binärdatei</a></td><td>lesbarer Text vs. reine Bytes</td></tr>
+          <tr><td><a href="#dateigroesse">Dateigröße</a></td><td>Speicherbedarf in Byte, KB, MB …</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="datei">
+      <h2>Datei</h2>
+      <p>Eine <strong>Datei</strong> (englisch <em>file</em>) ist eine benannte, dauerhaft gespeicherte Ansammlung von Daten auf einem Datenträger (Festplatte, SSD, USB-Stick …) – ein Text, ein Bild, ein Programm oder auch nur ein paar Einstellungen.</p>
+    </section>
+
+    <section id="dateiendung">
+      <h2>Dateiendung</h2>
+      <p>Die <strong>Dateiendung</strong> ist das Kürzel nach dem letzten Punkt im Dateinamen und verrät (meist) das Dateiformat. Das Betriebssystem nutzt sie, um zu wissen, mit welchem Programm es die Datei öffnen soll.</p>
+      <table class="info-table">
+        <thead><tr><th>Endung</th><th>Typischer Inhalt</th></tr></thead>
+        <tbody>
+          <tr><td><code>.txt</code></td><td>reiner Text, ohne Formatierung</td></tr>
+          <tr><td><code>.html</code></td><td>eine Webseite (wie diese hier)</td></tr>
+          <tr><td><code>.json</code></td><td>strukturierte Daten, z. B. für fetch-Antworten</td></tr>
+          <tr><td><code>.exe</code></td><td>ein ausführbares Programm (Windows)</td></tr>
+          <tr><td><code>.zip</code></td><td>mehrere Dateien komprimiert in einer Datei</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Eine Dateiendung ist nur eine ÜBLICHE Abmachung, kein Naturgesetz: Eine Datei bleibt technisch dieselbe, auch wenn man <code>bild.jpg</code> in <code>bild.txt</code> umbenennt – nur weiß dann kein Programm mehr automatisch, was damit gemeint ist.</div>
+    </section>
+
+    <section id="ordner">
+      <h2>Ordner / Verzeichnis</h2>
+      <p>Ein <strong>Ordner</strong> (auch <strong>Verzeichnis</strong>, englisch <em>directory</em> oder <em>folder</em>) ist ein Container, der Dateien UND weitere Ordner enthalten kann. So entsteht ein Baum aus ineinander verschachtelten Ordnern – ganz oben steht das <strong>Wurzelverzeichnis</strong> (<em>root</em>), z. B. <code>C:\</code> unter Windows oder <code>/</code> unter Linux/macOS.</p>
+    </section>
+
+    <section id="pfad">
+      <h2>Pfad</h2>
+      <p>Der <strong>Pfad</strong> ist die Adresse einer Datei oder eines Ordners im Dateibaum.</p>
+      <table class="info-table">
+        <thead><tr><th>Art</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>absolut</td><td>vollständiger Weg ab dem Wurzelverzeichnis</td><td><code>C:\Dev\liste-main\index.html</code></td></tr>
+          <tr><td>relativ</td><td>Weg ausgehend von der AKTUELLEN Datei/Ordner</td><td><code>../shared/list.js</code></td></tr>
+        </tbody>
+      </table>
+      <p>Windows trennt Ordner mit einem Backslash <code>\</code>, Linux/macOS (und das Web) mit einem normalen Schrägstrich <code>/</code>. In relativen Pfaden bedeutet <code>..</code> „einen Ordner nach oben“ – genau das steckt z. B. in diesem Spicker hinter <code>../shared/core.css</code>: eine Ebene aus <code>more/</code> heraus, dann in <code>shared/</code> hinein.</p>
+      <pre><code>coding/
+├── index.html
+├── links.js
+├── theme.css
+└── more/
+    └── it-dateien.html   ← diese Seite
+        lädt "../../shared/core.css"
+             └─┬─┘└───┬───┘
+       1x hoch (more→coding) 2x hoch (coding→spicker), dann shared/</code></pre>
+    </section>
+
+    <section id="textdatei-binaerdatei">
+      <h2>Textdatei vs. Binärdatei</h2>
+      <p>Eine <strong>Textdatei</strong> enthält nur Zeichen, die ein Mensch direkt lesen kann (Buchstaben, Zahlen, Satzzeichen), z. B. <code>.txt</code>, <code>.html</code> oder <code>.json</code>. Eine <strong>Binärdatei</strong> enthält rohe Bytes, die nur im richtigen Programm einen Sinn ergeben – z. B. ein Bild, eine ausführbare Datei oder eine gepackte <code>.zip</code>. Öffnet man eine Binärdatei in einem Texteditor, sieht man meist nur wirres Zeichenrauschen.</p>
+    </section>
+
+    <section id="dateigroesse">
+      <h2>Dateigröße</h2>
+      <p>Die <strong>Dateigröße</strong> gibt an, wie viel Speicherplatz eine Datei belegt – gemessen in Byte und den größeren Einheiten KB, MB, GB … Was genau ein Byte ist und warum „1000“ dabei nicht immer „1000“ bedeutet, erklärt der nächste Abschnitt des Spickers (Daten &amp; Zahlensysteme).</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein doppelter Klick öffnet eine Datei über ihre Endung – ändert man die Endung, kann das Betriebssystem das falsche Programm vorschlagen.</li>
+        <li>Pfade mit Leerzeichen im Terminal brauchen Anführungszeichen: <code>cd "Meine Dateien"</code> – sonst wird das Leerzeichen als Trenner zwischen zwei Argumenten missverstanden.</li>
+        <li><code>..</code> ist IMMER relativ zum aktuellen Ordner gemeint, nicht zu einem festen Ort – derselbe Pfad <code>../x</code> zeigt aus zwei verschiedenen Ordnern heraus auf zwei verschiedene Ziele.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-grundbegriffe.html">IT: Grundbegriffe</a>
+        <a class="chip" href="it-bits-bytes.html">IT: Bits &amp; Bytes</a>
+        <a class="chip" href="terminal.html">Terminal: Windows vs. Linux</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

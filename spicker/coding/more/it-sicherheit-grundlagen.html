@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Sicherheit-Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Sicherheit · Grundlagen</p>
+    <h1>Passwörter, Phishing &amp; Backups</h1>
+    <p class="page-lead">Die Alltags-Sicherheitsregeln, die unabhängig von jeder Programmiersprache gelten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#passwort-sicherheit">Passwort-Sicherheit &amp; Hashing</a></td><td>Lang, einzigartig – und beim Server nur als Hash</td></tr>
+          <tr><td><a href="#2fa">2FA</a></td><td>Zweiter Faktor zusätzlich zum Passwort</td></tr>
+          <tr><td><a href="#phishing">Phishing</a></td><td>Gefälschte Nachrichten, die Zugangsdaten abgreifen</td></tr>
+          <tr><td><a href="#malware">Malware</a></td><td>Oberbegriff für schädliche Software</td></tr>
+          <tr><td><a href="#firewall">Firewall</a></td><td>Filtert Netzwerkverkehr nach festen Regeln</td></tr>
+          <tr><td><a href="#backup">Backup</a></td><td>Sicherheitskopie nach der 3-2-1-Regel</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="passwort-sicherheit">
+      <h2>Passwort-Sicherheit &amp; Hashing</h2>
+      <p>Ein gutes Passwort ist LANG und für jeden Dienst EINZIGARTIG – ein Passwort-Manager nimmt einem das Merken ab. Server speichern Passwörter dabei nie im Klartext, sondern als Hash (siehe Hash-Funktion im Verschlüsselungs-Teil des Spickers, konkret <code>password_hash</code> im PHP-Teil) – selbst bei einem Datenleck bleiben die echten Passwörter dadurch im besten Fall geschützt.</p>
+    </section>
+
+    <section id="2fa">
+      <h2>2FA</h2>
+      <p><strong>2FA</strong> (<em>Zwei-Faktor-Authentifizierung</em>) verlangt zusätzlich zum Passwort (etwas, das man WEISS) einen zweiten, unabhängigen Nachweis – etwas, das man HAT (z. B. ein Code aus einer App) oder etwas, das man IST (z. B. ein Fingerabdruck). Selbst ein gestohlenes Passwort allein reicht einem Angreifer dann nicht mehr.</p>
+    </section>
+
+    <section id="phishing">
+      <h2>Phishing</h2>
+      <p><strong>Phishing</strong> versucht, über gefälschte Nachrichten oder Webseiten an Zugangsdaten oder sensible Informationen zu kommen – meist, indem sich der Angreifer als vertrauenswürdige Quelle ausgibt (Bank, Chef, bekannter Dienst).</p>
+    </section>
+
+    <section id="malware">
+      <h2>Malware</h2>
+      <p><strong>Malware</strong> ist der Oberbegriff für schädliche Software:</p>
+      <table class="info-table">
+        <thead><tr><th>Art</th><th>Besonderheit</th></tr></thead>
+        <tbody>
+          <tr><td>Virus</td><td>hängt sich an andere Programme an und verbreitet sich so weiter</td></tr>
+          <tr><td>Trojaner</td><td>tarnt sich als nützliche, harmlose Software</td></tr>
+          <tr><td>Ransomware</td><td>verschlüsselt Daten und erpresst Lösegeld fürs Entschlüsseln</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="firewall">
+      <h2>Firewall</h2>
+      <p>Eine <strong>Firewall</strong> kontrolliert Netzwerkverkehr nach festen Regeln und lässt nur erlaubte Verbindungen durch – als Software auf einem einzelnen Gerät oder als eigene Hardware zwischen Netzwerken.</p>
+    </section>
+
+    <section id="backup">
+      <h2>Backup</h2>
+      <p>Ein <strong>Backup</strong> ist eine regelmäßige Sicherheitskopie wichtiger Daten. Die bewährte <strong>3-2-1-Regel</strong>:</p>
+      <pre><code>3 Kopien der Daten insgesamt (Original + 2 Backups)
+2 verschiedene Medienarten (z. B. interne Platte + externe SSD)
+1 Kopie extern/offsite, räumlich getrennt vom Original</code></pre>
+      <div class="note">Die räumlich getrennte Kopie schützt gegen Fälle, die ALLE lokalen Kopien gleichzeitig treffen können – Diebstahl, Feuer oder eben auch Ransomware, die sämtliche erreichbaren Laufwerke verschlüsselt.</div>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Ein „sicheres“ Passwort, das überall gleich wiederverwendet wird, ist nur so sicher wie der UNSICHERSTE Dienst, bei dem es jemals genutzt wurde.</li>
+        <li>Ein Backup, das man nie zum Wiederherstellen getestet hat, ist nur ein VERMUTETES Backup – regelmäßig testen gehört dazu.</li>
+        <li>Typische Angriffe auf eigene Webseiten/Programme wie SQL-Injection (Datenbank) oder XSS (Browser) stehen bereits bei SQL bzw. JavaScript im Spicker – hier geht es bewusst um die allgemeinen, sprachunabhängigen Grundlagen.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-verschluesselung.html">IT: Verschlüsselung</a>
+        <a class="chip" href="it-programmieren.html">IT: Programmieren</a>
+        <a class="chip" href="sql-sicherheit.html">SQL: Sicherheit (SQL-Injection)</a>
+        <a class="chip" href="js-sicherheit.html">JS: Sicherheit (XSS)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>IT: Netzwerk-Geräte – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Netzwerk · Geräte</p>
+    <h1>Switch, Router &amp; Modem</h1>
+    <p class="page-lead">Welches Kästchen im Flur eigentlich was tut, zwischen dem Laptop und dem offenen Internet.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Überblick</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Kurz erklärt</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#mac-adresse">MAC-Adresse</a></td><td>Feste Hardware-Adresse jeder Netzwerkkarte</td></tr>
+          <tr><td><a href="#switch">Switch</a></td><td>Verbindet Geräte im selben lokalen Netz</td></tr>
+          <tr><td><a href="#router">Router</a></td><td>Verbindet verschiedene Netzwerke miteinander</td></tr>
+          <tr><td><a href="#modem">Modem</a></td><td>Wandelt zum Signal des Internetanbieters um</td></tr>
+          <tr><td><a href="#access-point">Access Point</a></td><td>Stellt WLAN für kabellose Geräte bereit</td></tr>
+          <tr><td><a href="#gateway">Gateway</a></td><td>Der Weg nach „draußen“ aus dem lokalen Netz</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="mac-adresse">
+      <h2>MAC-Adresse</h2>
+      <p>Die <strong>MAC-Adresse</strong> ist eine werksseitig fest vergebene, eindeutige Hardware-Adresse jeder Netzwerkkarte (48 Bit, meist als sechs Hex-Byte-Paare geschrieben, z. B. <code>AA:BB:CC:DD:EE:FF</code> – siehe Hexadezimalsystem im Daten-Teil des Spickers). Anders als eine IP-Adresse ändert sie sich normalerweise NICHT, egal mit welchem Netzwerk das Gerät verbunden ist.</p>
+    </section>
+
+    <section id="switch">
+      <h2>Switch</h2>
+      <p>Ein <strong>Switch</strong> verbindet mehrere Geräte im SELBEN lokalen Netz. Er leitet jedes Datenpaket gezielt nur an den Port weiter, hinter dem die passende MAC-Adresse hängt – statt es wie ein alter Hub an alle angeschlossenen Geräte zu senden.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Geräte verbinden sich über Switch/WLAN-AP, Router und Modem mit dem Internet" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="10.0" y="76.0" width="100.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="60.0" y="64.0" class="dg-accent-text" text-anchor="middle">1</text>
+        <text x="60.0" y="110.0" class="dg-label" text-anchor="middle">Geräte</text>
+        <text x="60.0" y="132.0" class="dg-small" text-anchor="middle">PC, Handy, …</text>
+        <line x1="113.0" y1="115.0" x2="136.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="140.0" y="76.0" width="100.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="190.0" y="64.0" class="dg-accent-text" text-anchor="middle">2</text>
+        <text x="190.0" y="105.0" class="dg-label" text-anchor="middle">Switch /</text>
+        <text x="190.0" y="121.0" class="dg-label" text-anchor="middle">WLAN-AP</text>
+        <line x1="243.0" y1="115.0" x2="266.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="270.0" y="76.0" width="100.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="320.0" y="64.0" class="dg-accent-text" text-anchor="middle">3</text>
+        <text x="320.0" y="110.0" class="dg-label" text-anchor="middle">Router</text>
+        <text x="320.0" y="132.0" class="dg-small" text-anchor="middle">+ Gateway</text>
+        <line x1="373.0" y1="115.0" x2="396.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="400.0" y="76.0" width="100.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="450.0" y="64.0" class="dg-accent-text" text-anchor="middle">4</text>
+        <text x="450.0" y="110.0" class="dg-label" text-anchor="middle">Modem</text>
+        <text x="450.0" y="132.0" class="dg-small" text-anchor="middle">DSL/Kabel</text>
+        <line x1="503.0" y1="115.0" x2="526.0" y2="115.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="530.0" y="76.0" width="100.0" height="78.0" rx="8" class="dg-box"/>
+        <text x="580.0" y="64.0" class="dg-accent-text" text-anchor="middle">5</text>
+        <text x="580.0" y="110.0" class="dg-label" text-anchor="middle">Internet</text>
+        </svg>
+        <figcaption>Beim typischen Heimrouter stecken Router, Modem, Switch und WLAN-Access-Point meist in EINEM einzigen Gerät.</figcaption>
+      </figure>
+    </section>
+
+    <section id="router">
+      <h2>Router</h2>
+      <p>Ein <strong>Router</strong> verbindet VERSCHIEDENE Netzwerke miteinander – z. B. das Heimnetz mit dem Internet – und entscheidet anhand von IP-Adressen, wohin ein Datenpaket als Nächstes weitergeleitet werden muss („routen“).</p>
+    </section>
+
+    <section id="modem">
+      <h2>Modem</h2>
+      <p>Ein <strong>Modem</strong> wandelt zwischen dem Signal des Heimnetzes und dem speziellen Signal des Internetanbieters um (DSL, Kabel, Glasfaser …). Die „Box vom Provider“ im Flur ist heute meist ein Kombigerät aus Modem, Router, Switch UND WLAN-Access-Point in einem.</p>
+    </section>
+
+    <section id="access-point">
+      <h2>Access Point</h2>
+      <p>Ein <strong>Access Point</strong> stellt WLAN bereit und verbindet kabellose Geräte mit dem restlichen, kabelgebundenen Netzwerk.</p>
+    </section>
+
+    <section id="gateway">
+      <h2>Gateway</h2>
+      <p>Das <strong>Gateway</strong> ist die Adresse, über die ein lokales Netz standardmäßig „nach draußen“ geht, wenn ein Ziel außerhalb des eigenen Netzes liegt – im Heimnetz übernimmt diese Rolle normalerweise der Router selbst.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>„Der Router ist kaputt“ kann in Wahrheit das Modem-Teil im selben Kombigerät betreffen – beide Funktionen laufen oft unsichtbar nebeneinander.</li>
+        <li>Ein Switch verteilt im selben Netz – ein Router verbindet UNTERSCHIEDLICHE Netze. Die beiden Begriffe werden im Alltag oft durcheinandergebracht.</li>
+        <li>Ein Gerät neu zu starten hilft oft, weil es sich beim Hochfahren wieder sauber neu mit Switch/Router verbindet – kein Zufall, dass „aus und wieder an“ so oft funktioniert.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="it-netzwerk-grundlagen.html">IT: Netzwerk-Grundlagen</a>
+        <a class="chip" href="it-ip-adressen.html">IT: IP-Adressen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
