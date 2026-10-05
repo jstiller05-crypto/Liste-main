@@ -117,6 +117,45 @@ body.detail-page {
 
 
 /* ---------------------------------------------------------------------
+   B2b. "AUF DIESER SEITE" (Sprungleiste direkt unter .page-lead)
+   ---------------------------------------------------------------------
+   Nur eingefügt, wenn eine Seite ≥ 2 Begriffe aus entries.js hat
+   (siehe page.js) – sonst gäbe es nichts zum Springen.
+   --------------------------------------------------------------------- */
+
+/* Klick auf einen Anker-Link (href="#id", z. B. ein Chip hier unten)
+   springt dadurch SANFT statt abrupt zur Zielstelle. Gilt bewusst nur
+   auf Detailseiten: ":has(body.detail-page)" fragt "steckt in diesem
+   <html> irgendwo ein <body class='detail-page'>?". */
+html:has(body.detail-page) {
+  scroll-behavior: smooth;
+}
+
+.detail-page .on-this-page {
+  margin: 14px 0 0;
+}
+
+.detail-page .on-this-page-title {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Chips wiederverwenden dieselbe .chip-Optik wie "Verwandte Seiten"
+   (siehe B6) – hier nur zusätzlich: der Chip des Abschnitts, der gerade
+   im Blickfeld ist (siehe IntersectionObserver in page.js), bekommt
+   "active". Keine neue Farbe, nur var(--accent) in verschiedenen Stärken. */
+.detail-page .on-this-page .chip.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+
+/* ---------------------------------------------------------------------
    B3. ABSCHNITTE
    --------------------------------------------------------------------- */
 .detail-page main {
@@ -129,6 +168,27 @@ body.detail-page {
   border-radius: 10px;
   padding: 18px 22px;
   margin: 16px 0;
+}
+
+/* Springt man per Anker (#id, z. B. über einen "Auf dieser Seite"-Chip
+   oder einen Link von der Liste) zu einem Abschnitt, setzt der Browser
+   dessen Oberkante sonst GENAU an den oberen Fensterrand – die
+   Überschrift "klebt" dann unschön am Rand. scroll-margin-top schiebt
+   die Zielstelle beim Scrollen um diesen Abstand nach unten, ohne den
+   Abschnitt selbst zu verschieben. */
+.detail-page section[id] {
+  scroll-margin-top: 24px;
+}
+
+/* :target = CSS kennt den Abschnitt, dessen id GENAU zum "#..." am Ende
+   der aktuellen URL passt (z. B. über einen Chip hierher gesprungen).
+   Dezente Hervorhebung: Akzentfarbe als linker Rand + leicht getönter
+   Hintergrund (color-mix mischt var(--accent) nur zu einem kleinen Teil
+   in den bestehenden Hintergrund – keine neue, feste Farbe nötig). */
+.detail-page section:target {
+  border-color: var(--accent);
+  border-left-width: 4px;
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--card-bg));
 }
 
 .detail-page section h2 {
@@ -336,6 +396,17 @@ body.detail-page {
 .detail-page .chip:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+/* "Weiter im Lernpfad" (siehe page.js, buildLearningPathNav()):
+   zwei Slots, per space-between an die Ränder geschoben. BEIDE Slots
+   stehen immer im DOM (auch leer) – so bleibt "vorige" links und
+   "nächste" rechts, selbst wenn einer der beiden fehlt (erste bzw.
+   letzte Seite im Lernpfad). */
+.detail-page .learning-path-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 
@@ -679,6 +750,27 @@ body.list-page {
 .list-page td,
 .list-page a {
   color: white;
+}
+
+/* "Gleiche Seite"-Link (siehe list.js, TableSearcher.renderEntriesInTable):
+   etwas gedämpft statt des normalen "mehr"-Links, damit auf den ersten
+   Blick klar ist – diese Seite wurde gerade schon gelesen. */
+.list-page a.link-same-page {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Kurzes Aufblitzen der Zeile, aus der man gerade zurückgekommen ist
+   (siehe list.js, restoreScrollAndForgetIt()/shouldFlashOpenedRow) –
+   1,5 Sekunden, danach wieder ganz normal. "ease-out": schneller
+   Start, sanftes Ausklingen am Ende. */
+@keyframes row-flash-highlight {
+  from { background-color: var(--accent-glow); }
+  to   { background-color: transparent; }
+}
+
+.list-page tr.row-flash-highlight {
+  animation: row-flash-highlight 1.5s ease-out;
 }
 
 .list-page footer {

@@ -153,9 +153,13 @@ window.SpickerData["coding"] = {
                         Seite 1 → Stufe 20, Seite 2 → Stufe 21, Seite 3 →
                         Stufe 22 usw. Alle Einträge EINER Seite tragen
                         dieselbe Stufe und stehen bei "Empfohlen" darum
-                        zusammen (innerhalb der Gruppe dann A–Z). Maximal
-                        9 Detailseiten pro Block (Unterstufen 0–9 Abstand
-                        bis zum nächsten Block).
+                        zusammen – und zwar in der Reihenfolge, in der sie
+                        HIER in entries.js stehen (= Reihenfolge auf der
+                        Detailseite, siehe sortEntriesBySelectedOrder() in
+                        shared/list.js). NUR Einträge ganz OHNE Stufe
+                        stehen weiterhin A–Z. Maximal 9 Detailseiten pro
+                        Block (Unterstufen 0–9 Abstand bis zum nächsten
+                        Block).
 
                         Stand jetzt vergeben: Stufe 0 (Anleitung) und
                         Stufe 90 (die zwölf Sprach-Überblicke, siehe unten
@@ -163,7 +167,12 @@ window.SpickerData["coding"] = {
                         10–80 (IT-Grundlagen) kommen als eigene Schritte
                         dazu.
      Neuer Eintrag: einfach einen { ... }-Block kopieren und anpassen.
-     Die Reihenfolge hier ist egal – list.js sortiert beim Anzeigen.
+     Für A–Z/Z–A/Sprache-Sortierung ist die Reihenfolge hier egal – list.js
+     sortiert beim Anzeigen neu. Bei "Empfohlen" ZÄHLT die Reihenfolge
+     aber: Einträge mit DERSELBEN Stufe stehen in GENAU der Reihenfolge,
+     in der sie hier stehen (siehe Unterstufen-Regel oben) – darum bei
+     einer Seite mit mehreren Begriffen die Blöcke in der Reihenfolge
+     anlegen, in der die Begriffe auf der Detailseite vorkommen.
      Hinweis: mathe/entries.js nutzt bereits "Begriff" als Spalte 1 –
      die Coding-Liste ist damit einheitlich mit der Mathe-Liste.
      =================================================================== */
@@ -3766,6 +3775,14 @@ window.SpickerData["coding"] = {
 
     // ===== IT-GRUNDLAGEN: 32 Speicher (more/it-speicher.html) =====
     {
+      "Begriff": "Speicherhierarchie",
+      "Beschreibung": "Näher an der CPU = schneller, kleiner, teurer",
+      "Sprache": "Hardware",
+      "Link": "more/it-speicher.html#speicherhierarchie",
+      "class": ["grundlagen","it","hardware","memory hierarchy"],
+      "Stufe": 32
+    },
+    {
       "Begriff": "RAM",
       "Beschreibung": "Schneller Arbeitsspeicher, flüchtig",
       "Sprache": "Hardware",
@@ -3779,14 +3796,6 @@ window.SpickerData["coding"] = {
       "Sprache": "Hardware",
       "Link": "more/it-speicher.html#rom",
       "class": ["grundlagen","it","hardware","read-only memory"],
-      "Stufe": 32
-    },
-    {
-      "Begriff": "Speicherhierarchie",
-      "Beschreibung": "Näher an der CPU = schneller, kleiner, teurer",
-      "Sprache": "Hardware",
-      "Link": "more/it-speicher.html#speicherhierarchie",
-      "class": ["grundlagen","it","hardware","memory hierarchy"],
       "Stufe": 32
     },
     {

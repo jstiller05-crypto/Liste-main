@@ -13,6 +13,9 @@
    1. EINSTELLUNGEN   Smart-Link-Einstellungen
    2. COPY-BUTTONS    "Copy"-Button über jedem Codeblock
    3. SMART-LINKS     Fachbegriffe im Text automatisch zu Links machen
+   3b. EIGENE BEGRIFFE  entries.js nachladen, Begriffe dieser Seite finden
+                      (Grundlage für "Auf dieser Seite" und "Weiter im
+                      Lernpfad")
    4. START           DOMContentLoaded (setzt alles in Gang)
    5. VERSTÄNDNIS-BEWERTUNG   Button + Punkte-Lineal (0–10) im Footer,
                       speichert über den lokalen Server oder localStorage.
@@ -410,6 +413,423 @@ function addSmartLinks() {
 
 
 /* =====================================================================
+   3b. EIGENE BEGRIFFE DIESER SEITE
+   ---------------------------------------------------------------------
+   Eine Detailseite kennt bisher nur sich SELBST (ihren eigenen Text).
+   Für die "Auf dieser Seite"-Leiste (Teil D) und "Weiter im Lernpfad"
+   (Teil E) muss sie zusätzlich wissen, welche Begriffe aus entries.js
+   auf SIE zeigen – und in welcher Reihenfolge.
+   ===================================================================== */
+
+// ---------------------------------------------------------------------
+// Spicker-ID aus dem Pfad lesen – Detailseiten haben (anders als die
+// Listen-Seiten mit <body data-topic="...">) kein eigenes Attribut
+// dafür, liegen aber IMMER unter ".../<topic>/more/<datei>.html".
+//   ".../spicker/coding/more/it-git.html" → Teile: [..., "coding", "more", "it-git.html"]
+//   lastIndexOf("more") findet die Stelle, der Spicker steht GENAU davor.
+// Funktioniert so sowohl über den Server (/coding/more/...) als auch
+// per Doppelklick ohne Server (file:///C:/.../spicker/coding/more/...),
+// weil in BEIDEN Fällen ".../<topic>/more/..." am Pfadende steht.
+// ---------------------------------------------------------------------
+function getCurrentTopicId() {
+  const parts = window.location.pathname.split("/").filter(Boolean);
+  const moreIndex = parts.lastIndexOf("more");
+
+  if (moreIndex < 1) {
+    console.warn("[entries] Spicker-ID nicht im Pfad gefunden:", window.location.pathname);
+    return "";
+  }
+  return parts[moreIndex - 1];
+}
+
+// ---------------------------------------------------------------------
+// Lädt "../entries.js" dieses Spickers per JavaScript nach – GENAU das,
+// was eine feste <script src="../entries.js">-Zeile im <head> auch tun
+// würde, nur eben erst HIER zur Laufzeit statt beim Seitenaufbau.
+//
+// WARUM dynamisch statt fest im HTML? entries.js enthält für JEDEN
+// Spicker alle paar hundert Einträge – würde jede der 600+ Detailseiten
+// das fest einbinden, müsste man sie alle von Hand ändern. So reicht
+// diese eine Funktion hier für ALLE Detailseiten aller Spicker.
+//
+// Klappt auch OHNE Server (file://): Ein <script>-Element lädt seine
+// Datei relativ zum Ordner der aktuellen Seite – das ist dem Browser
+// egal, ob "davor" ein echter Server oder nur das Dateisystem steckt.
+// load/error feuern in beiden Fällen gleich zuverlässig.
+//
+// Gibt ein PROMISE zurück (siehe Teil C der Aufgabe): Ein Promise ist
+// ein "Versprechen auf einen Wert, der erst SPÄTER feststeht" – hier:
+// entweder die geladenen Daten oder (bei jedem Fehler) null. WICHTIG:
+// Dieses Promise wird NIE abgelehnt (reject) – auch wenn entries.js
+// fehlt oder kaputt ist, löst es sich mit null auf. Die Seite soll dann
+// einfach OHNE die neuen Extras weiterlaufen, nie abstürzen.
+// ---------------------------------------------------------------------
+function loadTopicEntries() {
+  return new Promise(function executor(resolve) {
+    const topicId = getCurrentTopicId();
+    if (!topicId) {
+      resolve(null);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "../entries.js";
+
+    script.onload = function handleEntriesLoaded() {
+      const data = window.SpickerData && window.SpickerData[topicId];
+      if (!data || !data.oTableEntries || !Array.isArray(data.oTableEntries.List)) {
+        console.warn("[entries] '" + topicId + "' hat keine passenden Daten – Seite läuft ohne die Extras weiter");
+        resolve(null);
+        return;
+      }
+      console.log("[entries] '" + topicId + "/entries.js' nachgeladen:", data.oTableEntries.List.length, "Einträge");
+      resolve(data);
+    };
+
+    script.onerror = function handleEntriesLoadError() {
+      console.warn("[entries] '" + topicId + "/entries.js' konnte nicht geladen werden – Seite läuft ohne die Extras weiter");
+      resolve(null);
+    };
+
+    document.head.appendChild(script);
+  });
+}
+
+// ---------------------------------------------------------------------
+// Filtert aus ALLEN Einträgen dieses Spickers nur die heraus, deren
+// Link auf DIESE Detailseite zeigt – in der Reihenfolge, in der sie in
+// entries.js stehen (= Reihenfolge auf der Seite, siehe Unterstufen-
+// Regel in entries.js).
+//   entry.Link z. B. "more/it-git.html#git"
+//   .split("#")[0]            → "more/it-git.html"  (Anker weg)
+//   .split("/").pop()         → "it-git.html"        (nur der Dateiname)
+//   decodeURIComponent + toLowerCase()  → wie getCurrentPageFile() oben,
+//     damit "area%20&%20map.html" und Groß-/Kleinschreibung keine Rolle spielen
+// ---------------------------------------------------------------------
+function getEntriesForThisPage(topicData, pageFile) {
+  const entries = topicData.oTableEntries.List.filter(function linksToThisPage(entry) {
+    if (!entry.Link) return false;
+
+    const fileName = entry.Link.split("#")[0].split("/").pop() || "";
+    let decodedFileName;
+    try {
+      decodedFileName = decodeURIComponent(fileName).toLowerCase();
+    } catch (error) {
+      decodedFileName = fileName.toLowerCase();
+    }
+    return decodedFileName === pageFile;
+  });
+
+  console.log("[entries] Begriffe auf dieser Seite (" + entries.length + "):", entries.map(entry => entry.Begriff).join(", "));
+  return entries;
+}
+
+// ---------------------------------------------------------------------
+// Baut die "Auf dieser Seite"-Leiste direkt unter .page-lead: einen
+// Chip pro Begriff, der zu dessen Abschnitt (#id) springt. NUR ab zwei
+// Begriffen – bei nur einem gibt es nichts zum Auswählen.
+// ---------------------------------------------------------------------
+function buildOnThisPageBar(pageEntries) {
+  if (pageEntries.length < 2) {
+    console.log("[on-this-page] nur", pageEntries.length, "Begriff(e) – keine Leiste nötig");
+    return;
+  }
+
+  const pageLead = document.querySelector(".page-lead");
+  if (!pageLead) {
+    console.warn("[on-this-page] .page-lead nicht gefunden – keine Leiste gebaut");
+    return;
+  }
+
+  const row = document.createElement("div");
+  row.className = "chip-row";
+
+  pageEntries.forEach(function appendChip(entry) {
+    // Eintrag ohne "#id" im Link → kein Abschnitt zum Springen vorhanden
+    if (!entry.Link || !entry.Link.includes("#")) {
+      console.warn("[on-this-page] Begriff ohne #id übersprungen:", entry.Begriff);
+      return;
+    }
+
+    const id = entry.Link.split("#")[1];
+    const chip = document.createElement("a");
+    chip.className = "chip";
+    chip.href = "#" + id;
+    chip.textContent = entry.Begriff;
+    // Eigenes data-Attribut, damit setupActiveSectionHighlight() den
+    // passenden Abschnitt wiederfindet, ohne den href erneut zu zerlegen.
+    chip.dataset.targetId = id;
+    row.appendChild(chip);
+  });
+
+  if (!row.children.length) {
+    console.warn("[on-this-page] keine Begriffe mit #id – keine Leiste gebaut");
+    return;
+  }
+
+  const nav = document.createElement("nav");
+  nav.className = "on-this-page";
+  nav.setAttribute("aria-label", "Auf dieser Seite");
+
+  const title = document.createElement("p");
+  title.className = "on-this-page-title";
+  title.textContent = "Auf dieser Seite";
+
+  nav.append(title, row);
+  // insertAdjacentElement("afterend", …) = NACH .page-lead einfügen,
+  // also als eigenes Element direkt darunter (nicht hinein).
+  pageLead.insertAdjacentElement("afterend", nav);
+
+  console.log("[on-this-page] Leiste mit", row.children.length, "Chips eingefügt");
+  setupActiveSectionHighlight(nav);
+}
+
+// ---------------------------------------------------------------------
+// Markiert in der Leiste den Chip des Abschnitts, der gerade "dran" ist
+// – nach demselben Grundprinzip wie das IntersectionObserver-Beispiel
+// auf js-browser-apis.html: Ein Observer meldet sich von SELBST, sobald
+// ein beobachtetes Element eine Trigger-Linie kreuzt, statt dass man bei
+// JEDEM "scroll"-Event selbst nachrechnen muss – deutlich sparsamer.
+//
+// WICHTIG, warum hier trotzdem bei jedem Aufruf NEU über ALLE Abschnitte
+// gerechnet wird, statt einfach nur das eine Element aus dem Callback zu
+// benutzen: Beim Vorbeiscrollen kann der ALTE Abschnitt mit einem
+// winzigen Rest (z. B. nur 8 px) noch genauso "sichtbar" sein wie der
+// NEUE – IntersectionObserver kennt nur "sichtbar: ja/nein" PRO Element,
+// nicht "welcher von mehreren sichtbaren ist der wichtigste". Deshalb
+// wird bei jedem Aufruf bestimmt: Welcher Abschnitt hat seinen Anfang am
+// weitesten oben, ohne die Trigger-Linie schon nach OBEN verlassen zu
+// haben? Nur DER bekommt "active" – alle anderen verlieren es.
+// ---------------------------------------------------------------------
+function setupActiveSectionHighlight(nav) {
+  // Map: Abschnitt-Element → zugehöriger Chip, für schnellen Zugriff.
+  const chipBySection = new Map();
+  nav.querySelectorAll(".chip").forEach(function mapChipToSection(chip) {
+    const section = document.getElementById(chip.dataset.targetId);
+    if (section) {
+      chipBySection.set(section, chip);
+    } else {
+      console.warn("[on-this-page] Abschnitt #" + chip.dataset.targetId + " nicht gefunden");
+    }
+  });
+
+  if (chipBySection.size === 0) return;
+
+  const sections = [...chipBySection.keys()]; // Dokument-Reihenfolge
+  const TRIGGER_LINE = 100; // px von der Fensteroberkante, grob unter dem Seitenkopf
+
+  function updateActiveChip() {
+    let current = null;
+    let currentTop = -Infinity;
+
+    sections.forEach(function checkSection(section) {
+      const top = section.getBoundingClientRect().top;
+      // Oberkante schon über der Linie (oder genau darauf) UND weiter
+      // unten als der bisher beste Treffer → das ist jetzt der beste.
+      if (top <= TRIGGER_LINE && top > currentTop) {
+        current = section;
+        currentTop = top;
+      }
+    });
+
+    chipBySection.forEach(function updateChip(chip, section) {
+      chip.classList.toggle("active", section === current);
+    });
+  }
+
+  // threshold mit vielen Stufen (0, 0.01, 0.02, … 1) statt nur 0/1,
+  // damit der Observer möglichst oft auslöst, während ein Abschnitt die
+  // Trigger-Linie passiert – updateActiveChip() rechnet dann aus den
+  // ECHTEN Positionen die Linie trotzdem exakt nach.
+  const observer = new IntersectionObserver(updateActiveChip, {
+    threshold: Array.from({ length: 21 }, (_, i) => i / 20)
+  });
+  sections.forEach(section => observer.observe(section));
+
+  updateActiveChip(); // sofort einmal rechnen, nicht erst beim ersten Scrollen
+
+  console.log("[on-this-page] Hervorhebung aktiv für", chipBySection.size, "Abschnitt(e)");
+}
+
+// ---------------------------------------------------------------------
+// GLEICHE REGEL wie getEntryLevel() in shared/list.js – bei Änderungen
+// BEIDE Funktionen anpassen! Liefert die Stufe eines Eintrags als Zahl,
+// Infinity wenn keine oder keine gültige Stufe gesetzt ist (landet dann
+// nie im Lernpfad, siehe buildLearningPath()).
+// ---------------------------------------------------------------------
+function getEntryLevel(entry) {
+  if (entry.Stufe === undefined) return Infinity;
+  const level = Number(entry.Stufe);
+  if (Number.isNaN(level)) {
+    console.warn("[lernpfad] ungültige Stufe, Eintrag wird ignoriert:", entry);
+    return Infinity;
+  }
+  return level;
+}
+
+// ---------------------------------------------------------------------
+// Baut die Liste ALLER Detailseiten mit Stufe, in Lernreihenfolge
+// (Stufe aufsteigend, bei Gleichstand Reihenfolge in entries.js –
+// dieselbe Regel wie beim Sortieren "Empfohlen" in shared/list.js,
+// siehe getEntryLevel oben). Jede Datei kommt nur EINMAL vor, mit
+// ihrem ERSTEN Eintrag als Vertreter – dessen Begriff wird später der
+// Linktext für "← vorige Seite" bzw. "nächste Seite →".
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+// Macht aus einem entries.js-Link (relativ zur LISTE, z. B.
+// "more/it-zahlensysteme.html#binaersystem") einen Link, der von einer
+// DETAILSEITE aus funktioniert: nur noch der reine Dateiname, OHNE
+// Ordner ("more/") und OHNE "#…" (Anker). Beispiel:
+//   "more/it-zahlensysteme.html#binaersystem" → "it-zahlensysteme.html"
+//
+// WARUM überhaupt umrechnen? entries.js liegt im Spicker-Ordner (z. B.
+// coding/), seine Links sind relativ zu DORT gemeint – relativ zu
+// coding/index.html. Eine Detailseite liegt aber eine Ebene TIEFER, in
+// coding/more/. Derselbe Link würde dort auf coding/more/more/…
+// zeigen – die Datei gibt es nicht. Nimmt man stattdessen nur den
+// Dateinamen, zeigt er korrekt auf eine andere Datei IM SELBEN Ordner
+// (coding/more/), in dem auch die aktuelle Detailseite selbst liegt.
+// Und ohne "#…" landet man am ANFANG der Zielseite, nicht mitten in
+// einem Abschnitt.
+//
+// Groß-/Kleinschreibung bleibt UNVERÄNDERT (z. B. "Class.html") – auf
+// Linux-Servern sind Dateinamen case-sensitive, ein kleingeschriebener
+// Link würde die Datei dort nicht finden.
+// ---------------------------------------------------------------------
+function getPageHrefFromEntryLink(link) {
+  if (!link) {
+    console.warn("[lernpfad] Eintrag ohne Link übersprungen");
+    return null;
+  }
+  const fileName = link.split("#")[0].split("/").pop();
+  if (!fileName) {
+    console.warn("[lernpfad] Link ohne Dateinamen übersprungen:", link);
+    return null;
+  }
+  return fileName;
+}
+
+function buildLearningPath(topicData) {
+  // Nur Einträge MIT Stufe, zusammen mit ihrer Position in entries.js
+  // (für den Gleichstand-Fall, genau wie entryOrder in shared/list.js).
+  const withLevel = topicData.oTableEntries.List
+    .map(function addIndex(entry, index) { return { entry: entry, index: index }; })
+    .filter(function hasLevel(item) { return getEntryLevel(item.entry) !== Infinity; });
+
+  withLevel.sort(function byLevelThenPosition(a, b) {
+    const levelDiff = getEntryLevel(a.entry) - getEntryLevel(b.entry);
+    return levelDiff !== 0 ? levelDiff : a.index - b.index;
+  });
+
+  const seenFiles = new Set();
+  const learningPath = [];
+  withLevel.forEach(function keepFirstEntryPerFile(item) {
+    const href = getPageHrefFromEntryLink(item.entry.Link);
+    if (!href) return;
+
+    // "file" NUR für Vergleiche (seenFiles hier, findIndex gegen das
+    // bereits kleingeschriebene getCurrentPageFile() in
+    // buildLearningPathNav) – fürs Navigieren zählt allein "href" in
+    // der ORIGINAL-Schreibweise (siehe getPageHrefFromEntryLink).
+    const file = href.toLowerCase();
+    if (seenFiles.has(file)) return; // diese Datei steht schon im Lernpfad (weiterer Begriff derselben Seite)
+
+    seenFiles.add(file);
+    learningPath.push({ file: file, href: href, begriff: item.entry.Begriff });
+  });
+
+  return learningPath;
+}
+
+// ---------------------------------------------------------------------
+// Sucht unter <main> den Abschnitt, dessen <h2> genau "Verwandte Seiten"
+// heißt – dort soll der Lernpfad-Abschnitt DAVOR eingefügt werden.
+// ---------------------------------------------------------------------
+function findRelatedPagesSection() {
+  let found = null;
+  document.querySelectorAll("main section").forEach(function checkSection(section) {
+    const heading = section.querySelector("h2");
+    if (heading && heading.textContent.trim() === "Verwandte Seiten") {
+      found = section;
+    }
+  });
+  return found;
+}
+
+// ---------------------------------------------------------------------
+// Fügt (sofern diese Seite Teil des Lernpfads ist) VOR "Verwandte
+// Seiten" einen Abschnitt mit "← vorige Seite" / "nächste Seite →" ein.
+// Erste Seite im Lernpfad → kein "←". Letzte Seite → kein "→".
+// ---------------------------------------------------------------------
+function buildLearningPathNav(learningPath, pageFile) {
+  const currentIndex = learningPath.findIndex(function matchesCurrentFile(page) {
+    return page.file === pageFile;
+  });
+
+  if (currentIndex === -1) {
+    console.log("[lernpfad] diese Seite hat keine Stufe – kein Lernpfad-Abschnitt");
+    return;
+  }
+
+  const prev = currentIndex > 0 ? learningPath[currentIndex - 1] : null;
+  const next = currentIndex < learningPath.length - 1 ? learningPath[currentIndex + 1] : null;
+
+  if (!prev && !next) {
+    console.log("[lernpfad] einzige Seite im Lernpfad – nichts zu verlinken");
+    return;
+  }
+
+  const section = document.createElement("section");
+  section.className = "learning-path";
+
+  const heading = document.createElement("h2");
+  heading.textContent = "Weiter im Lernpfad";
+  section.appendChild(heading);
+
+  const nav = document.createElement("div");
+  nav.className = "learning-path-nav";
+
+  // IMMER beide Slots anlegen (auch leer) – so bleibt "vorige" links und
+  // "nächste" rechts, egal welcher der beiden fehlt (siehe CSS
+  // justify-content: space-between).
+  const prevSlot = document.createElement("span");
+  if (prev) {
+    const prevLink = document.createElement("a");
+    prevLink.className = "chip";
+    prevLink.href = prev.href; // nur Dateiname, kein "more/", kein "#…" – siehe getPageHrefFromEntryLink
+    prevLink.textContent = "← " + prev.begriff;
+    prevSlot.appendChild(prevLink);
+  }
+
+  const nextSlot = document.createElement("span");
+  if (next) {
+    const nextLink = document.createElement("a");
+    nextLink.className = "chip";
+    nextLink.href = next.href;
+    nextLink.textContent = next.begriff + " →";
+    nextSlot.appendChild(nextLink);
+  }
+
+  nav.append(prevSlot, nextSlot);
+  section.appendChild(nav);
+
+  const relatedSection = findRelatedPagesSection();
+  if (relatedSection) {
+    relatedSection.insertAdjacentElement("beforebegin", section);
+  } else {
+    // Kein "Verwandte Seiten" gefunden (sollte nicht vorkommen) → ans Ende von <main>
+    console.warn("[lernpfad] Abschnitt 'Verwandte Seiten' nicht gefunden – Lernpfad ans Ende gehängt");
+    document.querySelector("main").appendChild(section);
+  }
+
+  console.log("[lernpfad] Position " + (currentIndex + 1) + "/" + learningPath.length +
+    " | zurück: " + (prev ? prev.begriff : "–") + " | weiter: " + (next ? next.begriff : "–"));
+  console.log("[lernpfad] zurück → " + (prev ? prev.href : "–") + " | weiter → " + (next ? next.href : "–"));
+}
+
+
+/* =====================================================================
    4. START
    ---------------------------------------------------------------------
    "defer" im <script>-Tag lädt das Skript erst nach dem HTML.
@@ -435,6 +855,26 @@ document.addEventListener("DOMContentLoaded", function initializeMorePages() {
   } catch (error) {
     console.error("[progress] Fehler – Verständnis-Bewertung nicht verfügbar:", error);
   }
+
+  // entries.js nachladen (siehe 3b) – läuft NEBENHER weiter (kein await),
+  // weil Copy-Buttons, Smart-Links und Bewertung nicht darauf warten
+  // müssen. .then() statt async/await an dieser Stelle, damit
+  // initializeMorePages() selbst eine ganz normale, synchrone Funktion
+  // bleiben kann.
+  loadTopicEntries().then(function handleTopicEntriesLoaded(topicData) {
+    if (!topicData) return; // Fehler/Fehlen wurde schon in loadTopicEntries() gemeldet
+
+    try {
+      const pageFile = getCurrentPageFile();
+      const pageEntries = getEntriesForThisPage(topicData, pageFile);
+      buildOnThisPageBar(pageEntries);
+
+      const learningPath = buildLearningPath(topicData);
+      buildLearningPathNav(learningPath, pageFile);
+    } catch (error) {
+      console.error("[entries] Fehler beim Verarbeiten der Begriffe dieser Seite:", error);
+    }
+  });
 
   console.log("[start] fertig");
 });

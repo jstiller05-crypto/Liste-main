@@ -20,9 +20,10 @@
                        sortEntriesBySelectedOrder()
    6. HERZSTÜCK        applyEntryFilters()  (alle Filter nacheinander)
    7. EVENTS           setup...()-Funktionen (Klicks, Tippen, Auswahl)
-   7b. MERKEN          Filter + Scroll-Position im Browser speichern
-                       (localStorage), damit nach dem Zurückkommen alles
-                       wieder so ist wie vorher
+   7b. MERKEN          Beim Klick auf "mehr" Suche/Filter/Sortierung/
+                       Scroll-Position + geöffnete Seite in sessionStorage
+                       merken, damit die Liste beim Zurückkommen wieder
+                       so aussieht wie vorher ("gleiche Seite" markieren)
    8. START            DOMContentLoaded (setzt alles in Gang)
    ===================================================================== */
 
@@ -73,6 +74,17 @@ function getTopicData(topicId) {
 let listConfig = null;   // Spalten, Filter, Sortierung aus entries.js
 let allEntries = [];     // alle Einträge dieses Spickers
 let searcher = null;     // das TableSearcher-Objekt
+
+// Eintrag → Position in oTableEntries.List (entries.js-Reihenfolge).
+// Wird einmal in initializeListPage() befüllt und danach nur gelesen –
+// siehe sortEntriesBySelectedOrder(), Fall "level". Als Map-SCHLÜSSEL
+// dient der Eintrag (das Objekt) selbst, nicht Begriff/Index als Text:
+// filter() und sort() verändern die Einträge nie, sie ordnen nur
+// dieselben Objekt-Referenzen um – darum funktioniert entryOrder.get(entry)
+// unabhängig davon, in welcher (gefilterten/sortierten) Liste der Eintrag
+// gerade steht. Bewusst KEIN neues Feld in den Eintrag selbst geschrieben
+// (siehe Auftrag) – die Reihenfolge lebt nur hier, außerhalb der Daten.
+let entryOrder = new Map();
 
 
 /* =====================================================================
@@ -182,6 +194,7 @@ class TableSearcher {
     // --- Für jeden Eintrag eine Tabellenzeile bauen ---
     list.forEach(function appendEntryRow(entry) {
       const row = document.createElement("tr"); // neue Zeile (noch unsichtbar)
+      let rowIsOpenedPage = false; // siehe 7b: "gleiche Seite" + Aufblitzen
 
       columns.forEach(function appendCell(column) {
         const cell = document.createElement("td");
@@ -191,7 +204,29 @@ class TableSearcher {
           if (entry[column.field]) {
             const link = document.createElement("a");
             link.href = entry[column.field];
-            link.textContent = column.linkText || "mehr";
+
+            // Zeigt dieser Link auf GENAU die Seite, die zuletzt über
+            // "mehr" geöffnet wurde (siehe 7b)? Dann statt "mehr" den
+            // Text "gleiche Seite" zeigen – andere Links in derselben
+            // Zeile (z. B. zu einem anderen Abschnitt derselben Datei)
+            // zählen durch den Dateinamen-Vergleich ebenfalls dazu.
+            if (isSameFileAsLastOpened(entry[column.field])) {
+              link.textContent = "gleiche Seite";
+              link.className = "link-same-page";
+              link.title = "Diese Seite hast du gerade gelesen";
+              rowIsOpenedPage = true;
+            } else {
+              link.textContent = column.linkText || "mehr";
+            }
+
+            // Beim Klick merken, WAS gerade geöffnet wird – siehe 7b,
+            // saveListStateBeforeLeaving(). Das greift für "mehr" UND
+            // "gleiche Seite" gleichermaßen (beide führen zu einer
+            // Detailseite, von der man zurückkommen kann).
+            link.addEventListener("click", function handleEntryLinkClick() {
+              saveListStateBeforeLeaving(entry[column.field]);
+            });
+
             cell.appendChild(link);
           }
         } else {
@@ -202,6 +237,14 @@ class TableSearcher {
 
         row.appendChild(cell);
       });
+
+      // Nur bei der Zeile, von der man GERADE zurückgekommen ist, und
+      // auch dann nur EINMAL (nicht bei jedem weiteren Neuzeichnen
+      // durch Filtern/Sortieren) – siehe shouldFlashOpenedRow in 7b.
+      if (rowIsOpenedPage && shouldFlashOpenedRow) {
+        row.classList.add("row-flash-highlight");
+        shouldFlashOpenedRow = false;
+      }
 
       tableBody.appendChild(row); // erst jetzt ist die Zeile sichtbar
     });
@@ -467,9 +510,12 @@ function getEntryLevel(entry) {
 //   "za"           → nach der ersten Spalte Z–A
 //   "field:<Feld>" → erst nach diesem Feld, bei Gleichstand nach der
 //                    ersten Spalte (z. B. "field:Sprache")
-//   "level"        → nach entry.Stufe aufsteigend (siehe getEntryLevel),
-//                    bei Gleichstand (auch wenn BEIDE keine Stufe haben)
-//                    nach der ersten Spalte A–Z
+//   "level"        → nach entry.Stufe aufsteigend (siehe getEntryLevel).
+//                    Bei GLEICHER Stufe: Reihenfolge aus entries.js
+//                    (siehe entryOrder), NICHT A–Z – mehrere Begriffe
+//                    derselben Detailseite stehen so wie auf der Seite.
+//                    NUR Einträge ganz OHNE Stufe (beide Infinity)
+//                    stehen untereinander weiterhin A–Z.
 // ---------------------------------------------------------------------
 function sortEntriesBySelectedOrder(list) {
   const copy = [...list]; // [...x] = Kopie (Spread-Operator)
@@ -505,15 +551,33 @@ function sortEntriesBySelectedOrder(list) {
       const firstLevel = getEntryLevel(firstEntry);
       const secondLevel = getEntryLevel(secondEntry);
 
-      // Gleiche Stufe → nach der ersten Spalte sortieren. WICHTIG: erst
-      // auf Gleichheit prüfen, NICHT gleich "firstLevel - secondLevel"
-      // bilden – Infinity - Infinity ergibt NaN, nicht 0. Zwei Einträge
-      // OHNE Stufe (beide Infinity) würden über die Differenz also nicht
-      // als "gleich" erkannt und nicht alphabetisch sortiert.
-      if (firstLevel === secondLevel) {
+      // WICHTIG: erst auf Gleichheit prüfen, NICHT gleich
+      // "firstLevel - secondLevel" bilden – Infinity - Infinity ergibt
+      // NaN, nicht 0. Zwei Einträge OHNE Stufe (beide Infinity) würden
+      // über die Differenz also nicht als "gleich" erkannt.
+      if (firstLevel !== secondLevel) {
+        return firstLevel - secondLevel;
+      }
+
+      // Ab hier: GLEICHE Stufe.
+      //   Beide OHNE Stufe (Infinity)  → wie bisher A–Z.
+      //   Beide MIT derselben Stufe    → Reihenfolge aus entries.js
+      //     (= Reihenfolge auf der Detailseite, siehe Unterstufen-Regel
+      //     in entries.js). NICHT auf die Stabilität von Array.sort()
+      //     verlassen (seit ES2019 zwar garantiert: gleiche Elemente
+      //     behalten ihre Reihenfolge aus dem Eingabe-Array) – das würde
+      //     hier nur ZUFÄLLIG die Begriffs-Reihenfolge treffen, WEIL
+      //     applyEntryFilters() die Liste vorher nur filtert (filter()
+      //     erhält die Reihenfolge) und nie selbst schon anders sortiert.
+      //     Käme davor irgendwann ein weiterer Sortierschritt dazu (z. B.
+      //     Suchtreffer nach Relevanz vorsortiert), würde sich die
+      //     Reihenfolge hier still und unbemerkt ändern. Der explizite
+      //     Blick in entryOrder ist dagegen IMMER richtig, unabhängig
+      //     davon, in welcher Reihenfolge "list" hier ankommt.
+      if (firstLevel === Infinity) {
         return getFieldText(firstEntry, mainField).localeCompare(getFieldText(secondEntry, mainField), "de");
       }
-      return firstLevel - secondLevel;
+      return entryOrder.get(firstEntry) - entryOrder.get(secondEntry);
     });
 
     const withLevel = copy.filter(entry => getEntryLevel(entry) !== Infinity).length;
@@ -579,8 +643,9 @@ function applyEntryFilters() {
   // --- Schritt 4: Anzeigen ---
   searcher.renderEntriesInTable(TABLE_BODY_SELECTOR, result);
 
-  // --- Schritt 5: Einstellung im Browser merken (siehe 7b) ---
-  saveFilterState();
+  // KEIN "Einstellung merken" mehr hier, anders als früher: Teil F
+  // speichert gezielt nur noch beim Klick auf einen "mehr"-Link (siehe
+  // 7b, saveListStateBeforeLeaving) – nicht bei jeder Filteränderung.
 }
 
 
@@ -684,86 +749,139 @@ function setupSortSelector() {
 
 
 /* =====================================================================
-   7b. MERKEN (localStorage)
+   7b. MERKEN (sessionStorage)
    ---------------------------------------------------------------------
-   localStorage ist ein kleiner Speicher im Browser, der auch nach dem
-   Schließen der Seite erhalten bleibt (pro Browser, nicht auf dem Server).
-   Er speichert nur Text → Objekte werden mit JSON.stringify zu Text und
-   mit JSON.parse wieder zu Objekten.
+   sessionStorage UND localStorage speichern beide nur Text (Objekte
+   darum mit JSON.stringify/JSON.parse) und überstehen ein Neuladen der
+   Seite. Der Unterschied liegt darin, WIE LANGE und FÜR WEN:
+     localStorage    bleibt, bis man es selbst löscht – sogar nach dem
+                      Schließen des Browsers, und in JEDEM Tab/Fenster
+                      gleichermaßen sichtbar.
+     sessionStorage   gehört zu GENAU diesem einen Tab und ist weg,
+                      sobald der Tab geschlossen wird. Ein zweiter Tab
+                      mit derselben Seite hat seinen EIGENEN Speicher.
+   Für "wohin war ich gerade unterwegs" (dieser Teil F) passt
+   sessionStorage besser: Es soll nur innerhalb des AKTUELLEN Besuchs
+   wirken, nicht wochenlang jede künftige Sitzung beeinflussen.
 
-   Pro Spicker gibt es zwei Schlüssel, damit sich Coding und Mathe nicht
-   gegenseitig überschreiben:
-     spicker-list-<topic>    Suche, Filter, Sortierung
-     spicker-scroll-<topic>  wie weit nach unten gescrollt wurde (Pixel)
+   Ablauf:
+     1. Klick auf "mehr"/"gleiche Seite" (siehe TableSearcher) →
+        saveListStateBeforeLeaving() schreibt Suche, Filter, Sortierung,
+        Scroll-Position UND den Dateinamen der geöffneten Seite weg.
+     2. Zurück zur Liste → loadListState() liest das, BEVOR die Tabelle
+        gebaut wird, und übernimmt es in filterState.
+     3. Tabelle wird gezeichnet (dabei greift "gleiche Seite", siehe
+        TableSearcher), DANACH erst gescrollt.
+     4. Nur der Scroll-Wert wird danach aus dem gespeicherten Objekt
+        entfernt (nicht alles!) – Suche/Filter/Sortierung/Dateiname
+        bleiben stehen, damit "gleiche Seite" auch nach einer weiteren
+        Filteränderung noch stimmt. Ein SPÄTERES, ganz normales Öffnen
+        der Liste soll aber nicht nochmal an die alte Stelle springen.
 
-   try/catch, weil localStorage in manchen Fällen einen Fehler wirft
-   (z. B. privates Fenster, Speicher voll, Cookies blockiert). Dann
-   funktioniert die Seite trotzdem – sie merkt sich nur nichts.
+   try/catch überall: sessionStorage kann z. B. im privaten Fenster
+   gesperrt sein – dann läuft die Liste einfach normal weiter, ohne
+   sich etwas zu merken.
    ===================================================================== */
-let currentTopicId = "";      // wird in initializeListPage() gesetzt
-let scrollRestoreDone = false; // erst NACH dem Wiederherstellen speichern
+let currentTopicId = "";          // wird in initializeListPage() gesetzt
+let lastOpenedFile = "";          // Dateiname der zuletzt per Link geöffneten Seite
+let shouldFlashOpenedRow = false; // true = beim NÄCHSTEN Zeichnen genau diese eine Zeile aufblitzen lassen
 
-function getFilterStorageKey() { return "spicker-list-" + currentTopicId; }
-function getScrollStorageKey() { return "spicker-scroll-" + currentTopicId; }
+function getListStateStorageKey() {
+  return "spicker:" + currentTopicId + ":listState";
+}
 
-// --- Filter speichern (nach jeder Änderung, siehe applyEntryFilters) --
-function saveFilterState() {
+// ---------------------------------------------------------------------
+// Vergleicht ein Link-Ziel (z. B. "more/it-git.html#git") mit
+// lastOpenedFile – nur der reine Dateiname zählt (Ordner und Anker
+// werden abgeschnitten), Groß-/Kleinschreibung ist egal.
+// ---------------------------------------------------------------------
+function isSameFileAsLastOpened(linkTarget) {
+  if (!lastOpenedFile || !linkTarget) return false;
+  const fileName = linkTarget.split("#")[0].split("/").pop() || "";
+  return fileName.toLowerCase() === lastOpenedFile;
+}
+
+// --- Beim Klick auf "mehr"/"gleiche Seite" aufgerufen -----------------
+function saveListStateBeforeLeaving(linkTarget) {
   if (!currentTopicId) return;
+
+  const fileName = (linkTarget.split("#")[0].split("/").pop() || "").toLowerCase();
+  const state = {
+    search: filterState.search,
+    filters: filterState.filters,
+    sort: filterState.sort,
+    sortBeforeSearch: filterState.sortBeforeSearch,
+    scrollY: Math.round(window.scrollY),
+    openedFile: fileName
+  };
+
   try {
-    localStorage.setItem(getFilterStorageKey(), JSON.stringify(filterState));
+    sessionStorage.setItem(getListStateStorageKey(), JSON.stringify(state));
+    console.log("[storage] Zustand vor dem Öffnen von", fileName, "gespeichert:", JSON.stringify(state));
   } catch (error) {
-    console.warn("[storage] Filter konnten nicht gespeichert werden:", error);
+    console.warn("[storage] Zustand konnte nicht gespeichert werden:", error);
   }
 }
 
 // ---------------------------------------------------------------------
-// Gespeicherte Filter laden und in filterState übernehmen.
-// Alles wird GEPRÜFT, bevor es übernommen wird: Hat sich entries.js
-// inzwischen geändert (Button gelöscht, Sortierung umbenannt), werden
-// unbekannte Werte einfach ignoriert statt Fehler zu verursachen.
+// Liest den gespeicherten Zustand (falls vorhanden) und übernimmt ihn in
+// filterState + lastOpenedFile/shouldFlashOpenedRow. Wird VOR dem ersten
+// Zeichnen der Tabelle aufgerufen. Alles wird GEPRÜFT, bevor es
+// übernommen wird – genau wie früher: Hat sich entries.js inzwischen
+// geändert (Button gelöscht, Sortierung umbenannt), werden unbekannte
+// Werte einfach ignoriert statt Fehler zu verursachen.
+// Rückgabe: die gespeicherte Scroll-Position (0 = keine vorhanden).
 // ---------------------------------------------------------------------
-function loadFilterState() {
+function loadListState() {
   let saved = null;
   try {
-    const text = localStorage.getItem(getFilterStorageKey());
+    const text = sessionStorage.getItem(getListStateStorageKey());
     if (!text) {
-      console.log("[storage] keine gespeicherten Filter – Standard wird benutzt");
-      return;
+      console.log("[storage] kein gespeicherter Zustand – Liste startet normal");
+      return 0;
     }
     saved = JSON.parse(text);
   } catch (error) {
-    console.warn("[storage] gespeicherte Filter unlesbar – Standard wird benutzt:", error);
-    return;
+    console.warn("[storage] gespeicherter Zustand unlesbar – Liste startet normal:", error);
+    return 0;
   }
-  if (!saved || typeof saved !== "object") return;
+  if (!saved || typeof saved !== "object") return 0;
 
-  // Suche
   if (typeof saved.search === "string") {
     filterState.search = saved.search;
   }
 
-  // Filter: nur Werte übernehmen, für die es noch einen Button gibt
   listConfig.filterGroups.forEach(function restoreGroup(group) {
     const savedValues = saved.filters && saved.filters[group.id];
-    // Alte Version hat einen einzelnen Text gespeichert → in Liste umwandeln
-    const valueList = Array.isArray(savedValues) ? savedValues : (savedValues ? [savedValues] : []);
+    const valueList = Array.isArray(savedValues) ? savedValues : [];
     const knownValues = group.buttons.map(button => button.value).filter(value => value !== "");
     filterState.filters[group.id] = valueList.filter(value => knownValues.includes(value));
   });
 
-  // Sortierung: nur übernehmen, wenn es die Option noch gibt
   const knownSorts = listConfig.sortOptions.map(option => option.value);
   if (knownSorts.includes(saved.sort)) {
     filterState.sort = saved.sort;
   }
   filterState.sortBeforeSearch = knownSorts.includes(saved.sortBeforeSearch) ? saved.sortBeforeSearch : "";
 
-  console.log("[storage] gespeicherte Filter geladen:", JSON.stringify(filterState));
+  if (typeof saved.openedFile === "string" && saved.openedFile) {
+    lastOpenedFile = saved.openedFile;
+    // NUR beim allerersten Zurückkommen blitzen lassen. Erkennbar daran,
+    // dass noch ein ECHTER (noch nicht verbrauchter) scrollY-Wert da ist
+    // – "typeof ... === number" statt nur "if (saved.scrollY)", weil 0
+    // ein gültiger, aber falsy Wert wäre (ganz oben geklickt). Auf jedem
+    // SPÄTEREN Laden fehlt scrollY schon (siehe restoreScrollAndForgetIt),
+    // "gleiche Seite" bleibt aber über lastOpenedFile weiterhin korrekt.
+    shouldFlashOpenedRow = typeof saved.scrollY === "number";
+  }
+
+  console.log("[storage] gespeicherten Zustand geladen:", JSON.stringify(saved));
+  return Number(saved.scrollY) || 0;
 }
 
 // ---------------------------------------------------------------------
-// Bringt Suchfeld, Buttons und Sortier-Auswahl auf den Stand von
-// filterState (nach dem Laden gespeicherter Filter).
+// Bringt Suchfeld, Buttons und Sortier-Auswahl sichtbar auf den Stand
+// von filterState (nach loadListState()).
 // ---------------------------------------------------------------------
 function applyFilterStateToControls() {
   const input = document.getElementById("myInput");
@@ -775,53 +893,30 @@ function applyFilterStateToControls() {
   listConfig.filterGroups.forEach(group => syncFilterButtons(group.id));
 }
 
-// --- Scroll-Position --------------------------------------------------
-// Beim Scrollen wird gespeichert – aber höchstens alle 200 ms, sonst
-// würde bei jedem Pixel geschrieben (setTimeout bündelt das).
-// "pagehide" feuert beim Verlassen der Seite (Link, Zurück-Pfeil, Tab
-// schließen) und speichert sicherheitshalber noch einmal.
-function saveScrollPosition() {
-  if (!scrollRestoreDone || !currentTopicId) return;
-  try {
-    localStorage.setItem(getScrollStorageKey(), String(Math.round(window.scrollY)));
-  } catch (error) {
-    console.warn("[scroll] Position konnte nicht gespeichert werden:", error);
-  }
-}
-
-function setupScrollMemory() {
-  // Der Browser soll NICHT selbst scrollen – das übernehmen wir, damit es
-  // auch beim Zurück-Pfeil (normaler Link, kein "Zurück") klappt.
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
-
-  let saveTimer = null;
-  window.addEventListener("scroll", function handleScroll() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(saveScrollPosition, 200);
-  }, { passive: true }); // passive = blockiert das Scrollen nicht
-
-  window.addEventListener("pagehide", saveScrollPosition);
-}
-
-// Springt zur gespeicherten Stelle. Wird nach dem ersten Zeichnen der
-// Tabelle aufgerufen, weil die Seite vorher noch gar nicht so lang ist.
-function restoreScrollPosition() {
-  let savedY = 0;
-  try {
-    savedY = Number(localStorage.getItem(getScrollStorageKey())) || 0;
-  } catch (error) {
-    console.warn("[scroll] gespeicherte Position unlesbar:", error);
-  }
-
-  if (savedY > 0) {
-    window.scrollTo(0, savedY);
-    console.log("[scroll] zurück zu Position", savedY, "px (erreicht:", Math.round(window.scrollY) + " px)");
+// ---------------------------------------------------------------------
+// Scrollt (nach dem ersten Zeichnen der Tabelle) zur gespeicherten
+// Stelle und entfernt DANACH NUR den Scroll-Wert aus dem gespeicherten
+// Objekt – der Rest (Suche/Filter/Sortierung/Dateiname) bleibt stehen,
+// siehe Erklärung oben am Abschnitt.
+// ---------------------------------------------------------------------
+function restoreScrollAndForgetIt(scrollY) {
+  if (scrollY > 0) {
+    window.scrollTo(0, scrollY);
+    console.log("[scroll] zurück zu Position", scrollY, "px (erreicht:", Math.round(window.scrollY) + " px)");
   } else {
-    console.log("[scroll] keine gespeicherte Position – Seite startet oben");
+    console.log("[scroll] keine gespeicherte Position – Seite bleibt oben");
   }
-  scrollRestoreDone = true;
+
+  if (!currentTopicId) return;
+  try {
+    const text = sessionStorage.getItem(getListStateStorageKey());
+    if (!text) return;
+    const saved = JSON.parse(text);
+    delete saved.scrollY;
+    sessionStorage.setItem(getListStateStorageKey(), JSON.stringify(saved));
+  } catch (error) {
+    console.warn("[storage] Scroll-Wert konnte nicht entfernt werden:", error);
+  }
 }
 
 
@@ -835,6 +930,14 @@ function restoreScrollPosition() {
    ===================================================================== */
 document.addEventListener("DOMContentLoaded", function initializeListPage() {
   console.log("[start] Listen-Seite geladen");
+
+  // Der Browser soll NICHT selbst (nach eigenem Ermessen, z. B. bei F5)
+  // irgendeine Scroll-Position wiederherstellen – das übernehmen WIR
+  // gezielt über restoreScrollAndForgetIt() (siehe 7b), sonst können
+  // sich beide Mechanismen gegenseitig ins Gehege kommen.
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
 
   const topicId = getTopicId();
   currentTopicId = topicId;
@@ -858,6 +961,13 @@ document.addEventListener("DOMContentLoaded", function initializeListPage() {
   listConfig = data.config;
   allEntries = data.oTableEntries.List;
 
+  // entryOrder EINMAL hier befüllen (nicht bei jedem Sortieren neu) –
+  // forEach liefert (wert, index), also genau Eintrag → Position.
+  allEntries.forEach(function rememberEntryPosition(entry, index) {
+    entryOrder.set(entry, index);
+  });
+  console.log("[start] entryOrder gemerkt für", entryOrder.size, "Einträge (Reihenfolge aus entries.js)");
+
   buildTableHead(listConfig);
   buildFilterDropdown(listConfig);
   applySearchPlaceholder(listConfig);
@@ -868,14 +978,15 @@ document.addEventListener("DOMContentLoaded", function initializeListPage() {
   setupFilterButtons();
   setupSortSelector();
 
-  // Gespeicherte Einstellung laden und Buttons/Suchfeld/Auswahl anpassen
-  loadFilterState();
+  // Gespeicherten Zustand laden (siehe 7b) und Buttons/Suchfeld/Auswahl
+  // anpassen – NOCH bevor die Tabelle gezeichnet wird, damit die Filter
+  // beim ersten Zeichnen schon stimmen.
+  const pendingScrollY = loadListState();
   applyFilterStateToControls();
 
-  applyEntryFilters(); // einmal alles anzeigen
+  applyEntryFilters(); // einmal alles anzeigen (hier greift ggf. "gleiche Seite" + Aufblitzen)
 
-  // Erst jetzt ist die Tabelle lang genug, um dorthin zu scrollen
-  setupScrollMemory();
-  restoreScrollPosition();
+  // Erst NACH dem Zeichnen ist die Tabelle lang genug, um zu scrollen.
+  restoreScrollAndForgetIt(pendingScrollY);
   console.log("[start] fertig");
 });
