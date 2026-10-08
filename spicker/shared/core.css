@@ -310,6 +310,17 @@ html:has(body.detail-page) {
   border-bottom: none;
 }
 
+/* Für Tabellen mit vielen Spalten (z. B. App-Vergleiche): Auf schmalen
+   Bildschirmen seitlich scrollen, statt die ganze Seite zu verbreitern. */
+.detail-page .table-scroll {
+  overflow-x: auto;
+  margin: 0 0 12px;
+}
+
+.detail-page .table-scroll .info-table {
+  margin-bottom: 0;
+}
+
 .detail-page .note {
   border-left: 3px solid var(--accent);
   padding: 10px 14px;
@@ -566,6 +577,15 @@ html:has(body.detail-page) {
 
   .detail-page .info-table {
     font-size: 0.88rem;
+  }
+
+  /* Lange, zusammengesetzte deutsche Wörter (z. B. "Entschädigungs-
+     einrichtung") haben keine Leerzeichen zum Umbrechen und können eine
+     Tabellenspalte breiter machen als der Bildschirm – auf dem Handy
+     darum auch mitten im Wort umbrechen. */
+  .detail-page .info-table td,
+  .detail-page .info-table th {
+    overflow-wrap: anywhere;
   }
 
   .detail-page .progress-ruler {

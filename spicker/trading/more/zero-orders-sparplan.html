@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: zero Orders &amp; Sparplan – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Apps &amp; Tools · finanzen.net zero</p>
+    <h1>zero: Ordertypen &amp; Sparplan</h1>
+    <p class="page-lead">Gewinnziel und Verlustgrenze gleichzeitig setzen, ohne doppelt zu verkaufen – und automatisch sparen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 280" role="img" aria-label="OCO-Order" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <line x1="60.0" y1="80.0" x2="560.0" y2="80.0" class="dg-up-wick dg-dashed"/>
+        <text x="52.0" y="84.0" class="dg-small" text-anchor="end">Limit-Verkauf</text>
+        <text x="52.0" y="98.0" class="dg-small" text-anchor="end">(Gewinnziel)</text>
+        <line x1="60.0" y1="150.0" x2="560.0" y2="150.0" class="dg-line"/>
+        <text x="52.0" y="154.0" class="dg-small" text-anchor="end">aktueller Kurs</text>
+        <line x1="60.0" y1="220.0" x2="560.0" y2="220.0" class="dg-down-wick dg-dashed"/>
+        <text x="52.0" y="224.0" class="dg-small" text-anchor="end">Stop</text>
+        <text x="52.0" y="238.0" class="dg-small" text-anchor="end">(Verlustgrenze)</text>
+        <line x1="600.0" y1="85.0" x2="600.0" y2="215.0" class="dg-line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <text x="618.0" y="150.0" class="dg-accent-text" text-anchor="middle" transform="rotate(-90 618.0 150.0)">OCO</text>
+        </svg>
+        <figcaption>Eine OCO-Order („One Cancels the Other“) verknüpft Gewinnziel und Verlustgrenze: Wird eine Order ausgeführt, löscht das System die andere automatisch.</figcaption>
+      </figure>
+      <p><strong>Woher kommt das?</strong> OCO stammt aus dem professionellen Handel – damit sich Gewinnziel und Stop gleichzeitig setzen lassen, ohne dass man am Ende versehentlich doppelt verkauft.</p>
+    </section>
+    <section>
+      <h2>Ordertypen bei zero</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Was passiert</th><th>Wann sinnvoll</th></tr></thead>
+        <tbody>
+          <tr><td><a href="orders.html">Market</a></td><td>bei zero meist mit <strong>Quote</strong>: ein verbindlicher Kurs, der wenige Sekunden gilt und bestätigt werden muss</td><td>schnell ausführen, Kurs ist dabei bekannt</td></tr>
+          <tr><td><a href="orders.html">Limit</a></td><td>nur zum Limit oder besser</td><td>bestimmten Einstiegs- oder Ausstiegspreis festlegen</td></tr>
+          <tr><td>Stop (Stop-Market)</td><td>löst bei Erreichen der Marke eine Market-Order aus</td><td>Verlust begrenzen</td></tr>
+          <tr><td>Stop-Limit</td><td>löst bei Erreichen der Marke eine Limit-Order aus</td><td>Verlust begrenzen, aber Mindestpreis sichern</td></tr>
+          <tr><td><a href="orders.html">Trailing-Stop</a></td><td>Stop zieht dem Kurs nach</td><td>Gewinn laufen lassen, aber absichern</td></tr>
+          <tr><td>OCO</td><td>zwei Orders, eine schließt die andere</td><td>Gewinnziel und Stop gleichzeitig setzen</td></tr>
+        </tbody>
+      </table>
+      <p>Die Gültigkeit der Order (z. B. „bis Ende des Tages“) immer in der Ordermaske prüfen.</p>
+    </section>
+    <section>
+      <h2>Kauf Schritt für Schritt</h2>
+      <ol>
+        <li>Wert suchen – über Name, WKN oder ISIN.</li>
+        <li>Kaufen antippen.</li>
+        <li>Ordertyp wählen.</li>
+        <li>Stückzahl oder Betrag eingeben.</li>
+        <li>Kosten-Vorschau prüfen – greift der Mindermengenzuschlag unter 500 €?</li>
+        <li>Quote bzw. Limit bestätigen.</li>
+        <li>Ausführung im Depot prüfen.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>ISIN &amp; WKN</h2>
+      <p>Die <strong>ISIN</strong> ist eine 12-stellige internationale Kennnummer für ein Wertpapier, die <strong>WKN</strong> eine ältere, 6-stellige deutsche Kennnummer. Beides identifiziert eindeutig einen Wert – anders als der TradingView-<strong>Ticker</strong>, der sich je Börse unterscheiden kann.</p>
+    </section>
+    <section>
+      <h2>Sparplan</h2>
+      <p>Ab 1 € möglich, Intervalle wöchentlich, zweiwöchentlich, monatlich oder quartalsweise, mit festem Ausführungstag. Gebührenfrei, damit entsteht der <a href="etf-index.html">Cost-Average-Effekt</a>.</p>
+    </section>
+    <section>
+      <h2>Kursalarm &amp; Watchlist</h2>
+      <p>Auch zero bietet eine einfache Watchlist und Kursalarme direkt in der App.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Statt zwei einzelner Verkaufsorders lieber eine OCO-Order nutzen.</li>
+        <li>Bei einer Market-Order am Abend auf den Spread achten – außerhalb der Xetra-Zeiten oft breiter.</li>
+      </ul>
+      <div class="note">Stand Oktober 2026 – Zahlen können sich ändern, im Zweifel in der App / auf der Anbieterseite prüfen. Auch Menünamen können sich mit Updates ändern.</div>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="zero-ueberblick.html">finanzen.net zero: Überblick</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+        <a class="chip" href="etf-index.html">ETF &amp; Index</a>
+        <a class="chip" href="boerse-spread.html">Börse &amp; Spread</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: TradingView Alarme &amp; Replay – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Apps &amp; Tools · TradingView</p>
+    <h1>Alarme, Bar Replay, Screener</h1>
+    <p class="page-lead">Nicht ständig auf den Chart starren – sich benachrichtigen lassen und ohne Zukunftswissen üben.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Ablauf eines Alarms" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrowhead"/></marker></defs>
+        <rect x="20.0" y="100.0" width="180.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="110.0" y="140.0" class="dg-label" text-anchor="middle">Bedingung</text>
+        <text x="110.0" y="164.0" class="dg-small" text-anchor="middle">z. B. Kurs kreuzt</text>
+        <text x="110.0" y="180.0" class="dg-small" text-anchor="middle">180 $</text>
+        <text x="110.0" y="86.0" class="dg-accent-text" text-anchor="middle">1</text>
+        <line x1="204.0" y1="155.0" x2="216.0" y2="155.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="220.0" y="100.0" width="180.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="310.0" y="140.0" class="dg-label" text-anchor="middle">Auslöser</text>
+        <text x="310.0" y="164.0" class="dg-small" text-anchor="middle">einmalig / pro Kerze /</text>
+        <text x="310.0" y="180.0" class="dg-small" text-anchor="middle">bei Kerzenschluss</text>
+        <text x="310.0" y="86.0" class="dg-accent-text" text-anchor="middle">2</text>
+        <line x1="404.0" y1="155.0" x2="416.0" y2="155.0" class="dg-line" marker-end="url(#arrow)"/>
+        <rect x="420.0" y="100.0" width="180.0" height="110.0" rx="8" class="dg-box"/>
+        <text x="510.0" y="140.0" class="dg-label" text-anchor="middle">Meldung</text>
+        <text x="510.0" y="164.0" class="dg-small" text-anchor="middle">Push, Pop-up,</text>
+        <text x="510.0" y="180.0" class="dg-small" text-anchor="middle">E-Mail (Webhook: Abo)</text>
+        <text x="510.0" y="86.0" class="dg-accent-text" text-anchor="middle">3</text>
+        </svg>
+        <figcaption>Ein Alarm prüft eine Bedingung, wartet auf einen Auslöser und schickt dann eine Meldung.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Kursalarme gab es schon als SMS bei Banken. Heute ersetzen sie das ständige Auf-den-Chart-Schauen – gut gegen Overtrading und FOMO (siehe <a href="psychologie.html">Psychologie</a>).</p>
+    </section>
+    <section>
+      <h2>Alarm erstellen</h2>
+      <ol>
+        <li><code>Alt+A</code> drücken oder das Wecker-Symbol anklicken.</li>
+        <li>Bedingung wählen: Kurs, Indikator oder eine Zeichnung.</li>
+        <li>Art wählen: kreuzt, größer als, betritt Kanal …</li>
+        <li>Auslöser festlegen.</li>
+        <li>Ablaufdatum setzen.</li>
+        <li>Benachrichtigungsart wählen.</li>
+        <li>Nachrichtentext eingeben.</li>
+      </ol>
+      <p>Unterschied beim Auslöser: <strong>„einmal pro Kerze“</strong> löst schon aus, wenn der Kurs die Marke innerhalb der Kerze kurz berührt. <strong>„bei Kerzenschluss“</strong> wartet, bis die Kerze fertig ist – weniger Fehlsignale, aber etwas später.</p>
+    </section>
+    <section>
+      <h2>Bar Replay</h2>
+      <p>Über den Replay-Button einen Startpunkt im Chart wählen, dann die Kerzen einzeln vorspulen oder abspielen. So kann man üben, ohne die Zukunft schon zu kennen: Ein- und Ausstieg vorher festlegen, dann vorspulen und schauen, was passiert wäre.</p>
+      <div class="note">Intraday-Replay ist je nach Plan begrenzt. Kombination mit Paper Trading ist möglich (siehe <a href="tv-paper-trading.html">Paper Trading</a>).</div>
+    </section>
+    <section>
+      <h2>Screener</h2>
+      <p>Der Screener filtert Aktien, ETFs und Krypto nach Kriterien wie Marktkapitalisierung, <a href="aktien-kennzahlen.html">KGV</a>, <a href="dividende.html">Dividendenrendite</a>, RSI oder Performance.</p>
+    </section>
+    <section>
+      <h2>Wirtschaftskalender</h2>
+      <p>Zeigt Termine wie Zinsentscheide und Inflationsdaten (siehe <a href="quartalszahlen-makro.html">Quartalszahlen &amp; Makrodaten</a>).</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Lieber wenige, gut überlegte Alarme als viele ungenutzte.</li>
+        <li>Replay-Ergebnisse ins Trading-Journal eintragen.</li>
+      </ul>
+      <div class="note">Stand Oktober 2026 – Menünamen können sich mit Updates ändern.</div>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="tv-ueberblick.html">TradingView: Überblick</a>
+        <a class="chip" href="tv-paper-trading.html">Paper Trading</a>
+        <a class="chip" href="psychologie.html">Psychologie</a>
+        <a class="chip" href="quartalszahlen-makro.html">Quartalszahlen &amp; Makro</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

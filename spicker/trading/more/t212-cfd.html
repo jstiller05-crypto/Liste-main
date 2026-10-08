@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: Trading 212 CFD – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Apps &amp; Tools · Trading 212</p>
+    <h1>Trading 212: CFD-Konto</h1>
+    <p class="page-lead">Margin, freie Mittel und der Margin-Status – das Wichtigste, bevor man im Practice-Konto übt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein <strong>CFD</strong> ist ein Vertrag über die Kursdifferenz (ausführlich: <a href="cfd-hebel.html">CFDs &amp; Hebel</a>). Dein Kontowert setzt sich so zusammen:</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 240" role="img" aria-label="Aufbau des CFD-Kontowerts" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="30.0" class="dg-label" text-anchor="middle">Kontowert = Einzahlung ± unrealisierter G/V</text>
+        <line x1="40.0" y1="60.0" x2="40.0" y2="70.0" class="dg-note-line"/>
+        <line x1="600.0" y1="60.0" x2="600.0" y2="70.0" class="dg-note-line"/>
+        <line x1="40.0" y1="65.0" x2="600.0" y2="65.0" class="dg-note-line"/>
+        <rect x="40.0" y="90.0" width="224.0" height="60.0" class="dg-asset"/>
+        <text x="152.0" y="124.0" class="dg-on-box" text-anchor="middle">Margin (blockiert)</text>
+        <rect x="264.0" y="90.0" width="336.0" height="60.0" class="dg-equity"/>
+        <text x="432.0" y="124.0" class="dg-on-box" text-anchor="middle">freie Mittel</text>
+        <text x="320.0" y="190.0" class="dg-text" text-anchor="middle">Beispiel: 1.000 € Kontowert, davon 400 € Margin, 600 € frei</text>
+        </svg>
+        <figcaption>Der Kontowert teilt sich auf in Margin (für offene Positionen blockiert) und freie Mittel (noch verfügbar für neue Positionen oder als Puffer).</figcaption>
+      </figure>
+      <table class="info-table">
+        <thead><tr><th>Begriff im Konto-Kopf</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Freie Mittel (Free Cash)</td><td>Geld, das noch als Margin für neue Positionen nutzbar ist.</td></tr>
+          <tr><td>Margin</td><td>Für offene Positionen blockierte Sicherheitsleistung.</td></tr>
+          <tr><td>Unrealisierter G/V</td><td>Gewinn/Verlust offener Positionen – verändert sich live mit dem Kurs und damit auch die freien Mittel.</td></tr>
+          <tr><td>Kontowert</td><td>Einzahlung ± unrealisierter G/V = Margin + freie Mittel.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Die Ordermaske Schritt für Schritt</h2>
+      <ol>
+        <li>Instrument suchen.</li>
+        <li>Kaufen (Long) oder Verkaufen (Short) wählen.</li>
+        <li>Menge oder Wert eingeben – oder eine Sizing-Pill tippen.</li>
+        <li>Stop-Loss / Take-Profit setzen (optional als Trailing Stop).</li>
+        <li>Vorschau prüfen: benötigte Margin ansehen.</li>
+        <li>Order bestätigen.</li>
+      </ol>
+      <p><strong>Sizing-Pills:</strong> 25 %, 50 % und 75 % nutzen genau diesen Anteil der freien Mittel als Margin. <strong>100 % nutzt in Wirklichkeit nur 98 %</strong> – die restlichen 2 % sind ein Puffer, damit die Order nicht ungültig wird, wenn sich der Kurs zwischen Tippen und Absenden noch leicht bewegt.</p>
+      <div class="note">100 % der freien Mittel in eine Position zu stecken, ist fast nie eine gute Idee – siehe <a href="risiko-positionsgroesse.html">1-%-Regel</a>.</div>
+    </section>
+    <section>
+      <h2>Margin-Status (Margin-Indikator)</h2>
+      <p>Der Margin-Status zeigt in Prozent, wie viel Luft dein Konto noch hat. Formel (zwei Bereiche):</p>
+      <pre><code>über 50 %:  Status = Kontowert / (Kontowert + Margin) · 100
+unter 50 %: Status = Kontowert / Margin · 50</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Stufe</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>über 50 %</td><td>genug freie Mittel – neue Positionen möglich</td></tr>
+          <tr><td>unter 50 %</td><td>keine freien Mittel mehr – keine neuen Positionen</td></tr>
+          <tr><td>45 %</td><td><strong>Margin-Call</strong> – Warn-E-Mail</td></tr>
+          <tr><td>25 %</td><td><strong>Stop-out</strong> – Trading 212 schließt Positionen (zuerst teilweise), bis der Status wieder ca. 30 % erreicht</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><strong>Aha-Erklärung:</strong> 25 % auf dieser Skala heißt genau <code>Kontowert = 0,5 · Margin</code> – das ist exakt die <a href="margin.html">EU-Regel „Glattstellung bei 50 % Margin“</a>. Bei starker Volatilität kann ohne weitere Vorwarnung geschlossen werden.</div>
+      <h3>Rechenbeispiel</h3>
+      <table class="info-table">
+        <thead><tr><th>Situation</th><th>Rechnung</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Konto 1.000 €, Position 2.000 € (Hebel 5:1, Margin 400 €), Start</td><td>1.000 / 1.400 · 100</td><td>71,4 %</td></tr>
+          <tr><td>Verlust 600 € → Kontowert 400 €</td><td>400 / 400 · 50 (Grenze)</td><td>50 %</td></tr>
+          <tr><td>Verlust 640 € → Kontowert 360 €</td><td>360 / 400 · 50</td><td>45 % (Margin Call)</td></tr>
+          <tr><td>Verlust 800 € → Kontowert 200 €</td><td>200 / 400 · 50</td><td>25 % (Stop-out)</td></tr>
+        </tbody>
+      </table>
+      <p>Dafür muss der Kurs um 800 / 2.000 = <strong>40 %</strong> fallen. Zum Vergleich mit gleicher Margin (400 €), aber <strong>Hebel 20:1</strong> (Position 8.000 €): Der Stop-out passiert wieder bei 800 € Verlust – das sind aber nur 800 / 8.000 = <strong>10 %</strong> Kursbewegung.</p>
+      <div class="note">Merksatz: Der Hebel selbst ist nicht das Problem, sondern die <strong>größere Position</strong>, die er erlaubt.</div>
+
+      <h3>Ausprobieren</h3>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 280" role="img" aria-label="Margin-Status-Rechner" xmlns="http://www.w3.org/2000/svg">
+        <text x="40.0" y="28.0" class="dg-text" text-anchor="start" id="marginDemoPosition">Positionsgröße: 2.000 €</text>
+        <text x="40.0" y="50.0" class="dg-text" text-anchor="start" id="marginDemoLoss">Verlust: 0 €</text>
+        <text x="40.0" y="72.0" class="dg-text" text-anchor="start" id="marginDemoEquity">Kontowert: 1.000 €</text>
+        <text x="40.0" y="98.0" class="dg-big" text-anchor="start" id="marginDemoStatus">Margin-Status: 71,4 %</text>
+        <text x="40.0" y="122.0" class="dg-good" text-anchor="start" id="marginDemoStage">OK – neue Positionen möglich</text>
+
+        <line x1="40.0" y1="200.0" x2="600.0" y2="200.0" class="dg-axis"/>
+        <line x1="180.0" y1="188.0" x2="180.0" y2="208.0" class="dg-note-line"/>
+        <text x="180.0" y="224.0" class="dg-bad" text-anchor="middle">25 %</text>
+        <text x="180.0" y="238.0" class="dg-small" text-anchor="middle">Stop-out</text>
+        <line x1="292.0" y1="188.0" x2="292.0" y2="208.0" class="dg-note-line"/>
+        <text x="292.0" y="224.0" class="dg-small" text-anchor="middle">45 %</text>
+        <text x="292.0" y="238.0" class="dg-small" text-anchor="middle">Margin Call</text>
+        <line x1="320.0" y1="188.0" x2="320.0" y2="208.0" class="dg-note-line"/>
+        <text x="320.0" y="224.0" class="dg-small" text-anchor="middle">50 %</text>
+        <text x="40.0" y="224.0" class="dg-small" text-anchor="middle">0 %</text>
+        <text x="600.0" y="224.0" class="dg-small" text-anchor="middle">100 %</text>
+        <polygon points="320.0,185 313.0,170 327.0,170" class="dg-fill dg-shape" id="marginDemoPointer"/>
+        </svg>
+        <div class="diagram-controls">
+          <label>Hebel <input type="radio" name="leverageInput" value="5" checked> 5:1</label>
+          <label><input type="radio" name="leverageInput" value="20"> 20:1</label>
+          <label>Kurs bewegt sich gegen dich um <input type="range" id="lossPercentInput" min="0" max="50" step="1" value="0"><output id="lossPercentOutput">0</output> %</label>
+        </div>
+        <script>
+          // Margin-Status-Rechner: Konto 1.000 €, Margin fest 400 €.
+          // Namen englisch (lerne gerade, aber Code-Konvention bleibt englisch).
+          (function setupMarginDemo() {
+            const START_ACCOUNT = 1000;   // Startkapital in €
+            const MARGIN = 400;           // feste Margin in €
+
+            const leverageInputs = document.querySelectorAll('input[name="leverageInput"]');
+            const lossPercentInput = document.getElementById("lossPercentInput");
+            if (!leverageInputs.length || !lossPercentInput) {
+              console.warn("[margin-demo] Bedienelemente nicht gefunden");
+              return;
+            }
+
+            // Formel aus der Tabelle oben: zwei Bereiche, aber an der
+            // Grenze E = Margin liefern beide Formeln denselben Wert (50) –
+            // die Funktion ist dort stetig, kein Sprung.
+            function calculateMarginStatus(equity, margin) {
+              if (equity > margin) {
+                return (equity / (equity + margin)) * 100;   // "über 50 %"-Formel
+              }
+              return (equity / margin) * 50;                 // "unter 50 %"-Formel
+            }
+
+            function getSelectedLeverage() {
+              const checked = document.querySelector('input[name="leverageInput"]:checked');
+              return checked ? Number(checked.value) : 5;
+            }
+
+            // Deutsche Zahlschreibweise ohne externe Bibliothek
+            function formatEuro(value) {
+              return Math.round(value).toLocaleString("de-DE");
+            }
+
+            function redraw() {
+              const leverage = getSelectedLeverage();
+              const lossPercent = Number(lossPercentInput.value);
+              const positionSize = MARGIN * leverage;
+              const lossAmount = positionSize * (lossPercent / 100);
+              // Negativsaldoschutz: der Kontowert kann nicht unter 0 fallen –
+              // in der Praxis würde der Stop-out ohnehin vorher greifen.
+              const equity = Math.max(0, START_ACCOUNT - lossAmount);
+              const status = calculateMarginStatus(equity, MARGIN);
+
+              let stageLabel, stageGood;
+              if (status > 50) {
+                stageLabel = "OK – neue Positionen möglich";
+                stageGood = true;
+              } else if (status > 45) {
+                stageLabel = "keine freien Mittel mehr – keine neuen Positionen";
+                stageGood = false;
+              } else if (status > 25) {
+                stageLabel = "Margin Call – Warn-E-Mail";
+                stageGood = false;
+              } else {
+                stageLabel = "Stop-out – Positionen werden geschlossen";
+                stageGood = false;
+              }
+
+              document.getElementById("marginDemoPosition").textContent = "Positionsgröße: " + formatEuro(positionSize) + " €";
+              document.getElementById("marginDemoLoss").textContent = "Verlust: " + formatEuro(lossAmount) + " €";
+              document.getElementById("marginDemoEquity").textContent = "Kontowert: " + formatEuro(equity) + " €";
+              document.getElementById("marginDemoStatus").textContent = "Margin-Status: " + status.toFixed(1).replace(".", ",") + " %";
+              const stageNode = document.getElementById("marginDemoStage");
+              stageNode.textContent = stageLabel;
+              stageNode.setAttribute("class", stageGood ? "dg-good" : "dg-bad");
+              lossPercentInput.nextElementSibling.textContent = lossPercent;
+
+              // Zeiger auf der Skala: Status (0–100) auf die Pixel-Breite
+              // der Achse (x = 40 bis 600) umrechnen, zur Sicherheit begrenzen.
+              const clampedStatus = Math.min(100, Math.max(0, status));
+              const pointerX = 40 + (clampedStatus / 100) * 560;
+              document.getElementById("marginDemoPointer").setAttribute(
+                "points", pointerX + ",185 " + (pointerX - 7) + ",170 " + (pointerX + 7) + ",170"
+              );
+
+              console.log("[margin-demo] Hebel", leverage, "| Kursverlust", lossPercent + "%",
+                "| Position", positionSize, "€ | Verlust", lossAmount, "€ | Kontowert", equity,
+                "€ | Status", status.toFixed(1) + "%", "|", stageLabel);
+            }
+
+            leverageInputs.forEach(input => input.addEventListener("input", redraw));
+            lossPercentInput.addEventListener("input", redraw);
+            redraw();
+          })();
+        </script>
+        <figcaption>Stelle Hebel und Kursbewegung ein und beobachte, wie schnell der Margin-Status fällt.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Instrument-Details</h2>
+      <p>Für jedes Instrument zeigt die App unter anderem Spread, Hebel bzw. Margin-Anforderung, Handelszeiten und die <strong>Overnight-Sätze für Long und Short</strong> – vor jedem Trade ansehen. Overnight wird für jede Nacht berechnet, in der die Position offen bleibt (Hintergrund: <a href="margin.html">Margin</a>).</p>
+    </section>
+    <section>
+      <h2>Hedging</h2>
+      <p>Eine Gegenposition auf dasselbe Instrument ist möglich; die Sizing-Pills berücksichtigen dann die bereits bestehende Position (siehe <a href="derivate.html">Hedging</a>).</p>
+    </section>
+    <section>
+      <h2>Steuern kurz</h2>
+      <p>CFD-Gewinne sind Kapitalerträge – mehr dazu: <a href="steuern.html">Steuern</a>.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Margin-Status nie unter 50 % fallen lassen, wenn es sich vermeiden lässt.</li>
+        <li>Immer einen Stop-Loss setzen.</li>
+        <li>Overnight-Kosten bei längeren Trades mitrechnen.</li>
+        <li>Nicht mit der 100-%-Pill handeln.</li>
+      </ul>
+      <div class="note"><strong>Risikohinweis:</strong> Die meisten Privatanleger verlieren mit CFDs Geld. Ergebnisse im Practice-Konto sind kein Beweis, dass es mit echtem Geld genauso klappt. Stand Oktober 2026 – Zahlen können sich ändern, im Zweifel in der App / auf der Anbieterseite prüfen. Auch Menünamen können sich mit Updates ändern.</div>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="cfd-hebel.html">CFDs &amp; Hebel</a>
+        <a class="chip" href="margin.html">Margin</a>
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+        <a class="chip" href="t212-ueberblick.html">Trading 212: Überblick</a>
+        <a class="chip" href="forex.html">Forex</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

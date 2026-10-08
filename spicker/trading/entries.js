@@ -44,7 +44,8 @@ window.SpickerData["trading"] = {
           { label: "Risikomanagement", value: "risikomanagement" },
           { label: "Steuern & Recht", value: "steuern & recht" },
           { label: "Psychologie", value: "psychologie" },
-          { label: "Krypto", value: "krypto" }
+          { label: "Krypto", value: "krypto" },
+          { label: "Apps & Tools", value: "apps & tools" }
         ]
       },
       {
@@ -58,6 +59,7 @@ window.SpickerData["trading"] = {
           { label: "Kennzahl", value: "kennzahl" },
           { label: "Regel", value: "regel" },
           { label: "Strategie", value: "strategie" },
+          { label: "Funktion", value: "funktion" },
           { label: "Hilfe", value: "hilfe" }
         ]
       }
@@ -917,6 +919,302 @@ window.SpickerData["trading"] = {
       "Bereich": "Börse & Orders",
       "Link": "more/kursbildung.html",
       "class": ["begriff","kurs fällt","kurs steigt"]
+    },
+
+    /* ===== Apps & Tools: Trading 212, TradingView, finanzen.net zero ===== */
+    {
+      "Begriff": "Welche App wofür?",
+      "Erklärung": "Analysieren, üben, kaufen – die Rollen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/apps-vergleich.html",
+      "class": ["hilfe","apps","workflow","vergleich"]
+    },
+    {
+      "Begriff": "Trading 212",
+      "Erklärung": "App mit Invest-, CFD- und Übungskonto",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-ueberblick.html",
+      "class": ["begriff","t212","broker","app"]
+    },
+    {
+      "Begriff": "Invest- vs. CFD-Konto",
+      "Erklärung": "Aktie besitzen oder nur auf Kurs wetten",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-ueberblick.html",
+      "class": ["begriff","t212","kontotyp"]
+    },
+    {
+      "Begriff": "Practice-Konto (T212)",
+      "Erklärung": "Spielgeld-Konto, gleiche Oberfläche",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-ueberblick.html",
+      "class": ["funktion","t212","demo","üben"]
+    },
+    {
+      "Begriff": "FX-Gebühr",
+      "Erklärung": "0,15 % beim Kauf in Fremdwährung (T212)",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-ueberblick.html",
+      "class": ["kennzahl","t212","währung","kosten"]
+    },
+    {
+      "Begriff": "Bruchstücke",
+      "Erklärung": "Teile einer Aktie kaufen, ab 1 €",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-invest.html",
+      "class": ["begriff","fractional","t212","zero"]
+    },
+    {
+      "Begriff": "Pie (T212)",
+      "Erklärung": "Eigenes Mini-Portfolio mit Zielgewichten",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-invest.html",
+      "class": ["funktion","t212","portfolio"]
+    },
+    {
+      "Begriff": "AutoInvest",
+      "Erklärung": "Pie automatisch regelmäßig besparen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-invest.html",
+      "class": ["funktion","t212","sparplan"]
+    },
+    {
+      "Begriff": "Zinsen auf Guthaben",
+      "Erklärung": "Freies Geld wird verzinst (variabel)",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-invest.html",
+      "class": ["funktion","t212","cash"]
+    },
+    {
+      "Begriff": "Steuereinfach",
+      "Erklärung": "Broker führt Steuer selbst ans Finanzamt ab",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-invest.html",
+      "class": ["regel","steuer","freistellungsauftrag"]
+    },
+    {
+      "Begriff": "Margin-Status (T212)",
+      "Erklärung": "Ampel fürs CFD-Konto in Prozent",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-cfd.html",
+      "class": ["kennzahl","t212","margin"]
+    },
+    {
+      "Begriff": "Margin Call & Stop-out (T212)",
+      "Erklärung": "45 % Warnung, 25 % automatisch schließen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-cfd.html",
+      "class": ["regel","t212","glattstellung"]
+    },
+    {
+      "Begriff": "Freie Mittel",
+      "Erklärung": "Geld, das noch als Margin nutzbar ist",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-cfd.html",
+      "class": ["begriff","free funds","t212"]
+    },
+    {
+      "Begriff": "Unrealisierter G/V",
+      "Erklärung": "Gewinn/Verlust noch offener Positionen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-cfd.html",
+      "class": ["begriff","unrealised","pnl"]
+    },
+    {
+      "Begriff": "Sizing-Pills (T212)",
+      "Erklärung": "25/50/75/100 % der freien Mittel",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-cfd.html",
+      "class": ["funktion","t212","positionsgröße"]
+    },
+    {
+      "Begriff": "Instrument-Details",
+      "Erklärung": "Spread, Hebel, Overnight-Sätze ansehen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/t212-cfd.html",
+      "class": ["funktion","t212","overnight"]
+    },
+    {
+      "Begriff": "TradingView",
+      "Erklärung": "Chart-Plattform zum Analysieren, kein Broker",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-ueberblick.html",
+      "class": ["begriff","tv","charts","app"]
+    },
+    {
+      "Begriff": "Symbol / Ticker",
+      "Erklärung": "Kürzel eines Werts, z. B. NASDAQ:AAPL",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-ueberblick.html",
+      "class": ["begriff","tv","ticker"]
+    },
+    {
+      "Begriff": "TradingView-Pläne",
+      "Erklärung": "Basic gratis, mehr Limits im Abo",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-ueberblick.html",
+      "class": ["begriff","tv","abo","kosten"]
+    },
+    {
+      "Begriff": "Watchlist",
+      "Erklärung": "Liste der Werte, die man beobachtet",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-ueberblick.html",
+      "class": ["funktion","tv","zero"]
+    },
+    {
+      "Begriff": "Zeichenwerkzeuge",
+      "Erklärung": "Trendlinie, Fibonacci, Rechteck …",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-zeichnen-indikatoren.html",
+      "class": ["funktion","tv","drawing"]
+    },
+    {
+      "Begriff": "Long-/Short-Position-Tool",
+      "Erklärung": "Zeichnet Einstieg, Stop, Ziel und CRV",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-zeichnen-indikatoren.html",
+      "class": ["funktion","tv","crv"]
+    },
+    {
+      "Begriff": "Indikator hinzufügen",
+      "Erklärung": "„/“ drücken oder Indikatoren-Button",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-zeichnen-indikatoren.html",
+      "class": ["funktion","tv"]
+    },
+    {
+      "Begriff": "Chart-Layout & Vorlagen",
+      "Erklärung": "Einstellungen speichern und wiederverwenden",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-zeichnen-indikatoren.html",
+      "class": ["funktion","tv","template"]
+    },
+    {
+      "Begriff": "Tastenkürzel (TradingView)",
+      "Erklärung": "Alt+H Linie, Alt+T Trendlinie …",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-zeichnen-indikatoren.html",
+      "class": ["funktion","tv","shortcuts"]
+    },
+    {
+      "Begriff": "Alarm (Alert)",
+      "Erklärung": "Meldung, wenn eine Bedingung eintritt",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-alarme-replay.html",
+      "class": ["funktion","tv","kursalarm","zero"]
+    },
+    {
+      "Begriff": "Bar Replay",
+      "Erklärung": "Chart zurückspulen, Kerze für Kerze üben",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-alarme-replay.html",
+      "class": ["funktion","tv","üben"]
+    },
+    {
+      "Begriff": "Screener",
+      "Erklärung": "Werte nach Kriterien filtern",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-alarme-replay.html",
+      "class": ["funktion","tv","filter"]
+    },
+    {
+      "Begriff": "Paper Trading (TradingView)",
+      "Erklärung": "Simuliertes Konto direkt im Chart",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-paper-trading.html",
+      "class": ["funktion","tv","demo","üben"]
+    },
+    {
+      "Begriff": "Order Ticket",
+      "Erklärung": "Fenster zum Eingeben einer Order",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-paper-trading.html",
+      "class": ["funktion","tv","ordermaske"]
+    },
+    {
+      "Begriff": "Chart-Trading",
+      "Erklärung": "Orders und Stops im Chart ziehen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-paper-trading.html",
+      "class": ["funktion","tv"]
+    },
+    {
+      "Begriff": "Account Manager",
+      "Erklärung": "Panel: Positionen, Orders, Historie",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-paper-trading.html",
+      "class": ["funktion","tv"]
+    },
+    {
+      "Begriff": "Pine Script",
+      "Erklärung": "Sprache für eigene Indikatoren",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-pine-script.html",
+      "class": ["begriff","tv","programmieren","code"]
+    },
+    {
+      "Begriff": "Strategy Tester",
+      "Erklärung": "Pine-Strategie an alten Daten testen",
+      "Bereich": "Apps & Tools",
+      "Link": "more/tv-pine-script.html",
+      "class": ["funktion","tv","backtest"]
+    },
+    {
+      "Begriff": "finanzen.net zero",
+      "Erklärung": "Neobroker, Depot bei der Baader Bank",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-ueberblick.html",
+      "class": ["begriff","zero","broker","app"]
+    },
+    {
+      "Begriff": "gettex",
+      "Erklärung": "Münchner Handelsplatz, 7:30–23 Uhr",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-ueberblick.html",
+      "class": ["begriff","zero","handelsplatz"]
+    },
+    {
+      "Begriff": "Market Maker",
+      "Erklärung": "Stellt laufend Kauf- und Verkaufskurse",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-ueberblick.html",
+      "class": ["begriff","zero","liquidität"]
+    },
+    {
+      "Begriff": "Mindermengenzuschlag",
+      "Erklärung": "1 € bei Orders unter 500 € (zero)",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-ueberblick.html",
+      "class": ["kennzahl","zero","kosten"]
+    },
+    {
+      "Begriff": "PFOF",
+      "Erklärung": "Rückvergütung vom Handelsplatz an Broker",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-ueberblick.html",
+      "class": ["regel","zero","payment for order flow"]
+    },
+    {
+      "Begriff": "OCO-Order",
+      "Erklärung": "Zwei Orders: eine läuft, andere wird gelöscht",
+      "Bereich": "Börse & Orders",
+      "Link": "more/zero-orders-sparplan.html",
+      "class": ["begriff","zero","one cancels other"]
+    },
+    {
+      "Begriff": "Sparplan bei zero",
+      "Erklärung": "Ab 1 €, wöchentlich bis quartalsweise",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-orders-sparplan.html",
+      "class": ["funktion","zero","sparplan"]
+    },
+    {
+      "Begriff": "Quote (verbindlicher Kurs)",
+      "Erklärung": "Kurs, der wenige Sekunden fest gilt",
+      "Bereich": "Apps & Tools",
+      "Link": "more/zero-orders-sparplan.html",
+      "class": ["begriff","zero","gettex"]
     }
   ]}
 };

@@ -42,7 +42,19 @@ const smartLinkRules = [
   { words: ["Trefferquote", "Erwartungswert", "Drawdown", "Backtest", "Backtests", "Overfitting"], links: { all: "erwartungswert-drawdown.html" } },
   { words: ["Abgeltungsteuer", "Sparerpauschbetrag", "Freistellungsauftrag", "Verlusttopf", "Teilfreistellung", "Vorabpauschale", "Solidaritätszuschlag"], links: { all: "steuern.html" } },
   { words: ["Trading-Plan", "Trading-Journal", "FOMO", "Revenge Trading", "Verlustaversion", "Overtrading"], links: { all: "psychologie.html" } },
-  { words: ["Kryptowährung", "Kryptowährungen", "Krypto", "Bitcoin", "Ether", "Blockchain", "Wallet", "Wallets", "Stablecoin", "Stablecoins", "MiCA"], links: { all: "krypto.html" } }
+  { words: ["Kryptowährung", "Kryptowährungen", "Krypto", "Bitcoin", "Ether", "Blockchain", "Wallet", "Wallets", "Stablecoin", "Stablecoins", "MiCA"], links: { all: "krypto.html" } },
+
+  /* ===== Apps & Tools: Trading 212, TradingView, finanzen.net zero ===== */
+  { words: ["Trading 212", "Invest-Konto", "CFD-Konto", "Practice-Konto", "Übungskonto"], links: { all: "t212-ueberblick.html" } },
+  { words: ["Pie", "Pies", "AutoInvest", "Bruchstück", "Bruchstücke", "steuereinfach"], links: { all: "t212-invest.html" } },
+  { words: ["Margin-Status", "Margin-Indikator", "Stop-out", "Sizing-Pill", "Sizing-Pills", "freie Mittel"], links: { all: "t212-cfd.html" } },
+  { words: ["TradingView", "Watchlist", "Ticker"], links: { all: "tv-ueberblick.html" } },
+  { words: ["Zeichenwerkzeug", "Zeichenwerkzeuge", "Tastenkürzel", "Chart-Layout"], links: { all: "tv-zeichnen-indikatoren.html" } },
+  { words: ["Alarm", "Alarme", "Kursalarm", "Bar Replay", "Screener"], links: { all: "tv-alarme-replay.html" } },
+  { words: ["Paper Trading", "Order Ticket", "Chart-Trading", "Account Manager"], links: { all: "tv-paper-trading.html" } },
+  { words: ["Pine Script", "Pine Editor", "Strategy Tester"], links: { all: "tv-pine-script.html" } },
+  { words: ["finanzen.net zero", "Baader Bank", "gettex", "Market Maker", "Mindermengenzuschlag", "PFOF", "Payment for Order Flow"], links: { all: "zero-ueberblick.html" } },
+  { words: ["OCO", "OCO-Order", "Quote", "ISIN", "WKN"], links: { all: "zero-orders-sparplan.html" } }
 ];
 
 console.log("[smart-link] trading/links.js geladen:", smartLinkRules.length, "Wort-Regeln");

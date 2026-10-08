@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: TradingView Zeichnen &amp; Indikatoren – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Apps &amp; Tools · TradingView</p>
+    <h1>Zeichnen, Indikatoren, Tastenkürzel</h1>
+    <p class="page-lead">Die Zeichenwerkzeuge sind digitale Lineale, die Indikatoren rechnen im Hintergrund mit.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 280" role="img" aria-label="Long-Position-Tool" xmlns="http://www.w3.org/2000/svg">
+        <text x="320.0" y="30.0" class="dg-accent-text" text-anchor="middle">CRV 2,5</text>
+        <rect x="60.0" y="80.0" width="520.0" height="80.0" class="dg-up" fill-opacity="0.15"/>
+        <rect x="60.0" y="160.0" width="520.0" height="60.0" class="dg-down" fill-opacity="0.15"/>
+        <line x1="60.0" y1="80.0" x2="580.0" y2="80.0" class="dg-up-wick dg-dashed"/>
+        <text x="52.0" y="84.0" class="dg-small" text-anchor="end">Ziel</text>
+        <line x1="60.0" y1="160.0" x2="580.0" y2="160.0" class="dg-line"/>
+        <text x="52.0" y="164.0" class="dg-small" text-anchor="end">Einstieg</text>
+        <line x1="60.0" y1="220.0" x2="580.0" y2="220.0" class="dg-down-wick dg-dashed"/>
+        <text x="52.0" y="224.0" class="dg-small" text-anchor="end">Stop</text>
+        <text x="320.0" y="260.0" class="dg-text" text-anchor="middle">Linien mit der Maus ziehen = Order ändern</text>
+        </svg>
+        <figcaption>Das Long-Position-Tool zeichnet Einstieg, Stop und Ziel. Es rechnet selbst das Chance-Risiko-Verhältnis (CRV) aus – hier 2,5, weil die Gewinnzone 2,5-mal so groß ist wie die Verlustzone.</figcaption>
+      </figure>
+      <p>Wenn man zusätzlich Kontogröße und Risiko pro Trade angibt, rechnet das Tool auch die passende <a href="risiko-positionsgroesse.html">Positionsgröße</a> aus.</p>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>Chartanalyse wurde früher mit Lineal und Bleistift auf ausgedruckten Papier-Charts gemacht. Die digitalen Zeichenwerkzeuge (Trendlinie, Fibonacci …) sind im Grunde digitale Versionen davon.</p>
+    </section>
+    <section>
+      <h2>Wichtige Zeichenwerkzeuge</h2>
+      <table class="info-table">
+        <thead><tr><th>Werkzeug</th><th>Wofür</th></tr></thead>
+        <tbody>
+          <tr><td>Trendlinie</td><td>Verbindet Hochs oder Tiefs, zeigt die Trendrichtung (<a href="trend-unterstuetzung.html">Trend</a>)</td></tr>
+          <tr><td>Horizontale Linie / Strahl</td><td>Markiert Unterstützung oder Widerstand</td></tr>
+          <tr><td>Rechteck</td><td>Markiert eine Preiszone</td></tr>
+          <tr><td>Fibonacci-Retracement</td><td>Mögliche Umkehrzonen (<a href="formationen.html">Formationen</a>)</td></tr>
+          <tr><td>Long-/Short-Position</td><td>Einstieg, Stop, Ziel und CRV in einem Werkzeug</td></tr>
+          <tr><td>Messen</td><td>Preis- und Zeitabstand zwischen zwei Punkten</td></tr>
+          <tr><td>Textnotiz</td><td>Eigene Notizen direkt im Chart</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Hilfen beim Zeichnen</h2>
+      <ul>
+        <li><strong>Magnet-Modus:</strong> Linien rasten automatisch an Hoch, Tief, Eröffnung oder Schluss einer Kerze ein.</li>
+        <li>Zeichnungen lassen sich sperren oder ausblenden.</li>
+        <li>Der Objekt-Baum zeigt alle Zeichnungen im Chart als Liste.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Indikatoren hinzufügen</h2>
+      <p>Mit <code>/</code> oder über den Indikatoren-Button öffnet sich die Suche – Namen eintippen (z. B. „RSI“) und anklicken. Einstellungen über das Zahnrad-Symbol: Reiter <strong>Eingaben</strong> (z. B. Periode 14), <strong>Stil</strong> (Farbe, Linienart) und <strong>Sichtbarkeit</strong> (auf welchen Zeiteinheiten der Indikator erscheint).</p>
+      <div class="note">Der Basic-Plan erlaubt nur 2 Indikatoren gleichzeitig – bewusst wählen, z. B. <a href="gleitende-durchschnitte.html">gleitende Durchschnitte</a>, <a href="rsi-macd.html">RSI/MACD</a> oder <a href="bollinger-atr.html">Bollinger-Bänder</a>.</div>
+    </section>
+    <section>
+      <h2>Chart-Layout &amp; Vorlagen</h2>
+      <p>Ein <strong>Layout</strong> speichert Symbol, Zeiteinheit, Indikatoren und Zeichnungen zusammen. Eine <strong>Indikator-Vorlage</strong> sorgt dafür, dass jeder neue Chart automatisch gleich eingerichtet ist.</p>
+    </section>
+    <section>
+      <h2>Tastenkürzel (Windows)</h2>
+      <table class="info-table">
+        <thead><tr><th>Taste</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>Alt+T</code></td><td>Trendlinie</td></tr>
+          <tr><td><code>Alt+H</code></td><td>horizontale Linie</td></tr>
+          <tr><td><code>Alt+V</code></td><td>vertikale Linie</td></tr>
+          <tr><td><code>Alt+C</code></td><td>Fadenkreuz-Linie</td></tr>
+          <tr><td><code>Alt+F</code></td><td>Fibonacci-Retracement</td></tr>
+          <tr><td><code>Alt+A</code></td><td>Alarm hinzufügen</td></tr>
+          <tr><td><code>Alt+S</code></td><td>Screenshot</td></tr>
+          <tr><td><code>Alt+I</code></td><td>Chart invertieren</td></tr>
+          <tr><td><code>Alt+L</code></td><td>Log-Skala</td></tr>
+          <tr><td><code>Alt+P</code></td><td>Prozent-Skala</td></tr>
+          <tr><td><code>/</code></td><td>Indikatoren öffnen</td></tr>
+          <tr><td>Zahl tippen</td><td>Zeiteinheit wechseln</td></tr>
+          <tr><td>Leertaste</td><td>durch die Watchlist blättern</td></tr>
+        </tbody>
+      </table>
+      <p>Hinweis: Auf dem Mac wird meist ⌥ statt Alt verwendet.</p>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Zeichnungen gelten pro Symbol – auf einem anderen Symbol sind sie nicht sichtbar.</li>
+        <li>Erst die große Zeiteinheit (1D/1W) zeichnen, danach erst in kleinere Zeiteinheiten wechseln.</li>
+      </ul>
+      <div class="note">Stand Oktober 2026 – Menünamen können sich mit Updates ändern.</div>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="tv-ueberblick.html">TradingView: Überblick</a>
+        <a class="chip" href="trend-unterstuetzung.html">Trend &amp; Unterstützung</a>
+        <a class="chip" href="formationen.html">Formationen</a>
+        <a class="chip" href="risiko-positionsgroesse.html">Risikomanagement</a>
+        <a class="chip" href="rsi-macd.html">RSI &amp; MACD</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

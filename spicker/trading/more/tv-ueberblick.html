@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: TradingView – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Apps &amp; Tools · TradingView</p>
+    <h1>TradingView: Oberfläche, Symbole, Pläne</h1>
+    <p class="page-lead">Eine Chart- und Analyse-Plattform – kein Broker. So ist der Bildschirm aufgebaut.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>TradingView ist eine <strong>Chart- und Analyse-Plattform</strong> (Web, Desktop-App, Handy-App) mit einer großen Nutzer-Community. TradingView ist <strong>kein Broker</strong> – echt gehandelt wird nur über einen damit verbundenen Broker.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 320" role="img" aria-label="Bildschirm-Aufbau von TradingView" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10.0" y="10.0" width="620.0" height="36.0" rx="4" class="dg-box"/>
+        <text x="320.0" y="26.0" class="dg-label" text-anchor="middle">Kopfleiste</text>
+        <text x="320.0" y="40.0" class="dg-small" text-anchor="middle">Symbol · Zeiteinheit · Charttyp · Indikatoren · Alarm · Replay</text>
+        <rect x="10.0" y="54.0" width="40.0" height="216.0" rx="4" class="dg-box"/>
+        <text x="30.0" y="162.0" class="dg-small" text-anchor="middle" transform="rotate(-90 30.0 162.0)">Zeichnen</text>
+        <rect x="58.0" y="54.0" width="436.0" height="216.0" rx="4" class="dg-box"/>
+        <text x="276.0" y="156.0" class="dg-label" text-anchor="middle">Chart</text>
+        <text x="276.0" y="176.0" class="dg-small" text-anchor="middle">Preisskala rechts, Zeitachse unten</text>
+        <rect x="502.0" y="54.0" width="128.0" height="216.0" rx="4" class="dg-box"/>
+        <text x="566.0" y="150.0" class="dg-small" text-anchor="middle">Watchlist /</text>
+        <text x="566.0" y="166.0" class="dg-small" text-anchor="middle">Details</text>
+        <rect x="10.0" y="278.0" width="620.0" height="32.0" rx="4" class="dg-box"/>
+        <text x="320.0" y="298.0" class="dg-small" text-anchor="middle">Pine Editor · Strategy Tester · Trading-Panel (Paper Trading)</text>
+        </svg>
+        <figcaption>Grober Aufbau: oben die Kopfleiste, links die Zeichenwerkzeuge, in der Mitte der Chart, rechts Watchlist/Details, unten die Panels.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>TradingView wurde 2011 gegründet. Bekannt wurde die Plattform, weil professionelle Chart-Werkzeuge plötzlich kostenlos im Browser liefen. Viele Broker binden heute TradingView-Charts direkt in ihre eigene App ein.</p>
+    </section>
+    <section>
+      <h2>Symbole &amp; Ticker</h2>
+      <p>Symbole haben das Format <code>BÖRSE:TICKER</code>, z. B. <code>NASDAQ:AAPL</code> oder <code>XETR:SAP</code>. Derselbe Wert hat an jeder Börse einen eigenen Kurs – eigene Währung, eigene Handelszeiten. Manche Börsen werden kostenlos nur <strong>verzögert</strong> angezeigt – auf die Kennzeichnung im Chart achten.</p>
+    </section>
+    <section>
+      <h2>Zeiteinheiten &amp; Charttypen</h2>
+      <p>Übliche Zeiteinheiten: 1m, 5m, 15m, 1h, 4h, 1D, 1W, 1M. Tipp: Im Chart einfach eine Zahl tippen und Enter drücken, z. B. <code>15</code> für 15 Minuten (mehr dazu: <a href="kerzenchart.html">Kerzenchart</a>).</p>
+      <p>Charttypen: Kerzen, Balken, Linie, Heikin Ashi – alle zeigen denselben Kurs, nur anders dargestellt.</p>
+    </section>
+    <section>
+      <h2>Watchlist</h2>
+      <p>Eigene Listen von beobachteten Werten, mit Spalten wie Kurs und Veränderung in %. Flaggen und Farben helfen beim Markieren.</p>
+    </section>
+    <section>
+      <h2>Pläne (Stand Mitte 2026)</h2>
+      <div class="table-scroll">
+        <table class="info-table">
+          <thead><tr><th>Plan</th><th>Indikatoren/Chart</th><th>Charts/Tab</th><th>Preis-Alarme</th><th>Historische Bars</th><th>€ / Monat*</th></tr></thead>
+          <tbody>
+            <tr><td>Basic</td><td>2</td><td>1</td><td>wenige</td><td>5.000</td><td>0</td></tr>
+            <tr><td>Essential</td><td>5</td><td>2</td><td>20</td><td>10.000</td><td>14,95</td></tr>
+            <tr><td>Plus</td><td>10</td><td>4</td><td>100</td><td>10.000</td><td>34,95</td></tr>
+            <tr><td>Premium</td><td>25</td><td>8</td><td>400</td><td>20.000</td><td>69,95</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>* Monatspreis in US-Dollar bei monatlicher Zahlung; jährliche Zahlung ist günstiger.</p>
+      <div class="note">Für den Anfang reicht Basic völlig. Grenzen und Preise ändern sich – aktuelle Werte stehen auf der Preisseite von TradingView.</div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Vor dem Handeln prüfen, ob die Börse im Symbol zur Börse beim eigenen Broker passt.</li>
+        <li>Nicht zu viele Indikatoren gleichzeitig verwenden (siehe <a href="rsi-macd.html">RSI &amp; MACD</a>) – Basic erlaubt ohnehin nur zwei.</li>
+      </ul>
+      <div class="note">Stand Oktober 2026 – Preise und Grenzen können sich ändern, im Zweifel auf der Anbieterseite prüfen. Auch Menünamen können sich mit Updates ändern.</div>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="tv-zeichnen-indikatoren.html">Zeichnen &amp; Indikatoren</a>
+        <a class="chip" href="tv-alarme-replay.html">Alarme &amp; Bar Replay</a>
+        <a class="chip" href="tv-paper-trading.html">Paper Trading</a>
+        <a class="chip" href="tv-pine-script.html">Pine Script</a>
+        <a class="chip" href="kerzenchart.html">Kerzenchart</a>
+        <a class="chip" href="apps-vergleich.html">Welche App wofür?</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

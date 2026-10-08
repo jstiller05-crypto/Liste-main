@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Trading: TradingView Paper Trading – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Trading · Apps &amp; Tools · TradingView</p>
+    <h1>Paper Trading in TradingView</h1>
+    <p class="page-lead">Ein simuliertes Konto direkt im Chart – gute Chart-Werkzeuge treffen auf ein Übungskonto.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Paper Trading ist ein simuliertes Konto innerhalb von TradingView. Orders und Stops lassen sich direkt im Chart setzen und mit der Maus verschieben.</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 640 280" role="img" aria-label="Bracket-Order im Chart" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60.0" y="70.0" width="520.0" height="70.0" class="dg-up" fill-opacity="0.15"/>
+        <rect x="60.0" y="160.0" width="520.0" height="60.0" class="dg-down" fill-opacity="0.15"/>
+        <line x1="60.0" y1="70.0" x2="580.0" y2="70.0" class="dg-up-wick dg-dashed"/>
+        <text x="588.0" y="74.0" class="dg-small" text-anchor="start">Take-Profit</text>
+        <line x1="60.0" y1="160.0" x2="580.0" y2="160.0" class="dg-line"/>
+        <text x="588.0" y="164.0" class="dg-small" text-anchor="start">Einstieg</text>
+        <line x1="60.0" y1="220.0" x2="580.0" y2="220.0" class="dg-down-wick dg-dashed"/>
+        <text x="588.0" y="224.0" class="dg-small" text-anchor="start">Stop-Loss</text>
+        <text x="320.0" y="250.0" class="dg-text" text-anchor="middle">Linien per Maus ziehen = Order ändern</text>
+        </svg>
+        <figcaption>Eine Bracket-Order: Einstieg mit Take-Profit darüber und Stop-Loss darunter – alle drei Linien lassen sich im Chart ziehen.</figcaption>
+      </figure>
+      <p><strong>Woher kommt das?</strong> „Paper Trading“ heißt so, weil Übungstrades früher tatsächlich auf Papier notiert wurden.</p>
+    </section>
+    <section>
+      <h2>Verbinden</h2>
+      <ol>
+        <li>Unten das Trading-Panel öffnen (oder den „Trade“-Button anklicken).</li>
+        <li><strong>Paper Trading</strong> auswählen.</li>
+        <li>Verbinden.</li>
+      </ol>
+      <p>Das Startkapital lässt sich beim Einrichten oder beim Zurücksetzen frei wählen.</p>
+    </section>
+    <section>
+      <h2>Konto zurücksetzen &amp; Gebühren</h2>
+      <p>Über das Zahnrad im Account Manager lassen sich Startkapital und <strong>Kommission</strong> einstellen – die Kommission sollte so wie beim echten Broker eingestellt werden, sonst wirken die Ergebnisse besser als in Wirklichkeit. Dort lässt sich das Konto auch zurücksetzen. Mehrere Paper-Konten gleichzeitig sind möglich.</p>
+    </section>
+    <section>
+      <h2>Order Ticket</h2>
+      <p>Ordertypen: Market, Limit, Stop – dazu Take-Profit und Stop-Loss (zusammen eine <strong>Bracket</strong>-Order). Felder: Menge, Preis, Risiko.</p>
+    </section>
+    <section>
+      <h2>Chart-Trading</h2>
+      <p>Orders und Stops lassen sich direkt im Chart setzen und verschieben, ohne das Order Ticket extra zu öffnen.</p>
+    </section>
+    <section>
+      <h2>Account Manager</h2>
+      <table class="info-table">
+        <thead><tr><th>Reiter</th><th>Inhalt</th></tr></thead>
+        <tbody>
+          <tr><td>Positionen</td><td>Größe und aktueller G/V jeder offenen Position</td></tr>
+          <tr><td>Orders</td><td>offene, ausgeführte und stornierte Orders</td></tr>
+          <tr><td>Historie</td><td>abgeschlossene Trades</td></tr>
+          <tr><td>Kontoverlauf</td><td>Entwicklung des Kontostands über die Zeit</td></tr>
+          <tr><td>Journal</td><td>alle Aktionen im Konto</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Grenzen</h2>
+      <p>Die Ausführung ist idealisiert: Slippage und Spread sind anders als beim echten Broker (siehe <a href="orders.html">Slippage</a>), es gibt keine Optionen, und ohne echtes Geld fehlen die echten Gefühle (siehe <a href="psychologie.html">Psychologie</a>). Daten können je nach Plan verzögert sein.</p>
+    </section>
+    <section>
+      <h2>Vergleich: TradingView Paper Trading vs. Trading 212 Practice</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>TradingView Paper Trading</th><th>Trading 212 Practice</th></tr></thead>
+        <tbody>
+          <tr><td>Chart-Werkzeuge</td><td>sehr umfangreich</td><td>einfacher</td></tr>
+          <tr><td>Ordermaske wie beim echten Broker?</td><td>eigene Oberfläche</td><td>ja, exakt wie echt</td></tr>
+          <tr><td>Hebel/Margin realistisch?</td><td>eingeschränkt</td><td>ja (siehe <a href="t212-cfd.html">Trading 212 CFD</a>)</td></tr>
+          <tr><td>Kosten einstellbar?</td><td>ja (Kommission)</td><td>nein, wie echt</td></tr>
+        </tbody>
+      </table>
+      <p>Kurz gesagt: TradingView zum Üben von Strategien mit guten Charts, Trading 212 Practice zum Üben der echten App-Bedienung und der Margin.</p>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="tv-alarme-replay.html">Alarme &amp; Bar Replay</a>
+        <a class="chip" href="t212-cfd.html">Trading 212: CFD</a>
+        <a class="chip" href="orders.html">Ordertypen</a>
+        <a class="chip" href="erwartungswert-drawdown.html">Erwartungswert &amp; Drawdown</a>
+        <a class="chip" href="broker-depot.html">Broker &amp; Depot</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
