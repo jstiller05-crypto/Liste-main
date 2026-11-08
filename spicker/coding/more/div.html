@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>HTML: &lt;div&gt; – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">HTML · Container</p>
+    <h1>&lt;div&gt;</h1>
+    <p class="page-lead">Der bedeutungslose Block-Container: keine eigene Rolle, kein eigener Inhaltstyp – nur Layout, Styling und JS-Ansprechpunkt, wenn kein semantisches Element passt.</p>
+  </header>
+
+  <main>
+    <section id="steckbrief">
+      <h2>Steckbrief</h2>
+      <table class="info-table">
+        <thead><tr><th>Eigenschaft</th><th>Wert</th></tr></thead>
+        <tbody>
+          <tr><td>Inhaltskategorien</td><td>Flow-Content, wahrnehmbarer Inhalt (palpable content)</td></tr>
+          <tr><td>Erlaubter Inhalt</td><td>Flow-Content. Sonderfall (WHATWG): Ist der direkte Elternknoten ein <code>&lt;dl&gt;</code>, darf ein <code>&lt;div&gt;</code> stattdessen eine Gruppe aus einem oder mehreren <code>&lt;dt&gt;</code> gefolgt von einem oder mehreren <code>&lt;dd&gt;</code> enthalten.</td></tr>
+          <tr><td>Erlaubte Eltern / wo es stehen darf</td><td>Jedes Element, das Flow-Content akzeptiert. Sonderfall: auch direkt in <code>&lt;dl&gt;</code> (siehe oben).</td></tr>
+          <tr><td>Tags (Start-/End-Tag Pflicht?)</td><td>Beide Pflicht – <code>&lt;div&gt;</code> darf nicht weggelassen werden.</td></tr>
+          <tr><td>Standard-Display</td><td><code>block</code></td></tr>
+          <tr><td>Browser-Standard-CSS</td><td><code>display: block;</code> – sonst nichts. Kein Standard-<code>margin</code>, kein <code>padding</code> (anders als z. B. <code>&lt;body&gt;</code> oder <code>&lt;p&gt;</code>).</td></tr>
+          <tr><td>Implizite ARIA-Rolle</td><td><code>generic</code> – <strong>immer</strong>, ohne Bedingung (anders als <code>&lt;section&gt;</code> oder <code>&lt;header&gt;</code>, deren Rolle vom Kontext abhängt).</td></tr>
+          <tr><td>Erlaubte ARIA-Rollen</td><td>Beliebige Rolle ist erlaubt.</td></tr>
+          <tr><td>Spezielle Attribute</td><td>Keine – nur globale Attribute (<code>class</code>, <code>id</code>, <code>style</code>, <code>data-*</code>, <code>tabindex</code>, <code>hidden</code> …).</td></tr>
+          <tr><td>DOM-Interface</td><td><code>HTMLDivElement</code> (erbt von <code>HTMLElement</code>)</td></tr>
+          <tr><td>Wie oft pro Seite</td><td>Beliebig oft, keine Einschränkung.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="layout">
+      <h2>Verhalten im Layout</h2>
+      <p>Als <strong>Block-Element</strong> (<a href="css-display.html">display: block</a>) verhält sich ein <code>&lt;div&gt;</code> standardmäßig so:</p>
+      <ul>
+        <li><strong>Breite:</strong> nimmt die volle verfügbare Breite des Elternelements ein (nicht die Breite des Inhalts) – <code>width</code> wirkt und setzt diese Breite herab.</li>
+        <li><strong>Höhe:</strong> richtet sich nach dem Inhalt. Ohne Inhalt und ohne <code>min-height</code> ist ein leeres <code>&lt;div&gt;</code> genau <strong>0 Pixel hoch</strong> – es nimmt dann keinen sichtbaren Platz ein, selbst mit Border/Padding auf 0.</li>
+        <li><strong>Umbruch:</strong> erzeugt vor und nach sich einen Zeilenumbruch – zwei <code>&lt;div&gt;</code>s stehen immer untereinander, nie nebeneinander (das ändert erst Flex/Grid/Float, siehe unten).</li>
+        <li><code>width</code>/<code>height</code> wirken; bei <code>display: inline</code> (z. B. <code>&lt;span&gt;</code>) würden sie ignoriert.</li>
+      </ul>
+      <div class="preview" aria-label="Vorschau">
+        <div style="border:1px dashed var(--border);padding:8px;margin-bottom:12px">Div A (margin-bottom: 20px)</div>
+        <div style="border:1px dashed var(--border);padding:8px;margin-top:12px">Div B (margin-top: 12px)</div>
+      </div>
+      <p><strong>Margin-Collapsing:</strong> Stehen zwei Block-Boxen direkt untereinander, verschmelzen ihre vertikalen Margins zum <em>größeren</em> der beiden Werte – nicht zur Summe. Im Beispiel oben ergibt <code>margin-bottom: 20px</code> + <code>margin-top: 12px</code> einen Abstand von <strong>20px</strong>, nicht 32px.</p>
+      <p>Das passiert auch zwischen einem Container und seinem <strong>ersten bzw. letzten Kind</strong>, wenn kein <code>border</code>, <code>padding</code>, Abstand oder neuer Block Formatting Context dazwischenliegt: Der <code>margin-top</code> des ersten Kindes „wandert“ dann nach außen vor den Container. Das ist einer der häufigsten CSS-Überraschungsmomente.</p>
+    </section>
+
+    <section id="css-container">
+      <h2>Als CSS-Container</h2>
+      <p>Ausführlich hier, weil <code>&lt;div&gt;</code> das typische Element dafür ist – alle anderen Container-Seiten verweisen auf diesen Abschnitt.</p>
+      <table class="info-table">
+        <thead><tr><th>CSS</th><th>Was passiert</th></tr></thead>
+        <tbody>
+          <tr><td><code>display: flex</code></td><td>Das <code>&lt;div&gt;</code> wird zum <strong>Flex-Container</strong>, seine direkten Kinder werden automatisch zu <strong>Flex-Items</strong> – <code>float</code>, <code>clear</code> und <code>vertical-align</code> wirken dann auf den Kindern nicht mehr (siehe <a href="css-flexbox.html">Flexbox</a>).</td></tr>
+          <tr><td><code>display: grid</code></td><td>Wird zum <strong>Grid-Container</strong>, Kinder werden zu Grid-Items, platziert nach <code>grid-template-*</code> (siehe <a href="css-grid.html">Grid</a>).</td></tr>
+          <tr><td><code>position: relative</code></td><td>Wird zum <strong>Containing Block</strong> (Bezugsrahmen) für jedes Kind mit <code>position: absolute</code> – dessen <code>top</code>/<code>left</code>/… zählen dann ab diesem <code>&lt;div&gt;</code>, nicht ab der ganzen Seite (siehe <a href="css-position.html">position</a>).</td></tr>
+          <tr><td><code>overflow: hidden/auto/scroll</code></td><td>Schneidet überstehenden Inhalt ab bzw. macht scrollbar – erzeugt dabei als <strong>Nebeneffekt</strong> einen neuen Block Formatting Context (klassischer „Clearfix“ für Floats, siehe <a href="css-boxmodell.html">Box-Modell</a>).</td></tr>
+          <tr><td><code>display: flow-root</code></td><td>Erzeugt einen neuen Block Formatting Context <strong>gezielt</strong>, ohne die Nebeneffekte von <code>overflow</code> (kein Abschneiden, keine Scrollbar). Schließt darin enthaltene Floats vollständig ein – der modernere Clearfix-Ersatz.</td></tr>
+          <tr><td><code>container-type: inline-size</code></td><td>Macht das <code>&lt;div&gt;</code> zum <strong>Query-Container</strong>: Kinder können mit <code>@container (min-width: …)</code> auf DESSEN Breite reagieren statt auf die des Browserfensters (Container Queries).</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="javascript">
+      <h2>In JavaScript</h2>
+      <p>Ausführlich hier – die anderen Container-Seiten verweisen darauf und nennen nur Besonderheiten.</p>
+      <pre><code>const container = document.querySelector(".card-list");
+
+// Suche NUR innerhalb des Containers (nicht auf der ganzen Seite)
+const firstCard = container.querySelector(".card");
+
+// children: nur Element-Kinder (HTMLCollection, live)
+// childNodes: AUCH Text- und Kommentarknoten (NodeList, live)
+console.log(container.children.length, container.childNodes.length);
+
+// Inhalt setzen: sicherer/schneller als innerHTML bei dynamischen Daten
+const card = document.createElement("div");
+card.textContent = "Neue Karte";
+container.append(card);                 // hängt an
+container.replaceChildren(card);         // ersetzt ALLES im Container</code></pre>
+      <h3>Event-Delegation</h3>
+      <p>Statt an jede einzelne Karte einen eigenen Listener zu hängen, reicht <strong>ein</strong> Listener auf dem Container. Das funktioniert auch für Karten, die erst später per JavaScript dazukommen:</p>
+      <pre><code>container.addEventListener("click", function handleCardClick(event) {
+  // closest() sucht ab dem Klick-Ziel nach OBEN nach einem ".card"
+  // (auch wenn man z. B. auf ein <span> MITTEN in der Karte klickt)
+  const card = event.target.closest(".card");
+  if (!card) return;             // Klick war außerhalb einer Karte
+
+  console.log("[delegation] Karte angeklickt, id:", card.dataset.id);
+});</code></pre>
+      <p><code>element.dataset</code> liest <code>data-*</code>-Attribute: <code>data-id="42"</code> wird zu <code>element.dataset.id === "42"</code>. <code>element.closest(selector)</code> prüft das Element selbst und dann jeden Vorfahren, bis einer passt oder nichts mehr übrig ist.</p>
+    </section>
+
+    <section id="barrierefreiheit">
+      <h2>Barrierefreiheit &amp; Semantik</h2>
+      <ul>
+        <li><strong>Kein Landmark.</strong> Ein <code>&lt;div&gt;</code> taucht in der Landmark-Navigation von Screenreadern nicht auf (anders als <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code> …) – Nutzer können nicht gezielt zu ihm springen.</li>
+        <li>Die Rolle <code>generic</code> wird zwar in der Accessibility-API sichtbar gemacht (für Layout-Infos), hat aber <strong>keinen eigenen Namen</strong>. Laut ARIA-Spezifikation sind <code>aria-label</code> und <code>aria-labelledby</code> bei <code>role="generic"</code> eigentlich nicht zulässig – wer einem Container einen zugänglichen Namen geben will, nimmt besser eine passende Rolle wie <code>role="group"</code> oder ein semantisches Element.</li>
+        <li>Inhalt innerhalb eines <code>&lt;div&gt;</code> wird trotzdem normal vorgelesen – nur eben ohne Gruppierung oder Sprungmarke.</li>
+        <li>Suchmaschinen ziehen aus <code>&lt;div&gt;</code> keine strukturelle Bedeutung (anders als z. B. <code>&lt;article&gt;</code>).</li>
+      </ul>
+    </section>
+
+    <section id="verschachtelung">
+      <h2>Verschachtelung: erlaubt / verboten</h2>
+      <pre><code>✓ &lt;div&gt;&lt;div&gt;…&lt;/div&gt;&lt;/div&gt;              (jedes Flow-Content-Element darf div enthalten)
+✓ &lt;dl&gt;&lt;div&gt;&lt;dt&gt;…&lt;/dt&gt;&lt;dd&gt;…&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;   (Sonderfall, siehe Steckbrief)
+
+✗ &lt;span&gt;&lt;div&gt;…&lt;/div&gt;&lt;/span&gt;
+  Ungültig nach Inhaltsmodell (span erlaubt nur Phrasing Content).
+  ABER: Der Parser korrigiert hier NICHTS – das div landet trotzdem
+  genau so verschachtelt im DOM, wie es im Quelltext steht. Ein
+  Validator meldet den Fehler, der Browser rendert es trotzdem.
+
+✗ &lt;p&gt;Text &lt;div&gt;…&lt;/div&gt;&lt;/p&gt;
+  Hier GREIFT der Parser ein: &lt;p&gt; hat eine Sonderregel ("implied
+  end tag") und wird automatisch VOR dem &lt;div&gt; geschlossen.
+  Im DOM-Inspektor stehen &lt;p&gt; und &lt;div&gt; als GESCHWISTER,
+  nicht verschachtelt – anders als im Quelltext!
+
+✗ &lt;select&gt;&lt;div&gt;…&lt;/div&gt;&lt;/select&gt;
+  select erlaubt nur &lt;option&gt;/&lt;optgroup&gt; – div wird hier
+  nicht wie gewünscht angezeigt.</code></pre>
+    </section>
+
+    <section id="fehler">
+      <h2>Typische Fehler</h2>
+      <ul>
+        <li><strong>„div-Suppe“:</strong> viele bedeutungslose, verschachtelte <code>&lt;div&gt;</code>s statt semantischer Elemente – schwerer zu lesen UND keine Landmarks für Screenreader.</li>
+        <li><strong>Klickbares <code>&lt;div&gt;</code> statt <code>&lt;button&gt;</code>:</strong> ohne <code>tabindex="0"</code>, <code>role="button"</code> und eigenem <code>keydown</code>-Handler für Enter/Leertaste ist es per Tastatur nicht bedienbar und für Screenreader nicht als Button erkennbar.</li>
+        <li><strong><code>aria-label</code> auf einem bedeutungslosen <code>&lt;div&gt;</code></strong> in der Annahme, es werde wie eine Landmark vorgelesen – die Rolle bleibt <code>generic</code>, viele Screenreader ignorieren den Namen trotzdem (siehe oben).</li>
+        <li><strong>Margin-Collapsing-Überraschung:</strong> unerwarteter Abstand ÜBER einem Container, weil der <code>margin-top</code> des ersten Kindes nach außen „durchgereicht“ wird.</li>
+        <li><strong><code>overflow: hidden</code> nur für den Clearfix-Effekt gesetzt</strong> – dabei wird oft versehentlich Inhalt abgeschnitten, der eigentlich über den Rand ragen sollte (z. B. ein Tooltip). Besser gezielt <code>display: flow-root</code> nutzen.</li>
+      </ul>
+    </section>
+
+    <section id="verwandte-seiten">
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="container.html">Container (Vergleich)</a>
+        <a class="chip" href="header.html">&lt;header&gt;</a>
+        <a class="chip" href="footer.html">&lt;footer&gt;</a>
+        <a class="chip" href="main.html">&lt;main&gt;</a>
+        <a class="chip" href="nav.html">&lt;nav&gt;</a>
+        <a class="chip" href="article.html">&lt;article&gt;</a>
+        <a class="chip" href="aside.html">&lt;aside&gt;</a>
+        <a class="chip" href="address.html">&lt;address&gt;</a>
+        <a class="chip" href="body.html">&lt;body&gt;</a>
+        <a class="chip" href="css-display.html">CSS: display</a>
+        <a class="chip" href="css-flexbox.html">CSS: Flexbox</a>
+        <a class="chip" href="css-grid.html">CSS: Grid</a>
+        <a class="chip" href="css-position.html">CSS: position</a>
+        <a class="chip" href="css-boxmodell.html">CSS: Box-Modell</a>
+        <a class="chip" href="js-dom.html">JS: DOM</a>
+        <a class="chip" href="js-events.html">JS: Events</a>
+        <a class="chip" href="js-barrierefreiheit.html">JS: Barrierefreiheit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>XML – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">XML · Grundlagen</p>
+    <h1>XML</h1>
+    <p class="page-lead">Auszeichnungssprache für strukturierte Daten – wie HTML, aber mit frei erfundenen Tags statt einem festen Satz.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p><strong>XML</strong> (<em>eXtensible Markup Language</em>) ist eine Auszeichnungssprache für strukturierte Daten. Anders als HTML gibt es keine feste Liste erlaubter Tags – <code>&lt;book&gt;</code>, <code>&lt;user&gt;</code> oder <code>&lt;rechnung&gt;</code> sind genauso gültig wie jedes andere selbst erfundene Tag. „Extensible“ (erweiterbar) heißt genau das: Die Sprache legt nur die SYNTAX fest, nicht die Tag-Namen.</p>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>XML wurde 1998 vom <strong>W3C</strong> als Standard verabschiedet – als vereinfachter Nachfolger von <strong>SGML</strong>, derselben Familie, aus der auch HTML stammt.</p>
+    </section>
+    <section>
+      <h2>Wo begegnet man XML?</h2>
+      <table class="info-table">
+        <thead><tr><th>Wo</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Grafik</td><td><a href="svg.html">SVG</a> – jedes SVG-Bild ist selbst eine XML-Datei</td></tr>
+          <tr><td>Feeds</td><td>RSS-Feeds</td></tr>
+          <tr><td>Suchmaschinen</td><td><code>sitemap.xml</code></td></tr>
+          <tr><td>Office-Dateien</td><td><code>.docx</code>/<code>.xlsx</code> sind innen gezippte XML-Dateien</td></tr>
+          <tr><td>Android</td><td>Layout-Dateien der Benutzeroberfläche</td></tr>
+          <tr><td>Qt</td><td><code>.ui</code>-Dateien aus dem Qt-Designer</td></tr>
+          <tr><td>Konfiguration</td><td>viele ältere Konfig-Dateien</td></tr>
+          <tr><td>Web-APIs</td><td>ältere APIs nach dem SOAP-Prinzip</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Erstes Beispiel</h2>
+      <pre><code>&lt;library&gt;
+  &lt;book id="1"&gt;
+    &lt;title&gt;Clean Code&lt;/title&gt;
+    &lt;author&gt;Robert C. Martin&lt;/author&gt;
+  &lt;/book&gt;
+  &lt;book id="2"&gt;
+    &lt;title&gt;Eloquent JavaScript&lt;/title&gt;
+    &lt;author&gt;Marijn Haverbeke&lt;/author&gt;
+  &lt;/book&gt;
+&lt;/library&gt;</code></pre>
+      <p><code>&lt;library&gt;</code> ist das Wurzelelement, jedes <code>&lt;book&gt;</code> trägt ein <strong>Attribut</strong> (<code>id</code>) und enthält wiederum eigene Kind-Elemente. Mehr dazu: <a href="xml-syntax.html">XML-Syntax</a>.</p>
+    </section>
+    <section>
+      <h2>XML, HTML und JSON im Vergleich</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>XML</th><th>HTML</th><th>JSON</th></tr></thead>
+        <tbody>
+          <tr><td>Zweck</td><td>beliebige strukturierte Daten</td><td>Webseiten anzeigen</td><td>beliebige strukturierte Daten</td></tr>
+          <tr><td>Tags</td><td>frei erfindbar</td><td>fester Satz (<code>&lt;div&gt;</code>, <code>&lt;p&gt;</code> …)</td><td>keine Tags – nur <code>{ }</code>/<code>[ ]</code></td></tr>
+          <tr><td>Fehlertoleranz</td><td>streng – muss wohlgeformt sein</td><td>Browser reparieren viele Fehler</td><td>streng – ungültiges JSON wird nicht geparst</td></tr>
+          <tr><td>Kommentare</td><td><code>&lt;!-- --&gt;</code> erlaubt</td><td><code>&lt;!-- --&gt;</code> erlaubt</td><td>nicht erlaubt</td></tr>
+          <tr><td>Attribute</td><td>ja</td><td>ja</td><td>nein (nur verschachtelte Werte)</td></tr>
+          <tr><td>Größe/Lesbarkeit</td><td>eher textschwer, gut lesbar</td><td>textschwer</td><td>kompakt, sehr gut lesbar</td></tr>
+          <tr><td>Typische Verwendung</td><td>Dokumente, Konfiguration, SVG</td><td>Webseiten</td><td>APIs, Konfiguration</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Wann JSON, wann XML?</h2>
+      <ul>
+        <li><strong>JSON:</strong> die erste Wahl für APIs und eigene Konfiguration – kompakter und leichter zu lesen.</li>
+        <li><strong>XML:</strong> wenn ein Format schon XML vorschreibt (SVG, Office, Android), oder wenn man Attribute UND Text im selben Element braucht, oder eine formale Validierung per <a href="xml-validierung.html">DTD/XSD</a> will.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="xml-syntax.html">XML-Syntax</a>
+        <a class="chip" href="xml-validierung.html">XML-Validierung</a>
+        <a class="chip" href="xml-verwenden.html">XML verwenden</a>
+        <a class="chip" href="svg.html">&lt;svg&gt;</a>
+        <a class="chip" href="html-sprache.html">HTML</a>
+        <a class="chip" href="json-einfuehrung.html">JSON</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JSON: Syntax – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JSON · Syntax</p>
+    <h1>JSON-Syntax</h1>
+    <p class="page-lead">Nur sechs Datentypen, dafür sehr strenge Regeln – schon ein fehlendes Komma macht die ganze Datei ungültig.</p>
+  </header>
+
+  <main>
+    <section id="datentypen">
+      <h2>Die sechs Datentypen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>string</td><td><code>"Max"</code></td></tr>
+          <tr><td>number</td><td><code>17</code>, <code>3.14</code>, <code>-5</code></td></tr>
+          <tr><td>boolean</td><td><code>true</code>, <code>false</code></td></tr>
+          <tr><td>null</td><td><code>null</code></td></tr>
+          <tr><td>object</td><td><code>{ "city": "Berlin" }</code></td></tr>
+          <tr><td>array</td><td><code>["chess", "coding"]</code></td></tr>
+        </tbody>
+      </table>
+      <p><strong>Was es NICHT gibt:</strong> ein eigenes Datum, <code>undefined</code>, Funktionen, <code>NaN</code> und <code>Infinity</code> – all das kennt JSON nicht als Typ.</p>
+      <p>Ein Datum speichert man trotzdem – einfach als <strong>string</strong> im ISO-Format: <code>"2026-10-09T16:45:00Z"</code>. Das lässt sich in jeder Sprache leicht wieder in ein echtes Datum umwandeln.</p>
+    </section>
+
+    <section id="objekte">
+      <h2>Objekte</h2>
+      <p>Ein JSON-Objekt ist eine Liste von Schlüssel-Wert-Paaren in <code>{ }</code>. Der Schlüssel steht <strong>immer</strong> in doppelten Anführungszeichen, auch wenn er wie ein normaler Name aussieht:</p>
+      <pre><code>{
+  "name": "Anna",
+  "age": 16
+}</code></pre>
+    </section>
+
+    <section id="arrays">
+      <h2>Arrays</h2>
+      <p>Ein JSON-Array ist eine geordnete Liste von Werten in <code>[ ]</code>. Die Werte dürfen gemischte Typen haben, auch wenn in der Praxis meist alle Einträge gleich aufgebaut sind. Der häufigste Fall ist ein <strong>Array aus Objekten</strong>:</p>
+      <pre><code>[
+  { "name": "Max", "points": 10 },
+  { "name": "Anna", "points": 15 }
+]</code></pre>
+    </section>
+
+    <section id="verschachtelung">
+      <h2>Verschachtelung</h2>
+      <p>Objekte und Arrays dürfen beliebig tief ineinander verschachtelt sein – ein Objekt in einem Array in einem Objekt ist völlig normal:</p>
+      <pre><code>{
+  "users": [
+    { "name": "Max", "items": ["sword", "shield"] },
+    { "name": "Anna", "items": ["bow"] }
+  ]
+}</code></pre>
+      <p>Den Weg zu einem Wert beschreibt man wie in JavaScript selbst: <code>data.users[0].name</code> ist <code>"Max"</code> – erst der Schlüssel <code>users</code>, dann der Index <code>0</code> im Array, dann der Schlüssel <code>name</code>.</p>
+    </section>
+
+    <section id="regeln">
+      <h2>Regeln</h2>
+      <ul>
+        <li>Nur <strong>doppelte</strong> Anführungszeichen – für Strings UND für Schlüssel.</li>
+        <li><strong>Kein Komma</strong> nach dem letzten Element in einem Objekt oder Array.</li>
+        <li><strong>Keine Kommentare</strong> – auch nicht <code>//</code> oder <code>/* */</code>.</li>
+        <li>Sonderzeichen in Strings werden escaped: <code>\"</code> (Anführungszeichen), <code>\\</code> (Backslash), <code>\n</code> (Zeilenumbruch), <code>ä</code> (Unicode, hier „ä“).</li>
+        <li>Dateiendung: <code>.json</code>.</li>
+        <li>Kodierung: <strong>UTF-8</strong>.</li>
+      </ul>
+    </section>
+
+    <section id="fehler">
+      <h2>Häufige Fehler</h2>
+      <table class="info-table">
+        <thead><tr><th>Falsch</th><th>Richtig</th><th>Warum</th></tr></thead>
+        <tbody>
+          <tr><td><code>{ name: "Max" }</code></td><td><code>{ "name": "Max" }</code></td><td>Schlüssel ohne Anführungszeichen</td></tr>
+          <tr><td><code>{ 'name': 'Max' }</code></td><td><code>{ "name": "Max" }</code></td><td>einfache statt doppelte Anführungszeichen</td></tr>
+          <tr><td><code>{ "a": 1, "b": 2, }</code></td><td><code>{ "a": 1, "b": 2 }</code></td><td>Komma nach dem letzten Element</td></tr>
+          <tr><td><code>{ "a": 1 // Kommentar }</code></td><td><code>{ "a": 1 }</code></td><td>Kommentare sind nicht erlaubt</td></tr>
+          <tr><td><code>{ "a": undefined }</code></td><td><code>{ "a": null }</code></td><td><code>undefined</code> gibt es in JSON nicht</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Prüfen:</strong> VS Code unterstreicht Fehler in <code>.json</code>-Dateien direkt rot. In JavaScript wirft <code>JSON.parse()</code> bei ungültigem Text einen <code>SyntaxError</code> (siehe <a href="json-verwenden.html#javascript">JSON.parse()</a>).</p>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="json-einfuehrung.html">JSON</a>
+        <a class="chip" href="json-verwenden.html">JSON verwenden</a>
+        <a class="chip" href="js-objekte.html">JS: Objekte</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

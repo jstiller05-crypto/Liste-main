@@ -768,8 +768,13 @@ function setupSortSelector() {
      1. Klick auf "mehr"/"gleiche Seite" (siehe TableSearcher) →
         saveListStateBeforeLeaving() schreibt Suche, Filter, Sortierung,
         Scroll-Position UND den Dateinamen der geöffneten Seite weg.
-     2. Zurück zur Liste → loadListState() liest das, BEVOR die Tabelle
-        gebaut wird, und übernimmt es in filterState.
+     2. Zurück zur Liste → shouldRestoreListState() entscheidet ZUERST,
+        ob das überhaupt passen soll (siehe Tabelle unten) – NUR wenn
+        ja, liest loadListState() den gespeicherten Zustand, BEVOR die
+        Tabelle gebaut wird, und übernimmt ihn in filterState. Liefert
+        shouldRestoreListState() "nein", wird der gespeicherte Zustand
+        stattdessen komplett gelöscht und die Liste startet frisch
+        (leere Suche, alle Filter auf "Alle", Standard-Sortierung).
      3. Tabelle wird gezeichnet (dabei greift "gleiche Seite", siehe
         TableSearcher), DANACH erst gescrollt.
      4. Nur der Scroll-Wert wird danach aus dem gespeicherten Objekt
@@ -777,6 +782,22 @@ function setupSortSelector() {
         bleiben stehen, damit "gleiche Seite" auch nach einer weiteren
         Filteränderung noch stimmt. Ein SPÄTERES, ganz normales Öffnen
         der Liste soll aber nicht nochmal an die alte Stelle springen.
+
+   WARUM ÜBERHAUPT PRÜFEN, OB WIEDERHERGESTELLT WERDEN SOLL?
+   Der gespeicherte Zustand soll NUR dann zurückkommen, wenn man
+   erkennbar von einer Detailseite DIESES Spickers zurückkehrt – nicht
+   bei jedem beliebigen Laden der Liste. shouldRestoreListState() prüft
+   das:
+
+     Navigationsweg                                      | Wiederherstellen?
+     -----------------------------------------------------+-------------------
+     "mehr" → Zurück-Pfeil auf der Detailseite             | ja
+     "mehr" → Zurück-Taste des BROWSERS                    | ja
+     F5 / Reload                                           | nein (immer frisch)
+     Kachel auf der Übersicht (spicker/index.html)          | nein
+     Spicker-Wechsler (#topicSwitcher) zu einem anderen     | nein
+       Spicker und zurück
+     Lesezeichen, neuer Tab, Adresse von Hand eingetippt    | nein
 
    try/catch überall: sessionStorage kann z. B. im privaten Fenster
    gesperrt sein – dann läuft die Liste einfach normal weiter, ohne
@@ -788,6 +809,116 @@ let shouldFlashOpenedRow = false; // true = beim NÄCHSTEN Zeichnen genau diese 
 
 function getListStateStorageKey() {
   return "spicker:" + currentTopicId + ":listState";
+}
+
+// ---------------------------------------------------------------------
+// Entscheidet, ob der gespeicherte Zustand (siehe Tabelle oben) JETZT
+// wiederhergestellt werden soll. Wird in initializeListPage() VOR
+// loadListState() aufgerufen.
+// ---------------------------------------------------------------------
+function shouldRestoreListState() {
+  // Markierung aus page.js lesen (siehe dort, Abschnitt "Zurück zur
+  // Liste"): ein Klick auf den Zurück-Pfeil auf der Detailseite setzt
+  // sie VOR der Navigation. Das ist die Absicherung für file://, wo
+  // document.referrer unten immer leer ist (der Browser verrät bei
+  // lokalen Dateien aus Sicherheitsgründen nie, von wo man kam).
+  const markerKey = "spicker:" + currentTopicId + ":returnFromDetail";
+  let hasReturnMarker = false;
+  try {
+    hasReturnMarker = sessionStorage.getItem(markerKey) === "1";
+  } catch (error) {
+    console.warn("[storage] Markierung konnte nicht gelesen werden:", error);
+  }
+
+  // --- Navigationstyp ermitteln -----------------------------------
+  // Die "Navigation Timing API" beschreibt, WIE die aktuelle Seite
+  // geladen wurde. performance.getEntriesByType("navigation") liefert
+  // (fast immer) genau EINEN Eintrag für die aktuelle Seite, mit einem
+  // Feld "type" als Text:
+  //   "navigate"      ganz normaler Linkklick / Adresse eingetippt
+  //   "reload"        F5, Reload-Knopf oder location.reload()
+  //   "back_forward"  Zurück-/Vorwärts-TASTE DES BROWSERS (nicht unser
+  //                   eigenes Pfeil-Icon im Footer – das ist ein ganz
+  //                   normaler Linkklick, also "navigate"!)
+  //   "prerender"     Browser hat die Seite im Hintergrund vorbereitet
+  // "?." (Optional Chaining): liefert undefined statt eines Fehlers,
+  // falls getEntriesByType in einem alten Browser fehlt ODER die Liste
+  // leer ist (sollte nicht vorkommen, aber sicher ist sicher).
+  //
+  // FALLBACK auf die VERALTETE API (nur falls die neue fehlt):
+  // performance.navigation.type ist keine Textangabe, sondern eine
+  // ZAHL: 0 = navigate, 1 = reload, 2 = back_forward.
+  let navigationType = performance.getEntriesByType &&
+    performance.getEntriesByType("navigation")[0]?.type;
+
+  if (!navigationType && performance.navigation) {
+    const legacyType = performance.navigation.type;
+    navigationType = legacyType === 1 ? "reload" : legacyType === 2 ? "back_forward" : "navigate";
+  }
+  console.log("[storage] Navigationstyp:", navigationType || "(nicht ermittelbar)");
+
+  let shouldRestore;
+  let reason;
+
+  if (navigationType === "reload") {
+    shouldRestore = false;
+    reason = "Reload (F5) → immer frisch starten";
+  } else if (navigationType === "back_forward") {
+    shouldRestore = true;
+    reason = "Browser-Zurück/Vorwärts → wiederherstellen";
+  } else {
+    // "navigate" (normaler Linkklick) oder unbekannt: nur wiederher-
+    // stellen, wenn ERKENNBAR ist, dass es von einer Detailseite
+    // DIESES Spickers zurückgeht – sonst (Übersicht, Spicker-Wechsler,
+    // Lesezeichen, neuer Tab) startet die Liste frisch.
+    //
+    // document.referrer = die URL der Seite, von der aus man hierher
+    // geklickt hat (vom BROWSER selbst gesetzt, nicht von uns). Leer
+    // bei file://, direkt eingetippter Adresse, Lesezeichen, oder wenn
+    // eine Referrer-Policy das Weiterreichen verhindert.
+    let cameFromDetailPage = false;
+    try {
+      if (document.referrer) {
+        const referrerUrl = new URL(document.referrer);
+        // Gleiche Origin = gleiches Protokoll + gleicher Host + gleicher
+        // Port. Ohne diese Prüfung würde z. B. auch eine fremde Seite
+        // mit "/coding/more/" irgendwo im Pfad fälschlich zählen.
+        const sameOrigin = referrerUrl.origin === window.location.origin;
+        const sameTopicDetailPage = referrerUrl.pathname.includes("/" + currentTopicId + "/more/");
+        cameFromDetailPage = sameOrigin && sameTopicDetailPage;
+      }
+    } catch (error) {
+      console.warn("[storage] document.referrer konnte nicht ausgewertet werden:", error);
+    }
+
+    if (cameFromDetailPage) {
+      shouldRestore = true;
+      reason = "Referrer zeigt auf eine Detailseite dieses Spickers → wiederherstellen";
+    } else if (hasReturnMarker) {
+      shouldRestore = true;
+      reason = "Markierung 'returnFromDetail' gesetzt (Absicherung z. B. für file://) → wiederherstellen";
+    } else {
+      shouldRestore = false;
+      reason = "weder Referrer noch Markierung deuten auf eine Detailseite → frisch starten";
+    }
+  }
+
+  // Die Markierung gilt nur für GENAU einen Rückweg – in JEDEM Fall
+  // jetzt entfernen, egal welcher Zweig oben gegriffen hat, sonst
+  // würde sie beim nächsten, ganz anderen Laden der Liste fälschlich
+  // nochmal "wiederherstellen" auslösen.
+  try {
+    sessionStorage.removeItem(markerKey);
+  } catch (error) {
+    console.warn("[storage] Markierung konnte nicht entfernt werden:", error);
+  }
+
+  console.log("[storage] Referrer:", document.referrer || "(leer)",
+    "| Markierung war gesetzt:", hasReturnMarker,
+    "| Ergebnis:", shouldRestore ? "wiederherstellen" : "frisch starten",
+    "(" + reason + ")");
+
+  return shouldRestore;
 }
 
 // ---------------------------------------------------------------------
@@ -980,8 +1111,23 @@ document.addEventListener("DOMContentLoaded", function initializeListPage() {
 
   // Gespeicherten Zustand laden (siehe 7b) und Buttons/Suchfeld/Auswahl
   // anpassen – NOCH bevor die Tabelle gezeichnet wird, damit die Filter
-  // beim ersten Zeichnen schon stimmen.
-  const pendingScrollY = loadListState();
+  // beim ersten Zeichnen schon stimmen. ABER: nur, wenn shouldRestore-
+  // ListState() das überhaupt erlaubt (siehe Tabelle in 7b) – sonst wird
+  // ein eventuell noch vorhandener alter Zustand verworfen, und die
+  // Liste startet mit leerer Suche, allen Filtern auf "Alle" und der
+  // Standard-Sortierung (filterState hat zu diesem Zeitpunkt noch genau
+  // diese Werte, siehe Initialisierung oben).
+  let pendingScrollY = 0;
+  if (shouldRestoreListState()) {
+    pendingScrollY = loadListState();
+  } else {
+    try {
+      sessionStorage.removeItem(getListStateStorageKey());
+      console.log("[storage] kein Rückweg von einer Detailseite erkannt – alter Zustand verworfen, Liste startet frisch");
+    } catch (error) {
+      console.warn("[storage] alter Zustand konnte nicht entfernt werden:", error);
+    }
+  }
   applyFilterStateToControls();
 
   applyEntryFilters(); // einmal alles anzeigen (hier greift ggf. "gleiche Seite" + Aufblitzen)

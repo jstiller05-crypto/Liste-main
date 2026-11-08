@@ -93,6 +93,8 @@ const PAGE_PREFIX_LANGUAGES = [
   ["lua-", "lua"],
   ["csharp-", "csharp"],
   ["swift-", "swift"],
+  ["json-", "json"],  // JSON-Grundlagen
+  ["xml-", "xml"],    // XML-Grundlagen
   ["it-", "it"],    // IT-Grundlagen – vor den kurzen Präfixen "c-"/"ts-",
                      // auch wenn es hier keine Namenskollision gibt
                      // (kein anderes Präfix beginnt mit "i")
@@ -113,7 +115,13 @@ const PAGE_PREFIX_LANGUAGES = [
 const LANGUAGE_FALLBACK = {
   node: "js",
   c: "cpp",         // C-Grundlagen (Schleifen, if, Zeiger …) sind wie in C++
-  ts: "js"          // TypeScript IST JavaScript mit Typen → sonst die JS-Seiten
+  ts: "js",         // TypeScript IST JavaScript mit Typen → sonst die JS-Seiten
+  json: "js"        // JSON stammt aus der JS-Objekt-Schreibweise → sonst die JS-Seiten
+  // "xml" steht ABSICHTLICH NICHT hier drin: XML hat keine sinnvolle
+  // Partner-Sprache. "Element"/"Attribut" & Co. sind auf XML-Seiten etwas
+  // anderes als auf HTML-Seiten – ein Fallback auf html/js würde also oft
+  // zur FALSCHEN Erklärung verlinken. Lieber gar kein Link als ein
+  // falscher (gleiche Regel wie bei "it", siehe Kommentar oben).
 };
 
 
@@ -277,7 +285,8 @@ const smartLinkRules = [
                                                           links: { js: "js-events.html", html: "js-events.html" } },
   { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html", php: "php-grundlagen.html" , lua: "lua-grundlagen.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
   { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html", php: "php-grundlagen.html" , lua: "lua-strings.html", c: "c-strings.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
-  { words: ["JSON"],                                      links: { js: "js-objekte.html", html: "js-objekte.html" } },
+  { words: ["JSON"],                                      links: { js: "json-verwenden.html#javascript", html: "json-verwenden.html#javascript", all: "json-einfuehrung.html" } },
+  { words: ["JSON.parse", "JSON.stringify"],              links: { all: "json-verwenden.html#javascript" } },
   { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" , c: "c-ein-ausgabe.html", csharp: "csharp-einfuehrung.html" } },
   { words: ["try/catch", "Fehlermeldung", "try", "catch"], links: { js: "js-konsole.html", cpp: "cpp-fehler.html" } },
   { words: ["Promise", "async", "await"],                 links: { js: "js-async.html" } },
@@ -396,6 +405,19 @@ const smartLinkRules = [
   { words: ["Eingabe", "Eingaben"], links: { it: "it-grundbegriffe.html#eva-prinzip" } },
   { words: ["Ausgabe"],  links: { it: "it-grundbegriffe.html#eva-prinzip" } },
   { words: ["Verarbeitung"], links: { it: "it-grundbegriffe.html#eva-prinzip" } },
+
+  // ===== JSON / XML =====
+  { words: ["XML"],                         links: { all: "xml-einfuehrung.html" } },
+  { words: ["wohlgeformt"],                 links: { all: "xml-syntax.html#wohlgeformt" } },
+  { words: ["DTD"],                         links: { all: "xml-validierung.html#dtd" } },
+  { words: ["XSD", "XML Schema"],           links: { all: "xml-validierung.html#xsd" } },
+  { words: ["XPath"],                       links: { all: "xml-verwenden.html#xpath" } },
+  { words: ["CDATA"],                       links: { all: "xml-syntax.html#cdata" } },
+  // Kein "all" hier: "Namespace" ist oben (Zeile ~223) schon fuer cpp
+  // vergeben (using-namespace.html). Nur xml:... hinzuzufuegen ist
+  // sicher, weil explizite Ziele je Sprache getrennt sind -
+  // auf cpp-Seiten bleibt die alte Regel unveraendert wirksam.
+  { words: ["Namespace", "xmlns"],          links: { xml: "xml-syntax.html#namespaces" } },
 ];
 
 
@@ -415,7 +437,7 @@ const TAG_PAGES = {
   cite: "cite.html", code: "code.html", col: "col.html", colgroup: "colgroup.html",
   data: "data.html", datalist: "datalist.html", dd: "dd.html", del: "del.html",
   details: "details.html", dfn: "dfn.html", dialog: "dialog.html",
-  div: "container.html", dl: "dl.html", dt: "dt.html",
+  div: "div.html", dl: "dl.html", dt: "dt.html",
   em: "em.html", embed: "embed.html",
   fieldset: "fieldset.html", figcaption: "figcaption.html", figure: "figure.html",
   footer: "footer.html", form: "form.html", g: "svg.html",

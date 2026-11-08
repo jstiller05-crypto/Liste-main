@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>XML: Syntax – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">XML · Syntax</p>
+    <h1>XML-Syntax</h1>
+    <p class="page-lead">Prolog, ein Wurzelelement, strenge Verschachtelung – und ein paar Sonderfälle für Zeichen, die XML selbst braucht.</p>
+  </header>
+
+  <main>
+    <section id="prolog">
+      <h2>Der Prolog</h2>
+      <p>Die erste Zeile eines XML-Dokuments ist meist der Prolog – er nennt die XML-Version und die Zeichenkodierung:</p>
+      <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code></pre>
+      <p>Er ist optional, aber übliche Praxis. Fehlt er, nehmen Parser <code>UTF-8</code> als Standard an.</p>
+    </section>
+
+    <section id="wurzel">
+      <h2>Das Wurzelelement</h2>
+      <p>Ein XML-Dokument hat genau <strong>EIN</strong> äußerstes Element – das Wurzelelement. Alles andere steht darin verschachtelt:</p>
+      <pre><code>✓ &lt;library&gt;...&lt;/library&gt;                      (ein Wurzelelement)
+✗ &lt;book&gt;...&lt;/book&gt;&lt;book&gt;...&lt;/book&gt;              (zwei Elemente nebeneinander -> ungültig)</code></pre>
+    </section>
+
+    <section id="elemente">
+      <h2>Elemente &amp; Attribute</h2>
+      <p>Ein <strong>Element</strong> hat einen Start- und End-Tag (<code>&lt;book&gt;...&lt;/book&gt;</code>) oder, wenn es leer ist, einen selbstschließenden Tag: <code>&lt;item/&gt;</code>. Ein <strong>Attribut</strong> steht im Start-Tag und liefert eine Zusatzinfo:</p>
+      <pre><code>&lt;book id="1" lang="de"&gt;Clean Code&lt;/book&gt;
+&lt;item/&gt;                                 &lt;!-- leeres Element --&gt;</code></pre>
+      <p>Groß-/Kleinschreibung zählt: <code>&lt;Book&gt;</code> und <code>&lt;book&gt;</code> sind zwei verschiedene Tags.</p>
+      <table class="info-table">
+        <thead><tr><th>Element oder Attribut?</th><th>Faustregel</th></tr></thead>
+        <tbody>
+          <tr><td>Element</td><td>kann weitere Elemente oder Text enthalten, wenn die Information selbst noch Struktur hat</td></tr>
+          <tr><td>Attribut</td><td>für kurze, einfache Zusatzinfos ohne eigene Struktur (eine ID, eine Sprache, ein Schalter)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="wohlgeformt">
+      <h2>Wohlgeformt</h2>
+      <p>„Wohlgeformt“ heißt: Das Dokument folgt den Grundregeln der XML-Syntax (unabhängig davon, ob die Tag-Namen inhaltlich sinnvoll sind – das wäre die <a href="xml-validierung.html">Gültigkeit</a>).</p>
+      <ul>
+        <li>Jedes Tag wird geschlossen (auch leere: <code>&lt;br/&gt;</code>, nicht <code>&lt;br&gt;</code> allein).</li>
+        <li>Elemente sind korrekt verschachtelt (kein Überlappen).</li>
+        <li>Attributwerte stehen in Anführungszeichen.</li>
+        <li>Es gibt genau ein Wurzelelement.</li>
+        <li>Groß-/Kleinschreibung ist case-sensitive.</li>
+      </ul>
+      <table class="info-table">
+        <thead><tr><th>Falsch</th><th>Richtig</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;book&gt;Text&lt;/Book&gt;</code></td><td><code>&lt;book&gt;Text&lt;/book&gt;</code></td></tr>
+          <tr><td><code>&lt;b&gt;&lt;i&gt;Text&lt;/b&gt;&lt;/i&gt;</code></td><td><code>&lt;b&gt;&lt;i&gt;Text&lt;/i&gt;&lt;/b&gt;</code></td></tr>
+          <tr><td><code>&lt;book id=1&gt;</code></td><td><code>&lt;book id="1"&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="entities">
+      <h2>Entities</h2>
+      <p>Manche Zeichen haben in XML eine Sonderbedeutung und müssen als <strong>Entity</strong> geschrieben werden, wenn sie als normaler Text gemeint sind:</p>
+      <table class="info-table">
+        <thead><tr><th>Zeichen</th><th>Entity</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;</code></td><td><code>&amp;lt;</code></td></tr>
+          <tr><td><code>&gt;</code></td><td><code>&amp;gt;</code></td></tr>
+          <tr><td><code>&amp;</code></td><td><code>&amp;amp;</code></td></tr>
+          <tr><td><code>"</code></td><td><code>&amp;quot;</code></td></tr>
+          <tr><td><code>'</code></td><td><code>&amp;apos;</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cdata">
+      <h2>CDATA</h2>
+      <p>Ein <code>CDATA</code>-Abschnitt markiert Text, der <strong>nicht</strong> als XML interpretiert werden soll – praktisch, wenn der Inhalt selbst viele <code>&lt;</code>/<code>&amp;</code> enthält (z. B. Code-Beispiele):</p>
+      <pre><code>&lt;code&gt;&lt;![CDATA[ if (a &lt; b &amp;&amp; b &gt; 0) { ... } ]]&gt;&lt;/code&gt;</code></pre>
+    </section>
+
+    <section id="kommentare">
+      <h2>Kommentare</h2>
+      <pre><code>&lt;!-- Das ist ein Kommentar, wird vom Parser ignoriert --&gt;</code></pre>
+    </section>
+
+    <section id="namespaces">
+      <h2>Namespace (xmlns)</h2>
+      <p>Ein <strong>Namespace</strong> hält gleich benannte Tags aus verschiedenen Formaten auseinander – ohne Namespace könnte z. B. ein <code>&lt;title&gt;</code> aus zwei unterschiedlichen XML-Formaten nicht unterschieden werden. Deklariert wird er über <code>xmlns</code>:</p>
+      <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;circle cx="50" cy="50" r="40" /&gt;
+&lt;/svg&gt;</code></pre>
+      <p>Jedes <a href="svg.html">SVG</a>-Element gehört damit erkennbar zum SVG-Namespace, auch wenn es z. B. innerhalb einer HTML-Seite steht.</p>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="xml-einfuehrung.html">XML</a>
+        <a class="chip" href="xml-validierung.html">XML-Validierung</a>
+        <a class="chip" href="svg.html">&lt;svg&gt;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

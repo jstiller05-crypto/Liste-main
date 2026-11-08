@@ -70,6 +70,8 @@ window.SpickerData["coding"] = {
         { label: "Swift", value: "swift" },
         { label: "Terminal", value: "terminal" },
         { label: "TypeScript", value: "typescript" },
+        { label: "JSON", value: "json" },
+        { label: "XML", value: "xml" },
         // ----- ab hier: Bereiche (IT-Grundlagen) statt Sprachen, in Lernreihenfolge -----
         { label: "IT", value: "it" },
         { label: "Daten", value: "daten" },
@@ -425,7 +427,7 @@ window.SpickerData["coding"] = {
       "Begriff": "<div>",
       "Beschreibung": "Allzweck-Container für Layout und Struktur",
       "Sprache": "html",
-      "Link": "more/container.html",
+      "Link": "more/div.html",
       "class": ["html","container"]
     },
     {
@@ -1692,7 +1694,7 @@ window.SpickerData["coding"] = {
       "Begriff": "JSON",
       "Beschreibung": "JSON.stringify / JSON.parse",
       "Sprache": "JS",
-      "Link": "more/js-objekte.html",
+      "Link": "more/json-verwenden.html#javascript",
       "class": ["javascript","js","daten"]
     },
     {
@@ -3253,6 +3255,201 @@ window.SpickerData["coding"] = {
       "Sprache": "TypeScript",
       "Link": "more/ts-projekt.html",
       "class": ["typescript","werkzeuge"]
+    },
+
+    // JSON
+    {
+      "Begriff": "JSON",
+      "Beschreibung": "Textformat für strukturierte Daten",
+      "Sprache": "JSON",
+      "Link": "more/json-einfuehrung.html",
+      "class": ["json","sprache","grundlagen"],
+      "Stufe": 90
+    },
+    {
+      "Begriff": "JSON-Datentypen",
+      "Beschreibung": "string, number, boolean, null, object, array",
+      "Sprache": "JSON",
+      "Link": "more/json-syntax.html#datentypen",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON-Objekt { }",
+      "Beschreibung": "Schlüssel-Wert-Paare, Schlüssel in \"\"",
+      "Sprache": "JSON",
+      "Link": "more/json-syntax.html#objekte",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON-Array [ ]",
+      "Beschreibung": "Geordnete Liste von Werten",
+      "Sprache": "JSON",
+      "Link": "more/json-syntax.html#arrays",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON-Regeln",
+      "Beschreibung": "\"\" statt '', kein Komma am Ende, keine Kommentare",
+      "Sprache": "JSON",
+      "Link": "more/json-syntax.html#regeln",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON-Fehler finden",
+      "Beschreibung": "Typische Syntaxfehler und wie man sie prüft",
+      "Sprache": "JSON",
+      "Link": "more/json-syntax.html#fehler",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON.parse()",
+      "Beschreibung": "JSON-Text → JS-Objekt",
+      "Sprache": "JSON",
+      "Link": "more/json-verwenden.html#javascript",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON.stringify()",
+      "Beschreibung": "JS-Objekt → JSON-Text, auch eingerückt",
+      "Sprache": "JSON",
+      "Link": "more/json-verwenden.html#javascript",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "JSON-Datei in Node.js",
+      "Beschreibung": "Mit fs lesen und schreiben",
+      "Sprache": "JSON",
+      "Link": "more/json-verwenden.html#node",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "json_encode / json_decode",
+      "Beschreibung": "JSON in PHP",
+      "Sprache": "JSON",
+      "Link": "more/json-verwenden.html#php",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "core.write_json / parse_json",
+      "Beschreibung": "JSON in Luanti (Lua)",
+      "Sprache": "JSON",
+      "Link": "more/json-verwenden.html#lua",
+      "class": ["json","daten"]
+    },
+    {
+      "Begriff": "QJsonDocument",
+      "Beschreibung": "JSON in Qt/C++",
+      "Sprache": "JSON",
+      "Link": "more/json-verwenden.html#cpp",
+      "class": ["json","daten"]
+    },
+
+    // XML
+    {
+      "Begriff": "XML",
+      "Beschreibung": "Auszeichnungssprache mit frei wählbaren Tags",
+      "Sprache": "XML",
+      "Link": "more/xml-einfuehrung.html",
+      "class": ["xml","sprache","grundlagen"],
+      "Stufe": 90
+    },
+    {
+      "Begriff": "XML-Prolog <?xml ?>",
+      "Beschreibung": "Version und Zeichenkodierung",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#prolog",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "Wurzelelement",
+      "Beschreibung": "Genau ein äußerstes Element",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#wurzel",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "Element & Attribut",
+      "Beschreibung": "Bausteine eines XML-Dokuments",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#elemente",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "Wohlgeformt",
+      "Beschreibung": "Grundregeln, die jedes XML erfüllen muss",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#wohlgeformt",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "Entities (&lt; &amp;)",
+      "Beschreibung": "Sonderzeichen in XML schreiben",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#entities",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "CDATA",
+      "Beschreibung": "Text, der nicht als XML gelesen wird",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#cdata",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "Namespace (xmlns)",
+      "Beschreibung": "Gleiche Tag-Namen auseinanderhalten",
+      "Sprache": "XML",
+      "Link": "more/xml-syntax.html#namespaces",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "Gültig (valid)",
+      "Beschreibung": "XML entspricht einer DTD/XSD",
+      "Sprache": "XML",
+      "Link": "more/xml-validierung.html",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "DTD",
+      "Beschreibung": "Einfache Strukturbeschreibung für XML",
+      "Sprache": "XML",
+      "Link": "more/xml-validierung.html#dtd",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "XSD (XML Schema)",
+      "Beschreibung": "Struktur + Datentypen, selbst in XML",
+      "Sprache": "XML",
+      "Link": "more/xml-validierung.html#xsd",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "XPath",
+      "Beschreibung": "Pfad-Sprache zum Finden von Knoten",
+      "Sprache": "XML",
+      "Link": "more/xml-verwenden.html#xpath",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "DOMParser",
+      "Beschreibung": "XML in JavaScript einlesen",
+      "Sprache": "XML",
+      "Link": "more/xml-verwenden.html#javascript",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "SimpleXML",
+      "Beschreibung": "XML in PHP einlesen",
+      "Sprache": "XML",
+      "Link": "more/xml-verwenden.html#php",
+      "class": ["xml","daten"]
+    },
+    {
+      "Begriff": "QXmlStreamReader",
+      "Beschreibung": "XML in Qt/C++ lesen",
+      "Sprache": "XML",
+      "Link": "more/xml-verwenden.html#cpp",
+      "class": ["xml","daten"]
     },
 
     // ===== IT-GRUNDLAGEN: 10 IT-Grundbegriffe (more/it-grundbegriffe.html) =====

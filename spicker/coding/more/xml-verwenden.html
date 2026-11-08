@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>XML: Verwenden – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">XML · Verwenden</p>
+    <h1>XML verwenden</h1>
+    <p class="page-lead">Mit XPath gezielt Knoten finden, dann je Sprache einlesen – und Parser-Fehler immer abfangen.</p>
+  </header>
+
+  <main>
+    <section id="xpath">
+      <h2>XPath-Grundlagen</h2>
+      <p>XPath ist eine eigene kleine Sprache, um Knoten in einem XML-Dokument zu finden – für das <a href="xml-einfuehrung.html">library-Beispiel</a>:</p>
+      <table class="info-table">
+        <thead><tr><th>XPath</th><th>Bedeutet</th></tr></thead>
+        <tbody>
+          <tr><td><code>/library/book</code></td><td>jedes <code>book</code> direkt unter <code>library</code></td></tr>
+          <tr><td><code>//book</code></td><td>jedes <code>book</code>, egal wo im Dokument</td></tr>
+          <tr><td><code>@id</code></td><td>das Attribut <code>id</code> des aktuellen Elements</td></tr>
+          <tr><td><code>book[1]</code></td><td>das erste <code>book</code> (1-basiert, nicht 0!)</td></tr>
+          <tr><td><code>book[@lang='de']</code></td><td>nur <code>book</code>-Elemente mit Attribut <code>lang="de"</code></td></tr>
+          <tr><td><code>text()</code></td><td>der reine Textinhalt eines Elements</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="javascript">
+      <h2>JavaScript</h2>
+      <pre><code>const xmlText = "&lt;library&gt;&lt;book id=\"1\"&gt;&lt;title&gt;Clean Code&lt;/title&gt;&lt;/book&gt;&lt;/library&gt;";
+
+const parser = new DOMParser();
+const doc = parser.parseFromString(xmlText, "application/xml");
+
+// Bei einem Syntaxfehler baut der Browser statt eines echten Dokuments
+// ein <parsererror>-Element ein -> das muss man selbst abfragen
+const parserError = doc.querySelector("parsererror");
+if (parserError) {
+  console.error("[xml] Parser-Fehler:", parserError.textContent);
+} else {
+  const title = doc.querySelector("book title").textContent;
+  console.log("[xml] Titel:", title);
+
+  // getElementsByTagName funktioniert genauso wie im HTML-DOM
+  const books = doc.getElementsByTagName("book");
+  console.log("[xml] Anzahl Bücher:", books.length);
+}
+
+// Umgekehrte Richtung: XML-Dokument zurück in Text
+const serializer = new XMLSerializer();
+console.log(serializer.serializeToString(doc));</code></pre>
+    </section>
+
+    <section id="php">
+      <h2>PHP (SimpleXML)</h2>
+      <pre><code>&lt;?php
+// Eigene Fehlerbehandlung statt PHP-Warnungen -> gibt false statt eines Objekts zurück
+libxml_use_internal_errors(true);
+
+$xml = simplexml_load_file("library.xml");
+
+if ($xml === false) {
+    foreach (libxml_get_errors() as $error) {
+        error_log("[xml] Fehler: " . $error-&gt;message);
+    }
+} else {
+    foreach ($xml-&gt;book as $book) {
+        echo $book-&gt;title . " (id=" . $book['id'] . ")\n";  // Attribut per ['id']
+    }
+}</code></pre>
+    </section>
+
+    <section id="cpp">
+      <h2>C++ (Qt)</h2>
+      <pre><code>#include &lt;QXmlStreamReader&gt;
+#include &lt;QFile&gt;
+#include &lt;QDebug&gt;
+
+QFile file("library.xml");
+if (!file.open(QIODevice::ReadOnly)) {
+    qWarning() &lt;&lt; "[xml] Datei konnte nicht geoeffnet werden:" &lt;&lt; file.errorString();
+    return;
+}
+
+QXmlStreamReader reader(&amp;file);
+while (!reader.atEnd()) {
+    reader.readNext();
+    if (reader.isStartElement() &amp;&amp; reader.name() == QLatin1String("book")) {
+        // attributes() liefert alle Attribute des AKTUELLEN Start-Tags
+        QString id = reader.attributes().value("id").toString();
+        qDebug() &lt;&lt; "book id:" &lt;&lt; id;
+    }
+}
+
+if (reader.hasError()) {
+    // hasError() erst NACH der Schleife prüfen - haeufigster Fehler hier
+    qWarning() &lt;&lt; "[xml] Parser-Fehler:" &lt;&lt; reader.errorString();
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="xml-syntax.html">XML-Syntax</a>
+        <a class="chip" href="js-dom.html">JS: DOM</a>
+        <a class="chip" href="php-einfuehrung.html">PHP</a>
+        <a class="chip" href="json-verwenden.html">JSON verwenden</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

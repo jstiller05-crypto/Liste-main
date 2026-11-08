@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>XML: Validierung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">XML · Validierung</p>
+    <h1>XML-Validierung</h1>
+    <p class="page-lead">Wohlgeformt reicht nicht immer – eine DTD oder ein XSD schreibt zusätzlich vor, welche Struktur ein Dokument haben MUSS.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Wohlgeformt vs. gültig</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Wohlgeformt</th><th>Gültig (valid)</th></tr></thead>
+        <tbody>
+          <tr><td>Bedeutet</td><td>folgt den <a href="xml-syntax.html#wohlgeformt">Grundregeln der XML-Syntax</a></td><td>folgt ZUSÄTZLICH einer festgelegten Struktur (DTD/XSD)</td></tr>
+          <tr><td>Beispiel-Verstoß</td><td>fehlender End-Tag</td><td>ein <code>&lt;book&gt;</code> ohne <code>&lt;title&gt;</code>, obwohl die Struktur es vorschreibt</td></tr>
+          <tr><td>Geprüft von</td><td>jedem XML-Parser automatisch</td><td>einem Validator GEGEN die DTD/XSD</td></tr>
+        </tbody>
+      </table>
+      <p>Jedes gültige Dokument ist automatisch wohlgeformt – umgekehrt nicht: Wohlgeformt ist nur die Mindestanforderung.</p>
+    </section>
+
+    <section id="dtd">
+      <h2>DTD (Document Type Definition)</h2>
+      <p>Eine DTD beschreibt knapp, welche Elemente erlaubt sind und wie sie verschachtelt werden dürfen – für das <a href="xml-einfuehrung.html">library-Beispiel</a>:</p>
+      <pre><code>&lt;!DOCTYPE library [
+  &lt;!ELEMENT library (book+)&gt;         &lt;!-- library enthält 1 oder mehr book --&gt;
+  &lt;!ELEMENT book (title, author)&gt;    &lt;!-- jedes book: genau title, dann author --&gt;
+  &lt;!ATTLIST book id CDATA #REQUIRED&gt; &lt;!-- book braucht ein Attribut "id" --&gt;
+  &lt;!ELEMENT title (#PCDATA)&gt;         &lt;!-- title enthält nur Text --&gt;
+  &lt;!ELEMENT author (#PCDATA)&gt;        &lt;!-- author enthält nur Text --&gt;
+]&gt;</code></pre>
+      <p><code>+</code> bedeutet „ein oder mehrmals“, <code>#PCDATA</code> steht für reinen Text, <code>#REQUIRED</code> macht ein Attribut zur Pflicht.</p>
+    </section>
+
+    <section id="xsd">
+      <h2>XSD (XML Schema)</h2>
+      <p>Ein XSD beschreibt dasselbe, ist dabei aber selbst eine XML-Datei – und kennt echte <strong>Datentypen</strong> wie <code>xs:string</code> oder <code>xs:integer</code>:</p>
+      <pre><code>&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="library"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="book" maxOccurs="unbounded"&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+              &lt;xs:element name="title" type="xs:string"/&gt;
+              &lt;xs:element name="author" type="xs:string"/&gt;
+            &lt;/xs:sequence&gt;
+            &lt;xs:attribute name="id" type="xs:integer" use="required"/&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</code></pre>
+      <table class="info-table">
+        <thead><tr><th></th><th>DTD</th><th>XSD</th></tr></thead>
+        <tbody>
+          <tr><td>Eigene Syntax</td><td>ja, eigenes Mini-Format</td><td>nein – selbst ganz normales XML</td></tr>
+          <tr><td>Datentypen</td><td>nein, nur Text/Struktur</td><td>ja (<code>xs:string</code>, <code>xs:integer</code> …)</td></tr>
+          <tr><td>Verbreitung</td><td>älter, einfacher</td><td>heute Standard für ernsthafte Validierung</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Wie prüfen?</h2>
+      <p>In VS Code die Erweiterung <strong>„XML“ von Red Hat</strong> installieren – sie zeigt Wohlgeformtheits- und (bei verknüpftem Schema) Validierungsfehler direkt im Editor an. Alternativ gibt es Online-Validatoren, bei denen man XML-Datei und DTD/XSD hochlädt.</p>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="xml-syntax.html">XML-Syntax</a>
+        <a class="chip" href="xml-verwenden.html">XML verwenden</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

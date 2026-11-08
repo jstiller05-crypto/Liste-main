@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JSON – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JSON · Grundlagen</p>
+    <h1>JSON</h1>
+    <p class="page-lead">Ein reines Textformat für strukturierte Daten – aus JavaScript geboren, heute von praktisch jeder Sprache lesbar.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>JSON (<em>JavaScript Object Notation</em>) ist ein reines <strong>Textformat</strong> für strukturierte Daten. Anders als eine Programmiersprache kann JSON nichts ausführen – es beschreibt nur Daten: Objekte, Listen, Zahlen, Text und Wahrheitswerte.</p>
+    </section>
+    <section>
+      <h2>Woher kommt das?</h2>
+      <p>JSON wurde Anfang der 2000er-Jahre von <strong>Douglas Crockford</strong> beschrieben – abgeleitet aus der Schreibweise für Objekte in JavaScript selbst (daher der Name). Heute ist JSON längst sprachunabhängig: Jede gängige Sprache kann JSON lesen und schreiben, auch wenn sie selbst gar keine „JS-Objekte“ kennt.</p>
+    </section>
+    <section>
+      <h2>Wo begegnet man JSON?</h2>
+      <table class="info-table">
+        <thead><tr><th>Wo</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>API-Antworten</td><td><code>fetch("/api/users")</code> liefert meist JSON</td></tr>
+          <tr><td>Konfig-Dateien</td><td><code>package.json</code>, <code>tsconfig.json</code>, VS Codes <code>settings.json</code></td></tr>
+          <tr><td>Daten speichern</td><td>z. B. ein Lernstand als eigene <code>.json</code>-Datei</td></tr>
+          <tr><td>Datenaustausch</td><td>zwei Programme – auch in unterschiedlichen Sprachen – tauschen Daten als JSON aus</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Erstes Beispiel</h2>
+      <pre><code>{
+  "name": "Max",
+  "age": 17,
+  "isStudent": true,
+  "hobbies": ["chess", "coding"],
+  "address": {
+    "city": "Berlin",
+    "zip": "10115"
+  }
+}</code></pre>
+      <p>Hier stecken schon alle sechs Bausteine drin: ein <strong>string</strong> (<code>"Max"</code>), eine <strong>number</strong> (<code>17</code>), ein <strong>boolean</strong> (<code>true</code>), ein <strong>array</strong> (<code>["chess", "coding"]</code>) und ein verschachteltes <strong>object</strong> (<code>address</code>). Mehr dazu: <a href="json-syntax.html#datentypen">JSON-Datentypen</a>.</p>
+    </section>
+    <section>
+      <h2>JS-Objekt vs. JSON-Text</h2>
+      <p>JSON sieht aus wie ein JavaScript-Objekt, ist aber strenger:</p>
+      <table class="info-table">
+        <thead><tr><th></th><th>JS-Objekt</th><th>JSON-Text</th></tr></thead>
+        <tbody>
+          <tr><td>Anführungszeichen</td><td>einfach oder doppelt, Schlüssel auch ganz ohne möglich</td><td><strong>nur doppelte</strong>, auch beim Schlüssel Pflicht</td></tr>
+          <tr><td>Kommentare</td><td>erlaubt (<code>//</code>, <code>/* */</code>)</td><td>nicht erlaubt</td></tr>
+          <tr><td>Funktionen</td><td>als Wert erlaubt</td><td>nicht erlaubt – nur Daten</td></tr>
+          <tr><td><code>undefined</code></td><td>erlaubt</td><td>gibt es nicht</td></tr>
+          <tr><td>Komma nach dem letzten Element</td><td>meist erlaubt (trailing comma)</td><td><strong>Fehler</strong> (<code>SyntaxError</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>JSON ist eine <strong>Teilmenge</strong> der JS-Objekt-Syntax, nicht dasselbe – ein gültiges JS-Objekt ist nicht automatisch gültiges JSON.</li>
+        <li>Die genauen Regeln stehen auf <a href="json-syntax.html">JSON-Syntax</a>, das Arbeiten damit in JS/Node/PHP/Lua/C++ auf <a href="json-verwenden.html">JSON verwenden</a>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="json-syntax.html">JSON-Syntax</a>
+        <a class="chip" href="json-verwenden.html">JSON verwenden</a>
+        <a class="chip" href="js-objekte.html">JS: Objekte</a>
+        <a class="chip" href="it-http.html#json-ueber-http">IT: JSON über HTTP</a>
+        <a class="chip" href="it-dateien.html">IT: Dateien</a>
+        <a class="chip" href="xml-einfuehrung.html">XML</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

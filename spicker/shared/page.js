@@ -16,6 +16,8 @@
    3b. EIGENE BEGRIFFE  entries.js nachladen, Begriffe dieser Seite finden
                       (Grundlage für "Auf dieser Seite" und "Weiter im
                       Lernpfad")
+   3c. ZURÜCK ZUR LISTE  Markierung für sessionStorage, damit die Liste
+                      (shared/list.js) erkennt, dass man von hier zurückkommt
    4. START           DOMContentLoaded (setzt alles in Gang)
    5. VERSTÄNDNIS-BEWERTUNG   Button + Punkte-Lineal (0–10) im Footer,
                       speichert über den lokalen Server oder localStorage.
@@ -830,6 +832,48 @@ function buildLearningPathNav(learningPath, pageFile) {
 
 
 /* =====================================================================
+   3c. ZURÜCK ZUR LISTE: MARKIERUNG FÜR sessionStorage
+   ---------------------------------------------------------------------
+   shared/list.js (Abschnitt 7b, shouldRestoreListState()) soll Suche/
+   Filter/Sortierung NUR wiederherstellen, wenn man wirklich von einer
+   Detailseite zurückkommt – nicht bei F5, einer Kachel auf der
+   Übersicht oder dem Spicker-Wechsler. Normalerweise erkennt list.js
+   das an document.referrer (die URL, von der aus man hierher kam – ein
+   Feld, das der BROWSER selbst setzt, nicht wir).
+
+   ABER: Eine per Doppelklick geöffnete Seite (file://...) hat GAR KEIN
+   document.referrer – aus Sicherheitsgründen verrät der Browser bei
+   lokalen Dateien nie, von wo man kam. Als Absicherung setzt ein Klick
+   auf den Zurück-Pfeil hier zusätzlich eine kleine Markierung in
+   sessionStorage, BEVOR überhaupt zur Liste navigiert wird. list.js
+   liest sie, falls der Referrer-Weg nicht reicht, und löscht sie danach
+   sofort wieder (einmalig verwendbar).
+   ===================================================================== */
+function setupReturnToListMarker() {
+  const backIcon = document.querySelector(".back-icon");
+  if (!backIcon) {
+    console.warn("[storage] kein .back-icon im Footer gefunden – keine Rückkehr-Markierung möglich");
+    return;
+  }
+
+  backIcon.addEventListener("click", function handleBackIconClick() {
+    // Gleiche Ermittlung wie für den Lernstand-Schlüssel (siehe
+    // getCurrentTopicId() weiter unten, Abschnitt 5a) – so zeigt die
+    // Markierung immer auf denselben Spicker wie die Bewertung.
+    const topicId = getCurrentTopicId();
+    if (!topicId) return;
+
+    try {
+      sessionStorage.setItem("spicker:" + topicId + ":returnFromDetail", "1");
+      console.log("[storage] Markierung 'returnFromDetail' gesetzt für:", topicId);
+    } catch (error) {
+      console.warn("[storage] Markierung konnte nicht gesetzt werden:", error);
+    }
+  });
+}
+
+
+/* =====================================================================
    4. START
    ---------------------------------------------------------------------
    "defer" im <script>-Tag lädt das Skript erst nach dem HTML.
@@ -854,6 +898,12 @@ document.addEventListener("DOMContentLoaded", function initializeMorePages() {
     initProgressWidget();
   } catch (error) {
     console.error("[progress] Fehler – Verständnis-Bewertung nicht verfügbar:", error);
+  }
+
+  try {
+    setupReturnToListMarker();
+  } catch (error) {
+    console.error("[storage] Fehler beim Einrichten der Rückkehr-Markierung:", error);
   }
 
   // entries.js nachladen (siehe 3b) – läuft NEBENHER weiter (kein await),

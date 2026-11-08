@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>JSON: Verwenden – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">JSON · Verwenden</p>
+    <h1>JSON verwenden</h1>
+    <p class="page-lead">In jeder Sprache dasselbe Prinzip: JSON-Text ↔ eigene Datenstruktur, immer mit Fehlerbehandlung.</p>
+  </header>
+
+  <main>
+    <section id="javascript">
+      <h2>JavaScript</h2>
+      <pre><code>// JSON-Text -> JS-Wert
+const text = '{"name":"Max","age":17}';
+const data = JSON.parse(text);
+console.log(data.name);              // "Max"
+
+// JS-Wert -> JSON-Text
+const obj = { name: "Anna", age: 16 };
+const compact = JSON.stringify(obj);
+console.log(compact);                // {"name":"Anna","age":16}
+
+// mit Einrückung (3. Parameter = Leerzeichen pro Ebene) -> gut lesbar
+const pretty = JSON.stringify(obj, null, 2);
+console.log(pretty);
+// {
+//   "name": "Anna",
+//   "age": 16
+// }
+
+// JSON.parse() wirft bei ungueltigem Text einen Fehler -> immer absichern
+try {
+  const result = JSON.parse('{ invalid json }');
+  console.log(result);
+} catch (error) {
+  console.error("[json] Text konnte nicht gelesen werden:", error.message);
+}
+
+// Typischer Fall: JSON aus einer fetch-Antwort holen
+fetch("/api/users")
+  .then(response => response.json())  // parst die Antwort direkt als JSON
+  .then(users => console.log(users))
+  .catch(error => console.error("[json] fetch fehlgeschlagen:", error));</code></pre>
+    </section>
+
+    <section id="node">
+      <h2>Node.js</h2>
+      <pre><code>const fs = require("fs");
+
+// Datei lesen und als JSON interpretieren
+try {
+  const text = fs.readFileSync("daten.json", "utf8");
+  const data = JSON.parse(text);
+  console.log("[json] geladen:", data);
+} catch (error) {
+  // Greift sowohl bei fehlender Datei als auch bei kaputtem JSON
+  console.error("[json] Lesen fehlgeschlagen:", error.message);
+}
+
+// JS-Wert als JSON-Datei speichern (eingerueckt, leichter lesbar)
+const data = { name: "Max", points: 10 };
+fs.writeFileSync("daten.json", JSON.stringify(data, null, 2), "utf8");
+console.log("[json] gespeichert");</code></pre>
+    </section>
+
+    <section id="php">
+      <h2>PHP</h2>
+      <pre><code>&lt;?php
+// JSON-Text -> PHP-Wert
+$text = '{"name":"Max","age":17}';
+$data = json_decode($text);
+echo $data-&gt;name;              // "Max" (als Objekt)
+
+// true als 2. Parameter -> assoziatives Array statt Objekt
+$data = json_decode($text, true);
+echo $data["name"];             // "Max" (als Array)
+
+// PHP-Wert -> JSON-Text, lesbar formatiert
+$obj = ["name" =&gt; "Anna", "age" =&gt; 16];
+echo json_encode($obj, JSON_PRETTY_PRINT);
+
+// Fehler abfangen: json_decode gibt bei ungueltigem JSON einfach null zurueck
+$result = json_decode("{ invalid json }");
+if ($result === null) {
+    error_log("[json] Text konnte nicht gelesen werden");
+}</code></pre>
+    </section>
+
+    <section id="lua">
+      <h2>Lua (Luanti)</h2>
+      <p>In <a href="lua-luanti.html">Luanti</a>-Mods gibt es dafür fertige Engine-Funktionen – kein externes JSON-Modul nötig:</p>
+      <pre><code>-- Lua-Tabelle -> JSON-Text
+local tbl = { name = "Max", points = 10 }
+local text = core.write_json(tbl)
+print(text)                     -- {"name":"Max","points":10}
+
+-- JSON-Text -> Lua-Tabelle
+local decoded = core.parse_json('{"name":"Anna","age":16}')
+if decoded then
+    print(decoded.name)         -- "Anna"
+else
+    -- core.parse_json gibt bei ungueltigem JSON nil zurueck
+    core.log("error", "[json] Text konnte nicht gelesen werden")
+end</code></pre>
+    </section>
+
+    <section id="cpp">
+      <h2>C++ (Qt)</h2>
+      <pre><code>#include &lt;QFile&gt;
+#include &lt;QJsonDocument&gt;
+#include &lt;QJsonObject&gt;
+#include &lt;QJsonArray&gt;
+#include &lt;QDebug&gt;
+
+QFile file("daten.json");
+if (!file.open(QIODevice::ReadOnly)) {
+    qWarning() &lt;&lt; "[json] Datei konnte nicht geoeffnet werden:" &lt;&lt; file.errorString();
+    return;
+}
+
+QJsonParseError parseError;
+QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &amp;parseError);
+
+if (parseError.error != QJsonParseError::NoError) {
+    // errorString() beschreibt genau, was und wo falsch ist
+    qWarning() &lt;&lt; "[json] Parser-Fehler:" &lt;&lt; parseError.errorString();
+    return;
+}
+
+QJsonObject obj = doc.object();
+qDebug() &lt;&lt; "name:" &lt;&lt; obj["name"].toString();
+
+QJsonArray items = obj["items"].toArray();
+for (const QJsonValue&amp; item : items) {
+    qDebug() &lt;&lt; item.toString();
+}</code></pre>
+      <p>Ohne Qt-Abhängigkeit ist <strong>nlohmann/json</strong> die verbreitetste Alternative – eine einzelne Header-Datei, die JSON fast wie eine normale C++-Datenstruktur behandelt.</p>
+    </section>
+
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Fehler beim Einlesen immer abfangen und loggen – in keiner der Sprachen oben stürzt das Programm dabei „automatisch“ kontrolliert ab.</li>
+        <li><code>JSON.stringify(obj, null, 2)</code> bzw. <code>JSON_PRETTY_PRINT</code> nur für Menschen lesbar machen – für die Übertragung über eine API reicht die kompakte Form.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="js-fetch.html">JS: fetch</a>
+        <a class="chip" href="node-dateien.html">Node: Dateien</a>
+        <a class="chip" href="php-arrays.html">PHP: Arrays</a>
+        <a class="chip" href="lua-tabellen.html">Lua: Tabellen</a>
+        <a class="chip" href="json-syntax.html">JSON-Syntax</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
