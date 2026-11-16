@@ -23,19 +23,21 @@
    WICHTIG: Nur eingebaute Node-Module (node:http, node:fs, node:path,
    node:sqlite) – keine npm-Pakete nötig, also auch kein "npm install".
 
-   node:sqlite braucht Node.js 22.5 oder neuer. Mit "node --version"
-   prüfen. Ist es älter, bitte Node aktualisieren (nodejs.org).
+   node:sqlite braucht Node.js 22.13 oder neuer (ab da ohne den Schalter
+   --experimental-sqlite nutzbar). Mit "node --version" prüfen. Ist es
+   älter, bitte Node aktualisieren (Arch: sudo pacman -Syu nodejs).
 
-   AUTOSTART & UNSICHTBAR LAUFEN (siehe start-hidden.vbs):
+   AUTOSTART & UNSICHTBAR LAUFEN (siehe start.sh bzw. den systemd-Service
+   aus autostart-install.sh):
      - Der Server lauscht NUR auf 127.0.0.1 ("localhost"), nicht auf
        allen Netzwerk-Schnittstellen (siehe Begründung bei server.listen
        weiter unten).
      - Jede Konsolen-Zeile bekommt automatisch eine ISO-Zeit vorangestellt
-       (siehe "Zeitstempel für Logs" unten) – wichtig, weil start-hidden.vbs
-       die Ausgabe nach data\server.log statt in ein sichtbares Fenster
-       schreibt.
-     - Beim Start wird die eigene Prozess-ID (PID) nach data\server.pid
-       geschrieben. stop-server.bat nutzt das, um GENAU diesen Prozess
+       (siehe "Zeitstempel für Logs" unten) – wichtig, weil start.sh und
+       der systemd-Service die Ausgabe nach data/server.log statt in ein
+       sichtbares Terminal schreiben.
+     - Beim Start wird die eigene Prozess-ID (PID) nach data/server.pid
+       geschrieben. stop-server.sh nutzt das, um GENAU diesen Prozess
        zu beenden – nicht irgendeinen anderen node-Prozess, der zufällig
        nebenbei läuft (z. B. von einem ganz anderen Projekt).
    ===================================================================== */
@@ -50,8 +52,9 @@ const { DatabaseSync } = require("node:sqlite");
 // ---------------------------------------------------------------------
 // ZEITSTEMPEL FÜR LOGS
 // ---------------------------------------------------------------------
-// Läuft der Server unsichtbar über start-hidden.vbs, landet die gesamte
-// Konsolen-Ausgabe in data\server.log statt in einem sichtbaren Fenster.
+// Läuft der Server im Hintergrund (über start.sh oder den systemd-
+// Service), landet die gesamte Konsolen-Ausgabe in data/server.log
+// statt in einem sichtbaren Terminal.
 // Damit man dort nachvollziehen kann, WANN etwas passiert ist, wird
 // hier console.log/warn/error EINMALIG "umgebaut": jeder Aufruf bekommt
 // automatisch eine ISO-Zeit (z. B. "2026-09-29T18:04:12.345Z") als
@@ -185,7 +188,8 @@ const LEGACY_TOPIC_ID = "coding";
 function createDatabaseBackup() {
   let backupPath = BACKUP_PATH;
   if (fs.existsSync(backupPath)) {
-    // Doppelpunkte sind in Windows-Dateinamen verboten → durch "-" ersetzen
+    // Doppelpunkte ersetzen, damit der Dateiname auch auf Windows/USB-Sticks
+    // (FAT/NTFS) gültig bleibt
     const stamp = new Date().toISOString().replace(/[:.]/g, "-");
     backupPath = path.join(DATA_DIR, "progress.db." + stamp + ".bak");
     console.log("[migration] progress.db.bak gibt es schon – neue Sicherung heißt:", path.basename(backupPath));
@@ -359,8 +363,9 @@ function exportProgressJson() {
     console.log("[export] " + entries.length + " Einträge nach data/progress.json geschrieben");
     return true;
   } catch (error) {
-    // Typischer Fall unter Windows: Das andere Programm hat progress.json
-    // gerade GEÖFFNET, dann verweigert Windows das Ersetzen (EPERM/EBUSY).
+    // Mögliche Ursachen: fehlende Schreibrechte, volle Platte – oder das
+    // Betriebssystem verweigert das Ersetzen, weil ein anderes Programm
+    // progress.json gerade gesperrt hält (EPERM/EBUSY).
     // Kein Problem: loggen und weitermachen, der nächste Export klappt wieder.
     console.error("[export] JSON-Export fehlgeschlagen:", error.message);
 
@@ -529,8 +534,8 @@ function send500(res) {
 const API_PREFIX = "/api/progress";
 
 // Eigene, kleine Route zum SAUBEREN Beenden des Servers, siehe
-// gracefulShutdown() weiter unten (Abschnitt 6) für die Begründung,
-// warum das zuverlässiger ist als taskkill von außen.
+// gracefulShutdown() weiter unten (Abschnitt 6). stop-server.sh ruft
+// sie als ersten, freundlichen Weg auf.
 const SHUTDOWN_PATH = "/api/shutdown";
 
 function sendJson(res, statusCode, data) {
@@ -713,7 +718,7 @@ server.on("error", function handleServerError(error) {
     // ihn schon gestartet hat)? Dann macht ein zweiter Prozess keinen
     // Sinn – sauber beenden (process.exit), statt mit offenem, aber
     // nutzlosem Prozess weiterzulaufen. WICHTIG: An dieser Stelle wurde
-    // data\server.pid noch NICHT beschrieben (das passiert erst, wenn
+    // data/server.pid noch NICHT beschrieben (das passiert erst, wenn
     // listen() wirklich erfolgreich war, s. u.) – die PID-Datei des
     // schon laufenden, echten Servers bleibt also unangetastet.
     console.error("[server] Port", PORT, "ist bereits belegt – läuft der Server schon? Beende diesen zweiten Prozess.");
@@ -751,24 +756,26 @@ server.listen(PORT, HOST, function handleListening() {
 /* =====================================================================
    6. SAUBER BEENDEN
    ---------------------------------------------------------------------
-   Zwei Wege, den Server zu stoppen:
+   Drei Wege, den Server zu stoppen – von freundlich bis Notbremse:
 
-   a) STRG+C / SIGTERM (falls der Server sichtbar in einem Fenster
-      läuft, z. B. über "node server.js" oder start.bat).
+   a) Der HTTP-Aufruf POST /api/shutdown. Das ist der erste, freundliche
+      Weg, den stop-server.sh benutzt: Er läuft ganz normal im eigenen
+      JavaScript-Code des Servers und kann darum zuverlässig aufräumen
+      (Datenbank schließen, PID-Datei löschen).
 
-   b) Der HTTP-Aufruf POST /api/shutdown (das nutzt stop-server.bat).
-      Warum nicht einfach "taskkill /PID <pid>" von außen? Ausprobiert:
-      Windows verweigert das bei einem UNSICHTBAREN Hintergrund-Prozess
-      ohne eigenes Fenster mit der Meldung "Die Beendigung dieses
-      Prozesses muss erzwungen werden (mit der Option /F)". "/F" wäre
-      aber ein hartes Abwürgen (wie SIGKILL) – der Prozess bekommt dann
-      GAR KEINE Chance mehr, die Datenbank sauber zu schließen oder die
-      PID-Datei zu löschen. Der Umweg über eine eigene HTTP-Route
-      innerhalb des Servers läuft dagegen ganz normal im eigenen
-      JavaScript-Code und kann darum zuverlässig aufräumen. stop-
-      server.bat versucht darum ZUERST diesen Weg und nutzt
-      "taskkill /F" nur noch als Notbremse, falls der Server gar nicht
-      mehr reagiert.
+   b) Ein Signal von außen: SIGINT (Strg+C, wenn der Server sichtbar
+      über "node server.js" in einem Terminal läuft) oder SIGTERM
+      ("kill <pid>" bzw. "systemctl --user stop"). Beide funktionieren
+      unter Linux zuverlässig und werden unten abgefangen – auch dann
+      räumt der Server sauber auf. stop-server.sh nutzt SIGTERM als
+      zweiten Schritt, falls a) nicht geantwortet hat.
+
+   c) "kill -KILL <pid>" (SIGKILL) ist die Notbremse, falls der Server
+      gar nicht mehr reagiert. Dieses Signal kann ein Prozess nicht
+      abfangen: Er wird sofort beendet und bekommt GAR KEINE Chance
+      mehr, die Datenbank sauber zu schließen oder die PID-Datei zu
+      löschen. Darum löscht stop-server.sh die PID-Datei in diesem Fall
+      selbst.
    ===================================================================== */
 
 function handleShutdownRequest(res) {
@@ -776,7 +783,7 @@ function handleShutdownRequest(res) {
   sendJson(res, 200, { message: "Server wird beendet" });
 
   // Kurz warten, BEVOR der Prozess sich beendet, damit die Antwort
-  // oben beim Aufrufer (stop-server.bat/curl) sicher noch ankommt.
+  // oben beim Aufrufer (stop-server.sh/curl) sicher noch ankommt.
   setTimeout(function () {
     gracefulShutdown("HTTP " + SHUTDOWN_PATH);
   }, 100);
@@ -805,20 +812,21 @@ function gracefulShutdown(reason) {
   setTimeout(function () { process.exit(0); }, 2000).unref();
 }
 
-// SIGINT = Strg+C in einem sichtbaren Konsolenfenster.
-// SIGTERM = "bitte freundlich beenden", von anderen Tools/Systemen.
+// SIGINT = Strg+C in einem sichtbaren Terminal.
+// SIGTERM = "bitte freundlich beenden", z. B. von kill oder systemd.
 process.on("SIGINT", function () { gracefulShutdown("SIGINT / Strg+C"); });
 process.on("SIGTERM", function () { gracefulShutdown("SIGTERM"); });
 
 // ---------------------------------------------------------------------
-// "exit" feuert IMMER als allerletztes Ereignis, egal WIE der Prozess
-// endet (sauber über gracefulShutdown, oder weil z. B. taskkill /F von
-// außen zuschlägt). Nur noch SYNCHRONER Code funktioniert hier.
+// "exit" feuert als allerletztes Ereignis, wenn der Prozess sich selbst
+// beendet (sauber über gracefulShutdown oder über process.exit). Nur
+// noch SYNCHRONER Code funktioniert hier. Einzige Ausnahme: Bei
+// "kill -KILL" von außen läuft gar kein Code mehr, auch dieser nicht.
 //
 // WICHTIG: Nur die PID-Datei löschen, wenn wirklich UNSERE EIGENE PID
 // darin steht. Grund: startet man den Server zweimal (Port schon
 // belegt, s. o.), würde der zweite Prozess sonst beim eigenen Beenden
-// die PID-Datei des ERSTEN, echten Servers löschen und stop-server.bat
+// die PID-Datei des ERSTEN, echten Servers löschen und stop-server.sh
 // könnte ihn danach nicht mehr finden.
 // ---------------------------------------------------------------------
 process.on("exit", function removeOwnPidFile() {

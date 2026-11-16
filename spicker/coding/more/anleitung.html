@@ -146,10 +146,12 @@
         </tbody>
       </table>
       <p>Wer vorher im Browser bewertet hat und dann zum ersten Mal den Server benutzt, verliert nichts: Die alten Werte werden einmalig automatisch in die Datenbank übernommen.</p>
-      <p><strong>Server starten unter Windows:</strong> <code>start.bat</code> im Projektordner doppelklicken. Das Skript startet den Server unsichtbar (falls er nicht schon läuft) und öffnet danach den Spicker im Browser. Mit <code>autostart-install.bat</code> startet er bei jeder Anmeldung automatisch, <code>stop-server.bat</code> beendet ihn.</p>
-      <p><strong>Server starten unter Linux</strong> (oder von Hand unter Windows):</p>
+      <p><strong>Server starten (Linux):</strong> Im Projektordner <code>./start.sh</code> ausführen. Das Skript startet den Server im Hintergrund (falls er nicht schon läuft) und öffnet danach den Spicker im Browser. <code>./autostart-install.sh</code> richtet den Start beim Einloggen ein (systemd), <code>./stop-server.sh</code> beendet den Server, <code>./autostart-remove.sh</code> entfernt den Autostart wieder.</p>
+      <pre><code># benötigte Pakete (Arch Linux)
+sudo pacman -S --needed nodejs curl xdg-utils</code></pre>
+      <p><strong>Server von Hand starten:</strong></p>
       <pre><code># im Projektordner (dort, wo server.js liegt)
-node --version          # muss 22.5 oder neuer sein
+node --version          # muss 22.13 oder neuer sein
 node server.js          # Server starten, Strg + C beendet ihn
 
 # dann im Browser öffnen:
@@ -185,7 +187,11 @@ node server.js          # Server starten, Strg + C beendet ihn
       <p>Wer den Spicker erweitern möchte, findet hier, welche Datei was macht.</p>
       <pre><code>Projektordner/
 ├─ server.js               ← lokaler Server + Speicher für Bewertungen
-├─ start.bat               ← Server starten und Übersicht öffnen (Windows)
+├─ start.sh                ← Server starten und Übersicht öffnen
+├─ stop-server.sh          ← Server beenden
+├─ autostart-install.sh    ← Start beim Einloggen einrichten (systemd)
+├─ autostart-remove.sh     ← Autostart wieder entfernen
+├─ server-common.sh        ← gemeinsame Einstellungen der vier Skripte
 ├─ data/progress.db        ← Datenbank mit den Bewertungen
 ├─ data/progress.json      ← dieselben Bewertungen als lesbare Kopie
 └─ spicker/

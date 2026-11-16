@@ -1,0 +1,9 @@
+# Bash-Skripte IMMER mit Linux-Zeilenenden (LF) speichern – egal, auf
+# welchem System das Repo ausgecheckt wird.
+#   text    → Git behandelt die Datei als Text und kümmert sich um die
+#             Zeilenenden.
+#   eol=lf  → im Arbeitsordner immer LF verwenden.
+# Windows-Zeilenenden (CRLF) würden Bash-Skripte kaputt machen: Das
+# zusätzliche Zeichen "\r" am Zeilenende wird Teil des Befehls, z. B.
+#   /usr/bin/env: 'bash\r': No such file or directory
+*.sh text eol=lf
