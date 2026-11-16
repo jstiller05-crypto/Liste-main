@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Grundlagen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Grundlagen</p>
+    <h1>Variablen, Datentypen &amp; Ein-/Ausgabe</h1>
+    <p class="page-lead">Werte speichern, Typen umwandeln, mit print ausgeben, mit input einlesen – und Text bequem mit f-Strings zusammenbauen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Variable ist ein Name für einen Wert. In Python legt man sie einfach durch eine Zuweisung an – ohne Schlüsselwort (<code>let</code>, <code>local</code>) und ohne Typangabe (<code>int</code>). Der Typ gehört zum <strong>Wert</strong>, nicht zum Namen: Dieselbe Variable darf später einen Wert eines anderen Typs bekommen.</p>
+    </section>
+    <section id="variablen">
+      <h2>Variablen</h2>
+      <pre><code># variables.py
+age = 25                 # Ganzzahl
+price = 9.99             # Kommazahl (mit Punkt!)
+name = "Anna"            # Text
+is_student = True        # Wahrheitswert
+
+age = age + 1            # neuen Wert zuweisen
+age += 1                 # Kurzform, dasselbe
+x, y = 10, 20            # zwei Variablen in einer Zeile
+x, y = y, x              # Werte tauschen – ohne Hilfsvariable
+
+print(age, price, name, is_student, x, y)</code></pre>
+      <pre><code>python variables.py</code></pre>
+      <p>Namen schreibt man in Python klein mit Unterstrich (<code>user_name</code>, „snake_case“). Konstanten schreibt man groß (<code>MAX_PLAYERS = 4</code>) – das ist nur eine Abmachung, Python verhindert das Ändern nicht.</p>
+    </section>
+    <section id="datentypen">
+      <h2>Datentypen</h2>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Beispiel</th><th>Bedeutung</th><th>In C++ / JS</th></tr></thead>
+        <tbody>
+          <tr><td><code>int</code></td><td><code>42</code>, <code>-7</code></td><td>Ganzzahl, beliebig groß</td><td><code>int</code> / <code>number</code></td></tr>
+          <tr><td><code>float</code></td><td><code>3.14</code></td><td>Kommazahl</td><td><code>double</code> / <code>number</code></td></tr>
+          <tr><td><code>str</code></td><td><code>"Hallo"</code>, <code>'Hallo'</code></td><td>Text</td><td><code>std::string</code> / <code>string</code></td></tr>
+          <tr><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>Wahrheitswert</td><td><code>bool</code> / <code>boolean</code></td></tr>
+          <tr><td><code>NoneType</code></td><td><code>None</code></td><td>„kein Wert“</td><td><code>nullptr</code> / <code>null</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code># datatypes.py
+print(type(42))          # &lt;class 'int'&gt;
+print(type(3.14))        # &lt;class 'float'&gt;
+print(type("Hallo"))     # &lt;class 'str'&gt;
+print(type(True))        # &lt;class 'bool'&gt;
+
+print(7 / 2)             # 3.5   – / liefert IMMER eine Kommazahl
+print(7 // 2)            # 3     – // ist die Ganzzahl-Division
+print(7 % 2)             # 1     – Rest der Division
+print(2 ** 10)           # 1024  – ** ist "hoch"</code></pre>
+      <pre><code>python datatypes.py</code></pre>
+    </section>
+    <section id="typumwandlung">
+      <h2>Typumwandlung</h2>
+      <p>Python wandelt Typen <strong>nicht</strong> heimlich um: <code>"3" + 4</code> ist ein Fehler (in JS käme <code>"34"</code> heraus). Man wandelt ausdrücklich um, indem man den Typnamen wie eine Funktion aufruft.</p>
+      <pre><code># convert.py
+text = "42"
+number = int(text)            # "42"  -&gt; 42
+print(number + 8)             # 50
+
+print(float("3.5") * 2)       # 7.0
+print(str(99) + " Punkte")    # "99 Punkte"
+print(int(3.99))              # 3   – schneidet ab, rundet NICHT
+print(round(3.99))            # 4   – rundet
+print(round(3.14159, 2))      # 3.14 – auf 2 Nachkommastellen
+
+print(bool(0), bool(""), bool([]))    # False False False – "leer" ist falsch
+print(bool(5), bool("a"), bool([0]))  # True True True</code></pre>
+      <pre><code>python convert.py</code></pre>
+    </section>
+    <section id="print">
+      <h2>Ausgabe mit print()</h2>
+      <pre><code># output.py
+print("Hallo")                      # eine Zeile
+print("a", "b", "c")                # mehrere Werte, getrennt durch Leerzeichen
+print("a", "b", "c", sep="-")       # eigenes Trennzeichen -&gt; a-b-c
+print("ohne Umbruch", end="")       # end ersetzt den Zeilenumbruch
+print(" ... geht hier weiter")
+print()                             # nur eine Leerzeile</code></pre>
+      <pre><code>python output.py</code></pre>
+    </section>
+    <section id="input">
+      <h2>Eingabe mit input()</h2>
+      <p><code>input()</code> wartet auf eine Eingabe im Terminal und liefert sie <strong>immer als Text</strong> (<code>str</code>). Für Zahlen muss man umwandeln.</p>
+      <pre><code># ask.py
+name = input("Wie heißt du? ")
+age = int(input("Wie alt bist du? "))    # Text -&gt; Ganzzahl
+
+print(f"Hallo {name}, nächstes Jahr bist du {age + 1}.")</code></pre>
+      <pre><code>python ask.py</code></pre>
+    </section>
+    <section id="f-strings">
+      <h2>f-Strings</h2>
+      <p>Ein <code>f</code> vor dem Anführungszeichen macht aus einem Text eine Vorlage: Alles in <code>{ }</code> wird ausgerechnet und eingesetzt. Entspricht dem Template-String <code>`Hallo ${name}`</code> in JavaScript.</p>
+      <pre><code># fstrings.py
+name = "Anna"
+points = 1234.5678
+
+print(f"Hallo {name}!")
+print(f"2 + 3 = {2 + 3}")              # beliebige Ausdrücke erlaubt
+print(f"{points:.2f}")                 # 2 Nachkommastellen -&gt; 1234.57
+print(f"{points:,.0f}")                # Tausender-Trenner  -&gt; 1,235
+print(f"{name:&gt;10}|")                  # rechtsbündig auf 10 Zeichen
+print(f"{name:&lt;10}|")                  # linksbündig
+print(f"{7:03d}")                      # mit Nullen auffüllen -&gt; 007
+print(f"{name=}")                      # Debug-Hilfe -&gt; name='Anna'</code></pre>
+      <pre><code>python fstrings.py</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Funktion</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>print(a, b, sep=" ", end="\n")</code></td><td>Werte ausgeben</td></tr>
+          <tr><td><code>input("Frage ")</code></td><td>Text vom Benutzer einlesen</td></tr>
+          <tr><td><code>type(x)</code></td><td>Typ eines Werts anzeigen</td></tr>
+          <tr><td><code>int(x)</code>, <code>float(x)</code>, <code>str(x)</code>, <code>bool(x)</code></td><td>Typ umwandeln</td></tr>
+          <tr><td><code>round(x, n)</code></td><td>Auf n Nachkommastellen runden</td></tr>
+          <tr><td><code>abs(x)</code>, <code>min(a, b)</code>, <code>max(a, b)</code></td><td>Betrag, kleinster, größter Wert</td></tr>
+          <tr><td><code>len(x)</code></td><td>Länge von Text, Liste, Dict …</td></tr>
+          <tr><td><code>isinstance(x, int)</code></td><td>Prüfen, ob ein Wert einen bestimmten Typ hat</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>TypeError: can only concatenate str (not "int") to str</code> – Text und Zahl mit <code>+</code> verbunden. Lösung: f-String oder <code>str(zahl)</code>.</li>
+        <li><code>ValueError: invalid literal for int()</code> – <code>int("abc")</code> oder <code>int("3.5")</code>. Eingaben mit <code>try/except</code> absichern, siehe <a href="python-fehler.html">Fehlerbehandlung</a>.</li>
+        <li><code>NameError: name 'x' is not defined</code> – Variable benutzt, bevor sie einen Wert bekommen hat (oder Tippfehler im Namen).</li>
+        <li><code>0.1 + 0.2</code> ergibt <code>0.30000000000000004</code> – das ist in allen Sprachen so (Kommazahlen sind binär gespeichert). Für Geld mit Cent als <code>int</code> rechnen.</li>
+        <li>Vergleich mit <code>None</code> schreibt man <code>x is None</code>, nicht <code>x == None</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-einfuehrung.html">Einführung</a>
+        <a class="chip" href="python-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="python-strings.html">Strings</a>
+        <a class="chip" href="python-listen-dicts.html">Listen &amp; Dicts</a>
+        <a class="chip" href="js-variablen.html">JS: Variablen</a>
+        <a class="chip" href="variable.html">C++: Variablen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

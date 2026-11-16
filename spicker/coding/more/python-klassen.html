@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Klassen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · OOP</p>
+    <h1>Klassen</h1>
+    <p class="page-lead">Eigene Datentypen mit class bauen: __init__ und self, Methoden, Vererbung – und @dataclass für Klassen, die vor allem Daten halten.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine <strong>Klasse</strong> ist ein Bauplan: Sie legt fest, welche Daten (Attribute) und welche Funktionen (Methoden) zusammengehören. Aus dem Bauplan erzeugt man beliebig viele <strong>Objekte</strong> (Instanzen), jedes mit eigenen Werten. <code>list</code>, <code>str</code> und <code>dict</code> sind selbst Klassen – mit <code>class</code> baut man eigene.</p>
+    </section>
+    <section id="class">
+      <h2>class</h2>
+      <pre><code># player.py
+class Player:
+    """Ein Spieler mit Namen und Lebenspunkten."""
+
+    def __init__(self, name, health=100):   # Konstruktor: läuft bei Player(...)
+        self.name = name                    # Attribute am Objekt anlegen
+        self.health = health
+
+    def take_damage(self, amount):          # Methode – self ist IMMER der erste Parameter
+        self.health = max(0, self.health - amount)
+
+    def is_alive(self):
+        return self.health &gt; 0
+
+
+anna = Player("Anna")                       # Objekt erzeugen – kein "new" wie in C++/JS
+max_player = Player("Max", health=50)
+
+anna.take_damage(30)                        # self wird automatisch übergeben
+print(anna.name, anna.health)               # Anna 70
+print(max_player.is_alive())                # True</code></pre>
+      <pre><code>python player.py</code></pre>
+    </section>
+    <section id="init">
+      <h2>__init__ und self</h2>
+      <table class="info-table">
+        <thead><tr><th>Begriff</th><th>Bedeutung</th><th>In C++ / JS</th></tr></thead>
+        <tbody>
+          <tr><td><code>__init__</code></td><td>Konstruktor – richtet ein neues Objekt ein</td><td>Konstruktor / <code>constructor()</code></td></tr>
+          <tr><td><code>self</code></td><td>Das Objekt selbst. Muss in jeder Methode als erster Parameter stehen</td><td><code>this</code> (dort automatisch vorhanden)</td></tr>
+          <tr><td><code>self.name</code></td><td>Attribut dieses einen Objekts</td><td><code>this-&gt;name</code> / <code>this.name</code></td></tr>
+          <tr><td><code>__str__</code></td><td>Legt fest, was <code>print(objekt)</code> ausgibt</td><td><code>operator&lt;&lt;</code> / <code>toString()</code></td></tr>
+          <tr><td><code>_name</code></td><td>Unterstrich = „intern, bitte nicht von außen anfassen“ (nur Abmachung)</td><td><code>private</code> / <code>#name</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code># account.py
+class Account:
+    interest_rate = 0.02                    # Klassenattribut: für ALLE Objekte gleich
+
+    def __init__(self, owner):
+        self.owner = owner
+        self._balance = 0                   # _ = intern
+
+    def deposit(self, amount):
+        if amount &lt;= 0:
+            raise ValueError("Betrag muss positiv sein")
+        self._balance += amount
+
+    @property                               # macht aus der Methode ein Nur-Lese-Attribut
+    def balance(self):
+        return self._balance
+
+    def __str__(self):
+        return f"Konto von {self.owner}: {self._balance} €"
+
+
+account = Account("Anna")
+account.deposit(100)
+print(account.balance)                      # 100 – ohne Klammern, dank @property
+print(account)                              # Konto von Anna: 100 €</code></pre>
+      <pre><code>python account.py</code></pre>
+    </section>
+    <section id="vererbung">
+      <h2>Vererbung</h2>
+      <p>Eine Klasse kann eine andere erweitern: Sie übernimmt alle Attribute und Methoden und ergänzt oder ersetzt einzelne. Die Basisklasse steht in Klammern hinter dem Namen.</p>
+      <pre><code># animals.py
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return "..."
+
+    def introduce(self):
+        return f"{self.name} sagt {self.speak()}"
+
+
+class Dog(Animal):                          # Dog erbt von Animal
+    def speak(self):                        # Methode überschreiben
+        return "Wuff"
+
+
+class Puppy(Dog):
+    def __init__(self, name, age_weeks):
+        super().__init__(name)              # Konstruktor der Basisklasse aufrufen
+        self.age_weeks = age_weeks
+
+    def speak(self):
+        return super().speak() + "!"        # Basis-Methode nutzen und erweitern
+
+
+for animal in [Animal("Etwas"), Dog("Rex"), Puppy("Bello", 8)]:
+    print(animal.introduce())               # jedes Objekt benutzt SEIN speak()
+
+print(isinstance(Puppy("Fifi", 3), Animal)) # True – ein Puppy ist auch ein Animal</code></pre>
+      <pre><code>python animals.py</code></pre>
+    </section>
+    <section id="dataclass">
+      <h2>@dataclass</h2>
+      <p>Viele Klassen speichern nur ein paar Werte. Der Dekorator <code>@dataclass</code> schreibt dafür <code>__init__</code>, eine lesbare Ausgabe und den Vergleich mit <code>==</code> automatisch. Entspricht grob einem <code>struct</code> in C++.</p>
+      <pre><code># point.py
+from dataclasses import dataclass, field
+
+@dataclass
+class Point:
+    x: float                                # Type Hints sind hier Pflicht
+    y: float = 0.0                          # mit Standardwert
+
+    def distance_to_origin(self) -&gt; float:  # eigene Methoden bleiben möglich
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+
+
+@dataclass
+class Inventory:
+    owner: str
+    items: list[str] = field(default_factory=list)   # so bekommt JEDES Objekt eine eigene Liste
+
+
+p1 = Point(3, 4)
+p2 = Point(3, 4)
+print(p1)                                   # Point(x=3, y=4)
+print(p1 == p2)                             # True – Vergleich nach Inhalt
+print(p1.distance_to_origin())              # 5.0
+
+bag = Inventory("Anna")
+bag.items.append("Schwert")
+print(bag)</code></pre>
+      <pre><code>python point.py</code></pre>
+    </section>
+    <section>
+      <h2>Vergleich: So sieht es in Python / C++ / JS aus</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Python</th><th>C++</th><th>JavaScript</th></tr></thead>
+        <tbody>
+          <tr><td>Klasse</td><td><code>class Dog:</code></td><td><code>class Dog { };</code></td><td><code>class Dog { }</code></td></tr>
+          <tr><td>Konstruktor</td><td><code>def __init__(self):</code></td><td><code>Dog() { }</code></td><td><code>constructor() { }</code></td></tr>
+          <tr><td>Objekt erzeugen</td><td><code>Dog("Rex")</code></td><td><code>Dog rex("Rex");</code></td><td><code>new Dog("Rex")</code></td></tr>
+          <tr><td>Das Objekt selbst</td><td><code>self</code> (ausdrücklich)</td><td><code>this</code></td><td><code>this</code></td></tr>
+          <tr><td>Vererbung</td><td><code>class Dog(Animal):</code></td><td><code>class Dog : public Animal</code></td><td><code>class Dog extends Animal</code></td></tr>
+          <tr><td>Basis aufrufen</td><td><code>super().__init__()</code></td><td><code>Animal(name)</code> in der Init-Liste</td><td><code>super(name)</code></td></tr>
+          <tr><td>Privat</td><td><code>_name</code> (Abmachung)</td><td><code>private:</code></td><td><code>#name</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>TypeError: take_damage() takes 1 positional argument but 2 were given</code> – in der Methode fehlt <code>self</code> als erster Parameter.</li>
+        <li><code>NameError: name 'health' is not defined</code> – innerhalb der Klasse immer <code>self.health</code> schreiben, nicht nur <code>health</code>.</li>
+        <li>Listen nicht als Klassenattribut anlegen (<code>items = []</code> direkt unter <code>class</code>) – alle Objekte teilen sich dann dieselbe Liste. In <code>__init__</code> mit <code>self.items = []</code> anlegen.</li>
+        <li><code>super().__init__(...)</code> vergessen → die Attribute der Basisklasse fehlen (<code>AttributeError</code>).</li>
+        <li>Klassennamen schreibt man in <code>CamelCase</code>, Methoden und Attribute in <code>snake_case</code>.</li>
+        <li>Nicht alles braucht eine Klasse: Für zwei, drei zusammengehörige Werte reicht oft ein Dict oder eine <code>@dataclass</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-funktionen.html">Funktionen</a>
+        <a class="chip" href="python-fehler.html">Fehlerbehandlung</a>
+        <a class="chip" href="python-module-pip.html">Module</a>
+        <a class="chip" href="cpp-class.html">C++: Klassen</a>
+        <a class="chip" href="cpp-vererbung.html">C++: Vererbung</a>
+        <a class="chip" href="js-klassen.html">JS: Klassen</a>
+        <a class="chip" href="lua-module.html">Lua: Module &amp; OOP</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

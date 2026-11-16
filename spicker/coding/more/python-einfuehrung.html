@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Einführung &amp; Installation – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Einstieg</p>
+    <h1>Einführung &amp; Installation</h1>
+    <p class="page-lead">Python auf Arch installieren, im REPL ausprobieren, das erste Skript starten – und verstehen, warum die Einrückung zählt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Um Python-Programme auszuführen, braucht man den <strong>Interpreter</strong> – das Programm <code>python</code>. Er liest eine <code>.py</code>-Datei und führt sie sofort aus. Einen eigenen Schritt „kompilieren“ wie bei C++ gibt es nicht.</p>
+    </section>
+    <section id="installation">
+      <h2>Installieren auf Arch</h2>
+      <p>Auf Arch/CachyOS ist Python fast immer schon da, weil viele Systemprogramme es brauchen. Zuerst prüfen:</p>
+      <pre><code>python --version     # zeigt z. B. "Python 3.14.x"</code></pre>
+      <p>Falls der Befehl fehlt:</p>
+      <pre><code>sudo pacman -S python</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Teil des Befehls</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>sudo</code></td><td>Befehl mit Administrator-Rechten ausführen (fragt nach dem Passwort)</td></tr>
+          <tr><td><code>pacman</code></td><td>Der Paketmanager von Arch</td></tr>
+          <tr><td><code>-S</code></td><td>„Sync“ – ein Paket aus den Paketquellen installieren</td></tr>
+          <tr><td><code>python</code></td><td>Name des Pakets (Python 3)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="repl">
+      <h2>Der REPL – Python zum Ausprobieren</h2>
+      <p>REPL heißt <em>Read–Eval–Print Loop</em>: lesen, auswerten, ausgeben, wiederholen. Startet man <code>python</code> ohne Datei, kann man Zeile für Zeile testen. <code>&gt;&gt;&gt;</code> ist die Eingabe-Aufforderung – die tippt man nicht mit.</p>
+      <pre><code>$ python
+&gt;&gt;&gt; 2 + 3
+5
+&gt;&gt;&gt; name = "Max"
+&gt;&gt;&gt; name.upper()
+'MAX'
+&gt;&gt;&gt; help(str.upper)      # eingebaute Hilfe, mit q verlassen
+&gt;&gt;&gt; exit()               # beenden (oder Strg+D)</code></pre>
+    </section>
+    <section id="skript">
+      <h2>Ein Skript schreiben und ausführen</h2>
+      <p>Diesen Text als <code>hello.py</code> speichern:</p>
+      <pre><code># hello.py
+print("Hallo Welt!")
+print("2 + 3 =", 2 + 3)</code></pre>
+      <p>Im Terminal in den Ordner der Datei wechseln und starten:</p>
+      <pre><code>python hello.py</code></pre>
+      <h3>Direkt ausführbar machen (Shebang)</h3>
+      <p>Steht in der <strong>ersten Zeile</strong> ein „Shebang“, kann Linux das Skript wie ein Programm starten:</p>
+      <pre><code>#!/usr/bin/env python
+print("Ich bin ein ausführbares Skript")</code></pre>
+      <pre><code>chmod +x hello.py    # Ausführbar-Bit setzen (einmalig)
+./hello.py           # starten – ohne "python" davor</code></pre>
+    </section>
+    <section id="einrueckung">
+      <h2>Einrückung statt geschweifter Klammern</h2>
+      <p>In C++, JS oder C# umschließen <code>{ }</code> einen Block. In Python beginnt ein Block nach einem <strong>Doppelpunkt</strong> und besteht aus allen Zeilen, die <strong>gleich weit eingerückt</strong> sind (üblich: 4 Leerzeichen).</p>
+      <pre><code># indent.py
+temperature = 25
+
+if temperature &gt; 20:
+    print("Es ist warm")           # gehört zum if
+    print("T-Shirt reicht")        # gehört auch zum if
+print("Diese Zeile läuft immer")   # nicht eingerückt = nach dem if</code></pre>
+      <pre><code>python indent.py</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Python</th><th>C++ / JavaScript</th></tr></thead>
+        <tbody>
+          <tr><td><code>if x &gt; 0:</code> + eingerückte Zeilen</td><td><code>if (x &gt; 0) { … }</code></td></tr>
+          <tr><td>Zeilenende beendet die Anweisung</td><td>Semikolon <code>;</code></td></tr>
+          <tr><td>Falsche Einrückung = <code>IndentationError</code></td><td>Einrückung ist dem Compiler egal</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="kommentare">
+      <h2>Kommentare</h2>
+      <pre><code># Ein Kommentar geht bis zum Zeilenende
+print("Hallo")  # auch hinter Code möglich
+
+"""
+Ein Text in drei Anführungszeichen direkt unter "def" oder "class"
+heißt Docstring – er beschreibt die Funktion und erscheint bei help().
+"""</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Befehle</h2>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>python --version</code></td><td>Installierte Version anzeigen</td></tr>
+          <tr><td><code>python</code></td><td>REPL starten</td></tr>
+          <tr><td><code>python script.py</code></td><td>Skript ausführen</td></tr>
+          <tr><td><code>python -i script.py</code></td><td>Skript ausführen und danach im REPL bleiben (Variablen ansehen)</td></tr>
+          <tr><td><code>python -c "print(2**10)"</code></td><td>Eine einzelne Zeile ausführen</td></tr>
+          <tr><td><code>python -m modulname</code></td><td>Ein Modul als Programm starten, z. B. <code>python -m venv .venv</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>IndentationError: unexpected indent</code> – eine Zeile ist eingerückt, obwohl kein Block offen ist.</li>
+        <li><code>IndentationError: expected an indented block</code> – nach einem Doppelpunkt fehlt die eingerückte Zeile. Soll der Block (noch) leer bleiben, schreibt man <code>pass</code>.</li>
+        <li><code>TabError</code> – Tabs und Leerzeichen gemischt. Im Editor „Leerzeichen statt Tabs“ einstellen.</li>
+        <li>Der Doppelpunkt nach <code>if</code>, <code>for</code>, <code>def</code> … wird am Anfang oft vergessen → <code>SyntaxError: expected ':'</code>.</li>
+        <li>Eigene Datei nicht wie ein Modul nennen (<code>random.py</code>, <code>json.py</code>) – sonst lädt <code>import random</code> die eigene Datei.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-sprache.html">Python-Überblick</a>
+        <a class="chip" href="python-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="python-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="python-module-pip.html">Module, venv &amp; pip</a>
+        <a class="chip" href="terminal.html">Terminal</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

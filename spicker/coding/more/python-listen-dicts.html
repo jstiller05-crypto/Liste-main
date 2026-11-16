@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Listen, Tupel, Dicts &amp; Sets – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Daten</p>
+    <h1>Listen, Tupel, Dicts &amp; Sets</h1>
+    <p class="page-lead">Die vier eingebauten Sammlungen – dazu Slicing und List Comprehensions, mit denen man Listen in einer Zeile baut.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Sammlungen speichern mehrere Werte unter einem Namen. Python hat vier eingebaute – man erkennt sie an den Klammern:</p>
+      <table class="info-table">
+        <thead><tr><th>Typ</th><th>Schreibweise</th><th>Eigenschaften</th><th>In C++ / JS / Lua</th></tr></thead>
+        <tbody>
+          <tr><td><code>list</code></td><td><code>[1, 2, 3]</code></td><td>geordnet, veränderbar</td><td><code>std::vector</code> / Array / Tabelle</td></tr>
+          <tr><td><code>tuple</code></td><td><code>(1, 2, 3)</code></td><td>geordnet, <strong>nicht</strong> veränderbar</td><td><code>std::tuple</code> / – / –</td></tr>
+          <tr><td><code>dict</code></td><td><code>{"a": 1}</code></td><td>Schlüssel → Wert</td><td><code>std::map</code> / Objekt, <code>Map</code> / Tabelle</td></tr>
+          <tr><td><code>set</code></td><td><code>{1, 2, 3}</code></td><td>ohne Doppelte, ohne Reihenfolge</td><td><code>std::set</code> / <code>Set</code> / –</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="list">
+      <h2>list – Liste</h2>
+      <pre><code># lists.py
+fruits = ["Apfel", "Birne", "Kiwi"]
+
+print(fruits[0])                # Apfel  – Index beginnt bei 0
+print(fruits[-1])               # Kiwi   – negativer Index zählt von hinten
+print(len(fruits))              # 3
+
+fruits.append("Mango")          # hinten anhängen
+fruits.insert(1, "Zitrone")     # an Position 1 einfügen
+fruits.remove("Birne")          # ersten Treffer mit diesem Wert entfernen
+last = fruits.pop()             # letztes Element entfernen und zurückgeben
+fruits[0] = "Ananas"            # Element ersetzen
+
+print("Kiwi" in fruits)         # True – ist der Wert enthalten?
+print(fruits.index("Kiwi"))     # Position des Werts
+
+fruits.sort()                   # sortiert die Liste SELBST (gibt None zurück)
+print(fruits)
+print(sorted(fruits, reverse=True))   # neue Liste, Original bleibt
+
+numbers = [3, 1, 2]
+print(sum(numbers), min(numbers), max(numbers))
+print(numbers + [9, 8])         # Listen verbinden
+print([0] * 5)                  # [0, 0, 0, 0, 0]</code></pre>
+      <pre><code>python lists.py</code></pre>
+    </section>
+    <section id="slicing">
+      <h2>Slicing – Ausschnitte</h2>
+      <p><code>liste[start:ende]</code> liefert einen Ausschnitt als <strong>neue Liste</strong>. Der Start zählt mit, das Ende nicht – wie bei <code>range()</code>. Funktioniert genauso bei Text und Tupeln.</p>
+      <pre><code># slicing.py
+letters = ["a", "b", "c", "d", "e", "f"]
+
+print(letters[1:4])     # ['b', 'c', 'd']  – Index 1 bis 3
+print(letters[:2])      # ['a', 'b']       – von Anfang an
+print(letters[3:])      # ['d', 'e', 'f']  – bis zum Ende
+print(letters[-2:])     # ['e', 'f']       – die letzten zwei
+print(letters[::2])     # ['a', 'c', 'e']  – jedes zweite (Schrittweite 2)
+print(letters[::-1])    # umgekehrte Reihenfolge
+copy = letters[:]       # flache Kopie der ganzen Liste
+
+print("Python"[0:3])    # Pyt</code></pre>
+      <pre><code>python slicing.py</code></pre>
+    </section>
+    <section id="tuple">
+      <h2>tuple – Tupel</h2>
+      <p>Ein Tupel ist eine Liste, die man nach dem Anlegen nicht mehr ändern kann. Gut für Werte, die zusammengehören: Koordinaten, RGB-Farben, mehrere Rückgabewerte.</p>
+      <pre><code># tuples.py
+point = (3, 5)
+print(point[0])             # 3
+
+x, y = point                # auspacken (unpacking)
+print(x, y)
+
+single = (42,)              # Tupel mit EINEM Element braucht das Komma
+print(type(single))
+
+try:
+    point[0] = 10           # Tupel sind unveränderbar
+except TypeError as error:
+    print("Fehler:", error)</code></pre>
+      <pre><code>python tuples.py</code></pre>
+    </section>
+    <section id="dict">
+      <h2>dict – Wörterbuch</h2>
+      <pre><code># dicts.py
+player = {
+    "name": "Max",
+    "level": 3,
+    "items": ["Schwert", "Brot"],
+}
+
+print(player["name"])               # Max
+player["health"] = 20               # neuer Eintrag
+player["level"] += 1                # Wert ändern
+del player["items"]                 # Eintrag löschen
+
+# Fehlt der Schlüssel, wirft [] einen KeyError – get() nicht
+print(player.get("mana"))           # None
+print(player.get("mana", 0))        # 0 als Ersatzwert
+
+print("name" in player)             # True – prüft die SCHLÜSSEL
+
+for key, value in player.items():   # Schlüssel und Wert zusammen
+    print(key, "=", value)
+
+print(list(player.keys()))          # alle Schlüssel
+print(list(player.values()))        # alle Werte</code></pre>
+      <pre><code>python dicts.py</code></pre>
+    </section>
+    <section id="set">
+      <h2>set – Menge</h2>
+      <pre><code># sets.py
+tags = {"python", "linux", "python"}    # Doppelte verschwinden
+print(tags)                              # {'python', 'linux'}
+
+tags.add("git")
+tags.discard("linux")                    # entfernen (kein Fehler, falls nicht da)
+print("git" in tags)                     # True – sehr schnell, auch bei vielen Werten
+
+a = {1, 2, 3}
+b = {3, 4}
+print(a | b)        # Vereinigung   {1, 2, 3, 4}
+print(a &amp; b)        # Schnittmenge  {3}
+print(a - b)        # Differenz     {1, 2}
+
+# Häufigster Einsatz: Doppelte aus einer Liste entfernen
+names = ["Anna", "Max", "Anna"]
+print(list(set(names)))
+
+empty_set = set()   # ACHTUNG: {} ist ein leeres dict, kein Set</code></pre>
+      <pre><code>python sets.py</code></pre>
+    </section>
+    <section id="comprehension">
+      <h2>List Comprehensions</h2>
+      <p>Eine Comprehension baut eine neue Liste aus einer vorhandenen – in einer Zeile. Aufbau: <code>[ausdruck for element in folge if bedingung]</code>. Entspricht <code>map</code> und <code>filter</code> in JavaScript.</p>
+      <pre><code># comprehension.py
+numbers = [1, 2, 3, 4, 5, 6]
+
+# Lange Form mit Schleife …
+squares = []
+for n in numbers:
+    squares.append(n * n)
+
+# … und dasselbe als Comprehension
+squares = [n * n for n in numbers]
+print(squares)                              # [1, 4, 9, 16, 25, 36]
+
+even = [n for n in numbers if n % 2 == 0]   # filtern
+print(even)                                 # [2, 4, 6]
+
+names = ["anna", "max"]
+print([name.capitalize() for name in names])
+
+# Geht auch für dict und set
+lengths = {name: len(name) for name in names}
+print(lengths)                              # {'anna': 4, 'max': 3}</code></pre>
+      <pre><code>python comprehension.py</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Methoden</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufruf</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>items.append(x)</code></td><td>Hinten anhängen</td></tr>
+          <tr><td><code>items.extend(other)</code></td><td>Alle Elemente einer anderen Liste anhängen</td></tr>
+          <tr><td><code>items.insert(i, x)</code></td><td>An Position i einfügen</td></tr>
+          <tr><td><code>items.pop()</code> / <code>items.pop(i)</code></td><td>Letztes / i-tes Element entfernen und zurückgeben</td></tr>
+          <tr><td><code>items.remove(x)</code></td><td>Ersten Treffer entfernen (Fehler, wenn nicht vorhanden)</td></tr>
+          <tr><td><code>items.sort()</code> / <code>sorted(items)</code></td><td>Selbst sortieren / sortierte Kopie</td></tr>
+          <tr><td><code>items.count(x)</code>, <code>items.index(x)</code></td><td>Wie oft? / An welcher Stelle?</td></tr>
+          <tr><td><code>d.get(key, default)</code></td><td>Wert lesen, ohne Fehler bei fehlendem Schlüssel</td></tr>
+          <tr><td><code>d.items()</code>, <code>d.keys()</code>, <code>d.values()</code></td><td>Paare / Schlüssel / Werte durchlaufen</td></tr>
+          <tr><td><code>d.pop(key)</code>, <code>d.update(other)</code></td><td>Eintrag entfernen / anderes Dict hineinmischen</td></tr>
+          <tr><td><code>s.add(x)</code>, <code>s.discard(x)</code></td><td>Zum Set hinzufügen / entfernen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>b = a</code> kopiert eine Liste <strong>nicht</strong> – beide Namen zeigen auf dieselbe Liste. Kopie: <code>b = a.copy()</code> oder <code>b = a[:]</code>.</li>
+        <li><code>items = items.sort()</code> macht aus der Liste <code>None</code>, weil <code>sort()</code> nichts zurückgibt.</li>
+        <li><code>IndexError: list index out of range</code> – Index zu groß. Eine Liste mit 3 Elementen hat die Indizes 0, 1, 2.</li>
+        <li><code>KeyError</code> – Schlüssel fehlt im Dict. Mit <code>in</code> prüfen oder <code>get()</code> nehmen.</li>
+        <li>Dict-Schlüssel müssen unveränderbar sein: Text, Zahl oder Tupel – keine Liste.</li>
+        <li>Comprehensions kurz halten. Braucht man zwei Zeilen zum Verstehen, ist eine normale Schleife besser.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="python-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="python-strings.html">Strings</a>
+        <a class="chip" href="python-dateien.html">Dateien &amp; JSON</a>
+        <a class="chip" href="cpp-vector.html">C++: vector</a>
+        <a class="chip" href="cpp-map.html">C++: map</a>
+        <a class="chip" href="js-arrays.html">JS: Arrays</a>
+        <a class="chip" href="lua-tabellen.html">Lua: Tabellen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

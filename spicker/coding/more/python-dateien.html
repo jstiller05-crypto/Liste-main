@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Dateien &amp; JSON – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Dateien</p>
+    <h1>Dateien &amp; JSON</h1>
+    <p class="page-lead">Textdateien mit open und with lesen und schreiben, Pfade mit pathlib bauen und Daten als JSON speichern.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Variablen leben nur, solange das Programm läuft. Was bleiben soll – Einstellungen, Spielstände, Messwerte – schreibt man in eine <strong>Datei</strong>. Python öffnet sie mit <code>open()</code>; der <code>with</code>-Block sorgt dafür, dass sie am Ende sicher wieder geschlossen wird.</p>
+    </section>
+    <section id="open">
+      <h2>open mit with</h2>
+      <pre><code># Aufbau
+with open("notes.txt", "r", encoding="utf-8") as file:
+    content = file.read()
+# hier ist die Datei schon wieder geschlossen – auch nach einem Fehler</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Modus</th><th>Bedeutung</th><th>Datei fehlt</th><th>Datei existiert</th></tr></thead>
+        <tbody>
+          <tr><td><code>"r"</code></td><td>lesen (Standard)</td><td>Fehler</td><td>wird gelesen</td></tr>
+          <tr><td><code>"w"</code></td><td>schreiben</td><td>wird angelegt</td><td><strong>wird geleert!</strong></td></tr>
+          <tr><td><code>"a"</code></td><td>anhängen (append)</td><td>wird angelegt</td><td>Text kommt ans Ende</td></tr>
+          <tr><td><code>"x"</code></td><td>neu anlegen</td><td>wird angelegt</td><td>Fehler</td></tr>
+          <tr><td><code>"rb"</code> / <code>"wb"</code></td><td>Binärdaten (Bilder …)</td><td colspan="2">wie r / w, aber ohne Text-Kodierung</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="schreiben">
+      <h2>Schreiben</h2>
+      <pre><code># write_file.py
+lines = ["Erste Zeile", "Zweite Zeile", "Dritte Zeile"]
+
+with open("notes.txt", "w", encoding="utf-8") as file:
+    for line in lines:
+        file.write(line + "\n")         # write() macht KEINEN Zeilenumbruch selbst
+
+with open("notes.txt", "a", encoding="utf-8") as file:
+    file.write("Angehängt\n")           # "a" = ans Ende schreiben
+
+print("notes.txt geschrieben")</code></pre>
+      <pre><code>python write_file.py
+cat notes.txt        # Inhalt im Terminal anzeigen</code></pre>
+    </section>
+    <section id="lesen">
+      <h2>Lesen</h2>
+      <pre><code># read_file.py  (vorher write_file.py ausführen)
+
+# 1) Alles auf einmal als ein Text
+with open("notes.txt", encoding="utf-8") as file:
+    content = file.read()
+print(content)
+
+# 2) Zeile für Zeile – braucht auch bei riesigen Dateien wenig Speicher
+with open("notes.txt", encoding="utf-8") as file:
+    for number, line in enumerate(file, start=1):
+        print(number, line.rstrip())    # rstrip entfernt das \n am Zeilenende
+
+# 3) Alle Zeilen als Liste
+with open("notes.txt", encoding="utf-8") as file:
+    lines = file.read().splitlines()
+print(len(lines), "Zeilen")</code></pre>
+      <pre><code>python read_file.py</code></pre>
+    </section>
+    <section id="pathlib">
+      <h2>pathlib – Pfade bequem</h2>
+      <p>Das Modul <code>pathlib</code> behandelt Pfade als Objekte statt als Text. Mit <code>/</code> setzt man Teile zusammen – das funktioniert auf Linux und Windows gleich.</p>
+      <pre><code># paths.py
+from pathlib import Path
+
+home = Path.home()                      # /home/benutzername
+folder = Path("data")                   # relativer Pfad (zum aktuellen Ordner)
+file_path = folder / "scores.txt"       # data/scores.txt
+
+folder.mkdir(exist_ok=True)             # Ordner anlegen, kein Fehler falls vorhanden
+file_path.write_text("Anna 150\nMax 120\n", encoding="utf-8")
+
+print(file_path.exists())               # True
+print(file_path.read_text(encoding="utf-8"))
+print(file_path.name)                   # scores.txt
+print(file_path.stem)                   # scores
+print(file_path.suffix)                 # .txt
+print(file_path.parent)                 # data
+print(file_path.resolve())              # absoluter Pfad
+
+for path in folder.glob("*.txt"):       # alle .txt-Dateien im Ordner
+    print(path, path.stat().st_size, "Bytes")
+
+# Ordner, in dem DIESES Skript liegt (unabhängig davon, von wo man es startet)
+script_folder = Path(__file__).parent
+print(script_folder)</code></pre>
+      <pre><code>python paths.py</code></pre>
+    </section>
+    <section id="json">
+      <h2>Das json-Modul</h2>
+      <p><a href="json-einfuehrung.html">JSON</a> passt fast 1:1 auf Python: Objekt ↔ <code>dict</code>, Array ↔ <code>list</code>, <code>true/false/null</code> ↔ <code>True/False/None</code>.</p>
+      <pre><code># save_json.py
+import json
+from pathlib import Path
+
+settings = {
+    "name": "Anna",
+    "volume": 0.8,
+    "fullscreen": True,
+    "recent": ["level1", "level2"],
+    "last_save": None,
+}
+file_path = Path("settings.json")
+
+# Schreiben: dict -&gt; JSON-Datei
+with open(file_path, "w", encoding="utf-8") as file:
+    json.dump(settings, file, indent=2, ensure_ascii=False)
+    # indent=2           -&gt; schön eingerückt
+    # ensure_ascii=False -&gt; Umlaute bleiben lesbar (ä statt ä)
+
+# Lesen: JSON-Datei -&gt; dict
+with open(file_path, encoding="utf-8") as file:
+    loaded = json.load(file)
+
+print(loaded["name"], loaded["recent"][0])
+
+# Dasselbe mit Text statt Datei: dumps / loads (s = string)
+text = json.dumps({"points": 10})
+print(text)                             # {"points": 10}
+print(json.loads('{"ok": true}'))       # {'ok': True}</code></pre>
+      <pre><code>python save_json.py
+cat settings.json</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Aufruf</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>open(path, mode, encoding="utf-8")</code></td><td>Datei öffnen</td></tr>
+          <tr><td><code>file.read()</code></td><td>Ganzen Inhalt als Text lesen</td></tr>
+          <tr><td><code>file.readline()</code></td><td>Eine Zeile lesen</td></tr>
+          <tr><td><code>file.write(text)</code></td><td>Text schreiben (ohne Zeilenumbruch)</td></tr>
+          <tr><td><code>Path(p).read_text()</code> / <code>write_text(t)</code></td><td>Kurzform: ganze Datei lesen / schreiben</td></tr>
+          <tr><td><code>Path(p).exists()</code>, <code>is_file()</code>, <code>is_dir()</code></td><td>Gibt es das? Datei? Ordner?</td></tr>
+          <tr><td><code>Path(p).mkdir(parents=True, exist_ok=True)</code></td><td>Ordner (samt Elternordnern) anlegen</td></tr>
+          <tr><td><code>Path(p).glob("*.txt")</code></td><td>Dateien nach Muster suchen</td></tr>
+          <tr><td><code>Path(p).unlink()</code></td><td>Datei löschen</td></tr>
+          <tr><td><code>json.dump(obj, file)</code> / <code>json.load(file)</code></td><td>JSON in Datei schreiben / aus Datei lesen</td></tr>
+          <tr><td><code>json.dumps(obj)</code> / <code>json.loads(text)</code></td><td>JSON als Text erzeugen / Text einlesen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Immer <code>encoding="utf-8"</code> angeben – sonst gibt es Ärger mit Umlauten, sobald das Skript auf einem anderen System läuft.</li>
+        <li><code>"w"</code> löscht den bisherigen Inhalt sofort beim Öffnen. Zum Ergänzen <code>"a"</code> nehmen.</li>
+        <li><code>FileNotFoundError</code> – relative Pfade gelten ab dem Ordner, in dem man <code>python</code> <em>gestartet</em> hat, nicht ab dem Ordner des Skripts. Abhilfe: <code>Path(__file__).parent / "datei.txt"</code>.</li>
+        <li><code>PermissionError</code> – keine Schreibrechte im Ordner (z. B. <code>/etc</code>). Im eigenen Home-Ordner arbeiten.</li>
+        <li><code>json.decoder.JSONDecodeError</code> – die Datei ist kein gültiges JSON (oft: Komma am Ende, einfache Anführungszeichen). Siehe <a href="json-syntax.html">JSON-Syntax</a>.</li>
+        <li>JSON kennt keine Tupel und Sets: Ein Tupel kommt als Liste zurück, ein Set muss man vorher in eine Liste umwandeln.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-strings.html">Strings</a>
+        <a class="chip" href="python-listen-dicts.html">Listen &amp; Dicts</a>
+        <a class="chip" href="python-fehler.html">Fehlerbehandlung</a>
+        <a class="chip" href="json-einfuehrung.html">JSON</a>
+        <a class="chip" href="it-dateien.html">Dateien &amp; Pfade</a>
+        <a class="chip" href="cpp-dateien.html">C++: Dateien</a>
+        <a class="chip" href="node-dateien.html">Node.js: Dateien</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

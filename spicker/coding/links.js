@@ -29,14 +29,15 @@
 // verlinkt: "Schleife" auf einer C++-Seite → C++-Erklärung,
 //           "Schleife" auf einer JS-Seite  → JS-Erklärung.
 //
-// Sprach-Kürzel:  "html"  "css"  "js"  "cpp"  …  "it" (IT-Grundlagen –
+// Sprach-Kürzel:  "html"  "css"  "js"  "cpp"  "python"  …  "it" (IT-Grundlagen –
 //                 KEINE Programmiersprache, siehe PAGE_PREFIX_LANGUAGES)
 //
 // Die Sprache wird in dieser Reihenfolge bestimmt:
 //   1. <html lang="de" data-lang="cpp">  im HTML der Seite (falls gesetzt)
 //   2. diese Liste hier (Dateiname → Sprache, klein geschrieben)
-//   3. Dateiname beginnt mit "css-", "js-", "cpp-", "node-", "sql-", "php-",
-//      "lua-", "c-", "csharp-", "swift-", "ts-", "it-"
+//   3. Dateiname beginnt mit einem Präfix aus PAGE_PREFIX_LANGUAGES
+//      ("css-", "js-", "cpp-", "python-", "it-" … – die vollständige Liste
+//      steht NUR dort, damit sie nicht an zwei Stellen gepflegt werden muss)
 //   4. sonst DEFAULT_PAGE_LANGUAGE
 //
 // NEUE SEITE? → hier eintragen ODER im <html>-Tag data-lang="..." setzen.
@@ -72,7 +73,15 @@ const PAGE_LANGUAGES = {
 
   // --- Swift-Seiten ohne "swift-"-Präfix ---
   "swiftui.html":         "swift",
-  "xcode.html":           "swift"
+  "xcode.html":           "swift",
+
+  // --- Seiten, die KEINE HTML-Tag-Seiten sind, aber auch kein Präfix haben ---
+  // Sie bekämen ohnehin DEFAULT_PAGE_LANGUAGE ("html"). Der Eintrag macht das
+  // AUSDRÜCKLICH: tools/check-spicker.js meldet jede Seite, die nur "aus
+  // Versehen" beim Standard landet (z. B. eine neue Seite mit vergessenem
+  // Präfix) – und lässt den Standard nur für echte HTML-Seiten durchgehen.
+  "anleitung.html":       "html",
+  "terminal.html":        "html"
   // alle anderen Seiten (die HTML-Tags) → DEFAULT_PAGE_LANGUAGE
 };
 
@@ -91,6 +100,7 @@ const PAGE_PREFIX_LANGUAGES = [
   ["sql-", "sql"],
   ["php-", "php"],
   ["lua-", "lua"],
+  ["python-", "python"],
   ["csharp-", "csharp"],
   ["swift-", "swift"],
   ["json-", "json"],  // JSON-Grundlagen
@@ -122,6 +132,11 @@ const LANGUAGE_FALLBACK = {
   // anderes als auf HTML-Seiten – ein Fallback auf html/js würde also oft
   // zur FALSCHEN Erklärung verlinken. Lieber gar kein Link als ein
   // falscher (gleiche Regel wie bei "it", siehe Kommentar oben).
+  //
+  // "python" steht ebenfalls NICHT hier drin: Python ist eine eigene
+  // Sprache mit eigenen Seiten für alle Grundbegriffe. Fehlt einer Regel
+  // das "python"-Ziel, soll das Wort lieber unverlinkt bleiben, als auf
+  // die JS- oder C++-Erklärung zu zeigen.
 };
 
 
@@ -153,6 +168,7 @@ const smartLinkRules = [
   { words: ["SQL", "MySQL", "SQLite", "MariaDB", "PostgreSQL"], links: { all: "sql-einfuehrung.html" } },
   { words: ["PHP"],              links: { all: "php-einfuehrung.html" } },
   { words: ["Lua", "LuaJIT"],    links: { all: "lua-einfuehrung.html" } },
+  { words: ["Python"],           links: { all: "python-sprache.html" } },
   { words: ["C#", ".NET"],       links: { all: "csharp-einfuehrung.html" } },
   { words: ["Swift"],            links: { all: "swift-einfuehrung.html" } },
   { words: ["TypeScript", "TS"], links: { all: "ts-einfuehrung.html" } },
@@ -206,26 +222,26 @@ const smartLinkRules = [
 
   // ===== Programmier-Grundlagen (je Sprache verschieden!) =====
   { words: ["for-Schleife", "for-Schleifen"],
-    links: { cpp: "for-loop.html",   js: "js-schleifen.html" } },
+    links: { cpp: "for-loop.html",   js: "js-schleifen.html", python: "python-kontrolle.html#for" } },
   { words: ["while-Schleife", "while-Schleifen"],
-    links: { cpp: "while-loop.html", js: "js-schleifen.html" } },
+    links: { cpp: "while-loop.html", js: "js-schleifen.html", python: "python-kontrolle.html#while" } },
   { words: ["Schleife", "Schleifen"],
-    links: { cpp: "for-loop.html",   js: "js-schleifen.html", php: "php-kontrolle.html" , lua: "lua-kontrolle.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html" } },
+    links: { cpp: "for-loop.html",   js: "js-schleifen.html", php: "php-kontrolle.html" , lua: "lua-kontrolle.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html", python: "python-kontrolle.html#for" } },
   { words: ["Funktion", "Funktionen"],
-    links: { cpp: "function.html",   js: "js-funktionen.html", php: "php-funktionen.html" , lua: "lua-funktionen.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html" } },
+    links: { cpp: "function.html",   js: "js-funktionen.html", php: "php-funktionen.html" , lua: "lua-funktionen.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html", python: "python-funktionen.html" } },
   { words: ["Variable", "Variablen"],
-    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html", php: "php-grundlagen.html" , lua: "lua-grundlagen.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
+    links: { cpp: "variable.html",   js: "js-variablen.html", css: "css-variablen.html", php: "php-grundlagen.html" , lua: "lua-grundlagen.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html", python: "python-grundlagen.html#variablen" } },
   { words: ["if-else", "Bedingung", "Bedingungen"],
-    links: { cpp: "if-else.html",    js: "js-bedingungen.html", php: "php-kontrolle.html" , lua: "lua-kontrolle.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html" } },
+    links: { cpp: "if-else.html",    js: "js-bedingungen.html", php: "php-kontrolle.html" , lua: "lua-kontrolle.html", csharp: "csharp-kontrolle.html", swift: "swift-kontrolle.html", python: "python-kontrolle.html#if" } },
   { words: ["Datentyp", "Datentypen"],
-    links: { cpp: "datatypes.html",  js: "js-variablen.html" } },
+    links: { cpp: "datatypes.html",  js: "js-variablen.html", python: "python-grundlagen.html#datentypen" } },
 
   // ===== Nur C++ =====
   { words: ["Zeiger", "Pointer"],                         links: { cpp: "pointer.html" } },
   { words: ["Referenz", "Referenzen"],                    links: { cpp: "reference.html" , c: "" } },
   { words: ["Objekt", "Objekte", "Methode", "Methoden",
             "OOP", "objektorientiert", "objektorientierte"],
-                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html", php: "php-oop.html" , lua: "lua-module.html", csharp: "csharp-klassen.html", swift: "swift-typen.html" , c: "" } },
+                                                          links: { cpp: "cpp-class.html", js: "js-objekte.html", php: "php-oop.html" , lua: "lua-module.html", csharp: "csharp-klassen.html", swift: "swift-typen.html" , c: "", python: "python-klassen.html" } },
   { words: ["Konstruktor", "Destruktor", "Kapselung", "private", "public"],
                                                           links: { cpp: "cpp-konstruktor.html" , c: "" } },
   { words: ["Namespace", "Namespaces", "using namespace"], links: { cpp: "using-namespace.html" } },
@@ -234,7 +250,7 @@ const smartLinkRules = [
   { words: ["Header-Datei", "Header-Dateien", "Headerdatei", "Include Guard", "#pragma once"],
                                                           links: { cpp: "cpp-header.html" } },
   { words: ["Vererbung", "Polymorphie", "virtual", "override", "Basisklasse"],
-                                                          links: { cpp: "cpp-vererbung.html" , c: "" } },
+                                                          links: { cpp: "cpp-vererbung.html" , c: "", python: "python-klassen.html#vererbung" } },
   { words: ["Vector", "Vectors", "std::vector"],          links: { cpp: "cpp-vector.html" } },
   { words: ["std::string"],                               links: { cpp: "cpp-string.html" } },
   { words: ["std::map", "Map", "std::set"],               links: { cpp: "cpp-map.html" } },
@@ -244,7 +260,7 @@ const smartLinkRules = [
   { words: ["const", "constexpr", "auto"],                links: { cpp: "cpp-const-auto.html" } },
   { words: ["Smart Pointer", "unique_ptr", "shared_ptr", "Heap", "Stack", "Speicherleck", "new", "delete"],
                                                           links: { cpp: "cpp-speicher.html" } },
-  { words: ["Exception", "Exceptions", "Ausnahme"],       links: { cpp: "cpp-fehler.html" , c: "" } },
+  { words: ["Exception", "Exceptions", "Ausnahme"],       links: { cpp: "cpp-fehler.html" , c: "", python: "python-fehler.html" } },
   { words: ["Textdatei", "Textdateien", "fstream", "ifstream", "ofstream"],               links: { cpp: "cpp-dateien.html" } },
   { words: ["Template", "Templates"],                     links: { cpp: "cpp-templates.html" } },
   { words: ["Compiler", "kompilieren", "g++", "CMake", "Linker"], links: { cpp: "cpp-kompilieren.html" , c: "c-einfuehrung.html" } },
@@ -255,15 +271,15 @@ const smartLinkRules = [
   // ===== Gleiches Wort, andere Bedeutung je Sprache =====
   // "Klasse" ist in C++ eine Objekt-Vorlage, in HTML/CSS eine CSS-Klasse
   { words: ["Klasse", "Klassen"],
-    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-klassen.html", ts: "ts-klassen-generics.html", sql: "", all: "Class.html" , lua: "lua-module.html", c: "", csharp: "csharp-klassen.html", swift: "swift-typen.html" } },   // "" = bewusst kein Link
+    links: { cpp: "cpp-class.html", php: "php-oop.html", js: "js-klassen.html", ts: "ts-klassen-generics.html", sql: "", all: "Class.html" , lua: "lua-module.html", c: "", csharp: "csharp-klassen.html", swift: "swift-typen.html", python: "python-klassen.html" } },   // "" = bewusst kein Link
   { words: ["CSS-Klasse", "CSS-Klassen"],
     links: { all: "Class.html" } },
   // "Eingabe" ist in C++ cin, im Web ein Eingabefeld
   { words: ["Eingabe", "Eingaben"],
-    links: { cpp: "cin.html", php: "php-formulare.html", node: "", sql: "", all: "input.html" } },
+    links: { cpp: "cin.html", php: "php-formulare.html", node: "", sql: "", all: "input.html", python: "python-grundlagen.html#input" } },
   // "einbinden" ist in C++ #include, im Web <link>/<script>
   { words: ["einbinden", "eingebunden", "Einbinden"],
-    links: { cpp: "include.html", php: "php-funktionen.html", sql: "", all: "link.html" } },
+    links: { cpp: "include.html", php: "php-funktionen.html", sql: "", all: "link.html", python: "python-module-pip.html#import" } },
 
   // ===== Nur CSS =====
   { words: ["Farbe", "Farben", "Hintergrundfarbe", "Farbverlauf"],
@@ -284,7 +300,7 @@ const smartLinkRules = [
   { words: ["Event", "Events", "Ereignis", "Ereignisse", "addEventListener"],
                                                           links: { js: "js-events.html", html: "js-events.html" } },
   { words: ["Operator", "Operatoren"],                    links: { js: "js-operatoren.html", cpp: "cpp-operatoren.html", php: "php-grundlagen.html" , lua: "lua-grundlagen.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
-  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html", php: "php-grundlagen.html" , lua: "lua-strings.html", c: "c-strings.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html" } },
+  { words: ["String", "Strings", "Template-String"],      links: { js: "js-strings.html", cpp: "cpp-string.html", php: "php-grundlagen.html" , lua: "lua-strings.html", c: "c-strings.html", csharp: "csharp-grundlagen.html", swift: "swift-grundlagen.html", python: "python-strings.html" } },
   { words: ["JSON"],                                      links: { js: "json-verwenden.html#javascript", html: "json-verwenden.html#javascript", all: "json-einfuehrung.html" } },
   { words: ["JSON.parse", "JSON.stringify"],              links: { all: "json-verwenden.html#javascript" } },
   { words: ["Konsole", "console.log"],                    links: { js: "js-konsole.html", html: "js-konsole.html", css: "js-konsole.html", cpp: "cout.html" , c: "c-ein-ausgabe.html", csharp: "csharp-einfuehrung.html" } },
@@ -300,7 +316,7 @@ const smartLinkRules = [
   { words: ["DOM"],                                       links: { js: "js-dom.html", html: "js-dom.html", css: "js-dom.html" } },
   { words: ["Selektor", "Selektoren"],                    links: { css: "css-selektoren.html", html: "css-selektoren.html", js: "css-selektoren.html" } },
   { words: ["Überschrift", "Überschriften"],              links: { html: "headings.html", css: "headings.html", js: "headings.html" } },
-  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html", php: "php-arrays.html" , lua: "lua-tabellen.html", c: "c-zeiger.html", csharp: "csharp-collections.html", swift: "swift-typen.html" } },
+  { words: ["Array", "Arrays"],                           links: { js: "js-arrays.html", cpp: "cpp-arrays.html", php: "php-arrays.html" , lua: "lua-tabellen.html", c: "c-zeiger.html", csharp: "csharp-collections.html", swift: "swift-typen.html", python: "python-listen-dicts.html#list" } },
   { words: ["Auswahlmenü", "Dropdown"],                   links: { html: "select.html", css: "select.html", js: "select.html" } },
   { words: ["Untertitel"],                                links: { html: "video.html", css: "video.html", js: "video.html" } },
   { words: ["Layout", "Layouts"],                         links: { css: "css-display.html", html: "css-display.html" } },
@@ -309,7 +325,7 @@ const smartLinkRules = [
   { words: ["Stylesheet", "Stylesheets", "CSS-Datei", "CSS-Dateien"],
                                                           links: { html: "link.html", css: "link.html" } },
   { words: ["Tabelle", "Tabellen"],                       links: { html: "table.html", css: "table.html", js: "table.html", sql: "sql-tabellen.html", php: "sql-tabellen.html" , lua: "lua-tabellen.html" } },
-  { words: ["Liste", "Listen"],                           links: { html: "liste.html", css: "liste.html", js: "liste.html" } },
+  { words: ["Liste", "Listen"],                           links: { html: "liste.html", css: "liste.html", js: "liste.html", python: "python-listen-dicts.html#list" } },
   { words: ["Formular", "Formulare"],                     links: { html: "form.html", css: "form.html", js: "js-formulare.html", php: "php-formulare.html" } },
   { words: ["Container", "Containern"],                   links: { html: "container.html", css: "container.html", js: "container.html" } },
   { words: ["Bild", "Bilder"],                            links: { html: "img.html", css: "img.html", js: "img.html" } },
@@ -347,6 +363,44 @@ const smartLinkRules = [
   { words: ["Interface", "Interfaces", "Record", "Partial"], links: { ts: "ts-interfaces.html" } },
   { words: ["Generic", "Generics", "private", "public", "protected", "implements"],
                                                           links: { ts: "ts-klassen-generics.html" } },
+
+  // ===== Nur Python =====
+  // Allgemeine Wörter (Funktion, Schleife, Variable, Klasse, String, Liste …)
+  // haben ihr python-Ziel OBEN in den gemeinsamen Regeln bekommen – so steht
+  // jedes Wort nur in EINER Regel. Hier folgen nur die Begriffe, die es so
+  // nur in Python gibt.
+  { words: ["REPL"],                                       links: { python: "python-einfuehrung.html#repl" } },
+  { words: ["Einrückung", "eingerückt", "IndentationError"], links: { python: "python-einfuehrung.html#einrueckung" } },
+  { words: ["Typumwandlung"],                              links: { python: "python-grundlagen.html#typumwandlung" } },
+  { words: ["Ausgabe", "print()"],                         links: { python: "python-grundlagen.html#print" } },
+  { words: ["input()"],                                    links: { python: "python-grundlagen.html#input" } },
+  { words: ["f-String", "f-Strings"],                      links: { python: "python-grundlagen.html#f-strings" } },
+  { words: ["range()", "enumerate"],                       links: { python: "python-kontrolle.html#for" } },
+  { words: ["match/case"],                                 links: { python: "python-kontrolle.html#match" } },
+  { words: ["Parameter", "Standardwert", "Standardwerte"], links: { python: "python-funktionen.html#standardwerte" } },
+  { words: ["*args", "**kwargs"],                          links: { python: "python-funktionen.html#args-kwargs" } },
+  { words: ["Lambda", "Lambdas"],                          links: { python: "python-funktionen.html#lambda" } },
+  { words: ["Type Hint", "Type Hints"],                    links: { python: "python-funktionen.html#type-hints" } },
+  { words: ["Tupel"],                                      links: { python: "python-listen-dicts.html#tuple" } },
+  { words: ["Dict", "Dicts", "Wörterbuch"],                links: { python: "python-listen-dicts.html#dict" } },
+  { words: ["Set", "Sets"],                                links: { python: "python-listen-dicts.html#set" } },
+  { words: ["Slicing"],                                    links: { python: "python-listen-dicts.html#slicing" } },
+  { words: ["Comprehension", "Comprehensions", "List Comprehension", "List Comprehensions"],
+                                                          links: { python: "python-listen-dicts.html#comprehension" } },
+  { words: ["split", "join"],                              links: { python: "python-strings.html#split-join" } },
+  { words: ["pathlib"],                                    links: { python: "python-dateien.html#pathlib" } },
+  { words: ["Konstruktor", "__init__", "self"],            links: { python: "python-klassen.html#init" } },
+  { words: ["dataclass", "@dataclass"],                    links: { python: "python-klassen.html#dataclass" } },
+  { words: ["try/except", "except", "finally"],            links: { python: "python-fehler.html#try" } },
+  { words: ["raise"],                                      links: { python: "python-fehler.html#raise" } },
+  { words: ["Traceback"],                                  links: { python: "python-fehler.html#traceback" } },
+  { words: ["Modul", "Module", "import"],                  links: { python: "python-module-pip.html#import" } },
+  { words: ["__name__", "__main__"],                       links: { python: "python-module-pip.html#main" } },
+  // Diese drei gelten ÜBERALL ("all"): Wer auf einer anderen Seite (z. B.
+  // bei npm) über pip oder venv stolpert, soll hierher finden.
+  { words: ["venv", "virtuelle Umgebung"],                 links: { all: "python-module-pip.html#venv" } },
+  { words: ["pip", "PyPI"],                                links: { all: "python-module-pip.html#pip" } },
+  { words: ["externally-managed-environment"],             links: { all: "python-module-pip.html#externally-managed" } },
 
   // ===== IT-Grundlagen =====
   // Verlinkt auf ALLEN Detailseiten (value "all"), weil die Begriffe

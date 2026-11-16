@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python – Sprache für fast alles – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Überblick</p>
+    <h1>Python</h1>
+    <p class="page-lead">Gut lesbare Allzweck-Sprache – für Skripte, Automatisierung, Daten, Web-Backends und zum Lernen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Inhalt</h2>
+      <nav class="chip-row" aria-label="Inhaltsverzeichnis">
+        <a class="chip" href="#was-ist-das">Was ist das?</a>
+        <a class="chip" href="#geschichte">Geschichte</a>
+        <a class="chip" href="#grundlagen">Grundlagen</a>
+        <a class="chip" href="#vergleich">Vergleich</a>
+        <a class="chip" href="#einsatz">Einsatzgebiete</a>
+        <a class="chip" href="#lernweg">Lernweg</a>
+      </nav>
+    </section>
+    <section id="was-ist-das">
+      <h2>Was ist das?</h2>
+      <p>Python ist eine <strong>interpretierte</strong> Programmiersprache: Der Code wird nicht vorher in eine Programmdatei übersetzt (wie bei C++), sondern vom Programm <code>python</code> Zeile für Zeile ausgeführt. Blöcke werden nicht mit <code>{ }</code> markiert, sondern durch <strong>Einrückung</strong>. Das macht Python-Code kurz und gut lesbar.</p>
+    </section>
+    <section id="geschichte">
+      <h2>1. Geschichte</h2>
+      <p>Python wurde 1991 von Guido van Rossum veröffentlicht. Der Name kommt nicht von der Schlange, sondern von der Comedy-Gruppe „Monty Python“. Heute ist nur noch <strong>Python 3</strong> aktuell – Python 2 wird seit 2020 nicht mehr gepflegt. Anleitungen mit <code>print "Hallo"</code> (ohne Klammern) sind Python 2 und veraltet.</p>
+    </section>
+    <section id="grundlagen">
+      <h2>2. Grundlagen</h2>
+      <p>Ein vollständiges Programm – keine <code>main()</code>-Funktion, keine Semikolons, keine Typangaben nötig:</p>
+      <pre><code># hello.py
+names = ["Anna", "Max", "Kim"]      # eine Liste
+
+for name in names:                  # Doppelpunkt + Einrückung = Block
+    if name == "Max":
+        print(f"Hallo {name}, du bist dran!")
+    else:
+        print(f"Hallo {name}")</code></pre>
+      <p>Ausführen im Terminal:</p>
+      <pre><code>python hello.py</code></pre>
+      <h3>Wichtige Konzepte</h3>
+      <ul>
+        <li>Einrückung (4 Leerzeichen) gehört zur Sprache</li>
+        <li>Variablen haben keinen festen Typ – der Wert bestimmt ihn</li>
+        <li>Fast alles ist ein Objekt mit Methoden: <code>"abc".upper()</code></li>
+        <li>Sehr große Standardbibliothek („batteries included“)</li>
+      </ul>
+    </section>
+    <section id="vergleich">
+      <h2>3. So sieht es in Python / C++ / JS / Lua aus</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Python</th><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody>
+          <tr><td>Variable</td><td><code>age = 25</code></td><td><code>int age = 25;</code></td><td><code>let age = 25;</code></td><td><code>local age = 25</code></td></tr>
+          <tr><td>Ausgabe</td><td><code>print("Hi")</code></td><td><code>std::cout &lt;&lt; "Hi";</code></td><td><code>console.log("Hi")</code></td><td><code>print("Hi")</code></td></tr>
+          <tr><td>Block</td><td>Einrückung</td><td><code>{ }</code></td><td><code>{ }</code></td><td><code>then … end</code></td></tr>
+          <tr><td>Kommentar</td><td><code>#</code></td><td><code>//</code></td><td><code>//</code></td><td><code>--</code></td></tr>
+          <tr><td>Funktion</td><td><code>def add(a, b):</code></td><td><code>int add(int a, int b) { }</code></td><td><code>function add(a, b) { }</code></td><td><code>function add(a, b) end</code></td></tr>
+          <tr><td>Liste</td><td><code>[1, 2, 3]</code></td><td><code>std::vector&lt;int&gt;</code></td><td><code>[1, 2, 3]</code></td><td><code>{1, 2, 3}</code></td></tr>
+          <tr><td>Erster Index</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+          <tr><td>Kein Wert</td><td><code>None</code></td><td><code>nullptr</code></td><td><code>null</code> / <code>undefined</code></td><td><code>nil</code></td></tr>
+          <tr><td>Wahr / falsch</td><td><code>True</code> / <code>False</code></td><td><code>true</code> / <code>false</code></td><td><code>true</code> / <code>false</code></td><td><code>true</code> / <code>false</code></td></tr>
+          <tr><td>Und / oder / nicht</td><td><code>and or not</code></td><td><code>&amp;&amp; || !</code></td><td><code>&amp;&amp; || !</code></td><td><code>and or not</code></td></tr>
+          <tr><td>Ausführen</td><td><code>python x.py</code></td><td><code>g++ x.cpp -o x &amp;&amp; ./x</code></td><td><code>node x.js</code></td><td><code>lua x.lua</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="einsatz">
+      <h2>4. Einsatzgebiete</h2>
+      <ul>
+        <li>Skripte und Automatisierung (Dateien umbenennen, Daten umwandeln, Backups)</li>
+        <li>Datenanalyse und KI (pandas, NumPy, PyTorch)</li>
+        <li>Web-Backends (Django, Flask, FastAPI)</li>
+        <li>Werkzeuge auf Linux – viele Programme auf Arch sind selbst in Python geschrieben</li>
+        <li>Lernen und Ausprobieren, weil man sofort Ergebnisse sieht</li>
+      </ul>
+      <p>Weniger geeignet ist Python, wenn es auf maximale Geschwindigkeit ankommt (Spiele-Engines, Treiber) – dort nimmt man C++ oder C.</p>
+    </section>
+    <section id="lernweg">
+      <h2>5. Lernweg auf diesem Spicker</h2>
+      <ol>
+        <li><a href="python-einfuehrung.html">Einführung</a> – installieren, REPL, erstes Skript</li>
+        <li><a href="python-grundlagen.html">Grundlagen</a> – Variablen, Datentypen, print/input</li>
+        <li><a href="python-kontrolle.html">Kontrollstrukturen</a> – if, for, while, match</li>
+        <li><a href="python-funktionen.html">Funktionen</a></li>
+        <li><a href="python-listen-dicts.html">Listen, Tupel, Dicts, Sets</a> und <a href="python-strings.html">Strings</a></li>
+        <li><a href="python-dateien.html">Dateien &amp; JSON</a></li>
+        <li><a href="python-klassen.html">Klassen</a> und <a href="python-fehler.html">Fehlerbehandlung</a></li>
+        <li><a href="python-module-pip.html">Module, venv &amp; pip</a></li>
+      </ol>
+      <div class="note">
+        <strong>Merksatz:</strong> In Python ist die Einrückung keine Schönheitsfrage – sie <em>ist</em> die Struktur des Programms.
+      </div>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li>Auf Arch heißt der Befehl <code>python</code> (das ist Python 3). Auf Debian/Ubuntu heißt er <code>python3</code>.</li>
+        <li><code>True</code>, <code>False</code> und <code>None</code> werden großgeschrieben – <code>true</code> ist ein Fehler.</li>
+        <li>Tabs und Leerzeichen nie mischen. Editor auf „4 Leerzeichen“ stellen.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-einfuehrung.html">Einführung &amp; Installation</a>
+        <a class="chip" href="python-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="python-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="python-funktionen.html">Funktionen</a>
+        <a class="chip" href="python-listen-dicts.html">Listen &amp; Dicts</a>
+        <a class="chip" href="python-module-pip.html">Module, venv &amp; pip</a>
+        <a class="chip" href="cpp-sprache.html">C++</a>
+        <a class="chip" href="javascript-sprache.html">JavaScript</a>
+        <a class="chip" href="lua-einfuehrung.html">Lua</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Module, venv &amp; pip – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Module &amp; Pakete</p>
+    <h1>Module, venv &amp; pip</h1>
+    <p class="page-lead">Code mit import wiederverwenden, eigene Module schreiben und fremde Pakete sauber installieren – auf Arch mit venv oder pacman statt systemweitem pip.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein <strong>Modul</strong> ist eine <code>.py</code>-Datei, deren Funktionen und Klassen man in anderen Dateien mit <code>import</code> benutzt. Ein <strong>Paket</strong> ist eine Sammlung von Modulen. Viele sind schon dabei (Standardbibliothek: <code>math</code>, <code>random</code>, <code>json</code> …), weitere holt man mit <code>pip</code> von <em>PyPI</em>, dem Python-Paketverzeichnis.</p>
+    </section>
+    <section id="import">
+      <h2>import</h2>
+      <pre><code># imports.py
+import math                         # ganzes Modul – Zugriff mit math.
+print(math.sqrt(16), math.pi)
+
+import random as rnd                # mit Kurznamen
+print(rnd.randint(1, 6))            # Würfel: 1 bis 6
+
+from datetime import date           # nur einen Namen holen – ohne Präfix nutzbar
+print(date.today())
+
+from pathlib import Path, PurePath  # mehrere Namen
+
+import sys
+print(sys.version)                  # Python-Version
+print(sys.argv)                     # Argumente von der Kommandozeile</code></pre>
+      <pre><code>python imports.py eins zwei</code></pre>
+      <p><code>from modul import *</code> holt alles auf einmal – vermeiden: Man sieht dann nicht mehr, woher ein Name kommt.</p>
+    </section>
+    <section id="eigene-module">
+      <h2>Eigene Module</h2>
+      <p>Zwei Dateien im <strong>selben Ordner</strong>. Der Modulname ist der Dateiname ohne <code>.py</code>.</p>
+      <pre><code># geometry.py
+"""Kleine Hilfsfunktionen für Flächen."""
+
+PI = 3.14159
+
+def circle_area(radius):
+    return PI * radius ** 2
+
+def rectangle_area(width, height):
+    return width * height</code></pre>
+      <pre><code># main.py
+import geometry
+from geometry import rectangle_area
+
+print(geometry.circle_area(2))
+print(rectangle_area(3, 4))</code></pre>
+      <pre><code>python main.py</code></pre>
+    </section>
+    <section id="main">
+      <h2>if __name__ == "__main__"</h2>
+      <p>Beim <code>import</code> führt Python die <strong>ganze</strong> Datei einmal aus – auch Test-Ausgaben ganz unten. Die Variable <code>__name__</code> verrät, wie die Datei gestartet wurde: direkt mit <code>python datei.py</code> heißt sie <code>"__main__"</code>, bei einem Import trägt sie den Modulnamen.</p>
+      <pre><code># temperature.py
+def to_fahrenheit(celsius):
+    return celsius * 9 / 5 + 32
+
+def main():
+    print("20 °C sind", to_fahrenheit(20), "°F")
+
+if __name__ == "__main__":      # nur beim direkten Start, NICHT beim Import
+    main()</code></pre>
+      <pre><code>python temperature.py                                      # ruft main() auf
+python -c "import temperature; print(temperature.to_fahrenheit(0))"   # nur die Funktion, ohne main()</code></pre>
+      <p>Entspricht der <code>main()</code>-Funktion in C++: ein klarer Startpunkt, der Rest der Datei bleibt wiederverwendbar.</p>
+    </section>
+    <section id="externally-managed">
+      <h2>Arch: „externally-managed-environment“</h2>
+      <p>Wer auf Arch einfach <code>pip install requests</code> tippt, bekommt:</p>
+      <pre><code>error: externally-managed-environment
+
+× This environment is externally managed
+╰─&gt; To install Python packages system-wide, try 'pacman -S python-xyz' …</code></pre>
+      <p><strong>Warum?</strong> Das System-Python gehört <code>pacman</code>. Viele Arch-Programme sind in Python geschrieben und brauchen bestimmte Paket-Versionen. Würde <code>pip</code> dort Dateien überschreiben, die <code>pacman</code> verwaltet, könnten Systemprogramme kaputtgehen – und <code>pacman</code> wüsste nichts davon. Darum verweigert <code>pip</code> das (Regel „PEP 668“).</p>
+      <table class="info-table">
+        <thead><tr><th>Situation</th><th>Richtige Wahl</th><th>Befehl</th></tr></thead>
+        <tbody>
+          <tr><td>Eigenes Projekt mit Paketen</td><td><strong>venv</strong> – eigene Umgebung nur für dieses Projekt</td><td><code>python -m venv .venv</code></td></tr>
+          <tr><td>Paket für kleine Skripte überall auf dem System, und es gibt ein Arch-Paket</td><td><strong>pacman</strong> – wird mit dem System aktuell gehalten</td><td><code>sudo pacman -S python-requests</code></td></tr>
+          <tr><td>Ein fertiges Python-<em>Programm</em> (z. B. <code>yt-dlp</code>, <code>black</code>)</td><td>zuerst pacman; sonst <strong>pipx</strong> (eigenes venv je Programm)</td><td><code>sudo pacman -S python-pipx</code>, dann <code>pipx install name</code></td></tr>
+        </tbody>
+      </table>
+      <p>Arch-Pakete für Python heißen fast immer <code>python-&lt;name&gt;</code>. Suchen mit <code>pacman -Ss python-requests</code> (<code>-Ss</code> = in den Paketquellen suchen).</p>
+      <div class="note">
+        <strong>Nicht benutzen:</strong> <code>pip install --break-system-packages</code> und <code>sudo pip install</code>. Beide schalten genau den Schutz ab, der das System heil hält.
+      </div>
+    </section>
+    <section id="venv">
+      <h2>venv – virtuelle Umgebung</h2>
+      <p>Ein venv ist ein Ordner (üblich: <code>.venv</code>) mit einem eigenen <code>python</code> und eigenem <code>pip</code>. Pakete landen <strong>nur dort</strong>. Jedes Projekt bekommt sein eigenes – so stören sich Versionen nicht, und Löschen des Ordners räumt alles auf.</p>
+      <pre><code>cd ~/Dev/projects/mein-projekt     # in den Projektordner wechseln
+python -m venv .venv               # venv im Unterordner .venv anlegen (einmalig)
+
+# aktivieren – je nach Shell (echo $SHELL zeigt, welche man hat)
+source .venv/bin/activate          # bash / zsh
+source .venv/bin/activate.fish     # fish
+
+which python                       # zeigt jetzt …/mein-projekt/.venv/bin/python
+pip install requests               # landet NUR im venv – kein Fehler mehr
+python main.py                     # nutzt die Pakete aus dem venv
+
+deactivate                         # venv wieder verlassen</code></pre>
+      <p>Ist ein venv aktiv, steht meist <code>(.venv)</code> vorn in der Eingabezeile. Ohne Aktivieren geht es auch – das <code>python</code> des venv direkt aufrufen: <code>.venv/bin/python main.py</code>.</p>
+      <p>Der Ordner <code>.venv</code> gehört <strong>nicht</strong> ins Git-Repository: in <code>.gitignore</code> die Zeile <code>.venv/</code> eintragen.</p>
+    </section>
+    <section id="pip">
+      <h2>pip – Pakete installieren</h2>
+      <p>Alle Befehle bei <strong>aktivem venv</strong>:</p>
+      <table class="info-table">
+        <thead><tr><th>Befehl</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>pip install requests</code></td><td>Paket installieren</td></tr>
+          <tr><td><code>pip install "requests==2.32.3"</code></td><td>Genau diese Version</td></tr>
+          <tr><td><code>pip install --upgrade requests</code></td><td>Auf die neueste Version bringen</td></tr>
+          <tr><td><code>pip uninstall requests</code></td><td>Entfernen</td></tr>
+          <tr><td><code>pip list</code></td><td>Installierte Pakete anzeigen</td></tr>
+          <tr><td><code>pip show requests</code></td><td>Infos zu einem Paket</td></tr>
+          <tr><td><code>pip freeze &gt; requirements.txt</code></td><td>Alle Pakete mit Version in eine Datei schreiben</td></tr>
+          <tr><td><code>pip install -r requirements.txt</code></td><td>Alles aus der Datei installieren (z. B. nach <code>git clone</code>)</td></tr>
+        </tbody>
+      </table>
+      <pre><code># fetch_status.py  (vorher im venv: pip install requests)
+import requests
+
+response = requests.get("https://example.com", timeout=10)
+print(response.status_code)         # 200 = OK
+print(len(response.text), "Zeichen geladen")</code></pre>
+      <pre><code>python fetch_status.py</code></pre>
+    </section>
+    <section>
+      <h2>Vergleich: So sieht es in Python / JS / C++ / Lua aus</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Python</th><th>JavaScript (Node)</th><th>C++</th><th>Lua</th></tr></thead>
+        <tbody>
+          <tr><td>Einbinden</td><td><code>import math</code></td><td><code>import fs from "node:fs"</code></td><td><code>#include &lt;cmath&gt;</code></td><td><code>require("modul")</code></td></tr>
+          <tr><td>Paketmanager</td><td><code>pip</code></td><td><code>npm</code></td><td>– (pacman, vcpkg, Conan)</td><td><code>luarocks</code></td></tr>
+          <tr><td>Pakete pro Projekt</td><td><code>.venv/</code></td><td><code>node_modules/</code></td><td>–</td><td>–</td></tr>
+          <tr><td>Paketliste</td><td><code>requirements.txt</code></td><td><code>package.json</code></td><td><code>CMakeLists.txt</code></td><td>–</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>ModuleNotFoundError: No module named 'requests'</code> – das Paket fehlt in <em>dieser</em> Umgebung. Fast immer ist das venv nicht aktiv. Mit <code>which python</code> prüfen.</li>
+        <li>Die eigene Datei nicht wie ein Modul nennen (<code>random.py</code>, <code>requests.py</code>) – <code>import</code> findet zuerst die eigene Datei.</li>
+        <li>Ein venv nicht verschieben oder umbenennen – es merkt sich absolute Pfade. Lieber löschen (<code>rm -r .venv</code>) und neu anlegen; <code>requirements.txt</code> bringt die Pakete zurück.</li>
+        <li>Nach einem großen Python-Update durch pacman (z. B. 3.13 → 3.14) funktionieren alte venvs nicht mehr – ebenfalls neu anlegen.</li>
+        <li>Fehlt <code>pip</code> außerhalb eines venv: Das ist auf Arch normal, es steckt im Paket <code>python-pip</code>. Im venv ist <code>pip</code> immer dabei.</li>
+        <li>Importe stehen ganz oben in der Datei: erst Standardbibliothek, dann fremde Pakete, dann eigene Module.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-einfuehrung.html">Einführung</a>
+        <a class="chip" href="python-funktionen.html">Funktionen</a>
+        <a class="chip" href="python-fehler.html">Fehlerbehandlung</a>
+        <a class="chip" href="js-module.html">JS: Module</a>
+        <a class="chip" href="node-npm.html">npm</a>
+        <a class="chip" href="lua-module.html">Lua: Module</a>
+        <a class="chip" href="terminal.html">Terminal</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

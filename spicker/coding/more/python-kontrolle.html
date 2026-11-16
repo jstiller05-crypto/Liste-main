@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Kontrollstrukturen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Kontrollstrukturen</p>
+    <h1>if, Schleifen &amp; match</h1>
+    <p class="page-lead">Entscheidungen mit if/elif/else, Wiederholungen mit for und while, Abkürzungen mit break/continue und Fallunterscheidung mit match/case.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Kontrollstrukturen steuern, <strong>welche</strong> Zeilen ausgeführt werden (Bedingungen) und <strong>wie oft</strong> (Schleifen). In Python enden die Kopfzeilen mit einem Doppelpunkt, der Block darunter ist eingerückt. Runde Klammern um die Bedingung braucht man nicht.</p>
+    </section>
+    <section id="if">
+      <h2>if / elif / else</h2>
+      <pre><code># grade.py
+points = 72
+
+if points &gt;= 90:
+    print("sehr gut")
+elif points &gt;= 50:              # elif = "else if", beliebig viele möglich
+    print("bestanden")
+else:
+    print("nicht bestanden")
+
+# Bedingungen verknüpfen: and, or, not (statt &amp;&amp;, ||, !)
+age = 17
+has_ticket = True
+if age &gt;= 16 and has_ticket:
+    print("Einlass")
+
+# Bereich prüfen – Vergleiche lassen sich verketten
+if 0 &lt;= points &lt;= 100:
+    print("gültige Punktzahl")
+
+# Kurzform in einer Zeile (wie  bedingung ? a : b  in C++/JS)
+status = "voll" if points == 100 else "nicht voll"
+print(status)</code></pre>
+      <pre><code>python grade.py</code></pre>
+      <table class="info-table">
+        <thead><tr><th>Operator</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><code>==</code> &nbsp; <code>!=</code></td><td>gleich / ungleich</td></tr>
+          <tr><td><code>&lt;</code> &nbsp; <code>&lt;=</code> &nbsp; <code>&gt;</code> &nbsp; <code>&gt;=</code></td><td>kleiner / größer (oder gleich)</td></tr>
+          <tr><td><code>and</code> &nbsp; <code>or</code> &nbsp; <code>not</code></td><td>und / oder / nicht</td></tr>
+          <tr><td><code>in</code> &nbsp; <code>not in</code></td><td>enthalten in Liste/Text: <code>"a" in "Hallo"</code></td></tr>
+          <tr><td><code>is</code> &nbsp; <code>is not</code></td><td>dasselbe Objekt – vor allem für <code>x is None</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="for">
+      <h2>for mit range()</h2>
+      <p>Die <code>for</code>-Schleife läuft in Python immer über eine <strong>Folge von Werten</strong>. Die klassische Zählschleife <code>for (int i = 0; i &lt; 5; i++)</code> gibt es nicht – dafür erzeugt <code>range()</code> die Zahlenfolge.</p>
+      <pre><code># loops.py
+for i in range(5):              # 0, 1, 2, 3, 4  (die 5 ist NICHT dabei)
+    print(i, end=" ")
+print()
+
+for i in range(1, 6):           # 1 bis 5  (Start, Ende exklusiv)
+    print(i, end=" ")
+print()
+
+for i in range(10, 0, -2):      # 10, 8, 6, 4, 2  (dritter Wert = Schrittweite)
+    print(i, end=" ")
+print()
+
+# Direkt über eine Liste laufen – kein Index nötig
+colors = ["rot", "grün", "blau"]
+for color in colors:
+    print(color)
+
+# Index UND Wert: enumerate
+for index, color in enumerate(colors, start=1):
+    print(index, color)
+
+# Über einen Text laufen: Zeichen für Zeichen
+for char in "abc":
+    print(char)</code></pre>
+      <pre><code>python loops.py</code></pre>
+    </section>
+    <section id="while">
+      <h2>while</h2>
+      <p><code>while</code> wiederholt, solange die Bedingung wahr ist – passend, wenn man vorher nicht weiß, wie oft.</p>
+      <pre><code># countdown.py
+count = 3
+while count &gt; 0:
+    print(count)
+    count -= 1                  # ohne diese Zeile: Endlosschleife!
+print("Start!")</code></pre>
+      <pre><code>python countdown.py</code></pre>
+      <p>Eine Endlosschleife bricht man im Terminal mit <strong>Strg+C</strong> ab.</p>
+    </section>
+    <section id="break-continue">
+      <h2>break &amp; continue</h2>
+      <pre><code># search.py
+numbers = [4, 7, -1, 9, 12]
+
+for number in numbers:
+    if number &lt; 0:
+        continue                # diesen Durchlauf überspringen
+    if number &gt; 10:
+        break                   # Schleife ganz verlassen
+    print(number)               # gibt 4, 7, 9 aus
+
+# Typisches Muster: so lange fragen, bis die Eingabe passt
+while True:
+    answer = input("Weiter? (j/n) ")
+    if answer in ("j", "n"):
+        break
+    print("Bitte j oder n eingeben.")</code></pre>
+      <pre><code>python search.py</code></pre>
+      <p>Besonderheit: Eine Schleife kann ein <code>else</code> haben. Es läuft nur, wenn die Schleife <strong>nicht</strong> per <code>break</code> verlassen wurde – praktisch für „nichts gefunden“.</p>
+    </section>
+    <section id="match">
+      <h2>match / case</h2>
+      <p>Ab Python 3.10. Entspricht <code>switch</code> in C++/JS, aber ohne <code>break</code> – es wird immer nur <strong>ein</strong> Fall ausgeführt.</p>
+      <pre><code># command.py
+command = "stop"
+
+match command:
+    case "start":
+        print("Los geht's")
+    case "stop" | "quit":       # | = oder
+        print("Ende")
+    case _:                     # _ = alles andere (wie default)
+        print("Unbekannter Befehl")
+
+# match kann auch Strukturen zerlegen
+point = (0, 5)
+match point:
+    case (0, 0):
+        print("Ursprung")
+    case (0, y):                # x ist 0, y wird als Variable gefüllt
+        print(f"auf der y-Achse bei {y}")
+    case (x, y):
+        print(f"irgendwo: {x}, {y}")</code></pre>
+      <pre><code>python command.py</code></pre>
+    </section>
+    <section>
+      <h2>Vergleich: So sieht es in Python / C++ / JS / Lua aus</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Python</th><th>C++ / JS</th><th>Lua</th></tr></thead>
+        <tbody>
+          <tr><td>Bedingung</td><td><code>if x &gt; 0:</code></td><td><code>if (x &gt; 0) { }</code></td><td><code>if x &gt; 0 then … end</code></td></tr>
+          <tr><td>Sonst-wenn</td><td><code>elif</code></td><td><code>else if</code></td><td><code>elseif</code></td></tr>
+          <tr><td>Zählschleife</td><td><code>for i in range(5):</code></td><td><code>for (int i = 0; i &lt; 5; i++)</code></td><td><code>for i = 0, 4 do … end</code></td></tr>
+          <tr><td>Über Liste</td><td><code>for x in items:</code></td><td><code>for (auto x : items)</code> / <code>for (const x of items)</code></td><td><code>for _, x in ipairs(items) do</code></td></tr>
+          <tr><td>Ungleich</td><td><code>!=</code></td><td><code>!=</code> / <code>!==</code></td><td><code>~=</code></td></tr>
+          <tr><td>Fallunterscheidung</td><td><code>match</code> / <code>case</code></td><td><code>switch</code> / <code>case</code></td><td>– (if/elseif)</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>range(5)</code> endet bei 4. Für 1 bis 5 schreibt man <code>range(1, 6)</code>.</li>
+        <li><code>=</code> weist zu, <code>==</code> vergleicht. <code>if x = 5:</code> ist in Python ein <code>SyntaxError</code> (in C++ ein versteckter Fehler).</li>
+        <li>Eine Liste nicht verändern, während man mit <code>for</code> über sie läuft – lieber eine neue Liste bauen.</li>
+        <li>Leere Liste, leerer Text, <code>0</code> und <code>None</code> gelten als falsch: <code>if items:</code> heißt „wenn die Liste nicht leer ist“.</li>
+        <li>In <code>match</code> ist ein einfacher Name wie <code>case x:</code> <strong>kein</strong> Vergleich mit der Variablen x, sondern fängt alles ein.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="python-funktionen.html">Funktionen</a>
+        <a class="chip" href="python-listen-dicts.html">Listen &amp; Dicts</a>
+        <a class="chip" href="cpp-kontrolle.html">C++: Kontrollstrukturen</a>
+        <a class="chip" href="js-schleifen.html">JS: Schleifen</a>
+        <a class="chip" href="lua-kontrolle.html">Lua: Kontrollstrukturen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

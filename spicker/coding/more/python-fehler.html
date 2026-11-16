@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Fehlerbehandlung – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Fehler</p>
+    <h1>Fehler &amp; Exceptions</h1>
+    <p class="page-lead">Fehler mit try/except abfangen, mit raise selbst auslösen, eigene Exceptions bauen – und einen Traceback richtig lesen.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Geht zur Laufzeit etwas schief – Datei fehlt, Text ist keine Zahl, Division durch null –, löst Python eine <strong>Exception</strong> (Ausnahme) aus. Fängt niemand sie ab, bricht das Programm ab und zeigt einen <strong>Traceback</strong>. Mit <code>try/except</code> reagiert man stattdessen gezielt darauf.</p>
+    </section>
+    <section id="try">
+      <h2>try / except / else / finally</h2>
+      <pre><code># safe_input.py
+def read_number(text):
+    try:
+        number = int(text)                  # kann ValueError auslösen
+    except ValueError:
+        print(f"[warn] '{text}' ist keine ganze Zahl")
+        return None
+    else:
+        print("[ok] Umwandlung hat geklappt")   # läuft nur OHNE Fehler
+        return number
+    finally:
+        print("[info] fertig mit", repr(text))  # läuft IMMER – mit und ohne Fehler
+
+print(read_number("42"))
+print(read_number("abc"))</code></pre>
+      <pre><code>python safe_input.py</code></pre>
+      <h3>Mehrere Fehlerarten</h3>
+      <pre><code># divide.py
+def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("[warn] Division durch null")
+    except TypeError as error:              # "as error" gibt Zugriff auf die Meldung
+        print("[warn] falscher Typ:", error)
+    return None
+
+print(divide(10, 2))
+print(divide(10, 0))
+print(divide("10", 2))
+
+# Mehrere Arten gleich behandeln: als Tupel
+try:
+    value = int(input("Zahl: "))
+    print(100 / value)
+except (ValueError, ZeroDivisionError) as error:
+    print("[warn] ungültige Eingabe:", error)</code></pre>
+      <pre><code>python divide.py</code></pre>
+    </section>
+    <section id="raise">
+      <h2>raise – selbst einen Fehler auslösen</h2>
+      <pre><code># validate.py
+def set_volume(level):
+    if not isinstance(level, (int, float)):
+        raise TypeError("level muss eine Zahl sein")
+    if not 0 &lt;= level &lt;= 100:
+        raise ValueError(f"level muss zwischen 0 und 100 liegen, nicht {level}")
+    print("Lautstärke:", level)
+
+set_volume(40)
+
+try:
+    set_volume(150)
+except ValueError as error:
+    print("[error]", error)</code></pre>
+      <pre><code>python validate.py</code></pre>
+    </section>
+    <section id="eigene">
+      <h2>Eigene Exceptions</h2>
+      <p>Eine eigene Exception ist eine Klasse, die von <code>Exception</code> erbt. So kann der Aufrufer <strong>genau diesen</strong> Fehler abfangen und alle anderen durchlassen.</p>
+      <pre><code># shop.py
+class InsufficientFundsError(Exception):
+    """Wird ausgelöst, wenn das Guthaben nicht reicht."""
+
+    def __init__(self, balance, price):
+        super().__init__(f"Guthaben {balance} € reicht nicht für {price} €")
+        self.missing = price - balance      # Zusatz-Info für den Aufrufer
+
+
+def buy(balance, price):
+    if price &gt; balance:
+        raise InsufficientFundsError(balance, price)
+    return balance - price
+
+
+try:
+    print(buy(50, 20))                      # 30
+    print(buy(30, 99))                      # löst den Fehler aus
+except InsufficientFundsError as error:
+    print("[error]", error)
+    print("Es fehlen", error.missing, "€")</code></pre>
+      <pre><code>python shop.py</code></pre>
+    </section>
+    <section id="traceback">
+      <h2>Traceback lesen</h2>
+      <p>Ein Traceback sieht erschreckend aus, ist aber eine genaue Wegbeschreibung. <strong>Von unten nach oben lesen:</strong> Die letzte Zeile sagt, <em>was</em> schiefging, die Zeilen darüber, <em>wo</em>.</p>
+      <pre><code># crash.py
+def load_score(data, name):
+    return data[name]                       # Zeile 3
+
+def show(name):
+    scores = {"Anna": 150}
+    print(load_score(scores, name))         # Zeile 7
+
+show("Max")                                 # Zeile 9</code></pre>
+      <pre><code>python crash.py</code></pre>
+      <pre><code>Traceback (most recent call last):
+  File "/home/user/crash.py", line 9, in &lt;module&gt;        ← 3) hier begann es
+    show("Max")                                 # Zeile 9
+    ~~~~^^^^^^^
+  File "/home/user/crash.py", line 7, in show            ← 2) show rief load_score auf
+    print(load_score(scores, name))         # Zeile 7
+          ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/user/crash.py", line 3, in load_score      ← 1) hier knallte es
+    return data[name]                       # Zeile 3
+           ~~~~^^^^^^
+KeyError: 'Max'                                          ← WAS: Schlüssel 'Max' fehlt</code></pre>
+      <p>Die Zeichen <code>~~~^^^</code> unter jeder Zeile markieren die genaue Stelle im Ausdruck. Die Pfeile <code>←</code> rechts sind hier nur Erklärung – die druckt Python nicht.</p>
+      <ol>
+        <li>Letzte Zeile: Fehlertyp und Meldung (<code>KeyError: 'Max'</code>).</li>
+        <li>Darüber: die Zeile, in der es passiert ist (<code>line 3</code>).</li>
+        <li>Weiter oben: der Weg dorthin – wer hat wen aufgerufen.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Die häufigsten Exceptions</h2>
+      <table class="info-table">
+        <thead><tr><th>Exception</th><th>Ursache</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><code>SyntaxError</code></td><td>Code ist falsch geschrieben (läuft gar nicht erst los)</td><td><code>if x &gt; 3</code> ohne <code>:</code></td></tr>
+          <tr><td><code>IndentationError</code></td><td>Einrückung stimmt nicht</td><td>Block nach <code>if</code> nicht eingerückt</td></tr>
+          <tr><td><code>NameError</code></td><td>Name unbekannt</td><td>Tippfehler im Variablennamen</td></tr>
+          <tr><td><code>TypeError</code></td><td>Falscher Typ für die Operation</td><td><code>"3" + 4</code></td></tr>
+          <tr><td><code>ValueError</code></td><td>Richtiger Typ, unpassender Wert</td><td><code>int("abc")</code></td></tr>
+          <tr><td><code>IndexError</code></td><td>Index außerhalb der Liste</td><td><code>[1, 2][5]</code></td></tr>
+          <tr><td><code>KeyError</code></td><td>Schlüssel fehlt im Dict</td><td><code>{"a": 1}["b"]</code></td></tr>
+          <tr><td><code>AttributeError</code></td><td>Objekt hat dieses Attribut / diese Methode nicht</td><td><code>None.upper()</code></td></tr>
+          <tr><td><code>ZeroDivisionError</code></td><td>Division durch null</td><td><code>1 / 0</code></td></tr>
+          <tr><td><code>FileNotFoundError</code></td><td>Datei gibt es nicht</td><td><code>open("fehlt.txt")</code></td></tr>
+          <tr><td><code>ModuleNotFoundError</code></td><td>Modul nicht installiert oder falsch geschrieben</td><td><code>import requests</code> ohne Paket</td></tr>
+          <tr><td><code>KeyboardInterrupt</code></td><td>Benutzer hat Strg+C gedrückt</td><td>Endlosschleife abgebrochen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Vergleich: So sieht es in Python / C++ / JS / Lua aus</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Python</th><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody>
+          <tr><td>Abfangen</td><td><code>try</code> / <code>except</code></td><td><code>try</code> / <code>catch</code></td><td><code>try</code> / <code>catch</code></td><td><code>pcall(func)</code></td></tr>
+          <tr><td>Auslösen</td><td><code>raise ValueError("…")</code></td><td><code>throw std::runtime_error("…")</code></td><td><code>throw new Error("…")</code></td><td><code>error("…")</code></td></tr>
+          <tr><td>Immer ausführen</td><td><code>finally</code></td><td>Destruktor (RAII)</td><td><code>finally</code></td><td>–</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><strong>Kein nacktes <code>except:</code></strong> – es fängt auch Tippfehler (<code>NameError</code>) und Strg+C ab und versteckt so echte Fehler. Immer die erwartete Art nennen.</li>
+        <li>Fehler nicht stumm verschlucken (<code>except ValueError: pass</code>). Mindestens eine Meldung ausgeben, sonst sucht man später ewig.</li>
+        <li>Nur den Code in <code>try</code> stellen, der wirklich fehlschlagen kann – nicht die halbe Funktion.</li>
+        <li><code>try/except</code> ist für <em>erwartbare</em> Probleme (Eingabe, Datei, Netzwerk). Programmierfehler behebt man im Code, nicht mit <code>except</code>.</li>
+        <li>In einem <code>except</code>-Block wirft ein einzelnes <code>raise</code> denselben Fehler weiter – nützlich, wenn man nur loggen will.</li>
+        <li>Für Dateien <code>with</code> statt <code>finally: file.close()</code> benutzen, siehe <a href="python-dateien.html">Dateien</a>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-grundlagen.html">Grundlagen</a>
+        <a class="chip" href="python-dateien.html">Dateien &amp; JSON</a>
+        <a class="chip" href="python-klassen.html">Klassen</a>
+        <a class="chip" href="python-funktionen.html">Funktionen</a>
+        <a class="chip" href="cpp-fehler.html">C++: Fehler &amp; Exceptions</a>
+        <a class="chip" href="js-konsole.html">JS: Konsole &amp; Fehler</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

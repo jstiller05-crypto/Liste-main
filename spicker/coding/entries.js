@@ -65,6 +65,7 @@ window.SpickerData["coding"] = {
         { label: "SQL", value: "sql" },
         { label: "PHP", value: "php" },
         { label: "Lua", value: "lua" },
+        { label: "Python", value: "python" },
         { label: "C", value: "c" },
         { label: "C#", value: "c#" },
         { label: "Swift", value: "swift" },
@@ -164,8 +165,8 @@ window.SpickerData["coding"] = {
                         Block).
 
                         Stand jetzt vergeben: Stufe 0 (Anleitung) und
-                        Stufe 90 (die zwölf Sprach-Überblicke, siehe unten
-                        bei HTML/CSS/JavaScript/C++ usw.). Die Blöcke
+                        Stufe 90 (je EIN Überblicks-Eintrag pro Sprache,
+                        siehe unten bei HTML/CSS/JavaScript/C++/Python usw.). Die Blöcke
                         10–80 (IT-Grundlagen) kommen als eigene Schritte
                         dazu.
      Neuer Eintrag: einfach einen { ... }-Block kopieren und anpassen.
@@ -481,10 +482,17 @@ window.SpickerData["coding"] = {
       "class": ["html","container","media"]
     },
     {
+      "Begriff": "id",
+      "Beschreibung": "Eindeutiger Name für genau ein Element – für CSS (#name), JavaScript und Sprungmarken",
+      "Sprache": "html",
+      "Link": "more/id.html",
+      "class": ["html","attribut","basis","selektoren"]
+    },
+    {
       "Begriff": "<footer>",
       "Beschreibung": "Fußbereich eines Dokuments oder Abschnitts",
       "Sprache": "html",
-      "Link": "more/container.html",
+      "Link": "more/footer.html",
       "class": ["html","container"]
     },
     {
@@ -1019,6 +1027,13 @@ window.SpickerData["coding"] = {
       "Link": "more/css-sprache.html",
       "class": ["css","sprache","grundlagen"],
       "Stufe": 90
+    },
+    {
+      "Begriff": "class (CSS-Klasse)",
+      "Beschreibung": "Name für beliebig viele Elemente – im CSS mit .name angesprochen",
+      "Sprache": "CSS",
+      "Link": "more/Class.html",
+      "class": ["css","selektoren","attribut","basis"]
     },
     {
       "Begriff": "JavaScript",
@@ -1796,8 +1811,8 @@ window.SpickerData["coding"] = {
       "class": ["javascript","js","werkzeuge"]
     },
     {
-      "Begriff": "fetch",
-      "Beschreibung": "Daten aus dem Netz laden",
+      "Begriff": "await fetch()",
+      "Beschreibung": "Daten aus dem Netz laden und mit await auf die Antwort warten",
       "Sprache": "JS",
       "Link": "more/js-async.html",
       "class": ["javascript","js","werkzeuge"]
@@ -3450,6 +3465,369 @@ window.SpickerData["coding"] = {
       "Sprache": "XML",
       "Link": "more/xml-verwenden.html#cpp",
       "class": ["xml","daten"]
+    },
+
+    // ===== PYTHON (more/python-*.html) =====
+    // Reihenfolge = Lernreihenfolge der Seiten und, innerhalb einer Seite,
+    // die Reihenfolge der Abschnitte dort. Nur der Überblick trägt Stufe 90
+    // (wie bei allen Sprachen) – die Detail-Einträge haben keine Stufe.
+    {
+      "Begriff": "Python",
+      "Beschreibung": "Gut lesbare Allzweck-Sprache für Skripte, Daten und Backends",
+      "Sprache": "Python",
+      "Link": "more/python-sprache.html",
+      "class": ["python","sprache","grundlagen"],
+      "Stufe": 90
+    },
+    {
+      "Begriff": "Python installieren",
+      "Beschreibung": "Auf Arch mit pacman installieren und Version prüfen",
+      "Sprache": "Python",
+      "Link": "more/python-einfuehrung.html#installation",
+      "class": ["python","werkzeuge","pacman","arch","installation"]
+    },
+    {
+      "Begriff": "REPL",
+      "Beschreibung": "Python Zeile für Zeile im Terminal ausprobieren",
+      "Sprache": "Python",
+      "Link": "more/python-einfuehrung.html#repl",
+      "class": ["python","werkzeuge","interaktiv"]
+    },
+    {
+      "Begriff": "Skript ausführen",
+      "Beschreibung": "python script.py – und direkt ausführbar per Shebang",
+      "Sprache": "Python",
+      "Link": "more/python-einfuehrung.html#skript",
+      "class": ["python","werkzeuge","shebang","chmod"]
+    },
+    {
+      "Begriff": "Einrückung",
+      "Beschreibung": "Blöcke entstehen durch Doppelpunkt und Einrückung statt { }",
+      "Sprache": "Python",
+      "Link": "more/python-einfuehrung.html#einrueckung",
+      "class": ["python","grundlagen","basis","indentation"]
+    },
+    {
+      "Begriff": "Variable",
+      "Beschreibung": "Name für einen Wert – ohne Schlüsselwort und ohne Typangabe",
+      "Sprache": "Python",
+      "Link": "more/python-grundlagen.html#variablen",
+      "class": ["python","grundlagen","basis"]
+    },
+    {
+      "Begriff": "int / float / str / bool",
+      "Beschreibung": "Die Grund-Datentypen und die Rechenzeichen / // % **",
+      "Sprache": "Python",
+      "Link": "more/python-grundlagen.html#datentypen",
+      "class": ["python","grundlagen","daten","datentypen","none"]
+    },
+    {
+      "Begriff": "Typumwandlung",
+      "Beschreibung": "int(), float(), str(), bool() und round()",
+      "Sprache": "Python",
+      "Link": "more/python-grundlagen.html#typumwandlung",
+      "class": ["python","grundlagen","daten","cast"]
+    },
+    {
+      "Begriff": "print()",
+      "Beschreibung": "Werte ausgeben, mit sep und end",
+      "Sprache": "Python",
+      "Link": "more/python-grundlagen.html#print",
+      "class": ["python","grundlagen","ausgabe"]
+    },
+    {
+      "Begriff": "input()",
+      "Beschreibung": "Text vom Benutzer einlesen (immer als str)",
+      "Sprache": "Python",
+      "Link": "more/python-grundlagen.html#input",
+      "class": ["python","grundlagen","eingabe"]
+    },
+    {
+      "Begriff": "f-String",
+      "Beschreibung": "Werte direkt in Text einsetzen und formatieren: f\"{name}\"",
+      "Sprache": "Python",
+      "Link": "more/python-grundlagen.html#f-strings",
+      "class": ["python","grundlagen","text","formatierung"]
+    },
+    {
+      "Begriff": "if / elif / else",
+      "Beschreibung": "Bedingungen, Vergleichs- und Logik-Operatoren",
+      "Sprache": "Python",
+      "Link": "more/python-kontrolle.html#if",
+      "class": ["python","kontrolle","bedingung"]
+    },
+    {
+      "Begriff": "for … in range()",
+      "Beschreibung": "Zählschleife und Schleife über Listen, enumerate",
+      "Sprache": "Python",
+      "Link": "more/python-kontrolle.html#for",
+      "class": ["python","kontrolle","schleife"]
+    },
+    {
+      "Begriff": "while",
+      "Beschreibung": "Wiederholen, solange eine Bedingung gilt",
+      "Sprache": "Python",
+      "Link": "more/python-kontrolle.html#while",
+      "class": ["python","kontrolle","schleife"]
+    },
+    {
+      "Begriff": "break / continue",
+      "Beschreibung": "Schleife verlassen bzw. Durchlauf überspringen",
+      "Sprache": "Python",
+      "Link": "more/python-kontrolle.html#break-continue",
+      "class": ["python","kontrolle","schleife"]
+    },
+    {
+      "Begriff": "match / case",
+      "Beschreibung": "Fallunterscheidung ab Python 3.10 (wie switch)",
+      "Sprache": "Python",
+      "Link": "more/python-kontrolle.html#match",
+      "class": ["python","kontrolle","switch"]
+    },
+    {
+      "Begriff": "def",
+      "Beschreibung": "Funktion definieren, Parameter und benannte Argumente",
+      "Sprache": "Python",
+      "Link": "more/python-funktionen.html#def",
+      "class": ["python","grundlagen","funktion","parameter"]
+    },
+    {
+      "Begriff": "Standardwerte",
+      "Beschreibung": "Freiwillige Parameter: def f(x, y=2)",
+      "Sprache": "Python",
+      "Link": "more/python-funktionen.html#standardwerte",
+      "class": ["python","grundlagen","funktion","parameter"]
+    },
+    {
+      "Begriff": "return",
+      "Beschreibung": "Ergebnis zurückgeben – auch mehrere Werte als Tupel",
+      "Sprache": "Python",
+      "Link": "more/python-funktionen.html#return",
+      "class": ["python","grundlagen","funktion"]
+    },
+    {
+      "Begriff": "*args / **kwargs",
+      "Beschreibung": "Beliebig viele Argumente annehmen oder auspacken",
+      "Sprache": "Python",
+      "Link": "more/python-funktionen.html#args-kwargs",
+      "class": ["python","funktion","parameter"]
+    },
+    {
+      "Begriff": "lambda",
+      "Beschreibung": "Namenlose Mini-Funktion, z. B. als key beim Sortieren",
+      "Sprache": "Python",
+      "Link": "more/python-funktionen.html#lambda",
+      "class": ["python","funktion","sortieren"]
+    },
+    {
+      "Begriff": "Type Hints",
+      "Beschreibung": "Typen dazuschreiben: def f(x: int) -> str",
+      "Sprache": "Python",
+      "Link": "more/python-funktionen.html#type-hints",
+      "class": ["python","funktion","typen"]
+    },
+    {
+      "Begriff": "list",
+      "Beschreibung": "Geordnete, veränderbare Liste: append, pop, sort …",
+      "Sprache": "Python",
+      "Link": "more/python-listen-dicts.html#list",
+      "class": ["python","daten","liste","array"]
+    },
+    {
+      "Begriff": "Slicing",
+      "Beschreibung": "Ausschnitte mit liste[start:ende:schritt]",
+      "Sprache": "Python",
+      "Link": "more/python-listen-dicts.html#slicing",
+      "class": ["python","daten","liste","text"]
+    },
+    {
+      "Begriff": "tuple",
+      "Beschreibung": "Unveränderbare Folge, auspacken mit x, y = point",
+      "Sprache": "Python",
+      "Link": "more/python-listen-dicts.html#tuple",
+      "class": ["python","daten","tupel"]
+    },
+    {
+      "Begriff": "dict",
+      "Beschreibung": "Schlüssel → Wert, get(), items()",
+      "Sprache": "Python",
+      "Link": "more/python-listen-dicts.html#dict",
+      "class": ["python","daten","wörterbuch","map"]
+    },
+    {
+      "Begriff": "set",
+      "Beschreibung": "Menge ohne Doppelte, Vereinigung und Schnittmenge",
+      "Sprache": "Python",
+      "Link": "more/python-listen-dicts.html#set",
+      "class": ["python","daten","menge"]
+    },
+    {
+      "Begriff": "List Comprehension",
+      "Beschreibung": "Neue Liste in einer Zeile: [x * 2 for x in items]",
+      "Sprache": "Python",
+      "Link": "more/python-listen-dicts.html#comprehension",
+      "class": ["python","daten","liste","map","filter"]
+    },
+    {
+      "Begriff": "String-Schreibweisen",
+      "Beschreibung": "Anführungszeichen, \\n, Roh-Strings und mehrzeiliger Text",
+      "Sprache": "Python",
+      "Link": "more/python-strings.html#schreibweisen",
+      "class": ["python","text","string"]
+    },
+    {
+      "Begriff": "String-Methoden",
+      "Beschreibung": "strip, lower, replace, find, startswith …",
+      "Sprache": "Python",
+      "Link": "more/python-strings.html#methoden",
+      "class": ["python","text","string"]
+    },
+    {
+      "Begriff": "split() / join()",
+      "Beschreibung": "Text in eine Liste zerlegen und wieder verbinden",
+      "Sprache": "Python",
+      "Link": "more/python-strings.html#split-join",
+      "class": ["python","text","string","liste"]
+    },
+    {
+      "Begriff": "Format-Angaben",
+      "Beschreibung": "Nachkommastellen, Breite, Ausrichtung, Prozent im f-String",
+      "Sprache": "Python",
+      "Link": "more/python-strings.html#formatierung",
+      "class": ["python","text","string","formatierung"]
+    },
+    {
+      "Begriff": "open() mit with",
+      "Beschreibung": "Datei öffnen und sicher schließen, Modi r / w / a",
+      "Sprache": "Python",
+      "Link": "more/python-dateien.html#open",
+      "class": ["python","daten","datei","speicher"]
+    },
+    {
+      "Begriff": "Datei schreiben",
+      "Beschreibung": "write() und Anhängen mit Modus a",
+      "Sprache": "Python",
+      "Link": "more/python-dateien.html#schreiben",
+      "class": ["python","daten","datei","speicher"]
+    },
+    {
+      "Begriff": "Datei lesen",
+      "Beschreibung": "read(), Zeile für Zeile, splitlines()",
+      "Sprache": "Python",
+      "Link": "more/python-dateien.html#lesen",
+      "class": ["python","daten","datei","speicher"]
+    },
+    {
+      "Begriff": "pathlib",
+      "Beschreibung": "Pfade als Objekte: Path, /, exists(), glob()",
+      "Sprache": "Python",
+      "Link": "more/python-dateien.html#pathlib",
+      "class": ["python","daten","datei","pfad"]
+    },
+    {
+      "Begriff": "json-Modul",
+      "Beschreibung": "dict ↔ JSON: dump/load und dumps/loads",
+      "Sprache": "Python",
+      "Link": "more/python-dateien.html#json",
+      "class": ["python","daten","json","speicher"]
+    },
+    {
+      "Begriff": "class",
+      "Beschreibung": "Klasse mit Attributen und Methoden, Objekte erzeugen",
+      "Sprache": "Python",
+      "Link": "more/python-klassen.html#class",
+      "class": ["python","oop","klasse","objekt"]
+    },
+    {
+      "Begriff": "__init__ / self",
+      "Beschreibung": "Konstruktor und das Objekt selbst, __str__, @property",
+      "Sprache": "Python",
+      "Link": "more/python-klassen.html#init",
+      "class": ["python","oop","konstruktor"]
+    },
+    {
+      "Begriff": "Vererbung",
+      "Beschreibung": "class Dog(Animal), überschreiben, super()",
+      "Sprache": "Python",
+      "Link": "more/python-klassen.html#vererbung",
+      "class": ["python","oop","super"]
+    },
+    {
+      "Begriff": "@dataclass",
+      "Beschreibung": "Daten-Klasse mit automatischem __init__ und Vergleich",
+      "Sprache": "Python",
+      "Link": "more/python-klassen.html#dataclass",
+      "class": ["python","oop","daten","struct"]
+    },
+    {
+      "Begriff": "try / except / finally",
+      "Beschreibung": "Fehler abfangen, else und finally",
+      "Sprache": "Python",
+      "Link": "more/python-fehler.html#try",
+      "class": ["python","kontrolle","fehler","exception"]
+    },
+    {
+      "Begriff": "raise",
+      "Beschreibung": "Selbst einen Fehler auslösen",
+      "Sprache": "Python",
+      "Link": "more/python-fehler.html#raise",
+      "class": ["python","kontrolle","fehler","exception"]
+    },
+    {
+      "Begriff": "Eigene Exception",
+      "Beschreibung": "Eigene Fehlerklasse, die von Exception erbt",
+      "Sprache": "Python",
+      "Link": "more/python-fehler.html#eigene",
+      "class": ["python","oop","fehler","exception"]
+    },
+    {
+      "Begriff": "Traceback",
+      "Beschreibung": "Fehlermeldung von unten nach oben lesen",
+      "Sprache": "Python",
+      "Link": "more/python-fehler.html#traceback",
+      "class": ["python","werkzeuge","fehler","debuggen"]
+    },
+    {
+      "Begriff": "import",
+      "Beschreibung": "Module einbinden: import, from … import, as",
+      "Sprache": "Python",
+      "Link": "more/python-module-pip.html#import",
+      "class": ["python","grundlagen","modul"]
+    },
+    {
+      "Begriff": "Eigenes Modul",
+      "Beschreibung": "Funktionen in eine eigene .py-Datei auslagern",
+      "Sprache": "Python",
+      "Link": "more/python-module-pip.html#eigene-module",
+      "class": ["python","grundlagen","modul"]
+    },
+    {
+      "Begriff": "if __name__ == \"__main__\"",
+      "Beschreibung": "Code nur beim direkten Start ausführen, nicht beim Import",
+      "Sprache": "Python",
+      "Link": "more/python-module-pip.html#main",
+      "class": ["python","grundlagen","modul","main"]
+    },
+    {
+      "Begriff": "externally-managed-environment",
+      "Beschreibung": "Warum pip auf Arch systemweit blockiert ist – venv oder pacman",
+      "Sprache": "Python",
+      "Link": "more/python-module-pip.html#externally-managed",
+      "class": ["python","werkzeuge","pip","pacman","arch","fehler"]
+    },
+    {
+      "Begriff": "venv",
+      "Beschreibung": "Virtuelle Umgebung: eigene Pakete pro Projekt",
+      "Sprache": "Python",
+      "Link": "more/python-module-pip.html#venv",
+      "class": ["python","werkzeuge","pip","umgebung"]
+    },
+    {
+      "Begriff": "pip",
+      "Beschreibung": "Pakete von PyPI installieren, requirements.txt",
+      "Sprache": "Python",
+      "Link": "more/python-module-pip.html#pip",
+      "class": ["python","werkzeuge","pakete","requirements"]
     },
 
     // ===== IT-GRUNDLAGEN: 10 IT-Grundbegriffe (more/it-grundbegriffe.html) =====

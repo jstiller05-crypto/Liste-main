@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Funktionen – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Funktionen</p>
+    <h1>Funktionen</h1>
+    <p class="page-lead">Code mit def bündeln: Parameter, Standardwerte, return, beliebig viele Argumente mit *args/**kwargs, kurze lambda-Funktionen und Type Hints.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Eine Funktion ist ein benannter Block Code, den man beliebig oft aufrufen kann. Sie bekommt Werte über <strong>Parameter</strong> und gibt mit <code>return</code> ein Ergebnis zurück. In Python beginnt sie mit <code>def</code>; Typen für Parameter und Rückgabe sind freiwillig.</p>
+    </section>
+    <section id="def">
+      <h2>def &amp; Parameter</h2>
+      <pre><code># functions.py
+def greet(name):                    # name ist ein Parameter
+    """Begrüßt eine Person."""      # Docstring: erscheint bei help(greet)
+    print(f"Hallo {name}!")
+
+def add(a, b):
+    return a + b                    # Ergebnis zurückgeben
+
+greet("Anna")                       # Aufruf mit Argument "Anna"
+total = add(3, 4)
+print(total)                        # 7
+
+# Argumente mit Namen übergeben – Reihenfolge ist dann egal
+print(add(b=10, a=1))               # 11</code></pre>
+      <pre><code>python functions.py</code></pre>
+      <p>Eine Funktion muss <strong>oberhalb</strong> der Stelle definiert sein, an der sie aufgerufen wird – Python liest die Datei von oben nach unten.</p>
+    </section>
+    <section id="standardwerte">
+      <h2>Standardwerte</h2>
+      <pre><code># defaults.py
+def power(base, exponent=2):        # exponent ist freiwillig
+    return base ** exponent
+
+print(power(5))                     # 25  – exponent = 2
+print(power(5, 3))                  # 125
+print(power(exponent=4, base=2))    # 16
+
+# Parameter mit Standardwert stehen immer HINTER denen ohne.</code></pre>
+      <pre><code>python defaults.py</code></pre>
+    </section>
+    <section id="return">
+      <h2>return</h2>
+      <pre><code># returns.py
+def divide(a, b):
+    if b == 0:
+        return None                 # früh aussteigen
+    return a / b
+
+def min_max(numbers):
+    return min(numbers), max(numbers)   # mehrere Werte = ein Tupel
+
+def log(message):
+    print("[log]", message)         # kein return -&gt; gibt None zurück
+
+print(divide(10, 4))                # 2.5
+print(divide(1, 0))                 # None
+
+lowest, highest = min_max([4, 9, 2])    # Tupel direkt auspacken
+print(lowest, highest)              # 2 9
+
+print(log("Test"))                  # erst "[log] Test", dann None</code></pre>
+      <pre><code>python returns.py</code></pre>
+    </section>
+    <section id="args-kwargs">
+      <h2>*args und **kwargs</h2>
+      <p>Für Funktionen mit beliebig vielen Argumenten. Die Namen <code>args</code> und <code>kwargs</code> sind nur üblich – entscheidend sind die Sternchen.</p>
+      <pre><code># varargs.py
+def total(*args):                   # sammelt Positions-Argumente in einem Tupel
+    print("args:", args)
+    return sum(args)
+
+def show(**kwargs):                 # sammelt benannte Argumente in einem Dict
+    for key, value in kwargs.items():
+        print(f"{key} = {value}")
+
+print(total(1, 2, 3))               # args: (1, 2, 3) -&gt; 6
+show(name="Anna", age=25)
+
+# Umgekehrt: Liste/Dict beim AUFRUF auspacken
+numbers = [1, 2, 3]
+print(total(*numbers))              # wie total(1, 2, 3)
+settings = {"name": "Max", "age": 30}
+show(**settings)                    # wie show(name="Max", age=30)</code></pre>
+      <pre><code>python varargs.py</code></pre>
+    </section>
+    <section id="lambda">
+      <h2>lambda</h2>
+      <p>Eine <code>lambda</code> ist eine namenlose Mini-Funktion aus <strong>einem</strong> Ausdruck – wie die Pfeilfunktion <code>(x) =&gt; x * 2</code> in JS oder <code>[](int x) { return x * 2; }</code> in C++. Man braucht sie fast nur als Argument für andere Funktionen.</p>
+      <pre><code># lambdas.py
+double = lambda x: x * 2            # dasselbe wie:  def double(x): return x * 2
+print(double(5))                    # 10
+
+players = [("Anna", 150), ("Max", 120), ("Kim", 180)]
+
+# key = "wonach sortieren?" – hier nach dem zweiten Wert (Punkte)
+players.sort(key=lambda player: player[1], reverse=True)
+print(players)                      # Kim, Anna, Max
+
+longest = max(["a", "abc", "ab"], key=len)   # normale Funktionen gehen auch
+print(longest)                      # abc</code></pre>
+      <pre><code>python lambdas.py</code></pre>
+    </section>
+    <section id="type-hints">
+      <h2>Type Hints</h2>
+      <p>Type Hints schreiben dazu, welche Typen erwartet werden. Python selbst <strong>prüft sie nicht</strong> beim Ausführen – sie helfen dem Editor (Autovervollständigung, Warnungen) und allen, die den Code lesen.</p>
+      <pre><code># hints.py
+def area(width: float, height: float) -&gt; float:
+    return width * height
+
+def find_user(user_id: int) -&gt; str | None:      # str ODER None
+    users = {1: "Anna", 2: "Max"}
+    return users.get(user_id)
+
+def average(values: list[float]) -&gt; float:
+    return sum(values) / len(values)
+
+count: int = 0                                  # auch für Variablen möglich
+
+print(area(3, 4.5))
+print(find_user(2), find_user(99))
+print(average([1.0, 2.0, 4.5]))</code></pre>
+      <pre><code>python hints.py</code></pre>
+    </section>
+    <section>
+      <h2>Vergleich: So sieht es in Python / C++ / JS / Lua aus</h2>
+      <table class="info-table">
+        <thead><tr><th></th><th>Python</th><th>C++</th><th>JavaScript</th><th>Lua</th></tr></thead>
+        <tbody>
+          <tr><td>Definition</td><td><code>def add(a, b):</code></td><td><code>int add(int a, int b) { }</code></td><td><code>function add(a, b) { }</code></td><td><code>function add(a, b) … end</code></td></tr>
+          <tr><td>Standardwert</td><td><code>def f(x=1):</code></td><td><code>void f(int x = 1)</code></td><td><code>function f(x = 1)</code></td><td><code>x = x or 1</code></td></tr>
+          <tr><td>Beliebig viele</td><td><code>*args</code></td><td>Variadic Templates</td><td><code>...args</code></td><td><code>...</code></td></tr>
+          <tr><td>Mini-Funktion</td><td><code>lambda x: x * 2</code></td><td><code>[](int x) { return x * 2; }</code></td><td><code>x =&gt; x * 2</code></td><td><code>function(x) return x * 2 end</code></td></tr>
+          <tr><td>Mehrere Rückgaben</td><td><code>return a, b</code></td><td><code>std::pair</code> / <code>struct</code></td><td>Array / Objekt</td><td><code>return a, b</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Wichtige eingebaute Funktionen</h2>
+      <table class="info-table">
+        <thead><tr><th>Funktion</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td><code>len(x)</code></td><td>Anzahl der Elemente</td></tr>
+          <tr><td><code>sum(numbers)</code>, <code>min(…)</code>, <code>max(…)</code></td><td>Summe, kleinster, größter Wert</td></tr>
+          <tr><td><code>sorted(items, key=…, reverse=True)</code></td><td>Neue, sortierte Liste</td></tr>
+          <tr><td><code>enumerate(items)</code></td><td>Paare aus Index und Wert</td></tr>
+          <tr><td><code>zip(a, b)</code></td><td>Zwei Listen paarweise durchlaufen</td></tr>
+          <tr><td><code>map(func, items)</code>, <code>filter(func, items)</code></td><td>Funktion auf alle anwenden / Elemente auswählen</td></tr>
+          <tr><td><code>help(func)</code></td><td>Docstring und Parameter anzeigen</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><strong>Nie eine Liste oder ein Dict als Standardwert:</strong> <code>def add(item, items=[])</code> benutzt bei jedem Aufruf <em>dieselbe</em> Liste. Richtig: <code>items=None</code> und in der Funktion <code>if items is None: items = []</code>.</li>
+        <li><code>return</code> vergessen → die Funktion liefert <code>None</code>. Typischer Folgefehler: <code>TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'</code>.</li>
+        <li><code>greet</code> ist die Funktion selbst, <code>greet()</code> ruft sie auf. Fehlen die Klammern, passiert nichts.</li>
+        <li>Variablen, die in einer Funktion angelegt werden, sind nur dort sichtbar (lokal). Eine globale Variable in einer Funktion zu ändern braucht <code>global name</code> – besser den Wert als Parameter übergeben und zurückgeben.</li>
+        <li>Listen und Dicts werden als Referenz übergeben: Ändert die Funktion die Liste, ändert sie das Original.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-kontrolle.html">Kontrollstrukturen</a>
+        <a class="chip" href="python-listen-dicts.html">Listen &amp; Dicts</a>
+        <a class="chip" href="python-klassen.html">Klassen</a>
+        <a class="chip" href="python-module-pip.html">Module</a>
+        <a class="chip" href="function.html">C++: Funktionen</a>
+        <a class="chip" href="js-funktionen.html">JS: Funktionen</a>
+        <a class="chip" href="lua-funktionen.html">Lua: Funktionen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>

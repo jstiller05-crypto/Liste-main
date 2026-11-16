@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../shared/core.css" onerror="console.error('[theme] core.css konnte nicht geladen werden:', this.href)">
+  <link rel="stylesheet" href="../theme.css" onerror="console.warn('[theme] theme.css konnte nicht geladen werden – Standardfarben aus core.css:', this.href)">
+  <script defer src="../links.js" onerror="console.warn('[smart-link] links.js konnte nicht geladen werden:', this.src)"></script>
+  <script defer src="../../shared/page.js" onerror="console.error('[page] page.js konnte nicht geladen werden:', this.src)"></script>
+  <link rel="icon" type="image/x-icon" href="../../shared/icons/S logo.ico">
+  <title>Python: Strings – Spicker</title>
+</head>
+<body class="detail-page">
+  <header class="page-header">
+    <p class="page-kicker">Python · Text</p>
+    <h1>Strings</h1>
+    <p class="page-lead">Text untersuchen, zerlegen, zusammensetzen und formatieren – mit den Methoden, die jeder str schon mitbringt.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Was ist das?</h2>
+      <p>Ein String (<code>str</code>) ist eine Zeichenkette – Text in einfachen oder doppelten Anführungszeichen. Strings sind in Python <strong>unveränderbar</strong>: Jede Methode liefert einen <em>neuen</em> String, das Original bleibt, wie es ist.</p>
+    </section>
+    <section id="schreibweisen">
+      <h2>Schreibweisen</h2>
+      <pre><code># quotes.py
+a = "doppelte Anführungszeichen"
+b = 'einfache – völlig gleichwertig'
+c = "It's okay"                     # ' innerhalb von " braucht kein Escape
+d = "Zeile 1\nZeile 2\tmit Tab"     # \n = Zeilenumbruch, \t = Tabulator
+e = r"\d+\n"                        # r = roh: \n bleibt \n (gut für Regex)
+f = """Text über
+mehrere Zeilen"""                   # drei Anführungszeichen
+
+print(a, b, c, d, e, f, sep="\n")</code></pre>
+      <pre><code>python quotes.py</code></pre>
+    </section>
+    <section id="methoden">
+      <h2>String-Methoden</h2>
+      <pre><code># methods.py
+text = "  Hallo Welt  "
+
+print(text.strip())                 # "Hallo Welt" – Leerraum an beiden Enden weg
+print(text.lower())                 # alles klein
+print(text.upper())                 # alles groß
+print(text.strip().replace("Welt", "Python"))   # Methoden verketten
+
+name = "anna schmidt"
+print(name.capitalize())            # Anna schmidt
+print(name.title())                 # Anna Schmidt
+print(len(name))                    # 12 – Länge mit len(), nicht .length
+
+print(name.startswith("anna"))      # True
+print(name.endswith(".py"))         # False
+print("sch" in name)                # True – enthält?
+print(name.find("sch"))             # 5  – Position, -1 wenn nicht gefunden
+print(name.count("n"))              # 2
+
+print("42".isdigit())               # True – nur Ziffern?
+print("abc".isalpha())              # True – nur Buchstaben?
+
+print(name[0], name[-1])            # a t  – einzelne Zeichen per Index
+print(name[:4])                     # anna – Slicing wie bei Listen</code></pre>
+      <pre><code>python methods.py</code></pre>
+    </section>
+    <section id="split-join">
+      <h2>split &amp; join</h2>
+      <p><code>split</code> zerlegt einen Text in eine Liste, <code>join</code> setzt eine Liste zu einem Text zusammen. Ungewohnt: <code>join</code> ruft man <strong>auf dem Trennzeichen</strong> auf, nicht auf der Liste.</p>
+      <pre><code># splitjoin.py
+line = "Anna;25;Berlin"
+parts = line.split(";")             # ['Anna', '25', 'Berlin']
+print(parts)
+
+name, age, city = parts             # direkt in Variablen auspacken
+print(name, int(age) + 1, city)
+
+words = "viele   Leerzeichen  hier".split()   # ohne Argument: an Leerraum trennen
+print(words)                        # ['viele', 'Leerzeichen', 'hier']
+
+print(", ".join(words))             # viele, Leerzeichen, hier
+print("-".join(["2026", "01", "31"]))   # 2026-01-31
+
+text = "Zeile 1\nZeile 2\nZeile 3"
+for row in text.splitlines():       # an Zeilenumbrüchen trennen
+    print("&gt;", row)
+
+# join braucht Strings – Zahlen vorher umwandeln
+numbers = [1, 2, 3]
+print(" + ".join(str(n) for n in numbers))    # 1 + 2 + 3</code></pre>
+      <pre><code>python splitjoin.py</code></pre>
+    </section>
+    <section id="formatierung">
+      <h2>Formatierung</h2>
+      <p>Der übliche Weg sind <a href="python-grundlagen.html#f-strings">f-Strings</a>. Hinter einem Doppelpunkt steht die Format-Angabe:</p>
+      <pre><code># formatting.py
+price = 1234.5
+name = "Kiwi"
+ratio = 0.256
+
+print(f"{price:.2f} €")             # 1234.50 €   – 2 Nachkommastellen
+print(f"{price:10.2f}|")            # auf 10 Zeichen Breite, rechtsbündig
+print(f"{name:&lt;10}|{name:^10}|{name:&gt;10}|")   # links, mittig, rechts
+print(f"{ratio:.1%}")               # 25.6%       – als Prozent
+print(f"{255:x} {255:b}")           # ff 11111111 – hexadezimal, binär
+print(f"{42:05d}")                  # 00042
+
+# Kleine Tabelle
+for item, cost in [("Brot", 2.5), ("Käse", 12.99)]:
+    print(f"{item:&lt;8}{cost:&gt;8.2f}")
+
+# Ältere Schreibweisen – begegnen einem in fremdem Code
+print("Hallo {}, du bist {}".format("Anna", 25))
+print("Hallo %s, du bist %d" % ("Anna", 25))</code></pre>
+      <pre><code>python formatting.py</code></pre>
+    </section>
+    <section>
+      <h2>Die wichtigsten Methoden</h2>
+      <table class="info-table">
+        <thead><tr><th>Methode</th><th>Wirkung</th><th>In JS</th></tr></thead>
+        <tbody>
+          <tr><td><code>len(s)</code></td><td>Länge</td><td><code>s.length</code></td></tr>
+          <tr><td><code>s.lower()</code> / <code>s.upper()</code></td><td>Klein / groß</td><td><code>toLowerCase()</code> / <code>toUpperCase()</code></td></tr>
+          <tr><td><code>s.strip()</code> / <code>lstrip()</code> / <code>rstrip()</code></td><td>Leerraum außen entfernen</td><td><code>trim()</code></td></tr>
+          <tr><td><code>s.replace(a, b)</code></td><td><strong>Alle</strong> Vorkommen ersetzen</td><td><code>replaceAll(a, b)</code></td></tr>
+          <tr><td><code>s.split(sep)</code></td><td>In Liste zerlegen</td><td><code>split(sep)</code></td></tr>
+          <tr><td><code>sep.join(list)</code></td><td>Liste zu Text verbinden</td><td><code>list.join(sep)</code></td></tr>
+          <tr><td><code>sub in s</code></td><td>Enthält?</td><td><code>s.includes(sub)</code></td></tr>
+          <tr><td><code>s.find(sub)</code></td><td>Position oder -1</td><td><code>indexOf(sub)</code></td></tr>
+          <tr><td><code>s.startswith(x)</code> / <code>endswith(x)</code></td><td>Beginnt / endet mit</td><td><code>startsWith</code> / <code>endsWith</code></td></tr>
+          <tr><td><code>s.isdigit()</code></td><td>Besteht nur aus Ziffern?</td><td>–</td></tr>
+          <tr><td><code>s.zfill(5)</code></td><td>Links mit Nullen auffüllen</td><td><code>padStart(5, "0")</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Tipps &amp; typische Fehler</h2>
+      <ul>
+        <li><code>text.upper()</code> allein ändert nichts – das Ergebnis muss man speichern: <code>text = text.upper()</code>.</li>
+        <li><code>TypeError: 'str' object does not support item assignment</code> – <code>text[0] = "X"</code> geht nicht. Stattdessen neu zusammenbauen: <code>"X" + text[1:]</code>.</li>
+        <li><code>input()</code> und Zeilen aus Dateien haben oft Leerraum oder <code>\n</code> am Ende – vor dem Vergleichen <code>strip()</code> aufrufen.</li>
+        <li>Vergleiche beachten Groß-/Kleinschreibung: <code>"Ja" == "ja"</code> ist <code>False</code>. Vorher <code>lower()</code>.</li>
+        <li>Viele Textstücke nicht in einer Schleife mit <code>+=</code> sammeln, sondern in eine Liste legen und am Ende <code>"".join(liste)</code>.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Verwandte Seiten</h2>
+      <div class="chip-row">
+        <a class="chip" href="python-grundlagen.html">Grundlagen &amp; f-Strings</a>
+        <a class="chip" href="python-listen-dicts.html">Listen &amp; Slicing</a>
+        <a class="chip" href="python-dateien.html">Dateien</a>
+        <a class="chip" href="cpp-string.html">C++: std::string</a>
+        <a class="chip" href="js-strings.html">JS: Strings</a>
+        <a class="chip" href="lua-strings.html">Lua: Strings</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="back-icon" href="../index.html" title="Zurück zur Liste"><img src="../../shared/icons/Back2.ico" alt="Zurück" onerror="console.warn('[icon] Zurück-Icon konnte nicht geladen werden:', this.src); this.style.display='none';"></a>
+  </footer>
+</body>
+</html>
